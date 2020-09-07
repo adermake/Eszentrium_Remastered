@@ -1,0 +1,74 @@
+name: Eszentrium
+main: esze.main.main
+version: 1.0
+author: [Philipp0002, adermake, Astromake]
+api-version: 1.13
+
+
+commands:
+  spell:
+    description: Make more SPELLS!!
+    usage: spell [name]
+  game:
+    description: Game management
+    usage: 
+  maps:
+    description: Arena overview
+    usage: 
+  itemname:
+    description: Change name of held item
+    usage: 
+  setspawn:
+    description: Set a spawn
+    usage: 
+  removemap:
+    description: Remove an arena
+    usage: 
+  setlobby:
+    description: Set spawnlocation
+    usage: 
+  setmode:
+    description: Set the gamemode
+    usage: 
+  setpassword:
+    description: Set app password
+    usage: 
+  setdiscordtoken:
+    description: Set discord token
+    usage: 
+  setitem:
+    description: Set the gamemode
+    usage: 
+  downloadfile:
+    description: Download a file
+    usage: 
+  ping:
+    description: Ping
+    usage: 
+  gamemode:
+    description: Gamemode
+    usage: 
+  gm:
+    description: Gamemode
+    usage: 
+  setjumppad:
+    description: set a pad
+    usage: 
+  removepads:
+    description: Gamemode
+    usage: 
+  showpads:
+    description: shows pads
+    usage: /showpads map
+  unload:
+    description: unloads all pads
+    usage: 
+  loadpads:
+    description: load pads
+    usage: 
+  analytics:
+    description: Shows Stats
+    usage: /analytics [stats/spellmenu] name
+  playrandomsound:
+    description: plays random sound
+    usage: /playrandomsound
