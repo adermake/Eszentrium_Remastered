@@ -17,7 +17,7 @@ public abstract class AutomaticBoard extends UpdatableBoard implements Runnable
     {
         this.taskId = Bukkit.getScheduler().runTaskTimer(plugin, this, 0, this.delay).getTaskId();
     }
-    
+    //SSS
     public void stop()
     {
         if(this.taskId != -1)
