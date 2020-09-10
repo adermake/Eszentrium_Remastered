@@ -31,12 +31,30 @@ public class Eisstachel extends Spell {
 		
 		
 	}
-
+	Location saveLoc = null;
+	boolean noSpikes = false;
+	public Eisstachel(Location l,Vector dir,Player caster) {
+		cooldown = 20*40;
+		name = "§eEisstachel";
+		speed = 10;
+		steprange =32;
+		hitPlayer = true;
+		hitSpell = true;
+		hitboxSize = 3;
+		refined = false;
+		noSpikes = true;
+		saveLoc = l.clone().setDirection(dir);
+		castSpell(caster, name);
+		
+	}
 	
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
 		//ParUtils.parKreisDir(Particles.CLOUD, loc, 3, 2, c, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+		if (saveLoc != null)	
+		loc = saveLoc;
+			
 	}
 	Vector last;
 	int c = 0;
@@ -83,7 +101,7 @@ public class Eisstachel extends Spell {
 		if (l < 3) {
 			l = 3;
 		}
-		if (i % 4 == 0) {
+		if (i % 4 == 0 && !noSpikes) {
 			
 			Vector v = caster.getLocation().getDirection();
 			v = v.multiply(3).add(randVector().multiply(1-lFactor)).normalize();
@@ -125,10 +143,27 @@ public class Eisstachel extends Spell {
 
 	public void onHitEffect(LivingEntity ent) {
 		
-		for (int i = 0;i<20;i++) {
-			//randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize())
-			new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90);
+		if (refined) {
+			for (int i = 0;i<4;i++) {
+				Vector rand = randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize());
+				if (rand.getY()>0.1) {
+					rand.setY(0.1);
+				}
+				if (rand.getY()<0.1) {
+					rand.setY(-0.1);
+				}
+				//new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90);
+				new Eisstachel(ent.getLocation().add(rand), rand, caster);
+			}
 		}
+		else {
+			for (int i = 0;i<20;i++) {
+				//randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize())
+				new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90);
+			}
+		}
+		
+		
 		new BukkitRunnable() {
 			Location l = ent.getLocation();
 			int t = 0;

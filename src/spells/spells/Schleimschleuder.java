@@ -82,11 +82,14 @@ public class Schleimschleuder extends Spell {
 			dashCharge = false;
 			playSound(Sound.ENTITY_SLIME_JUMP,caster.getLocation(),2,1);
 			caster.setVelocity(caster.getLocation().getDirection().multiply(2));
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				if (checkHit(p, g.getLocation(), caster, g.getSize()*3+3)) {
-					doPin(p,g.getLocation());
+			if (refined) {
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					if (checkHit(p, g.getLocation(), caster, g.getSize()*3+3)) {
+						doPin(p,g.getLocation());
+					}
 				}
 			}
+			
 		}
 			
 		if (!stagedone) {

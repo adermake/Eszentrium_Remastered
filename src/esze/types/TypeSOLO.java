@@ -93,6 +93,20 @@ public class TypeSOLO extends Type {
 				s.open(p);
 				loc.put(p, p.getLocation());
 				lives.put(p, 4);
+				
+				// GameMode SURV after time
+				new BukkitRunnable() {
+					int t =0;
+					public void run() {
+						t++;
+						if (t > 10 * 10) {
+							p.setGameMode(GameMode.SURVIVAL);
+						}
+						if (p.getGameMode() == GameMode.SURVIVAL) {
+							this.cancel();
+						}
+					}
+				}.runTaskLater(main.plugin, 2);
 			}
 		WeaponMenu.deliverItems();
 		spectator.clear();
@@ -179,7 +193,18 @@ public class TypeSOLO extends Type {
 			}.runTaskLater(main.plugin, 2);
 			PlayerUtils.snare(p, true);
 		}
-		
+		new BukkitRunnable() {
+			int t =0;
+			public void run() {
+				t++;
+				if (t > 10 * 10) {
+					p.setGameMode(GameMode.SURVIVAL);
+				}
+				if (p.getGameMode() == GameMode.SURVIVAL) {
+					this.cancel();
+				}
+			}
+		}.runTaskLater(main.plugin, 2);
 		
 		
 	}

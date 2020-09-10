@@ -35,7 +35,8 @@ public class OrbitarShot extends Spell {
 		speed = 6;
 		steprange = 100;
 		castSpell(caster, name);
-		
+		if (refined)
+			steprange = 200;
 		
 	}
 	@Override
@@ -83,17 +84,33 @@ public class OrbitarShot extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		p.setVelocity(loc.getDirection().multiply(2));
-		damage(p,2,caster);
+		
+		
 		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
+		if (refined) {
+			damage(p,4,caster);
+			p.setVelocity(loc.getDirection().multiply(3));
+		}
+		else {
+			damage(p,2,caster);
+			p.setVelocity(loc.getDirection().multiply(2));
+		}
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ent.setVelocity(loc.getDirection().multiply(2));
-		damage(ent,2,caster);
+		
+		
+		if (refined) {
+			damage(ent,4,caster);
+			ent.setVelocity(loc.getDirection().multiply(23));
+		}
+		else {
+			damage(ent,2,caster);
+			ent.setVelocity(loc.getDirection().multiply(2));
+		}
 		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
 	}

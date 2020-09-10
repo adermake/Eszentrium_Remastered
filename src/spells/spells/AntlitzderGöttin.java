@@ -24,13 +24,15 @@ public class AntlitzderGöttin extends Spell{
 		hitPlayer = false;
 		hitBlock = false;
 		hitEntity = false;
-		steprange = 60;
+		steprange = 20*20;
 		cooldown = 20*40;
 		speed = 1;
 		hitboxSize = 4;
 	}
 	@Override
 	public void onDeath() {
+		SoundUtils.playSound(Sound.ENTITY_WITCH_DEATH, loc, 0.8F, 5F);
+		
 		// TODO Auto-generated method stub
 		deflect.remove(caster);
 	}
@@ -38,7 +40,8 @@ public class AntlitzderGöttin extends Spell{
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		SoundUtils.playSound(Sound.ENTITY_WITCH_AMBIENT, loc, 3, 0.3F);
+		SoundUtils.playSound(Sound.ENTITY_WITCH_AMBIENT, loc, 3, 2F);
+		
 		deflect.add(caster);
 	}
 
@@ -64,24 +67,40 @@ public class AntlitzderGöttin extends Spell{
 			dead = true;
 		}
 	}
-
+	int returns = 3;
 	@Override
 	public void display() {
 		//playSound(Sound.BLOCK_NOTE_BLOCK_COW_BELL, loc, 10F, 0.1F);
 		SoundUtils.playSound(Sound.ENTITY_BLAZE_BURN, loc, 3, 0.4F);
-		Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3);
-		Location dot2 = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3+22);
+		//Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3);
+		//Location dot2 = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3+15);
+		//Location dot3 = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3+30);
 		loc = caster.getLocation();
 		
 		//ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 14);
 		//ParUtils.createParticle(Particles.FLAME, dot2, 0, 1, 0, 0, 14);
 		if (refined) {
-			ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
-			ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
+			for (int i = 0;i<returns;i++) {
+				Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3 +i*(44/returns));
+				ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+				ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 0.3F);
+			}
 		}
 		else {
-			ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
-			ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+			for (int i = 0;i<returns;i++) {
+				Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3 +i*15);
+				ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 2, 1, 1,new Vector(0,-1,0));
+				
+			}
+			//ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+		}
+		if (returns <= 0 && !refined) {
+			dead = true;
 		}
 		
 		//ParUtils.createParticle(Particle.VILLAGER_ANGRY, caster.getEyeLocation().add(0,-1.7,0), 0, 1, 0, 0, 1);
@@ -101,13 +120,18 @@ public class AntlitzderGöttin extends Spell{
 
 	@Override
 	public void onSpellHit(Spell spell) {
-		if (spell.getName().contains("Antlitz der Göttin")) {
+		if (spell.getName().contains("Antlitz der Göttin") || spell.caster == caster) {
 			return;
 		}
-		// TODO Auto-generated method stub
-		spell.caster = caster;
-		playSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, loc, 5, 2);
-		spell.loc.setDirection(loc.getDirection());
+		if (returns > 0 || refined) {
+			if (!refined)
+			returns--;
+			// TODO Auto-generated method stub
+			spell.caster = caster;
+			playSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, loc, 5, 2);
+			spell.loc.setDirection(loc.getDirection());
+		}
+		
 		
 	}
 

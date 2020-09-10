@@ -1,6 +1,9 @@
 package spells.spells;
 
+import java.util.ArrayList;
+
 import org.bukkit.Color;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -128,6 +131,18 @@ public class Quantentunnel extends Spell{
 
 	@Override
 	public void onDeath() {
+		ArrayList<Entity> rem = new ArrayList<Entity>();
+		for (Entity ent : hitEntitys) {
+			if (ent instanceof Player) {
+				Player p  = (Player)ent;
+				if (p.getGameMode() == GameMode.ADVENTURE) {
+					rem.add(p);
+				}
+			}
+		}
+		for (Entity ent : rem) {
+			hitEntitys.remove(ent);
+		}
 		if (refined && caster.isSneaking()) {
 			hitEntitys.add(caster);
 		}

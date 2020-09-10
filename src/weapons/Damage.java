@@ -21,12 +21,13 @@ public class Damage implements Listener{
 	
 	@EventHandler
 	public void onDamage(EntityDamageEvent e){
-		
+		/*
 		if (AntlitzderGöttin.deflect.contains(e.getEntity())) {
 			
 			e.setDamage(0);
 			SoundUtils.playSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, e.getEntity().getLocation(), 5, 2);
 		}
+		*/
 		if(e.getCause().equals( DamageCause.FALL)) {
 			e.setCancelled(true);
 		}
@@ -61,15 +62,15 @@ public class Damage implements Listener{
 				}
 				Player p = (Player) e.getDamager();
 				
-				/*
+				
 				if (p.getInventory().getItemInMainHand().getType() == Material.BOOK || p.getInventory().getItemInMainHand().getType() == Material.ENCHANTED_BOOK) {
-					main.damageCause.remove((Player) e.getEntity());
-					main.damageCause.put((Player) e.getEntity(), "Buch-" + ((Player) e.getDamager()).getName());
+					
+					
 				} else {
 					
 					main.damageCause.put((Player) e.getEntity(), p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() +  "-" + ((Player) e.getDamager()).getName());
 				}
-				*/
+				
 				if (p.getInventory().getItemInMainHand().getType() == Material.BOW) {
 					//main.damageCause.put((Player) e.getEntity(), "Bogen-" + ((Player) e.getDamager()).getName());
 					if (WeaponAbilitys.charge1.containsKey(p)) {

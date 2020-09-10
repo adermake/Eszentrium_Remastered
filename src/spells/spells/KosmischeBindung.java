@@ -1,7 +1,9 @@
 package spells.spells;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -125,6 +127,19 @@ public class KosmischeBindung extends Spell{
 			hitPlayer = false;
 			hitEntity = false;
 			hitSpell = false;
+		}
+		
+		ArrayList<Entity> rem = new ArrayList<Entity>();
+		for (Entity ent : hitList.keySet()) {
+			if (ent instanceof Player) {
+				Player p  = (Player)ent;
+				if (p.getGameMode() == GameMode.ADVENTURE) {
+					rem.add(p);
+				}
+			}
+		}
+		for (Entity ent : rem) {
+			hitList.remove(ent);
 		}
 		
 		for (Entity ent : hitList.keySet()) {

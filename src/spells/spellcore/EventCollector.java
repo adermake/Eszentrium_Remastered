@@ -116,6 +116,9 @@ public class EventCollector implements Listener {
 							// Bukkit.broadcastMessage("F" + s);
 							Class clazz = Class.forName(name);
 							Spell sp = (Spell) clazz.newInstance();
+							
+								
+							
 							sp.refined = refined;
 							is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
 							is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
@@ -140,6 +143,7 @@ public class EventCollector implements Listener {
 						} catch (Exception ex) {
 							//ex.printStackTrace(System.out);
 							p.sendMessage("Spell is not vaild!");
+							p.sendMessage(ex.toString());
 						}
 						;
 					}

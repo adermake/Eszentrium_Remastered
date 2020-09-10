@@ -1,6 +1,7 @@
 package spells.stagespells;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -59,6 +60,7 @@ public class KaminchenEntity extends Spell {
 	int jumpcooldown = 0;
 	int i = 0;
 	boolean jumpAble = false;
+	boolean agrro = false;
 	@Override
 	public void move() {
 		
@@ -107,6 +109,22 @@ public class KaminchenEntity extends Spell {
 					
 				}
 				
+				
+			}
+			
+		}
+		if (swap()) {
+			ParUtils.createRedstoneParticle(ent.getLocation(), 0.1F, 0.1F, 0.1F, 10, Color.RED,3);
+			playSound(Sound.ENTITY_RABBIT_ATTACK,ent.getLocation(),5,1);
+			agrro = true;
+		}
+		
+		if (jumpAble && boundOnGround && agrro) {
+			Player n = getNearestPlayer(caster);
+			if (n != null) {
+				jumpcooldown = 30;
+				ent.setTarget(n);
+				doPull(ent, n.getEyeLocation(), 1.2F);
 				
 			}
 			

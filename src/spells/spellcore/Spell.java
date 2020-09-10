@@ -22,6 +22,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.enums.GameType;
 import esze.main.main;
 import esze.utils.Actionbar;
 import io.netty.util.internal.ThreadLocalRandom;
@@ -933,7 +934,7 @@ public abstract class Spell {
 		Player nearest = null;
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			
-			if (p != c && p.getGameMode() != GameMode.ADVENTURE) {
+			if (p != c && p.getGameMode() != GameMode.ADVENTURE && !GameType.getType().spectator.contains(p)) {
 				double dis = l.distance(p.getLocation());
 				if (dis<distance&& dis < range) {
 					nearest = p;

@@ -68,7 +68,13 @@ public class Erdsurfer extends Spell {
 				(byte) 0);
 
 		doPull(fb, caster.getLocation(), 1);
-		doPull(binder, caster.getLocation(), 1);
+		if (refined) {
+			doPull(binder, caster.getLocation(), 3);
+		}
+		else {
+			doPull(binder, caster.getLocation(), 1);
+		}
+		
 		new BukkitRunnable() {
 			int ti = 0;
 

@@ -23,7 +23,7 @@ public class Spike extends Spell {
 
 	public Spike() {
 		cooldown = 20*10;
-		name = "§eIceSpike";
+		this.name = name;
 		speed = 3;
 		steprange =12;
 		hitPlayer = true;
@@ -33,7 +33,7 @@ public class Spike extends Spell {
 	Location saveLoc;
 	public Spike(Player c,Vector v,String name,Location l,int length) {
 		cooldown = 20*10;
-		name = "§eIceSpike";
+		this.name = name;
 		speed = 3;
 		steprange =42;
 		hitPlayer = true;
@@ -50,7 +50,7 @@ public class Spike extends Spell {
 	Entity target;
 	public Spike(Player c,Vector v,String name,Location l,int length,int delay) {
 		cooldown = 20*10;
-		name = "§eIceSpike";
+		this.name = name;
 		speed = 3;
 		steprange =42;
 		hitPlayer = true;
