@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 public abstract class AutomaticBoard extends UpdatableBoard implements Runnable
 {
     private int taskId, delay;
-    
+    ///ssssss
     public AutomaticBoard(int delay)
     {
         this.taskId = -1;
