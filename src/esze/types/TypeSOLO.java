@@ -81,14 +81,14 @@ public class TypeSOLO extends Type {
 				main.damageCause.put(p, main.unknownDamage); //Reset damage Cause
 				SaveUtils.addPlayer(p.getName()); //Analytics
 				p.teleport(nextLoc());
-				p.setGameMode(GameMode.SURVIVAL);
+				p.setGameMode(GameMode.ADVENTURE);
 				p.getInventory().clear();
 			
 				if (!WeaponMenu.items.containsKey(p))
 				p.getInventory().addItem(ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(Material.WOODEN_SWORD, 1, 0, "§cSchwert", null, true)));
 				
 				PlayerUtils.hidePlayer(p,200);
-				p.setNoDamageTicks(200);
+				
 				SoloSpellMenu s = new SoloSpellMenu();
 				s.open(p);
 				loc.put(p, p.getLocation());
@@ -99,6 +99,7 @@ public class TypeSOLO extends Type {
 					int t =0;
 					public void run() {
 						t++;
+						p.setNoDamageTicks(4);
 						if (t > 10 * 10) {
 							p.setGameMode(GameMode.SURVIVAL);
 						}
@@ -106,7 +107,7 @@ public class TypeSOLO extends Type {
 							this.cancel();
 						}
 					}
-				}.runTaskLater(main.plugin, 2);
+				}.runTaskTimer(main.plugin, 2,2);
 			}
 		WeaponMenu.deliverItems();
 		spectator.clear();
@@ -174,8 +175,8 @@ public class TypeSOLO extends Type {
 				
 			}.runTaskLater(main.plugin, 10);
 			
-			PlayerUtils.hidePlayer(p,200);
-			p.setNoDamageTicks(200);
+			
+			
 			p.teleport(nextLoc());
 			SoloSpellMenu s;
 			if (lives.get(p) == 1) {
@@ -189,22 +190,32 @@ public class TypeSOLO extends Type {
 			new BukkitRunnable() {
 				public void run() {
 					s.open(p);
+					
+					PlayerUtils.snare(p, true);
+					p.setGameMode(GameMode.ADVENTURE);
+					new BukkitRunnable() {
+						int t =0;
+						
+						public void run() {
+							t++;
+							PlayerUtils.hidePlayer(p);
+							p.setNoDamageTicks(4);
+							if (t > 10 * 10) {
+								
+								p.setGameMode(GameMode.SURVIVAL);
+								PlayerUtils.showPlayer(p);
+							}
+							if (p.getGameMode() == GameMode.SURVIVAL) {
+								PlayerUtils.showPlayer(p);
+								this.cancel();
+							}
+						}
+					}.runTaskTimer(main.plugin, 2,2);
 				}
 			}.runTaskLater(main.plugin, 2);
-			PlayerUtils.snare(p, true);
+		
 		}
-		new BukkitRunnable() {
-			int t =0;
-			public void run() {
-				t++;
-				if (t > 10 * 10) {
-					p.setGameMode(GameMode.SURVIVAL);
-				}
-				if (p.getGameMode() == GameMode.SURVIVAL) {
-					this.cancel();
-				}
-			}
-		}.runTaskLater(main.plugin, 2);
+		
 		
 		
 	}

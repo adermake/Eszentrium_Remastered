@@ -67,7 +67,7 @@ public abstract class Spell {
 	protected boolean powerBattle = false;
 	protected boolean traitorSpell = false;
 	protected boolean dead = false;
-	
+	protected boolean silencable = false;
 	protected boolean tagPlayer = true; //hit Players will get a damage Cause
 	
 	//VARS
@@ -83,6 +83,7 @@ public abstract class Spell {
 	protected static ArrayList<Player> hasDiedEntry = new ArrayList<Player>();
 	public static ArrayList<Entity> unHittable = new ArrayList<Entity>();
 	protected Location startPos;
+	protected Player originalCaster;
 	//CALLED
 	
 	
@@ -103,7 +104,7 @@ public abstract class Spell {
 		
 		this.name = name;
 		
-		
+		originalCaster = p;
 		return createdSpell(p);
 	}
 	
@@ -222,8 +223,15 @@ public abstract class Spell {
 					
 					ts++;
 					
+					if (silencable) {
+						if (silenced.contains(caster)) {
+							dead = true;
+						}
+					}
+					
 					if (ts>=1/speed) {	
 						ts = 0;
+						
 						for (int i = 0;i<speed;i++) {
 							if (speedmultiplier != 0) {
 								move();
@@ -877,6 +885,15 @@ public abstract class Spell {
 		return false;
 	}
 	
+	public void clearswap() {
+		
+		
+		if (EventCollector.quickSwap.contains(caster)) {
+			EventCollector.quickSwap.remove(caster);
+		}
+		
+	}
+
 	public static Location lookAt(Location loc, Location lookat) {
 
 		loc = loc.clone();

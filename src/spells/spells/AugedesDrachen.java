@@ -23,9 +23,9 @@ public class AugedesDrachen extends Spell{
 		hitPlayer = false;
 		hitEntity = false;
 		hitSpell = true;
-		speed = 1;
+		speed = 1F;
 		cooldown = 20*60;
-		steprange = 130;
+		steprange = 180;
 		hitboxSize = 1;
 		multihit = true;
 		
@@ -60,18 +60,19 @@ public class AugedesDrachen extends Spell{
 	
 	EnderDragon d1;
 	EnderDragon d2;
+	boolean calcH = false;
 	@Override
 	public void move() {
 		if (step<=30) {
-			loc.add(loc.getDirection().multiply(0.5));
+			loc.add(loc.getDirection().multiply(0.4));
 		}
 		else {
-			loc.add(loc.getDirection().multiply(0.7));
+			loc.add(loc.getDirection().multiply(0.6));
 		}
 		if (step == 31) {
 			hitboxSize = 7;
 			hitPlayer = true;
-			
+			hitEntity = true;
 			Location l = loc.clone();
 			l.setDirection(l.getDirection().multiply(-1));
 			d1 = (EnderDragon) loc.getWorld().spawnEntity(l, EntityType.ENDER_DRAGON);
@@ -82,18 +83,21 @@ public class AugedesDrachen extends Spell{
 			d2.setCollidable(false);
 			d1.setRemoveWhenFarAway(false);
 			d2.setRemoveWhenFarAway(false);
-			
+			speed = 2;
 			//d1.setPhase(Phase.CHARGE_PLAYER);
 			//d2.setPhase(Phase.HOVER);
 		}
 		if (step > 31) {
 			
-			moveHelix(d1,3, (Math.PI));
-			moveHelix(d2,3,0);
-			ParUtils.createRedstoneParticle(d1.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
-			ParUtils.createRedstoneParticle(d2.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
-			ParUtils.createParticle(Particles.LARGE_SMOKE, d1.getLocation(), 0, 0, 0, 1, 0);
-			ParUtils.createParticle(Particles.LARGE_SMOKE, d2.getLocation(), 0, 0, 0, 1, 0);
+			if (calcH) {
+				moveHelix(d1,3, (Math.PI));
+				moveHelix(d2,3,0);
+				ParUtils.createRedstoneParticle(d1.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
+				ParUtils.createRedstoneParticle(d2.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
+				ParUtils.createParticle(Particles.LARGE_SMOKE, d1.getLocation(), 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particles.LARGE_SMOKE, d2.getLocation(), 0, 0, 0, 1, 0);
+			}
+			calcH = !calcH;
 		}
 		
 	}
@@ -137,9 +141,9 @@ public class AugedesDrachen extends Spell{
 		
 	}
 	public void moveHelix(EnderDragon d,double r,double pushover) {
-		double x = r * Math.cos(step*(Math.PI/16)+pushover);
+		double x = r * Math.cos(0.5*step*(Math.PI/16)+pushover);
 		double y = 0;
-		double z = r * Math.sin(step*(Math.PI/16)+pushover);
+		double z = r * Math.sin(0.5*step*(Math.PI/16)+pushover);
 		Vector v = new Vector(x,y,z);
 		Matrix.rotateMatrixVectorFunktion(v, loc.clone());
 		Location l = loc.clone().add(v);

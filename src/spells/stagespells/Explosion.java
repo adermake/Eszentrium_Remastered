@@ -22,6 +22,7 @@ public class Explosion extends Spell {
 	public Explosion(double size,double damage,double knockback,float pitch,Player caster,Location loca, String namae) {
 		hitboxSize = size;
 		steprange = 1;
+		hitEntity = true;
 		this.damage = damage;
 		this.pitch = pitch;
 		this.knockback = knockback;

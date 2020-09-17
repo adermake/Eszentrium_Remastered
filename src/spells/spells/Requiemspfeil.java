@@ -28,7 +28,7 @@ public class Requiemspfeil extends Spell {
 		cooldown = 20 * 50;
 		hitboxSize = 1.5;
 		speed = 1;
-		
+		hitSpell = true;
 		
 	}
 	Location ori;
@@ -117,7 +117,11 @@ public class Requiemspfeil extends Spell {
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,ori,5,1);
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,caster.getLocation(),5,1);
 		// TODO Auto-generated method stub
-		damage(p, 5+speedX/8, caster);
+		
+			damage(p, speedX/5, caster);
+		
+		
+		
 		dead = true;
 	}
 
@@ -134,7 +138,15 @@ public class Requiemspfeil extends Spell {
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
-		
+		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
+		setGliding(originalCaster, false);
+		originalCaster.setVelocity(new Vector(0,0,0));
+		once = true;
+		PlayerUtils.showPlayer(originalCaster);
+		a.remove();
+		originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);
+		// TODO Auto-generated method stub
+		originalCaster.teleport(ori);
 	}
 
 	@Override

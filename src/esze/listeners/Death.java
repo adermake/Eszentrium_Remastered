@@ -36,12 +36,9 @@ public class Death implements Listener {
 				PlayerDeathEvent event = new PlayerDeathEvent(p, null, 0, "he dead");
 	
 				e.setCancelled(true);
-				if (AntlitzderGöttin.deflect.contains(p)) {
-					p.setHealth(e.getDamage());
-				}
-				else {
-					p.setHealth(20);
-				}
+				
+				p.setHealth(20);
+				
 				
 				
 				if (p.getLocation().getY()<60)

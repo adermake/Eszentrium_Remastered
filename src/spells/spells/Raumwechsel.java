@@ -14,7 +14,7 @@ public class Raumwechsel extends Spell{
 	
 	public Raumwechsel() {
 		name = "§bRaumwechsel";
-		cooldown = 20 * 42;
+		cooldown = 20 * 35;
 	}
 	
 	Player target;
@@ -45,9 +45,11 @@ public class Raumwechsel extends Spell{
 			playSound(Sound.ENTITY_EVOKER_PREPARE_WOLOLO, target.getLocation(), 1, 2);
 			playSound(Sound.ENTITY_EVOKER_PREPARE_WOLOLO, target.getLocation(), 1, 2);
 			if (refined) {
+				if (!caster.isSneaking())
 				doPull(caster, target.getLocation(), 9);
 				doPull(target,caster.getLocation(),7);
 			}else {
+				if (!caster.isSneaking())
 				doPull(caster, target.getLocation(), 6);
 				doPull(target,caster.getLocation(),4);
 			}

@@ -8,6 +8,7 @@ import org.bukkit.entity.Cat;
 import org.bukkit.entity.Cat.Type;
 
 import esze.utils.ParUtils;
+import net.minecraft.server.v1_15_R1.Particles;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -15,7 +16,9 @@ import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
 import spells.stagespells.Explosion;
+import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
+import spells.stagespells.SelfRepulsion;
 
 public class Kätzchenkanone extends Spell {
 
@@ -32,11 +35,12 @@ public class Kätzchenkanone extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		cat = (Cat) caster.getWorld().spawnEntity(caster.getEyeLocation(), EntityType.CAT);
+		cat = (Cat) caster.getWorld().spawnEntity(caster.getEyeLocation().add(caster.getLocation().getDirection()), EntityType.CAT);
 		cat.setBaby();
 		cat.setSitting(true);
 
-		cat.setVelocity(caster.getLocation().getDirection().multiply(2));
+		cat.setVelocity(caster.getLocation().getDirection().multiply(3));
+		
 	}
 
 	@Override
@@ -57,6 +61,8 @@ public class Kätzchenkanone extends Spell {
 
 		if (caster.isSneaking()) {
 
+			onDeath();
+			
 			dead = true;
 		}
 
@@ -106,15 +112,17 @@ public class Kätzchenkanone extends Spell {
 			}
 			playSound(Sound.ENTITY_CAT_DEATH, caster.getLocation(), 3.0F, 1F);
 			if (refined) {
-				new Explosion(1, 15, 0, 1, caster, loc,name);
-				new Repulsion(3, 6, caster, loc,name);
+				new ExplosionDamage(4, 8, caster, loc,name);
+				new Repulsion(4, 6, caster, loc,false,name);
+				new SelfRepulsion(8, 6, caster, loc,name);
 			}
 			else {
-				new Explosion(1, 10, 0, 1, caster, loc,name);
-				new Repulsion(3, 4, caster, loc,name);
+				new ExplosionDamage(4, 5, caster, loc,name);
+				new Repulsion(4, 4, caster, loc,false,name);
+				new SelfRepulsion(8, 4, caster, loc,name);
 			}
-			
-			
+			playSound(Sound.ENTITY_GENERIC_EXPLODE, caster.getLocation(), 3.0F, 1F);
+			ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 4, 1);
 			ParUtils.dropItemEffectRandomVector(loc, Material.TROPICAL_FISH, 1,40, 0.3);
 			ParUtils.dropItemEffectRandomVector(loc, Material.RABBIT_HIDE, 1,40, 0.3);
 		}

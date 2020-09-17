@@ -18,7 +18,7 @@ import spells.stagespells.VampirpilzStage2;
 public class Vampirpilz extends Spell{
 
 	public Vampirpilz() {
-		cooldown = 20 * 62;
+		cooldown = 20 * 52;
 		steprange = 60;
 		name = "§6Vampirpilz";
 		hitSpell = true;

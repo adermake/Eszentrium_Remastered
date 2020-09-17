@@ -2,6 +2,7 @@ package spells.spells;
 
 import java.util.ArrayList;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -70,6 +71,9 @@ public class AntlitzderGöttin extends Spell{
 	int returns = 3;
 	@Override
 	public void display() {
+		if (caster.getGameMode() == GameMode.ADVENTURE) {
+			dead = true;
+		}
 		//playSound(Sound.BLOCK_NOTE_BLOCK_COW_BELL, loc, 10F, 0.1F);
 		SoundUtils.playSound(Sound.ENTITY_BLAZE_BURN, loc, 3, 0.4F);
 		//Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3);

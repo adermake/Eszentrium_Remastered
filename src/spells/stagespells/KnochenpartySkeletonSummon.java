@@ -10,8 +10,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -25,18 +27,18 @@ public class KnochenpartySkeletonSummon extends Spell{
 	Location overrideLoc;
 	Location origin;
 	public KnochenpartySkeletonSummon(Player c,Location l,Vector dir) {
-		vel = dir;
+		vel = dir.clone();
 		origin = l.clone();
 		caster = c;
 		overrideLoc = l;
 		cooldown = 20 * 62;
-		steprange = 60;
+		steprange = 10;
 		name = "§6Knochenparty";
 		hitSpell = true;
 		castSpell(caster, name);
 	}
 	boolean holding = true;
-	static int in = 0;
+	public static int in = 0;
 	Item i;
 	@Override
 	public void setUp() {
@@ -54,7 +56,7 @@ public class KnochenpartySkeletonSummon extends Spell{
 		i = caster.getWorld().dropItem(loc, m);
 		i.setPickupDelay(10000);
 		//ar.addPassenger(i);
-		i.setVelocity(vel);
+		i.setVelocity(vel.clone().add(new Vector(0,0.2,0)));
 		
 	}
 
@@ -75,17 +77,18 @@ public class KnochenpartySkeletonSummon extends Spell{
 	public void move() {
 		// TODO Auto-generated method stub
 		
-		loc = i.getLocation();	
+		
 		if (i.isOnGround()) {
 			
 			dead = true;
 		}
+		
 	}
 
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		
+		//ParUtils.debug(loc);
 	}
 
 	
@@ -111,16 +114,22 @@ public class KnochenpartySkeletonSummon extends Spell{
 	public void onDeath() {
 		// TODO Auto-generated method stub
 		
-			loc = i.getLocation();
-			new KnochenpartySkeleton(caster,  loc.add(0,-1,0),new Vector(0,0.5F,0),origin,name);
+			//loc = i.getLocation();
+			loc =loc.add(vel.normalize().multiply(6));
+			//ParUtils.debug(loc.clone().add(0,2,0));
+			new KnochenpartySkeleton(caster,  loc.clone().add(0,0,0),new Vector(0,0.5F,0),origin.clone(),name);
 			
 			ParUtils.dropItemEffectRandomVector(loc, Material.BONE, 6, 50, 0.4);
 			//ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 5, 2);
 			SoundUtils.playSound(Sound.ENTITY_SKELETON_AMBIENT, loc,1,10);
 
 		
+		new BukkitRunnable() {
+			public void run() {
+				i.remove();
+			}
+		}.runTaskLater(main.plugin,20);
 		
-		i.remove();
 		
 	}
 

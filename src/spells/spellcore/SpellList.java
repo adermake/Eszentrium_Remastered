@@ -37,6 +37,7 @@ import spells.spells.Delfintorpedo;
 import spells.spells.Eisstachel;
 import spells.spells.Heilen;
 import spells.spells.HimmlischesUrteil;
+import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
 import spells.spells.Impulsion;
 import spells.spells.Kaminchen;
@@ -225,6 +226,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Eisstachel());
 		registerSpell(new Impulsion());
 		registerSpell(new Wasserdüse());
+		registerSpell(new Höllenhast());
 	}
 	
 	public static void registerSpell(Spell spell, Class...gameTypes){

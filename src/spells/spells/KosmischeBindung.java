@@ -32,6 +32,7 @@ public class KosmischeBindung extends Spell{
 		casttime = 20*1;
 		hitboxSize = range+4;
 		steprange = 20 * 5;
+		silencable = true;
 	}
 	
 	@Override

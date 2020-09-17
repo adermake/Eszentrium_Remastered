@@ -145,8 +145,8 @@ public class Avatar extends Spell{
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
 		if (spell.getName().contains("Antlitz der Göttin")){
-			caster.setFlying(false);
-			caster.setAllowFlight(false);
+			originalCaster.setFlying(false);
+			originalCaster.setAllowFlight(false);
 		}
 		
 	}

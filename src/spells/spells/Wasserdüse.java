@@ -23,7 +23,7 @@ import spells.stagespells.ThermolanzeLaser;
 public class Wasserdüse extends Spell {
 
 	public Wasserdüse() {
-		cooldown = 20 * 70;
+		cooldown = 20 * 90;
 		name = "§cWasserdüse";
 	}
 	@Override

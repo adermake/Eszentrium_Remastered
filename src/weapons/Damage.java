@@ -68,7 +68,12 @@ public class Damage implements Listener{
 					
 				} else {
 					
-					main.damageCause.put((Player) e.getEntity(), p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() +  "-" + ((Player) e.getDamager()).getName());
+					try {
+						main.damageCause.put((Player) e.getEntity(), p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() +  "-" + ((Player) e.getDamager()).getName());
+					}
+					catch(NullPointerException ex) {
+						ex.printStackTrace();
+					}
 				}
 				
 				if (p.getInventory().getItemInMainHand().getType() == Material.BOW) {

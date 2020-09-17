@@ -1,5 +1,6 @@
 package spells.stagespells;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -20,10 +21,10 @@ public class LamaturmProjectile extends Spell {
 		hitEntity = true;
 		hitPlayer = true;
 		hitSpell = true;
-		steprange = 20;
-		speed = 2;
-		realLoc = origin;
-		this.origin = origin;
+		steprange = 200;
+		speed = 80;
+		realLoc = origin.clone();
+		this.origin = origin.clone();
 		noTargetEntitys.add(nohit);
 		castSpell(p, name);
 	}
@@ -32,7 +33,10 @@ public class LamaturmProjectile extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		loc = realLoc;
+		
 		playSound(Sound.ENTITY_LLAMA_SPIT,loc,4,1);
+		playSound(Sound.ENTITY_LLAMA_SPIT,loc,4,1.5F);
+		playSound(Sound.ENTITY_LLAMA_SPIT,loc,4,0.5F);
 	}
 
 	@Override
@@ -44,14 +48,14 @@ public class LamaturmProjectile extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
 	}
 
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
 		loc.add(loc.getDirection().multiply(0.5));
-		loc.add(0,-0.1,0);
+		
 		
 		
 	}
@@ -59,14 +63,19 @@ public class LamaturmProjectile extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.SPIT, loc, 0, 0, 0, 1, 0);
+		double flsteprange = steprange;
+		double flstep = step;
+		float sFlot = (float) (flstep/flsteprange);
+		//ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, sFlot*9);
+		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
+		ParUtils.parKreisDot(Particles.CLOUD, p.getLocation(), 2, 0, 2, loc.getDirection());
 		doKnockback(p, origin, 4);
-		damage(p,3,caster);
+		damage(p,5,caster);
 		playSound(Sound.ENTITY_GUARDIAN_FLOP, loc, 3, 1);
 		dead = true;
 	}
@@ -74,8 +83,9 @@ public class LamaturmProjectile extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
+		ParUtils.parKreisDot(Particles.CLOUD, ent.getLocation(), 2, 0, 2, loc.getDirection());
 		doKnockback(ent, origin, 4);
-		ent.damage(3);
+		ent.damage(5);
 		playSound(Sound.ENTITY_GUARDIAN_FLOP, loc, 3, 1);
 		dead = true;
 	}

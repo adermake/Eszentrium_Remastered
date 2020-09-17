@@ -66,7 +66,8 @@ public class Interact implements Listener{
 		PlayerInteractEvent IE = new PlayerInteractEvent(p, Action.RIGHT_CLICK_AIR, p.getInventory().getItemInMainHand(), null, null);
 		Bukkit.getPluginManager().callEvent(IE);
 		
-		if(e.getRightClicked().getType() == EntityType.LLAMA) {
+		
+		if(e.getRightClicked().getType() == EntityType.LLAMA && p.isSneaking()) {
 			e.setCancelled(true);
 		}
 		if(e.getRightClicked().getType() == EntityType.SHEEP) {

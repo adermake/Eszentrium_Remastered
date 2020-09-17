@@ -104,13 +104,13 @@ public class Knochenparty extends Spell{
 	public void onDeath() {
 		// TODO Auto-generated method stub
 		loc = i.getLocation();
-		loc.setDirection(new Vector(1,1,0));
+		loc.setDirection(new Vector(1,0,0));
 		for (int i = 0;i<20;i++) {
 			
 			loc.setYaw(loc.getYaw()+18);
 			
-			new KnochenpartySkeletonSummon(caster,  loc,loc.getDirection().multiply(0.6F));
-			
+			new KnochenpartySkeletonSummon(caster,  loc.clone(),loc.getDirection().multiply(0.6F));
+			//ParUtils.debugRay(loc.clone());
 			
 			
 		}

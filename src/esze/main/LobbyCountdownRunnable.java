@@ -82,20 +82,20 @@ public class LobbyCountdownRunnable {
 	
 	public static String calculatePercent(int bars, int FULL, int LEFT){
 		//ACTIONBAR
-		String tosend = "Spielstart ";
+		String tosend = "§rSpielstart ";
 		double bar = Math.round(FULL/bars);
 		double philled = Math.round(LEFT/bar); 
 		
 		String s = "";
 		
 		for(int i = 0; i < philled; i++){
-			s+="Â§eâ–‹";
+			s+="§c|||";
 		}
 		
 		for(int i = 0; i < bars - philled; i++){
-			s+="Â§7â–‹";
+			s+="§7|||";
 		}
-	    tosend = tosend + s + " Â§r" + LEFT + " Â§eSekunden";
+	    tosend = tosend + s + " §r" + LEFT + " §rSekunden";
 		return tosend;
 	}
 

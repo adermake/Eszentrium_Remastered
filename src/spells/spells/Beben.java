@@ -20,8 +20,8 @@ public class Beben extends Spell{
 	public Beben() {
 		
 		name = "§eBeben";
-		steprange = 42;
-		cooldown = 20*30;
+		steprange = 22;
+		cooldown = 20*40;
 		hitEntity = true;
 		hitPlayer = true;
 		hitSpell = true;
@@ -57,16 +57,17 @@ public class Beben extends Spell{
 			height = height-caster.getLocation().getY();
 			if (height < 2)
 				height = 2;
+
 			
+			steprange+=height;
 			cast = casttime;
 			if (refined)
 			steprange= steprange*2;
+			
 		}
 		else {
 			cast = 0;
-			steprange++;
 		}
-		
 		
 		
 	}
@@ -145,7 +146,7 @@ public class Beben extends Spell{
 
 	@Override
 	public void onPlayerHit(Player p) {
-		damage(p,6,caster);
+		
 		double h = 1;
 		if (refined) {
 			h += height/2;
@@ -153,20 +154,36 @@ public class Beben extends Spell{
 		else {
 			h += height/4;
 		}
-		if (h > 10)
-			h = 10;
+		if (refined) {
+			if (h > 15)
+				h = 15;
+		}
+		else {
+			if (h > 10)
+				h = 10;
+		}
+		
 		
 		Vector dir = direction.clone().normalize();
 		dir = dir.setY(0);
 		dir = dir.normalize();
-		p.setVelocity(dir.multiply(h).add(new Vector(0,1,0)));
+		
+		int hi = (int) h;
+		damage(p,hi+2,caster);
+		if (refined) {
+			p.setVelocity(dir.normalize().multiply(7).add(new Vector(0,2F,0)));
+		}
+		else {
+			p.setVelocity(dir.normalize().multiply(6).add(new Vector(0,1.5F,0)));
+		}
+		
 		//p.setVelocity(p.getVelocity().setY(1.0D));
 	
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
-		damage(ent,6,caster);
+		
 		double h = 1;
 		if (refined) {
 			h += height/2;
@@ -174,13 +191,27 @@ public class Beben extends Spell{
 		else {
 			h += height/4;
 		}
-		if (h > 10)
-			h = 10;
-		
+		if (refined) {
+			if (h > 15)
+				h = 15;
+		}
+		else {
+			if (h > 10)
+				h = 10;
+		}
+		int hi = (int) h;
+		damage(ent,hi+2,caster);
 		Vector dir = direction.clone();
 		dir = dir.setY(0);
 		dir = dir.normalize();
-		ent.setVelocity(dir.multiply(h).add(new Vector(0,1,0)));
+		
+		if (refined) {
+			ent.setVelocity(dir.normalize().multiply(7).add(new Vector(0,2F,0)));
+		}
+		else {
+			ent.setVelocity(dir.normalize().multiply(6).add(new Vector(0,1.5F,0)));
+		}
+		
 	}
 
 	@Override

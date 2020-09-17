@@ -152,10 +152,10 @@ public class Opfersuche extends Spell {
 			}
 		}.runTaskTimer(main.plugin, 1,1);
 		if (refined) {
-			damage(ent, 6, caster);
+			damage(ent2, 6, caster);
 		}
 		else {
-			damage(ent, 3, caster);
+			damage(ent2, 3, caster);
 		}
 		
 		if (!refined)

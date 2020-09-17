@@ -1,7 +1,6 @@
-package spells.spells;
+package spells.stagespells;
 
-import java.util.ArrayList;
-
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -9,37 +8,31 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
+import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 
-public class Wunsch extends Spell{
+public class SelfRepulsion extends Spell {
 
-	public Wunsch() {
-		name = "§3Wunsch";
-		cooldown = 20 * 40;
+	double damage = 0;
+	double knockback = 0;
+	float pitch = 1;
+	Location overrideLoc;
+	public SelfRepulsion(double size,double knockback,Player caster,Location loca, String namae) {
+		hitboxSize = size;
+		steprange = 1;
+		this.pitch = pitch;
+		this.knockback = knockback;
+		overrideLoc = loca;
+		name = namae;
+		canHitSelf = true;
+		castSpell(caster, name);
 	}
+
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		caster.setVelocity(caster.getVelocity().multiply(-1));
-		if (refined) {
-			caster.setHealth(20);
-			ParUtils.createParticle(Particles.HEART, caster.getLocation().add(0,2,0), 0,00, 0, 0,2);
-		}
-		else {
-			double h = 21-caster.getHealth();
-			if (h > caster.getHealth())
-			caster.setHealth(h);
-		}
-	
-		
-		ArrayList<Location> locs = ParUtils.preCalcCircle(caster.getLocation(), 3, caster.getVelocity(), 0);
-		
-		for (Location loc : locs) {
-			ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0,0.1, 0, 10,2);
-		}
-		playSound(Sound.ENTITY_STRAY_DEATH, caster.getLocation(), 3, 0.2F);
-		dead = true;
+		loc = overrideLoc;
 	}
 
 	@Override
@@ -58,23 +51,28 @@ public class Wunsch extends Spell{
 	public void move() {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
 	public void display() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
+		if (p != caster)
+			return;
 		// TODO Auto-generated method stub
+		tagPlayer(p);
+		
+		doKnockback(p, loc, knockback);
 		
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

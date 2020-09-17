@@ -1,45 +1,23 @@
-package spells.spells;
+package spells.stagespells;
 
-import java.util.ArrayList;
-
-import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 
-public class Wunsch extends Spell{
-
-	public Wunsch() {
-		name = "§3Wunsch";
-		cooldown = 20 * 40;
+public class KitingSpellShot extends Spell {
+	
+	public KitingSpellShot(Player c,String name) {
+		 steprange = 20 * 1;
+		 speed = 2;
+		 
+		 
 	}
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		caster.setVelocity(caster.getVelocity().multiply(-1));
-		if (refined) {
-			caster.setHealth(20);
-			ParUtils.createParticle(Particles.HEART, caster.getLocation().add(0,2,0), 0,00, 0, 0,2);
-		}
-		else {
-			double h = 21-caster.getHealth();
-			if (h > caster.getHealth())
-			caster.setHealth(h);
-		}
-	
-		
-		ArrayList<Location> locs = ParUtils.preCalcCircle(caster.getLocation(), 3, caster.getVelocity(), 0);
-		
-		for (Location loc : locs) {
-			ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0,0.1, 0, 10,2);
-		}
-		playSound(Sound.ENTITY_STRAY_DEATH, caster.getLocation(), 3, 0.2F);
-		dead = true;
+		caster.setVelocity(caster.getLocation().getDirection().multiply(1.5));
 	}
 
 	@Override
@@ -95,6 +73,5 @@ public class Wunsch extends Spell{
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }

@@ -109,9 +109,7 @@ public class Type {
 		}
 		
 		
-		if (AntlitzderGöttin.deflect.contains(p)) {
-			return true;
-		}
+	
 		
 		return false;
 	}
