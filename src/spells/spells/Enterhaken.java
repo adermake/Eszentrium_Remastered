@@ -20,7 +20,7 @@ import spells.spellcore.Spell;
 public class Enterhaken extends Spell{
 
 	public Enterhaken() {
-		cooldown = 20*40;
+		cooldown = 20*35;
 		name = "§bEnterhaken";
 		speed = 1;
 		steprange = 100;

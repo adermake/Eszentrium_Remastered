@@ -53,6 +53,7 @@ import spells.spells.Meteoritenhagel;
 import spells.spells.Notenzauber;
 import spells.spells.Opfersuche;
 import spells.spells.Orbitar;
+import spells.spells.Plasmablase;
 import spells.spells.Pyroschlag;
 import spells.spells.Quantentunnel;
 import spells.spells.Ranke;
@@ -227,6 +228,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Impulsion());
 		registerSpell(new Wasserdüse());
 		registerSpell(new Höllenhast());
+		registerSpell(new Plasmablase());
 	}
 	
 	public static void registerSpell(Spell spell, Class...gameTypes){

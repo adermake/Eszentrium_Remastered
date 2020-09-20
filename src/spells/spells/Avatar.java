@@ -24,7 +24,7 @@ public class Avatar extends Spell{
 	public Avatar() {
 		name = "§cAvatar";
 		steprange = 20 * 12;
-		cooldown = 20*60;
+		cooldown = 20*55;
 		hitEntity = false;
 		hitPlayer = true;
 		hitboxSize = 5;
