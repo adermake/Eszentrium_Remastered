@@ -63,7 +63,7 @@ public class Schmetterlingseffekt extends Spell {
 			Location l3 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 5);
 			Location l4 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 8);
 			
-			ParUtils.parLineRedstone(castLoc.clone(), l1, Color.RED, 1, 0.2);
+			ParUtils.parLineRedstone(castLoc.clone(), l1, Color.FUCHSIA, 1, 0.2);
 			ParUtils.parLineRedstone(castLoc.clone(), l2, Color.YELLOW, 1, 0.2);
 			ParUtils.parLineRedstone(castLoc.clone(), l3, Color.GREEN, 1, 0.2);
 			ParUtils.parLineRedstone(castLoc.clone(), l4, Color.AQUA, 1, 0.2);
