@@ -2,6 +2,7 @@ package spells.spells;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -59,6 +60,12 @@ public class Plasmablase extends Spell {
 		// TODO Auto-generated method stub
 		for (Entity ent : hitEntitys) {
 			if (ent.getLocation().distance(loc)> rad) {
+				if (ent instanceof Player) {
+					Player p = (Player)ent;
+					if (p.getGameMode() == GameMode.ADVENTURE) {
+						continue;
+					}
+				}
 				Vector v = ent.getLocation().toVector().subtract(loc.toVector());
 				ParUtils.parKreisDir(Particles.ENCHANTED_HIT, ent.getLocation(), 2, 0, 0, v,v);
 				doPull(ent, loc.clone(), 1.5F);

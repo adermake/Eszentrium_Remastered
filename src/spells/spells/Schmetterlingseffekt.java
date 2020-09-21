@@ -58,10 +58,10 @@ public class Schmetterlingseffekt extends Spell {
 			
 			//caster.setVelocity(caster.getVelocity().setY(0));
 			
-			Location l1 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 38);	
-			Location l2 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 1);
-			Location l3 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 5);
-			Location l4 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), 1, 8);
+			Location l1 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), -1, 38);	
+			Location l2 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), -1, 1);
+			Location l3 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), -1, 5);
+			Location l4 =  ParUtils.stepCalcCircle(castLoc.clone(), 5, new Vector(castLoc.getDirection().getX(), 0f ,castLoc.getDirection().getZ()), -1, 8);
 			
 			ParUtils.parLineRedstone(castLoc.clone(), l1, Color.RED, 1, 0.2);
 			ParUtils.parLineRedstone(castLoc.clone(), l2, Color.YELLOW, 1, 0.2);

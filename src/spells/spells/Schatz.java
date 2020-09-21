@@ -1,28 +1,28 @@
 package spells.spells;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
+import net.minecraft.server.v1_15_R1.EntityHuman;
 import spells.spellcore.Spell;
-import spells.stagespells.KaminchenEntity;
 
-public class Kaminchen extends Spell {
+public class Schatz extends Spell {
 
-	
-	public Kaminchen() {
-		cooldown = 20 * 25;
-		name = "§6Kaminchen";
-		hitSpell = true;
+	public Schatz()
+	{
+		name = "§3Schatz";
+		cooldown = 20;
 	}
-	
-	
-	@Override
 	public void setUp() {
-		
-		
-		
+		// TODO Auto-generated method stub
+		Bukkit.broadcastMessage("XX");
+		caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)), Material.CHEST,(byte)1);
 	}
 
 	@Override
@@ -34,16 +34,7 @@ public class Kaminchen extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		new KaminchenEntity(caster,caster.getLocation().getDirection(), name);
-		if (refined) {
-			Location dirLoc = caster.getLocation();
-			dirLoc.setYaw(dirLoc.getYaw()+45);
-			new KaminchenEntity(caster,dirLoc.getDirection(), name);
-			dirLoc.setYaw(dirLoc.getYaw()-90);
-			new KaminchenEntity(caster,dirLoc.getDirection(), name);
-		}
 		
-		dead = true;
 	}
 
 	@Override
@@ -60,35 +51,32 @@ public class Kaminchen extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void onDeath() {
-		// TODO Auto-generated method stub
 		
 	}
 
-
-	
 
 }
