@@ -61,6 +61,7 @@ public abstract class Spell {
 	protected boolean hitSpell = false;
 	protected boolean hitBlock = true;
 	protected boolean canHitSelf = false;
+	protected boolean canHitCastersSpells = false;
 	protected boolean canBeSilenced = true;
 	protected boolean multihit = false;
 	protected boolean dieOnLowPower = true;
@@ -352,7 +353,10 @@ public abstract class Spell {
 	public void collideWithSpell() {
 		if (hitSpell) {
 			for (Spell spell : spell) {
-				if (spell.caster == caster || spell.dead || !spell.hitSpell)
+				if (spell.equals(this)) {
+					continue;
+				}
+				if ((spell.caster == caster && !canHitCastersSpells)|| spell.dead || !spell.hitSpell)
 					continue;
 				if (spell.getLocation().distance(loc)<hitboxSize+spell.hitboxSize) {
 					if (powerBattle && spell.powerBattle) {
@@ -548,6 +552,12 @@ public abstract class Spell {
 		
 	}
 	
+	public double calcLerpFactor(double s,double sr) {
+		double dstep = s;
+		double dsteprange = sr;
+		
+		return dstep/dsteprange;
+	}
 	public void bindEntity(Entity e) {
 		noTargetEntitys.add(e);
 		spellEnt = e;
@@ -862,7 +872,9 @@ public abstract class Spell {
 		
 		return false;
 	}
-	
+	public void kill() {
+		dead = true;
+	}
 	public boolean swap() {
 		
 			

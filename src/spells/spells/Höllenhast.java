@@ -24,7 +24,7 @@ public class Höllenhast extends Spell {
 		 charges = 10;
 		 cooldown = 20 * 40;
 		 name = "§eHöllenhast";
-		 hitboxSize = 1;
+		 hitboxSize = 2;
 	}
 	
 	int charges = 0;

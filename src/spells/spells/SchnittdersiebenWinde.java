@@ -30,7 +30,7 @@ public class SchnittdersiebenWinde extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		target = pointEntity(caster,300);
+		target = pointEntity(caster);
 		if (target == null) {
 			refund = true;
 			dead = true;
@@ -78,11 +78,11 @@ public class SchnittdersiebenWinde extends Spell {
 			tagPlayer(target);
 			if (refined) {
 				target.setVelocity(caster.getLocation().getDirection().multiply(12));
-				caster.setVelocity(caster.getVelocity().setY(3.0D));
+				caster.setVelocity(new Vector(0,3,0));
 			}
 			else {
 				target.setVelocity(caster.getLocation().getDirection().multiply(3));
-				caster.setVelocity(caster.getVelocity().setY(3.0D));
+				caster.setVelocity(new Vector(0,3,0));
 			}
 			playSound(Sound.ENTITY_WITHER_SHOOT,target.getLocation(),1,2);
 			

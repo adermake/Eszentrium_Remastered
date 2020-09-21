@@ -22,9 +22,10 @@ public class SchockLaser extends Spell {
 		this.refined = refined;
 		hitBlock = true;
 		steprange =  500;
-		speed = 1;
+		speed = 4;
 		hitSpell = true;
 		castSpell(p, name);
+		/*
 		new BukkitRunnable() {
 			
 			@Override
@@ -38,6 +39,7 @@ public class SchockLaser extends Spell {
 				}
 			}
 		}.runTaskTimer(main.plugin, 1, 1);
+		*/
 	}
 	
 	@Override
@@ -84,6 +86,7 @@ public class SchockLaser extends Spell {
 		if (caster.isSneaking()) {
 			maxSpikeLength-= 1;
 			antiFocus+=1;
+			speed = 8;
 			
 		}
 		if (phaseLoc != null)
@@ -156,7 +159,8 @@ public class SchockLaser extends Spell {
 		double x = (caster.getLocation().getY() - hitLoc.getY());
 		x  -= antiFocus/10;
 		
-		double dmg = 3 + 15/(1 + Math.exp(-0.07*x) * 15);
+		double dmg = 5 + 15/(1 + Math.exp(-0.06*x) * 15);
+		//Bukkit.broadcastMessage("DMG "+dmg);
 		new Explosion(4, dmg,1, 1,caster, loc, name);
 		ParUtils.parKreisDot(Particles.CLOUD, loc, 5, 0, 0.05, loc.getDirection().multiply(-1));
 		dead = true;

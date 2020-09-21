@@ -16,7 +16,7 @@ public class Wunsch extends Spell{
 
 	public Wunsch() {
 		name = "§3Wunsch";
-		cooldown = 20 * 40;
+		cooldown = 20 * 36;
 	}
 	@Override
 	public void setUp() {

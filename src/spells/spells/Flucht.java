@@ -21,7 +21,7 @@ public class Flucht extends Spell{
 		
 		
 		steprange = 20*3;
-		cooldown = 20*35;
+		cooldown = 20*30;
 		name = "§bFlucht";
 		speed = 1;
 		

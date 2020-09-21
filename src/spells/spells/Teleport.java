@@ -34,6 +34,7 @@ public class Teleport extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		
+		
 		if (refined)
 			speed = 40;
 		
@@ -55,7 +56,9 @@ public class Teleport extends Spell {
 	public void move() {
 		// TODO Auto-generated method stub
 		loc.add(loc.getDirection().multiply(0.5));
-		
+		if (!refined) {
+			speed = 2+calcLerpFactor(step,40)*2;
+		}
 		
 		ParUtils.createParticle(Particles.WITCH, loc, 0, 0, 0, 5, 0);
 		
