@@ -3,6 +3,7 @@ package spells.stagespells;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
@@ -19,7 +20,7 @@ import spells.spellcore.Spell;
 public class GuardianLaser extends Spell {
 	Location startLoc;
 	Vector dir;
-	public GuardianLaser(Player c,Location l1,Vector dir,boolean refined,String namee) {
+	public GuardianLaser(Player c,Location l1,Vector dir,boolean refined,String namee,Player target) {
 		this.refined = refined;
 		caster = c;
 		this.name = namee;
@@ -28,6 +29,10 @@ public class GuardianLaser extends Spell {
 		speed = 60;
 		steprange = 200;
 		hitSpell = true;
+		if (target != null) {
+			this.dir = target.getEyeLocation().toVector().subtract(l1.toVector());
+		}
+		
 		castSpell(caster, name);	
 		
 		
@@ -77,9 +82,10 @@ public class GuardianLaser extends Spell {
 			damage(p,4,caster);
 		}
 		else {
-			damage(p,2,caster);
+			damage(p,1,caster);
 		}
-		
+		p.setVelocity(p.getVelocity().add(dir).multiply(0.04));
+		dead = true;
 	}
 
 	@Override
@@ -89,9 +95,10 @@ public class GuardianLaser extends Spell {
 			damage(ent,4,caster);
 		}
 		else {
-			damage(ent,2,caster);
+			damage(ent,1,caster);
 		}
-		
+		ent.setVelocity(ent.getVelocity().add(dir).multiply(0.04));
+		dead = true;
 	}
 
 	@Override
@@ -142,27 +149,8 @@ public class GuardianLaser extends Spell {
 		loc.add(0,-1,0);
 		*/
 		// TODO Auto-generated method stub
-		if (refined) {
-			Explosion ex = new Explosion(4, 4, 1, 1, caster, loc, name);
-			RepulsionDirectional rd = new RepulsionDirectional(4, 2, caster, loc, loc.getDirection(),name);
-			for (Entity ent : noTargetEntitys) {
-				ex.addNoTarget(ent);
-				rd.addNoTarget(ent);
-			}
-			
-		}
-		else {
-			Explosion ex = new Explosion(2, 2, 1, 1, caster, loc, name);
-			RepulsionDirectional rd = new RepulsionDirectional(2, 1, caster, loc, loc.getDirection(),name);
-			for (Entity ent : noTargetEntitys) {
-				ex.addNoTarget(ent);
-				rd.addNoTarget(ent);
-			}
-			
-			
-		}
-		
-		
+		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 1);
+		playSound(Sound.ENTITY_DOLPHIN_JUMP,loc,8,1);
 		ParUtils.createRedstoneParticle(loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, Color.AQUA, 5);
 		Location dir = loc.clone();
 		dir.setPitch(dir.getPitch()-90);

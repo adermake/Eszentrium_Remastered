@@ -19,10 +19,12 @@ public class Explosion extends Spell {
 	double knockback = 0;
 	float pitch = 1;
 	Location overrideLoc;
+	
 	public Explosion(double size,double damage,double knockback,float pitch,Player caster,Location loca, String namae) {
 		hitboxSize = size;
 		steprange = 1;
 		hitEntity = true;
+		hitSpell = true;
 		this.damage = damage;
 		this.pitch = pitch;
 		this.knockback = knockback;
@@ -71,12 +73,14 @@ public class Explosion extends Spell {
 		damage(p,damage,caster);
 		doKnockback(p, loc, knockback);
 		
+		
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		damage(ent,damage,caster);
 		doKnockback(ent, loc, knockback);
+		
 	}
 
 	@Override

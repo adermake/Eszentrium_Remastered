@@ -21,7 +21,7 @@ public class Explosion extends Spell{
 	public Explosion() {
 		name = "§cExplosion";
 		cooldown = 20*35;
-		hitSpell = true;
+		hitSpell = false;
 		
 		casttime = 20*5;
 	}

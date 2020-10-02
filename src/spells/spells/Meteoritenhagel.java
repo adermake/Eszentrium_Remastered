@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -30,6 +31,7 @@ public class Meteoritenhagel extends Spell {
 	
 	@Override
 	public void setUp() {
+		
 		// TODO Auto-generated method stub
 		loc = null;
 		loc = block(caster,200);
@@ -39,7 +41,8 @@ public class Meteoritenhagel extends Spell {
 			refund = true;
 		}
 		else {
-			
+			playSound(Sound.ENTITY_SHULKER_CLOSE,loc,10,0.1F);
+			playSound(Sound.ENTITY_CAT_HISS,loc,10,0.5F);
 			Location hBlock = loc.clone();
 			hBlock.setY(255);
 			while (hBlock.getBlock().getType() == Material.AIR) {

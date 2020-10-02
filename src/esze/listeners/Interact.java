@@ -63,6 +63,9 @@ public class Interact implements Listener{
 	@EventHandler
 	public void onKlick(PlayerInteractEntityEvent e) {
 		Player p = e.getPlayer();
+		if (p.getGameMode() == GameMode.ADVENTURE) {
+			e.setCancelled(true);
+		}
 		PlayerInteractEvent IE = new PlayerInteractEvent(p, Action.RIGHT_CLICK_AIR, p.getInventory().getItemInMainHand(), null, null);
 		Bukkit.getPluginManager().callEvent(IE);
 		

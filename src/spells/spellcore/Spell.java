@@ -26,6 +26,7 @@ import esze.enums.GameType;
 import esze.main.main;
 import esze.utils.Actionbar;
 import io.netty.util.internal.ThreadLocalRandom;
+import spells.spells.AntlitzderGöttin;
 
 public abstract class Spell {
 	
@@ -58,7 +59,7 @@ public abstract class Spell {
 	protected boolean refined = false;
 	protected boolean hitEntity = true;
 	protected boolean hitPlayer = true;
-	protected boolean hitSpell = false;
+	protected boolean hitSpell = true;
 	protected boolean hitBlock = true;
 	protected boolean canHitSelf = false;
 	protected boolean canHitCastersSpells = false;
@@ -748,6 +749,9 @@ public abstract class Spell {
 			double z = direction.getZ() * t;
 			loc.add(x, y, z);
 			Location lo = loc.clone();
+			if (loc.getY()<= 60) {
+				return null;
+			}
 
 			if (loc.getBlock().getType() != Material.AIR) {
 				return loc;
@@ -850,6 +854,10 @@ public abstract class Spell {
 	}
 	
 	public boolean checkHit(LivingEntity le,Location loc,Entity p,double range) {
+		if (AntlitzderGöttin.deflect.contains(le)) {
+			
+			return false;
+		}
 		if (le instanceof Player) {
 			
 			

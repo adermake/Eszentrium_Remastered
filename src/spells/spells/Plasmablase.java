@@ -27,7 +27,7 @@ public class Plasmablase extends Spell {
 		hitSpell = true;
 		canHitCastersSpells = true;
 		hitboxSize = rad;
-		canHitSelf = true;
+		canHitSelf = false;
 		steprange = 20 * 6;
 	}
 	
@@ -57,6 +57,9 @@ public class Plasmablase extends Spell {
 	Vector dir = new Vector(0,1,0);
 	@Override
 	public void move() {
+		
+			canHitSelf = caster.isSneaking();
+		
 		// TODO Auto-generated method stub
 		for (Entity ent : hitEntitys) {
 			if (ent.getLocation().distance(loc)> rad) {
@@ -72,9 +75,7 @@ public class Plasmablase extends Spell {
 				playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,1.8F);
 			}
 		}
-		if (refined && swap()) {
-			dead = true;
-		}
+		
 	}
 	double rad = 15;
 	@Override

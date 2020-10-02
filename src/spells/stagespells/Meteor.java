@@ -74,7 +74,7 @@ public class Meteor extends Spell {
 		// TODO Auto-generated method stub
 		if (!boundOnGround) {
 			p.setVelocity(p.getVelocity().setY(-3));
-			damage(p,4,caster);
+			damage(p,2,caster);
 		}
 	}
 
@@ -83,7 +83,7 @@ public class Meteor extends Spell {
 		// TODO Auto-generated method stub
 		if (!boundOnGround) {
 			ent.setVelocity(ent.getVelocity().setY(-3));
-			damage(ent,4,caster);
+			damage(ent,2,caster);
 		}
 	}
 
@@ -97,7 +97,7 @@ public class Meteor extends Spell {
 		// TODO Auto-generated method stub
 		//new ExplosionDamage(4, 8, caster, loc);
 		
-		new Explosion(6, 9, 0.5F, 1, caster, loc, name);
+		new Explosion(6, 7, 0.5F, 1, caster, loc, name);
 		dead = true;
 	}
 

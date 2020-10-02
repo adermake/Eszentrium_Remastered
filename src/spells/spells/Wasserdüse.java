@@ -1,5 +1,6 @@
 package spells.spells;
 
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -54,10 +55,10 @@ public class Wasserdüse extends Spell {
 			g2 = (Guardian) spawnEntity(EntityType.GUARDIAN);
 		}
 	
-		g1.setMaxHealth(6);
-		g1.setHealth(6);
-		g2.setMaxHealth(6);
-		g2.setHealth(6);
+		g1.setMaxHealth(3);
+		g1.setHealth(3);
+		g2.setMaxHealth(3);
+		g2.setHealth(3);
 		
 		
 		//unHittable.add(g1);
@@ -106,18 +107,24 @@ public class Wasserdüse extends Spell {
 			if (g1.isDead() || g2.isDead()) {
 				mult/=2;
 			}
+			if (!caster.isOnGround())
 			caster.setVelocity(caster.getLocation().getDirection().multiply(mult));
-			if (!g1.isDead()) {
-				GuardianLaser gl = new GuardianLaser(caster, g1.getLocation(), g1.getLocation().getDirection(), refined, name);
-				gl.addNoTarget(g1);
-				gl.addNoTarget(g2);
-			}
+			Player target = pointEntity(caster);
 			
-			if (!g2.isDead()) {
-				GuardianLaser gl = new GuardianLaser(caster, g2.getLocation(), g2.getLocation().getDirection(), refined, name);
-				gl.addNoTarget(g1);
-				gl.addNoTarget(g2);
-			}
+				if (!g1.isDead()) {
+					GuardianLaser gl = new GuardianLaser(caster, g1.getLocation(), g1.getLocation().getDirection(), refined, name,target);
+					gl.addNoTarget(g1);
+					gl.addNoTarget(g2);
+				}
+				
+				if (!g2.isDead()) {
+					GuardianLaser gl = new GuardianLaser(caster, g2.getLocation(), g2.getLocation().getDirection(), refined, name,target);
+					gl.addNoTarget(g1);
+					gl.addNoTarget(g2);
+				}
+			
+			
+			
 		}
 		if ((g1.isDead() && g2.isDead()) || caster.getGameMode() == GameMode.ADVENTURE) {
 			

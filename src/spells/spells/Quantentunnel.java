@@ -26,6 +26,8 @@ public class Quantentunnel extends Spell{
 		speed = 3;
 		casttime = 20;
 		cooldown = 20*40;
+		if (refined) 
+			casttime = 0;
 		
 	}
 

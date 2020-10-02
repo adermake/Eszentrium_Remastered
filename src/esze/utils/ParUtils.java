@@ -386,6 +386,39 @@ public class ParUtils {
 		}
 
 	}
+	public static void parKreisRedstone(Color color, float size,final Location l, double radius, double offset, double speed,double thickness,Vector rotV) {
+
+		double r = radius;
+		Location loc = l.clone();
+		Location rot = l.clone().setDirection(rotV);
+
+		double ti = thickness;
+		
+	
+
+		for (double t = 0; t <= Math.PI*2;) {
+
+			t = t + Math.PI /ti;
+
+			double x = r * Math.cos(t);
+			double y = 1 + offset;
+			double z = r * Math.sin(t);
+			Location j = loc.clone();
+			Vector v = new Vector(x, y, z);
+			Matrix.rotateMatrixVectorFunktion(v, rot);
+
+			loc.add(v.getX(), v.getY(), v.getZ());
+
+			Vector ve = j.subtract(loc).toVector();
+			
+			
+			//createParticle(pe, loc, (float)dir.getX(),(float) dir.getY(),(float)dir.getZ(), 0, (float)speed);
+			createRedstoneParticle(loc, 0, 0, 0, 0, color, size);
+			loc.subtract(v.getX(), v.getY(), v.getZ());
+
+		}
+
+	}
 	public static void dashParticleTo(ParticleType par,Entity p,Location l) {
 		Location loc = l.clone();
 		

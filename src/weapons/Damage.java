@@ -1,5 +1,6 @@
 package weapons;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,7 +15,9 @@ import esze.enums.Gamestate;
 import esze.main.main;
 import esze.utils.Actionbar;
 import esze.utils.SoundUtils;
+import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
+import spells.spells.Blutsiegel;
 import spells.spells.Schwerkraftsmanipulation;
 
 public class Damage implements Listener{
@@ -28,11 +31,18 @@ public class Damage implements Listener{
 			SoundUtils.playSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, e.getEntity().getLocation(), 5, 2);
 		}
 		*/
+		
 		if(e.getCause().equals( DamageCause.FALL)) {
 			e.setCancelled(true);
+			return;
 		}
 		if(e.getEntity() instanceof Player){
 			Player p = (Player) e.getEntity();
+			
+			for (Blutsiegel bs : Blutsiegel.blutsiegel) {
+				
+				bs.subjectDamage(e.getDamage(),p);
+			}
 			if (p.getGameMode().equals(GameMode.ADVENTURE) ){
 				e.setCancelled(true);
 			}
@@ -54,6 +64,9 @@ public class Damage implements Listener{
 		if (!(e.getDamager() instanceof Player)) {
 			e.setCancelled(true);
 			return;
+		}
+		if (((Player) e.getDamager()).getGameMode().equals(GameMode.ADVENTURE)) {
+			e.setCancelled(true);
 		}
 		if(e.getDamager() instanceof Player) {
 			if (e.getEntity() instanceof Player) {

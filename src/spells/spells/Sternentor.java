@@ -20,20 +20,20 @@ public class Sternentor extends Spell {
 		name = "§cSternentor";
 		
 		cooldown = 20 * 25;
-		steprange = 20 * 10;
+		steprange = 20 * 8;
 		speed = 1;
 		canHitSelf = true;
 		multihit = true;
 		hitboxSize = 3;
 		
 	}
-	int setuptime = 30;
+	int setuptime = 15;
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
 		loc = caster.getLocation().add(caster.getLocation().getDirection().multiply(15));
-		Location l1 = block(caster,15);
-		if (l1 != null) {
+		Location l1 = block(caster);
+		if (l1 != null && !caster.isSneaking()) {
 			loc = l1.add(0,2,0);
 			
 		}

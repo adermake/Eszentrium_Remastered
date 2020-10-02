@@ -74,6 +74,9 @@ public class Ranke extends Spell{
 	
 	@Override
 	public void move() {
+		if (loc.getY() < 65) {
+			dead = true;
+		}
 		playSound(Sound.ENTITY_LEASH_KNOT_PLACE, loc, 5, 2);
 		Vector v = caster.getLocation().getDirection();
 		path.put((int)step, loc.toVector());

@@ -1,5 +1,7 @@
 package esze.utils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,24 +9,30 @@ import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_15_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
+
 import net.minecraft.server.v1_15_R1.BlockPosition;
 import net.minecraft.server.v1_15_R1.DataWatcher;
+import net.minecraft.server.v1_15_R1.DataWatcherObject;
 import net.minecraft.server.v1_15_R1.DataWatcherRegistry;
 import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_15_R1.Packet;
 import net.minecraft.server.v1_15_R1.PacketPlayOutEntity.PacketPlayOutEntityLook;
 import net.minecraft.server.v1_15_R1.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_15_R1.PacketPlayOutEntityMetadata;
 import net.minecraft.server.v1_15_R1.PacketPlayOutEntityTeleport;
 import net.minecraft.server.v1_15_R1.PacketPlayOutNamedEntitySpawn;
 import net.minecraft.server.v1_15_R1.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_15_R1.PlayerConnection;
 import net.minecraft.server.v1_15_R1.PlayerInteractManager;
 
 
@@ -72,18 +80,34 @@ public class CorpseUtils {
 		entityPlayer.e(bed.getX(), bed.getY(), bed.getZ());
 		// 1.15 
 		DataWatcher watcher = entityPlayer.getDataWatcher();
-		Byte b = 0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20 | 0x40; // each of the overlays (cape, jacket, sleeves, pants, hat)
-		watcher.set(DataWatcherRegistry.a.a(15), (byte) b); // 15 is the value for Spigot 1.14 apparently (even though on wiki.vg it says it's 13, but it isn't)
-
-		PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata(cID = entityPlayer.getId(), watcher, false);
+		/*
+		
+		byte b = 0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20 | 0x40; // each of the overlays (cape, jacket, sleeves, pants, hat)
+		
+		watcher.set(DataWatcherRegistry.a.a(16), (byte)0x02); // 15 is the value for Spigot 1.14 apparently (even though on wiki.vg it says it's 13, but it isn't)
+		
+		*/
+		DataWatcherObject<Byte> skinFlags = new DataWatcherObject(16, DataWatcherRegistry.a);
+	    watcher.set(skinFlags, Byte.valueOf((byte) 127));
+		cID = entityPlayer.getId();
+		Bukkit.broadcastMessage("CID "+cID );
+		Bukkit.broadcastMessage("WAtcher " +watcher.toString());
+		Bukkit.broadcastMessage("false" +false);
+		PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata(cID, watcher, false);
+		
 		
 		for(Player all : showTo){
 			
 			((CraftPlayer) all).getHandle().playerConnection.sendPacket(packet);
+			 all.sendBlockChange(bed, Material.RED_BED, (byte) 0);
 		}
+		
+		makePlayerSleep(entityPlayer, new BlockPosition(bed.getX(), bed.getY(), bed.getZ()), watcher); 
 		allCorpses.put(cID, entityPlayer);
 		return cID;
 	}
+	
+	
 	
 	public static void teleportCorpseForPlayers(int cID, Location loc, List<Player> teleportFor){
 		//Bukkit.broadcastMessage("loc: "+loc);
@@ -142,6 +166,29 @@ public class CorpseUtils {
 	
 	
 	
-	
+	  public static void makePlayerSleep(EntityPlayer entityPlayer, BlockPosition bedPos, DataWatcher playerDW) {
+		 
+	      entityPlayer.e(entityPlayer.getId());
+	      try {
+	        setFinalStatic(entityPlayer, net.minecraft.server.v1_15_R1.Entity.class.getDeclaredField("datawatcher"), playerDW);
+	      } catch (Exception ex) {
+	        ex.printStackTrace();
+	      } 
+	      Bukkit.broadcastMessage("ENT " +entityPlayer +"B  "+bedPos);
+	      entityPlayer.entitySleep(bedPos);
+	      for (Player pl : Bukkit.getOnlinePlayers()) {
+	    	 ((CraftPlayer)pl).getHandle().playerConnection.sendPacket((Packet)new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
+	    	 
+	      }
+	      
+	    }
 
+	  
+	  public static void setFinalStatic(Object theObj, Field field, Object newValue) throws Exception {
+	    field.setAccessible(true);
+	    Field modifiersField = Field.class.getDeclaredField("modifiers");
+	    modifiersField.setAccessible(true);
+	    modifiersField.setInt(field, field.getModifiers() & 0xFFFFFFEF);
+	    field.set(theObj, newValue);
+	  }
 }

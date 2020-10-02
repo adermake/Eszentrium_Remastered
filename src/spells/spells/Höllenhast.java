@@ -96,6 +96,7 @@ public class Höllenhast extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		new spells.stagespells.Explosion(1,2, 1, 1, caster, loc, name);
+		
 		// TODO Auto-generated method stub
 		damage(p, 2, caster);
 		clearswap();
@@ -126,6 +127,12 @@ public class Höllenhast extends Spell {
 	public void onBlockHit(Block block) {
 		// TODO Auto-generated method stub
 		new spells.stagespells.Explosion(2,2, 1, 1, caster, loc.add(loc.getDirection().multiply(-1)), name);
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (checkHit(p, loc, caster, 2)) {
+				if (charges > 0 && !refined)
+					new Höllenhast(caster, name,charges-1,refined);
+			}
+		}
 		dead = true;
 	}
 

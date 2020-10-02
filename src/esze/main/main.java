@@ -21,6 +21,10 @@ import net.minecraft.server.v1_13_R1.ParticleParamItem;*/
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.inventivetalent.packetlistener.PacketListenerAPI;
+import org.inventivetalent.packetlistener.handler.PacketHandler;
+import org.inventivetalent.packetlistener.handler.ReceivedPacket;
+import org.inventivetalent.packetlistener.handler.SentPacket;
 
 import com.google.gson.JsonObject;
 
@@ -69,7 +73,7 @@ import weapons.WeaponAbilitys;
 import weapons.WeaponList;
 
 public class main extends JavaPlugin {
-	
+
 	public static main plugin;
 	public static String discord_TOKEN = "";
 	public static String mapname;
@@ -77,12 +81,12 @@ public class main extends JavaPlugin {
 	public static final String unknownDamage = "unknown";
 	public static HashMap<Player, String> damageCause = new HashMap<Player, String>();
 	public AppServer appServer;
-	
+
 	public static ArrayList<String> colorTags = new ArrayList<String>();
-	
+
 	@Override
 	public void onEnable() {
-		//S
+		// S
 		NoCollision.setUpCollsionStopper();
 		colorTags.add("§1");
 		colorTags.add("§2");
@@ -100,18 +104,22 @@ public class main extends JavaPlugin {
 		colorTags.add("§e");
 		colorTags.add("§f");
 		plugin = this;
-		//R
-		
+		// R
+
 		this.getServer().getPluginManager().registerEvents(new EventCollector(), this);
 		Cooldowns.startCooldownHandler();
-		
+
 		ConfigurationSerialization.registerClass(JumpPad.class);
-		 //R
-		/*ParticleParam p = new ParticleParamItem((Particle<ParticleParamItem>) Particle.REGISTRY.get(new MinecraftKey("hugeexplosion")), null);
-		
-		PacketPlayOutWorldParticles w = new PacketPlayOutWorldParticles(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
-		Particle.REGISTRY.get(new MinecraftKey("<particlename>"))*/
-		
+		// R
+		/*
+		 * ParticleParam p = new ParticleParamItem((Particle<ParticleParamItem>)
+		 * Particle.REGISTRY.get(new MinecraftKey("hugeexplosion")), null);
+		 * 
+		 * PacketPlayOutWorldParticles w = new PacketPlayOutWorldParticles(arg0, arg1,
+		 * arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) Particle.REGISTRY.get(new
+		 * MinecraftKey("<particlename>"))
+		 */
+
 		this.getCommand("playrandomsound").setExecutor(new CommandReciever());
 		this.getCommand("showpads").setExecutor(new CommandReciever());
 		this.getCommand("loadpads").setExecutor(new CommandReciever());
@@ -133,9 +141,9 @@ public class main extends JavaPlugin {
 		this.getCommand("itemname").setExecutor(new CommandReciever());
 		this.getCommand("setjumppad").setExecutor(new CommandReciever());
 		this.getCommand("removepads").setExecutor(new CommandReciever());
-		
+
 		this.getCommand("removepads").setExecutor(new CommandReciever());
-		//LOLAAa
+		// LOLAAa
 		this.getCommand("analytics").setExecutor(new CommandReciever());
 		getServer().getPluginManager().registerEvents(new Join(), this);
 		getServer().getPluginManager().registerEvents(new Move(), this);
@@ -162,33 +170,31 @@ public class main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Launch(), this);
 		getServer().getPluginManager().registerEvents(new Projectiles(), this);
 		TTTFusion.start();
-		
+
 		PacketListner.registerPackets();
-		
-		
+
 		PlayerUtils.stopVelocity();
 		JumpPadHandler.start();
 		Gamestate.setGameState(Gamestate.LOBBY);
 		SpellList.registerSpells();
-		//SpellList.sortSpells();
+		// SpellList.sortSpells();
 		WeaponList.setUpWeapons();
 		BuffHandler.tickMethod();
-		if(getConfig().contains("settings.mode")){
+		if (getConfig().contains("settings.mode")) {
 			GameType.setTypeByName(getConfig().getString("settings.mode"));
-		}else{
+		} else {
 			GameType.setTypeByEnum(TypeEnum.SOLO);
 		}
-		
-		
-		
+
 		LobbyBackgroundRunnable.start();
-		
-		MinecraftServer.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered").substring(2)+"\n§8"+ChatUtils.centerMotD("Der Klassiker neu aufgelegt!").substring(3));
-		
+
+		MinecraftServer.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered").substring(2) + "\n§8"
+				+ ChatUtils.centerMotD("Der Klassiker neu aufgelegt!").substring(3));
+
 		LibUtils.initlibs();
-		
+
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			main.damageCause.put(p, "unknown"); //Damage Cause
+			main.damageCause.put(p, "unknown"); // Damage Cause
 			p.setExp(0F);
 			p.setLevel(0);
 			p.setFoodLevel(20);
@@ -196,136 +202,107 @@ public class main extends JavaPlugin {
 			p.setMaxHealth(20);
 			p.setWalkSpeed(0.2F);
 			p.setGlowing(false);
-			//Clears Inventory of Players
+			// Clears Inventory of Players
 			if (p.getGameMode().equals(GameMode.SURVIVAL)) {
 				p.getInventory().clear();
 				p.teleport(new Location(Bukkit.getWorld("world"), 0, 105, 0));// teleport into Lobby
 			}
-			
-				p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
-				p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.CHEST, 1, 0, "§3Arsenal", null, true));
-				p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-				
-				
-			
+
+			p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
+			p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.CHEST, 1, 0, "§3Arsenal", null, true));
+			p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
+
 		}
-		
-		
-		if(getConfig().contains("settings.dcToken")) {
+
+		if (getConfig().contains("settings.dcToken")) {
 			discord_TOKEN = getConfig().getString("settings.dcToken");
 			new BukkitRunnable() {
-				
+
 				@Override
 				public void run() {
-					Discord.run(); 
-					
+					Discord.run();
+
 				}
 			}.runTaskAsynchronously(main.plugin);
-		}else {
-			for(Player p : Bukkit.getOnlinePlayers()) {
-				if(p.isOp()) {
+		} else {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				if (p.isOp()) {
 					p.sendMessage("Der Discord Token wurde nicht in der Config gefunden! (/setdiscordtoken <TOKEN>)");
 				}
 			}
 		}
-		
-		
-		
+
 		AppUserPasswordUtils.createPasswordConfig();
-		
-		
-		
 
 		System.out.println("Esze | Fahre App-Server hoch.");
 		appServer = new AppServer();
 		appServer.startServer();
 		System.out.println("Esze | App-Server hochgefahren.");
-			
-			
-		
+
 		// PACKETS
-		
 /*
-		protocolManager.addPacketListener( new PacketAdapter(main.plugin, ListenerPriority.NORMAL, 
-		          PacketType.Play.Client.STEER_VEHICLE) {
-		    @Override
-		    public void onPacketReceiving (com.comphenix.protocol.events.PacketEvent e) {
-		    	Bukkit.broadcastMessage("y");
-		        if(e.getPacketType() == PacketType.Play.Client.STEER_VEHICLE) {
-		            if(e.getPacket().getHandle() instanceof PacketPlayInSteerVehicle) {
-		                Field f = null;
-		                try {
-		                    f = PacketPlayInSteerVehicle.class.getDeclaredField("d");
-		                    f.setAccessible(true);
-		                    Bukkit.broadcastMessage("X");
-		                   
-		                    	 f.set(e.getPacket().getHandle(), false);
-		                    	 
-		                    	 Bukkit.broadcastMessage("Xy");
-		                    
-		                   
-		                } catch (Exception e1) {
-		                    e1.printStackTrace();
-		                }
-		            }
-		        }
-		    }
-		 
-		    @Override
-		    public void onPacketSending (com.comphenix.protocol.events.PacketEvent e) {}
+		PacketListenerAPI.addPacketHandler(new PacketHandler() {
+			@Override
+			public void onSend(SentPacket packet) {
+				if (packet.getPacketName().contains("Chat")) 
+					return;
+				
+				Bukkit.broadcastMessage(""+packet.getPacketName());
+			}
+
+			@Override
+			public void onReceive(ReceivedPacket packet) {
+			}
 		});
-		*/
+*/
 	}
-	
+
 	@Override
 	public void onDisable() {
-		//SaveUtils.backup();
-		
+		// SaveUtils.backup();
+
 		try {
-		CorpseUtils.removeAllCorpses();
-		}catch(Error e) {System.out.println("Esze | Fehler beim Löschen der Leichen");}
-		for(Entity e : Bukkit.getWorld("world").getEntities()){
-			if(e.getType() != EntityType.PLAYER){
+			CorpseUtils.removeAllCorpses();
+		} catch (Error e) {
+			System.out.println("Esze | Fehler beim Löschen der Leichen");
+		}
+		for (Entity e : Bukkit.getWorld("world").getEntities()) {
+			if (e.getType() != EntityType.PLAYER) {
 				e.remove();
 			}
 		}
-		
 
 		System.out.println("Esze | Fahre App-Server herunter.");
 		try {
 			appServer.shutdownServer();
 			System.out.println("Esze | App-Server heruntergefahren.");
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("Esze | App-Server herunterfahren fehlgeschlagen.");
 		}
-		
+
 		try {
 			Discord.unMuteAll();
 			Discord.logout();
 			System.out.println("Esze | Discord heruntergefahren.");
-		}catch(Error e) {
+		} catch (Error e) {
 			System.out.println("Esze | Discord herunterfahren fehlgeschlagen.");
 		}
-		
-		/*try {
-			wait(2000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
+
+		/*
+		 * try { wait(2000); } catch (InterruptedException e1) { // TODO Auto-generated
+		 * catch block e1.printStackTrace(); }
+		 */
+
 	}
-	
-	
-	
-	public String objToJson(Object obj){
+
+	public String objToJson(Object obj) {
 		Class<?> objClass = obj.getClass();
 
-	    Field[] fields = objClass.getFields();
-	    JsonObject Jobj = new JsonObject();
-	    for(Field field : fields) {
-	        String name = field.getName();
-	        Object value = "ERROR-objToJsonMethod";
+		Field[] fields = objClass.getFields();
+		JsonObject Jobj = new JsonObject();
+		for (Field field : fields) {
+			String name = field.getName();
+			Object value = "ERROR-objToJsonMethod";
 			try {
 				value = field.get(obj);
 			} catch (IllegalArgumentException | IllegalAccessException e) {
@@ -333,37 +310,32 @@ public class main extends JavaPlugin {
 				e.printStackTrace();
 			}
 			Jobj.addProperty(name, value.toString());
-	    }
-	    return Jobj.toString();
+		}
+		return Jobj.toString();
 	}
-	
+
 	public static String toStringCause(Player p) {
 		String[] in = main.damageCause.get(p).split("-");
 		String color = "§7";
 		String out = color;
-		//Analysis 
+		// Analysis
 		if (in.length == 0) {
 			out = "ERROR:::";
-		} else 
-		if (in.length == 1) {
+		} else if (in.length == 1) {
 			if (in[0].equals("")) {
-				out += p.getName() + " ERRORED TO DEATH!"; //no Cause old
-			} else 
-			if (in[0].equals(unknownDamage)) {
-				out += p.getName() + " starb!"; //no Cause
-			} else 
-			if (in[0].equals(voiddamage)) {
-				out += p.getName() + " fiel ins Void!"; //Void
+				out += p.getName() + " ERRORED TO DEATH!"; // no Cause old
+			} else if (in[0].equals(unknownDamage)) {
+				out += p.getName() + " starb!"; // no Cause
+			} else if (in[0].equals(voiddamage)) {
+				out += p.getName() + " fiel ins Void!"; // Void
 			} else {
-			
-			out += p.getName() + " ERRORED TO DEATH! ("+ in[0] + ")"; 
+
+				out += p.getName() + " ERRORED TO DEATH! (" + in[0] + ")";
 			}
-		} else 
-		if (in.length == 2) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " getötet!"; //Cause+Player
-		} else 
-		if (in.length == 3) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " ins Void geworfen!"; //Cause+Player+void
+		} else if (in.length == 2) {
+			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " getötet!"; // Cause+Player
+		} else if (in.length == 3) {
+			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " ins Void geworfen!"; // Cause+Player+void
 		} else {
 			out = main.damageCause.get(p);
 		}

@@ -25,6 +25,7 @@ import spells.spells.Beben;
 import spells.spells.Bienenschwarm;
 import spells.spells.Binden;
 import spells.spells.Blasensturm;
+import spells.spells.Blutsiegel;
 import spells.spells.Chaoswelle;
 import spells.spells.Enterhaken;
 import spells.spells.Erdsurfer;
@@ -36,6 +37,7 @@ import spells.spells.Flucht;
 import spells.spells.Delfintorpedo;
 import spells.spells.Eisstachel;
 import spells.spells.Heilen;
+import spells.spells.Heldenstoß;
 import spells.spells.HimmlischesUrteil;
 import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
@@ -229,6 +231,8 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Wasserdüse());
 		registerSpell(new Höllenhast());
 		registerSpell(new Plasmablase());
+		registerSpell(new Heldenstoß());
+		registerSpell(new Blutsiegel());
 	}
 	
 	public static void registerSpell(Spell spell, Class...gameTypes){

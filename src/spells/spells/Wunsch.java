@@ -28,8 +28,13 @@ public class Wunsch extends Spell{
 		}
 		else {
 			double h = 21-caster.getHealth();
-			if (h > caster.getHealth())
-			caster.setHealth(h);
+			if (h > caster.getMaxHealth()) {
+				h = caster.getMaxHealth();
+			}
+			if (h > caster.getHealth()) {
+				caster.setHealth(h);
+			}
+			
 		}
 	
 		

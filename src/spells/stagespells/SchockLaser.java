@@ -41,11 +41,45 @@ public class SchockLaser extends Spell {
 		}.runTaskTimer(main.plugin, 1, 1);
 		*/
 	}
+	Location saveOrigin;
+	Location saveAim;
 	
+	public SchockLaser(Location origin,Location aim,Player p, String namae,boolean refined) {
+		name = namae;
+		this.refined = refined;
+		hitBlock = true;
+		steprange =  500;
+		speed = 4;
+		hitSpell = true;
+		saveOrigin = origin.clone();
+		saveAim = aim.clone();
+		castSpell(p, name);
+		if (refined) {
+			speed = 15;
+		}
+		/*
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				speed*=1.00001F*speed;
+				
+				if (speed > 20) {
+					speed = 20;
+					this.cancel();
+				}
+			}
+		}.runTaskTimer(main.plugin, 1, 1);
+		*/
+	}
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-	
+		if (refined) {
+			loc = saveOrigin.clone();
+			loc.setDirection(saveAim.toVector().subtract(saveOrigin.toVector()));
+		}
 	}
 
 	@Override
@@ -87,6 +121,9 @@ public class SchockLaser extends Spell {
 			maxSpikeLength-= 1;
 			antiFocus+=1;
 			speed = 8;
+			if (refined) {
+				speed = 32;
+			}
 			
 		}
 		if (phaseLoc != null)
@@ -157,20 +194,15 @@ public class SchockLaser extends Spell {
 	
 	public void onHit() {
 		double x = (caster.getLocation().getY() - hitLoc.getY());
-		x  -= antiFocus/10;
 		
-		double dmg = 5 + 15/(1 + Math.exp(-0.06*x) * 15);
+		
+		double dmg = 4 + 15/(1 + Math.exp(-0.06*x) * 15);
 		//Bukkit.broadcastMessage("DMG "+dmg);
 		new Explosion(4, dmg,1, 1,caster, loc, name);
 		ParUtils.parKreisDot(Particles.CLOUD, loc, 5, 0, 0.05, loc.getDirection().multiply(-1));
 		dead = true;
 		playSound(Sound.ENTITY_LIGHTNING_BOLT_IMPACT, loc, 4, 0.3F);
-		if (refined) {
-			Player nearest = getNearestPlayer(caster);
-			caster.teleport(lookAt(getTop(loc), nearest.getLocation()));
-			
-			
-		}
+		
 			
 	}
 	@Override

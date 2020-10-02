@@ -24,6 +24,7 @@ public class ExplosionDamage extends Spell {
 		steprange = 1;
 		this.damage = damage;
 		overrideLoc = loca;
+		hitSpell = true;
 		canHitSelf = false;
 		castSpell(caster, name);
 	}

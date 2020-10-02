@@ -138,6 +138,7 @@ public class Requiemspfeil extends Spell {
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
+
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
 		setGliding(originalCaster, false);
 		originalCaster.setVelocity(new Vector(0,0,0));
@@ -147,6 +148,7 @@ public class Requiemspfeil extends Spell {
 		originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);
 		// TODO Auto-generated method stub
 		originalCaster.teleport(ori);
+		caster.setVelocity(caster.getVelocity().multiply(0));
 	}
 
 	@Override

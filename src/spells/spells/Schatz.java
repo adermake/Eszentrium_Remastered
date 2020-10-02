@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
+import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.EntityHuman;
 import spells.spellcore.Spell;
 
@@ -22,7 +23,8 @@ public class Schatz extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		Bukkit.broadcastMessage("XX");
-		caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)), Material.CHEST,(byte)1);
+		ParUtils.debug(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)));
+		caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)), Material.TRAPPED_CHEST,(byte)1);
 	}
 
 	@Override
