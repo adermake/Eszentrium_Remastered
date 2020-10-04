@@ -16,6 +16,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Enterhaken extends Spell{
 
@@ -25,6 +26,9 @@ public class Enterhaken extends Spell{
 		speed = 1;
 		steprange = 100;
 		hitPlayer = false;
+		
+		addSpellType(SpellType.MOBILITY);
+		
 	}	
 	
 	Trident hook;

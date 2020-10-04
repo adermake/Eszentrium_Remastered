@@ -14,7 +14,12 @@ import org.bukkit.craftbukkit.v1_15_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.golde.bukkit.corpsereborn.CorpseAPI.CorpseAPI;
+import org.golde.bukkit.corpsereborn.CorpseAPI.events.CorpseRemoveEvent;
+import org.golde.bukkit.corpsereborn.nms.Corpses.CorpseData;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -38,14 +43,14 @@ import net.minecraft.server.v1_15_R1.PlayerInteractManager;
 
 public class CorpseUtils {
 	
-	public static HashMap<Integer, EntityPlayer> allCorpses = new HashMap<Integer, EntityPlayer>();
+	public static HashMap<Integer, CorpseData> allCorpses = new HashMap<Integer, CorpseData>();
 	
 	public static Set<Integer> getAllCorpseIDs(){
 		return (Set<Integer>)allCorpses.keySet();
 	}
 	
 	public static String getCorpseName(int cID){
-		return allCorpses.get(cID).getName();
+		return allCorpses.get(cID).getCorpseName();
 	}
 	
 	public static int spawnCorpseForAll(Player player, Location loc){
@@ -58,6 +63,10 @@ public class CorpseUtils {
 	
 	public static int spawnCorpseForPlayers(Player player, Location loc, List<Player> showTo){
 		int cID = 0;
+		
+		
+		
+		/*
 		Property textures = (Property) ((CraftPlayer) player).getHandle().getProfile().getProperties().get("textures").toArray()[0];
 		String signature = textures.getSignature();
 		String value = textures.getValue();
@@ -75,18 +84,33 @@ public class CorpseUtils {
 			((CraftPlayer) all).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer));
 		}
 		
-		Location bed = loc.clone().add(1, 0, 0);
+		Location bed = loc.clone().add(0, -1, 0);
+		bed.setY(0);
 		//entityPlayer.e(new BlockPosition(bed.getX(), bed.getY(), bed.getZ()));
-		entityPlayer.e(bed.getX(), bed.getY(), bed.getZ());
+		//entityPlayer.e(bed.getX(), bed.getY(), bed.getZ());
+		
+		
+		HumanEntity h = entityPlayer.getBukkitEntity();
+		
+		for (Player pl : Bukkit.getOnlinePlayers()) {
+			
+			pl.sendBlockChange(bed, Material.RED_BED,(byte) 0);
+	    	 ((CraftPlayer)pl).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), entityPlayer.getDataWatcher(), false));
+	    	 
+	      
+	      }
+		//makePlayerSleep(entityPlayer, new BlockPosition(bed.getX(), bed.getY(), bed.getZ()), entityPlayer.getDataWatcher());
+	
 		// 1.15 
-		DataWatcher watcher = entityPlayer.getDataWatcher();
 		/*
+		DataWatcher watcher = entityPlayer.getDataWatcher();
+		
 		
 		byte b = 0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20 | 0x40; // each of the overlays (cape, jacket, sleeves, pants, hat)
 		
 		watcher.set(DataWatcherRegistry.a.a(16), (byte)0x02); // 15 is the value for Spigot 1.14 apparently (even though on wiki.vg it says it's 13, but it isn't)
 		
-		*/
+		
 		DataWatcherObject<Byte> skinFlags = new DataWatcherObject(16, DataWatcherRegistry.a);
 	    watcher.set(skinFlags, Byte.valueOf((byte) 127));
 		cID = entityPlayer.getId();
@@ -103,16 +127,20 @@ public class CorpseUtils {
 		}
 		
 		makePlayerSleep(entityPlayer, new BlockPosition(bed.getX(), bed.getY(), bed.getZ()), watcher); 
-		allCorpses.put(cID, entityPlayer);
+		*/
+		allCorpses.put(cID, CorpseAPI.spawnCorpse(player, loc));
 		return cID;
 	}
 	
 	
 	
 	public static void teleportCorpseForPlayers(int cID, Location loc, List<Player> teleportFor){
+		removeCorpseForPlayers(cID, teleportFor);
+		
+		allCorpses.put(cID, CorpseAPI.spawnCorpse(Bukkit.getPlayer(allCorpses.get(cID).getCorpseName()), loc));
 		//Bukkit.broadcastMessage("loc: "+loc);
 		//Bukkit.broadcastMessage("ent: "+allCorpses.get(cID));
-		allCorpses.get(cID).setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw());
+		//allCorpses.get(cID).(loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw());
 		//allCorpses.get(cID).locY = loc.getY();
 		//allCorpses.get(cID).locZ = loc.getZ();
 		//allCorpses.get(cID).pitch = loc.getPitch();
@@ -120,13 +148,14 @@ public class CorpseUtils {
 		
 		//Bukkit.broadcastMessage("p: "+allCorpses.get(cID).pitch);
 		//Bukkit.broadcastMessage("y: "+allCorpses.get(cID).yaw);
-		
+		/*
 		PacketPlayOutEntityLook packet = new PacketPlayOutEntityLook(cID, getFixRotation(loc.getYaw()),getFixRotation(loc.getPitch()), true);
 		
 		for(Player all : teleportFor){
 			((CraftPlayer) all).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(allCorpses.get(cID)));
 			((CraftPlayer) all).getHandle().playerConnection.sendPacket(packet);
 		}
+		*/
 	}
 	
 	public static void teleportCorpseForAll(int cID, Location loc){
@@ -168,7 +197,8 @@ public class CorpseUtils {
 	
 	  public static void makePlayerSleep(EntityPlayer entityPlayer, BlockPosition bedPos, DataWatcher playerDW) {
 		 
-	      entityPlayer.e(entityPlayer.getId());
+		  
+	      //entityPlayer.e(entityPlayer.getId());
 	      try {
 	        setFinalStatic(entityPlayer, net.minecraft.server.v1_15_R1.Entity.class.getDeclaredField("datawatcher"), playerDW);
 	      } catch (Exception ex) {
@@ -177,9 +207,11 @@ public class CorpseUtils {
 	      Bukkit.broadcastMessage("ENT " +entityPlayer +"B  "+bedPos);
 	      entityPlayer.entitySleep(bedPos);
 	      for (Player pl : Bukkit.getOnlinePlayers()) {
-	    	 ((CraftPlayer)pl).getHandle().playerConnection.sendPacket((Packet)new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
+	    	 ((CraftPlayer)pl).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
 	    	 
+	      
 	      }
+	      
 	      
 	    }
 
@@ -191,4 +223,5 @@ public class CorpseUtils {
 	    modifiersField.setInt(field, field.getModifiers() & 0xFFFFFFEF);
 	    field.set(theObj, newValue);
 	  }
+	  
 }

@@ -12,6 +12,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class RepulsionDirectional extends Spell {
 
@@ -29,6 +30,9 @@ public class RepulsionDirectional extends Spell {
 		overrideLoc = loca;
 		name = namae;
 		castSpell(caster, name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		
 	}
 	public RepulsionDirectional(double size,double knockback,Player caster,Location loca,Vector dir,boolean b, String namae) {
 		hitboxSize = size;
@@ -40,6 +44,9 @@ public class RepulsionDirectional extends Spell {
 		canHitSelf =b;
 		name = namae;
 		castSpell(caster, name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		
 	}
 	@Override
 	public void setUp() {

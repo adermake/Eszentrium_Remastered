@@ -16,6 +16,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Ghul extends Spell {
 
@@ -28,6 +29,9 @@ public class Ghul extends Spell {
 		hitSpell = true;
 		multihit = true;
 		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 		
 		
@@ -35,7 +39,7 @@ public class Ghul extends Spell {
 	}
 	public Ghul(Player p,Vector v) {
 		
-		
+		super();
 		name = "§cSchattengeist";
 		steprange = 150;
 		hitboxSize = 1.5;

@@ -14,6 +14,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SchockLaser extends Spell {
 
@@ -25,6 +26,8 @@ public class SchockLaser extends Spell {
 		speed = 4;
 		hitSpell = true;
 		castSpell(p, name);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		/*
 		new BukkitRunnable() {
 			

@@ -14,6 +14,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class AugedesDrachen extends Spell{
 
@@ -28,6 +29,10 @@ public class AugedesDrachen extends Spell{
 		steprange = 180;
 		hitboxSize = 1;
 		multihit = true;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.KNOCKBACK);
 		
 	}
 	@Override

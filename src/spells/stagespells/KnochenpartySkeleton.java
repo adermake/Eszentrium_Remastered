@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class KnochenpartySkeleton extends Spell {
 	Skeleton ent;
@@ -54,6 +55,13 @@ public class KnochenpartySkeleton extends Spell {
 		name = namae;
 		
 		castSpell(caster, name);
+		
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
 	}
 
 	@Override

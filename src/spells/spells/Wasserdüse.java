@@ -18,6 +18,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.GuardianLaser;
 import spells.stagespells.ThermolanzeLaser;
 
@@ -26,6 +27,12 @@ public class Wasserdüse extends Spell {
 	public Wasserdüse() {
 		cooldown = 20 * 90;
 		name = "§cWasserdüse";
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);	
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.MOBILITY);
+		
 	}
 	@Override
 	public void setUp() {

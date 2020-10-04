@@ -29,6 +29,7 @@ import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Verzaubern extends Spell {
 
@@ -42,6 +43,9 @@ public class Verzaubern extends Spell {
 		
 		cooldown = 20 * 1;
 		traitorSpell = true;
+		
+		addSpellType(SpellType.LOCKDOWN);
+	
 	}
 		
 		

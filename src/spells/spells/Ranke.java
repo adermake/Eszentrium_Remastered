@@ -18,6 +18,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.PullRanke;
 
 public class Ranke extends Spell{
@@ -33,11 +34,14 @@ public class Ranke extends Spell{
 		speed = 3;
 		
 		cooldown = 20 * 18;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	public Ranke(Player p,int rec) {
 		
-		
+		super();
 		name = "§cRanke";
 		steprange = 150;
 		hitboxSize = 1.5;

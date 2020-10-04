@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Druckwelle extends Spell {
 	Player target;
@@ -25,7 +26,9 @@ public class Druckwelle extends Spell {
 		hitEntity = false;
 		hitboxSize = 1;
 		
+		addSpellType(SpellType.KNOCKBACK);
 		
+		addSpellType(SpellType.AURA);
 		
 	}
 	

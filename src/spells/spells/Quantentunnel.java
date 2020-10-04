@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Quantentunnel extends Spell{
 
@@ -28,6 +29,9 @@ public class Quantentunnel extends Spell{
 		cooldown = 20*40;
 		if (refined) 
 			casttime = 0;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 
@@ -44,6 +48,9 @@ public class Quantentunnel extends Spell{
 	int stage = 0;
 	@Override
 	public void cast() {
+		if (refined) {
+			cast = 1000000;
+		}
 		t++;
 		stage++;
 		if (t<10) {

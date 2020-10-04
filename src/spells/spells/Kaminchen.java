@@ -6,6 +6,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.KaminchenEntity;
 
 public class Kaminchen extends Spell {
@@ -15,6 +16,8 @@ public class Kaminchen extends Spell {
 		cooldown = 20 * 25;
 		name = "§6Kaminchen";
 		hitSpell = true;
+		addSpellType(SpellType.DAMAGE);
+		
 	}
 	
 	

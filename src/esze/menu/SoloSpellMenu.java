@@ -26,20 +26,22 @@ public class SoloSpellMenu extends ItemMenu{
 	
 	public SoloSpellMenu() {
 		super(1,"spellmenu");
-		spells = SpellList.getDiffrentRandom(4);
-		addClickableItem(2, 1, Material.ENCHANTED_BOOK, spells.get(0).getName());
-		addClickableItem(4, 1, Material.ENCHANTED_BOOK, spells.get(1).getName());
-		addClickableItem(6, 1, Material.ENCHANTED_BOOK, spells.get(2).getName());
-		addClickableItem(8, 1, Material.ENCHANTED_BOOK, spells.get(3).getName());
+		spells = SpellList.getDiffrentRandom(5);
+		addClickableItem(1, 1, Material.ENCHANTED_BOOK, spells.get(0).getName());
+		addClickableItem(3, 1, Material.ENCHANTED_BOOK, spells.get(1).getName());
+		addClickableItem(5, 1, Material.ENCHANTED_BOOK, spells.get(2).getName());
+		addClickableItem(7, 1, Material.ENCHANTED_BOOK, spells.get(3).getName());
+		addClickableItem(9, 1, Material.ENCHANTED_BOOK, spells.get(3).getName());
 	}
 	
 	public SoloSpellMenu(boolean green) {
 		super(1,"spellmenu");
-		spells = SpellList.getDiffrentRandomGreen(4);
-		addClickableItem(2, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(0).getName().substring(2,spells.get(0).getName().length()));
-		addClickableItem(4, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(1).getName().substring(2,spells.get(1).getName().length()));
-		addClickableItem(6, 1, Material.ENCHANTED_BOOK,"§2"+ spells.get(2).getName().substring(2,spells.get(2).getName().length()));
-		addClickableItem(8, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(3).getName().substring(2,spells.get(3).getName().length()));
+		spells = SpellList.getDiffrentRandomGreen(5);
+		addClickableItem(1, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(0).getName().substring(2,spells.get(0).getName().length()));
+		addClickableItem(3, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(1).getName().substring(2,spells.get(1).getName().length()));
+		addClickableItem(5, 1, Material.ENCHANTED_BOOK,"§2"+ spells.get(2).getName().substring(2,spells.get(2).getName().length()));
+		addClickableItem(7, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(3).getName().substring(2,spells.get(3).getName().length()));
+		addClickableItem(9, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(3).getName().substring(2,spells.get(3).getName().length()));
 	}
 	@Override
 	public void clicked(ItemMenuIcon icon, Player p) {

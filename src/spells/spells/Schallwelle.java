@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Schallwelle extends Spell{
 	
@@ -18,6 +19,8 @@ public class Schallwelle extends Spell{
 		steprange =42;
 		hitPlayer = true;
 		hitSpell = true;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

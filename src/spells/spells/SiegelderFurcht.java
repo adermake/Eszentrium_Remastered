@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableList;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SiegelderFurcht extends Spell {
 
@@ -35,6 +36,10 @@ public class SiegelderFurcht extends Spell {
 		hitEntity = true;
 		hitSpell = true;
 		steprange = 90;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.AURA);
+		
 	}
 	@Override
 	public void setUp() {

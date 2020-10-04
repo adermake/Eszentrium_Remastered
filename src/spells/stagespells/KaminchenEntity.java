@@ -17,6 +17,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class KaminchenEntity extends Spell {
 	
@@ -36,6 +37,10 @@ public class KaminchenEntity extends Spell {
 		name = namae;
 		ent.setMaxHealth(1);
 		castSpell(caster, name);
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.AURA);
+		
 	}
 
 	@Override

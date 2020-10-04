@@ -16,6 +16,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Notenzauber extends Spell {
 
@@ -30,6 +31,9 @@ public class Notenzauber extends Spell {
 		speed = 4;
 		steprange = 80;
 		hitboxSize = 3;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

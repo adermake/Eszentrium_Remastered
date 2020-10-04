@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Repulsion;
 
 public class Schockwelle extends Spell {
@@ -28,6 +29,10 @@ public class Schockwelle extends Spell {
 		hitboxSize = 6;
 		casttime = 20;
 		steprange =22;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.SUPPORT);
 		
 	}
 	

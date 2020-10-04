@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Wurmloch extends Spell {
 
@@ -27,6 +28,9 @@ public class Wurmloch extends Spell {
 		hitEntity = true;
 		hitSpell = false;
 		steprange = 60;
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.AURA);
 	}
 	
 	Location wormHolePlaceLoc;

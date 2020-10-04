@@ -6,6 +6,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.RufDerOzeaneFish;
 import spells.stagespells.RufDerOzeaneRefined;
 
@@ -16,6 +17,9 @@ public class RufderOzeane extends Spell{
 		cooldown = 20 * 53;
 		steprange = 30;
 		speed = 0.5;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	@Override

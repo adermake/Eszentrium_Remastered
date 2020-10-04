@@ -13,6 +13,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
 
 public class Delfintorpedo extends Spell {
@@ -28,6 +29,9 @@ public class Delfintorpedo extends Spell {
 		hitPlayer = true;
 		hitEntity = true;
 		steprange = 80;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

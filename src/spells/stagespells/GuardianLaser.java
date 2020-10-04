@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class GuardianLaser extends Spell {
 	Location startLoc;
@@ -35,7 +36,8 @@ public class GuardianLaser extends Spell {
 		
 		castSpell(caster, name);	
 		
-		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	@Override

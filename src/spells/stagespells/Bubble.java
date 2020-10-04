@@ -13,6 +13,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Bubble extends Spell {
 	
@@ -32,6 +33,10 @@ public class Bubble extends Spell {
 		hitboxSize = 0.3;
 		name = namae;
 		castSpell(caster,namae);
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	int swapTime = 100;
 	@Override

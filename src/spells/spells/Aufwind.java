@@ -13,6 +13,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Aufwind extends Spell{
 
@@ -23,6 +24,7 @@ public class Aufwind extends Spell{
 		hitEntity = false;
 		hitboxSize = 5;
 		steprange = 130;
+		addSpellType(SpellType.MOBILITY);
 	}
 	@Override
 	public void onDeath() {

@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SpeerderZwietracht  extends Spell{
 
@@ -27,6 +28,10 @@ public class SpeerderZwietracht  extends Spell{
 		hitSpell = true;
 		hitBlock = true;
 		hitboxSize = 2;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

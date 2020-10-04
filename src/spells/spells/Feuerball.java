@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 
@@ -31,6 +32,9 @@ public class Feuerball extends Spell {
 		hitPlayer = true;
 		hitBlock = true;
 		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	@Override

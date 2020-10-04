@@ -15,6 +15,7 @@ import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Schicksalsschnitt extends Spell {
 
@@ -24,6 +25,10 @@ public class Schicksalsschnitt extends Spell {
 		name = "§cSchicksalsschnitt";
 		steprange = 82;
 		cooldown = 20 * 45;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MOBILITY);
+		
 	}
 	
 	Player target;

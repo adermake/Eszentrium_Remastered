@@ -16,6 +16,7 @@ import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Stich extends Spell {
 	
@@ -32,10 +33,14 @@ public class Stich extends Spell {
 		steprange = 80;
 		hitPlayer = true;
 		hitEntity = true;
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.DAMAGE);
 		
 	}
 	int dashes = 2;
 	public Stich(Player caster,int dashes,boolean refined) {
+		super();
 		name = "§bStich";
 		this.refined = refined;
 		speed =2;

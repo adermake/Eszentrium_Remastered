@@ -11,12 +11,17 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Wunsch extends Spell{
 
 	public Wunsch() {
 		name = "§3Wunsch";
 		cooldown = 20 * 36;
+		
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.AURA);
+
 	}
 	@Override
 	public void setUp() {

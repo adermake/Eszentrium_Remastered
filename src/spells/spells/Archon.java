@@ -18,6 +18,7 @@ import esze.utils.PlayerUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Archon extends Spell {
 	
@@ -31,6 +32,8 @@ public class Archon extends Spell {
 			speed = 1;
 			casttime = 1;
 			
+			
+			addSpellType(SpellType.SUPPORT);
 		
 	}
 	Player target;

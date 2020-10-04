@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Beben extends Spell{
 
@@ -30,7 +31,9 @@ public class Beben extends Spell{
 		casttime = 20;
 		speed = 4;
 		
-		
+		addSpellType(SpellType.PROJECTILE);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.KNOCKBACK);
 		
 	}
 	

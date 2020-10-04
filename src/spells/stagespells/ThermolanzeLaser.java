@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class ThermolanzeLaser extends Spell{
 
@@ -28,6 +29,9 @@ public class ThermolanzeLaser extends Spell{
 		steprange = 200;
 		hitSpell = true;
 		castSpell(caster, name);	
+		
+
+		addSpellType(SpellType.PROJECTILE);
 		
 		
 	}

@@ -13,6 +13,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Erdsurfer extends Spell {
 	public Erdsurfer() {
@@ -21,6 +22,8 @@ public class Erdsurfer extends Spell {
 		speed = 1;
 		steprange = 0;
 		hitPlayer = false;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MOBILITY);
 		
 		
 	}

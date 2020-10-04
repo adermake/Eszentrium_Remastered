@@ -18,6 +18,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 
@@ -31,6 +32,10 @@ public class Impulsion extends Spell {
 		hitPlayer = false;
 		hitSpell = true;
 		hitEntity = false;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	
 	

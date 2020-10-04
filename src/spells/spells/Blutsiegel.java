@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Blutsiegel extends Spell {
 
@@ -27,6 +28,9 @@ public class Blutsiegel extends Spell {
 		hitboxSize = rad;
 		hitPlayer = true;
 		blutsiegel.add(this);
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.SUPPORT);
+		
 		
 	}
 	@Override
@@ -99,13 +103,13 @@ public class Blutsiegel extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		damage(p,4,caster);
+		damage(p,2,caster);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		damage(ent,4,caster);
+		damage(ent,2,caster);
 	}
 
 	@Override

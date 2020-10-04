@@ -13,6 +13,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SchnittdersiebenWinde extends Spell {
 
@@ -23,6 +24,10 @@ public class SchnittdersiebenWinde extends Spell {
 		name = "§bSchnitt der sieben Winde";
 		cooldown = 20 * 30;
 		steprange = 32;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.MOBILITY);
 	}
 	Player target;
 	

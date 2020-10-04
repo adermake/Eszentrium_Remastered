@@ -19,6 +19,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.BlockRedstoneWire;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class PullRanke extends Spell {
 
@@ -44,6 +45,8 @@ public class PullRanke extends Spell {
 		this.caster = caster;
 		cooldown = 0;
 		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 		castSpell(caster, namae);
 	}
 	
@@ -58,8 +61,15 @@ public class PullRanke extends Spell {
 	@Override
 	public void setUp() {
 		//loc = caster.getEyeLocation();
+		if (path.size() < 5) {
+			finalVec = caster.getLocation().toVector().subtract(loc.toVector());
+			dead = true;
+		}
+		else {
+			finalVec = path.get(1).clone().subtract(path.get(4).clone()).normalize();
+		}
 		
-		finalVec = path.get(1).clone().subtract(path.get(4).clone()).normalize();
+		
 		
 	}
 	

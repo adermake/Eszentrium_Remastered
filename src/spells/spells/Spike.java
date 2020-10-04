@@ -18,6 +18,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Spike extends Spell {
 
@@ -29,9 +30,13 @@ public class Spike extends Spell {
 		hitPlayer = true;
 		hitSpell = true;
 		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
+		
 	}
 	Location saveLoc;
 	public Spike(Player c,Vector v,String name,Location l,int length) {
+		super();
 		cooldown = 20*10;
 		this.name = name;
 		speed = 3;
@@ -49,6 +54,7 @@ public class Spike extends Spell {
 	}
 	Entity target;
 	public Spike(Player c,Vector v,String name,Location l,int length,int delay) {
+		super();
 		cooldown = 20*10;
 		this.name = name;
 		speed = 3;

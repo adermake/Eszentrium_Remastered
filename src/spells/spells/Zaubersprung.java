@@ -13,6 +13,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Zaubersprung extends Spell {
 
@@ -25,6 +26,9 @@ public class Zaubersprung extends Spell {
 		hitPlayer = false;
 		hitEntity = false;
 		hitSpell = false;
+		addSpellType(SpellType.MOBILITY);
+		
+		
 		
 	}
 	

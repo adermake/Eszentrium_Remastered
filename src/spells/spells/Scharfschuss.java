@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Scharfschuss extends Spell{
 	
@@ -20,6 +21,8 @@ public class Scharfschuss extends Spell{
 		speed = 100;
 		casttime = 40;
 		cooldown = 20*60;
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 
 	@Override

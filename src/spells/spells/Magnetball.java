@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Magnetball extends Spell{
 
@@ -23,6 +24,9 @@ public class Magnetball extends Spell{
 		steprange = 100;
 		speed = 2;
 		multihit = true;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	@Override
 	public void setUp() {

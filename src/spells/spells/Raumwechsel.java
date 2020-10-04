@@ -9,12 +9,16 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Raumwechsel extends Spell{
 	
 	public Raumwechsel() {
 		name = "§bRaumwechsel";
 		cooldown = 20 * 35;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MOBILITY);
+
 	}
 	
 	Player target;

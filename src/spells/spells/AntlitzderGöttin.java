@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class AntlitzderGöttin extends Spell{
 
@@ -29,6 +30,8 @@ public class AntlitzderGöttin extends Spell{
 		cooldown = 20*40;
 		speed = 1;
 		hitboxSize = 4;
+		
+		addSpellType(SpellType.AURA);
 	}
 	@Override
 	public void onDeath() {

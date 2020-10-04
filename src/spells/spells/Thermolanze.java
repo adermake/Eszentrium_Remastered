@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ThermolanzeLaser;
 
 public class Thermolanze extends Spell {
@@ -25,6 +26,12 @@ public class Thermolanze extends Spell {
 		steprange = 30;
 		speed =2;
 		casttime = 10;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.PROJECTILE);
+		addSpellType(SpellType.MULTIHIT);
+		
 	}
 	Location bLoc;
 	@Override

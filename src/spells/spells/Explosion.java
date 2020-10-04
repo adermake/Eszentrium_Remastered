@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Explosion extends Spell{
 	
@@ -24,6 +25,10 @@ public class Explosion extends Spell{
 		hitSpell = false;
 		
 		casttime = 20*5;
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.AURA);
+		
 	}
 	
 	@Override

@@ -15,6 +15,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Heilen extends Spell{
 	int s = 9;
@@ -29,8 +30,11 @@ public class Heilen extends Spell{
 		hitPlayer = true;
 		hitSpell = true;
 		hitBlock = true;
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	public Heilen(int s,boolean ref) {
+		super();
 		refined = ref;
 		this.s = s;
 		steprange = 40;

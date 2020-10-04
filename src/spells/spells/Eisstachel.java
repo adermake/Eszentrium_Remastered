@@ -18,6 +18,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Eisstachel extends Spell {
 
@@ -29,11 +30,16 @@ public class Eisstachel extends Spell {
 		hitPlayer = true;
 		hitSpell = true;
 		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
+		
 		
 	}
 	Location saveLoc = null;
 	boolean noSpikes = false;
 	public Eisstachel(Location l,Vector dir,Player caster) {
+		super();
 		cooldown = 20*40;
 		name = "§eEisstachel";
 		speed = 10;

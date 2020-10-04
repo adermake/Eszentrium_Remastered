@@ -13,6 +13,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Sternentor extends Spell {
 
@@ -25,6 +26,13 @@ public class Sternentor extends Spell {
 		canHitSelf = true;
 		multihit = true;
 		hitboxSize = 3;
+		
+
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.SUPPORT);
 		
 	}
 	int setuptime = 15;

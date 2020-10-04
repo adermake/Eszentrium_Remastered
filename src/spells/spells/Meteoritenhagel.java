@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Meteor;
 
 public class Meteoritenhagel extends Spell {
@@ -26,6 +27,10 @@ public class Meteoritenhagel extends Spell {
 		steprange = 25;
 		name = "§cMeteoritenhagel";
 		speed = 1;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

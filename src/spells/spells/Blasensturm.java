@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Bubble;
 import spells.stagespells.BubbleOld;
 
@@ -25,8 +26,7 @@ public class Blasensturm extends Spell{
 		hitSpell = true;
 		
 		
-		
-		
+	
 	}
 	
 	

@@ -16,6 +16,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Blitzaufstieg extends Spell {
 
@@ -29,6 +30,9 @@ public class Blitzaufstieg extends Spell {
 		hitboxSize = 8;
 		casttime = 20;
 		steprange = 4;
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.KNOCKBACK);
 	}
 	
 	

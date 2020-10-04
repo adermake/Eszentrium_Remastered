@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Höllenhast extends Spell {
 
@@ -25,10 +26,15 @@ public class Höllenhast extends Spell {
 		 cooldown = 20 * 40;
 		 name = "§eHöllenhast";
 		 hitboxSize = 2;
+		 
+		 	addSpellType(SpellType.DAMAGE);
+			addSpellType(SpellType.MOBILITY);
+			addSpellType(SpellType.PROJECTILE);
 	}
 	
 	int charges = 0;
 	public Höllenhast(Player c,String name,int charge,boolean refined) {
+		super();
 		 this.refined = refined;
 		 steprange = 70;
 		 speed = 9;

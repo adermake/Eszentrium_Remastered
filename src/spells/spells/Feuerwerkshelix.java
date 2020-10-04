@@ -17,6 +17,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.RepulsionDirectional;
@@ -29,12 +30,16 @@ public class Feuerwerkshelix extends Spell {
 		steprange = 15;
 		
 		if (refined)
-			steprange = 35;
+			steprange = 135;
 		
 		hitboxSize = 3;
 		speed = 1;
 		multihit = true;
 		hitSpell = true;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	@Override
 	public void setUp() {

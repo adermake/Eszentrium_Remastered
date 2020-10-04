@@ -39,6 +39,7 @@ import esze.menu.ColorTagSpellSelectionMenu;
 import esze.menu.SoloAnalyticsMenu;
 import esze.menu.SoloSelectionTopMenu;
 import esze.menu.WeaponsAnalyticsMenu;
+import esze.utils.CorpseUtils;
 import esze.utils.MathUtils;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
@@ -237,7 +238,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 				}
 				}
 				if(cmd.getName().startsWith("ping")) {
-					
+					//CorpseUtils.spawnCorpseForAll(p, p.getLocation());
 					
 					try {
 						dumpHeap("mcmemory.hprof", true);

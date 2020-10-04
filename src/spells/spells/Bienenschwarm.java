@@ -23,6 +23,7 @@ import esze.utils.NoCollision;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Bienenschwarm extends Spell {
 
@@ -34,10 +35,13 @@ public class Bienenschwarm extends Spell {
 		hitboxSize = 2;
 		hitPlayer = true;
 		hitSpell = true;
-		
+		addSpellType(SpellType.PROJECTILE);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.LOCKDOWN);
 		
 	}
 	public Bienenschwarm(Player c,String n) {
+		super();
 		cooldown = 5;
 		caster = c;
 		speed = 1.2;
@@ -47,6 +51,7 @@ public class Bienenschwarm extends Spell {
 		hitSpell = true;
 		loc = c.getEyeLocation();
 		castSpell(c, n);
+		
 	}
 	
 	@Override

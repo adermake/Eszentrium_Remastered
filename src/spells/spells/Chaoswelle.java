@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Chaoswelle extends Spell{
 	
@@ -24,6 +25,11 @@ public class Chaoswelle extends Spell{
 		casttime = 20;
 		speed = 1;
 		cooldown = 20*52;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	

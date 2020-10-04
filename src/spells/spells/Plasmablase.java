@@ -17,6 +17,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Plasmablase extends Spell {
 
@@ -29,6 +30,10 @@ public class Plasmablase extends Spell {
 		hitboxSize = rad;
 		canHitSelf = false;
 		steprange = 20 * 6;
+		
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.SUPPORT);
 	}
 	
 	@Override

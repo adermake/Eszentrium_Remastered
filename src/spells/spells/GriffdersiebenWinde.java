@@ -14,6 +14,7 @@ import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class GriffdersiebenWinde extends Spell {
 	
@@ -25,6 +26,11 @@ public class GriffdersiebenWinde extends Spell {
 		speed = 1;
 		name = "§4Griff der sieben Winde";
 		traitorSpell = true;
+		
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.LOCKDOWN);
+		
 	}
 	
 	boolean swich = true;

@@ -16,6 +16,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SchwertausLicht extends Spell {
 
@@ -34,6 +35,8 @@ public class SchwertausLicht extends Spell {
 		hitboxSize = 0.3;
 		name = namae;
 		castSpell(caster,namae);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	ArmorStand a;
 	@Override

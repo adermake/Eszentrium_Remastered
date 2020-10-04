@@ -5,13 +5,15 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class KitingSpellShot extends Spell {
 	
 	public KitingSpellShot(Player c,String name) {
 		 steprange = 20 * 1;
 		 speed = 2;
-		 
+		 addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		 
 	}
 	@Override

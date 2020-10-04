@@ -17,6 +17,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Heldenstoﬂ extends Spell {
 
@@ -24,6 +25,12 @@ public class Heldenstoﬂ extends Spell {
 		cooldown = 20 * 50;
 		name = "ßcHeldenstoﬂ";
 		steprange = 50;
+		
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		
 	}
 	
 	

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Luftsprung extends Spell {
 
@@ -19,6 +20,9 @@ public class Luftsprung extends Spell {
 		hitEntity = false;
 		hitSpell = false;
 		cooldown = 20 * 22;
+		
+		addSpellType(SpellType.MOBILITY);
+		
 	}
 	@Override
 	public void setUp() {

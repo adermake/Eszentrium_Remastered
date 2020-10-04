@@ -11,6 +11,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Repulsion extends Spell {
 
@@ -26,6 +27,9 @@ public class Repulsion extends Spell {
 		overrideLoc = loca;
 		name = namae;
 		castSpell(caster, name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		
 	}
 	public Repulsion(double size,double knockback,Player caster,Location loca,boolean b, String namae) {
 		hitboxSize = size;
@@ -36,6 +40,9 @@ public class Repulsion extends Spell {
 		canHitSelf =b;
 		name = namae;
 		castSpell(caster, name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		
 	}
 	@Override
 	public void setUp() {

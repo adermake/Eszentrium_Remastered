@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.KnochenpartySkeleton;
 import spells.stagespells.KnochenpartySkeletonSummon;
@@ -27,6 +28,10 @@ public class Knochenparty extends Spell{
 		steprange = 60;
 		name = "§cKnochenparty";
 		hitSpell = true;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	boolean holding = true;
 	Item i;

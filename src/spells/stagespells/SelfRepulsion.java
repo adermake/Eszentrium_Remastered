@@ -11,6 +11,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SelfRepulsion extends Spell {
 
@@ -27,6 +28,10 @@ public class SelfRepulsion extends Spell {
 		name = namae;
 		canHitSelf = true;
 		castSpell(caster, name);
+		
+
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.MOBILITY);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Opfersuche extends Spell {
 
@@ -35,6 +36,9 @@ public class Opfersuche extends Spell {
 		hitboxSize= 2.5;
 		hitSpell = true;
 		speed = 2;
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	
 	

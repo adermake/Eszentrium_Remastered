@@ -15,6 +15,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.SchwertausLicht;
 
 public class SchwerterausLicht extends Spell{
@@ -25,6 +26,10 @@ public class SchwerterausLicht extends Spell{
 		
 		name = "§cSchwerter aus Licht";
 		cooldown = 20*50;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 		
 	}

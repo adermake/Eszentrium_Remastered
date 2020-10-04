@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Item;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class RufDerOzeaneFish extends Spell{
 
@@ -26,13 +27,15 @@ public class RufDerOzeaneFish extends Spell{
 		
 		hitboxSize = 2;
 		castSpell(p,name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
 		EntityType type = EntityType.SQUID;
-		int i = 6;
+		int i = randInt(1,12);
 		if (i==1) {
 			type = EntityType.TROPICAL_FISH;
 		}
@@ -48,7 +51,7 @@ public class RufDerOzeaneFish extends Spell{
 		if (i==5) {
 			type = EntityType.SALMON;
 		}
-		if (i==6) {
+		if (i>=6) {
 			type = EntityType.SQUID;
 		}
 		ent = (LivingEntity) caster.getWorld().spawnEntity(caster.getLocation(), type);

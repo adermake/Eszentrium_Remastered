@@ -18,6 +18,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 import spells.stagespells.VampirpilzStage2;
@@ -36,6 +37,9 @@ public class KnochenpartySkeletonSummon extends Spell{
 		name = "§6Knochenparty";
 		hitSpell = true;
 		castSpell(caster, name);
+		
+	
+		addSpellType(SpellType.PROJECTILE);
 	}
 	boolean holding = true;
 	public static int in = 0;

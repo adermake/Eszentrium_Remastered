@@ -7,6 +7,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.SchockLaser;
 
 public class Schock extends Spell {
@@ -17,6 +18,9 @@ public class Schock extends Spell {
 		name = "§eSchock";
 		casttime =  3;
 		aim = null;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 		
 		

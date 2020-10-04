@@ -11,6 +11,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.RepulsionDirectional;
 
@@ -26,6 +27,9 @@ public class Schallbrecher extends Spell {
 		hitboxSize = 2;
 		steprange = 15;
 		multihit = true;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.AURA);
 	}
 
 	@Override

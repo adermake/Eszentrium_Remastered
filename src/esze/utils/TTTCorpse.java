@@ -102,7 +102,7 @@ public class TTTCorpse implements Listener{
 		if(!isExposed && e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
 			isExposed = true;
 			
-			armor = Bukkit.getWorlds().get(0).spawn(CorpseUtils.allCorpses.get(corpseID).getBukkitEntity().getLocation().clone().add(0,-1.5,0), ArmorStand.class);
+			armor = Bukkit.getWorlds().get(0).spawn(CorpseUtils.allCorpses.get(corpseID).getTrueLocation().clone().add(0,-1.5,0), ArmorStand.class);
 			TypeTTT type = (TypeTTT) GameType.getType();
 			armor.setCustomName(type.startTraitor.contains(player) ? "§cTraitor" : "§aInnocent");
 			armor.setCustomNameVisible(true);
@@ -242,8 +242,8 @@ public class TTTCorpse implements Listener{
 	
 	public void spawn(){
 		corpseID = CorpseUtils.spawnCorpseForAll(player, player.getLocation());
-		
-		Entity e = player.getLocation().getWorld().spawnEntity(player.getLocation(), EntityType.COW);
+		Location l = getFloor(player.getLocation());
+		Entity e = player.getLocation().getWorld().spawnEntity(l, EntityType.COW);
 		((CraftCow)e).setAI(false);
 		((CraftCow)e).setSilent(true);
 		((CraftCow)e).setGravity(false);
@@ -251,7 +251,7 @@ public class TTTCorpse implements Listener{
 		((CraftCow)e).addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000*1000*1000, 100), false);
 		((CraftCow)e).setInvulnerable(true);
 		
-		Entity e2 = player.getLocation().getWorld().spawnEntity(player.getLocation().clone().add(1, 0, 0), EntityType.COW);
+		Entity e2 = player.getLocation().getWorld().spawnEntity(l.clone().add(1, 0, 0), EntityType.COW);
 		((CraftCow)e2).setAI(false);
 		((CraftCow)e2).setSilent(true);
 		((CraftCow)e2).setGravity(false);
@@ -263,6 +263,14 @@ public class TTTCorpse implements Listener{
 		cows.add(e2);
 		
 	}
+	public Location getFloor(Location loca) {
+		
+		while (!loca.getBlock().getType().isSolid()) {
+			loca.add(0,-1,0);
+		}
+		return loca.getBlock().getLocation().add(0.5,0.5,0.5);
+		
+	}	
 	
 	public static ArrayList<TTTCorpse> getCorpses(Location loc,float radius) {
 		

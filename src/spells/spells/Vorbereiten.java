@@ -14,6 +14,7 @@ import esze.main.main;
 import esze.utils.NBTUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
+import spells.spellcore.SpellType;
 
 public class Vorbereiten extends Spell {
 
@@ -21,7 +22,8 @@ public class Vorbereiten extends Spell {
 	public Vorbereiten() {
 		name = "§4Vorbereiten";
 		cooldown = 0;
-		
+		addSpellType(SpellType.SUPPORT);
+
 	}
 	@Override
 	public void setUp() {

@@ -17,6 +17,7 @@ import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.LamaturmProjectile;
 
 public class Lamaturm extends Spell {
@@ -29,6 +30,10 @@ public class Lamaturm extends Spell {
 		steprange = 20 * 50;
 		hitboxSize = 10;
 		multihit = true;
+		
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.AURA);
 		
 	}
 	

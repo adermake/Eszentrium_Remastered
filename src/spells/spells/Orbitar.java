@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.OrbitarOrb;
 
 public class Orbitar extends Spell {
@@ -17,8 +18,14 @@ public class Orbitar extends Spell {
 		name = "§3Orbitar";
 		cooldown = 20 * 50;
 		steprange = 20 * 6;
+		hitPlayer = false;
+		hitEntity = false;
 		
-		
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.KNOCKBACK);
+
 	}
 	
 	@Override

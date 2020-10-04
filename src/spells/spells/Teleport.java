@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.Title;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Teleport extends Spell {
 	
@@ -28,6 +29,9 @@ public class Teleport extends Spell {
 		hitSpell = true;
 		steprange = 300;
 		speed = 2;
+		
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	
 	@Override

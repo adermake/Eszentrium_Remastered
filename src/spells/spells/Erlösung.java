@@ -14,6 +14,7 @@ import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Erlösung extends Spell {
 
@@ -29,6 +30,9 @@ public class Erlösung extends Spell {
 		hitboxSize = 3;
 		multihit = true;
 		traitorSpell = true;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	@Override
 	public void setUp() {

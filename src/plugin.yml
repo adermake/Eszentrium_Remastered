@@ -3,7 +3,7 @@ main: esze.main.main
 version: 1.0
 author: [Philipp0002, adermake, Astromake]
 api-version: 1.13
-depend: [PacketListenerApi]
+depend: [PacketListenerApi,CorpseReborn]
 
 commands:
   spell:

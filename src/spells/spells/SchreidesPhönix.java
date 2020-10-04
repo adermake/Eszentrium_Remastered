@@ -24,6 +24,7 @@ import esze.utils.TTTCorpse;
 import esze.utils.TTTRevive;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class SchreidesPhönix extends Spell{
 
@@ -35,6 +36,8 @@ public class SchreidesPhönix extends Spell{
 		
 		
 		traitorSpell = true;
+		addSpellType(SpellType.SUPPORT);
+
 	}
 	@Override
 	public void setUp() {

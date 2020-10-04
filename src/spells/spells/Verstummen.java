@@ -15,6 +15,7 @@ import esze.utils.Title;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Verstummen extends Spell {
 	
@@ -28,6 +29,9 @@ public class Verstummen extends Spell {
 		hitSpell = true;
 		steprange = 300;
 		hitboxSize = 2;
+		
+		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	
 	@Override

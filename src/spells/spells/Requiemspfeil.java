@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Requiemspfeil extends Spell {
 
@@ -29,6 +30,10 @@ public class Requiemspfeil extends Spell {
 		hitboxSize = 1.5;
 		speed = 1;
 		hitSpell = true;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	Location ori;
@@ -138,7 +143,9 @@ public class Requiemspfeil extends Spell {
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
-
+		if (spell.isSpellType(SpellType.PROJECTILE) || spell.isSpellType(SpellType.AURA)) {
+			
+		
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
 		setGliding(originalCaster, false);
 		originalCaster.setVelocity(new Vector(0,0,0));
@@ -149,6 +156,7 @@ public class Requiemspfeil extends Spell {
 		// TODO Auto-generated method stub
 		originalCaster.teleport(ori);
 		caster.setVelocity(caster.getVelocity().multiply(0));
+		}
 	}
 
 	@Override

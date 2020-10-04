@@ -18,6 +18,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Avatar extends Spell{
 
@@ -31,7 +32,8 @@ public class Avatar extends Spell{
 		multihit = true;
 		hitSpell = true;
 		
-		
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.DAMAGE);
 		
 	}
 	Giant g;

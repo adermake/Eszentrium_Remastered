@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Eggsplosive extends Spell {
 
@@ -18,6 +19,9 @@ public class Eggsplosive extends Spell {
 		overrideLoc = loca;
 		castSpell(p,name);
 		steprange = 200;
+		addSpellType(SpellType.DAMAGE);
+		
+		addSpellType(SpellType.PROJECTILE);
 	}
 	@Override
 	public void setUp() {

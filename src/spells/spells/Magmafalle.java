@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 
@@ -26,6 +27,9 @@ public class Magmafalle extends Spell {
 		hitboxSize = 4;
 		hitPlayer = false;
 		hitEntity = false;
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.KNOCKBACK);
+		
 		
 	}
 	@Override

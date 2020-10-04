@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Magmanadel extends Spell{
 	
@@ -23,6 +24,9 @@ public class Magmanadel extends Spell{
 		speed = 100;
 		cooldown = 20*1;
 		traitorSpell = true;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 

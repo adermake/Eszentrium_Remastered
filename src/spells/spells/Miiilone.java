@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 
@@ -21,6 +22,9 @@ public class Miiilone extends Spell {
 		steprange = 60;
 		name = "§4Miiilone";
 		traitorSpell = true;
+		
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	boolean holding = true;
 	Item i;

@@ -18,6 +18,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 
 public class OrbitarOrb extends Spell {
@@ -39,6 +40,10 @@ public class OrbitarOrb extends Spell {
 		hitboxSize = 2;
 		
 		this.offset = offset;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	
 	@Override

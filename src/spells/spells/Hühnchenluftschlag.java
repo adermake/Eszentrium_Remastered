@@ -17,6 +17,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.EntityChicken;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Eggsplosive;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -27,6 +28,10 @@ public class Hühnchenluftschlag extends Spell{
 		name = "§6Hühnchenluftschlag";
 		cooldown = 20 * 42;
 		steprange = 66;
+		
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.DAMAGE);
+		
 	}
 	@Override
 	public void setUp() {

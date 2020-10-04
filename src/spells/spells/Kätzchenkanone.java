@@ -15,6 +15,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -30,6 +31,10 @@ public class Kätzchenkanone extends Spell {
 		cooldown = 20 * 20;
 		steprange = 70;
 		hitSpell = true;
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.MOBILITY);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class RufDerOzeaneRefined extends Spell {
 
@@ -24,6 +25,9 @@ public class RufDerOzeaneRefined extends Spell {
 		hitboxSize = 2;
 		multihit = true;
 		castSpell(p,name);
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.PROJECTILE);
 		
 	}
 	@Override

@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class VampirpilzStage2 extends Spell {
 
@@ -31,6 +32,10 @@ public class VampirpilzStage2 extends Spell {
 		steprange = 20 * 15;
 		castSpell(caster, name);
 		multihit = true;
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.AURA);
 	}
 	ArrayList<Entity> removeLater = new ArrayList<Entity>();
 	@Override

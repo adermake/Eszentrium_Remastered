@@ -19,6 +19,7 @@ import esze.utils.SoundUtils;
 
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Mondkugel extends Spell {
 	
@@ -32,6 +33,9 @@ public class Mondkugel extends Spell {
 		speed = 1;
 		multihit = true;
 		hitSpell = true;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.PROJECTILE);
 	}
 	@Override
 	public void setUp() {

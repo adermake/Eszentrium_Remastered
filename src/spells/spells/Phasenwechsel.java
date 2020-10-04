@@ -13,6 +13,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Phasenwechsel extends Spell {
 
@@ -25,6 +26,8 @@ public class Phasenwechsel extends Spell {
 		hitEntity = false;
 		hitboxSize = 5;
 		
+		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.MOBILITY);
 		
 	}
 

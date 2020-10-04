@@ -20,6 +20,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class KosmischeBindung extends Spell{
 	
@@ -30,9 +31,13 @@ public class KosmischeBindung extends Spell{
 		hitPlayer = true;
 		hitEntity = true;
 		casttime = 20*1;
-		hitboxSize = range+4;
+		hitboxSize = range;
 		steprange = 20 * 5;
 		silencable = true;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.LOCKDOWN);
 	}
 	
 	@Override
@@ -155,7 +160,7 @@ public class KosmischeBindung extends Spell{
 			
 			doPull(ent,to , to.distance(ent.getLocation())/3);
 			Vector vec = hitList.get(ent);
-			if (caster.isSneaking() && refined)
+			if (refined) 
 			vec = vec.add(vec.clone().normalize().multiply(0.5));
 			double len = vec.length();
 			if (len > range) {

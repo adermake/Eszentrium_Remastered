@@ -17,6 +17,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Schleimschleuder extends Spell {
 
@@ -31,6 +32,10 @@ public class Schleimschleuder extends Spell {
 		hitPlayer = false;
 		hitBlock = false;
 		hitSpell = true;
+		
+		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.PROJECTILE);
 		
 		
 	}

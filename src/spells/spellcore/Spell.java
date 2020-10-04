@@ -86,7 +86,8 @@ public abstract class Spell {
 	public static ArrayList<Entity> unHittable = new ArrayList<Entity>();
 	protected Location startPos;
 	protected Player originalCaster;
-	//CALLED
+	protected ArrayList<SpellType> spellTypes = new ArrayList<SpellType>();
+	//FLAGS
 	
 	
 	//CC 
@@ -551,6 +552,13 @@ public abstract class Spell {
 		}
 		
 		
+	}
+	
+	public boolean isSpellType(SpellType st) {
+		return spellTypes.contains(st); 
+	}
+	public void addSpellType(SpellType st) {
+		spellTypes.add(st);
 	}
 	
 	public double calcLerpFactor(double s,double sr) {
