@@ -28,7 +28,8 @@ public class Enterhaken extends Spell{
 		hitPlayer = false;
 		
 		addSpellType(SpellType.MOBILITY);
-		
+		setLore("§7Zieht den Spieler an den nächsten#§7Block in Blickrichtung. Dort bleibt#§7er für kurze Zeit hängen.");
+		setBetterLore("§7Zieht den Spieler an den nächsten#§7Block in Blickrichtung. Dort bleibt#§7er für kurze Zeit hängen.");
 	}	
 	
 	Trident hook;

@@ -16,6 +16,8 @@ public class LobbyCountdownRunnable {
 	private static int runnableID;
 	private static boolean running = false;
 	public static void start(){
+		if (Gamestate.getGameState()== Gamestate.INGAME)
+			return;
 		if (running) {
 			
 			timeLeft = 1;

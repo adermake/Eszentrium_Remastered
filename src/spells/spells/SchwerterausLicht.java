@@ -30,7 +30,7 @@ public class SchwerterausLicht extends Spell{
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
-		
+		setLore("§7Feuert Schwerter in Blickrichtung, die#§7bei Kontakt mit Gegnern oder Blöcken#§7explodieren. Getroffene Gegner erhalten Schaden.");
 		
 	}
 	@Override

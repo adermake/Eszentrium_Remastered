@@ -28,6 +28,8 @@ public class SchnittdersiebenWinde extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.MOBILITY);
+		setLore("§7Teleportiert den Spieler zum#§7anvisierten Gegner. Fügt nach kurzer Zeit Schaden an#§7diesem Gegner an, der steigt, je weiter#§7dieser vomAnwender entfernt ist.# #§eF:§7 Der#§7Spieler springt in Blickrichtung.");
+		setBetterLore("§7Teleportiert den Spieler zum#§7anvisierten Gegner. Fügt nach kurzer Zeit Schaden an#§7diesem Gegner an, der steigt, je weiter#§7dieser vomAnwender entfernt ist.# #§eF:§7 Der#§7Spieler springt in Blickrichtung.");
 	}
 	Player target;
 	

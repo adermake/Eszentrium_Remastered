@@ -18,7 +18,9 @@ public class Raumwechsel extends Spell{
 		cooldown = 20 * 35;
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
-
+		
+		setLore("§7Zieht den anvisierten Gegner an den#§7Spieler heran und den Spieler an diesen#§7Gegner.# #§eShift:§7 Verhindert den Effekt des#§7Zaubers auf den Anwender.");
+		setBetterLore("§7Zieht den Gegner auf der Mausposition an#§7den Spieler heran und den Spieler an#§7diesen Gegner.# #§eShift:§7 Verhindert den#§7Effekt des Zaubers auf den Anwender.");
 	}
 	
 	Player target;

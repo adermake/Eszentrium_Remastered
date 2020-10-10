@@ -22,6 +22,9 @@ public class Schallwelle extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner zurückwirft.");
+		setBetterLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner zurückwirft.");
+		
 	}
 	
 	

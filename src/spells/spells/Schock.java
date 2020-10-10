@@ -22,6 +22,8 @@ public class Schock extends Spell {
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Schießt Blitze in Blickrichtung, die#§7an getroffenen Gegnern Schaden verursachen.#§7Der Schaden der Blitze steigt, wenn der#§7Zauber aus großer Höhe ausgeführt wird.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7weiten sich die Blitze aus, um mehr Fläche#§7zu treffen auf Kosten der Genauigkeit.");
+		setBetterLore("§7Schießt Blitze aus großer Höhe auf den#§7anvisierten Block und verursacht Schaden an#§7getroffenen Gegnern. # #§eShift:§7 Solange#§7diese Taste gedrückt bleibt, weiten sich#§7die Blitze aus, um mehr Fläche zu treffen auf#§7Kosten der Genauigkeit.");
 		
 		
 	}

@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import esze.main.LobbyCountdownRunnable;
 import esze.main.main;
 import esze.menu.ColorTagSpellSelectionMenu;
 import esze.menu.SpellAnalyticsMenu;
@@ -52,10 +53,16 @@ public class Interact implements Listener{
                (clicked.getType().toString().contains("FENCE_GATE")) || 
                (clicked.getType() == Material.STONE_BUTTON) || 
                (clicked.getType().toString().contains("BED")) || 
-               (clicked.getType().toString().contains("BUTTON"))){
+               (clicked.getType() == Material.LECTERN)){
                 event.setCancelled(true);
             }
         }
+        }
+        
+        if (action == Action.RIGHT_CLICK_BLOCK) {
+        	if (clicked.getType() == Material.BELL) {
+        		LobbyCountdownRunnable.start();
+        	}
         }
         
     }
@@ -131,9 +138,8 @@ public class Interact implements Listener{
 					}
 				
 				}
-				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Arsenal")) {
-					WeaponMenu w = new WeaponMenu(p);
-					w.open(p);
+				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Spellsammlung")) {
+					new ColorTagSpellSelectionMenu().open(p);
 				}
 				
 				

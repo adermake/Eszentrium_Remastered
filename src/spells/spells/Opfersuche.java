@@ -39,6 +39,9 @@ public class Opfersuche extends Spell {
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		
+		setLore("ß7Schieﬂt ein Phantom in Blickrichtung,#ß7das getroffene Gegner festh‰lt. Je weiter#ß7das Phantom fliegt, desto l‰nger h‰lt es#ß7fest.");
+		setBetterLore("ß7Schieﬂt ein Phantom in Blickrichtung,#ß7das getroffene Gegner festh‰lt. Je weiter das#ß7Phantom fliegt, desto l‰nger h‰lt es fest.");
 	}
 	
 	

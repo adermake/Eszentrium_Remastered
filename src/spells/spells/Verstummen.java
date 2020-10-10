@@ -32,6 +32,8 @@ public class Verstummen extends Spell {
 		
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner für kurze Zeit#§7verstummt. Verstummte Gegner können keine#§7Zauber ausführen.");
+		setBetterLore("§7Schießt ein Projektil in Blickrichtung ,#§7das getroffene Gegner für kurze Zeit#§7verstummt und den Spieler an diese Stelle#§7teleportiert. Verstummte Gegner können keine#§7Zauber ausführen.");
 	}
 	
 	@Override

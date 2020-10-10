@@ -246,25 +246,30 @@ public class TypeSOLO extends Type {
 				SaveUtils.setWinner(winner.getName());
 			}
 		if (won) {
-			for (Player winner : players) {
-				
-				postResult(winner);
-			}
-			SaveUtils.endGame(); //Analytics //TODO Macht ERROR
 			
-			Music.sp.destroy();
-			GameRunnable.stop();
-			Gamestate.setGameState(Gamestate.LOBBY);
-			LobbyBackgroundRunnable.start();
-			LobbyUtils.recallAll();
-			scoreboard.hide = true;
-			players.clear();
-		
+			endGame();
 			
 		}
 		
 		}
 	}
+	}
+	
+	
+	public void endGame() {
+		for (Player winner : players) {
+			
+			postResult(winner);
+		}
+		SaveUtils.endGame(); //Analytics //TODO Macht ERROR
+		
+		Music.sp.destroy();
+		GameRunnable.stop();
+		Gamestate.setGameState(Gamestate.LOBBY);
+		LobbyBackgroundRunnable.start();
+		LobbyUtils.recallAll();
+		scoreboard.hide = true;
+		players.clear();
 	}
 	
 	public void postResult(Player winner) {

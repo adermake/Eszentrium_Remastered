@@ -31,6 +31,7 @@ public class Thermolanze extends Spell {
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.MULTIHIT);
+		setLore("ß7Der Spieler springt in die Luft und#ß7schieﬂt einen Feuerstrahl in Blickrichtung.#ß7Getroffene Gegner werden weggeschleudert.");
 		
 	}
 	Location bLoc;

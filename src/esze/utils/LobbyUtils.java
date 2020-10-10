@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.listeners.Join;
 import esze.main.main;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
@@ -69,15 +70,10 @@ public class LobbyUtils {
 			p.setMaxHealth(20);
 			p.setHealth(20);
 			PlayerUtils.hidePlayer(p,35);
+			Join.givePlayerLobbyItems(p);
 		}
 		
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
-			p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.CHEST, 1, 0, "§3Arsenal", null, true));
-			p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-			
-			
-		}
+		
 		Spell.unHittable.clear();
 		SoundUtils.playSound(Sound.BLOCK_PORTAL_TRAVEL, l,2,0.6F);
 		

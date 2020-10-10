@@ -171,7 +171,7 @@ public class main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Projectiles(), this);
 		TTTFusion.start();
 
-		PacketListner.registerPackets();
+		//PacketListner.registerPackets();
 
 		PlayerUtils.stopVelocity();
 		JumpPadHandler.start();
@@ -208,10 +208,7 @@ public class main extends JavaPlugin {
 				p.teleport(new Location(Bukkit.getWorld("world"), 0, 105, 0));// teleport into Lobby
 			}
 
-			p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
-			p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.CHEST, 1, 0, "§3Arsenal", null, true));
-			p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-
+			Join.givePlayerLobbyItems(p);
 		}
 
 		if (getConfig().contains("settings.dcToken")) {

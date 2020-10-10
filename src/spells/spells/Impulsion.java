@@ -36,6 +36,8 @@ public class Impulsion extends Spell {
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Schießt ein Projektil in#§7Blickrichtung, das bei Blockkontakt ein Feld erzeugt,#§7das Spieler anzieht und ihnen Schaden zufügt.");
+		setBetterLore("§7Schießt ein Projektil in#§7Blickrichtung, das bei Blockkontakt ein Feld erzeugt,#§7das Spieler anzieht und ihnen Schaden zufügt.");
 	}
 	
 	

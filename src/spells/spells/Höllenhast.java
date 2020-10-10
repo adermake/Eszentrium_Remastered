@@ -30,6 +30,8 @@ public class Höllenhast extends Spell {
 		 	addSpellType(SpellType.DAMAGE);
 			addSpellType(SpellType.MOBILITY);
 			addSpellType(SpellType.PROJECTILE);
+			setLore("§7Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.# #§eF:§7#§7Falls der Zauber getroffen hat, wird er#§7nochmal ausgeführt. Maximal zehnmal möglich.");
+			setBetterLore("§7Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.# #§eF:§7#§7Führt den Zauber nochmal aus. Maximal zehnmal#§7möglich.");
 	}
 	
 	int charges = 0;

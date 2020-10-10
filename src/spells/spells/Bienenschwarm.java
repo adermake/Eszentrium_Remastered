@@ -38,7 +38,8 @@ public class Bienenschwarm extends Spell {
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.LOCKDOWN);
-		
+		setLore("§7Schießt einen Honigklumpen in Blickrichtung, der#§7bei Kontakt mit Gegnern Bienen anlockt. Diese halten#§7den Gegner für kurze Zeit in der Luftund fügen ihm#§7Schaden zu. Der Honigklumpen kann selbst nach der#§7Ausführung noch gesteuert werden.");
+		setBetterLore("Schießt einen Honigklumpen in Blickrichtung, der#§7bei Kontakt mit Gegnern eine Menge Bienen anlockt.#§7Diese halten den Gegner für kurze Zeit in der Luft und#§7fügen ihm Schaden zu. Der Honigklumpen kann selbst#§7nach der Ausführung noch gesteuert werden.");
 	}
 	public Bienenschwarm(Player c,String n) {
 		super();

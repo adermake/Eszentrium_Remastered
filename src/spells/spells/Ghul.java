@@ -22,7 +22,7 @@ public class Ghul extends Spell {
 
 	public Ghul() {
 		cooldown = 20*40;
-		name = "§eGhul";
+		name = "§6Ghul";
 		speed = 3;
 		steprange =342;
 		hitPlayer = true;
@@ -33,9 +33,9 @@ public class Ghul extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Beschwört eine Kreatur, die durch die#§7Gegend springt und nahe Gegner verfolgt.#§7Wird ein Gegner getroffen, wird dieser#§7weggeschleudert.");
 		
-		
-		
+		setBetterLore("§7Beschwört drei Kreaturen, die durch die#§7Gegend springen und nahe Gegner verfolgen.#§7Wird ein Gegner getroffen, wird dieser#§7weggeschleudert.");
 	}
 	public Ghul(Player p,Vector v) {
 		

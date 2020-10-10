@@ -44,7 +44,9 @@ import esze.utils.MathUtils;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
 import esze.utils.TTTCorpse;
+import esze.utils.Title;
 import net.minecraft.server.v1_15_R1.EntityPlayer;
+import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
 public class CommandReciever implements CommandExecutor, TabCompleter{
@@ -75,10 +77,14 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 								LobbyCountdownRunnable.start();
 							}else if(args[0].equalsIgnoreCase("stop")){
 
-								//LobbyCountdownRunnable.stop();
+								GameType.getType().endGame();
+								for (Player p2 : Bukkit.getOnlinePlayers()) {
+									Title t = new Title("§e"+p.getName(),"§ehat das Spiel abgebrochen!");
+									
+									t.send(p2);
+									
+								}
 								
-								TTTCorpse corpse = new TTTCorpse(p, true);
-								corpse.spawn();
 							}else if(args[0].equalsIgnoreCase("info")){
 								//p.sendMessage("§8| §3Discord4J §7- "+Discord.getVersion() + " - " + (Discord.isLoggedIn() ? "§aCONNECTED" : "§cDISCONNECTED"));
 							}else{
@@ -498,24 +504,50 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 		            if (args.length == 0) {
 		            	return false;
 		            }
+		            
+		           
 		            ItemStack is = new ItemStack(Material.BOOK);
 		            ItemMeta im = is.getItemMeta();
+		           
 		            String name = args[0];
+		            String spellname = args[0];
 		            for (String partName : args) {
 		            	if (partName == name)
 		            		continue;
 		            	name = name + " "+ partName;
+		            	spellname += partName;
 		            }
 		            //name = name.replace("&", "§");
 		          
+		            	boolean refined = false;
 		            	if (name.contains("+")) {
 		            		 name = "§2"+name;
+		            		 refined = true;
 		            	}
 		            	else {
 		            		 name = "§e"+name;
 		            	}
 		            	name = name.replace("+", "");
-		           
+		            	spellname = spellname.replace("+", "");
+		            	 try {
+		            		 	spellname = spellname.substring(0, spellname.length());
+								spellname = spellname.replace(" ", "");
+								spellname = "spells.spells." + spellname;
+								// Bukkit.broadcastMessage("F" + s);
+								Class clazz = Class.forName(spellname);
+								Spell sp = (Spell) clazz.newInstance();
+								if (refined) {
+									im.setLore(sp.getBetterLore());
+								}else {
+									im.setLore(sp.getLore());
+								}
+								
+								sp.kill();
+								
+				            }
+				            catch(Exception e) {
+				            	e.printStackTrace();
+				            }
 		           
 		            im.setDisplayName(name);
 		            is.setItemMeta(im);

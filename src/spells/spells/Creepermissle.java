@@ -2,31 +2,30 @@ package spells.spells;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
+import esze.utils.ParUtils;
+import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
-import spells.spellcore.SpellType;
-import spells.stagespells.KaminchenEntity;
 
-public class Kaminchen extends Spell {
+public class Creepermissle extends Spell {
 
 	
-	public Kaminchen() {
-		cooldown = 20 * 25;
-		name = "§6Kaminchen";
-		hitSpell = true;
-		addSpellType(SpellType.DAMAGE);
-		setLore("§7Wirft ein Kaninchen in Blickrichtung,#§7das auf dem Boden stehen bleibt und bei#§7Gegnerkontakt explodiert.# #§eF:§7 Verärgert#§7die Kaminchen, wodurch sie den#§7naheliegendsten Gegner verfolgen.");
-		setBetterLore("§7Wirft 3 Kaninchen in Blickrichtung,#§7die auf dem Boden stehen bleiben und bei#§7Gegnerkontakt explodieren.# #§eF:§7 Verärgert#§7die Kaminchen, wodurch sie den#§7naheliegendsten Gegner verfolgen.");
+	public Creepermissle() {
+		name = "§eCreepermissle";
+		steprange = 20 * 5;
 	}
-	
-	
+	Location ori;
+	Creeper cre;
 	@Override
 	public void setUp() {
-		
-		
-		
+		// TODO Auto-generated method stub
+		cre = (Creeper) spawnEntity(EntityType.CREEPER);
+		ori = loc.clone();
 	}
 
 	@Override
@@ -38,28 +37,26 @@ public class Kaminchen extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		new KaminchenEntity(caster,caster.getLocation().getDirection(), name);
-		if (refined) {
-			Location dirLoc = caster.getLocation();
-			dirLoc.setYaw(dirLoc.getYaw()+45);
-			new KaminchenEntity(caster,dirLoc.getDirection(), name);
-			dirLoc.setYaw(dirLoc.getYaw()-90);
-			new KaminchenEntity(caster,dirLoc.getDirection(), name);
-		}
 		
-		dead = true;
 	}
 
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		
+		cre.setVelocity(cre.getVelocity().add(new Vector(0,0.15,0)));
 	}
 
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
+		ParUtils.createFlyingParticle(Particles.FLAME, cre.getLocation().add(0,-2,0), 0.2F, 0.1F, 0.2F, 5, 0.3F, cre.getVelocity().normalize().multiply(-1));
 		
+		if (step % 5 == 0) {
+			ParUtils.parKreisDot(Particles.SMOKE, cre.getLocation(), 2, 0, 0.05, cre.getVelocity());
+		}
+		if (step < 30)
+		ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 10, 1);
+		//ParUtils.createFlyingParticle(Particles.SMOKE, cre.getLocation(), 0.1F, 0.1F, 0.1F, 5, 1, cre.getVelocity().normalize().multiply(-0.5));
 	}
 
 	@Override
@@ -91,8 +88,5 @@ public class Kaminchen extends Spell {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	
 
 }

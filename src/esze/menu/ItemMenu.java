@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -40,6 +41,8 @@ public abstract class ItemMenu {
 		
 		
 	}
+	
+
 	public void addClickableItem(int gridX, int gridY, Material m, String iconname,String l) {
 		
 		ItemMenuIcon is = new ItemMenuIcon(gridX,gridY,m,iconname,this);
@@ -86,7 +89,7 @@ public abstract class ItemMenu {
 		
 	}
 	public abstract void clicked(ItemMenuIcon icon,Player p);
-	
+	public abstract void clicked(ItemMenuIcon icon,Player p,InventoryAction a);
 	
 	public Inventory getInventory() {
 		return inventory;

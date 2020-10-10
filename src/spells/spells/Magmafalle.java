@@ -29,6 +29,8 @@ public class Magmafalle extends Spell {
 		hitEntity = false;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.KNOCKBACK);
+		setLore("§7Platziert eine Falle auf dem Boden in#§7Blickrichtung. Nach kurzer Zeit wird die#§7Falle aktiviert und explodiert, sobald sich#§7ein Gegner nähert.Fallen können ebenfalls#§7mit einem Schwertwurf ausgelöst werden.");
+		setBetterLore("§7Platziert eine Falle auf dem Boden in#§7Blickrichtung. Nach kurzer Zeit wird die#§7Falle aktiviert und explodiert, sobald sich#§7ein Gegner nähert.Fallen können ebenfalls#§7mit einem Schwertwurf ausgelöst werden.");
 		
 		
 	}

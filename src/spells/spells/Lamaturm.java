@@ -34,7 +34,8 @@ public class Lamaturm extends Spell {
 		
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.AURA);
-		
+		setLore("§7Beschwört ein Lama Blickrichtung, auf#§7das der Spieler sich setzen kann. Das Lama#§7kann von Gegnern getötet werden.# #§eF:§7#§7Falls der Spieler auf dem Lama sitzt, wird#§7ein Projektil in Blickrichtung geschossen,#§7dass Gegnern Schaden zufügt und sie#§7wegschleudert.Die Anzahl der Schüsse ist begrenzt,#§7regeneriert sich aber über Zeit.");
+		setBetterLore("§7Beschwört ein Lama Blickrichtung, auf#§7das der Spieler sich setzen kann. Das Lama#§7kann von Gegnern getötet werden.# #§eF:§7#§7Falls der Spieler auf dem Lama sitzt, wird#§7ein Projektil in Blickrichtung geschossen,#§7dass Gegnern Schaden zufügt und sie#§7wegschleudert.Die Anzahl der Schüsse ist begrenzt,#§7regeneriert sich aber über Zeit.");
 	}
 	
 	

@@ -31,7 +31,7 @@ public class Blutsiegel extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.SUPPORT);
 		
-		
+		setLore("§7Beschwört ein Pentagramm auf dem Boden#§7in Blickrichtung. Gegner, die sich auf dem#§7Pentagramm befinden, erhalten einmalig#§7Schaden.Außerdem wird der Anwender um den#§7Schaden geheilt, den ein Gegner in diesem Feld#§7erleidet.");
 	}
 	@Override
 	public void setUp() {

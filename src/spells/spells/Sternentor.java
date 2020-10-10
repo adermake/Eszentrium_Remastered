@@ -18,7 +18,7 @@ import spells.spellcore.SpellType;
 public class Sternentor extends Spell {
 
 	public Sternentor() {
-		name = "§cSternentor";
+		name = "§bSternentor";
 		
 		cooldown = 20 * 25;
 		steprange = 20 * 8;
@@ -34,6 +34,8 @@ public class Sternentor extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.SUPPORT);
 		
+		setLore("§7Erzeugt für kurze Zeit ein Feld auf dem#§7anvisierten Block. Spieler in diesem Feld werden in#§7Blickrichtung katapultiert. Für Gegner wirkt dieser Effekt#§7erst nach kurzer Verzögerung.# #§eShift:§7 Solange diese#§7Taste gedrückt bleibt, wird die Wurfrichtung#§7umgekehrt.# #§eF:§7 Fixiert die Wurfrichtung des Sternentors#§7für die verbleibende Dauer des Zaubers.");
+		setBetterLore("§7Erzeugt für kurze Zeit ein Feld auf dem#§7anvisierten Block. Spieler in diesem Feld werden in#§7Blickrichtung katapultiert.# #§eShift:§7 Solange diese Taste#§7gedrückt bleibt, wird die Wurfrichtung umgekehrt.##§7#§eF:§7 Fixiert die Wurfrichtung des Sternentors für die#§7verbleibende Dauer des Zaubers.");
 	}
 	int setuptime = 15;
 	@Override

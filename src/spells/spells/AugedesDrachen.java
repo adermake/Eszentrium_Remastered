@@ -34,6 +34,8 @@ public class AugedesDrachen extends Spell{
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.KNOCKBACK);
 		
+		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück.");
+		
 	}
 	@Override
 	public void onDeath() {

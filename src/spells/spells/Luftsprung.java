@@ -22,6 +22,8 @@ public class Luftsprung extends Spell {
 		cooldown = 20 * 22;
 		
 		addSpellType(SpellType.MOBILITY);
+		setLore("§7Der Spieler katapultiert sich selbst#§7in Blickrichtung.");
+		setBetterLore("§7Der Spieler katapultiert sich selbst in#§7Blickrichtung.# #§eShift:§7 Der Spieler#§7springt die selbe Distanz rückwärts.");
 		
 	}
 	@Override

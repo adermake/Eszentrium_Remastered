@@ -32,7 +32,8 @@ public class Delfintorpedo extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
-		
+		setLore("§7Schießt einen Delfin in Blickrichtung, der bei#§7Blockkontakt explodiert und getroffenen Gegner Schaden#§7zufügt und sie wegschleudert.Der Delfin kann selbst#§7nach der Ausführung noch gesteuert werden.");
+		setBetterLore("§7Schießt einen Delfin in Blickrichtung, der bei#§7Blockkontakt explodiert und getroffenen Gegner Schaden#§7zufügt und sie wegschleudert.Der Delfin kann selbst#§7nach der Ausführung noch gesteuert werden.");
 	}
 	
 	

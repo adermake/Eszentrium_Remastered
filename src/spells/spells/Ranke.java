@@ -37,7 +37,8 @@ public class Ranke extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
-		
+		setLore("§7Schießt eine Ranke in Blickrichtung.#§7Ein getroffener Gegner wird zum Anwender#§7gezogen und erhält Schaden abhängig von der#§7Länge der Ranke.Die Ranke kann selbst nach#§7der Ausführung noch gesteuert werden.");
+		setBetterLore("§7Schießt eine Ranke in Blickrichtung. Ein#§7getroffener Gegner wird bis auf die#§7maximale Reichweite und danach zurück zum#§7Anwender gezogen.Die Ranke kann selbst nach der#§7Ausführung noch gesteuert werden.");
 	}
 	public Ranke(Player p,int rec) {
 		

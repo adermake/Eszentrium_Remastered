@@ -34,6 +34,8 @@ public class Notenzauber extends Spell {
 		
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Schießt nach kurzer Verzögerung ein#§7Projektil in Blickrichtung, das getroffene#§7Gegner festhält.");
+		setBetterLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner festhält.");
 		
 	}
 	

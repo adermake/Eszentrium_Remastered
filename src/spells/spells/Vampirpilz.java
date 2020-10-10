@@ -29,6 +29,9 @@ public class Vampirpilz extends Spell{
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
+		
+		setLore("§7Wirft einen Pilz in Blickrichtung, der#§7naheliegenden Gegnern über Zeit das Leben#§7aussaugt und den Anwender um diesen Betrag#§7heilt.");
+		setBetterLore("§7Wirft einen Pilz in Blickrichtung, der#§7naheliegenden Gegnern über Zeit das Leben#§7aussaugt und den Anwender um diesen Betrag#§7heilt.# #§eF:§7 Bewegt den Pilz auf den#§7anvisierten Block.");
 	}
 	boolean holding = true;
 	Item i;

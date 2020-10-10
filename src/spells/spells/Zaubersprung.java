@@ -27,7 +27,8 @@ public class Zaubersprung extends Spell {
 		hitEntity = false;
 		hitSpell = false;
 		addSpellType(SpellType.MOBILITY);
-		
+		setLore("§7Teleportiert den Spieler auf den#§7anvisierten Block. Nach kurzer Zeit wird er#§7wieder zum Ursprungsort zurückteleportiert.##§7#§eF:§7 Teleportiert den Spieler sofort zum#§7Ursprungsort zurück.");
+		setBetterLore("§7Teleportiert den Spieler auf den#§7anvisierten Block. # #§eF:§7 Teleportiert den#§7Spieler zum Ursprungsort zurück.");
 		
 		
 	}
@@ -108,7 +109,7 @@ public class Zaubersprung extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		if (!refined) {
+		if (!refined && !refund) {
 			spiralyPortAniamtion(caster.getLocation(),back) ;
 			caster.teleport(back);
 		}

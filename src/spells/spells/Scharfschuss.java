@@ -23,6 +23,8 @@ public class Scharfschuss extends Spell{
 		cooldown = 20*60;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		
+		setLore("§7Schießt nach kurzer Verzögerung#§7ein Projektil in Blickrichtung, das#§7getroffene Gegner sofort tötet.");
 	}
 
 	@Override

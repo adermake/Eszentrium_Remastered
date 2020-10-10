@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -243,6 +244,12 @@ public class WeaponMenu extends ItemMenu{
 	
 	public static void stopLoop() {
 		running = false;
+	}
+
+	@Override
+	public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

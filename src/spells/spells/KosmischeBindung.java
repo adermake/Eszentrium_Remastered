@@ -38,6 +38,8 @@ public class KosmischeBindung extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.LOCKDOWN);
+		setLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehungund Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
+		setBetterLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehungund Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
 	}
 	
 	@Override

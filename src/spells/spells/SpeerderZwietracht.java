@@ -33,6 +33,8 @@ public class SpeerderZwietracht  extends Spell{
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Schießt einen Speer in Blickrichtung,#§7der getroffene Gegner am nächsten Block in#§7der Flugbahn für kurze Zeit festhält.##§7#§eShift:§7 Zieht den Speer aus dem Gegner#§7heraus und verursacht Schaden.");
+		setBetterLore("§7Schießt einen Speer in Blickrichtung,#§7der getroffene Gegner am nächsten Block in#§7der Flugbahn für kurze Zeit festhält.##§7#§eShift:§7 Zieht den Speer aus dem Gegner#§7heraus und verursacht Schaden.");
 	}
 	
 	@Override

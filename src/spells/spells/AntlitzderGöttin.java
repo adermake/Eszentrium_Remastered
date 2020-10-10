@@ -32,6 +32,9 @@ public class AntlitzderGöttin extends Spell{
 		hitboxSize = 4;
 		
 		addSpellType(SpellType.AURA);
+		
+		setLore("§7Reflektiert die nächsten 3 gegnerischen#§7Zauber für kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.");
+		setBetterLore("§7Reflektiert alle gegnerischen Zauber für#§7kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.");
 	}
 	@Override
 	public void onDeath() {

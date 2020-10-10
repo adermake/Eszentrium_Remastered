@@ -34,12 +34,7 @@ public class Join implements Listener{
 		p.setWalkSpeed(0.2F);
 		
 		//Clears Inventory of Players
-		if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-			p.getInventory().clear();
-		}
-		p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
-		p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.CHEST, 1, 0, "§3Arsenal", null, true));
-		p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
+		givePlayerLobbyItems(p);
 		if(Gamestate.getGameState() == Gamestate.LOBBY){
 			//p.teleport((Location) main.plugin.getConfig().get("lobby.loc"));
 			e.setJoinMessage("§8> §3" + p.getName() + " §7ist beigetreten.");
@@ -63,4 +58,13 @@ public class Join implements Listener{
 		e.setQuitMessage("§8< §6"+p.getName()+" §7hat das Spiel verlassen");
 	}
 
+	
+	public static void givePlayerLobbyItems(Player p) {
+		if (p.getGameMode().equals(GameMode.SURVIVAL)) {
+			p.getInventory().clear();
+		}
+		p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
+		p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
+		p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
+	}
 }

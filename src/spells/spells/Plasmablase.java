@@ -34,6 +34,9 @@ public class Plasmablase extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.SUPPORT);
+		
+		setLore("§7Erzeugt für kurze Zeit eine Blase um#§7den Spieler herum. Zauber von außerhalb#§7können nicht in das Innere eindringen, während#§7Gegnerin der Blase nicht mehr hinauskommen.#§7Dies gilt nicht für den Anwender.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7kann der Anwender ebenfalls nicht aus der#§7Blase entkommen.");
+		setBetterLore("§7Erzeugt für kurze Zeit eine Blase um den#§7Spieler herum. Zauber von außerhalb können#§7nicht in das Innere eindringen, während#§7Gegnerin der Blase nicht mehr hinauskommen.#§7Dies gilt nicht für den Anwender.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7kann der Anwender ebenfalls nicht aus der#§7Blase entkommen.");
 	}
 	
 	@Override
@@ -63,7 +66,16 @@ public class Plasmablase extends Spell {
 	@Override
 	public void move() {
 		
-			canHitSelf = caster.isSneaking();
+		if (caster.isSneaking()) {
+			canHitSelf = true;
+		}
+		else {
+			canHitSelf = false;
+			if (hitEntitys.contains(caster)) {
+				hitEntitys.remove(caster);
+			}
+		}
+			
 		
 		// TODO Auto-generated method stub
 		for (Entity ent : hitEntitys) {

@@ -34,7 +34,8 @@ public class Beben extends Spell{
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.KNOCKBACK);
-		
+		setLore("§7Schießt eine Schockwelle geradeaus in#§7Blickrichtung durch den Boden.#§7Gegner die damit in Kontakt kommen,#§7werden weggeschleudert und erhalten Schaden.#§7Wird der Zauber in der Luft ausgeführt,#§7wird der Spieler nach unten geschmettert#§7und die Schwockwelle wird bei der#§7Landung freigesetzt. Je tiefer der Spieler nach#§7Aktivierung fällt, desto stärker#§7wird die Schockwelle.");
+		setBetterLore("§7Schießt eine Schockwelle geradeaus in#§7Blickrichtung durch den Boden.#§7Gegner die damit in Kontakt kommen,#§7werden weggeschleudert und erhalten Schaden.#§7Wird der Zauber in der Luft ausgeführt,#§7wird der Spieler nach unten geschmettert#§7und die Schwockwelle wird bei der#§7Landung freigesetzt. Je tiefer der Spieler nach#§7Aktivierung fällt, desto stärker#§7wird die Schockwelle.");
 	}
 	
 	@Override

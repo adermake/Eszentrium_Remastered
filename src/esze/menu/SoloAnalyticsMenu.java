@@ -2,6 +2,7 @@ package esze.menu;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 
 import esze.analytics.solo.SaveUtils;
 
@@ -27,6 +28,12 @@ public class SoloAnalyticsMenu extends ItemMenu {
 	
 	@Override
 	public void clicked(ItemMenuIcon icon, Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -35,6 +35,8 @@ public class Kätzchenkanone extends Spell {
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MOBILITY);
+		setLore("§7Wirft eine Katze in Blickrichtung, die#§7auf dem Boden stehen bleibt. Nach kurzer#§7Zeit explodiert diese und schadet alle#§7Gegner und schleudert sie weg.# #§eShift:§7#§7Sprengt die Katze vorzeitig. Wenn der Anwender#§7getroffen wird, schleudert ihn die#§7Explosion ebenfalls weg, verursacht aber keinen#§7Schaden.");
+		setBetterLore("§7Wirft eine Katze in Blickrichtung, die#§7auf dem Boden stehen bleibt. Nach kurzer#§7Zeit explodiert diese und schadet alle Gegner#§7und schleudert sie weg.# #§eShift:§7#§7Sprengt die Katze vorzeitig. Wenn der Anwender#§7getroffen wird, schleudert ihn die Explosion#§7ebenfalls weg, verursacht aber keinen#§7Schaden.");
 	}
 
 	@Override

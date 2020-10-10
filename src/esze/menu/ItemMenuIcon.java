@@ -9,7 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
+import org.bukkit.event.inventory.InventoryAction;
+import org.bukkit.event.inventory.InventoryClickEvent;
 public class ItemMenuIcon extends ItemStack {
 
 	private int gridX;
@@ -29,14 +30,24 @@ public class ItemMenuIcon extends ItemStack {
 		allIcons.add(this);
 
 	}
+	public ItemMenuIcon(int gridX, int gridY, Material m, String iconname, ItemMenu i,ArrayList<String> lore) {
 
-	public static void ditributeClicks(String name, Inventory i, Player p) {
+		super(m);
+		itemMenu = i;
+		ItemMeta im = this.getItemMeta();
+		im.setLore(lore);
+		im.setDisplayName(iconname);
+		this.setItemMeta(im);
+		allIcons.add(this);
+
+	}
+	public static void ditributeClicks(String name, Inventory i, Player p,InventoryAction a) {
 		try {
 			for (ItemMenuIcon icon : allIcons) {
 				if (icon.getItemMeta().getDisplayName().equals(name)
 						&& icon.getItemMenu().getInventory().equals(i)) {
 					icon.getItemMenu().clicked(icon, p);
-
+					icon.getItemMenu().clicked(icon, p,a);
 				}
 			}
 		}

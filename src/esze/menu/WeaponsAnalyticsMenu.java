@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 
 import esze.analytics.solo.SaveUtils;
 import spells.spellcore.Spell;
@@ -65,6 +66,12 @@ public class WeaponsAnalyticsMenu extends ItemMenu{
 	
 	@Override
 	public void clicked(ItemMenuIcon icon, Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
 		// TODO Auto-generated method stub
 		
 	}

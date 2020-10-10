@@ -21,6 +21,7 @@ import spells.spells.Astralsprung;
 import spells.spells.Aufwind;
 import spells.spells.AugedesDrachen;
 import spells.spells.Avatar;
+import spells.spells.DunklerWind;
 import spells.spells.Beben;
 import spells.spells.Bienenschwarm;
 import spells.spells.Binden;
@@ -32,6 +33,7 @@ import spells.spells.Erdsurfer;
 import spells.spells.Erlösung;
 import spells.spells.Explosion;
 import spells.spells.Feuerball;
+import spells.spells.Flammenwand;
 import spells.spells.Feuerwerkshelix;
 import spells.spells.Flucht;
 import spells.spells.Delfintorpedo;
@@ -233,6 +235,9 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Plasmablase());
 		registerSpell(new Heldenstoß());
 		registerSpell(new Blutsiegel());
+		registerSpell(new DunklerWind());
+		registerSpell(new Flammenwand());
+		
 	}
 	
 	public static void registerSpell(Spell spell, Class...gameTypes){
@@ -273,4 +278,13 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		return sorted;
 	}
 	
+	
+	public static List<Spell> getSortedSpellsAlphabetically() {
+		
+		List<Spell> sorted = spells.keySet().stream().sorted((Spell s1, Spell s2) ->  (s1.getName().compareToIgnoreCase(s2.getName()))).collect(Collectors.toList());
+		return sorted;
+	}
+				
+		
+				
 }

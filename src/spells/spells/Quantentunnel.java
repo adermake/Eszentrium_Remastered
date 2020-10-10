@@ -33,6 +33,8 @@ public class Quantentunnel extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Schießt nach kurzer Verzögerung ein#§7Projektil, das getroffene Gegner markiert.#§7Wenn der Zauber seine maximaleReichweite#§7erreicht hatoder einen Block trifft, werden#§7alle markierten Gegner an diesen Punkt#§7teleportiert.");
+		setBetterLore("§7Schießt ein Projektil, das getroffene#§7Gegner markiert. Wenn der Zauber seine#§7maximaleReichweite erreicht hatoder einen Block#§7trifft, werden alle markierten Gegner an#§7diesen Punkt teleportiert.");
 	}
 
 	

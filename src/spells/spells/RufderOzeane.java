@@ -21,6 +21,8 @@ public class RufderOzeane extends Spell{
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Feuert Tintenfische in Blickrichtung#§7ab, die getroffene Gegner zurückwerfen. ");
+		setBetterLore("§7Feuert einen einzelnen Tintenfisch in#§7Blickrichtung ab. Trifft er einen Gegner,#§7wirft er diesen zurück und kehrt zum Anwender#§7zurück.Sobald er bei diesem ankommt, fliegt#§7er wieder in Blickrichtung los.");
 	}
 	@Override
 	public void setUp() {

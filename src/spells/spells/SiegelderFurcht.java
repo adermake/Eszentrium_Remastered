@@ -40,6 +40,8 @@ public class SiegelderFurcht extends Spell {
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.AURA);
 		
+		setLore("§7Versetzt alle naheliegenden Gegner in#§7Panik, wodurch sie für kurze Zeit#§7automatisch vor dem Anwender fliehen. Für diese Zeit#§7erhältder Anwender eine erhöhte#§7Bewegungsgeschwindigkeit.");
+		setBetterLore("§7Versetzt alle naheliegenden Gegner in#§7Panik, wodurch sie für kurze Zeit automatisch#§7vor dem Anwender fliehen. Für diese Zeit#§7erhältder Anwender eine erhöhte#§7Bewegungsgeschwindigkeit.# #§eF:§7 Solange diese Taste#§7gedrückt bleibt bewegen sich in Panik#§7versetzte Gegner auf den Anwender zu.");
 	}
 	@Override
 	public void setUp() {

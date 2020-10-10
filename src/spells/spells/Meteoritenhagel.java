@@ -32,6 +32,8 @@ public class Meteoritenhagel extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
 		
+		setLore("§7Lässt nach kurzer Verzögerung#§7Meteoriten vom Himmel fallen, die bei Bodenkontakt#§7explodieren und nahe Gegner schaden.");
+		
 	}
 	
 	@Override

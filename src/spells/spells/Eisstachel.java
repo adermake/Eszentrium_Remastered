@@ -34,7 +34,8 @@ public class Eisstachel extends Spell {
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		
-		
+		setLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
+		setBetterLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
 	}
 	Location saveLoc = null;
 	boolean noSpikes = false;

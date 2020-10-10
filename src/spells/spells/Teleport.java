@@ -32,6 +32,8 @@ public class Teleport extends Spell {
 		
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung, das den Spieler bei Kontakt mit einem#ß7Block oder Spieler dorthin teleportiert. Wird#ß7ein Spieler getroffen,tauschen diese#ß7Pl‰tze.");
+		setBetterLore("ß7Teleportiert den Spieler auf den#ß7anvisierten Block oder Spieler. Wird ein Spieler#ß7getroffen, tauschen diese Pl‰tze.");
 	}
 	
 	@Override

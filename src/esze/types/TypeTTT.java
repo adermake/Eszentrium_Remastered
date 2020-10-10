@@ -442,31 +442,7 @@ public class TypeTTT extends Type{
 		if (won && !gameOver) {
 			
 			
-			new BukkitRunnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					Discord.unMuteAll();
-				}
-			}.runTaskLater(main.plugin, 20);
-			
-			Music.sp.destroy();
-			CorpseUtils.removeAllCorpses();
-			for(Entity e : Bukkit.getWorld("world").getEntities()){
-				if(e.getType() != EntityType.PLAYER){
-					e.remove();
-				}
-			}
-			
-			Spelldrop.items.clear();
-			GameRunnable.stop();
-			Gamestate.setGameState(Gamestate.LOBBY);
-			LobbyBackgroundRunnable.start();
-			LobbyUtils.recallAll();
-			scoreboard.hide = true;
-			gameOver = true;
-			players.clear();
+			endGame();
 			
 		}
 		
@@ -519,6 +495,37 @@ public class TypeTTT extends Type{
 	    RequestBuffer.request(() -> Discord.channel.getGuild().getChannelByID(621398787155558400L).sendMessage(builder.build()));
 		*/
 	    
+	}
+
+
+	@Override
+	public void endGame() {
+		// TODO Auto-generated method stub
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Discord.unMuteAll();
+			}
+		}.runTaskLater(main.plugin, 20);
+		
+		Music.sp.destroy();
+		CorpseUtils.removeAllCorpses();
+		for(Entity e : Bukkit.getWorld("world").getEntities()){
+			if(e.getType() != EntityType.PLAYER){
+				e.remove();
+			}
+		}
+		
+		Spelldrop.items.clear();
+		GameRunnable.stop();
+		Gamestate.setGameState(Gamestate.LOBBY);
+		LobbyBackgroundRunnable.start();
+		LobbyUtils.recallAll();
+		scoreboard.hide = true;
+		gameOver = true;
+		players.clear();
 	}
 	
 }

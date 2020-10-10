@@ -3,6 +3,7 @@ package esze.menu;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -83,6 +84,13 @@ public class TraitorshopMenu extends ItemMenu {
 			}.runTaskLater(main.plugin,5);
 			
 		}
+	}
+
+
+	@Override
+	public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 	

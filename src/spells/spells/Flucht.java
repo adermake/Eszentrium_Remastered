@@ -32,7 +32,8 @@ public class Flucht extends Spell{
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
 		
-		
+		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört eine#§7Schwarm an Fledermäusen. Solange sich der#§7Spieler in dieserForm befindet, fliegt er in#§7Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
+		setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen, die nahe Gegner wegschieben.#§7Solange sich der Spieler in dieser Form befindet,#§7fliegt er in Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
 	}
 	
 	

@@ -24,7 +24,7 @@ public class Lichtstrudel extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
-		
+		setLore("§7Der Spieler fliegt für kurze Zeit in#§7Blickrichtung und hinterlässt eine#§7Lichtspur. Gegner, die von dieser Lichtspur erfasst#§7werden,werden bis zum Startpunkt des#§7Zaubers befördert.# #§eShift:§7 Beendet den#§7Zauber sofort.");
 	}
 	
 	Location lastdot;

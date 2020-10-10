@@ -21,7 +21,8 @@ public class Wunsch extends Spell{
 		
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.AURA);
-
+		setLore("§7Heilt den Spieler und invertiert seine#§7Bewegungsrichtung. Je weniger Leben der#§7Spieler hat, desto höher die Heilung.");
+		setBetterLore("§7Heilt den Spieler voll und invertiert#§7seine Bewegungsrichtung.");
 	}
 	@Override
 	public void setUp() {

@@ -26,7 +26,7 @@ public class Blasensturm extends Spell{
 		hitSpell = true;
 		
 		
-	
+		setLore("ß7Schieﬂt eine Menge Blasen, die nach kurzer Zeit#ß7den naheliegendsten Gegner verfolgen. Getroffene#ß7Gegner werden weggeschleudert.");
 	}
 	
 	

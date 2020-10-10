@@ -25,6 +25,8 @@ public class Erdsurfer extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		
+		setLore("§7Reitet auf der Erde, um sich in#§7Blickrichtung fortzubewegen und zieht Blöcke#§7hinter sich her. Gegner können von diesen#§7Blöcken erfasstwerden und werden danach#§7ebenfalls mitgezogen.# #§eShift:§7 Wirft allen#§7aufgesammelten Ballast in Blickrichtung weg und#§7wirft den Anwender nach hinten.");
+		setBetterLore("§7Reitet auf der Erde, um sich in#§7Blickrichtung fortzubewegen und zieht Blöcke hinter#§7sich her. Gegner können von diesen Blöcken#§7erfasstwerden und werden danach ebenfalls#§7mitgezogen.# #§eShift:§7 Wirft allen#§7aufgesammelten Ballast in Blickrichtung weg und#§7wirft den Anwender nach hinten.");
 		
 	}
 	@Override

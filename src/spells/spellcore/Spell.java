@@ -87,6 +87,8 @@ public abstract class Spell {
 	protected Location startPos;
 	protected Player originalCaster;
 	protected ArrayList<SpellType> spellTypes = new ArrayList<SpellType>();
+	protected ArrayList<String> lore = new ArrayList<String>();
+	protected ArrayList<String> betterlore = new ArrayList<String>();
 	//FLAGS
 	
 	
@@ -499,7 +501,75 @@ public abstract class Spell {
 			loc.setDirection(dir);
 		}
 	}
-	
+	public Vector bounceDir() {
+		
+		if (loc.getBlock().getType().isSolid()) {
+			
+			Vector dir = loc.getDirection();
+			double minDist = 1000000;
+			BlockFace nearestFace = null;
+			for (BlockFace bf : BlockFace.values()) {
+				if (bf == BlockFace.DOWN || bf == BlockFace.UP || bf == BlockFace.WEST || bf == BlockFace.SOUTH || bf == BlockFace.EAST || bf == BlockFace.NORTH) {
+					
+				
+				Block test = loc.getBlock().getRelative(bf);
+				if (test.getType().isSolid()) {
+					continue;
+				}
+				double dist = test.getLocation().clone().add(0.5,0.5,0.5).distance(startPos);
+				if (dist < minDist) {
+					minDist = dist;	
+					nearestFace = bf;
+				}
+				}
+				
+			}
+			if (nearestFace == BlockFace.NORTH || nearestFace == BlockFace.SOUTH) {
+				dir.setZ(-dir.getZ());
+				while (loc.getBlock().getType() == Material.AIR) {
+					loc.add(dir.getX(), dir.getY(), dir.getZ());
+				}
+				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 0.1F, 2);
+				startPos = loc.clone();
+				
+			}
+			if (nearestFace == BlockFace.UP || nearestFace == BlockFace.DOWN) {
+				dir.setY(-dir.getY());
+				while (loc.getBlock().getType() == Material.AIR) {
+					loc.add(dir.getX(), dir.getY(), dir.getZ());
+				}
+				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 1, 2);
+				startPos = loc.clone();
+			}
+			if (nearestFace == BlockFace.EAST || nearestFace == BlockFace.WEST) {
+				dir.setX(-dir.getX());
+				while (loc.getBlock().getType() == Material.AIR) {
+					loc.add(dir.getX(), dir.getY(), dir.getZ());
+				}
+				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 1, 2);
+				startPos = loc.clone();
+				
+			}
+			
+			return dir;
+		}
+		return null;
+	}
+	public ArrayList<BlockFace> slideDir(Location l) {
+		ArrayList<BlockFace> bfs = new ArrayList<BlockFace>();
+		
+		
+		
+			for (BlockFace nearestFace: BlockFace.values()) {
+			
+			if (l.getBlock().getRelative(nearestFace).getType().isSolid()) {
+					bfs.add(nearestFace);
+				}
+			}
+			
+		
+		return bfs;
+	}
 	public Entity spawnEntity(EntityType et) {
 		return loc.getWorld().spawnEntity(loc, et);
 	}
@@ -887,6 +957,27 @@ public abstract class Spell {
 		
 		
 		return false;
+	}
+	
+	public ArrayList<String> getLore() {
+		return lore;
+	}
+	public ArrayList<String> getBetterLore() {
+		return betterlore;
+	}
+	public void setLore(String ls) {
+		
+		for (String s : ls.split("#")) {
+			lore.add(s);
+			
+		}
+	}
+	public void setBetterLore(String ls) {
+		
+		for (String s : ls.split("#")) {
+			betterlore.add(s);
+			
+		}
 	}
 	public void kill() {
 		dead = true;

@@ -25,6 +25,9 @@ public class Aufwind extends Spell{
 		hitboxSize = 5;
 		steprange = 130;
 		addSpellType(SpellType.MOBILITY);
+		
+		setBetterLore("§7Trägt den Spieler langsam aufwärts #§7und kann nahe Gegner mitziehen. # #§eShift:§7 Der Spieler springt in Blickrichtung#§7und wirft den Gegner doppelt so weit in die selbe Richtung.");
+		setLore("§7Trägt den Spieler langsam aufwärts. # #§eShift:§7 Der Spieler springt in Blickrichtung.");
 	}
 	@Override
 	public void onDeath() {

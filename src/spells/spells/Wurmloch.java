@@ -31,6 +31,8 @@ public class Wurmloch extends Spell {
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
+		setLore("§7Kreiiert ein Wurmloch über dem Abgrund#§7in Blickrichtung. Springt ein Spieler#§7durch dieses Wurmloch, wird er wieder zu einem#§7Spawnpunktteleportiert.");
+		setBetterLore("§7Kreiiert ein Wurmloch über dem Abgrund#§7in Blickrichtung. Springt ein Spieler durch#§7dieses Wurmloch, wird er wieder zu einem#§7Spawnpunktteleportiert und wird außerdem voll#§7geheilt.");
 	}
 	
 	Location wormHolePlaceLoc;

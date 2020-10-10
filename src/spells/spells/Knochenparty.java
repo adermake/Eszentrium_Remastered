@@ -32,6 +32,8 @@ public class Knochenparty extends Spell{
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		
+		setLore("§7Wirft einen Knochen in Blickrichtung.#§7Um ihn herum erscheint nach kurzer Zeit ein#§7Ring aus Skeletten, die Gegner bei#§7Berührung Schadenzufügen und sie in die Mitte des#§7Rings schleudern.");
 	}
 	boolean holding = true;
 	Item i;

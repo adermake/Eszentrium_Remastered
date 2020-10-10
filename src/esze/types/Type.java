@@ -18,7 +18,7 @@ import io.netty.util.internal.ThreadLocalRandom;
 import spells.spells.AntlitzderGöttin;
 
 
-public class Type {
+public abstract class Type {
 	
 	public String name;
 	public String currentmap;
@@ -114,4 +114,5 @@ public class Type {
 		return false;
 	}
 	
+	public abstract void endGame();
 }

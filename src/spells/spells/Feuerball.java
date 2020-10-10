@@ -35,6 +35,8 @@ public class Feuerball extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Schießt einen Feuerball in#§7Blickrichtung, der bei Kontakt mit einem Block#§7explodiert und getroffenen Gegnern Schaden zufügt#§7und sie wegschleudert.# #§eShift:§7 Lässt#§7den Feuerball nach unten fallen.");
+		setBetterLore("§7Schießt nach kurzer Verzögerung einen#§7riesigen Feuerball , der bei Kontakt mit#§7einem Block explodiert und getroffenen Gegnern#§7Schaden zufügt und sie wegschleudert.##§7#§eShift:§7 Lässt den Feuerball nach unten#§7fallen.");
 		
 	}
 	@Override

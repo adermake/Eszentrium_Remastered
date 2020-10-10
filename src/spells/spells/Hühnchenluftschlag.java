@@ -32,6 +32,8 @@ public class Hühnchenluftschlag extends Spell{
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.DAMAGE);
 		
+		setLore("§7Beschwört ein Hühnchen und reitet#§7darauf. Das Hühnchen bewegt sich aufwärts in#§7Blickrichtung und wirft explosive Eier ab.#§7Bei Gegnerkontaktverursachen diese Schaden.##§7#§eShift:§7 Springt vorzeitig vom Hühnchen#§7ab und springt in die Höhe.");
+		setBetterLore("§7Beschwört ein Hühnchen und reitet#§7darauf. Das Hühnchen bewegt sich aufwärts in#§7Blickrichtung und wirft explosive Eier ab. Bei#§7Gegnerkontaktverursachen diese Schaden.##§7#§eShift:§7 Springt vorzeitig vom Hühnchen ab#§7und springt in die Höhe. Das Hühnchen wird#§7in Blickrichtung geschossen und#§7explodiert, sobaldes einen Block trifft.");
 	}
 	@Override
 	public void setUp() {

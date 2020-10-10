@@ -29,8 +29,7 @@ public class Feuerwerkshelix extends Spell {
 		name = "§eFeuerwerkshelix";
 		steprange = 15;
 		
-		if (refined)
-			steprange = 135;
+		
 		
 		hitboxSize = 3;
 		speed = 1;
@@ -40,11 +39,14 @@ public class Feuerwerkshelix extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Schießt Feuerwerksraketen in#§7Blickrichtung, die getroffene Gegner mitziehen. Nach#§7kurzer Zeit explodieren die Raketen und#§7schaden nahen Gegnern.Die Raketen können#§7selbst nach der Ausführung noch gesteuert#§7werden.");
+		setBetterLore("§7Schießt Feuerwerksraketen in#§7Blickrichtung, die getroffene Gegner mitziehen. Nach#§7kurzer Zeit explodieren die Raketen und#§7schaden nahen Gegnern.Die Raketen können selbst#§7nach der Ausführung noch gesteuert#§7werden.# #§eShift:§7 Der Spieler fliegt mit den#§7Feuerwerksraketen mit.");
 	}
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-
+		if (refined)
+			steprange = 40;
 		
 		f = (Firework) spawnEntity(EntityType.FIREWORK);
 		f1 = (Firework) spawnEntity(EntityType.FIREWORK);

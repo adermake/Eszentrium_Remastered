@@ -36,6 +36,9 @@ public class Mondkugel extends Spell {
 		
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
+		
+		setLore("§7Wirft ein Projektil in Blickrichtung,#§7das nach kurzer Distanz eine 180°-Wende#§7macht. Getroffene Spieler werden mit der#§7Mondkugel mitgezogen.Zerbricht bei Kontakt mit#§7Blöcken.");
+		setBetterLore("§7Wirft ein Projektil in Blickrichtung,#§7das nach kurzer Distanz eine 180°-Wende#§7macht. Getroffene Spieler werden mit der#§7Mondkugel mitgezogen.");
 	}
 	@Override
 	public void setUp() {

@@ -32,7 +32,7 @@ public class Wasserdüse extends Spell {
 		addSpellType(SpellType.PROJECTILE);	
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.MOBILITY);
-		
+		setLore("§7Beschwört 2 Wächter. Die Wächter#§7können von Gegnern getötet werden.# #§eShift:§7#§7Die Wächter schießen Wasserstrahlen in#§7Blickrichtung, die getroffene Gegner wegspülen.#§7In der Luft erhält der Spieler#§7Rückstoß,sodass er sich in der Luft halten kann. Einen#§7Wasserstrahl zu schießen verbraucht#§7Munition. Sobald die Munition verbraucht ist,#§7endet der Zauber.");
 	}
 	@Override
 	public void setUp() {
