@@ -25,9 +25,9 @@ import spells.stagespells.Repulsion;
 public class Impulsion extends Spell {
 
 	public Impulsion() {
-		cooldown = 20*30;
+		cooldown = 20*20;
 		name = "§eImpulsion";
-		speed = 3;
+		speed = 5;
 		steprange = 200;
 		hitPlayer = false;
 		hitSpell = true;

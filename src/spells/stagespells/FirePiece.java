@@ -15,17 +15,17 @@ public class FirePiece extends Spell {
 
 	
 	Location saveLoc;
-	public FirePiece(Location l,Player p,String name,int time) {
+	public FirePiece(Location l,Player p,String name,int time,boolean refined) {
 		
-		
+		this.refined = refined;
 		hitboxSize = 2;
 		steprange = time;
 		saveLoc = l.clone();
 		caster = p;
 		this.name = name;
 		multihit = true;
-		hitPlayer = false;
-		hitEntity = false;
+		hitPlayer = true;
+		hitEntity = true;
 		castSpell(caster, name);
 	}
 	 
@@ -50,12 +50,11 @@ public class FirePiece extends Spell {
 	boolean activated = false;
 	@Override
 	public void move() {
-		if (step == 20) {
+			if (step == 1)
 			ParUtils.createParticle(Particles.LARGE_SMOKE, loc.clone().add(0,-0.5,0), 0.1F, 0.1F, 0.1F,30, 0.2F);
 			activated = true;
-			hitPlayer = true;
-			hitEntity = true;
-		}
+			
+		
 		// TODO Auto-generated method stub
 		if (!loc.clone().add(0,-1,0).getBlock().getType().isSolid()) {
 			loc.add(0,-1,0);
@@ -68,12 +67,9 @@ public class FirePiece extends Spell {
 	public void display() {
 		
 		// TODO Auto-generated method stub
-		if (activated) {
+	
 			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 0.5, 0.5, 2, 0.3, new Vector(0,1,0));
-		}
-		else {
-			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 0.5, 0.5, 2, 0.2, new Vector(0,-1,0));
-		}
+		
 		
 		if (randInt(1, 10) == 2)
 		ParUtils.createFlyingParticle(Particles.LAVA, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
@@ -84,12 +80,18 @@ public class FirePiece extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		damage(p, 3, caster);
+		if (refined) {
+			doKnockback(p, loc,0.1F);
+		}
 		p.setFireTicks(20);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
+		if (refined) {
+			doKnockback(ent, loc,0.1F);
+		}
 		damage(ent, 3, caster);
 		ent.setFireTicks(20);
 	}

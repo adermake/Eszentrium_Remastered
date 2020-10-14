@@ -51,6 +51,7 @@ import spells.spells.Kätzchenkanone;
 import spells.spells.Lamaturm;
 import spells.spells.Lichtstrudel;
 import spells.spells.Luftsprung;
+import spells.spells.Machtwort;
 import spells.spells.Magmafalle;
 import spells.spells.Magnetball;
 import spells.spells.Meteoritenhagel;
@@ -237,6 +238,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Blutsiegel());
 		registerSpell(new DunklerWind());
 		registerSpell(new Flammenwand());
+		registerSpell(new Machtwort());
 		
 	}
 	

@@ -28,7 +28,7 @@ public class Kätzchenkanone extends Spell {
 	public Kätzchenkanone() {
 
 		name = "§6Kätzchenkanone";
-		cooldown = 20 * 20;
+		cooldown = 20 * 18;
 		steprange = 70;
 		hitSpell = true;
 		addSpellType(SpellType.KNOCKBACK);

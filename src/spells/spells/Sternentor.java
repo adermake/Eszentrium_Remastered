@@ -43,7 +43,7 @@ public class Sternentor extends Spell {
 		// TODO Auto-generated method stub
 		loc = caster.getLocation().add(caster.getLocation().getDirection().multiply(15));
 		Location l1 = block(caster);
-		if (l1 != null && !caster.isSneaking()) {
+		if (l1 != null) {
 			loc = l1.add(0,2,0);
 			
 		}

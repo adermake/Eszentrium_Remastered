@@ -16,7 +16,7 @@ public class Magnetball extends Spell{
 
 	public Magnetball() {
 		name = "ßeMagnetball";
-		cooldown = 20 * 34;
+		cooldown = 20 * 30;
 		hitEntity = true;
 		hitSpell = true;
 		hitPlayer = true;
@@ -28,8 +28,9 @@ public class Magnetball extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 		
-		setLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.Verbessert;:Schieﬂt ein#ß7Projektil in Blickrichtung. Gegner in der#ß7N‰he werden markiert, solange sie sich in#ß7der Reichweite befinden.# #ßeShift:ß7 Zieht#ß7markierte Gegner heran und schleudert sie#ß7weg.");
-		setBetterLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.Verbessert;:Schieﬂt ein#ß7Projektil in Blickrichtung. Gegner in der#ß7N‰he werden markiert, solange sie sich in#ß7der Reichweite befinden.# #ßeShift:ß7 Zieht#ß7markierte Gegner heran und schleudert sie#ß7weg.");
+		setLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.");
+		setBetterLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.");
+	
 	}
 	@Override
 	public void setUp() {

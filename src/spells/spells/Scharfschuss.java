@@ -20,7 +20,7 @@ public class Scharfschuss extends Spell{
 		steprange = 300;
 		speed = 100;
 		casttime = 40;
-		cooldown = 20*60;
+		cooldown = 20*55;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		

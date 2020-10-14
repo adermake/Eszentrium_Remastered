@@ -49,7 +49,7 @@ public class Ranke extends Spell{
 		powerlevel = 60;
 		speed = 3;
 		caster = p;
-		cooldown = 20 * 18;
+		cooldown = 20 * 20;
 		castSpell(caster, name);
 		if (rec > 0) {
 			new BukkitRunnable() {

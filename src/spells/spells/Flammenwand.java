@@ -19,7 +19,7 @@ public class Flammenwand extends Spell {
 	
 	public Flammenwand()
 	{
-		name = "§cFlammenwand";
+		name = "§6Flammenwand";
 		cooldown = 20 * 40;
 		casttime = 20 * 5;
 		speed = 1;
@@ -28,7 +28,7 @@ public class Flammenwand extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		
 		setLore("§7Setzt einen Startpunkt. Nach kurzer#§7Zeit entsteht an dieser Stelle eine#§7Flammensäule, die nahen Gegnern wiederholt Schaden#§7zufügt.# #§eF:§7 Setzt einen Endpunkt.#§7Zwischen dem Startpunkt und dem Endpunkt#§7entsteht eine Flammenwand, die nahen Gegnern#§7wiederholt Schaden zufügt.");
-		setBetterLore("§7Setzt einen Startpunkt. Nach kurzer Zeit#§7entsteht an dieser Stelle eine#§7Flammensäule, die nahen Gegnern wiederholt Schaden#§7zufügtund sie kurz festhält.# #§eF:§7 Setzt#§7einen Endpunkt. Zwischen dem Startpunkt und#§7dem Endpunkt entsteht eine Flammenwand, die#§7nahen Gegnern wiederholt Schaden zufügt.");
+		setBetterLore("Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.F: Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.");
 	}
 	Location l1;
 	Location l2;
@@ -87,7 +87,7 @@ public class Flammenwand extends Spell {
 			}
 		}
 		
-		new FirePiece(bLoc.add(0,0,0), caster, name, 20 * 8);
+		new FirePiece(bLoc.add(0,0,0), caster, name, 20 * 8,refined);
 	}
 
 	@Override

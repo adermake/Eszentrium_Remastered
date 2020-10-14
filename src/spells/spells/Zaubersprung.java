@@ -20,7 +20,7 @@ public class Zaubersprung extends Spell {
 	
 	public Zaubersprung() {
 		name = "§bZaubersprung";
-		cooldown = 20 * 25;
+		cooldown = 20 * 22;
 		steprange = 100;
 		speed = 1;
 		hitPlayer = false;

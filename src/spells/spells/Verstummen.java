@@ -24,7 +24,7 @@ public class Verstummen extends Spell {
 	
 	public Verstummen() {
 		name = "§eVerstummen";
-		cooldown = 20 * 30;
+		cooldown = 20 * 20;
 		speed = 50;
 		hitSpell = true;
 		steprange = 300;
@@ -94,7 +94,7 @@ public class Verstummen extends Spell {
 				}
 				Title verstummt = new Title("§cVerstummt!","",0,2,0);
 				verstummt.send(p);
-				if (t>120) {
+				if (t>60) {
 					
 					silenced.remove(p);
 					this.cancel();

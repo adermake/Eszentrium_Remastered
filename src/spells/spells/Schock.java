@@ -14,7 +14,7 @@ public class Schock extends Spell {
 
 	
 	public Schock() {
-		cooldown = 20 * 35;
+		cooldown = 20 * 40;
 		name = "§eSchock";
 		casttime =  3;
 		aim = null;

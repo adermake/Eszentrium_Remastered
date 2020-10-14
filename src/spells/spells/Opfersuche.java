@@ -31,7 +31,7 @@ public class Opfersuche extends Spell {
 	public Opfersuche() {
 		
 		name = "§6Opfersuche";
-		cooldown = 20 * 28;
+		cooldown = 20 * 24;
 		steprange = 200;
 		hitboxSize= 2.5;
 		hitSpell = true;

@@ -1,6 +1,7 @@
 package esze.listeners;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,9 @@ public class Block implements Listener {
 	public void onBuild(BlockPlaceEvent e){
 		Player p = e.getPlayer();
 		if(p.getGameMode() != GameMode.CREATIVE){
+			e.setCancelled(true);
+		}
+		if (e.getBlock().getType() == Material.ENDER_CHEST) {
 			e.setCancelled(true);
 		}
 	}

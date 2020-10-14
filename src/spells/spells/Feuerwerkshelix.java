@@ -46,7 +46,7 @@ public class Feuerwerkshelix extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		if (refined)
-			steprange = 40;
+			steprange = 30;
 		
 		f = (Firework) spawnEntity(EntityType.FIREWORK);
 		f1 = (Firework) spawnEntity(EntityType.FIREWORK);

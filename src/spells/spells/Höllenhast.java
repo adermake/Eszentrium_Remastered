@@ -106,7 +106,7 @@ public class Höllenhast extends Spell {
 		new spells.stagespells.Explosion(1,2, 1, 1, caster, loc, name);
 		
 		// TODO Auto-generated method stub
-		damage(p, 2, caster);
+		damage(p, 4, caster);
 		clearswap();
 		if (charges > 0 && !refined)
 		new Höllenhast(caster, name,charges-1,refined);
@@ -117,7 +117,7 @@ public class Höllenhast extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		
-		damage(ent, 2, caster);
+		damage(ent, 4, caster);
 		new spells.stagespells.Explosion(2,2, 1, 1, caster, loc.add(loc.getDirection().multiply(-1)), name);
 		clearswap();
 		if (charges > 0 && !refined)

@@ -31,7 +31,7 @@ public class SiegelderFurcht extends Spell {
 	
 	public SiegelderFurcht() {
 		name = "§3Siegel der Furcht";
-		cooldown = 20 * 34;
+		cooldown = 20 * 30;
 		hitboxSize = 8;
 		hitEntity = true;
 		hitSpell = true;

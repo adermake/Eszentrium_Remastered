@@ -27,7 +27,7 @@ public class Wurmloch extends Spell {
 		hitPlayer = true;
 		hitEntity = true;
 		hitSpell = false;
-		steprange = 60;
+		steprange = 120;
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);

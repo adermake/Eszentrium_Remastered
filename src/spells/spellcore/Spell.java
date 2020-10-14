@@ -1,8 +1,13 @@
 package spells.spellcore;
 
 import java.awt.List;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -818,7 +823,7 @@ public abstract class Spell {
 
 	}
 	public Location block(Player p) {
-		Location loc = p.getLocation();
+		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= 300; t++) {
 
 			Vector direction = loc.getDirection().normalize();
@@ -966,18 +971,88 @@ public abstract class Spell {
 		return betterlore;
 	}
 	public void setLore(String ls) {
-		
+		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			lore.add(s);
 			
 		}
 	}
 	public void setBetterLore(String ls) {
-		
+		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			betterlore.add(s);
 			
 		}
+	}
+	public String formatLore(String lore) {
+		
+		
+		
+		lore = lore.replace("# #", " ");
+		lore = lore.replace("#", " ");
+		lore = lore.replace("§7", "");
+		lore = lore.replace("§e", "");
+		
+
+		lore = "§7"+lore;
+		String spl = "";
+		//lore = lore.replace("F:", "# #§eF:§7");
+		//lore = lore.replace("Shift:", "# #§eShift:§7");
+		
+			String m1 = "";
+			String f2 = "";
+			String shift3 = "";
+		if (lore.contains("F:") && lore.contains("Shift")) {
+			m1 = lore.split("F:")[0];
+			f2 = m1.split("Shift:")[0];
+			shift3 = m1.split("Shift:")[1];
+			spl = formatTab(m1) + formatTab("# #§eF:§7"+f2) + formatTab("# #§eShift:§7"+ shift3);
+		}
+		else if (lore.contains("F:")) {
+			m1 = lore.split("F:")[0];
+			f2 = lore.split("F:")[1];
+			spl = formatTab(m1) + formatTab("# #§eF:§7"+f2);
+		}
+		else if (lore.contains("Shift:")) {
+			m1 = lore.split("Shift:")[0];
+			shift3 = lore.split("Shift:")[1];
+			spl = formatTab(m1) + formatTab("# #§eShift:§7"+ shift3);
+		}
+		else {
+			m1 = lore;
+			spl = formatTab(m1);
+		}
+			
+	
+		
+	
+		
+		return spl;
+
+		
+		
+		
+	}
+	public String formatTab(String tab) {
+		int spaceSlot = 0;
+		String spl = tab;
+		int m = 0;
+		for (int c = 0;c<spl.length();c++) {
+			if (spl.charAt(c) == ' ') {
+				spaceSlot = c;
+				
+			}
+			
+			if (m % 30 == 0 && m != 0) {
+				
+				spl = spl.substring(0,spaceSlot) +"#§7"+spl.substring(spaceSlot+1,spl.length());
+				c+=3;
+				spaceSlot = 0;
+			}
+			m++;
+			 
+		}
+		return spl;
 	}
 	public void kill() {
 		dead = true;

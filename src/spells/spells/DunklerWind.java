@@ -26,11 +26,11 @@ public class DunklerWind extends Spell {
 		name = "§cDunkler Wind";
 		
 		cooldown = 20 * 50;
-		speed = 5F;
-		steprange = 5* 20 * 8;
+		speed = 8F;
+		steprange = 5* 20 * 8 * 2;
 		multihit = true;
 		
-		hitboxSize = 6;
+		hitboxSize = 8;
 		hitPlayer = false;
 		hitEntity = false;
 		addSpellType(SpellType.MOBILITY);
@@ -122,7 +122,7 @@ public class DunklerWind extends Spell {
 			caster.setVelocity(v);
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (p.getGameMode() != GameMode.ADVENTURE) {
-					if (checkHit(p, caster.getLocation(), caster, 4)) {
+					if (checkHit(p, caster.getLocation(), caster, 7)) {
 						
 						doPin(p, loc.clone());
 					}
@@ -187,6 +187,7 @@ public class DunklerWind extends Spell {
 
 	@Override
 	public void onBlockHit(Block block) {
+		/*
 		// TODO Auto-generated method stub
 		Vector back = caster.getLocation().getDirection().multiply(0.3);
 		loc.add(caster.getLocation().getDirection().multiply(-0.3));
@@ -217,6 +218,7 @@ public class DunklerWind extends Spell {
 	
 		
 		loc.add(back);
+		*/
 	}
 
 	@Override

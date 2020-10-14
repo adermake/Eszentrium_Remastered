@@ -9,6 +9,7 @@ import esze.enums.Gamestate;
 import esze.map.MapSelect;
 import esze.players.PlayerAPI;
 import esze.utils.Actionbar;
+import weapons.WeaponAbilitys;
 
 public class LobbyCountdownRunnable {
 	
@@ -44,7 +45,7 @@ public class LobbyCountdownRunnable {
 					}
 					Gamestate.setGameState(Gamestate.INGAME);
 					new Actionbar("").sendAll();
-					
+					WeaponAbilitys.lastLaunched.clear();
 					
 					
 					

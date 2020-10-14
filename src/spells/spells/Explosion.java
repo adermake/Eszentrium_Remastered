@@ -106,7 +106,7 @@ public class Explosion extends Spell{
 						// TODO Auto-generated method stub
 						t++;
 						if (t>3) {
-							caster.setVelocity(caster.getVelocity().setY((power/ct)*8+1));
+							caster.setVelocity(caster.getVelocity().setY((power/ct)*8));
 							this.cancel();
 						}
 					}
@@ -115,7 +115,7 @@ public class Explosion extends Spell{
 			
 		
 		spawnShockWaffel(caster, 5,loc.clone());
-		ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, (power/ct)*3, (power/ct)*3, (power/ct)*3, (int)(power/ct)*10, 10);
+		//ParUtils.createParticle(Particles.BARRIER, loc, (power/ct)*8, (power/ct)*8, (power/ct)*8, (int)(power/ct)*10, 10);
 		
 		if (!refined)
 		//caster.setVelocity(caster.getVelocity().setY(1.0D));
@@ -129,6 +129,7 @@ public class Explosion extends Spell{
 		}
 		
 		ParUtils.parKreisDir(Particles.FLAME, caster.getLocation(), (power/ct)*15, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particles.EXPLOSION_EMITTER, caster.getLocation(), (power/ct)*12, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
 		dead = true;
 	}
 

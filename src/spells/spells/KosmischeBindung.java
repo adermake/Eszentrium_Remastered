@@ -3,6 +3,7 @@ package spells.spells;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -47,6 +48,8 @@ public class KosmischeBindung extends Spell{
 		// TODO Auto-generated method stub
 		kRotLoc = caster.getLocation();
 		loc = caster.getLocation();
+		if (refined) 
+			range= 20;
 	
 	}
 	float range = 13;
@@ -162,11 +165,12 @@ public class KosmischeBindung extends Spell{
 			
 			doPull(ent,to , to.distance(ent.getLocation())/3);
 			Vector vec = hitList.get(ent);
-			if (refined) 
-			vec = vec.add(vec.clone().normalize().multiply(0.5));
+			
+			vec = vec.add(vec.clone().normalize().multiply(1.5));
 			double len = vec.length();
 			if (len > range) {
-				vec = vec.normalize().multiply(len);
+				
+				vec = vec.normalize().multiply(range);
 			}
 			hitList.put((LivingEntity) ent, vec);
 		

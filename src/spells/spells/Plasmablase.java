@@ -22,7 +22,7 @@ import spells.spellcore.SpellType;
 public class Plasmablase extends Spell {
 
 	public Plasmablase() {
-		cooldown = 20 * 40;
+		cooldown = 20 * 35;
 		
 		name = "§3Plasmablase";
 		hitSpell = true;

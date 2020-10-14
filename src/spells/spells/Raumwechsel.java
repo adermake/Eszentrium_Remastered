@@ -15,7 +15,7 @@ public class Raumwechsel extends Spell{
 	
 	public Raumwechsel() {
 		name = "§bRaumwechsel";
-		cooldown = 20 * 35;
+		cooldown = 20 * 20;
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		
