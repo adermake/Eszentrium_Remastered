@@ -51,7 +51,6 @@ public class Interact implements Listener{
                (clicked.getType().toString().contains("TRAPDOOR")) || 
                (clicked.getType() == Material.LEVER) || 
                (clicked.getType().toString().contains("FENCE_GATE")) || 
-               (clicked.getType() == Material.STONE_BUTTON) || 
                (clicked.getType().toString().contains("BED")) || 
                (clicked.getType() == Material.LECTERN)){
                 event.setCancelled(true);

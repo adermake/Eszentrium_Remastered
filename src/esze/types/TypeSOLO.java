@@ -26,8 +26,10 @@ import esze.utils.Music;
 import esze.utils.PlayerUtils;
 import esze.utils.Title;
 import esze.voice.Discord;
+import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
+import weapons.Damage;
 import weapons.WeaponMenu;
 
 
@@ -118,11 +120,14 @@ public class TypeSOLO extends Type {
 	
 	@Override
 	public void death(PlayerDeathEvent event) {
+		
 		Player p = event.getEntity();
 		if (deathCheck(p)) {
+			
+			p.setHealth(Damage.lastHealthTaken.get(p));
 			return;
 		}
-		
+	
 		if (main.damageCause.get(p) == null) {
 			main.damageCause.remove(p);
 			main.damageCause.put(p, main.unknownDamage);
@@ -167,7 +172,7 @@ public class TypeSOLO extends Type {
 			checkWinner();
 		}
 		else {
-			Spell.silenced.add(p);
+			Spell.silenced.put(p, new SilenceSelection());
 			new BukkitRunnable() {
 				public void run() {
 					Spell.silenced.remove(p);

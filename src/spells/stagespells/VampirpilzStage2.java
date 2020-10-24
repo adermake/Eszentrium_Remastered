@@ -37,6 +37,7 @@ public class VampirpilzStage2 extends Spell {
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.AURA);
 	}
+	ArrayList<Entity> pulled = new ArrayList<Entity>();
 	ArrayList<Entity> removeLater = new ArrayList<Entity>();
 	@Override
 	public void setUp() {
@@ -126,6 +127,11 @@ public class VampirpilzStage2 extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
+		if (!pulled.contains(p)) {
+			pulled.add(p);
+			
+			doPull(p, loc, 2);
+		}
 		// TODO Auto-generated method stub
 		if (p.getNoDamageTicks()<= 1) {
 			heal(caster, 2, caster);
@@ -139,7 +145,11 @@ public class VampirpilzStage2 extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		
+		if (!pulled.contains(ent)) {
+			pulled.add(ent);
+			
+			doPull(ent, loc, 2);
+		}
 		if (ent.getNoDamageTicks()<= 1) {
 			ParUtils.pullItemEffectVector(ent.getLocation(), Material.NETHER_WART_BLOCK, 44, loc.clone().add(0,0.6,0),0.3F);
 		

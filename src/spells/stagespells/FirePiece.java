@@ -67,11 +67,11 @@ public class FirePiece extends Spell {
 	public void display() {
 		
 		// TODO Auto-generated method stub
-	
-			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 0.5, 0.5, 2, 0.3, new Vector(0,1,0));
+			if (step % 3 == 0)
+			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
 		
 		
-		if (randInt(1, 10) == 2)
+		if (randInt(1, 100) == 2)
 		ParUtils.createFlyingParticle(Particles.LAVA, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
 		
 	}
@@ -80,18 +80,18 @@ public class FirePiece extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		damage(p, 3, caster);
-		if (refined) {
+		
 			doKnockback(p, loc,0.1F);
-		}
+		
 		p.setFireTicks(20);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		if (refined) {
+		
 			doKnockback(ent, loc,0.1F);
-		}
+		
 		damage(ent, 3, caster);
 		ent.setFireTicks(20);
 	}

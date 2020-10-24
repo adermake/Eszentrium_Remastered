@@ -172,7 +172,7 @@ public class main extends JavaPlugin {
 		TTTFusion.start();
 
 		//PacketListner.registerPackets();
-
+		PlayerUtils.showAllPlayers();
 		PlayerUtils.stopVelocity();
 		JumpPadHandler.start();
 		Gamestate.setGameState(Gamestate.LOBBY);

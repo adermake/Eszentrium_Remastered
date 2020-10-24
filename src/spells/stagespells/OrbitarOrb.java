@@ -108,7 +108,7 @@ public class OrbitarOrb extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		if (silenced.contains(caster))
+		if (checkSilence())
 			dead = true;
 		if (lastloc == null)
 			lastloc = loc;

@@ -30,11 +30,12 @@ public class EventCollector implements Listener {
 
 		if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
 			
-		
+		/*
 			if (Spell.silenced.contains(p)) {
 				Actionbar bar = new Actionbar("§cDu bist verstummt!");
 				return;
 			}
+			*/
 		ItemStack is = p.getInventory().getItemInMainHand();
 		boolean refined = false;
 		boolean traitor = false;

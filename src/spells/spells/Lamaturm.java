@@ -110,14 +110,16 @@ public class Lamaturm extends Spell {
 		if (turret.getPassengers().contains(caster)) {
 			
 			loc.setDirection(caster.getLocation().getDirection());
-				if (swap()) {
-					shootnow = true;
-					if (EventCollector.quickSwap.contains(caster)) {
-						EventCollector.quickSwap.remove(caster);
-					}
-				}
-				if (shots>0 && shootnow && realDelay == 0) {
+				
+			if (swap() ) {
+				
+				if (shots>0 ) {
+					
+					
+					
 					shots--;
+					
+					
 					
 					shootnow = false;
 					if (EventCollector.quickSwap.contains(caster)) {
@@ -128,8 +130,9 @@ public class Lamaturm extends Spell {
 					ori.add(caster.getEyeLocation().getDirection().multiply(2));
 					ori.setDirection(caster.getEyeLocation().getDirection());
 					new LamaturmProjectile(caster,ori,turret,name);
+					
 				}
-			
+			}
 			
 			for (double i = 0;i<shots;i++) {
 				Location l = ParUtils.stepCalcCircle(turret.getEyeLocation().clone(), 2, loc.getDirection(), 3, step+(i*44/maxShots));
@@ -149,7 +152,7 @@ public class Lamaturm extends Spell {
 			}
 			
 		}
-		swap();
+		
 		if (turret.getVelocity().length()<0.1) {
 			EntityLlama nmsEnt = ((CraftLlama)turret).getHandle();
 			nmsEnt.setHeadRotation(loc.getYaw());

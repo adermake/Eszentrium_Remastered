@@ -52,7 +52,8 @@ public class Opfersuche extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		ent = (Phantom) caster.getWorld().spawnEntity(caster.getEyeLocation(), EntityType.PHANTOM);
-		
+		noTargetEntitys.add(ent);
+		unHittable.add(ent);
 		
 		ent.setInvulnerable(true);
 		ent.setCollidable(false);
@@ -172,7 +173,7 @@ public class Opfersuche extends Spell {
 	public void phantomSpin(LivingEntity p,int spin,int time) {
 		Phantom fa = (Phantom) spawnEntity(EntityType.PHANTOM);
 		noTargetEntitys.add(fa);
-		
+		unHittable.add(fa);
 		
 		new BukkitRunnable() {
 			int t = 0;

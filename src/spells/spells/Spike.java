@@ -52,9 +52,11 @@ public class Spike extends Spell {
 		castSpell(c, name);
 		
 	}
+	Eisstachel eis;
 	Entity target;
-	public Spike(Player c,Vector v,String name,Location l,int length,int delay) {
+	public Spike(Player c,Vector v,String name,Location l,int length,int delay,Eisstachel eis) {
 		super();
+		this.eis = eis;
 		cooldown = 20*10;
 		this.name = name;
 		speed = 3;
@@ -104,6 +106,8 @@ public class Spike extends Spell {
 			FallingBlock fb = caster.getWorld().spawnFallingBlock(loc, Material.ICE,(byte) 0);
 			fb.setGravity(false);
 			blocks.add(fb);
+			if (eis != null)
+			eis.blocks.add(fb);
 		}
 		
 		
@@ -117,14 +121,14 @@ public class Spike extends Spell {
 	public void onPlayerHit(Player p) {
 	
 		
-		damage(p, 3,caster);
+		
 		
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		damage(ent, 3,caster);
+		
 		
 	}
 

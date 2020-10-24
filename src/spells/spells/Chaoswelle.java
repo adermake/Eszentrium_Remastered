@@ -80,7 +80,7 @@ public class Chaoswelle extends Spell{
 		if (caster.getVelocity().getY()>-0.5 && tl > 61) {
 			caster.setVelocity(caster.getVelocity().setY(-1));
 		}
-		if (silenced.contains(caster)) {
+		if (checkSilence()) {
 			setGliding(caster,false);
 			dead =true;
 		}

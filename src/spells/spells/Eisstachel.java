@@ -2,6 +2,7 @@ package spells.spells;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,9 +23,10 @@ import spells.spellcore.SpellType;
 
 public class Eisstachel extends Spell {
 
+	public static  ArrayList<Eisstachel> eistacheln = new ArrayList<Eisstachel>();
 	public Eisstachel() {
 		cooldown = 20*40;
-		name = "§eEisstachel";
+		name = "§cEisstachel";
 		speed = 10;
 		steprange =32;
 		hitPlayer = true;
@@ -34,8 +36,9 @@ public class Eisstachel extends Spell {
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		
-		setLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
+		setLore("Schießt einen Eiszapfen in Blickrichtung. Bei Gegnerkontakt wird dieser vereist und an der Stelle für kurze Zeit festgehalten. Schaden, den der Gegner in dieser Zeit erleidet, wird erhöht und bricht das Eis.");
 		setBetterLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
+		eistacheln.add(this);
 	}
 	Location saveLoc = null;
 	boolean noSpikes = false;
@@ -126,13 +129,13 @@ public class Eisstachel extends Spell {
 		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 3, 0);
 		
 	}
-
+	ArrayList<Player> frozen = new ArrayList<Player>();
 	@Override
 	public void onPlayerHit(Player p) {
 		
 		
-		damage(p, 5,caster);
 		
+		frozen.add(p);
 		onHitEffect(p);
 		dead = true;
 	}
@@ -140,7 +143,7 @@ public class Eisstachel extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		damage(ent, 5,caster);
+		
 		
 		
 		onHitEffect(ent);
@@ -149,26 +152,12 @@ public class Eisstachel extends Spell {
 	}
 
 	public void onHitEffect(LivingEntity ent) {
-		
-		if (refined) {
-			for (int i = 0;i<4;i++) {
-				Vector rand = randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize());
-				if (rand.getY()>0.1) {
-					rand.setY(0.1);
-				}
-				if (rand.getY()<0.1) {
-					rand.setY(-0.1);
-				}
-				//new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90);
-				new Eisstachel(ent.getLocation().add(rand), rand, caster);
-			}
-		}
-		else {
+	
 			for (int i = 0;i<20;i++) {
 				//randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize())
-				new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90);
+				Spike s = new Spike(caster,loc.getDirection().multiply(-1).add(randVector().multiply(3)),name,ent.getLocation(),randInt(1,14),90,this);
+				
 			}
-		}
 		
 		
 		new BukkitRunnable() {
@@ -177,9 +166,11 @@ public class Eisstachel extends Spell {
 			@Override
 			public void run() {
 				t++;
-				if (t > 20 * 5) {
+				if (t > 20 * 5 || !frozen.contains(ent)) {
 					this.cancel();
+					return;
 				}
+				
 				if (ent instanceof Player) {
 					Player p = (Player)ent;
 					if (p.getGameMode() == GameMode.ADVENTURE ) {
@@ -204,22 +195,25 @@ public class Eisstachel extends Spell {
 		
 	}
 
-
+	
 	@Override
 	public void onDeath() {
-		
-		new BukkitRunnable() {
+	new BukkitRunnable() {
 			
 			@Override
 			public void run() {
+				frozen.clear();
 				for (FallingBlock fb : blocks) {
+					if (!fb.isValid())
+						continue;
 					ParUtils.createBlockcrackParticle(fb.getLocation(), 0.1F, 0.1F, 0.1F, 4, Material.PACKED_ICE);
-					playSound(Sound.BLOCK_GLASS_BREAK,fb.getLocation(),1f,2f);
+					
 					fb.remove();
 				}
 				
 			}
-		}.runTaskLater(main.plugin, 40);
+		}.runTaskLater(main.plugin, 20*5);
+	
 		
 	}
 
@@ -230,5 +224,42 @@ public class Eisstachel extends Spell {
 		
 	}
 
+	public void playerTookDamage(Player p,double damage) {
+		
+	
+		if (frozen.contains(p)) {
+			dead = true;
+			p.setVelocity(p.getVelocity().add(p.getLocation().toVector().subtract(caster.getLocation().toVector()).normalize()));
+			
+					frozen.remove(p);
+					new BukkitRunnable() {
+						
+						@Override
+						public void run() {
+							for (FallingBlock fb : blocks) {
+								if (!fb.isValid())
+									continue;
+								ParUtils.createBlockcrackParticle(fb.getLocation(), 0.1F, 0.1F, 0.1F, 4, Material.PACKED_ICE);
+								
+								fb.remove();
+							}
+							
+						}
+					}.runTaskLater(main.plugin, 40);
+					playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,p.getLocation(),1f,2f);
+			ParUtils.createParticle(Particles.EXPLOSION_EMITTER, p.getLocation(), 0, 0, 0, 1, 1);
+			for (FallingBlock fb : blocks) {
+				
+				ParUtils.createBlockcrackParticle(fb.getLocation(), 0.1F, 0.1F, 0.1F, 4, Material.PACKED_ICE);
+				playSound(Sound.BLOCK_GLASS_BREAK,fb.getLocation(),1f,2f);
+				fb.setGravity(true);
+				doKnockback(fb, p.getLocation(), 2);
+			}
+			p.setNoDamageTicks(0);
+			p.damage(damage);
+			p.setNoDamageTicks(20);
+			
+		}
+	}
 
 }

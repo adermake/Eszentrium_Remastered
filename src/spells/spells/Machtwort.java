@@ -28,10 +28,10 @@ public class Machtwort extends Spell {
 		multihit = true;
 		canHitSelf = true;
 		hitboxSize = 4;
-		steprange = 20 *  5;
+		steprange = 20 *  10;
 		cooldown = 20 * 70;
 		
-		setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird. Alle Spieler im Kreis erleiden allerdings Schaden über Zeit.");
+		setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.");
 		
 		
 		addSpellType(SpellType.AURA);
@@ -88,7 +88,7 @@ public class Machtwort extends Spell {
 		//p.damage(0.5F);
 		ParUtils.createParticle(Particles.ENCHANT, p.getLocation().add(0,-1,0), 1, 0, 1, 8, 1);
 		// TODO Auto-generated method stub
-		tickCooldown(8,p);
+		tickCooldown(15,p);
 		
 	}
 

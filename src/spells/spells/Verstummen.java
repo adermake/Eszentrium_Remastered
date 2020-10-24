@@ -1,5 +1,6 @@
 package spells.spells;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -14,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.Title;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
+import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -83,7 +85,9 @@ public class Verstummen extends Spell {
 		// TODO Auto-generated method stub
 		ParUtils.parKreisDir(Particles.END_ROD, loc, 2, 0,1, loc.getDirection().multiply(-1), loc.getDirection().multiply(-1));
 		playSound (Sound.ENTITY_EVOKER_CAST_SPELL,p.getLocation(), (float) 1, 1);
-		silenced.add(p);
+	
+		SilenceSelection s = new SilenceSelection();
+		silence(p, s);
 		new BukkitRunnable() {
 			int t = 0;
 			@Override
@@ -92,6 +96,7 @@ public class Verstummen extends Spell {
 				for (int i = 0;i<5 ;i++) {
 					ParUtils.chargeDot(p.getLocation().add(0,1,0), Particles.ENCHANT, 1, 3);
 				}
+			
 				Title verstummt = new Title("§cVerstummt!","",0,2,0);
 				verstummt.send(p);
 				if (t>60) {

@@ -12,6 +12,8 @@ import esze.utils.Actionbar;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Cooldowns;
+import spells.spellcore.SilenceFilterType;
+import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -52,8 +54,9 @@ public class SchnittdersiebenWinde extends Spell {
 			
 				
 			playSound(Sound.ENTITY_RAVAGER_ATTACK,target.getLocation(),6,0.3F);
-			
-			silenced.add(target);
+			SilenceSelection s = new SilenceSelection(SilenceFilterType.AND);
+			s.addFilter(SpellType.MOBILITY);
+			silenced.put(target, s);
 			playSound(Sound.AMBIENT_UNDERWATER_ENTER,target.getLocation(),1,2);
 		}
 		

@@ -1,5 +1,6 @@
 package spells.spells;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -23,7 +24,9 @@ public class Flammenwand extends Spell {
 		cooldown = 20 * 40;
 		casttime = 20 * 5;
 		speed = 1;
+		
 		steprange = 50;
+	
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		
@@ -32,6 +35,7 @@ public class Flammenwand extends Spell {
 	}
 	Location l1;
 	Location l2;
+	Location l3;
 	public void setUp() {
 		// TODO Auto-generated method stub
 		l1 = block(caster);
@@ -40,22 +44,40 @@ public class Flammenwand extends Spell {
 			dead = true;
 		}
 		
+		if (refined)  {
+			steprange = 300;
+			speed = 3;
+		}
+			
 		
 	}
 	Vector v;
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		if (l2 != null) {
+		if (l2 != null && !refined) {
+			cast = casttime+1;
+			v = l2.toVector().subtract(l1.toVector());
+		}
+		if (l3 != null && refined) {
 			cast = casttime+1;
 			v = l2.toVector().subtract(l1.toVector());
 		}
 		if (swap()) {
-			l2 = block(caster);
+			if (l2 == null) {
+				l2 = block(caster);
+				
+			}
+			else {
+				
+				l3 = block(caster);
+			}
 			
+			clearswap();
 		}
 	}
 
+	Location start;
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
@@ -65,16 +87,38 @@ public class Flammenwand extends Spell {
 			l2 = l1.clone();
 			v = caster.getLocation().getDirection();
 		}
+		if (l3 == null) {
+			l3 = l2.clone();
+			//v = caster.getLocation().getDirection();
+		}
+		start = l1.clone();
 	}
-
+	boolean lastRound = false;
 	@Override
 	public void move() {
 		
 		// TODO Auto-generated method stub
 		l1.add(v.normalize().multiply(1));
 		if (l1.distance(l2)< 2) {
+			if (!refined) {
+				dead = true;
+			}
+			else {
+				v = l3.toVector().subtract(l2.toVector());
+				
+			}
+			
+		}
+		
+		
+		if (refined && l1.distance(l3)< 2 ) { 
+			lastRound = true;
+			v = start.toVector().subtract(l3.toVector());
+		}
+		if (lastRound && l1.distance(start )< 2) {
 			dead = true;
 		}
+		
 		
 		Location bLoc = l1.clone();
 		int i = 0;

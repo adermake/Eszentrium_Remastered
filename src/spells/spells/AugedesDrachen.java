@@ -34,7 +34,7 @@ public class AugedesDrachen extends Spell{
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.KNOCKBACK);
 		
-		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück.");
+		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück. Shift: Solange diese Taste gedrückt bleibt, kann die Richtung des Projektils gesteuert werden, bis die Drachen erscheinen.");
 		
 	}
 	@Override
@@ -71,6 +71,8 @@ public class AugedesDrachen extends Spell{
 	@Override
 	public void move() {
 		if (step<=30) {
+			if (caster.isSneaking())
+			loc.setDirection(caster.getLocation().getDirection());
 			loc.add(loc.getDirection().multiply(0.4));
 		}
 		else {

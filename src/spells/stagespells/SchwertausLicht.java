@@ -67,7 +67,7 @@ public class SchwertausLicht extends Spell {
 	@Override
 	public void cast() {
 		a.setRightArmPose(a.getRightArmPose().add(randDouble(-0.05, 0.05), 0, 0));
-		if ( silenced.contains(caster)) {
+		if (checkSilence()) {
 			toggleExplode = false;
 			dead = true;
 		}

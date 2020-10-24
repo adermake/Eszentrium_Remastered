@@ -84,6 +84,7 @@ import spells.spells.Teleport;
 import spells.spells.Thermolanze;
 import spells.spells.Vampirpilz;
 import spells.spells.Verstummen;
+import spells.spells.Vogelattacke;
 import spells.spells.Wunsch;
 import spells.spells.Wurmloch;
 import spells.spells.Zaubersprung;
@@ -239,6 +240,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new DunklerWind());
 		registerSpell(new Flammenwand());
 		registerSpell(new Machtwort());
+		registerSpell(new Vogelattacke());
 		
 	}
 	

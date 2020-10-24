@@ -139,6 +139,9 @@ public class DunklerWind extends Spell {
 
 	@Override
 	public void display() {
+		if (step % 5 == 0) {
+			ParUtils.parLineRedstone(caster.getLocation(), loc.clone(), Color.BLACK, 0.3F, 1);
+		}
 		// TODO Auto-generated method stub
 		//ParUtils.createParticle(Particles.BUBBLE, loc, 0.1F, 0.1F, 0.1F, 1, 1);
 		double lf = (double)step/(speed * 20 * 2);

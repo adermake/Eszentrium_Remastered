@@ -98,11 +98,14 @@ public abstract class Spell {
 	
 	
 	//CC 
-		public static ArrayList<Player> silenced = new ArrayList<Player>();
+		public static HashMap<Player,SilenceSelection> silenced = new HashMap<Player,SilenceSelection>();
 		public static HashMap<Player,DamageCauseContainer> damageCause = new HashMap<Player,DamageCauseContainer>();
 	//
 	
-	
+	public ArrayList<SpellType> getSpellTypes() {
+		return spellTypes;
+		
+	}
 	
 	public static void clearSpells() {
 		for (Spell spell : spell) {
@@ -115,6 +118,15 @@ public abstract class Spell {
 		this.name = name;
 		
 		originalCaster = p;
+		
+		if (checkSilence()) {
+			
+			Actionbar bar = new Actionbar("§cDu bist verstummt!");
+			bar.send(p);
+			
+			return true;
+		}
+		
 		return createdSpell(p);
 	}
 	
@@ -148,7 +160,7 @@ public abstract class Spell {
 			public void run()
 			{
 				cast++;
-				if (canBeSilenced && silenced.contains(caster)) {
+				if (canBeSilenced && checkSilence()) {
 					this.cancel();
 				}
 				cast();
@@ -162,6 +174,25 @@ public abstract class Spell {
 				}
 			}
 		}.runTaskTimer(main.plugin, 1, 1);
+	}
+	
+	public boolean checkSilence() {
+		
+		
+		
+		if (silenced.containsKey(originalCaster)) {
+			
+			return Spell.silenced.get(originalCaster).filter(spellTypes);
+		}
+		
+		return false;
+		
+	}
+	
+
+	public void silence(Player p,SilenceSelection s) {
+		silenced.put(p, s);
+		
 	}
 	// BOUND SPELLS
 	
@@ -234,9 +265,12 @@ public abstract class Spell {
 					ts++;
 					
 					if (silencable) {
-						if (silenced.contains(caster)) {
-							dead = true;
+						if (silenced.containsKey(caster)) {
+							if (silenced.get(caster).filter(spellTypes)) {
+								dead = true;
+							}
 						}
+						
 					}
 					
 					if (ts>=1/speed) {	
@@ -683,6 +717,18 @@ public abstract class Spell {
 			e.setVelocity(toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s));
 		}
 	}
+	public void doPin(Entity e, Location toLocation,double power) {
+		// multiply default 0.25
+		if (e instanceof Player) {
+			if(e != caster) {
+				tagPlayer((Player) e);
+			}
+		}
+		if (toLocation.toVector().distance(e.getLocation().toVector()) > minDist) {
+			double s = e.getLocation().distance(toLocation)/5;
+			e.setVelocity(toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s*power));
+		}
+	}
 	public Player pointEntity(Player p) {
 		int range = 300;
 		int toleranz = 3;
@@ -971,18 +1017,26 @@ public abstract class Spell {
 		return betterlore;
 	}
 	public void setLore(String ls) {
+		
 		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			lore.add(s);
 			
 		}
+		
+		lore.add(" ");
+		lore.add("§eCooldown: §7"+ cooldown/20 +"s");
 	}
 	public void setBetterLore(String ls) {
+		
 		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			betterlore.add(s);
 			
 		}
+		
+		betterlore.add(" ");
+		betterlore.add("§eCooldown: §7"+ cooldown/20 +"s");
 	}
 	public String formatLore(String lore) {
 		

@@ -96,6 +96,8 @@ public abstract class Type {
 	}
 	
 	public boolean deathCheck(Player p) {
+		
+		
 		if (p.getLocation().getY()<=60) {
 			return false;
 		}

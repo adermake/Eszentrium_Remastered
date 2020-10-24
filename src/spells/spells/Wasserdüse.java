@@ -138,7 +138,7 @@ public class Wasserdüse extends Spell {
 			
 			dead = true;
 		}
-		if (silenced.contains(caster)) {
+		if (checkSilence()) {
 			dead = true;
 		}
 		if (charges <= 0) {
