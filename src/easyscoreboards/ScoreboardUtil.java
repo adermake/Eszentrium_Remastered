@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Scoreboard;
 
+import esze.utils.ScoreboardTeamUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -82,39 +84,37 @@ public class ScoreboardUtil
 
 		try
 		{
-			if(p.getScoreboard() == null || p.getScoreboard() == Bukkit.getScoreboardManager().getMainScoreboard() || p.getScoreboard().getObjectives().size() != 1)
+			
+			Scoreboard sb = ScoreboardTeamUtils.getBoard(p);
+
+			if(sb.getObjective(p.getUniqueId().toString().substring(0, 16)) == null)
 			{
-				p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+				sb.registerNewObjective(p.getUniqueId().toString().substring(0, 16), "dummy");
+				sb.getObjective(p.getUniqueId().toString().substring(0, 16)).setDisplaySlot(DisplaySlot.SIDEBAR);
 			}
 
-			if(p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)) == null)
-			{
-				p.getScoreboard().registerNewObjective(p.getUniqueId().toString().substring(0, 16), "dummy");
-				p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)).setDisplaySlot(DisplaySlot.SIDEBAR);
-			}
 
 
-
-			p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).setDisplayName(elements[0]);
+			sb.getObjective(DisplaySlot.SIDEBAR).setDisplayName(elements[0]);
 
 			for(int i = 1; i < elements.length; i++)
 				if(elements[i] != null)
-					if(p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).getScore() != 16 - i)
+					if(sb.getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).getScore() != 16 - i)
 					{
-						p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).setScore(16 - i);
-						for(String string : p.getScoreboard().getEntries())
-							if(p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)).getScore(string).getScore() == 16 - i)
+						sb.getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).setScore(16 - i);
+						for(String string : sb.getEntries())
+							if(sb.getObjective(p.getUniqueId().toString().substring(0, 16)).getScore(string).getScore() == 16 - i)
 								if(!string.equals(elements[i]))
-									p.getScoreboard().resetScores(string);
+									sb.resetScores(string);
 
 					}
 
-			for(String entry : p.getScoreboard().getEntries())
+			for(String entry : sb.getEntries())
 			{
 				boolean toErase = true;
 				for(String element : elements)
 				{
-					if(element != null && element.equals(entry) && p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)).getScore(entry).getScore() == 16 - Arrays.asList(elements).indexOf(element))
+					if(element != null && element.equals(entry) && sb.getObjective(p.getUniqueId().toString().substring(0, 16)).getScore(entry).getScore() == 16 - Arrays.asList(elements).indexOf(element))
 					{
 						toErase = false;
 						break;
@@ -122,7 +122,7 @@ public class ScoreboardUtil
 				}
 
 				if(toErase)
-					p.getScoreboard().resetScores(entry);
+					sb.resetScores(entry);
 
 			}
 
@@ -143,13 +143,15 @@ public class ScoreboardUtil
 
 		return true;
 	}
-
+	/*
 	public static boolean unrankedSidebarDisplay(Collection<Player> players, String[] elements, Scoreboard board)
 	{
 		try
 		{
 			String objName = "COLLAB-SB-WINTER";
-
+			
+			
+			 
 			if(board == null)
 				board = Bukkit.getScoreboardManager().getNewScoreboard();
 
@@ -204,7 +206,7 @@ public class ScoreboardUtil
 			return false;
 		}
 	}
-
+*/
 	public static boolean rankedSidebarDisplay(Player p, String title, HashMap<String, Integer> elements)
 	{
 		try
@@ -212,25 +214,23 @@ public class ScoreboardUtil
 			title = cutRankedTitle(title);
 			elements = cutRanked(elements);
 
-			if(p.getScoreboard() == null || p.getScoreboard() == Bukkit.getScoreboardManager().getMainScoreboard() || p.getScoreboard().getObjectives().size() != 1)
-			{
-				p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-			}
+			Scoreboard sb = ScoreboardTeamUtils.getBoard(p);
+			
 
-			if(p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)) == null)
+			if(sb.getObjective(p.getUniqueId().toString().substring(0, 16)) == null)
 			{
-				p.getScoreboard().registerNewObjective(p.getUniqueId().toString().substring(0, 16), "dummy");
-				p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)).setDisplaySlot(DisplaySlot.SIDEBAR);
+				sb.registerNewObjective(p.getUniqueId().toString().substring(0, 16), "dummy");
+				sb.getObjective(p.getUniqueId().toString().substring(0, 16)).setDisplaySlot(DisplaySlot.SIDEBAR);
 			}
-			p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).setDisplayName(title);
+			sb.getObjective(DisplaySlot.SIDEBAR).setDisplayName(title);
 
 			for(String string : elements.keySet())
-				if(p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(string).getScore() != elements.get(string))
-					p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(string).setScore(elements.get(string));
+				if(sb.getObjective(DisplaySlot.SIDEBAR).getScore(string).getScore() != elements.get(string))
+					sb.getObjective(DisplaySlot.SIDEBAR).getScore(string).setScore(elements.get(string));
 
-			for(String string : new ArrayList<>(p.getScoreboard().getEntries()))
+			for(String string : new ArrayList<>(sb.getEntries()))
 				if(!elements.keySet().contains(string))
-					p.getScoreboard().resetScores(string);
+					sb.resetScores(string);
 
 			return true;
 		}
@@ -249,7 +249,7 @@ public class ScoreboardUtil
 
 		return true;
 	}
-
+/*
 	public static boolean rankedSidebarDisplay(Collection<Player> players, String title, HashMap<String, Integer> elements, Scoreboard board)
 	{
 		try
@@ -259,6 +259,7 @@ public class ScoreboardUtil
 
 			String objName = "COLLAB-SB-WINTER";
 
+			
 			if(board == null)
 				board = Bukkit.getScoreboardManager().getNewScoreboard();
 
@@ -294,4 +295,5 @@ public class ScoreboardUtil
 			return false;
 		}
 	}
+	*/
 }

@@ -17,15 +17,15 @@ public class Blasensturm extends Spell{
 
 	int rec = 65;
 	public Blasensturm() {
-		name = "ßcBlasensturm";
-		steprange = 30;
+		name = "ßeBlasensturm";
+		steprange = 20 * 6;
 		speed =2;
 		
 		hitboxSize = 1;
 		cooldown = 20*45;
 		hitSpell = true;
 		
-		
+		setBetterLore("ß7Schieﬂt eine Menge Blasen, die nach kurzer Zeit#ß7den naheliegendsten Gegner verfolgen. Getroffene#ß7Gegner werden weggeschleudert.");
 		setLore("ß7Schieﬂt eine Menge Blasen, die nach kurzer Zeit#ß7den naheliegendsten Gegner verfolgen. Getroffene#ß7Gegner werden weggeschleudert.");
 	}
 	
@@ -47,14 +47,21 @@ public class Blasensturm extends Spell{
 	@Override
 	public void launch() {
 	
+		if (!refined) {
+			
+		
 		for (int i = 0;i < 30; i++) {
 			new Bubble(caster.getEyeLocation(), caster, name);
 		}
-		
+		}
 	}
 
 	@Override
 	public void move() {
+		if (refined) {
+			new Bubble(caster.getEyeLocation().add(0,-0.3,0), caster, name);
+		}
+		
 	}
 
 	@Override

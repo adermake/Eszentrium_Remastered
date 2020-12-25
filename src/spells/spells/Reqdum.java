@@ -17,14 +17,14 @@ import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
-public class Req extends Spell {
+public class Reqdum extends Spell {
 
 	Location toLoc;
 	Vector dir;
 	Arrow a;
-	public Req() {
+	public Reqdum() {
 		
-		name = "§cReq";
+		name = "§cRequiemspfeil";
 		steprange = 150;
 		cooldown = 20 * 50;
 		hitboxSize = 1.5;
@@ -51,7 +51,7 @@ public class Req extends Spell {
 		PlayerUtils.hidePlayer(caster);
 		bindEntity(a);
 		caster.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20000, 1,true));
-		
+		a.setGravity(false);
 		
 		
 			
@@ -74,31 +74,43 @@ public class Req extends Spell {
 	@Override
 	public void move() {
 		
-		
+		if (checkSilence()) {
+			dead = true;
+		}
 		if (a.isOnGround()) {
 			dead = true;
 		}
 		float f = ((float)speedX)/50;
-		
+		caster.setGliding(true);
 		playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,0.3F,f);
 		caster.setNoDamageTicks(3);
 		// TODO Auto-generated method stub
+		//a.setVelocity(caster.getLocation().getDirection().multiply(1.5));
 		loc = a.getLocation();
-		//a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(4)));
+		
 		if (caster.isSneaking()) {
 			speedX++;
-			a.setVelocity(caster.getLocation().getDirection().multiply(1.5));
+			//a.setVelocity(caster.getLocation().getDirection().multiply(1.5));
 			
 			//playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.1F,0.4F);
 			
 		}
 		else {
-			a.setVelocity(caster.getLocation().getDirection().multiply(1));
+			//a.setVelocity(caster.getLocation().getDirection().multiply(1));
 			
 			
 		}
+		if (caster.isSneaking()) {
+			a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(9)));
+			//playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.01F,0.4F);
+		}
+		else {
+			a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)));
+		}
 		
-		
+		a.setRotation(-caster.getLocation().getYaw(), -caster.getLocation().getPitch());
+		//doPin(a,caster.getLocation().add(caster.getLocation().getDirection().multiply(11)));
+		//a.setVelocity(a.getVelocity().multiply(5));
 		if (speedX <= 0)
 			speedX = 0;
 		doPull(caster,a.getLocation(),a.getLocation().distance(caster.getLocation())/6);

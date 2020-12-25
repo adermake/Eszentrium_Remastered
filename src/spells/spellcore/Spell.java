@@ -30,6 +30,7 @@ import org.bukkit.util.Vector;
 import esze.enums.GameType;
 import esze.main.main;
 import esze.utils.Actionbar;
+import esze.utils.ParUtils;
 import io.netty.util.internal.ThreadLocalRandom;
 import spells.spells.AntlitzderGöttin;
 
@@ -423,7 +424,7 @@ public abstract class Spell {
 	}
 	public void collideWithBlock() {
 		if (hitBlock) {
-			if (loc.getBlock().getType().isSolid()) {
+			if (loc.getBlock().getType().isSolid() && !loc.getBlock().getType().toString().contains("DOOR")) {
 				onBlockHit(loc.getBlock());
 				
 			}
@@ -694,7 +695,7 @@ public abstract class Spell {
 	}
 	
 	
-	public void doPull(Entity e, Location toLocation,double speed) {
+	public Vector doPull(Entity e, Location toLocation,double speed) {
 		// multiply default 0.25
 		if (e instanceof Player) {
 			if(e != caster) {
@@ -703,9 +704,23 @@ public abstract class Spell {
 		}
 		if (toLocation.toVector().distance(e.getLocation().toVector()) > minDist) {
 			e.setVelocity(toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(speed));
+			return toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(speed);
 		}
+		
+		return new Vector(0,0,0);
 	}
-	public void doPin(Entity e, Location toLocation) {
+	
+	public Vector doPullin(Entity e, Location toLocation,double pspeed,double speed) {
+		if (e.getLocation().distance(toLocation)<30) {
+			return doPin(e,toLocation,pspeed);
+		}
+		else {
+			return doPull(e,toLocation,speed);
+		}
+		
+		
+	}
+	public Vector doPin(Entity e, Location toLocation) {
 		// multiply default 0.25
 		if (e instanceof Player) {
 			if(e != caster) {
@@ -715,9 +730,12 @@ public abstract class Spell {
 		if (toLocation.toVector().distance(e.getLocation().toVector()) > minDist) {
 			double s = e.getLocation().distance(toLocation)/5;
 			e.setVelocity(toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s));
+			return toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s);
 		}
+		
+		return new Vector(0,0,0);
 	}
-	public void doPin(Entity e, Location toLocation,double power) {
+	public Vector doPin(Entity e, Location toLocation,double power) {
 		// multiply default 0.25
 		if (e instanceof Player) {
 			if(e != caster) {
@@ -727,7 +745,10 @@ public abstract class Spell {
 		if (toLocation.toVector().distance(e.getLocation().toVector()) > minDist) {
 			double s = e.getLocation().distance(toLocation)/5;
 			e.setVelocity(toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s*power));
+			return toLocation.toVector().subtract(e.getLocation().toVector()).normalize().multiply(s);
 		}
+		
+		return new Vector(0,0,0);
 	}
 	public Player pointEntity(Player p) {
 		int range = 300;
@@ -874,10 +895,12 @@ public abstract class Spell {
 
 			Vector direction = loc.getDirection().normalize();
 			double x = direction.getX() * t;
-			double y = direction.getY() * t + 1.5;
+			double y = direction.getY() * t;
 			double z = direction.getZ() * t;
+			
 			loc.add(x, y, z);
 			Location lo = loc.clone();
+			
 			if (loc.getY()<= 60) {
 				return null;
 			}
@@ -893,12 +916,12 @@ public abstract class Spell {
 
 	}
 	public Location block(Player p,int range) {
-		Location loc = p.getLocation();
+		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= range; t++) {
 
 			Vector direction = loc.getDirection().normalize().multiply(0.5);
 			double x = direction.getX() * t;
-			double y = direction.getY() * t + 1.5;
+			double y = direction.getY() * t ;
 			double z = direction.getZ() * t;
 			loc.add(x, y, z);
 			Location lo = loc.clone();

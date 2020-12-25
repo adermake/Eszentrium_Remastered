@@ -20,23 +20,29 @@ import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
 public class Plasmablase extends Spell {
-
+	
+	double rad = 12;
+	Vector dir = new Vector(0,1,0);
+	int animCooldown = 0;
 	public Plasmablase() {
-		cooldown = 20 * 35;
+		cooldown = 20 * 40;
 		
 		name = "§3Plasmablase";
 		hitSpell = true;
-		canHitCastersSpells = true;
+		canHitCastersSpells = false;
 		hitboxSize = rad;
-		canHitSelf = false;
-		steprange = 20 * 6;
+		
+		multihit = true;
+		steprange = 20 * 10;
 		
 		addSpellType(SpellType.AURA);
-		addSpellType(SpellType.LOCKDOWN);
+		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.SUPPORT);
+		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.MULTIHIT);
 		
-		setLore("§7Erzeugt für kurze Zeit eine Blase um#§7den Spieler herum. Zauber von außerhalb#§7können nicht in das Innere eindringen, während#§7Gegnerin der Blase nicht mehr hinauskommen.#§7Dies gilt nicht für den Anwender.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7kann der Anwender ebenfalls nicht aus der#§7Blase entkommen.");
-		setBetterLore("§7Erzeugt für kurze Zeit eine Blase um den#§7Spieler herum. Zauber von außerhalb können#§7nicht in das Innere eindringen, während#§7Gegnerin der Blase nicht mehr hinauskommen.#§7Dies gilt nicht für den Anwender.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7kann der Anwender ebenfalls nicht aus der#§7Blase entkommen.");
+		setLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.");
+		setBetterLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.");
 	}
 	
 	@Override
@@ -47,7 +53,13 @@ public class Plasmablase extends Spell {
 		bulletHitEffect(caster.getLocation().getDirection().multiply(-1),loc.clone());
 		if (refined) {
 			steprange*=2;
+			rad = 18;
+			hitboxSize = rad;
 		}
+		
+		
+		caster.setAllowFlight(true);
+		caster.setFlying(true);
 	}
 
 	@Override
@@ -62,23 +74,16 @@ public class Plasmablase extends Spell {
 		
 	}
 
-	Vector dir = new Vector(0,1,0);
+	
 	@Override
 	public void move() {
 		
-		if (caster.isSneaking()) {
-			canHitSelf = true;
-		}
-		else {
-			canHitSelf = false;
-			if (hitEntitys.contains(caster)) {
-				hitEntitys.remove(caster);
-			}
-		}
-			
-		
+	
+		animCooldown--;
+		if (animCooldown < 0) 
+			animCooldown = 0;
 		// TODO Auto-generated method stub
-		for (Entity ent : hitEntitys) {
+		/*for (Entity ent : hitEntitys) {
 			if (ent.getLocation().distance(loc)> rad) {
 				if (ent instanceof Player) {
 					Player p = (Player)ent;
@@ -92,11 +97,28 @@ public class Plasmablase extends Spell {
 				playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,1.8F);
 			}
 		}
+		*/
 		
+		if (caster.getLocation().distance(loc) > rad) {
+			dead = true;
+			if (caster.getGameMode() == GameMode.SURVIVAL)
+			caster.setAllowFlight(false);
+			
+			
+			
+			caster.setVelocity(caster.getVelocity().add(caster.getLocation().getDirection().multiply(3)));
+			Vector d = loc.toVector().subtract(caster.getLocation().toVector());
+			animCooldown = 0;
+			bulletHitEffect(d,loc.clone());
+			ParUtils.createFlyingParticle(Particles.END_ROD, caster.getLocation(), 2, 2, 2, 10, 3, caster.getLocation().getDirection());
+			ParUtils.parKreisDir(Particles.END_ROD, caster.getLocation(), 3, 0, 5, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+		}
 	}
-	double rad = 15;
+	
 	@Override
 	public void display() {
+		
+		
 		// TODO Auto-generated method stub
 		for (int i = 0;i<3;i++) {
 			loc.setPitch(loc.getPitch()+15);
@@ -117,6 +139,10 @@ public class Plasmablase extends Spell {
 	}
 
 	public void bulletHitEffect(Vector ind,Location inl) {
+		if (animCooldown <= 0) {
+			
+				playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,1.8F);
+		animCooldown = 15;
 		ParUtils.createParticle(Particles.FLASH, inl, 0, 0, 0,1, 1);
 		Vector d = ind.clone();
 		Location l = inl.clone();
@@ -142,7 +168,7 @@ public class Plasmablase extends Spell {
 			}
 		}.runTaskTimer(main.plugin, 1,1);
 		
-		
+		}
 	}
 	
 	public double calcWidthOfCircle(double r,double h) {
@@ -151,12 +177,20 @@ public class Plasmablase extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
+		Vector v = p.getLocation().toVector().subtract(loc.toVector());
+		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, p.getLocation(), 2, 0, 0, v,v);
+		bulletHitEffect(v.multiply(-1), loc.clone());
+		doKnockback(p, loc.clone(), 2);
 		
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
+		Vector v = ent.getLocation().toVector().subtract(loc.toVector());
+		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, ent.getLocation(), 2, 0, 0, v,v);
+		bulletHitEffect(v.multiply(-1), loc.clone());
+		doKnockback(ent, loc.clone(), 2);
 		
 	}
 

@@ -779,7 +779,32 @@ public class ParUtils {
 		
 		return items;
 	}
-	
+	public static ArrayList<Item> dropItemEffectVector(Location loc,Material m,int count,int delay,double power,Vector dir,int idoffset) {
+		ArrayList<Item> items = new ArrayList<Item>();
+		for (int i = 0;i<count;i++) {
+			ItemStack im = new ItemStack(m);
+			
+			ItemMeta imet = im.getItemMeta();
+			imet.setDisplayName(""+(i+idoffset));
+			im.setItemMeta(imet);
+			Item it = loc.getWorld().dropItem(loc, im);
+			
+		
+			it.setVelocity(dir.multiply(power));
+			it.setPickupDelay(1000);
+			items.add(it);
+		}
+		
+		new BukkitRunnable() {
+			public void run() {
+				for (Item i : items) {
+					i.remove();
+				}
+			}
+		}.runTaskLater(main.plugin, delay);
+		
+		return items;
+	}
 	public static void pullItemEffectVector(Location loc,Material m,int delay,Location toLocation,double speed) {
 	
 		

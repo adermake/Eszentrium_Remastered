@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.ParticleType;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -39,6 +40,7 @@ public class DunklerWind extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		setLore("§7Beschwört ein Projektil, das dem#§7Mauszeiger folgt. Nach kurzer Verzögerung werden#§7alle getroffenen Gegner nach unten#§7geschleudert.# #§eF:§7 Der Spieler springt#§7Richtung Projektil und zieht alle Gegner in der#§7Nähe mit sich.");
 	}
+	
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
@@ -64,9 +66,12 @@ public class DunklerWind extends Spell {
 	
 	int jumpcooldown = 0;
 	boolean activate = false;
+	int knockdownCooldown = 0;
 	@Override
 	public void move() {
-		if (step > speed * 20 * 2) {
+		knockdownCooldown++;
+		
+		if (step > speed * 20 * 2 && knockdownCooldown > 5) {
 			hitPlayer = true;
 			hitEntity = true;
 		}
@@ -170,6 +175,17 @@ public class DunklerWind extends Spell {
 		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
 		p.setVelocity(p.getVelocity().add(new Vector(0,-10,0)));
+		
+		
+		
+		new BukkitRunnable() {
+			public void run() {
+				knockdownCooldown = 0;
+				hitEntity = false;
+				hitPlayer = false;
+			}
+		}.runTaskLater(main.plugin, 1);
+		
 	}
 
 	@Override

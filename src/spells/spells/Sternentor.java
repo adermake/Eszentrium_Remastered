@@ -8,8 +8,10 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
@@ -34,15 +36,22 @@ public class Sternentor extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.SUPPORT);
 		
-		setLore("§7Erzeugt für kurze Zeit ein Feld auf dem#§7anvisierten Block. Spieler in diesem Feld werden in#§7Blickrichtung katapultiert. Für Gegner wirkt dieser Effekt#§7erst nach kurzer Verzögerung.# #§eShift:§7 Solange diese#§7Taste gedrückt bleibt, wird die Wurfrichtung#§7umgekehrt.# #§eF:§7 Fixiert die Wurfrichtung des Sternentors#§7für die verbleibende Dauer des Zaubers.");
-		setBetterLore("§7Erzeugt für kurze Zeit ein Feld auf dem#§7anvisierten Block. Spieler in diesem Feld werden in#§7Blickrichtung katapultiert.# #§eShift:§7 Solange diese Taste#§7gedrückt bleibt, wird die Wurfrichtung umgekehrt.##§7#§eF:§7 Fixiert die Wurfrichtung des Sternentors für die#§7verbleibende Dauer des Zaubers.");
+		setLore("Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert. Für Gegner wirkt dieser Effekt erst nach kurzer Verzögerung." + 
+				"Shift: Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt." + 
+				"F: Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers." 
+				);
+		setBetterLore("Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert." + 
+				"Shift: Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt." + 
+				"F: Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.");
 	}
 	int setuptime = 15;
+	int hitCooldown = 0;
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
 		loc = caster.getLocation().add(caster.getLocation().getDirection().multiply(15));
 		Location l1 = block(caster);
+		
 		if (l1 != null) {
 			loc = l1.add(0,2,0);
 			
@@ -79,7 +88,11 @@ public class Sternentor extends Spell {
 	public void display() {
 		
 		
-			
+			hitCooldown--;
+			if (hitCooldown <= 0) {
+				hitPlayer = true;
+				hitEntity = true;
+			}
 		
 		if (!lock)
 		dirvec = caster.getLocation().getDirection();
@@ -138,7 +151,13 @@ public class Sternentor extends Spell {
 		else {
 			p.setVelocity(dirvec.clone().multiply(5));
 		}
-		
+		new BukkitRunnable() {
+			public void run( ) {
+				hitEntity = false;
+				hitPlayer = false;
+				hitCooldown = 5;
+			}
+		}.runTaskLater(main.plugin,1);
 	}
 
 	@Override

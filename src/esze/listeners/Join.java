@@ -9,14 +9,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-
-
+import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.main.main;
 import esze.players.PlayerAPI;
 import esze.players.PlayerInfo;
+import esze.types.TypeTEAMS;
 import esze.utils.ItemStackUtils;
 import esze.utils.LobbyUtils;
+import esze.utils.ScoreboardTeamUtils;
 
 public class Join implements Listener{
 	
@@ -34,7 +35,7 @@ public class Join implements Listener{
 		p.setWalkSpeed(0.2F);
 		
 		//Clears Inventory of Players
-		givePlayerLobbyItems(p);
+		GameType.getType().givePlayerLobbyItems(p);
 		if(Gamestate.getGameState() == Gamestate.LOBBY){
 			//p.teleport((Location) main.plugin.getConfig().get("lobby.loc"));
 			e.setJoinMessage("§8> §3" + p.getName() + " §7ist beigetreten.");
@@ -56,15 +57,16 @@ public class Join implements Listener{
 	public void onLeave(PlayerQuitEvent e){
 		Player p = e.getPlayer();
 		e.setQuitMessage("§8< §6"+p.getName()+" §7hat das Spiel verlassen");
+		ScoreboardTeamUtils.giveScoreboard(p);
+		
+		if (GameType.getType() instanceof TypeTEAMS) {
+			TypeTEAMS tt = (TypeTEAMS) GameType.getType();
+			tt.removePlayerFromAllTeams(p);
+		}
+		
+		
 	}
 
 	
-	public static void givePlayerLobbyItems(Player p) {
-		if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-			p.getInventory().clear();
-		}
-		p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
-		p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
-		p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-	}
+	
 }

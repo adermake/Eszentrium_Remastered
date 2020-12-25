@@ -21,6 +21,7 @@ import esze.main.LobbyCountdownRunnable;
 import esze.main.main;
 import esze.menu.ColorTagSpellSelectionMenu;
 import esze.menu.SpellAnalyticsMenu;
+import esze.menu.TeamSelectionMenu;
 import esze.utils.MathUtils;
 
 import weapons.WeaponMenu;
@@ -140,7 +141,9 @@ public class Interact implements Listener{
 				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Spellsammlung")) {
 					new ColorTagSpellSelectionMenu().open(p);
 				}
-				
+				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Teamauswahl")) {
+					new TeamSelectionMenu(p).open(p);
+				}
 				
 			}
 			if (p.isSneaking() && !p.getPassengers().isEmpty()) {

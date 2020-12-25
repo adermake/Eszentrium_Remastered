@@ -16,7 +16,7 @@ public class Orbitar extends Spell {
 	public ArrayList<OrbitarOrb> orb = new ArrayList<OrbitarOrb>();
 	public Orbitar() {
 		name = "§3Orbitar";
-		cooldown = 20 * 42;
+		cooldown = 20 * 37;
 		steprange = 20 * 6;
 		hitPlayer = false;
 		hitEntity = false;

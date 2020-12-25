@@ -28,6 +28,7 @@ public class Eggsplosive extends Spell {
 		// TODO Auto-generated method stub
 		loc = overrideLoc;
 		bindEntity(caster.getWorld().spawnEntity(loc, EntityType.EGG));
+		spellEnt.setVelocity(loc.getDirection().multiply(2));
 		
 	}
 
@@ -81,7 +82,7 @@ public class Eggsplosive extends Spell {
 
 	@Override
 	public void onDeath() {
-		new Explosion(2,9,1,2,caster,loc, name);
+		new Explosion(2,4,1,2,caster,loc, name);
 		
 	}
 	

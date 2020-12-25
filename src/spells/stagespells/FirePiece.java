@@ -26,6 +26,7 @@ public class FirePiece extends Spell {
 		multihit = true;
 		hitPlayer = true;
 		hitEntity = true;
+		
 		castSpell(caster, name);
 	}
 	 

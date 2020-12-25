@@ -84,9 +84,9 @@ public class TypeTTT extends Type{
 					main.damageCause.put(p, "");
 				}
 				if (main.damageCause.get(p).equals("")) {
-					main.damageCause.put(p, main.voiddamage);
-				} else if (!main.damageCause.get(p).endsWith(main.voiddamage)){
-					main.damageCause.put(p, main.damageCause.get(p) + "-" + main.voiddamage);
+					main.damageCause.put(p, voiddamage);
+				} else if (!main.damageCause.get(p).endsWith(voiddamage)){
+					main.damageCause.put(p, main.damageCause.get(p) + "-" + voiddamage);
 				}
 				p.damage(40);
 			}
@@ -510,7 +510,12 @@ public class TypeTTT extends Type{
 			}
 		}.runTaskLater(main.plugin, 20);
 		
-		Music.sp.destroy();
+		new BukkitRunnable() {
+			public void run() {
+				if (Music.sp != null) 
+				Music.sp.destroy();
+			}
+		}.runTaskLater(main.plugin, 5);
 		CorpseUtils.removeAllCorpses();
 		for(Entity e : Bukkit.getWorld("world").getEntities()){
 			if(e.getType() != EntityType.PLAYER){

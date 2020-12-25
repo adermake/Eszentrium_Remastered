@@ -23,7 +23,7 @@ public class Flammenwand extends Spell {
 		name = "§6Flammenwand";
 		cooldown = 20 * 40;
 		casttime = 20 * 5;
-		speed = 1;
+		speed = 3;
 		
 		steprange = 50;
 	
@@ -46,7 +46,7 @@ public class Flammenwand extends Spell {
 		
 		if (refined)  {
 			steprange = 300;
-			speed = 3;
+			
 		}
 			
 		
@@ -89,7 +89,7 @@ public class Flammenwand extends Spell {
 		}
 		if (l3 == null) {
 			l3 = l2.clone();
-			//v = caster.getLocation().getDirection();
+			v = l2.toVector().subtract(l1.toVector()).normalize();
 		}
 		start = l1.clone();
 	}

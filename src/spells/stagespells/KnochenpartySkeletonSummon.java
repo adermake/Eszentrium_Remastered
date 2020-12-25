@@ -19,6 +19,7 @@ import esze.utils.SoundUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
+import spells.spells.Knochenparty;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 import spells.stagespells.VampirpilzStage2;
@@ -27,9 +28,11 @@ public class KnochenpartySkeletonSummon extends Spell{
 	Vector vel;
 	Location overrideLoc;
 	Location origin;
-	public KnochenpartySkeletonSummon(Player c,Location l,Vector dir) {
+	Knochenparty kno;
+	public KnochenpartySkeletonSummon(Player c,Location l,Vector dir,Knochenparty k) {
 		vel = dir.clone();
 		origin = l.clone();
+		kno = k;
 		caster = c;
 		overrideLoc = l;
 		cooldown = 20 * 62;
@@ -121,7 +124,7 @@ public class KnochenpartySkeletonSummon extends Spell{
 			//loc = i.getLocation();
 			loc =loc.add(vel.normalize().multiply(6));
 			//ParUtils.debug(loc.clone().add(0,2,0));
-			new KnochenpartySkeleton(caster,  loc.clone().add(0,0,0),new Vector(0,0.5F,0),origin.clone(),name);
+			new KnochenpartySkeleton(caster,  loc.clone().add(0,0,0),new Vector(0,0.5F,0),origin.clone(),name,kno);
 			
 			ParUtils.dropItemEffectRandomVector(loc, Material.BONE, 6, 50, 0.4);
 			//ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 5, 2);

@@ -17,18 +17,21 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
+import spells.spells.Knochenparty;
 
 public class KnochenpartySkeleton extends Spell {
 	Skeleton ent;
 	Location origin;
-	public KnochenpartySkeleton(Player caster,Location l,Vector dir, Location origin,String namae) {
+	Knochenparty kno;
+	public KnochenpartySkeleton(Player caster,Location l,Vector dir, Location origin,String namae,Knochenparty k) {
 		steprange = 20 * 10;
 		this.origin = origin;
 		hitboxSize = 1.6;
 		hitPlayer = true;
-		hitEntity = false;
+		hitEntity = true;
 		loc = caster.getEyeLocation();
 		multihit = true;
+		kno = k;
 		
 		//
 	
@@ -112,6 +115,29 @@ public class KnochenpartySkeleton extends Spell {
 				
 			}
 		}
+		
+		for (LivingEntity p : caster.getWorld().getLivingEntities()) {
+			if (!unHittable.contains(p)) {
+				Location ploc = p.getLocation();
+				ploc.setY(0);
+				Location cloneLoc = loc.clone();
+				cloneLoc.setY(0);
+				
+				if (ploc.distance(cloneLoc)<4) {
+					
+					double dif = p.getLocation().getY() - loc.getY();
+					dif = dif/2;
+					skelvel =new Vector(0,dif,0);
+					
+					if (dif > 1 && !jumped) {
+						jumped = true;
+						playSound(Sound.ENTITY_HORSE_JUMP,loc,1,1);
+					}
+					
+				}
+				
+			}
+		}
 		skelvel.setY(skelvel.getY()-0.1);
 		if (skelvel.getY()<-2) {
 			skelvel.setY(-2);
@@ -130,26 +156,35 @@ public class KnochenpartySkeleton extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
-		if (origin.distance(loc)>4) {
-			
-		
+		if (origin.distance(loc)>4 && kno.canBounce(p)) {
+		kno.addBounce(p);
 		loc = ent.getLocation();
-		Vector v = origin.toVector().subtract(loc.toVector()).normalize();
+		Vector v = origin.toVector().setY(p.getLocation().getY()).subtract(loc.toVector().setY(p.getLocation().getY())).normalize();
 		
-		p.setVelocity(v.multiply(2));
+		p.setVelocity(v.multiply(2).add(new Vector(0,0.4,0)));
 		damage(p,2,caster);
-		
-	
-		
+				
 		ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 3, 1);
 		playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,1);
+		
 		}
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 	
-		
+		if (origin.distance(loc)>4 && kno.canBounce(ent)) {
+			kno.addBounce(ent);
+			loc = ent.getLocation();
+			Vector v = origin.toVector().setY(ent.getLocation().getY()).subtract(loc.toVector().setY(ent.getLocation().getY())).normalize();
+			
+			ent.setVelocity(v.multiply(2).add(new Vector(0,0.4,0)));
+			damage(ent,2,caster);
+					
+			ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 3, 1);
+			playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,1);
+			
+			}
 		
 		
 	}

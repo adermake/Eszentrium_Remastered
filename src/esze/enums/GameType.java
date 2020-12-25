@@ -2,6 +2,7 @@ package esze.enums;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import esze.main.main;
 import esze.types.Type;
@@ -33,8 +34,13 @@ public class GameType {
 	}
 	
 	public static boolean setTypeByName(String typeName){
+	
+		
 		try{
+			
 			type = (Type) Class.forName("esze.types.Type" + typeName.toUpperCase()).newInstance();
+			
+				
 			
 			main.plugin.getConfig().set("settings.mode", typeName.toUpperCase());
 			main.plugin.saveConfig();
@@ -57,5 +63,7 @@ public class GameType {
 			}
 		}
 	}
+	
+
 
 }

@@ -66,7 +66,8 @@ public class Hühnchenluftschlag extends Spell{
 	}
 	boolean dropped = false;
 	Vector dir;
-	int i = 0;
+	int egg = 1;
+	int eggStop = 0;
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
@@ -86,6 +87,7 @@ public class Hühnchenluftschlag extends Spell{
 				
 				dir = caster.getLocation().getDirection();
 				dropped = true;
+				caster.setVelocity(caster.getVelocity().setY(2));
 				step = 0;
 				}
 			}
@@ -114,20 +116,25 @@ public class Hühnchenluftschlag extends Spell{
 			}
 		}
 		
-		i++;
-		if (i>3)
+		--eggStop;
+		if (swap() && egg > 0 && eggStop <= 0)
 		{
-			i = 0;
+			eggStop = 5;
+			egg--;
 			new BukkitRunnable() {
-				Location sLoc = c.getLocation();
-				@Override
+				int t = 0;
 				public void run() {
-					new Eggsplosive(caster,sLoc.add(0,-1,0), name);
-					playSound(Sound.ENTITY_CHICKEN_EGG,loc,4,1);
+					t++;
+					if (t > 20) {
+						this.cancel();
+					}
+					new Eggsplosive(caster,caster.getLocation().add(caster.getLocation().getDirection().multiply(3).add(randVector().multiply(0.5))), name);
 				}
-			}.runTaskLater(main.plugin,3);
+			}.runTaskTimer(main.plugin, 1, 1);
+			
 			
 		}
+		clearswap();
 		
 		
 		

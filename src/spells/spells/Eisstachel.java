@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.enums.Gamestate;
 import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -173,7 +174,7 @@ public class Eisstachel extends Spell {
 				
 				if (ent instanceof Player) {
 					Player p = (Player)ent;
-					if (p.getGameMode() == GameMode.ADVENTURE ) {
+					if (p.getGameMode() == GameMode.ADVENTURE || Gamestate.getGameState() == Gamestate.LOBBY ) {
 						this.cancel();
 					}
 				}
@@ -224,7 +225,7 @@ public class Eisstachel extends Spell {
 		
 	}
 
-	public void playerTookDamage(Player p,double damage) {
+	public void playerTookDamage(Player p,double d) {
 		
 	
 		if (frozen.contains(p)) {
@@ -255,9 +256,24 @@ public class Eisstachel extends Spell {
 				fb.setGravity(true);
 				doKnockback(fb, p.getLocation(), 2);
 			}
-			p.setNoDamageTicks(0);
-			p.damage(damage);
-			p.setNoDamageTicks(20);
+			
+			if (d < 20) {
+				
+			
+			new BukkitRunnable() {
+				double damage = d;
+				public void run() {
+					if (damage > p.getHealth()) {
+						damage = p.getHealth();
+					}
+					p.setNoDamageTicks(0);
+					p.damage(damage);
+					p.setNoDamageTicks(20);
+				}
+			}.runTaskLater(main.plugin, 2);
+			
+			}
+			//p.setNoDamageTicks(20);
 			
 		}
 	}

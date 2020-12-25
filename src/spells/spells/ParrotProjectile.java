@@ -30,6 +30,9 @@ public class ParrotProjectile extends Spell {
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.KNOCKBACK);
 		hitboxSize = 1.5F;
+		if (refined) {
+			steprange = 80;
+		}
 	}
 	double rad = 1;
 	Parrot par;

@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.enums.GameType;
 import esze.listeners.Join;
 import esze.main.main;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -70,7 +71,7 @@ public class LobbyUtils {
 			p.setMaxHealth(20);
 			p.setHealth(20);
 			PlayerUtils.hidePlayer(p,35);
-			Join.givePlayerLobbyItems(p);
+			GameType.getType().givePlayerLobbyItems(p);
 		}
 		
 		

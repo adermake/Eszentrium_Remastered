@@ -21,23 +21,30 @@ import spells.stagespells.ParrotTrail;
 
 public class Vogelattacke extends Spell {
 
+	int stepbound = 15;
 	public Vogelattacke() {
-		name = "§cVogelattacke";
+		name = "§6Vogelattacke";
 		cooldown = 20 * 30;
-		steprange = 30;
+		//steprange = 30 * 10;
+		stepbound = 15;
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.MULTIHIT);
 		setLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
+		setBetterLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
 	}
 	
 	ArrayList<Parrot> parrots = new ArrayList<Parrot>();
-	int parrotCount = 12;
+	int parrotCount = 14;
 	Parrot par;
 	@Override
 	public void setUp() {
-		
+		if (refined) {
+			parrotCount = 62;
+			stepbound = 30;
+			//steprange = 30 * 10;
+		}
 		par = (Parrot) spawnEntity(EntityType.PARROT);
 		
 		PlayerUtils.hidePlayer(caster);
@@ -73,30 +80,34 @@ public class Vogelattacke extends Spell {
 	public void move() {
 		// TODO Auto-generated method stub
 		if (caster.isSneaking()) {
-			if (step < 15) {
-				step = 15;
+			if (step < stepbound) {
+				step = stepbound;
 				
 			}
 			
 		}
-		if (step > 15) {
+		if (step > stepbound) {
 			par.remove();
 		}
-		if (step > 15) {
+		if (step > stepbound && parrotCount > 0) {
 			
-			
+			parrotCount -= 1;
 			sneaker++;
 			
-			
+			parrots.get(parrots.size()-1).remove();
+			parrots.remove(parrots.size()-1);
 			caster.setVelocity(caster.getLocation().getDirection().multiply(-0.2));
-			if (step> 20)
+			if (step> stepbound+5)
 			new ParrotProjectile(caster,name,true);
 			
 			
 			
 		}
 		else {
-			
+			if (parrotCount == 0) {
+				dead =true;
+				return;
+			}
 			
 			caster.setVelocity(caster.getLocation().getDirection().multiply(2));
 			

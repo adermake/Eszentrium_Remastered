@@ -70,7 +70,7 @@ import spells.spells.Scharfschuss;
 import spells.spells.Ghul;
 import spells.spells.Schicksalsschnitt;
 import spells.spells.Schleimschleuder;
-import spells.spells.Requiemspfeil;
+import spells.spells.Reqdum;
 import spells.spells.SchnittdersiebenWinde;
 import spells.spells.Schock;
 import spells.spells.SchreidesPhönix;
@@ -78,6 +78,7 @@ import spells.spells.Schwerkraftsmanipulation;
 import spells.spells.SchwerterausLicht;
 import spells.spells.SiegelderFurcht;
 import spells.spells.SpeerderZwietracht;
+import spells.spells.Springkraut;
 import spells.spells.Sternentor;
 import spells.spells.Stich;
 import spells.spells.Teleport;
@@ -91,6 +92,7 @@ import spells.spells.Zaubersprung;
 import esze.analytics.solo.SaveUtils;
 import esze.enums.GameType;
 import esze.types.TypeSOLO;
+import esze.types.TypeTEAMS;
 import esze.types.TypeTTT;
 import esze.utils.MathUtils;
 
@@ -204,7 +206,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new SchwerterausLicht());
 		registerSpell(new Schock());
 		
-		registerSpell(new Requiemspfeil());
+		registerSpell(new Reqdum());
 		registerSpell(new Ranke());
 		registerSpell(new Schicksalsschnitt());
 		registerSpell(new SchnittdersiebenWinde());
@@ -241,7 +243,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Flammenwand());
 		registerSpell(new Machtwort());
 		registerSpell(new Vogelattacke());
-		
+		registerSpell(new Springkraut());
 	}
 	
 	public static void registerSpell(Spell spell, Class...gameTypes){
@@ -254,6 +256,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		if(classes.isEmpty()){
 			classes.add(TypeTTT.class);
 			classes.add(TypeSOLO.class);
+			classes.add(TypeTEAMS.class);
 		}
 		
 		spells.put(spell, classes);

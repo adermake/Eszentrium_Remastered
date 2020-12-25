@@ -65,25 +65,25 @@ public class Feuerwerkshelix extends Spell {
 	        FireworkMeta fd = (FireworkMeta) f.getFireworkMeta();
 	        fd.setUnbreakable(true);
 	        fd.setPower(2);
-	        fd.addEffect(FireworkEffect.builder()
-	        		
-	                //.flicker(true)
-
-	              
-
-	                
-
-	                .with(Type.BALL)
-	                .withColor(Color.RED)
-	                .withColor(Color.ORANGE)
-	                .withColor(Color.MAROON)
-	               
-
-	                .withFade(Color.BLACK)
-
-	                
-
-	                .build());
+	        if (refined) {
+	            fd.addEffect(FireworkEffect.builder()
+		                .with(Type.BALL)
+		                .withColor(Color.BLUE)
+		                .withColor(Color.GREEN)
+		                .withColor(Color.TEAL)
+		                .withFade(Color.LIME)
+		                .build());
+	        }
+	        else {
+	            fd.addEffect(FireworkEffect.builder()
+		                .with(Type.BALL)
+		                .withColor(Color.RED)
+		                .withColor(Color.ORANGE)
+		                .withColor(Color.MAROON)
+		                .withFade(Color.BLACK)
+		                .build());
+	        }
+	    
 	       
 	        f.setFireworkMeta(fd);
 	        f1.setFireworkMeta(fd);

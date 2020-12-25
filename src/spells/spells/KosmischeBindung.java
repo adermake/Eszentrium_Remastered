@@ -26,8 +26,8 @@ import spells.spellcore.SpellType;
 public class KosmischeBindung extends Spell{
 	
 	public KosmischeBindung() {
-		name = "§eKosmische Bindung";
-		cooldown = 20*35;
+		name = "§3Kosmische Bindung";
+		cooldown = 20*50;
 		hitSpell = true;
 		hitPlayer = true;
 		hitEntity = true;

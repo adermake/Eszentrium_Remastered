@@ -3,6 +3,7 @@ package esze.main;
 import org.bukkit.Bukkit;
 
 import esze.enums.GameType;
+import esze.types.TypeTEAMS;
 
 public class GameRunnable {
 	
@@ -34,6 +35,7 @@ public class GameRunnable {
 	public static void stop(){
 		Bukkit.getScheduler().cancelTask(runnableTickID);
 		Bukkit.getScheduler().cancelTask(runnableSecID);
+		if (!(GameType.getType() instanceof TypeTEAMS))
 		GameType.refreshGameType();
 	}
 

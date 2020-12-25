@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import spells.spellcore.Spell;
-import spells.spells.Requiemspfeil;
+import spells.spells.Reqdum;
 
 public class Pfeil extends Spell {
 

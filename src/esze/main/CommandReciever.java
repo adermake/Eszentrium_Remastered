@@ -312,12 +312,14 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 						if(Gamestate.getGameState() == Gamestate.LOBBY){
 							if(args.length == 1){
 								String name = args[0];
+								GameType.getType().resetMode();
 								if(!GameType.setTypeByName(name)){
 									p.sendMessage("§8| §cUngültiger Modus!");
 									return false;
 								}
 								SpellList.registerSpells();
 								p.sendMessage("§8| §cModus geändert!");
+								
 								
 							}else{
 								p.sendMessage("§8| §c/setmode <Modus>");
@@ -640,6 +642,13 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 							}
 						}
 					}catch(Exception e){}
+					if (Gamestate.getGameState() == Gamestate.INGAME) {
+						for (Player p : Bukkit.getOnlinePlayers()) {
+							GameType.getType().givePlayerLobbyItems(p);
+						}
+					}
+					
+					
 					return to;
 			}else if(cmdname.contains("setitem")){
 				List<String> to = new ArrayList<String>();

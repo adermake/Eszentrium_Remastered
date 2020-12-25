@@ -1,9 +1,12 @@
 package spells.spells;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -16,6 +19,7 @@ import spells.spellcore.SpellType;
 
 public class Lichtstrudel extends Spell {
 
+	ArrayList<Entity> sounded = new ArrayList<Entity>();  
 	public Lichtstrudel() {
 		cooldown = 20 * 40;
 		name = "§cLichtstrudel";
@@ -43,6 +47,7 @@ public class Lichtstrudel extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
+		setGliding(caster, true);
 		playSound(Sound.BLOCK_BELL_USE,caster.getLocation(),8F,0.1f);
 	}
 
@@ -55,10 +60,10 @@ public class Lichtstrudel extends Spell {
 		//playSound(Sound.UI_TOAST_CHALLENGE_COMPLETE,caster.getLocation(),0.1F,2f);
 		// TODO Auto-generated method stub
 		if (delay > 4) {
-			
+			playSound(Sound.ENTITY_EVOKER_PREPARE_ATTACK,caster.getLocation(),0.2F,0.5f);
 			delay = 0;
 		}
-		playSound(Sound.ENTITY_EVOKER_PREPARE_ATTACK,caster.getLocation(),1F,0.5f);
+		
 		caster.setVelocity(caster.getLocation().getDirection());
 		if (step < 90 && delay == 0) {
 			//dot(caster.getLocation().add(0,1,0).clone(),lastdot.clone(),caster,100-steprange);
@@ -108,7 +113,7 @@ public class Lichtstrudel extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		
+		setGliding(caster, false);
 	}
 
 public void dot(Location la,Location to,Player p,int time ) {
@@ -117,12 +122,23 @@ public void dot(Location la,Location to,Player p,int time ) {
 			int t = time;
 			Location too = to.clone();
 			Location l = la.clone();
+			ArrayList<Entity> blackList = new ArrayList<Entity>();
+			
 			public void run() {
 				t--;
 				ParUtils.createParticle(Particles.END_ROD, l, 0, 0,0,0, 0);
 				for (LivingEntity le : p.getWorld().getLivingEntities()) {
+					if (!blackList.contains(le)) {
+						
+					
 					if (checkHit(le,l,p,3)) {
-						doPull(le, too,1);
+						blackList.add(le);
+						doPin(le, too,2);
+						if (!sounded.contains(le)) {
+							playSound(Sound.BLOCK_BEACON_ACTIVATE,l,25,2);
+							sounded.add(le);
+						}
+					}
 					}
 				}
 				if (t<0) {

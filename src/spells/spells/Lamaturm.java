@@ -9,6 +9,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
@@ -43,16 +45,21 @@ public class Lamaturm extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		loc = null;
-		
+		boolean ride = false;
 		loc = block(caster,10);
 		if (loc == null) {
 			
-			refund = true;
-			dead = true;
+			ride = true;
+			loc = loc(caster,5);
+			//refund = true;
+			//dead = true;
 		}
-		else {
+		
 			loc = getTop(loc).add(0,-0.5,0);
 			turret = (Llama) caster.getWorld().spawnEntity(loc, EntityType.LLAMA);
+			if (ride) {
+				turret.addPassenger(caster);
+			}
 			bindEntity(turret);
 			turret.setMaxHealth(10);
 			turret.setJumpStrength(0);
@@ -62,7 +69,7 @@ public class Lamaturm extends Spell {
 			turret.setCarryingChest(true);
 			noTargetEntitys.add(turret);
 			playSound(Sound.ENTITY_LLAMA_HURT,loc,4,1);
-		}
+		
 		
 		if (refined) {
 			maxShots = 10;
@@ -91,6 +98,7 @@ public class Lamaturm extends Spell {
 	public void move() {
 		if (turret == null)
 			return;
+		turret.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING,20*1000,0,true));
 		realDelay++;
 		//realDelay = /*(realDelay == -1) ? -1 : */realDelay++;
 		shootDelay++;

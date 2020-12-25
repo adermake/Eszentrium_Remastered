@@ -87,6 +87,7 @@ public class Verstummen extends Spell {
 		playSound (Sound.ENTITY_EVOKER_CAST_SPELL,p.getLocation(), (float) 1, 1);
 	
 		SilenceSelection s = new SilenceSelection();
+		
 		silence(p, s);
 		new BukkitRunnable() {
 			int t = 0;

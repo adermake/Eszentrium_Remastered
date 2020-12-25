@@ -22,7 +22,7 @@ import spells.spellcore.SpellType;
 public class Heldenstoﬂ extends Spell {
 
 	public Heldenstoﬂ() {
-		cooldown = 20 * 50;
+		cooldown = 20 * 45;
 		name = "ßcHeldenstoﬂ";
 		steprange = 50;
 		
@@ -30,7 +30,7 @@ public class Heldenstoﬂ extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
-		setLore("ß7Der Spieler fliegt in Blickrichtung#ß7voran. Nach kurzer Zeit oder bei Bodenkontakt#ß7entsteht eine Explosion, die Gegnern#ß7schadet und siewegschleudert. Je l‰nger der#ß7Zauber angehalten hat, desto st‰rker ist dieser#ß7Effekt.");
+		setLore("ß7Der Spieler fliegt in Blickrichtung#ß7voran. Nach kurzer Zeit oder bei Bodenkontakt#ß7entsteht eine Explosion, die Gegnern#ß7schadet und sie wegschleudert. Je l‰nger der#ß7Zauber angehalten hat, desto st‰rker ist dieser#ß7Effekt.# #Shift: Stoppt den Zauber sofort.");
 	}
 	
 	
@@ -57,6 +57,10 @@ public class Heldenstoﬂ extends Spell {
 		if (caster.isOnGround() && step > 20) {
 			dead = true;
 		}
+		if (caster.isSneaking()) {
+			dead = true;
+		}
+		
 		playSound(Sound.BLOCK_GRINDSTONE_USE,caster.getLocation(),1,2F);
 		ParUtils.createRedstoneParticle(caster.getLocation(), 0, 0, 0, 1, Color.ORANGE, 10);
 		ParUtils.createFlyingParticle(Particles.CRIT, caster.getLocation(), 1, 2, 1, 25,0.8F, caster.getVelocity());
@@ -78,6 +82,7 @@ public class Heldenstoﬂ extends Spell {
 		Vector v = caster.getVelocity().add(d.add(new Vector(0,h-h*calcLerpFactor(step, steprange),0)));
 		
 		caster.setVelocity(v);
+		
 	}
 
 	@Override
@@ -115,7 +120,10 @@ public class Heldenstoﬂ extends Spell {
 		// TODO Auto-generated method stub
 		double lf = calcLerpFactor(step, steprange);
 		new spells.stagespells.Explosion(12,8*lf,10*lf,1,caster,caster.getLocation().add(0,-2,0), name);
-		caster.setVelocity(caster.getVelocity().add(new Vector(0,1.5,0)));
+		if(caster.isOnGround()) {
+			caster.setVelocity(caster.getVelocity().add(new Vector(0,1.5,0)));
+		}
+		
 	}
 
 }

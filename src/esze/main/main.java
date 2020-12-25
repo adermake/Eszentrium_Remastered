@@ -77,8 +77,7 @@ public class main extends JavaPlugin {
 	public static main plugin;
 	public static String discord_TOKEN = "";
 	public static String mapname;
-	public static final String voiddamage = "void";
-	public static final String unknownDamage = "unknown";
+
 	public static HashMap<Player, String> damageCause = new HashMap<Player, String>();
 	public AppServer appServer;
 
@@ -208,7 +207,7 @@ public class main extends JavaPlugin {
 				p.teleport(new Location(Bukkit.getWorld("world"), 0, 105, 0));// teleport into Lobby
 			}
 
-			Join.givePlayerLobbyItems(p);
+			GameType.getType().givePlayerLobbyItems(p);
 		}
 
 		if (getConfig().contains("settings.dcToken")) {
@@ -311,31 +310,5 @@ public class main extends JavaPlugin {
 		return Jobj.toString();
 	}
 
-	public static String toStringCause(Player p) {
-		String[] in = main.damageCause.get(p).split("-");
-		String color = "§7";
-		String out = color;
-		// Analysis
-		if (in.length == 0) {
-			out = "ERROR:::";
-		} else if (in.length == 1) {
-			if (in[0].equals("")) {
-				out += p.getName() + " ERRORED TO DEATH!"; // no Cause old
-			} else if (in[0].equals(unknownDamage)) {
-				out += p.getName() + " starb!"; // no Cause
-			} else if (in[0].equals(voiddamage)) {
-				out += p.getName() + " fiel ins Void!"; // Void
-			} else {
-
-				out += p.getName() + " ERRORED TO DEATH! (" + in[0] + ")";
-			}
-		} else if (in.length == 2) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " getötet!"; // Cause+Player
-		} else if (in.length == 3) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " ins Void geworfen!"; // Cause+Player+void
-		} else {
-			out = main.damageCause.get(p);
-		}
-		return out;
-	}
+	
 }
