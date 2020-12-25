@@ -67,7 +67,7 @@ public class TeamSpellMenu extends ItemMenu{
 		PlayerUtils.showPlayer(p);
 		
 		SaveUtils.addPlayerSelection(p.getName(), new SaveSelection(icon.getName(), spells.get(0).getName(),
-				spells.get(1).getName(), spells.get(2).getName(), spells.get(3).getName())); //Analytics
+				spells.get(1).getName(), spells.get(2).getName(), spells.get(3).getName(), spells.get(4).getName())); //Analytics
 	}
 
 	@Override

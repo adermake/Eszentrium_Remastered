@@ -11,15 +11,17 @@ public class SaveSelection {
 	private String sp2;
 	private String sp3;
 	private String sp4;
+	private String sp5;
 	private String chsp;
 	
 	public SaveSelection() {}
 	
-	public SaveSelection(String chsp ,String sp1, String sp2, String sp3, String sp4) {
+	public SaveSelection(String chsp ,String sp1, String sp2, String sp3, String sp4, String sp5) {
 		this.sp1 = SaveUtils.rmColor(sp1);
 		this.sp2 = SaveUtils.rmColor(sp2);
 		this.sp3 = SaveUtils.rmColor(sp3);
 		this.sp4 = SaveUtils.rmColor(sp4);
+		this.sp5 = SaveUtils.rmColor(sp5);
 		this.chsp = SaveUtils.rmColor(chsp);
 	}
 
@@ -39,6 +41,8 @@ public class SaveSelection {
 		sp3 = g[3];
 		if (g.length < 5) {return;}
 		sp4 = g[4];
+		if (g.length < 6) {return;}
+		sp5 = g[5];
 	}
 	
 	@Override
@@ -50,6 +54,7 @@ public class SaveSelection {
 		s += (sp2 == null ? "" : sp2) + ",";
 		s += (sp3 == null ? "" : sp3) + ",";
 		s += (sp4 == null ? "" : sp4);
+		s += (sp5 == null ? "" : sp5);
 		
 		return s + "]";
 	}
@@ -79,6 +84,14 @@ public class SaveSelection {
 	public void setSp4(String sp4) {
 		this.sp4 = SaveUtils.rmColor(sp4);
 	}
+	
+	public String getSp5() {
+		return sp5;
+	}
+	public void setSp5(String sp5) {
+		this.sp5 = SaveUtils.rmColor(sp5);
+	}
+	
 	public String getChsp() {
 		return chsp;
 	}
@@ -93,6 +106,7 @@ public class SaveSelection {
 		choices.add(sp2);
 		choices.add(sp3);
 		choices.add(sp4);
+		choices.add(sp5);
 		return choices;
 	}
 
