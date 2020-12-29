@@ -268,6 +268,7 @@ public class Eisstachel extends Spell {
 					}
 					p.setNoDamageTicks(0);
 					p.damage(damage);
+					damage(p, d, caster);
 					p.setNoDamageTicks(20);
 				}
 			}.runTaskLater(main.plugin, 2);

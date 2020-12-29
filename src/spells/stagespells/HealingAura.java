@@ -61,6 +61,8 @@ public class HealingAura extends Spell {
 		// TODO Auto-generated method stub
 		if (!antiheal || p == caster) {
 			
+		if (p == caster) {
+		
 		
 		double health = p.getHealth();
 		health += healAmount;
@@ -68,6 +70,8 @@ public class HealingAura extends Spell {
 			health = p.getMaxHealth();
 		}
 		p.setHealth(health);
+		}	
+		
 		}
 		else {
 			damage(p,healAmount, caster);
@@ -78,15 +82,16 @@ public class HealingAura extends Spell {
 	public void onEntityHit(LivingEntity p) {
 		// TODO Auto-generated method stub
 		if (!antiheal) {
-		double health = p.getHealth();
-		health += healAmount;
-		if (health > p.getMaxHealth()) {
-			health = p.getMaxHealth();
-		}
-		p.setHealth(health);
+			if (p instanceof Player) {
+				heal(p, healAmount,caster);
+			}
+		
+	
 		}
 		else {
-			p.damage(healAmount);
+			
+			damage(p, healAmount, caster);
+			
 		}
 	
 	}

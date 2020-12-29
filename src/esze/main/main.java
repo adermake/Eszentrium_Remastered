@@ -58,6 +58,7 @@ import esze.utils.ItemStackUtils;
 import esze.utils.LibUtils;
 import esze.utils.Music;
 import esze.utils.NoCollision;
+import esze.utils.PlayerConfig;
 import esze.utils.PlayerUtils;
 import esze.utils.TTTFusion;
 import esze.utils.TTTTrade;
@@ -105,10 +106,12 @@ public class main extends JavaPlugin {
 		plugin = this;
 		// R
 
+		PlayerConfig.load();
 		this.getServer().getPluginManager().registerEvents(new EventCollector(), this);
 		Cooldowns.startCooldownHandler();
 
 		ConfigurationSerialization.registerClass(JumpPad.class);
+		ConfigurationSerialization.registerClass(PlayerConfig.class);
 		// R
 		/*
 		 * ParticleParam p = new ParticleParamItem((Particle<ParticleParamItem>)
@@ -236,7 +239,7 @@ public class main extends JavaPlugin {
 		System.out.println("Esze | App-Server hochgefahren.");
 
 		// PACKETS
-/*
+		/*
 		PacketListenerAPI.addPacketHandler(new PacketHandler() {
 			@Override
 			public void onSend(SentPacket packet) {
@@ -256,7 +259,9 @@ public class main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		// SaveUtils.backup();
-
+		//PlayerConfig.save();
+		
+		
 		try {
 			CorpseUtils.removeAllCorpses();
 		} catch (Error e) {

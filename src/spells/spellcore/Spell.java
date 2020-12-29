@@ -29,6 +29,7 @@ import org.bukkit.util.Vector;
 
 import esze.enums.GameType;
 import esze.main.main;
+import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
 import esze.utils.ParUtils;
 import io.netty.util.internal.ThreadLocalRandom;
@@ -91,6 +92,7 @@ public abstract class Spell {
 	protected static ArrayList<Player> hasDiedEntry = new ArrayList<Player>();
 	public static ArrayList<Entity> unHittable = new ArrayList<Entity>();
 	protected Location startPos;
+	protected Location lastAirPos;
 	protected Player originalCaster;
 	protected ArrayList<SpellType> spellTypes = new ArrayList<SpellType>();
 	protected ArrayList<String> lore = new ArrayList<String>();
@@ -137,6 +139,7 @@ public abstract class Spell {
 		caster = p;
 		loc = p.getEyeLocation();
 		startPos = p.getEyeLocation();
+		lastAirPos = p.getEyeLocation();
 		setUp(); // steht wahrscheinlich an der falschen Stelle
 		swap();
 		if (casttime > 0) {
@@ -281,6 +284,7 @@ public abstract class Spell {
 							if (speedmultiplier != 0) {
 								move();
 								display();
+								lastAirPos = loc.clone();
 							}
 							
 							if (!dead) {
@@ -487,8 +491,73 @@ public abstract class Spell {
 	public void clearHitBlacklist() {
 		hitEntitys.clear();
 	}
+	public BlockFace bounce0() {
+		
+		
+		Location l = lastAirPos;
+		Vector v = loc.toVector().subtract(l.toVector());
+		if (v.length() > 1) {
+			v = v.normalize();
+		}
+		
+		double stepSize = 0.1;
+		
+		int i = 100;
+		while ( !l.getBlock().getType().isSolid()) {
+			i--;
+			
+			l.add(v.clone().multiply(stepSize));
+			
+			if (i<= 0) {
+				Bukkit.broadcastMessage("Bounce mal den ram weg");
+				break;
+				
+			}
+				
+		}
+		
+		Location blockLock = l.getBlock().getLocation().add(0.5,0.5,0.5);
+		double dist  = 10000000;
+		BlockFace nearestFace = null;
+		for (BlockFace bf : BlockFace.values()) {
+			if (bf == BlockFace.DOWN || bf == BlockFace.UP || bf == BlockFace.WEST || bf == BlockFace.SOUTH || bf == BlockFace.EAST || bf == BlockFace.NORTH) {
+				Vector bfV = bf.getDirection().normalize().multiply(0.5);
+				
+				if (blockLock.clone().add(bfV).distance(l)<dist) {
+					nearestFace = bf;
+					dist = blockLock.clone().add(bfV).distance(l);
+				}
+				
+			}
+		}
+		Vector d = nearestFace.getDirection();
+		
+		if (nearestFace == BlockFace.NORTH || nearestFace == BlockFace.SOUTH) {
+			d.setZ(-d.getZ());
+		
+		}
+		if (nearestFace == BlockFace.UP ) {
+			d.setY(Math.abs(d.getY()));
+			
+			
+		}
+		if (nearestFace == BlockFace.DOWN ) {
+			d.setY(-Math.abs(d.getY()));
+			
+			
+		}
+		if (nearestFace == BlockFace.EAST || nearestFace == BlockFace.WEST) {
+			d.setX(-d.getX());
+		
+			
+		}
+		
+		
+		loc.setDirection(d);
+		return nearestFace;
+	}
 	
-	public void bounce() {
+	public BlockFace bounce() {
 		
 		if (loc.getBlock().getType().isSolid()) {
 			
@@ -497,6 +566,7 @@ public abstract class Spell {
 			BlockFace nearestFace = null;
 			for (BlockFace bf : BlockFace.values()) {
 				if (bf == BlockFace.DOWN || bf == BlockFace.UP || bf == BlockFace.WEST || bf == BlockFace.SOUTH || bf == BlockFace.EAST || bf == BlockFace.NORTH) {
+					
 					
 				
 				Block test = loc.getBlock().getRelative(bf);
@@ -513,36 +583,36 @@ public abstract class Spell {
 			}
 			if (nearestFace == BlockFace.NORTH || nearestFace == BlockFace.SOUTH) {
 				dir.setZ(-dir.getZ());
-				while (loc.getBlock().getType() == Material.AIR) {
-					loc.add(dir.getX(), dir.getY(), dir.getZ());
-				}
-				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 0.1F, 2);
-				startPos = loc.clone();
+			
+			}
+			if (nearestFace == BlockFace.UP ) {
+				dir.setY(Math.abs(dir.getY()));
+				
 				
 			}
-			if (nearestFace == BlockFace.UP || nearestFace == BlockFace.DOWN) {
-				dir.setY(-dir.getY());
-				while (loc.getBlock().getType() == Material.AIR) {
-					loc.add(dir.getX(), dir.getY(), dir.getZ());
-				}
-				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 1, 2);
-				startPos = loc.clone();
+			if (nearestFace == BlockFace.DOWN) {
+				dir.setY(-Math.abs(dir.getY()));
+				
+				
 			}
 			if (nearestFace == BlockFace.EAST || nearestFace == BlockFace.WEST) {
 				dir.setX(-dir.getX());
-				while (loc.getBlock().getType() == Material.AIR) {
-					loc.add(dir.getX(), dir.getY(), dir.getZ());
-				}
-				//playSound(Sound.BLOCK_ANVIL_LAND, loc, 1, 2);
-				startPos = loc.clone();
+			
 				
 			}
+			int i = 0;
 			
+			
+			
+			//playSound(Sound.BLOCK_ANVIL_LAND, loc, 1, 2);
+			startPos = loc.clone();
 			loc.setDirection(dir);
+			return nearestFace;
 		}
+		return null;
 	}
-	public Vector bounceDir() {
-		
+	public void bounceDir() {
+		/*
 		if (loc.getBlock().getType().isSolid()) {
 			
 			Vector dir = loc.getDirection();
@@ -593,9 +663,10 @@ public abstract class Spell {
 			
 			return dir;
 		}
-		return null;
+		return null;*/
 	}
-	public ArrayList<BlockFace> slideDir(Location l) {
+	public void slideDir(Location l) {
+		/*
 		ArrayList<BlockFace> bfs = new ArrayList<BlockFace>();
 		
 		
@@ -609,6 +680,7 @@ public abstract class Spell {
 			
 		
 		return bfs;
+		*/
 	}
 	public Entity spawnEntity(EntityType et) {
 		return loc.getWorld().spawnEntity(loc, et);
@@ -629,6 +701,20 @@ public abstract class Spell {
 	}
 	
 	public void damage(Entity ent, double damage,Player damager) {
+		
+		if (GameType.getType() instanceof TypeTEAMS) {
+			if (ent instanceof Player) {
+				TypeTEAMS team = (TypeTEAMS) GameType.getType();
+				Player victim = (Player) ent;
+				if (team.getTeammates(damager).contains(victim)) {
+					return;
+				}
+			}
+			
+			
+		}
+		
+		
 		if (ent instanceof Player) {
 			tagPlayer((Player) ent);
 		}
@@ -652,6 +738,18 @@ public abstract class Spell {
 	}
 	
 	public void heal(LivingEntity ent, double damage,Player healer) {
+		
+		if (GameType.getType() instanceof TypeTEAMS) {
+			if (ent instanceof Player) {
+				TypeTEAMS team = (TypeTEAMS) GameType.getType();
+				Player victim = (Player) ent;
+				if (!team.getTeammates(caster).contains(victim)) {
+					return;
+				}
+			}
+			
+			
+		}
 		double newhealth = ent.getHealth()+damage;
 		
 		if (ent.getMaxHealth()<newhealth) {
@@ -1165,6 +1263,7 @@ public abstract class Spell {
 		
 	}
 
+	
 	public static Location lookAt(Location loc, Location lookat) {
 
 		loc = loc.clone();

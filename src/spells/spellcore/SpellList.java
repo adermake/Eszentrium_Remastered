@@ -186,6 +186,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Archon(), TypeTTT.class);
 		registerSpell(new Erlösung(), TypeTTT.class);
 		registerSpell(new Heilen(), TypeTTT.class);
+		registerSpell(new Heilen(), TypeTEAMS.class);
 		registerSpell(new Hühnchenluftschlag());
 		registerSpell(new Kätzchenkanone());
 		registerSpell(new Kaminchen());

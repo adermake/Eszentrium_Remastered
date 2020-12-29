@@ -12,10 +12,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
+import esze.menu.CosmeticMenu;
 import esze.menu.ItemMenu;
 import esze.menu.ItemMenuIcon;
 import esze.utils.Actionbar;
 import esze.utils.ItemStackUtils;
+import esze.utils.NBTUtils;
+import esze.utils.PlayerConfig;
 
 public class WeaponMenu extends ItemMenu{
 	
@@ -89,6 +92,7 @@ public class WeaponMenu extends ItemMenu{
 		running = true;
 		WeaponAbilitys.cd.clear();
 		WeaponAbilitys.cd2.clear();
+	
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			
 			
@@ -144,11 +148,13 @@ public class WeaponMenu extends ItemMenu{
 			}
 			*/
 			
-				ItemStack is = ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(WeaponList.weapons.get(WeaponList.SWORDNAME), 1, 0, WeaponList.SWORDNAME, null, true));
+				//ItemStack is = ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(WeaponList.weapons.get(WeaponList.SWORDNAME), 1, 0, WeaponList.SWORDNAME, null, true));
 				
-				
-				
-				new BukkitRunnable() {
+			
+			ItemStack is = ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(PlayerConfig.getConfig(p).getWeapon(), 1, 0,new CosmeticMenu(p).getItemName(PlayerConfig.getConfig(p).getWeapon()) , null, true));
+			is = ItemStackUtils.attackDamage(is, 4);
+			is = NBTUtils.setNBT("Weapon","true", is);
+			new BukkitRunnable() {
 					int i = 0;
 					int time = 0;
 					@Override

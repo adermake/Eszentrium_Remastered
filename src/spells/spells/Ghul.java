@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -175,10 +176,13 @@ public class Ghul extends Spell {
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,11,1);
 		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0,1, 1);
 		loc.setDirection(vel);
-		bounce();
+		BlockFace bf = bounce();
 		double lvel = vel.length();
 		
-		vel = loc.getDirection().normalize().multiply(lvel).add(new Vector(0,0.2,0));
+		vel = loc.getDirection().normalize().multiply(lvel);
+		if (bf != BlockFace.DOWN) {
+			vel = vel.add(new Vector(0,0.2,0));
+		}
 		
 	}
 

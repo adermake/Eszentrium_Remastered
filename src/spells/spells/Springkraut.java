@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -126,7 +127,7 @@ public class Springkraut extends Spell {
 		playSound(Sound.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, loc, 22, 1);
 		
 		loc.setDirection(vel);
-		bounce();
+		BlockFace bf = bounce();
 		if (loc.getDirection().getY() > 0.999) {
 			loc.setDirection(loc.getDirection().add(randVector().setY(0).normalize().multiply(0.15)));
 		}
@@ -134,12 +135,15 @@ public class Springkraut extends Spell {
 		double mag = vel.length();
 		vel = loc.getDirection().multiply(mag);
 		vel.add(caster.getLocation().toVector().subtract(loc.toVector()).multiply(0.08F));
-		if (refined) {
-			vel.setY(2F);
+		if (bf != BlockFace.DOWN) {
+			if (refined) {
+				vel.setY(2F);
+			}
+			else {
+				vel.setY(2.2F);
+			}
 		}
-		else {
-			vel.setY(2.2F);
-		}
+		
 		
 		if (vel.length() > 1.5) {
 			vel.normalize().multiply(1.5);

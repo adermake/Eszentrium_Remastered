@@ -90,11 +90,13 @@ public class MapSelect implements Listener{
 		Inventory inv = e.getClickedInventory();
 		ItemStack item = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
+		/*
 		if(item != null && item.getType() != Material.AIR){
 			if(item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equals("§3Map wählen")){
 				e.setCancelled(true);
 			}
 		}
+		*/
 		if(inv != null && e.getView().getTitle() != null){
 			if(e.getView().getTitle().equals("§aWähle eine Map:")){
 				e.setCancelled(true);

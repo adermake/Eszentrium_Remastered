@@ -16,6 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import esze.enums.GameType;
 import esze.enums.Gamestate;
+import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import spells.spells.AntlitzderGöttin;
 
@@ -28,7 +29,7 @@ public class Death implements Listener {
 			
 		}
 		if (e.getEntity() instanceof Player) {
-			if(e.getCause() != DamageCause.FALL){
+			if(e.getCause() != DamageCause.FALL && e.getCause() != DamageCause.FLY_INTO_WALL ){
 				Player p = (Player) e.getEntity();
 				
 				if (p.getHealth() - e.getFinalDamage() <= 0 ) {
@@ -38,8 +39,7 @@ public class Death implements Listener {
 				e.setCancelled(true);
 				
 				p.setHealth(20);
-				
-				
+			
 				
 				if (p.getLocation().getY()<60)
 				p.teleport(GameType.getType().nextLoc());
@@ -55,6 +55,12 @@ public class Death implements Listener {
 	
 	@EventHandler
 	  public void onEntityDamageByEntity(EntityDamageByEntityEvent event) { 
+		if (event.getDamager() instanceof Player) {
+			Player p = (Player) event.getDamager();
+			if (event.getDamage() > 6 && event.getCause() == DamageCause.ENTITY_ATTACK && NBTUtils.getNBT("Weapon",p.getInventory().getItemInMainHand()) == "true") {
+				event.setDamage(6);
+			}
+		}
 		if (event.getDamager() instanceof org.bukkit.entity.Firework) event.setCancelled(true); 
 		if (event.getDamager() instanceof org.bukkit.entity.Slime) event.setCancelled(true); 
 	}

@@ -33,6 +33,7 @@ import com.google.common.collect.Multimap;
 import esze.main.main;
 import esze.players.PlayerAPI;
 import esze.utils.Actionbar;
+import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.AttributeBase;
 import net.minecraft.server.v1_15_R1.AttributeModifier;
@@ -66,7 +67,7 @@ public class WeaponAbilitys implements Listener {
 		
 		//SPHERE
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if (p.getInventory().getItemInMainHand().getType() == Material.WOODEN_SWORD) {
+			if (NBTUtils.getNBT("Weapon", e.getPlayer().getInventory().getItemInMainHand()) == "true") {
 				if (!p.isSneaking()) {
 					if (lastLaunched.containsKey(p)) {
 						if (cd.contains(p))
@@ -389,6 +390,7 @@ public class WeaponAbilitys implements Listener {
 			}
 			*/
 		}
+		/*
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if (p.getInventory().getItemInMainHand().getType() == Material.GOLDEN_SWORD) {
 				if (goldLaunch.contains(p)) {
@@ -421,11 +423,12 @@ public class WeaponAbilitys implements Listener {
 			
 			
 		}
+		*/
 	}
 	ArrayList<Player> goldLaunch = new ArrayList<Player>();
 	@EventHandler
 	public void onEntityDamage(EntityDamageByEntityEvent e) {
-		
+		/*
 		if(e.getDamager() instanceof Player && e.getEntity() instanceof Player ) {
 			Player p = (Player) e.getDamager();
 			Player victim = (Player) e.getEntity();
@@ -520,7 +523,7 @@ public class WeaponAbilitys implements Listener {
 				
 				
 		}
-	
+		*/
 	}
 	
 	

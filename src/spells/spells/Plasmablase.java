@@ -180,7 +180,7 @@ public class Plasmablase extends Spell {
 		Vector v = p.getLocation().toVector().subtract(loc.toVector());
 		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, p.getLocation(), 2, 0, 0, v,v);
 		bulletHitEffect(v.multiply(-1), loc.clone());
-		doKnockback(p, loc.clone(), 2);
+		doKnockback(p, loc.clone(), 1);
 		
 	}
 
@@ -190,7 +190,7 @@ public class Plasmablase extends Spell {
 		Vector v = ent.getLocation().toVector().subtract(loc.toVector());
 		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, ent.getLocation(), 2, 0, 0, v,v);
 		bulletHitEffect(v.multiply(-1), loc.clone());
-		doKnockback(ent, loc.clone(), 2);
+		doKnockback(ent, loc.clone(), 1);
 		
 	}
 
@@ -217,6 +217,8 @@ public class Plasmablase extends Spell {
 
 	@Override
 	public void onDeath() {
+		caster.setFlying(false);
+		caster.setAllowFlight(false);
 		// TODO Auto-generated method stub
 		playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET, loc, 12,2F);
 		playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,0.1F);
