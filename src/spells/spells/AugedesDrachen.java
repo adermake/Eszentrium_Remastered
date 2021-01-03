@@ -28,10 +28,10 @@ public class AugedesDrachen extends Spell{
 		cooldown = 20*60;
 		steprange = 180;
 		hitboxSize = 1;
-		multihit = true;
+		//multihit = true;
 		
 		addSpellType(SpellType.DAMAGE);
-		addSpellType(SpellType.MULTIHIT);
+		//addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.KNOCKBACK);
 		
 		setLore("§7Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück. Shift: Solange diese Taste gedrückt bleibt, kann die Richtung des Projektils gesteuert werden, bis die Drachen erscheinen.");
@@ -128,14 +128,15 @@ public class AugedesDrachen extends Spell{
 
 	@Override
 	public void onPlayerHit(Player p) {
-		damage(p,7,caster);
-		doKnockback(p, loc, 2);
+		damage(p,14,caster);
+		doKnockback(p, loc, 5);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		
+		damage(ent,14,caster);
+		doKnockback(ent, loc,      5);
 	}
 
 	@Override

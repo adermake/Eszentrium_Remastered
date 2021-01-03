@@ -177,7 +177,7 @@ public class TypeTEAMS extends Type{
 			p.teleport(nextLoc());
 			return;
 		}
-
+		if (players.contains(p))
 		lives.put(getTeamOfPlayer(p), lives.get(getTeamOfPlayer(p)) - 1);
 		p.setGameMode(GameMode.ADVENTURE);
 		p.setVelocity(new Vector(0, 0, 0));

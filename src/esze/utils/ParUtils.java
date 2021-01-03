@@ -164,6 +164,28 @@ public class ParUtils {
 		}
 
 	}
+	
+	public static void parLineRedstone(Location l1C, Location l2C, Color color, float size, double thickness,Player p) {
+		if (thickness == 0) {
+			Bukkit.shutdown();
+		}
+		Location l1 = l1C.clone();
+		Location l2 = l2C.clone();
+		Vector v = l2.toVector().subtract(l1.toVector()).normalize();
+		v.multiply(thickness);
+		double counter = l1.distance(l2) / thickness;
+		for (int i = 0; i < counter; i++) {
+			l1.add(v);
+			// pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
+			// 0, 1);
+			createRedstoneParticle(l1, 0, 0, 0, 1, color, size,p);
+			if (l1.distance(l2) < 1) {
+				break;
+			}
+
+		}
+
+	}
 	public static void parLineRedstoneSpike(Location l1C, Location l2C, Color color, double thickness) {
 		float size = 5;
 		if (thickness == 0) {

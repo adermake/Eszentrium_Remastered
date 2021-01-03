@@ -35,18 +35,19 @@ public class Wurmloch extends Spell {
 		setBetterLore("§7Kreiiert ein Wurmloch über dem Abgrund#§7in Blickrichtung. Springt ein Spieler durch#§7dieses Wurmloch, wird er wieder zu einem#§7Spawnpunktteleportiert und wird außerdem voll#§7geheilt.");
 	}
 	
+	Location wormToLoc;
 	Location wormHolePlaceLoc;
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
 		wormHolePlaceLoc = loc(caster,(int)(caster.getLocation().getY()-30));
 		wormHolePlaceLoc.setY(62);
-		playSound(Sound.BLOCK_PORTAL_TRAVEL, caster.getLocation(), 3, 2F);
-		playSound(Sound.BLOCK_PORTAL_TRAVEL, wormHolePlaceLoc, 3, 2F);
-		
+		playSound(Sound.BLOCK_PORTAL_TRAVEL, caster.getLocation(), 1, 2F);
+		playSound(Sound.BLOCK_PORTAL_TRAVEL, wormHolePlaceLoc, 1, 2F);
+		wormToLoc = GameType.getType().nextLoc();
 		for (TTTCorpse c : TTTCorpse.getCorpses(loc, 6)) {
 		
-			c.teleport(GameType.getType().nextLoc());
+			c.teleport(wormToLoc);
 		}
 	}
 
@@ -85,9 +86,9 @@ public class Wurmloch extends Spell {
 	public void onPlayerHit(Player p) {
 		
 		// TODO Auto-generated method stub
-		playSound(Sound.ENTITY_ENDERMAN_TELEPORT, p.getLocation(), 3, 0.2F);
+		playSound(Sound.ENTITY_ENDERMAN_TELEPORT, p.getLocation(), 1, 0.2F);
 		ParUtils.createRedstoneParticle(p.getLocation(), 0, 0, 0, 1, Color.PURPLE, 15);
-		p.teleport(GameType.getType().nextLoc());	
+		p.teleport(wormToLoc);	
 		if (refined) {
 			heal(p,10,caster);
 			ParUtils.createParticle(Particles.HEART, p.getEyeLocation(), 1, 1, 1, 5, 1);

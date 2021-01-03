@@ -81,7 +81,7 @@ public class ScoreboardUtil
 	public static boolean unrankedSidebarDisplay(Player p, String[] elements)
 	{
 		elements = cutUnranked(elements);
-
+	
 		try
 		{
 			
@@ -102,6 +102,7 @@ public class ScoreboardUtil
 					if(sb.getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).getScore() != 16 - i)
 					{
 						sb.getObjective(DisplaySlot.SIDEBAR).getScore(elements[i]).setScore(16 - i);
+						
 						for(String string : sb.getEntries())
 							if(sb.getObjective(p.getUniqueId().toString().substring(0, 16)).getScore(string).getScore() == 16 - i)
 								if(!string.equals(elements[i]))

@@ -127,7 +127,7 @@ public class Opfersuche extends Spell {
 			int time = (int)step*6;
 			public void run() {
 				t++;
-				p.setVelocity(new Vector(0,0.05,0));
+				p.setVelocity(new Vector(0,-0.3,0));
 				if (t > time) {
 					this.cancel();
 					
@@ -152,7 +152,7 @@ public class Opfersuche extends Spell {
 			int time = (int)step*6;
 			public void run() {
 				t++;
-				ent2.setVelocity(new Vector(0,0.05,0));
+				ent2.setVelocity(new Vector(0,-0.3,0));
 				if (t > time) {
 					this.cancel();
 					

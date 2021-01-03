@@ -101,7 +101,8 @@ public class Verstummen extends Spell {
 				Title verstummt = new Title("§cVerstummt!","",0,2,0);
 				verstummt.send(p);
 				if (t>60) {
-					
+					Title nverstummt = new Title("","",0,2,0);
+					nverstummt.send(p);
 					silenced.remove(p);
 					this.cancel();
 					

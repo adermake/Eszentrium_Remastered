@@ -39,8 +39,8 @@ public class KosmischeBindung extends Spell{
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.LOCKDOWN);
-		setLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehungund Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
-		setBetterLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehungund Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
+		setLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehung und Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
+		setBetterLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehung und Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
 	}
 	
 	@Override
@@ -99,13 +99,13 @@ public class KosmischeBindung extends Spell{
 		}
 				lp1 = p1;
 				lp2 = p2;
-				
+		/*		
 		if (swap()) {
 			cast = casttime;
 			swapped = true;
 		}
-			
-		
+			*/
+		caster.setVelocity(caster.getLocation().getDirection().multiply(0.2F).add(new Vector(0,0.1,0)));
 	}
 	Location lp1;
 	Location lp2;

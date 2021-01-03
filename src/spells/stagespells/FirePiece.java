@@ -5,6 +5,8 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
@@ -81,8 +83,8 @@ public class FirePiece extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		damage(p, 3, caster);
-		
-			doKnockback(p, loc,0.1F);
+		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
+			//doKnockback(p, loc,0.1F);
 		
 		p.setFireTicks(20);
 	}
@@ -91,7 +93,7 @@ public class FirePiece extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		
-			doKnockback(ent, loc,0.1F);
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
 		
 		damage(ent, 3, caster);
 		ent.setFireTicks(20);

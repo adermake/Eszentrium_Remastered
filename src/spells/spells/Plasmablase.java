@@ -41,8 +41,12 @@ public class Plasmablase extends Spell {
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.MULTIHIT);
 		
-		setLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.");
-		setBetterLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.");
+		setLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen." + 
+				"Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert." + 
+				"F: Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.");
+		setBetterLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen." + 
+				"Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert." + 
+				"F: Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.");
 	}
 	
 	@Override
@@ -73,7 +77,7 @@ public class Plasmablase extends Spell {
 		// TODO Auto-generated method stub
 		
 	}
-
+	boolean dash = true;
 	
 	@Override
 	public void move() {
@@ -98,14 +102,17 @@ public class Plasmablase extends Spell {
 			}
 		}
 		*/
-		
+		if (swap() ) {
+			dash = false;
+			playSound(Sound.BLOCK_CONDUIT_ACTIVATE, loc, 12,2F);
+		}
 		if (caster.getLocation().distance(loc) > rad) {
 			dead = true;
 			if (caster.getGameMode() == GameMode.SURVIVAL)
 			caster.setAllowFlight(false);
 			
 			
-			
+			if (dash)
 			caster.setVelocity(caster.getVelocity().add(caster.getLocation().getDirection().multiply(3)));
 			Vector d = loc.toVector().subtract(caster.getLocation().toVector());
 			animCooldown = 0;

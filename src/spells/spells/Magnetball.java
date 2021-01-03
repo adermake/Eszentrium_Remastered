@@ -16,7 +16,7 @@ public class Magnetball extends Spell{
 
 	public Magnetball() {
 		name = "§eMagnetball";
-		cooldown = 20 * 30;
+		cooldown = 20 * 22;
 		hitEntity = true;
 		hitSpell = true;
 		hitPlayer = true;

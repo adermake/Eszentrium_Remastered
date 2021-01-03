@@ -179,7 +179,7 @@ public class Feuerwerkshelix extends Spell {
 			power = 2;
 		}
 		// TODO Auto-generated method stub
-		new ExplosionDamage(3, 7, caster, loc, name);
+		new ExplosionDamage(3, 6, caster, loc, name);
 		new RepulsionDirectional(3, power, caster, loc, loc.getDirection(), name);
 		//ParUtils.parKreisDir(Particles.SMOKE, loc, 3, 0, 0.5F, caster.getLocation().getDirection(), caster.getLocation().getDirection().multiply(-1));
 		f.teleport(loc);

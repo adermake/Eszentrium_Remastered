@@ -27,7 +27,7 @@ public class Stich extends Spell {
 		speed =2;
 		
 		hitboxSize = 3;
-		cooldown = 20*40;
+		cooldown = 20*35;
 		hitSpell = true;
 		
 		steprange = 80;

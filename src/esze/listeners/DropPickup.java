@@ -71,13 +71,24 @@ public class DropPickup implements Listener {
 			int i = 0;
 			double speedMult = 3;
 			public void run() {
+				
+				TypeTEAMS t = (TypeTEAMS) GameType.getType();
 				i++;
 				speedMult-=0.05F;
 				if (speedMult <= 1.5)
 					speedMult = 1.5;
 				SoundUtils.playSound(Sound.ITEM_BOOK_PAGE_TURN,item.getLocation(),2,1);
 				Player target = null;
+				Player closest = null;
+				double dist = 100000;
 				for (Player pl : t.getTeammates(p)) {
+					
+					if (pl != p && t.players.contains(pl) && pl.getLocation().distance(item.getLocation())<dist) {
+						dist = pl.getLocation().distance(item.getLocation());
+						closest = pl;
+						
+					}
+					
 					if (pl != p && pl.getLocation().distance(item.getLocation())<30) {
 						
 						if (item.getLocation().distance(pl.getLocation())<2) {
@@ -87,6 +98,7 @@ public class DropPickup implements Listener {
 							SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
 							item.remove();
 							this.cancel();
+							
 							return;
 						}
 						if (target == null) {
@@ -101,7 +113,17 @@ public class DropPickup implements Listener {
 					
 				}
 				
-				
+				if (!t.players.contains(p)) {
+					
+						if (closest != null) {
+							closest.getInventory().addItem(is);
+							SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,closest.getLocation(),1.2F,0.7F);
+							SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
+							item.remove();
+							this.cancel();
+						}
+					
+				}
 				if (i > 20 * 5) {
 					SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
 					p.getInventory().addItem(is);

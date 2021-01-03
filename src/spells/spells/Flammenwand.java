@@ -38,7 +38,7 @@ public class Flammenwand extends Spell {
 	Location l3;
 	public void setUp() {
 		// TODO Auto-generated method stub
-		l1 = block(caster);
+		l1 = preblock(caster);
 		if (l1 == null) {
 			refund = true;
 			dead = true;
@@ -51,26 +51,51 @@ public class Flammenwand extends Spell {
 			
 		
 	}
+	int ail = 0;
 	Vector v;
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
+		ail++;
 		if (l2 != null && !refined) {
 			cast = casttime+1;
 			v = l2.toVector().subtract(l1.toVector());
+			
+			
 		}
+		
+			
+		
+		
 		if (l3 != null && refined) {
 			cast = casttime+1;
 			v = l2.toVector().subtract(l1.toVector());
+			//ParUtils.parLineRedstone(l2.clone(), l1.clone(), Color.RED, 2, 0.5F,caster);
+			
 		}
+		
+		
+		if (l1 != null) {
+			if (ail % 2 == 0)
+			indicatorLine(l1, Color.RED);
+		}
+		
+		if (l2 != null) {
+			if (ail % 2 == 0)
+			indicatorLine(l2, Color.RED);
+			if (ail % 2 == 0)
+			ParUtils.parLineRedstone(l2.clone(), l1.clone(), Color.RED, 1, 1F,caster);
+		}
+		
+		
 		if (swap()) {
 			if (l2 == null) {
-				l2 = block(caster);
+				l2 = preblock(caster);
 				
 			}
 			else {
 				
-				l3 = block(caster);
+				l3 = preblock(caster);
 			}
 			
 			clearswap();
@@ -170,5 +195,8 @@ public class Flammenwand extends Spell {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	 
 
 }

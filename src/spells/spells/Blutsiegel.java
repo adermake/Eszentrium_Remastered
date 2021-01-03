@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -43,6 +44,8 @@ public class Blutsiegel extends Spell {
 		}
 		else {
 			ParUtils.parKreisDir(Particles.LARGE_SMOKE, l, 8, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
+			//playSound(Sound.BLOCK_ANVIL_PLACE,l,0.5,0.1F);
+			playSound(Sound.ENTITY_ENDERMAN_SCREAM,l,0.5,0.5F);
 		}
 		
 		

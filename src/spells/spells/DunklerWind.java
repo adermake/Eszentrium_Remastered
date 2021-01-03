@@ -38,7 +38,8 @@ public class DunklerWind extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.MULTIHIT);
-		setLore("§7Beschwört ein Projektil, das dem#§7Mauszeiger folgt. Nach kurzer Verzögerung werden#§7alle getroffenen Gegner nach unten#§7geschleudert.# #§eF:§7 Der Spieler springt#§7Richtung Projektil und zieht alle Gegner in der#§7Nähe mit sich.");
+		setLore("§7Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner, die mit dem Projektil in Kontakt kommen, weggeschleudert." + 
+				"F: Der Spieler springt Richtung Projektil und zieht alle Gegner in der Nähe mit sich.");
 	}
 	
 	@Override
@@ -71,10 +72,11 @@ public class DunklerWind extends Spell {
 	public void move() {
 		knockdownCooldown++;
 		
-		if (step > speed * 20 * 2 && knockdownCooldown > 5) {
+		if (step > speed * 20 * 2 && knockdownCooldown > 20) {
 			hitPlayer = true;
 			hitEntity = true;
 		}
+		
 		if (vec != null && stopped) {
 			Vector newV = loc.toVector().subtract(caster.getLocation().toVector());
 			
@@ -168,34 +170,33 @@ public class DunklerWind extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
+	
 		if (p.isOnGround())
 			return;
-		ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
+		//ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
 		// TODO Auto-generated method stub
 		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
-		p.setVelocity(p.getVelocity().add(new Vector(0,-10,0)));
+		p.setVelocity(p.getVelocity().normalize().multiply(2));
 		
-		
-		
-		new BukkitRunnable() {
-			public void run() {
-				knockdownCooldown = 0;
-				hitEntity = false;
-				hitPlayer = false;
-			}
-		}.runTaskLater(main.plugin, 1);
-		
+		hitEntity = false;
+		hitPlayer = false;
+		knockdownCooldown = 0;
+	
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
+		
 		if (ent.isOnGround())
 			return;
 		// TODO Auto-generated method stub
 		ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
-		ent.setVelocity(ent.getVelocity().add(new Vector(0,-10,0)));
+		ent.setVelocity(ent.getVelocity().normalize().multiply(2));
+		hitEntity = false;
+		hitPlayer = false;
+		knockdownCooldown = 0;
 	}
 
 	@Override

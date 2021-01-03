@@ -22,7 +22,7 @@ public class Meteoritenhagel extends Spell {
 
 	
 	public Meteoritenhagel() {
-		cooldown = 20 * 35;
+		cooldown = 20 * 40;
 		casttime = 0;
 		steprange = 25;
 		name = "§cMeteoritenhagel";

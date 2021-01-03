@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -1013,6 +1014,33 @@ public abstract class Spell {
 		return null;
 
 	}
+	
+	public Location preblock(Player p) {
+		Location loc = p.getEyeLocation();
+		for (int t = 1; t <= 300; t++) {
+
+			Vector direction = loc.getDirection().normalize();
+			double x = direction.getX() * t;
+			double y = direction.getY() * t;
+			double z = direction.getZ() * t;
+			
+			loc.add(x, y, z);
+			Location lo = loc.clone();
+			
+			if (loc.getY()<= 60) {
+				return null;
+			}
+
+			if (loc.getBlock().getType() != Material.AIR) {
+				return loc.add(direction.multiply(-1));
+
+			}
+
+			loc.subtract(x, y, z);
+		}
+		return null;
+
+	}
 	public Location block(Player p,int range) {
 		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= range; t++) {
@@ -1070,6 +1098,19 @@ public abstract class Spell {
 		return ret;
 
 	}
+	
+	public void indicatorLine(Location l1,Color c) {
+		
+		Location l = preblock(caster);
+		if (l != null) {
+			
+			ParUtils.parLineRedstone(l1.clone(), l, c, 1, 1F,caster);
+		}
+		
+		
+	}
+	
+	
 	public Location getTop(Location loca) {
 		
 		while (loca.getBlock().getType().isSolid()) {
