@@ -7,46 +7,8 @@ import java.sql.Statement;
 
 public class AnalyticsInterface {
 	
-	private Connection con;
 	
-	public AnalyticsInterface(Connection c) {
-		con = c;
-	}
-	
-	
-	private int executeSQLFunction(String function) {
-		SaveUtils.checkConnection(con);
-		
-		try {
-			Statement stmt = con.createStatement();
-			String query = "select " + SaveUtils.DB_NAME + "." + function + ";";
-			ResultSet rs = stmt.executeQuery(query);
-			
-			//rs.next();
-			
-			int out = rs.getInt(SaveUtils.DB_NAME + "." + function);
-			rs.close();
-			stmt.close();
-			return out;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return 1;
-	}
-	
-	private void executeSQLProcedure(String function) {
-		SaveUtils.checkConnection(con);
-		
-		try {
-			Statement stmt = con.createStatement();
-			String query = "select " + SaveUtils.DB_NAME + "." + function + ";";
-			ResultSet rs = stmt.executeQuery(query);
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public AnalyticsInterface() {
 		
 	}
 
