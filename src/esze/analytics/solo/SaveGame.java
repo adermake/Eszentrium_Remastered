@@ -12,7 +12,7 @@ public class SaveGame {
 	}
 	
 	public SaveGame(String s) {
-		String[] args = SaveUtils.readString(s);
+		String[] args = OldSaveUtils.readString(s);
 		for (int i = 0; (i+1) < args.length; i+=2) {
 			if (args[i+1].equals("")) {
 				map.put(new SavePlayer(args[i]), args.length/2);

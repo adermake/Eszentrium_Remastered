@@ -15,7 +15,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.analytics.solo.SaveEsze;
 import esze.analytics.solo.SaveSelection;
-import esze.analytics.solo.SaveUtils;
 import esze.main.main;
 import esze.types.TypeSOLO;
 import esze.utils.NBTUtils;

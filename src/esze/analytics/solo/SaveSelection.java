@@ -17,12 +17,12 @@ public class SaveSelection {
 	public SaveSelection() {}
 	
 	public SaveSelection(String chsp ,String sp1, String sp2, String sp3, String sp4, String sp5) {
-		this.sp1 = SaveUtils.rmColor(sp1);
-		this.sp2 = SaveUtils.rmColor(sp2);
-		this.sp3 = SaveUtils.rmColor(sp3);
-		this.sp4 = SaveUtils.rmColor(sp4);
-		this.sp5 = SaveUtils.rmColor(sp5);
-		this.chsp = SaveUtils.rmColor(chsp);
+		this.sp1 = OldSaveUtils.rmColor(sp1);
+		this.sp2 = OldSaveUtils.rmColor(sp2);
+		this.sp3 = OldSaveUtils.rmColor(sp3);
+		this.sp4 = OldSaveUtils.rmColor(sp4);
+		this.sp5 = OldSaveUtils.rmColor(sp5);
+		this.chsp = OldSaveUtils.rmColor(chsp);
 	}
 
 
@@ -63,40 +63,40 @@ public class SaveSelection {
 		return sp1;
 	}
 	public void setSp1(String sp1) {
-		this.sp1 = SaveUtils.rmColor(sp1);
+		this.sp1 = OldSaveUtils.rmColor(sp1);
 	}
 	public String getSp2() {
 		return sp2;
 	}
 	public void setSp2(String sp2) {
-		this.sp2 = SaveUtils.rmColor(sp2);
+		this.sp2 = OldSaveUtils.rmColor(sp2);
 	}
 	
 	public String getSp3() {
 		return sp3;
 	}
 	public void setSp3(String sp3) {
-		this.sp3 = SaveUtils.rmColor(sp3);
+		this.sp3 = OldSaveUtils.rmColor(sp3);
 	}
 	public String getSp4() {
 		return sp4;
 	}
 	public void setSp4(String sp4) {
-		this.sp4 = SaveUtils.rmColor(sp4);
+		this.sp4 = OldSaveUtils.rmColor(sp4);
 	}
 	
 	public String getSp5() {
 		return sp5;
 	}
 	public void setSp5(String sp5) {
-		this.sp5 = SaveUtils.rmColor(sp5);
+		this.sp5 = OldSaveUtils.rmColor(sp5);
 	}
 	
 	public String getChsp() {
 		return chsp;
 	}
 	public void setChsp(String chsp) {
-		this.chsp = SaveUtils.rmColor(chsp);
+		this.chsp = OldSaveUtils.rmColor(chsp);
 	}
 	
 	

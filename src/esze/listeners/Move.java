@@ -19,9 +19,11 @@ public class Move implements Listener{
 	@EventHandler
 	public void onVoid(PlayerMoveEvent e){
 		Player p = e.getPlayer();
-		
+			
 			if(Gamestate.getGameState() == Gamestate.INGAME){
 				if(e.getTo().getBlockY() <= 60){
+					
+					/*
 					//Register void as damageCause
 					if (main.damageCause.get(p) == null) {
 						main.damageCause.put(p, Type.unknownDamage);
@@ -34,6 +36,7 @@ public class Move implements Listener{
 					
 					PlayerInfo pi = PlayerAPI.getPlayerInfo(p);
 					pi.damageVoid();
+					*/
 				}
 			}else{
 				if(e.getTo().getBlockY() <= 60){

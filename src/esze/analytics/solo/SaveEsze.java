@@ -8,6 +8,7 @@ import esze.main.main;
 
 public class SaveEsze {
 	
+	
 	private ArrayList<SaveGame> sv;
 	
 	public SaveEsze() {
@@ -16,7 +17,7 @@ public class SaveEsze {
 	
 	public SaveEsze(String s) {
 		sv = new ArrayList<>();
-		String[] args = SaveUtils.readString(s);
+		String[] args = OldSaveUtils.readString(s);
 		for (int i = 0; i < args.length; i++) {
 			sv.add(new SaveGame(args[i]));
 		}
@@ -39,8 +40,9 @@ public class SaveEsze {
 		return s + "]";
 	}
 	
-	//Analytics ----------------------------------------------------------------------------------------------
 	
+	//Analytics ----------------------------------------------------------------------------------------------
+	/*
 	public double getWorth(String s) {
 		s = SaveUtils.rmColor(s);
 		int choice = 0;
@@ -473,5 +475,5 @@ public class SaveEsze {
 		}
 		return max;
 	}
-	
+	*/
 }

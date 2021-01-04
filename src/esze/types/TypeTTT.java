@@ -65,6 +65,7 @@ public class TypeTTT extends Type{
 	@Override
 	public void runEverySecond() {
 		
+		killInVoidCheck();
 		
 		secondsLeft--;
 		if (secondsLeft <= 0) {

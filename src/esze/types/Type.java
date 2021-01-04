@@ -13,7 +13,6 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import esze.analytics.solo.SaveUtils;
 import esze.main.main;
 import esze.map.JumpPadHandler;
 import esze.menu.SoloSpellMenu;
@@ -23,6 +22,7 @@ import esze.utils.ItemStackUtils;
 import esze.utils.Music;
 import esze.utils.PlayerUtils;
 import io.netty.util.internal.ThreadLocalRandom;
+import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
 import weapons.Damage;
@@ -158,8 +158,10 @@ public abstract class Type {
 	
 	
 	public void killInVoidCheck() {
+		ArrayList<Player> kill = new ArrayList<>();
 		for (Player p : players) {
 			if (p.getLocation().getY()<60 && p.getGameMode() == GameMode.SURVIVAL) {
+				
 				if (main.damageCause.get(p) == null) {
 					main.damageCause.put(p, unknownDamage);
 				}
@@ -168,10 +170,17 @@ public abstract class Type {
 				} else if (!main.damageCause.get(p).endsWith(voiddamage)){
 					main.damageCause.put(p, main.damageCause.get(p) + "-" + voiddamage);
 				}
-				p.damage(p.getHealth());
+				
+				if (Spell.damageCause.get(p) == null) {
+					Spell.damageCause.put(p, new DamageCauseContainer(null, null));
+				}
+				Spell.damageCause.get(p).voidDamage();
+				kill.add(p);
 			}
-			
-			
+		}
+		
+		for (Player p : kill) {
+			p.damage(p.getHealth());
 		}
 	}
 	

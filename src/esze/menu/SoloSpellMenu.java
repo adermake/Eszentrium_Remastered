@@ -2,6 +2,8 @@ package esze.menu;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -10,9 +12,7 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import esze.analytics.solo.SaveEsze;
-import esze.analytics.solo.SaveSelection;
-import esze.analytics.solo.SaveUtils;
+import esze.analytics.SaveUtils;
 import esze.main.main;
 import esze.types.TypeSOLO;
 import esze.utils.NBTUtils;
@@ -24,9 +24,11 @@ public class SoloSpellMenu extends ItemMenu{
 
 	boolean used = false;
 	private ArrayList<Spell> spells;
+	boolean refined = false;
 	
 	public SoloSpellMenu() {
 		super(1,"spellmenu");
+		refined = false;
 		spells = SpellList.getDiffrentRandom(5);
 		addClickableItem(1, 1, Material.ENCHANTED_BOOK, spells.get(0).getName(),spells.get(0).getLore());
 		addClickableItem(3, 1, Material.ENCHANTED_BOOK, spells.get(1).getName(),spells.get(1).getLore());
@@ -37,6 +39,7 @@ public class SoloSpellMenu extends ItemMenu{
 	
 	public SoloSpellMenu(boolean green) {
 		super(1,"spellmenu");
+		refined = true;
 		spells = SpellList.getDiffrentRandomGreen(5);
 		addClickableItem(1, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(0).getName().substring(2,spells.get(0).getName().length()),spells.get(0).getBetterLore());
 		addClickableItem(3, 1, Material.ENCHANTED_BOOK, "§2"+ spells.get(1).getName().substring(2,spells.get(1).getName().length()),spells.get(1).getBetterLore());
@@ -65,8 +68,12 @@ public class SoloSpellMenu extends ItemMenu{
 	
 		PlayerUtils.showPlayer(p);
 		
-		SaveUtils.addPlayerSelection(p.getName(), new SaveSelection(icon.getName(), spells.get(0).getName(),
-				spells.get(1).getName(), spells.get(2).getName(), spells.get(3).getName(), spells.get(4).getName())); //Analytics
+		ArrayList<String> spellnames = new ArrayList<>();
+		for (Spell i : spells) {
+			spellnames.add(i.getName());
+		}
+		
+		SaveUtils.addPlayerSelection(p.getName(), icon.getName(),refined, spellnames); //Analytics
 	}
 
 	@Override

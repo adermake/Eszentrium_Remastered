@@ -34,6 +34,7 @@ public class LobbyBackgroundRunnable {
 					board.add("   ");
 					board.add("§a§lApp:");
 					
+					/* Macht ERROR Fix pls
 					boolean usesApp = false;
 					for(AppClientSocket socket : main.plugin.appServer.clientSockets) {
 						if(socket.getIdentity() != null && socket.getIdentity().getUsername().equalsIgnoreCase(p.getName())) {
@@ -43,7 +44,7 @@ public class LobbyBackgroundRunnable {
 					}
 					
 					board.add(usesApp ? "VERBUNDEN" : "OFFLINE");
-					
+					*/
 					
 					String[] array = new String[board.size()];
 					int i=0;

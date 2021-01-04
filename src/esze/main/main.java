@@ -28,6 +28,7 @@ import org.inventivetalent.packetlistener.handler.SentPacket;
 
 import com.google.gson.JsonObject;
 
+import esze.analytics.SaveUtils;
 import esze.app.AppServer;
 import esze.app.AppUserPasswordUtils;
 import esze.enums.GameType;
@@ -230,6 +231,20 @@ public class main extends JavaPlugin {
 				}
 			}
 		}
+		
+		//Analytics
+		if (getConfig().contains("settings.sqlPass")) {
+			SaveUtils.setPassword(getConfig().getString("settings.sqlPass"));
+			SaveUtils.checkConnection();
+		} else {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				if (p.isOp()) {
+					p.sendMessage("Kein SQL Password eingetragen! (/analytics setPassword <Password>");
+				}
+			}
+		}
+		SaveUtils.checkConnection();
+		
 
 		AppUserPasswordUtils.createPasswordConfig();
 

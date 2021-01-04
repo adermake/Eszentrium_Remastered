@@ -16,7 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import esze.analytics.solo.SaveUtils;
+import esze.analytics.SaveUtils;
 import esze.enums.Gamestate;
 import esze.main.GameRunnable;
 import esze.main.LobbyBackgroundRunnable;
@@ -33,6 +33,7 @@ import esze.utils.Music;
 import esze.utils.PlayerUtils;
 import esze.utils.ScoreboardTeamUtils;
 import esze.utils.Title;
+import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import weapons.Damage;
@@ -95,7 +96,7 @@ public class TypeTEAMS extends Type{
 	public void endGame() {
 		// TODO Auto-generated method stub
 		
-		 // Analytics //TODO Macht ERROR
+		SaveUtils.endGame();
 		
 		for (Entity e : Bukkit.getWorld("world").getEntities()) {
 			if (e.getType() != EntityType.PLAYER) {
@@ -124,8 +125,7 @@ public class TypeTEAMS extends Type{
 
 	@Override
 	public void runEverySecond() {
-		// TODO Auto-generated method stub
-		
+		killInVoidCheck();
 	}
 
 	@Override
@@ -155,12 +155,18 @@ public class TypeTEAMS extends Type{
 			for (Player rec : Bukkit.getOnlinePlayers()) {
 				rec.sendMessage(out);
 			}
-			SaveUtils.addPlayerDeath(p.getName(), main.damageCause.get(p)); // Analytics
+			
+			if (Spell.damageCause.get(p) == null) {
+				Spell.damageCause.put(p, new DamageCauseContainer(null, null));
+			}
+			SaveUtils.addPlayerDeath(p.getName(), Spell.damageCause.get(p).getKiller(), Spell.damageCause.get(p).void_d, Spell.damageCause.get(p).getSpell()); // Analytics
 		} else {
 			// p.sendMessage("STOP DIEING!");
 		}
 
 		main.damageCause.put(p, unknownDamage);
+		Spell.damageCause.put(p, new DamageCauseContainer(null, null));
+		
 		p.setVelocity(new Vector(0, 0, 0));
 
 		loseLife(p);
@@ -251,7 +257,9 @@ public class TypeTEAMS extends Type{
 			
 			
 			if (allTeamsAlive.size() <= 1 && !gameOver) {
-			
+				
+				SaveUtils.setPlayerPlace(allTeamsAlive.get(0).players.get(0).getName(), 1); //Analytics
+				
 				scoreboard.hideScoreboard();
 				gameOver = true;
 			
@@ -279,6 +287,7 @@ public class TypeTEAMS extends Type{
 	
 	public void checkTeamOut(Player p) {
 		if (!teamSillHasPlayers(getTeamOfPlayer(p))) {
+			SaveUtils.setPlayerPlace(p.getName(), allTeamsAlive.size());
 			allTeamsAlive.remove(getTeamOfPlayer(p));
 		}
 	}
@@ -326,12 +335,18 @@ public class TypeTEAMS extends Type{
 			else {
 				lives.put(getTeamOfPlayer(p), lives.get(getTeamOfPlayer(p))+3);
 			}
-				
-			
-			
-			
-			
 		}
+		
+		//Analytics
+		ArrayList<ArrayList<String>> teams = new ArrayList<ArrayList<String>>();
+		for (EszeTeam team : allTeams) {
+			ArrayList<String> names = new ArrayList<>();
+			for (Player p : team.players) {
+				names.add(p.getName());
+			}
+			teams.add(names);
+		}
+		SaveUtils.startTeamGame(teams);
 		
 		WeaponMenu.deliverItems(); 
 		

@@ -15,7 +15,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import esze.analytics.solo.SaveUtils;
+import esze.analytics.SaveUtils;
 import esze.enums.Gamestate;
 import esze.main.GameRunnable;
 import esze.main.LobbyBackgroundRunnable;
@@ -28,6 +28,7 @@ import esze.utils.Music;
 import esze.utils.PlayerUtils;
 import esze.utils.Title;
 import esze.voice.Discord;
+import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
@@ -59,17 +60,21 @@ public class TypeSOLO extends Type {
 		won = false;
 		gameOver = false;
 		setupGame();
-		SaveUtils.startGame(); // Analytics
 		scoreboard = new SoloScoreboard();
 		scoreboard.showScoreboard();
+		
+		ArrayList<String> names = new ArrayList<>();
+		
 		for (Player p : players) {
-			SaveUtils.addPlayer(p.getName());
+			names.add(p.getName());
 			setupPlayer(p);
 			loc.put(p, p.getLocation());
 			lives.put(p, 4);
 			openSpellSelection(p);
-			
 		}
+		
+		SaveUtils.startSoloGame(names);
+		
 		WeaponMenu.deliverItems(); 
 	}
 
@@ -94,12 +99,18 @@ public class TypeSOLO extends Type {
 			for (Player rec : Bukkit.getOnlinePlayers()) {
 				rec.sendMessage(out);
 			}
-			SaveUtils.addPlayerDeath(p.getName(), main.damageCause.get(p)); // Analytics
+			
+			if (Spell.damageCause.get(p) == null) {
+				Spell.damageCause.put(p, new DamageCauseContainer(null, null));
+			}
+			SaveUtils.addPlayerDeath(p.getName(), Spell.damageCause.get(p).getKiller(), Spell.damageCause.get(p).void_d, Spell.damageCause.get(p).getSpell()); // Analytics
 		} else {
 			// p.sendMessage("STOP DIEING!");
 		}
 
 		main.damageCause.put(p, unknownDamage);
+		Spell.damageCause.put(p, new DamageCauseContainer(null, null));
+		
 		p.setVelocity(new Vector(0, 0, 0));
 
 		loseLife(p);
@@ -123,6 +134,7 @@ public class TypeSOLO extends Type {
 		
 		if (lives.get(p) < 1) {
 			out(p);
+			SaveUtils.setPlayerPlace(p.getName(), players.size());
 			checkWinner();
 		} else {
 			Spell.silenced.put(p, new SilenceSelection());
@@ -195,7 +207,7 @@ public class TypeSOLO extends Type {
 				}
 
 				for (Player winner : players) {
-					SaveUtils.setWinner(winner.getName());
+					SaveUtils.setPlayerPlace(winner.getName(), 1);
 				}
 				if (won) {
 
@@ -212,7 +224,7 @@ public class TypeSOLO extends Type {
 
 			postResult(winner);
 		}
-		SaveUtils.endGame(); // Analytics //TODO Macht ERROR
+		SaveUtils.endGame(); // Analytics
 
 		for (Entity e : Bukkit.getWorld("world").getEntities()) {
 			if (e.getType() != EntityType.PLAYER) {

@@ -13,7 +13,7 @@ import com.google.common.io.Files;
 
 import esze.main.main;
 
-public class SaveUtils {
+public class OldSaveUtils {
 	
 	private static SaveGame gme = null;
 	private static SaveEsze svgms = null;

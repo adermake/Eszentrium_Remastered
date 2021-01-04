@@ -26,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import esze.analytics.solo.SaveUtils;
+import esze.analytics.SaveUtils;
 import esze.app.AppUserPasswordUtils;
 import esze.enums.GameType;
 import esze.enums.GameType.TypeEnum;
@@ -389,17 +389,17 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 					switch (args[0]) {
 					case "wins":
 						if (args.length < 2) {
-							p.sendMessage("§7Du hast " + SaveUtils.getSaveEsze().getVictories(p.getName()) + "§7 Runden gewonnen!");
+							p.sendMessage("§7Du hast " + SaveUtils.getAnalytics().getPlayerVictories(p.getName()) + "§7 Runden gewonnen!");
 						} else {
-							p.sendMessage("§7" + args[1] + " hat " + SaveUtils.getSaveEsze().getVictories(args[1]) + "§7 Runden gewonnen!");
+							p.sendMessage("§7" + args[1] + " hat " + SaveUtils.getAnalytics().getPlayerVictories(args[1]) + "§7 Runden gewonnen!");
 						}
 						
 						return true;
 					case "losses":
 						if (args.length < 2) {
-							p.sendMessage("§7Du hast " + SaveUtils.getSaveEsze().getLosses(p.getName()) + "§7 Runden verloren!");
+							p.sendMessage("§7Du hast " + SaveUtils.getAnalytics().getPlayerLosses(p.getName()) + "§7 Runden verloren!");
 						} else {
-							p.sendMessage("§7" + args[1] + " hat " + SaveUtils.getSaveEsze().getLosses(args[1]) + "§7 Runden verloren!");
+							p.sendMessage("§7" + args[1] + " hat " + SaveUtils.getAnalytics().getPlayerLosses(args[1]) + "§7 Runden verloren!");
 						}
 						return true;
 					case "worth":
@@ -409,7 +409,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 								assembly += args[i] + " ";
 							}
 							assembly = assembly.substring(0,assembly.length()-1);
-							p.sendMessage("§7The Spell " + assembly + "§7 has a worth of " + SaveUtils.getSaveEsze().getWorth(assembly) + "§7%!");
+							p.sendMessage("§7The Spell " + assembly + "§7 has a worth of " + SaveUtils.getAnalytics().getWorth(assembly) + "§7%!");
 							return true;
 						}
 						return false;
@@ -420,26 +420,10 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 							new SoloAnalyticsMenu(p).open(p);
 						}
 						return true;
-					case "save":
-						SaveUtils.save();
-						p.sendMessage("Save!");
-						return true;
-					case "backup":
-						SaveUtils.backup();
-						p.sendMessage("Backed Up!");
-						return true;
 					case "clear":
 						SaveUtils.reset();
 						p.sendMessage("Cleared!");
 						return true;
-					case "usedspell":
-						if (args.length >= 2) {
-							p.sendMessage("§7The Spell "+ SaveUtils.getSaveEsze().getFavSpell(args[1]) + "§7 is " + args[1] + " §7 most used Spell!");
-							return true;
-						} else {
-							p.sendMessage("§7The Spell "+ SaveUtils.getSaveEsze().getFavSpell() + "§7 is the most used Spell!");
-							return true;
-						}
 					case "spellmenu":
 						if (args.length >= 2) {
 							new ColorTagSpellSelectionMenu(args[1]).open(p);
@@ -464,9 +448,6 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 							new SoloSelectionTopMenu(p.getName()).open(p);;
 							return true;
 						}
-					case "info":
-						p.sendMessage(SaveUtils.getSaveEsze().toString());
-						return true;
 					case "sk":
 						if (args.length >= 2) {
 							String assembly = "";
@@ -474,7 +455,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 								assembly += args[i] + " ";
 							}
 							assembly = assembly.substring(0,assembly.length()-1);
-							p.sendMessage("§7The Spell " + assembly + "§7 has a kills of " + SaveUtils.getSaveEsze().getSpellKills(p.getName(), assembly) + "§7!");
+							p.sendMessage("§7The Spell " + assembly + "§7 has a kills of " + SaveUtils.getAnalytics().getSpellKills(p.getName(), assembly) + "§7!");
 							return true;
 						}
 						return false;
@@ -485,16 +466,17 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 								assembly += args[i] + " ";
 							}
 							assembly = assembly.substring(0,assembly.length()-1);
-							p.sendMessage("§7The Spell " + assembly + "§7 has a deaths of " + SaveUtils.getSaveEsze().getSpellDeaths(p.getName(), assembly) + "§7%");
+							p.sendMessage("§7The Spell " + assembly + "§7 has a deaths of " + SaveUtils.getAnalytics().getSpellDeaths(p.getName(), assembly) + "§7%");
 							return true;
 						}
 						return false;
-					/*
-					case "commit":
-						p.sendMessage("Commited Game!");
-						SaveUtils.endGame();
-						p.sendMessage(SaveUtils.getSaveEsze().toString());
-						return true;*/
+					
+					case "setPassword":
+						main.plugin.getConfig().set("settings.sqlPass", args[1]);
+						SaveUtils.setPassword(args[1]);
+						main.plugin.saveConfig();
+						p.sendMessage("§7Password set!");
+						return true;
 					default:
 						p.sendMessage("ERROR");
 						return false;

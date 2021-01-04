@@ -90,7 +90,7 @@ import spells.spells.Vogelattacke;
 import spells.spells.Wunsch;
 import spells.spells.Wurmloch;
 import spells.spells.Zaubersprung;
-import esze.analytics.solo.SaveUtils;
+import esze.analytics.SaveUtils;
 import esze.enums.GameType;
 import esze.types.TypeSOLO;
 import esze.types.TypeTEAMS;
@@ -280,10 +280,11 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		}
 	}
 	
+	
 	public static List<Spell> getSortedSpells() {
 		List<Spell> sorted = spells.keySet().stream().sorted(
-				(Spell s1, Spell s2) ->  ((SaveUtils.getSaveEsze().getWorth(s1.getName()) - SaveUtils.getSaveEsze().getWorth(s2.getName())) == 0) ? 0 : 
-					((SaveUtils.getSaveEsze().getWorth(s1.getName()) - SaveUtils.getSaveEsze().getWorth(s2.getName())) > 0) ? -1 : 1
+				(Spell s1, Spell s2) ->  ((SaveUtils.getAnalytics().getWorth(s1.getName()) - SaveUtils.getAnalytics().getWorth(s2.getName())) == 0) ? 0 : 
+					((SaveUtils.getAnalytics().getWorth(s1.getName()) - SaveUtils.getAnalytics().getWorth(s2.getName())) > 0) ? -1 : 1
 				).collect(Collectors.toList());
 		return sorted;
 	}
