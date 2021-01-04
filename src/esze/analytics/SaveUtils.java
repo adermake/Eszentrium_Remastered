@@ -74,6 +74,17 @@ public class SaveUtils {
 	public static void endGame() {
 		currentGame = 0;
 		currentType = null;
+		update();
+	}
+	
+	public static void update() {
+		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
+			@Override
+			public void run() {
+				checkConnection();
+				analytics.update(currentConnection);
+			}
+		});
 	}
 
 	public static void setPlayerPlace(String name, int place) {
@@ -158,19 +169,6 @@ public class SaveUtils {
 		}
 	}
 
-	public static void checkConnection(Connection c) {
-		try {
-			if (c == null || c.isClosed()) {
-
-				Class.forName("com.mysql.jdbc.Driver");
-				c = DriverManager.getConnection(URL, USER, PASSWORD);
-			}
-		} catch (SQLException e) {
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public static void stopConnection() {
 		try {

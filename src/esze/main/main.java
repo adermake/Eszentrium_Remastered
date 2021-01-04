@@ -235,7 +235,7 @@ public class main extends JavaPlugin {
 		//Analytics
 		if (getConfig().contains("settings.sqlPass")) {
 			SaveUtils.setPassword(getConfig().getString("settings.sqlPass"));
-			SaveUtils.checkConnection();
+			SaveUtils.update();
 		} else {
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (p.isOp()) {
