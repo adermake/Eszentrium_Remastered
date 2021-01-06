@@ -125,12 +125,12 @@ public class TypeTEAMS extends Type{
 
 	@Override
 	public void runEverySecond() {
-		killInVoidCheck();
+		
 	}
 
 	@Override
 	public void runEveryTick() {
-		// TODO Auto-generated method stub
+		killInVoidCheck();
 		
 	}
 	

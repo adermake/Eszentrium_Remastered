@@ -32,9 +32,9 @@ public class SpellAnalyticsMenu extends ItemMenu {
 			lore.add( text + "SchadensTode: "  						+ number + ( (int) SaveUtils.getAnalytics().getSpellDeathsNormal(p, SaveUtils.rmColor(s.getName())) ) );
 			lore.add( text + "VoidTode: "  						+ number + ( (int) SaveUtils.getAnalytics().getSpellDeathsVoid(p, SaveUtils.rmColor(s.getName())) ) );
 			lore.add( text + "Deine Auswahlrate: "  		+ number + cut(SaveUtils.getAnalytics().getSpellWorth(p, SaveUtils.rmColor(s.getName())) ) + "%" );
-			lore.add( text + "Deine verbesserte Auswahlrate: "  		+ number + cut(SaveUtils.getAnalytics().getEnhancedSpellWorth(p, SaveUtils.rmColor(s.getName())) ) + "%" );
+			//lore.add( text + "Deine verbesserte Auswahlrate: "  		+ number + cut(SaveUtils.getAnalytics().getEnhancedSpellWorth(p, SaveUtils.rmColor(s.getName())) ) + "%" );
 			lore.add( text + "Allgemeine Auswahlrate: "  	+ number + cut(SaveUtils.getAnalytics().getWorth(SaveUtils.rmColor(s.getName())) ) + "%" );
-			lore.add( text + "Allgemeine verbesserte Auswahlrate: "  	+ number + cut(SaveUtils.getAnalytics().getEnhancedWorth(SaveUtils.rmColor(s.getName())) ) + "%" );
+			//lore.add( text + "Allgemeine verbesserte Auswahlrate: "  	+ number + cut(SaveUtils.getAnalytics().getEnhancedWorth(SaveUtils.rmColor(s.getName())) ) + "%" );
 			addClickableItem(x, y, Material.BOOK, s.getName(), lore);
 			x++;
 			if (x>9) {

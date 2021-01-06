@@ -76,7 +76,7 @@ public class WeaponAbilitys implements Listener {
 							String name = lastLaunched.get(p);
 							Class clazz = Class.forName(name);
 							Spell sp = (Spell) clazz.newInstance();
-							if (!sp.castSpell(p, "§cZauberecho")) {
+							if (!sp.castSpell(p, sp.getName())) {
 							cd.add(p);
 							
 							new BukkitRunnable() {

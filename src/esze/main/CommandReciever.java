@@ -420,9 +420,9 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 							new SoloAnalyticsMenu(p).open(p);
 						}
 						return true;
-					case "clear":
-						SaveUtils.reset();
-						p.sendMessage("Cleared!");
+					case "update":
+						SaveUtils.update();;
+						p.sendMessage("Updating... !");
 						return true;
 					case "spellmenu":
 						if (args.length >= 2) {

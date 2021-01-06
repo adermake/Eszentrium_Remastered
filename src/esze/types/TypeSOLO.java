@@ -47,12 +47,12 @@ public class TypeSOLO extends Type {
 
 	@Override
 	public void runEverySecond() {
-		killInVoidCheck();
+		
 	}
 
 	@Override
 	public void runEveryTick() {
-
+		killInVoidCheck();
 	}
 
 	@Override
@@ -133,8 +133,8 @@ public class TypeSOLO extends Type {
 		p.setVelocity(new Vector(0, 0, 0));
 		
 		if (lives.get(p) < 1) {
-			out(p);
 			SaveUtils.setPlayerPlace(p.getName(), players.size());
+			out(p);
 			checkWinner();
 		} else {
 			Spell.silenced.put(p, new SilenceSelection());
@@ -224,7 +224,7 @@ public class TypeSOLO extends Type {
 
 			postResult(winner);
 		}
-		SaveUtils.endGame(); // Analytics
+		
 
 		for (Entity e : Bukkit.getWorld("world").getEntities()) {
 			if (e.getType() != EntityType.PLAYER) {
@@ -245,6 +245,8 @@ public class TypeSOLO extends Type {
 		LobbyUtils.recallAll();
 		scoreboard.hide = true;
 		players.clear();
+		
+		SaveUtils.endGame(); // Analytics
 	}
 
 	public void postResult(Player winner) {

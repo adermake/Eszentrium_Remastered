@@ -70,7 +70,7 @@ public class SaveUtils {
 	public static void reload() {
 		stopConnection();
 	}
-
+	
 	public static void endGame() {
 		currentGame = 0;
 		currentType = null;
@@ -88,9 +88,13 @@ public class SaveUtils {
 	}
 
 	public static void setPlayerPlace(String name, int place) {
+		int currentGame = SaveUtils.currentGame;
+		TypeEnum currentType = SaveUtils.currentType;
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
+				
+				checkConnection();
 				if (currentType == TypeEnum.SOLO) {
 					executeSQLProcedure(
 							"setSoloPlace(" + format(currentGame) + ", " + format(name) + ", " + format(place) + ")");
@@ -107,6 +111,8 @@ public class SaveUtils {
 	}
 
 	public static void addPlayerDeath(String dead_p, String killer_p, boolean void_death, String spell) {
+		int currentGame = SaveUtils.currentGame;
+		TypeEnum currentType = SaveUtils.currentType;
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
@@ -123,8 +129,9 @@ public class SaveUtils {
 
 	public static void addPlayerSelection(String name, String choosen_Spell, boolean refined,
 			ArrayList<String> spells) {
-		// SQL addSelection
-
+		int currentGame = SaveUtils.currentGame;
+		TypeEnum currentType = SaveUtils.currentType;
+		
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
