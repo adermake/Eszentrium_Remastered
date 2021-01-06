@@ -35,6 +35,7 @@ public class Sternentor extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.SUPPORT);
+		
 		setLore("Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert. Für Gegner " + 
 				"wirkt dieser Effekt erst nach kurzer Verzögerung." + 
 				"Shift: Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt." + 

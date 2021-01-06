@@ -99,7 +99,7 @@ public class OrbitarOrb extends Spell {
 			
 		}
 		if (launched && (step+offset+11) % 44 == 0) {
-			new OrbitarShot(caster, a.getLocation(),name,refined);
+			new OrbitarShot(caster, loc,name,refined);
 			dead = true;
 		}
 		

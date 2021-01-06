@@ -117,7 +117,9 @@ public class Magmafalle extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		
+		if (isOnTeam(p)) {
+			return;
+		}
 		ParUtils.createParticle(Particles.FLAME, loc, 1,1, 1, 20, 0.3);
 		playSound(Sound.BLOCK_LAVA_EXTINGUISH,loc,6,1);
 		dead = true;

@@ -24,7 +24,7 @@ public class Enterhaken extends Spell{
 		cooldown = 20*25;
 		name = "§bEnterhaken";
 		speed = 1;
-		steprange = 100;
+		steprange = 300;
 		hitPlayer = false;
 		
 		addSpellType(SpellType.MOBILITY);

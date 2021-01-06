@@ -1,8 +1,17 @@
 package spells.spells;
 
+import java.util.HashMap;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -16,16 +25,17 @@ public class Stase extends Spell {
 	public Stase() {
 		name = "§eStase";
 		cooldown = 20*50;
-		speed = 1;
+		speed = 2F;
 		steprange = 40;
-		
+		hitboxSize = 1.4;
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 	}
+	HashMap<ArmorStand,Vector> aList = new HashMap<ArmorStand,Vector>();
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -38,7 +48,7 @@ public class Stase extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+		playSound(Sound.ENTITY_EVOKER_CAST_SPELL,caster.getLocation(),1,1);
 	}
 
 	@Override
@@ -47,11 +57,18 @@ public class Stase extends Spell {
 		loc.setDirection(caster.getLocation().getDirection());
 		loc.add(loc.getDirection());
 	}
-
+	
+	int r = 0;
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 0, 1);
+		//ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 0, 1);
+		Location l1 = ParUtils.stepCalcCircle(loc.clone(), 1, new Vector(0,1,0),0, step*6);
+		ParUtils.dropItemEffectVector(l1, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
+		Location l2 = ParUtils.stepCalcCircle(loc.clone(), 1, new Vector(0,1,0),0, 22+step*6);
+		ParUtils.dropItemEffectVector(l2, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
+		ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l1, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l1.toVector()));
+		ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l2, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l2.toVector()));
 	}
 
 	@Override

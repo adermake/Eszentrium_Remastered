@@ -120,14 +120,14 @@ public class Opfersuche extends Spell {
 		}
 		
 		
-		phantomSpin(p,1,20+(int)step*6);
+		phantomSpin(p,1,40+(int)step*5);
 		playSound(Sound.ENTITY_PHANTOM_HURT,loc,5,2F);
 		new BukkitRunnable() {
 			int t = 0;
 			int time = (int)step*6;
 			public void run() {
 				t++;
-				p.setVelocity(new Vector(0,-0.3,0));
+				p.setVelocity(new Vector(0,-0.6,0));
 				if (t > time) {
 					this.cancel();
 					
@@ -145,14 +145,14 @@ public class Opfersuche extends Spell {
 	public void onEntityHit(LivingEntity ent2) {
 		
 		playSound(Sound.ENTITY_PHANTOM_HURT,loc,5,2F);
-		phantomSpin(ent2,1,(int)step*6);
+		phantomSpin(ent2,1,40+(int)step*5);
 	
 		new BukkitRunnable() {
 			int t = 0;
 			int time = (int)step*6;
 			public void run() {
 				t++;
-				ent2.setVelocity(new Vector(0,-0.3,0));
+				ent2.setVelocity(new Vector(0,-0.6,0));
 				if (t > time) {
 					this.cancel();
 					

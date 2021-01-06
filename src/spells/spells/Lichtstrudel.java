@@ -101,7 +101,10 @@ public class Lichtstrudel extends Spell {
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
-		
+		if (spell.getName().contains("Antlitz der Göttin")){
+			originalCaster.setFlying(false);
+			originalCaster.setAllowFlight(false);
+		}
 	}
 
 	@Override

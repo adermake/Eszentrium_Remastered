@@ -214,6 +214,11 @@ public class Plasmablase extends Spell {
 		Vector dir = loc.toVector().subtract(l1.clone().toVector());
 		bulletHitEffect(dir, loc.clone());
 		spell.kill();
+		
+		if (spell.getName().contains("Antlitz der Göttin")){
+			originalCaster.setFlying(false);
+			originalCaster.setAllowFlight(false);
+		}
 	}
 
 	@Override

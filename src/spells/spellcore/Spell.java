@@ -29,6 +29,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import esze.enums.GameType;
+import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
@@ -285,6 +286,7 @@ public abstract class Spell {
 							if (speedmultiplier != 0) {
 								move();
 								display();
+								if (loc != null)
 								lastAirPos = loc.clone();
 							}
 							
@@ -704,6 +706,9 @@ public abstract class Spell {
 	public void damage(Entity ent, double damage,Player damager) {
 		
 		if (GameType.getType() instanceof TypeTEAMS) {
+			if (Gamestate.getGameState() == Gamestate.LOBBY) {
+				return;
+			}
 			if (ent instanceof Player) {
 				TypeTEAMS team = (TypeTEAMS) GameType.getType();
 				Player victim = (Player) ent;
@@ -727,6 +732,7 @@ public abstract class Spell {
 
 	public void tagPlayer(Player ent) {
 		
+	
 		// FABIANS DAMAGE CAUSE
 		main.damageCause.remove(ent);
 		main.damageCause.put(ent, name + "-" + caster.getName());
@@ -988,6 +994,23 @@ public abstract class Spell {
 		return null;
 
 	}
+	
+	public boolean isOnTeam(Player p) {
+		
+		if (GameType.getType() instanceof TypeTEAMS) {
+			TypeTEAMS teams = (TypeTEAMS) GameType.getType();
+			
+			if (teams.getTeammates(p).contains(caster)) {
+				return true;
+			}
+			
+			
+		}
+		
+		
+		return false;
+		
+	}
 	public Location block(Player p) {
 		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= 300; t++) {
@@ -1200,6 +1223,10 @@ public abstract class Spell {
 		betterlore.add(" ");
 		betterlore.add("§eCooldown: §7"+ cooldown/20 +"s");
 	}
+	
+	public boolean isDead() {
+		return dead;
+	}
 	public String formatLore(String lore) {
 		
 		
@@ -1219,10 +1246,12 @@ public abstract class Spell {
 			String f2 = "";
 			String shift3 = "";
 		if (lore.contains("F:") && lore.contains("Shift")) {
-			m1 = lore.split("F:")[0];
-			f2 = m1.split("Shift:")[0];
-			shift3 = m1.split("Shift:")[1];
-			spl = formatTab(m1) + formatTab("# #§eF:§7"+f2) + formatTab("# #§eShift:§7"+ shift3);
+			m1 = lore.split("F:")[0]; //base + shift
+			String f3 = lore.split("F:")[1];
+			f2 = m1.split("Shift:")[0]; // base
+			shift3 = m1.split("Shift:")[1];// shift
+			
+			spl = formatTab(f2)  + formatTab("# #§eShift:§7"+ shift3)+formatTab("# #§eF:§7"+f3);
 		}
 		else if (lore.contains("F:")) {
 			m1 = lore.split("F:")[0];

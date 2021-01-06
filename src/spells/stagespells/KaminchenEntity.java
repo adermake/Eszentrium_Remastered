@@ -14,6 +14,7 @@ import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Rabbit.Type;
 import org.bukkit.util.Vector;
 
+import esze.enums.GameType;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
@@ -91,6 +92,13 @@ public class KaminchenEntity extends Spell {
 		if(jumpAble && boundOnGround) {
 			damage = 9;
 			for (Player target : Bukkit.getOnlinePlayers()) {
+				
+				if (isOnTeam(target)) {
+					continue;
+				}
+				if (target.getGameMode() != GameMode.SURVIVAL) {
+					continue;
+				}
 				if(target == caster)
 					continue;
 				if (target.getGameMode() == GameMode.SURVIVAL) {
@@ -145,6 +153,9 @@ public class KaminchenEntity extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
+		if (isOnTeam(p)) {
+			return;
+		}
 		doKnockback(p, ent.getLocation(), 2);
 		damage(p,damage,caster);
 		dead = true;

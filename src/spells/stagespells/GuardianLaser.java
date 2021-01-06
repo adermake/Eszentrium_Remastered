@@ -81,12 +81,13 @@ public class GuardianLaser extends Spell {
 		// TODO Auto-generated method stub
 		
 		if (refined) {
-			damage(p,4,caster);
+			damage(p,7,caster);
 		}
 		else {
-			//damage(p,1,caster);
+			damage(p,2,caster);
 		}
-		p.setVelocity(p.getVelocity().add(dir).multiply(0.04));
+		
+		p.setVelocity(p.getVelocity().add(dir).multiply(2));
 		dead = true;
 	}
 
@@ -94,12 +95,13 @@ public class GuardianLaser extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		if (refined) {
-			damage(ent,4,caster);
+			damage(ent,7,caster);
 		}
 		else {
-			//damage(ent,1,caster);
+			damage(ent,2,caster);
 		}
-		ent.setVelocity(ent.getVelocity().add(dir).multiply(0.04));
+		
+		ent.setVelocity(ent.getVelocity().add(dir).multiply(2));
 		dead = true;
 	}
 
@@ -123,7 +125,7 @@ public class GuardianLaser extends Spell {
 		
 		
 		}
-		/*
+		
 		if (loc.add(0,0,1).getBlock().getType() == Material.AIR) {
 			FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
 			f.setVelocity(f.getVelocity().setY(0.2));
@@ -149,7 +151,7 @@ public class GuardianLaser extends Spell {
 		
 		}
 		loc.add(0,-1,0);
-		*/
+		
 		// TODO Auto-generated method stub
 		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_DOLPHIN_JUMP,loc,8,1);
@@ -158,7 +160,11 @@ public class GuardianLaser extends Spell {
 		dir.setPitch(dir.getPitch()-90);
 		ParUtils.createFlyingParticle(Particles.CLOUD, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
 		
+		Explosion e = new Explosion(3,  4, 1,1, caster, loc.clone(), name);
 		
+		for (Entity ent : noTargetEntitys) {
+			e.addNoTarget(ent);
+		}
 			
 			dead = true;
 		
@@ -173,6 +179,7 @@ public class GuardianLaser extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
+		
 		
 	}
 

@@ -1,5 +1,6 @@
 package spells.spells;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -26,6 +27,8 @@ public class Wasserdüse extends Spell {
 
 	public Wasserdüse() {
 		cooldown = 20 * 90;
+		steprange = 20 * 20;
+		speed = 1;
 		name = "§cWasserdüse";
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MULTIHIT);
@@ -73,9 +76,10 @@ public class Wasserdüse extends Spell {
 		//g1.setGravity(false);
 		//g2.setGravity(false);
 	}
-	int maxcharges = 100;
-	int charges = 100;
+	int maxcharges = 3;
+	int charges = 3;
 	double rad = 2.5;
+	int shooting = 0;
 	@Override
 	public void move() {
 		if (refined) {
@@ -93,12 +97,17 @@ public class Wasserdüse extends Spell {
 		g2.teleport(g2.getLocation().setDirection(caster.getLocation().getDirection()));
 		
 		//ParUtils.parKreisDir(Particles.BUBBLE, caster.getLocation(), 1, 2, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
-		for (double i = 0;i<charges/10;i++) {
+		for (double i = 0;i<charges;i++) {
 			
-			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 1, caster.getLocation().getDirection(), 3, (i*44/maxcharges*10));
+			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 1, caster.getLocation().getDirection(), 3, step+(i*44/maxcharges*10));
 			ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 		}
-		
+		int cruncher = 20;
+		for (double i = 0;i<steprange/cruncher-step/cruncher;i++) {
+			
+			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 0.7, caster.getLocation().getDirection(), 3,-step+(i*(44/(double)(steprange/cruncher))));
+			ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+		}
 		//
 		//g1.teleport(l1);
 		//g2.teleport(l2);
@@ -107,10 +116,15 @@ public class Wasserdüse extends Spell {
 		//spawnEntity(EntityType.GUARDIAN,l2,1);
 		//ParUtils.createParticle(Particles.ANGRY_VILLAGER, l1, 0, 0, 0, 1, 1);
 		//ParUtils.createParticle(Particles.ANGRY_VILLAGER, l2, 0, 0, 0, 1, 1);
-		if (caster.isSneaking() && charges > 0) {
-			
+		if (swap() && shooting <= 0 && charges > 0) {
+			shooting = 10;
 			charges--;
-			float mult = -0.5F;
+		}
+		clearswap();
+		if (shooting > 0) {
+			shooting --;
+			
+			float mult = -1F;
 			if (g1.isDead() || g2.isDead()) {
 				mult/=2;
 			}
@@ -129,7 +143,7 @@ public class Wasserdüse extends Spell {
 					gl.addNoTarget(g1);
 					gl.addNoTarget(g2);
 				}
-			
+			clearswap();
 			
 			
 		}
@@ -141,7 +155,7 @@ public class Wasserdüse extends Spell {
 		if (checkSilence()) {
 			dead = true;
 		}
-		if (charges <= 0) {
+		if (charges <= 0 && shooting <= 0) {
 			dead = true;
 		}
 	}

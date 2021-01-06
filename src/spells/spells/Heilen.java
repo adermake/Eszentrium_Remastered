@@ -26,6 +26,7 @@ public class Heilen extends Spell{
 		name = "§aHeilen";
 		speed = 30;
 		
+		hitboxSize = 1;
 		hitEntity = true;
 		hitPlayer = true;
 		hitSpell = true;
@@ -37,11 +38,12 @@ public class Heilen extends Spell{
 		super();
 		refined = ref;
 		this.s = s;
-		steprange = 40;
+		steprange = 70;
 		cooldown = 2;
 		name = "§eHeilen";
 		speed = 30;
 		
+		hitboxSize = 1;
 		hitSpell = true;
 		hitEntity = true;
 		hitPlayer = true;
@@ -52,6 +54,8 @@ public class Heilen extends Spell{
 	
 	@Override
 	public void setUp() {
+		if (refined)
+			steprange *= 4;
 		// TODO Auto-generated method stub
 		loc.setDirection(caster.getLocation().getDirection());
 		loc = Matrix.alignLocRotation(loc, new Vector(-0.3,0,0.4));
@@ -96,7 +100,13 @@ public class Heilen extends Spell{
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		heal(p, 1, caster);
+		if (refined) {
+			heal(p, 5, caster);
+		}
+		else {
+			heal(p, 3, caster);
+		}
+		
 		playSound(Sound.ENTITY_ENDERMITE_DEATH, loc, 2, 1);
 		
 	}
@@ -105,7 +115,12 @@ public class Heilen extends Spell{
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		playSound(Sound.ENTITY_ENDERMITE_DEATH, loc, 2, 1);
-		heal((LivingEntity) ent, 1, caster);
+		if (refined) {
+			heal(ent, 5, caster);
+		}
+		else {
+			heal(ent, 3, caster);
+		}
 	}
 
 	@Override
