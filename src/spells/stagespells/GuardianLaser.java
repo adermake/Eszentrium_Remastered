@@ -87,7 +87,7 @@ public class GuardianLaser extends Spell {
 			damage(p,2,caster);
 		}
 		
-		p.setVelocity(p.getVelocity().add(dir).multiply(2));
+		p.setVelocity(dir.clone().normalize().multiply(3));
 		dead = true;
 	}
 
@@ -101,7 +101,7 @@ public class GuardianLaser extends Spell {
 			damage(ent,2,caster);
 		}
 		
-		ent.setVelocity(ent.getVelocity().add(dir).multiply(2));
+		ent.setVelocity(dir.clone().normalize().multiply(3));
 		dead = true;
 	}
 

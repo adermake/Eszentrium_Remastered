@@ -24,7 +24,8 @@ public class Flammenwand extends Spell {
 		cooldown = 20 * 40;
 		casttime = 20 * 5;
 		speed = 3;
-		
+		hitPlayer = false;
+		hitEntity = false;
 		steprange = 50;
 	
 		addSpellType(SpellType.DAMAGE);
@@ -36,6 +37,7 @@ public class Flammenwand extends Spell {
 	Location l1;
 	Location l2;
 	Location l3;
+	
 	public void setUp() {
 		// TODO Auto-generated method stub
 		l1 = preblock(caster);
@@ -156,7 +158,7 @@ public class Flammenwand extends Spell {
 			}
 		}
 		
-		new FirePiece(bLoc.add(0,0,0), caster, name, 20 * 8,refined);
+		new FirePiece(bLoc.add(0,0,0), caster, name, 20 * 8,refined,this);
 	}
 
 	@Override

@@ -35,6 +35,7 @@ public class Requiemspfeil extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.PROJECTILE);
 		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.# #§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
+		
 	}
 	Location ori;
 	Location point;
@@ -81,7 +82,7 @@ public class Requiemspfeil extends Spell {
 		float f = ((float)speedX)/50;
 		
 		playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,0.3F,f);
-		caster.setNoDamageTicks(3);
+		caster.setNoDamageTicks(20);
 		// TODO Auto-generated method stub
 		loc = a.getLocation();
 		//a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(4)));
@@ -156,6 +157,7 @@ public class Requiemspfeil extends Spell {
 
 		originalCaster.teleport(ori);
 		caster.setVelocity(caster.getVelocity().multiply(0));
+		dead = true;
 		}
 	}
 
@@ -169,6 +171,7 @@ public class Requiemspfeil extends Spell {
 	@Override
 	public void onDeath() {
 		if (!once) {
+			caster.setNoDamageTicks(1);
 			ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
 			setGliding(caster, false);
 			caster.setVelocity(new Vector(0,0,0));

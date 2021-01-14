@@ -45,6 +45,7 @@ import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
 import spells.spells.Impulsion;
 import spells.spells.Kaminchen;
+import spells.spells.Kettenbrecher;
 import spells.spells.Knochenparty;
 import spells.spells.KosmischeBindung;
 import spells.spells.Kätzchenkanone;
@@ -246,6 +247,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Machtwort());
 		registerSpell(new Vogelattacke());
 		registerSpell(new Stase());
+		registerSpell(new Kettenbrecher());
 		//registerSpell(new Springkraut());
 	}
 	

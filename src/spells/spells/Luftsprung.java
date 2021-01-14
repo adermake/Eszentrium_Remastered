@@ -45,6 +45,7 @@ public class Luftsprung extends Spell {
 	}
 
 	boolean reversed = false;
+	int i = 0;
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
@@ -61,7 +62,7 @@ public class Luftsprung extends Spell {
 				caster.setVelocity(caster.getLocation().getDirection().multiply(2));
 			}
 			playSound( Sound.ENTITY_WITHER_SHOOT,caster.getLocation(), 1, 2);
-			
+			i++;
 		}
 		}else {
 			if (refined && !reversed) {
@@ -72,6 +73,8 @@ public class Luftsprung extends Spell {
 				}
 			}
 		}
+		
+		
 	}
 
 	@Override

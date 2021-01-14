@@ -26,7 +26,7 @@ import spells.stagespells.ThermolanzeLaser;
 public class Wasserdüse extends Spell {
 
 	public Wasserdüse() {
-		cooldown = 20 * 90;
+		cooldown = 20 * 70;
 		steprange = 20 * 20;
 		speed = 1;
 		name = "§cWasserdüse";
@@ -75,6 +75,9 @@ public class Wasserdüse extends Spell {
 		//unHittable.add(g2);
 		//g1.setGravity(false);
 		//g2.setGravity(false);
+		
+		g1.setInvulnerable(true);
+		g2.setInvulnerable(true);
 	}
 	int maxcharges = 3;
 	int charges = 3;

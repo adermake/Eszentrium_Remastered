@@ -1,5 +1,7 @@
 package spells.spells;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -24,6 +26,7 @@ public class Plasmablase extends Spell {
 	double rad = 12;
 	Vector dir = new Vector(0,1,0);
 	int animCooldown = 0;
+	HashMap<Player,Integer> immunity = new HashMap<Player,Integer>();
 	public Plasmablase() {
 		cooldown = 20 * 40;
 		
@@ -183,6 +186,16 @@ public class Plasmablase extends Spell {
 	}
 	@Override
 	public void onPlayerHit(Player p) {
+		if (immunity.containsKey(p)) {
+			immunity.put(p, immunity.get(p)+1);
+		}
+		else {
+			immunity.put(p, 1);
+		}
+		
+		if (immunity.get(p) > 2* 20) {
+			return;
+		}
 		// TODO Auto-generated method stub
 		Vector v = p.getLocation().toVector().subtract(loc.toVector());
 		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, p.getLocation(), 2, 0, 0, v,v);
@@ -203,9 +216,7 @@ public class Plasmablase extends Spell {
 
 	@Override
 	public void onSpellHit(Spell spell) {
-		if (hitEntitys.contains(spell.caster)) {
-			return;
-		}
+	
 		playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET, loc, 12,0.7F);
 		playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,0.8F);
 		

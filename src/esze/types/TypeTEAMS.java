@@ -375,6 +375,9 @@ public class TypeTEAMS extends Type{
 		if (p.getGameMode().equals(GameMode.SURVIVAL)) {
 			p.getInventory().clear();
 		}
+		if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
+			
+		
 		p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
 		p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
 		p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
@@ -382,6 +385,7 @@ public class TypeTEAMS extends Type{
 		p.getInventory().setItem(4, ItemStackUtils.createItemStack(Material.NAME_TAG, 1, 0, "§3Teamauswahl", null, true));
 		
 		resendScorboardTeams(p);
+		}
 	}
 	
 	

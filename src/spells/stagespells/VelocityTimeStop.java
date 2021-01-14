@@ -41,7 +41,7 @@ public class VelocityTimeStop extends Spell {
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.PROJECTILE);
 		
-		setLore("Schießt ein Projektil, das einen getroffenen Gegner in der Zeit festhält. Während dieser Zeit kann er sich nicht bewegen, erhält allerdings auch keinen Schaden und keinen Rückstoß. Nach kurzer Zeit wird der Gegner befreit und der gesamte Rückstoß, den der Gegner in dieser Zeit abbekommen hätte, wird gleichzeitig freigesetzt.");
+		
 	}
 	
 	@Override
@@ -57,6 +57,12 @@ public class VelocityTimeStop extends Spell {
 		target.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,20*6,200,true)); 
 		target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS,20*6,200,true)); 
 		playSound(Sound.ENTITY_RAVAGER_ATTACK,target.getEyeLocation(),2,1);
+		SilenceSelection s = new SilenceSelection();
+		if (target instanceof Player) {
+			Player t = (Player) target;
+			silence(t, s);
+		}
+		
 
 	}
 
@@ -173,6 +179,7 @@ public class VelocityTimeStop extends Spell {
 	double vfactor = 1.2F;
 	@Override
 	public void onDeath() {
+		silenced.remove(target);
 		double sound = v.length();
 		
 		playSound(Sound.ENTITY_WITHER_SHOOT,target.getEyeLocation(),2*sound/30,2-1.9F*sound/30);

@@ -210,8 +210,10 @@ public class main extends JavaPlugin {
 				p.getInventory().clear();
 				p.teleport(new Location(Bukkit.getWorld("world"), 0, 105, 0));// teleport into Lobby
 			}
-
-			GameType.getType().givePlayerLobbyItems(p);
+			
+				GameType.getType().givePlayerLobbyItems(p);
+			
+			
 		}
 
 		if (getConfig().contains("settings.dcToken")) {

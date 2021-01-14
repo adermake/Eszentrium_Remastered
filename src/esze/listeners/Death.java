@@ -61,6 +61,7 @@ public class Death implements Listener {
 				event.setDamage(6);
 			}
 		}
+		if (event.getDamager() instanceof org.bukkit.entity.EnderDragon) event.setCancelled(true); 
 		if (event.getDamager() instanceof org.bukkit.entity.Firework) event.setCancelled(true); 
 		if (event.getDamager() instanceof org.bukkit.entity.Slime) event.setCancelled(true); 
 	}

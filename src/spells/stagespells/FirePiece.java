@@ -12,13 +12,14 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
+import spells.spells.Flammenwand;
 
 public class FirePiece extends Spell {
 
-	
+	Flammenwand wd;
 	Location saveLoc;
-	public FirePiece(Location l,Player p,String name,int time,boolean refined) {
-		
+	public FirePiece(Location l,Player p,String name,int time,boolean refined,Flammenwand fw) {
+		this.wd = fw;
 		this.refined = refined;
 		hitboxSize = 2;
 		steprange = time;
@@ -84,7 +85,12 @@ public class FirePiece extends Spell {
 		// TODO Auto-generated method stub
 		damage(p, 3, caster);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
-			//doKnockback(p, loc,0.1F);
+		
+		if (!wd.hitEntitys.contains(p)) {
+			wd.hitEntitys.add(p);
+			doKnockback(p, loc,0.1F);
+		}
+			//
 		
 		p.setFireTicks(20);
 	}
@@ -95,6 +101,10 @@ public class FirePiece extends Spell {
 		
 		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
 		
+		if (!wd.hitEntitys.contains(ent)) {
+			wd.hitEntitys.add(ent);
+			doKnockback(ent, loc,0.1F);
+		}
 		damage(ent, 3, caster);
 		ent.setFireTicks(20);
 	}

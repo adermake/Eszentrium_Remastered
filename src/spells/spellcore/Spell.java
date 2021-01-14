@@ -25,6 +25,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -33,7 +34,9 @@ import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
+import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
+import esze.utils.SpellKeyUtils;
 import io.netty.util.internal.ThreadLocalRandom;
 import spells.spells.AntlitzderGöttin;
 
@@ -64,6 +67,7 @@ public abstract class Spell {
 	protected double speed  = 1;
 	protected double speedmultiplier = 1;
 	protected double hitboxSize = 1;
+	protected static int spellkey = -1;
 	
 	protected boolean refined = false;
 	protected boolean hitEntity = true;
@@ -80,12 +84,13 @@ public abstract class Spell {
 	protected boolean dead = false;
 	protected boolean silencable = false;
 	protected boolean tagPlayer = true; //hit Players will get a damage Cause
+	protected boolean lazySpell = false;
 	
 	//VARS
 	
 	protected boolean spellLoopStarted = false;
 	protected ArrayList<Entity> noTargetEntitys = new ArrayList<Entity>();
-	protected ArrayList<Entity> hitEntitys = new ArrayList<Entity>();
+	public ArrayList<Entity> hitEntitys = new ArrayList<Entity>();
 	public static ArrayList<Entity> pressingF = new ArrayList<Entity>();
 	public static ArrayList<Entity> clearpressingF = new ArrayList<Entity>();
 	public static ArrayList<Spell> spell = new ArrayList<Spell>();
@@ -137,6 +142,7 @@ public abstract class Spell {
 	
 	public boolean refund = false;
 	public boolean createdSpell(Player p) {
+		//applySpellKey(p);
 		spell.add(this); //XXXX
 		caster = p;
 		loc = p.getEyeLocation();
@@ -165,6 +171,7 @@ public abstract class Spell {
 			
 			public void run()
 			{
+				
 				cast++;
 				if (canBeSilenced && checkSilence()) {
 					this.cancel();
@@ -288,9 +295,11 @@ public abstract class Spell {
 								display();
 								if (loc != null)
 								lastAirPos = loc.clone();
+								
+								
 							}
 							
-							if (!dead) {
+							if (!dead && !lazySpell) {
 								hasDied = new ArrayList<Player>(hasDiedEntry);
 								collideWithPlayer();
 								collideWithEntity();
@@ -1409,6 +1418,15 @@ public abstract class Spell {
 		LivingEntity nearest = null;
 		for (LivingEntity p : c.getWorld().getLivingEntities()) {
 			
+			if (p instanceof Player) {
+				Player player = (Player) p;
+				
+				if (player.getGameMode() == GameMode.ADVENTURE) {
+					continue;
+				}
+				
+				
+			}
 			if (p != c) {
 				double dis = l.distance(p.getLocation());
 				if (dis<distance&& dis < range) {
@@ -1445,7 +1463,31 @@ public abstract class Spell {
 		noTargetEntitys.add(ent);
 	}
 
+	public void applySpellKey(Player p) {
+		Bukkit.broadcastMessage("APPLIED KEY");
+		ItemStack is = p.getInventory().getItemInMainHand();
+		if (!NBTUtils.getNBT("SpellKey", is).equals("")) {
+			Bukkit.broadcastMessage("HAS KEY");
+			spellkey = Integer.parseInt(NBTUtils.getNBT("SpellKey", is));
+			
+			
+		}
+		else {
+			spellkey = SpellKeyUtils.getNextSpellKey();
+			is = NBTUtils.setNBT("SpellKey",""+spellkey, is);
+			Bukkit.broadcastMessage("NEW KEY");
+		}
+		is.setType(Material.STICK);
+		final ItemStack a = is;
+		p.getInventory().setItemInMainHand(a);
+		
+		
+	}
 	
+	
+	public void reduceCooldown(int amount) {
+		SpellKeyUtils.reduceCooldown(caster,spellkey, amount);
+	}
 	// OVERRIDEABLES
 	
 	public Spell() {};

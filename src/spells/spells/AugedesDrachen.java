@@ -29,7 +29,7 @@ public class AugedesDrachen extends Spell{
 		steprange = 180;
 		hitboxSize = 1;
 		//multihit = true;
-		
+		multihit = false;
 		addSpellType(SpellType.DAMAGE);
 		//addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.KNOCKBACK);

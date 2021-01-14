@@ -23,7 +23,7 @@ public class Stase extends Spell {
 
 	
 	public Stase() {
-		name = "§eStase";
+		name = "§cStase";
 		cooldown = 20*50;
 		speed = 2F;
 		steprange = 40;
@@ -31,6 +31,7 @@ public class Stase extends Spell {
 		addSpellType(SpellType.LOCKDOWN);
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("Schießt ein Projektil, das einen getroffenen Gegner in der Zeit festhält. Dieser kann während dieser Zeit weder mit Zaubern noch mit seiner Waffe angreifen, erhält aber selbst auch keinen Rückstoß oder Schaden. Nach kurzer Zeit wird der Gegner befreit und erhält den gesamten Rückstoß, den er während der Versteinerung abbekommen hat, auf einmal.");
 	}
 	HashMap<ArmorStand,Vector> aList = new HashMap<ArmorStand,Vector>();
 	@Override

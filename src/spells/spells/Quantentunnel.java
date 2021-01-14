@@ -11,8 +11,10 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import esze.main.main;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
@@ -101,7 +103,7 @@ public class Quantentunnel extends Spell{
 		ti++;
 		if (ti > 20) {
 			for (Entity ent : hitEntitys) {
-				ParUtils.parLineRedstone(loc.clone(), ent.getLocation(), Color.AQUA, 0.4F, 2F);
+				ParUtils.parLineRedstone(loc.clone(), ent.getLocation().add(0,1,0), Color.AQUA, 0.4F, 2F);
 			}
 		}
 		
@@ -110,11 +112,13 @@ public class Quantentunnel extends Spell{
 	
 	@Override
 	public void onPlayerHit(Player p) {
+		hitEffect(p);
 		playSound(Sound.BLOCK_BEACON_ACTIVATE,loc, 10, 1);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
+		hitEffect(ent);
 		playSound(Sound.BLOCK_BEACON_ACTIVATE,loc, 10, 1);
 	}
 
@@ -166,6 +170,31 @@ public class Quantentunnel extends Spell{
 		
 		
 		
+	}
+	
+	
+	public void hitEffect(Entity e) {
+		new BukkitRunnable() {
+			double s = 0;
+			public void run() {
+				Vector v = loc.getDirection();
+				s++;
+				double gain = (double)step/(double)steprange;
+				for (double i = 0;i<gain*16;i++) {
+					Location l1 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 4*gain, v, 0, (i*44/gain)+(s*6*gain));
+					Location l2 = ParUtils.stepCalcCircle(loc.clone().add(0,1,0), 2*gain, v, 0, (i*44/gain)+(s*6*gain));
+					ParUtils.createFlyingParticle(Particles.END_ROD, l1, 0.01, 0.01, 0.01, 1, 35*gain, l2.toVector().subtract(l1.toVector()).normalize());
+					ParUtils.createFlyingParticle(Particles.BUBBLE, l1, 0.01, 0.01, 0.01, 4, 0, v);
+				}
+				
+				//Location l2 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 3*gain, v, 0, 22D+s*6*gain);
+				
+				//ParUtils.createFlyingParticle(Particles.END_ROD, l2, 0.01, 0.01, 0.01, 11, 16*gain, v);
+				if (dead ) {
+					this.cancel();
+				}
+			}
+		}.runTaskTimer(main.plugin,1,1);
 	}
 
 }
