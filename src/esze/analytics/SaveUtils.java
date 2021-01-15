@@ -25,6 +25,7 @@ public class SaveUtils {
 	private static String PASSWORD = "";
 
 	private static void startGame() {
+		checkConnection();
 		currentGame = executeSQLFunction("addGame()");
 	}
 
@@ -34,11 +35,7 @@ public class SaveUtils {
 			@Override
 			public void run() {
 				currentType = TypeEnum.SOLO;
-				System.out.println("Start Game");
-
 				startGame();
-
-				System.out.println("Started Game: " + currentGame);
 
 				for (String player : players) {
 					executeSQLProcedure("addSoloPlayer(" + format(currentGame) + ", " + format(player) + ")");
@@ -150,6 +147,30 @@ public class SaveUtils {
 			}
 		});
 
+	}
+	
+	public static void setLore(String spell, String lore) {
+
+		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
+			@Override
+			public void run() {
+				checkConnection();
+				executeSQLProcedure("setLore(" + format(spell) + ", " + format(lore) + ")");
+				update();
+			}
+		});
+	}
+	
+	public static void setRefinedLore(String spell, String lore) {
+
+		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
+			@Override
+			public void run() {
+				checkConnection();
+				executeSQLProcedure("setRefinedLore(" + format(spell) + ", " + format(lore) + ")");
+				update();
+			}
+		});
 	}
 
 	public static AnalyticsInterface getAnalytics() {

@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.sun.javafx.collections.SetListenerHelper;
+
 public class AnalyticsInterface {
 	
 	private static final String PLAYER = "player_name";
@@ -26,6 +28,8 @@ public class AnalyticsInterface {
 	private static final String SPELLKILLSVOID = "select * from SpellKillsVoid";
 	private static final String SPELLAPPERANCE = "select * from AbsoluteSpellApperance";
 	private static final String SPELLPICK = "select * from AbsoluteSpellPick";
+	
+	private static final String SPELLLORE = "select * from SpellLore";
 	
 	private static final String SPELLKILLSPLAYER = "call getSpellKills(";
 	private static final String SPELLKILLSNORMALPLAYER = "call getSpellKillsNormal(";
@@ -53,6 +57,9 @@ public class AnalyticsInterface {
 	private HashMap<String, Integer> spellKillsVoid;
 	private HashMap<String, Integer> spellApperances;
 	private HashMap<String, Integer> spellPicks;
+	
+	private HashMap<String, String> spellLore;
+	private HashMap<String, String> spellRefinedLore;
 	
 	private HashMap<String, HashMap<String, Integer>> spellKillsPlayer = new HashMap<>();
 	private HashMap<String, HashMap<String, Integer>> spellKillsNormalPlayer = new HashMap<>();
@@ -197,6 +204,20 @@ public class AnalyticsInterface {
 		}
 		return spellKillsNormal.get(SaveUtils.rmColor(spell));
 	}
+	
+	public String getSpellLore(String spell) {
+		if (spellLore == null || spellLore.get(SaveUtils.rmColor(spell)) == null) {
+			return "";
+		}
+		return spellLore.get(SaveUtils.rmColor(spell));
+	}
+	
+	public String getSpellRefinedLore(String spell) {
+		if (spellRefinedLore == null || spellRefinedLore.get(SaveUtils.rmColor(spell)) == null) {
+			return "";
+		}
+		return spellRefinedLore.get(SaveUtils.rmColor(spell));
+	}
 
 
 	public double getWorth(String spell) {
@@ -236,6 +257,8 @@ public class AnalyticsInterface {
 			setSpellKillsVoid(stmt.executeQuery(SPELLKILLSVOID));
 			setSpellApperances(stmt.executeQuery(SPELLAPPERANCE));
 			setSpellPicks(stmt.executeQuery(SPELLPICK));
+			
+			setSpellLore(stmt.executeQuery(SPELLLORE));
 			
 			setPlayers(stmt.executeQuery(PLAYERLIST));
 			
@@ -378,6 +401,22 @@ public class AnalyticsInterface {
 			rs.close();
 		} catch (SQLException e) { e.printStackTrace(); }
 	}
+	
+	public void setSpellLore(ResultSet rs) {
+		String out1 = "lore";
+		String out2 = "refined_lore";
+		spellLore = new HashMap<>();
+		spellRefinedLore = new HashMap<>();
+		try {
+			while (rs.next()) {
+				spellLore.put(rs.getString(SPELL), rs.getString(out1));
+				spellRefinedLore.put(rs.getString(SPELL), rs.getString(out2));
+			}
+			rs.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	}
+	
+	
 	
 	public void setPlayers(ResultSet rs) {
 		players = new ArrayList<>();
