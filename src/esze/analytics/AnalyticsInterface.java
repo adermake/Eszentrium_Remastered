@@ -9,6 +9,9 @@ import java.util.HashMap;
 
 import com.sun.javafx.collections.SetListenerHelper;
 
+import spells.spellcore.Spell;
+import spells.spellcore.SpellList;
+
 public class AnalyticsInterface {
 	
 	private static final String PLAYER = "player_name";
@@ -275,7 +278,9 @@ public class AnalyticsInterface {
 				setSpellPicks(p, stmt.executeQuery(SPELLPICKPLAYER + SaveUtils.format(p) + ENDCALLQUERY));
 			}
 			
-			
+			for (Spell spell : SpellList.spells.keySet()) {
+				spell.updateLore();
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();}

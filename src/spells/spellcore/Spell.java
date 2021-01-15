@@ -124,6 +124,7 @@ public abstract class Spell {
 		}
 	}
 	
+	
 	public boolean castSpell(Player p,String name) {
 		
 		this.name = name;
@@ -1212,7 +1213,7 @@ public abstract class Spell {
 		return betterlore;
 	}
 	public void setLore(String ls) {
-		
+		lore.clear();
 		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			lore.add(s);
@@ -1223,7 +1224,7 @@ public abstract class Spell {
 		lore.add("§eCooldown: §7"+ cooldown/20 +"s");
 	}
 	public void setBetterLore(String ls) {
-		
+		betterlore.clear();
 		ls = formatLore(ls);
 		for (String s : ls.split("#")) {
 			betterlore.add(s);
@@ -1485,6 +1486,10 @@ public abstract class Spell {
 		
 	}
 	
+	public void updateLore() {
+		setLore(SaveUtils.getAnalytics().getSpellLore(name));
+		setBetterLore(SaveUtils.getAnalytics().getSpellRefinedLore(name));
+	}
 	
 	public void reduceCooldown(int amount) {
 		SpellKeyUtils.reduceCooldown(caster,spellkey, amount);
