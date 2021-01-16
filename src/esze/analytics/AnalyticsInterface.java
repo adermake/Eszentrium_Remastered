@@ -185,6 +185,16 @@ public class AnalyticsInterface {
 		}
 		return ( ((double) spellPicksPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellApperancesPlayer.get(p).get(SaveUtils.rmColor(spell))) )* 100D;
 	}
+	
+	public double getSpellWorthOffensive(String p, String spell) {
+		if (spellKillsPlayer == null || spellKillsPlayer.get(p) == null || spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		if (spellPicksPlayer == null || spellPicksPlayer.get(p) == null || spellPicksPlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		return ( ((double) spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellPicksPlayer.get(p).get(SaveUtils.rmColor(spell))) );
+	}
 
 
 	public int getSpellKills(String spell) {
@@ -228,6 +238,13 @@ public class AnalyticsInterface {
 			return 0;
 		}
 		return ( ((double) spellPicks.get(SaveUtils.rmColor(spell))) / ((double) spellApperances.get(SaveUtils.rmColor(spell))) ) * 100D;
+	}
+	
+	public double getWorthOffensive(String spell) {
+		if (spellKills == null || spellKills.get(SaveUtils.rmColor(spell)) == null || spellPicks == null || spellPicks.get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		return (  ((double) spellKills.get(SaveUtils.rmColor(spell))) / ((double) spellPicks.get(SaveUtils.rmColor(spell))) );
 	}
 
 	/*
