@@ -186,7 +186,7 @@ public class AnalyticsInterface {
 		return ( ((double) spellPicksPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellApperancesPlayer.get(p).get(SaveUtils.rmColor(spell))) )* 100D;
 	}
 	
-	public double getSpellWorthOffensive(String p, String spell) {
+	public double getWorthOffensive(String p, String spell) {
 		if (spellKillsPlayer == null || spellKillsPlayer.get(p) == null || spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
 			return 0;
 		}
@@ -212,10 +212,10 @@ public class AnalyticsInterface {
 	}
 	
 	public int getSpellKillsVoid(String spell) {
-		if (spellKillsNormal == null || spellKillsNormal.get(SaveUtils.rmColor(spell)) == null) {
+		if (spellKillsVoid == null || spellKillsVoid.get(SaveUtils.rmColor(spell)) == null) {
 			return 0;
 		}
-		return spellKillsNormal.get(SaveUtils.rmColor(spell));
+		return spellKillsVoid.get(SaveUtils.rmColor(spell));
 	}
 	
 	public String getSpellLore(String spell) {

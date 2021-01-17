@@ -37,7 +37,7 @@ public class SpellAnalyticsMenu extends ItemMenu {
 			lore.add( text + "Deine Auswahlrate: "  		+ number + cut(SaveUtils.getAnalytics().getSpellWorth(p, SaveUtils.rmColor(s.getName())) ) + "%" );
 			//lore.add( text + "Deine verbesserte Auswahlrate: "  		+ number + cut(SaveUtils.getAnalytics().getEnhancedSpellWorth(p, SaveUtils.rmColor(s.getName())) ) + "%" );
 			lore.add( text + "Allgemeine Auswahlrate: "  	+ number + cut(SaveUtils.getAnalytics().getWorth(SaveUtils.rmColor(s.getName())) ) + "%" );
-			lore.add( text + "Deine Offensive Fähigkeit: "  	+ number + cut(SaveUtils.getAnalytics().getWorthOffensive(SaveUtils.rmColor(s.getName())) ) );
+			lore.add( text + "Deine Offensive Fähigkeit: "  	+ number + cut(SaveUtils.getAnalytics().getWorthOffensive(p, SaveUtils.rmColor(s.getName())) ) );
 			lore.add( text + "Allgemeine Offensive Fähigkeit: "  	+ number + cut(SaveUtils.getAnalytics().getWorthOffensive(SaveUtils.rmColor(s.getName())) ) );
 			//lore.add( text + "Allgemeine verbesserte Auswahlrate: "  	+ number + cut(SaveUtils.getAnalytics().getEnhancedWorth(SaveUtils.rmColor(s.getName())) ) + "%" );
 			addClickableItem(x, y, Material.BOOK, s.getName(), lore);
