@@ -207,7 +207,7 @@ public class AnalyticsInterface {
 		if (spellUsePlayer == null || spellUsePlayer.get(p) == null || spellUsePlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
 			return 0;
 		}
-		return ( ((double) spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellUsePlayer.get(p).get(SaveUtils.rmColor(spell)))  * 100D);
+		return ( ((double) spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellUsePlayer.get(p).get(SaveUtils.rmColor(spell))));
 	}
 
 	public int getSpellKills(String spell) {
@@ -264,7 +264,7 @@ public class AnalyticsInterface {
 		if (spellKills == null || spellKills.get(SaveUtils.rmColor(spell)) == null || spellUse == null || spellUse.get(SaveUtils.rmColor(spell)) == null) {
 			return 0;
 		}
-		return (  ((double) spellKills.get(SaveUtils.rmColor(spell))) / ((double) spellUse.get(SaveUtils.rmColor(spell))) * 100D);
+		return (  ((double) spellKills.get(SaveUtils.rmColor(spell))) / ((double) spellUse.get(SaveUtils.rmColor(spell))));
 	}
 	/*
 	public double getEnhancedSpellWorth(String p, String spell) {
