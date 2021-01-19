@@ -31,6 +31,7 @@ public class AnalyticsInterface {
 	private static final String SPELLKILLSVOID = "select * from SpellKillsVoid";
 	private static final String SPELLAPPERANCE = "select * from AbsoluteSpellApperance";
 	private static final String SPELLPICK = "select * from AbsoluteSpellPick";
+	private static final String SPELLUSE = "select * from AbsoluteSpellUse";
 	
 	private static final String SPELLLORE = "select * from SpellLore";
 	
@@ -44,6 +45,7 @@ public class AnalyticsInterface {
 	
 	private static final String SPELLAPPERANCEPLAYER = "call getSpellAppearances(";
 	private static final String SPELLPICKPLAYER = "call getSpellPick(";
+	private static final String SPELLUSEPLAYER = "call getSpellUse(";
 	
 	private static final String ENDCALLQUERY = ")";
 	private ArrayList<String> players;
@@ -60,6 +62,7 @@ public class AnalyticsInterface {
 	private HashMap<String, Integer> spellKillsVoid;
 	private HashMap<String, Integer> spellApperances;
 	private HashMap<String, Integer> spellPicks;
+	private HashMap<String, Integer> spellUse;
 	
 	private HashMap<String, String> spellLore;
 	private HashMap<String, String> spellRefinedLore;
@@ -74,6 +77,7 @@ public class AnalyticsInterface {
 	
 	private HashMap<String, HashMap<String, Integer>> spellApperancesPlayer = new HashMap<>();
 	private HashMap<String, HashMap<String, Integer>> spellPicksPlayer = new HashMap<>();
+	private HashMap<String, HashMap<String, Integer>> spellUsePlayer = new HashMap<>();
 	
 	public AnalyticsInterface() {
 		
@@ -196,6 +200,15 @@ public class AnalyticsInterface {
 		return ( ((double) spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellPicksPlayer.get(p).get(SaveUtils.rmColor(spell))) );
 	}
 
+	public double getUseWorth(String p, String spell) {
+		if (spellKillsPlayer == null || spellKillsPlayer.get(p) == null || spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		if (spellUsePlayer == null || spellUsePlayer.get(p) == null || spellUsePlayer.get(p).get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		return ( ((double) spellKillsPlayer.get(p).get(SaveUtils.rmColor(spell))) / ((double) spellUsePlayer.get(p).get(SaveUtils.rmColor(spell)))  * 100D);
+	}
 
 	public int getSpellKills(String spell) {
 		if (spellKills == null || spellKills.get(SaveUtils.rmColor(spell)) == null) {
@@ -247,6 +260,12 @@ public class AnalyticsInterface {
 		return (  ((double) spellKills.get(SaveUtils.rmColor(spell))) / ((double) spellPicks.get(SaveUtils.rmColor(spell))) );
 	}
 
+	public double getUseWorth(String spell) {
+		if (spellKills == null || spellKills.get(SaveUtils.rmColor(spell)) == null || spellUse == null || spellUse.get(SaveUtils.rmColor(spell)) == null) {
+			return 0;
+		}
+		return (  ((double) spellKills.get(SaveUtils.rmColor(spell))) / ((double) spellUse.get(SaveUtils.rmColor(spell))) * 100D);
+	}
 	/*
 	public double getEnhancedSpellWorth(String p, String spell) {
 		// TODO Auto-generated method stub
@@ -277,6 +296,7 @@ public class AnalyticsInterface {
 			setSpellKillsVoid(stmt.executeQuery(SPELLKILLSVOID));
 			setSpellApperances(stmt.executeQuery(SPELLAPPERANCE));
 			setSpellPicks(stmt.executeQuery(SPELLPICK));
+			setSpellUse(stmt.executeQuery(SPELLUSE));
 			
 			setSpellLore(stmt.executeQuery(SPELLLORE));
 			
@@ -293,6 +313,7 @@ public class AnalyticsInterface {
 				
 				setSpellAppreances(p, stmt.executeQuery(SPELLAPPERANCEPLAYER + SaveUtils.format(p) + ENDCALLQUERY));
 				setSpellPicks(p, stmt.executeQuery(SPELLPICKPLAYER + SaveUtils.format(p) + ENDCALLQUERY));
+				setSpellUse(p, stmt.executeQuery(SPELLUSEPLAYER + SaveUtils.format(p) + ENDCALLQUERY));
 			}
 			
 			for (Spell spell : SpellList.spells.keySet()) {
@@ -424,6 +445,17 @@ public class AnalyticsInterface {
 		} catch (SQLException e) { e.printStackTrace(); }
 	}
 	
+	public void setSpellUse(ResultSet rs) {
+		String out = "Count";
+		spellUse = new HashMap<>();
+		try {
+			while (rs.next()) {
+				spellUse.put(rs.getString(SPELL), rs.getInt(out));
+			}
+			rs.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	}
+	
 	public void setSpellLore(ResultSet rs) {
 		String out1 = "lore";
 		String out2 = "refined_lore";
@@ -541,6 +573,18 @@ public class AnalyticsInterface {
 		try {
 			while (rs.next()) {
 				spellPicksPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
+			}
+			rs.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	}
+	
+	public void setSpellUse(String p, ResultSet rs) {
+		String out = "Count";
+		spellUsePlayer.remove(p);
+		spellUsePlayer.put(p, new HashMap<>());
+		try {
+			while (rs.next()) {
+				spellUsePlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
 			}
 			rs.close();
 		} catch (SQLException e) { e.printStackTrace(); }

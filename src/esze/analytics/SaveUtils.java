@@ -155,7 +155,7 @@ public class SaveUtils {
 			@Override
 			public void run() {
 				checkConnection();
-				executeSQLFunction("addSpellUse(" + format(currentGame) + ", " + format(spell) + ", " + format(player) + ", " + format(refined) + ")");
+				executeSQLFunction("addSpellUse(" + (currentGame == 0 ? format("null") : format(currentGame)) + ", " + format(spell) + ", " + format(player) + ", " + format(refined) + ")");
 			}
 		});
 	}
