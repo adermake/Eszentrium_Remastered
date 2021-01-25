@@ -69,6 +69,15 @@ public class SaveUtils {
 	}
 	
 	public static void endGame() {
+		int gmid = currentGame;
+		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
+			@Override
+			public void run() {
+				checkConnection();
+				executeSQLFunction("endGame(" + format(gmid) + ")");
+			}
+		});
+		
 		currentGame = 0;
 		currentType = null;
 		update();
@@ -83,6 +92,8 @@ public class SaveUtils {
 			}
 		});
 	}
+	
+	
 
 	public static void setPlayerPlace(String name, int place) {
 		int currentGame = SaveUtils.currentGame;
@@ -159,6 +170,8 @@ public class SaveUtils {
 			}
 		});
 	}
+	
+	
 	
 	public static void setLore(String spell, String lore) {
 
