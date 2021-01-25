@@ -74,7 +74,7 @@ public class SaveUtils {
 			@Override
 			public void run() {
 				checkConnection();
-				executeSQLFunction("endGame(" + format(gmid) + ")");
+				executeSQLProcedure("endGame(" + format(gmid) + ")");
 			}
 		});
 		
