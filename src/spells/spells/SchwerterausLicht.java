@@ -26,7 +26,7 @@ public class SchwerterausLicht extends Spell{
 		
 		name = "§cSchwerter aus Licht";
 		cooldown = 20*50;
-		
+		steprange = 20*10;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
@@ -36,9 +36,19 @@ public class SchwerterausLicht extends Spell{
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
+		/*
+		Player target = null;
+		target = pointEntity(caster);
+		if (target == null) {
+			refund = true;
+			dead = true;
+			return;
+		}
+		*/
 		lolo = raycast(caster.getEyeLocation());
+		loc = caster.getLocation();
 		summonSwords();
-		dead = true;
+		
 	}
 
 	@Override
@@ -56,7 +66,18 @@ public class SchwerterausLicht extends Spell{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		
+		/*
+		if (caster.isSneaking()) {
+			speed =1F;
+			for (SchwertausLicht sw : lightsword) {
+				sw.rotate(caster.getLocation().getDirection());
+			}
+			
+		}
+		else {
+			speed =10F;
+		}
+		*/
 	}
 
 	@Override
@@ -94,7 +115,7 @@ public class SchwerterausLicht extends Spell{
 		// TODO Auto-generated method stub
 		
 	}
-	
+	ArrayList<SchwertausLicht> lightsword = new ArrayList<SchwertausLicht>();
 	
 	public ArrayList<ArmorStand> summonSwords() {
 		ArrayList<ArmorStand> swords = new ArrayList<ArmorStand>();
@@ -113,7 +134,7 @@ public class SchwerterausLicht extends Spell{
 
 			l.add(v.getX(), v.getY(), v.getZ());
 			l.add(l.getDirection().multiply(-3));
-			new SchwertausLicht(l.clone(),caster,name);
+			lightsword.add(new SchwertausLicht(l.clone(),caster,name));
 			ParUtils.createParticle(Particles.FLASH, l, 0, 0, 0, 1, 1);
 			Vector ve = j.subtract(l).toVector();
 			Location lala = l.clone();

@@ -250,7 +250,52 @@ public class ParUtils {
 		}
 
 	}
-
+	public static void parCube(ParticleType pt,Location l1,double size,double count) {
+		
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(-size,0,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(0,-size,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(0,0,-size), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(size,0,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(0,size,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(0,0,size), count);
+		
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,-size/2,size/2), new Vector(-size,0,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,-size/2,size/2), new Vector(0,0,-size), count);
+		
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,-size/2), new Vector(size,0,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,-size/2), new Vector(0,0,size), count);
+		
+		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,-size/2), new Vector(0,-size,0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,size/2), new Vector(0,-size,0), count);
+		
+	}
+	public static void parCubeEdgeFly(ParticleType pt,Location l1,double size,double count,double speed) {
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(-size,0,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,0,-size));
+		
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(size,0,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,size,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,0,size));
+		
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,-size/2,size/2), 0, 0, 0, 1, speed, new Vector(-size,0,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,-size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,0,-size));
+		
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(size,0,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,0,size));
+		
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
+		
+	}
+	public static void parVectorLine(ParticleType pt,Location l1,Vector vec,double split) {
+		for (double i = 0;i<split;i++) {
+			double m = i/split;
+			Bukkit.broadcastMessage(""+m);
+			createParticle(pt, l1.clone().add(vec.clone().multiply(m)), 0, 0, 0, 1, 0);
+		}
+		
+	}
 	
 	public static void chargeDot(Location l,ParticleType pe,double speed,int spread) {
 		Location loc = l.clone().add(randInt(-spread,spread),randInt(-spread,spread),randInt(-spread,spread));

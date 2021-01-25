@@ -76,9 +76,13 @@ public class PullRanke extends Spell {
 	Vector finalVec;
 	@Override
 	public void move() {
-		if (victim instanceof LivingEntity) {
-			LivingEntity ent = (LivingEntity) victim;
-			ent.addPotionEffect(new PotionEffect(PotionEffectType.POISON,20,6));
+		if (victim instanceof Player) {
+			Player ent = (Player) victim;
+			
+			if (!isOnTeam(ent)) {
+				ent.addPotionEffect(new PotionEffect(PotionEffectType.POISON,20,6));
+			}
+			
 		}
 		if (backstep>1) {
 			playSound(Sound.ENTITY_LEASH_KNOT_BREAK, loc, 5, 1);

@@ -72,7 +72,7 @@ public class AugedesDrachen extends Spell{
 	public void move() {
 		if (step<=30) {
 			if (caster.isSneaking())
-			loc.setDirection(caster.getLocation().getDirection());
+			loc.setDirection(loc.getDirection().multiply(4).add(caster.getLocation().getDirection()));
 			loc.add(loc.getDirection().multiply(0.4));
 		}
 		else {
@@ -128,14 +128,14 @@ public class AugedesDrachen extends Spell{
 
 	@Override
 	public void onPlayerHit(Player p) {
-		damage(p,14,caster);
+		damage(p,12,caster);
 		doKnockback(p, loc, 5);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		damage(ent,14,caster);
+		damage(ent,12,caster);
 		doKnockback(ent, loc,      5);
 	}
 

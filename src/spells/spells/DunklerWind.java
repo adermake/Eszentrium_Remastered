@@ -147,7 +147,13 @@ public class DunklerWind extends Spell {
 	@Override
 	public void display() {
 		if (step % 5 == 0) {
-			ParUtils.parLineRedstone(caster.getLocation(), loc.clone(), Color.BLACK, 0.3F, 1);
+			if (step< steprange-40*8) {
+				ParUtils.parLineRedstone(caster.getLocation(), loc.clone(), Color.BLACK, 0.3F, 1);
+			}
+			else {
+				ParUtils.parLineRedstone(caster.getLocation(), loc.clone(), Color.GRAY, 0.3F, 1);
+			}
+			
 		}
 		// TODO Auto-generated method stub
 		//ParUtils.createParticle(Particles.BUBBLE, loc, 0.1F, 0.1F, 0.1F, 1, 1);
@@ -161,11 +167,24 @@ public class DunklerWind extends Spell {
 				ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 60, 0.2);
 			}
 			activate = true;
+			
+			
 			ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 2, 0.05);
 		}
 		
+		
 		//ParUtils.createRedstoneParticle(loc, 0.1F, 0.1F, 0.1F, 1, Color.fromBGR((int)(254*lf), 0, (int)(254*lf)), 0.1F+22*(float)lf);
-		ParUtils.createRedstoneParticle(loc, 0.1F, 0.1F, 0.1F, 1, Color.fromBGR((int)(254*lf), 0, (int)(254*lf)), 0.1F+2*(float)lf);
+		if (step == steprange-40*8) {
+			playSingleSound(Sound.BLOCK_REDSTONE_TORCH_BURNOUT, caster,11, 0.2F);
+		}
+		if (step< steprange-40*8) {
+			ParUtils.createRedstoneParticle(loc, 0.1F, 0.1F, 0.1F, 1, Color.fromBGR((int)(254*lf), 0, (int)(254*lf)), 0.1F+2*(float)lf);
+		}
+		else {
+			ParUtils.createRedstoneParticle(loc, 0.1F, 0.1F, 0.1F, 1, Color.RED,1);
+		}
+		
+		
 	}
 
 	@Override

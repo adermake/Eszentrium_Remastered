@@ -45,7 +45,7 @@ public class Quantentunnel extends Spell{
 	public void setUp() {
 		// TODO Auto-generated method stub
 		playSound(Sound.BLOCK_BELL_RESONATE,caster.getLocation(),10,0.5F);
-		playSound(Sound.BLOCK_END_PORTAL_SPAWN,loc,11.5f,2f);
+		playSound(Sound.BLOCK_END_PORTAL_SPAWN,loc,11.5f,1.5f);
 	}
 
 	int t = 0;
@@ -174,6 +174,7 @@ public class Quantentunnel extends Spell{
 	
 	
 	public void hitEffect(Entity e) {
+		playSound(Sound.BLOCK_GRINDSTONE_USE,e.getLocation(),11.5f,1.5f);
 		new BukkitRunnable() {
 			double s = 0;
 			public void run() {

@@ -58,7 +58,7 @@ public class Kettenbrecher extends Spell {
 		
 	}
 
-	int segmentCount = 600;
+	int segmentCount = 120;
 	//double maxlength = 20;
 	//double length = 20;
 	@Override

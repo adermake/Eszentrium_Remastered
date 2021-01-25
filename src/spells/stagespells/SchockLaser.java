@@ -201,7 +201,7 @@ public class SchockLaser extends Spell {
 		
 		double dmg = 4 + 15/(1 + Math.exp(-0.06*x) * 15);
 		//Bukkit.broadcastMessage("DMG "+dmg);
-		new Explosion(4, dmg,1, 1,caster, loc, name);
+		new Explosion(6, dmg,1, 1,caster, loc, name);
 		ParUtils.parKreisDot(Particles.CLOUD, loc, 5, 0, 0.05, loc.getDirection().multiply(-1));
 		dead = true;
 		playSound(Sound.ENTITY_LIGHTNING_BOLT_IMPACT, loc, 4, 0.3F);

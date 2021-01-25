@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import esze.analytics.SaveUtils;
 import esze.utils.Actionbar;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
@@ -80,6 +81,8 @@ public class EventCollector implements Listener {
 							is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
 							is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
 							}
+							SaveUtils.addSpellUse(p.getName(), sp.getName(), refined);
+							sp.applySpellKey(p);
 							if(sp.castSpell(p, is.getItemMeta().getDisplayName())) {
 								is = NBTUtils.setNBT("Cooldown", "" + "0"+ "", is);
 							}
@@ -127,7 +130,8 @@ public class EventCollector implements Listener {
 							if(sp.castSpell(p, is.getItemMeta().getDisplayName())) {
 								is = NBTUtils.setNBT("Cooldown", "" + "0"+ "", is);
 							}
-							
+							sp.applySpellKey(p);
+							SaveUtils.addSpellUse(p.getName(), sp.getName(), refined);
 							if (!sp.traitorSpell)
 							WeaponAbilitys.lastLaunched.put(p, name);
 

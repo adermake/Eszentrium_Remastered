@@ -43,6 +43,7 @@ import esze.utils.CorpseUtils;
 import esze.utils.MathUtils;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
+import esze.utils.SpellKeyUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.Title;
 import net.minecraft.server.v1_15_R1.EntityPlayer;
@@ -538,6 +539,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 		            
 		            is = NBTUtils.setNBT("Spell", "true", is);
 		            is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
+		            is = NBTUtils.setNBT("SpellKey", ""+SpellKeyUtils.getNextSpellKey(), is);
 		            player.getInventory().addItem(is);
 		            return true;
 		            }

@@ -28,7 +28,7 @@ public class Plasmablase extends Spell {
 	int animCooldown = 0;
 	HashMap<Player,Integer> immunity = new HashMap<Player,Integer>();
 	public Plasmablase() {
-		cooldown = 20 * 40;
+		cooldown = 20 * 50;
 		
 		name = "§3Plasmablase";
 		hitSpell = true;
@@ -132,14 +132,14 @@ public class Plasmablase extends Spell {
 		// TODO Auto-generated method stub
 		for (int i = 0;i<3;i++) {
 			loc.setPitch(loc.getPitch()+15);
-			Location l = ParUtils.stepCalcCircle(loc, rad, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
+			Location l = ParUtils.stepCalcCircle(loc, rad+1, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
 			//ParUtils.createParticle(Particles.FISHING, l, 0, 0, 0, 1, 0);
 			float f = 3F;
 			
 			
 			if (refined) {
 				f = 10;
-				Location l2 = ParUtils.stepCalcCircle(loc, rad, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
+				Location l2 = ParUtils.stepCalcCircle(loc, rad+1, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
 				ParUtils.createRedstoneParticle(l, 1, 1, 1, 1, Color.fromBGR(230, 115, 25), f);
 			}	
 				ParUtils.createRedstoneParticle(l, 0, 0, 0, 1, Color.AQUA, f);
@@ -168,10 +168,10 @@ public class Plasmablase extends Spell {
 				
 				l.add(ind.clone().normalize().multiply(1.5));
 				double distance = l.distance(ori);
-				ParUtils.parKreisDir(Particles.ENCHANTED_HIT, l, calcWidthOfCircle(rad, distance+rad), 0, 0, d, d);
+				ParUtils.parKreisDir(Particles.ENCHANTED_HIT, l, calcWidthOfCircle(rad+1, distance+rad+1), 0, 0, d, d);
 				
 				//ParUtils.parKreisSolidRedstone(Color.AQUA, 3, l, calcWidthOfCircle(rad, distance+rad),0, 1, ind);
-				if (distance > rad*2) {
+				if (distance > (rad+1)*2) {
 					this.cancel();
 				}
 				}

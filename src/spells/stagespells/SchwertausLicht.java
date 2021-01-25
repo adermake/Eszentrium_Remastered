@@ -138,7 +138,13 @@ public class SchwertausLicht extends Spell {
 
 	
 
-	
+	public void rotate(Vector dir) {
+		a.setRightArmPose(EulerAngle.ZERO);
+		
+		EulerAngle ea = new EulerAngle((caster.getLocation().getPitch()/180)*Math.PI, 0, 0);
+		
+		a.setRightArmPose(ea);
+	}
 	
 	
 }

@@ -1,4 +1,4 @@
-package spells.spells;
+package esze.utils;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
@@ -6,13 +6,7 @@ import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
 
-public class CooldownResetTest extends Spell {
-	
-	public CooldownResetTest() {
-		// TODO Auto-generated constructor stub
-		cooldown = 20 * 60;
-		steprange = 20 * 4;
-	}
+public class HoughSpaceUtils  extends Spell {
 
 	@Override
 	public void setUp() {
@@ -71,7 +65,7 @@ public class CooldownResetTest extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		reduceCooldown(20* 50);
+		
 	}
 
 }

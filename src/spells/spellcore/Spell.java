@@ -1008,9 +1008,13 @@ public abstract class Spell {
 	
 	public boolean isOnTeam(Player p) {
 		
+		
 		if (GameType.getType() instanceof TypeTEAMS) {
 			TypeTEAMS teams = (TypeTEAMS) GameType.getType();
 			
+			if (teams.getTeammates(p) == null || teams.getTeammates(p).size() <= 0) {
+				return false;
+			}
 			if (teams.getTeammates(p).contains(caster)) {
 				return true;
 			}
@@ -1466,23 +1470,24 @@ public abstract class Spell {
 	}
 
 	public void applySpellKey(Player p) {
-		Bukkit.broadcastMessage("APPLIED KEY");
+		
 		ItemStack is = p.getInventory().getItemInMainHand();
 		if (!NBTUtils.getNBT("SpellKey", is).equals("")) {
-			Bukkit.broadcastMessage("HAS KEY");
-			spellkey = Integer.parseInt(NBTUtils.getNBT("SpellKey", is));
 			
+			spellkey = Integer.parseInt(NBTUtils.getNBT("SpellKey", is));
+			Bukkit.broadcastMessage("HAS KEY" + spellkey);
 			
 		}
+		/*
 		else {
 			spellkey = SpellKeyUtils.getNextSpellKey();
 			is = NBTUtils.setNBT("SpellKey",""+spellkey, is);
 			Bukkit.broadcastMessage("NEW KEY");
 		}
-		is.setType(Material.STICK);
+		
 		final ItemStack a = is;
 		p.getInventory().setItemInMainHand(a);
-		
+		*/
 		
 	}
 	

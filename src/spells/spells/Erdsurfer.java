@@ -48,11 +48,14 @@ public class Erdsurfer extends Spell {
 	}
 
 	int t = 0;
+	int a = 0;
 	@Override
 	public void move() {
 		if (dead)
 			return;
 		t++;
+		a++;
+		
 		caster.setAllowFlight(true);
 		caster.setFlying(true);
 		loc.add(randInt(-3, 3), 0, randInt(-3, 3));
@@ -92,7 +95,7 @@ public class Erdsurfer extends Spell {
 					binder.remove();
 				}
 				for (LivingEntity le : caster.getWorld().getLivingEntities()) {
-					if (checkHit(le, loc, caster, 4)) {
+					if (checkHit(le, loc, caster, 6)) {
 
 						new BukkitRunnable() {
 							int time = 0;
@@ -196,7 +199,9 @@ public class Erdsurfer extends Spell {
 			dead = true;
 			return;
 		}
-
+		if (a <3) {
+			caster.setVelocity(caster.getVelocity().setY(1.5));
+		}
 	}
 
 	@Override

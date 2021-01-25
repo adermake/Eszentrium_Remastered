@@ -128,9 +128,13 @@ public class Ranke extends Spell{
 			hitMobs.add(p);
 		}
 		else {
+
+			
 			current.remove();
 			new PullRanke(caster, p, path, blocks, loc, (int) step,name);
 			damage(p, 3, caster);
+			
+			
 			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, (int)step/3, 1));
 			dead = true;
 		}

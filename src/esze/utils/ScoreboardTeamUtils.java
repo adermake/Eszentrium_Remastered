@@ -14,6 +14,7 @@ public class ScoreboardTeamUtils {
 	public static HashMap<Player,Scoreboard> playerBoards = new HashMap<Player,Scoreboard>();
 	
 	public static void giveScoreboard(Player p) {
+		//Bukkit.broadcastMessage("giveScoreboard->"+p.getName());
 		Player rem = null;
 		for (Player pl : playerBoards.keySet()) {
 			if (pl.getName() == p.getName()) {
@@ -21,10 +22,11 @@ public class ScoreboardTeamUtils {
 			}
 		}
 		if (rem != null) {
+			//Bukkit.broadcastMessage("removingScoreboard->"+p.getName());
 			playerBoards.remove(rem);
 		}
-		if (!playerBoards.containsKey(p)) {
-			
+		if (!playerBoards.containsKey(p) ) {
+			//Bukkit.broadcastMessage("newgScoreboard->"+p.getName());
 			Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 			p.setScoreboard(sb);
 			playerBoards.put(p, sb);
@@ -34,9 +36,12 @@ public class ScoreboardTeamUtils {
 	
 	
 	public static Scoreboard getBoard(Player p) {
-		if (playerBoards.get(p) == null) {
+		//Bukkit.broadcastMessage("getBoard->"+p.getName());
+		if (playerBoards.get(p) == null || playerBoards.get(p) == null || playerBoards.get(p).getEntries().isEmpty()) {
 			giveScoreboard(p);
 		}
+		
+		p.setScoreboard( playerBoards.get(p));
 		return playerBoards.get(p);
 	}
 	

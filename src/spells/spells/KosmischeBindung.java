@@ -129,7 +129,7 @@ public class KosmischeBindung extends Spell{
 	@Override
 	public void move() {
 		
-		if (swap()) {
+		if (swap() || caster.getGameMode() == GameMode.ADVENTURE) {
 			dead = true;
 		}
 		// TODO Auto-generated method stub

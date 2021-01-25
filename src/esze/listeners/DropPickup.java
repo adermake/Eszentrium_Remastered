@@ -18,6 +18,7 @@ import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.ItemStackUtils;
+import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.ScoreboardTeamUtils;
 import esze.utils.SoundUtils;
@@ -27,16 +28,25 @@ public class DropPickup implements Listener {
 	@EventHandler
 	public void onDrop(PlayerDropItemEvent e){
 		Player p = e.getPlayer();
+		/*
 		if (p.getGameMode() != GameMode.CREATIVE) {
 			e.setCancelled(true);
 		}
+		*/
 		//Player p = e.getPlayer();
-		e.setCancelled(true);
+		
+		if (!NBTUtils.getNBT("Weapon", e.getItemDrop().getItemStack()).equals("true")) {
+			e.setCancelled(true);
+		}
+		
 		/*if(Gamestate.getGameState() == Gamestate.INGAME && Gametype.type == Gametype.TTT){
 			p.getInventory().setItemInMainHand(null);
 		}*/
 		
 		if(Gamestate.getGameState() == Gamestate.INGAME && GameType.getType() instanceof TypeTEAMS){
+			if (!NBTUtils.getNBT("Spell",e.getItemDrop().getItemStack().clone() ).equals("true")) {
+				return;
+			}
 			throwBook(p,e.getItemDrop().getItemStack().clone());
 			e.getItemDrop().remove();
 			p.getInventory().setItemInMainHand(null);
@@ -59,13 +69,14 @@ public class DropPickup implements Listener {
 	
 	public void throwBook(Player p,ItemStack is) {
 		
+		
 		TypeTEAMS t = (TypeTEAMS) GameType.getType();
 		Item item = p.getWorld().dropItem(p.getEyeLocation(), is);
 		item.setPickupDelay(100000);
 		ScoreboardTeamUtils.colorEntity(item, t.getTeamOfPlayer(p).color);
 		SoundUtils.playSound(Sound.ENTITY_SNOWBALL_THROW,p.getLocation(),0.2F,1);
 		item.setGlowing(true);
-		
+	
 		new BukkitRunnable() {
 			Vector dir = p.getLocation().getDirection();
 			int i = 0;

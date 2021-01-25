@@ -21,6 +21,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -30,8 +31,10 @@ import org.bukkit.util.Vector;
 
 import com.google.common.collect.Multimap;
 
+import esze.enums.GameType;
 import esze.main.main;
 import esze.players.PlayerAPI;
+import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
@@ -54,6 +57,148 @@ public class WeaponAbilitys implements Listener {
 	public static HashMap<Player,String> lastLaunched = new HashMap<Player,String>();
 	public static HashMap<Player,Vector> lastMovedDir = new HashMap<Player,Vector>();
 	public static HashMap<Player,ArrayList<Player>> pList = new HashMap<Player,ArrayList<Player>>();
+	
+	
+	@EventHandler
+	public void onWeaponUse(PlayerDropItemEvent e) {
+		ItemStack is = e.getItemDrop().getItemStack();
+		Player p = e.getPlayer();
+	
+		if (NBTUtils.getNBT("Weapon", is).equals("true")) {
+		
+			
+			if (cd2.contains(p)) {
+				e.setCancelled(true);
+				return;
+			}
+			
+			cd2.add(p);
+			new BukkitRunnable() {
+				int t = 0;
+
+				public void run() {
+					t = t + 1;
+					if (t > 100) {
+						cd2.remove(p);
+						p.playSound(p.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1, (float) 0.9);
+						this.cancel();
+					}
+
+				}
+			}.runTaskTimerAsynchronously(main.plugin, 0, 0);
+			//Bukkit.broadcastMessage(""+e.getItemDrop().getItemStack());
+			final ArmorStand as = (ArmorStand) p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
+			as.getEquipment().setItemInMainHand(e.getItemDrop().getItemStack().clone());
+			p.getInventory().setItemInMainHand(null);
+			as.setVisible(false);
+			as.setArms(true);
+			as.setMarker(true);
+			e.getItemDrop().remove();
+			as.setRightArmPose(as.getRightArmPose().add(0, 0, 80));
+			//e.getItemDrop().setItemStack(null);
+			new BukkitRunnable() {
+				double yaa = 0;
+
+				double t = 0;
+				Location loc = p.getLocation();
+				boolean hasdropped = false;
+				int toggle = 0;
+
+				public void run() {
+
+					t = t + 1;
+					toggle++;
+					Vector direction = loc.getDirection().normalize();
+					double x = direction.getX() * t;
+					double y = direction.getY() * t + 1.5;
+					double z = direction.getZ() * t;
+					loc.add(x, y, z);
+
+					as.teleport(loc);
+					//ParticleEffect.SWEEP_ATTACK.send(Bukkit.getOnlinePlayers(), loc.getX(), loc.getY(), loc.getZ(), 0.1, 0, 0.1, 0, 1);
+					yaa = yaa + 1;
+					as.setRightArmPose(as.getRightArmPose().add(-0.7, 0, 0));
+					if (loc.getBlock().getType() != Material.WATER) {
+						if (loc.getBlock().getType() != Material.AIR) {
+							//ParticleEffect.EXPLOSION_LARGE.send(Bukkit.getOnlinePlayers(), loc.getX(),loc.getY(), loc.getZ(), 0, 0, 0, 0, 1);
+
+							p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+							for (Player pl : Bukkit.getOnlinePlayers()) {
+								pl.playSound(as.getLocation(), Sound.BLOCK_ANVIL_PLACE, 2, 2);
+							}
+
+							as.remove();
+
+							this.cancel();
+							return;
+						}
+					}
+
+					for (Player pl : Bukkit.getOnlinePlayers()) {
+							if (pl instanceof Player && ((Player) pl).getGameMode() == GameMode.SURVIVAL) {
+								
+								if (p == pl || isOnTeam(p, pl)) {
+									continue;
+								}
+							Location ploc1 = pl.getLocation();
+							Location ploc2 = pl.getLocation();
+							ploc2.add(0, 1, 0);
+							if (ploc1.distance(loc) <= 1 || ploc2.distance(loc) <= 1) {
+								main.damageCause.remove((Player)pl);
+								main.damageCause.put((Player)pl, "Schwertwurf-" + p.getName()); //Damage Cause
+								//PlayerAPI.getPlayerInfo((Player)pl).damage(p, (int)getAttackDamage(as.getEquipment().getItemInMainHand()), "§3Schwertwurf");
+								p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+								for (Player pl2 : Bukkit.getOnlinePlayers()) {
+									pl2.playSound(as.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 2, 2);
+								}
+								pl.damage(4);
+								as.remove();
+								this.cancel();
+								return;
+							}
+							}
+						
+					}
+
+					loc.subtract(x, y, z);
+
+					if (t > 30) {
+						if(!PlayerAPI.getPlayerInfo((Player)p).isAlive){
+							
+						}else{
+							p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+						}
+						as.remove();
+						this.cancel();
+						return;
+					}
+				}
+			}.runTaskTimer(main.plugin, 0, 0);
+		}
+		
+	}
+	
+	public boolean isOnTeam(Player c,Player p) {
+		
+		
+		if (GameType.getType() instanceof TypeTEAMS) {
+			TypeTEAMS teams = (TypeTEAMS) GameType.getType();
+			
+			if (teams.getTeammates(p) == null || teams.getTeammates(p).size() <= 0) {
+				return false;
+			}
+			if (teams.getTeammates(p).contains(c)) {
+				return true;
+			}
+			
+			
+		}
+		
+		
+		return false;
+		
+	}
+	
 	@EventHandler
 	public void onWeaponUse(PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
@@ -109,112 +254,7 @@ public class WeaponAbilitys implements Listener {
 				}
 				else {
 					
-					if (cd2.contains(p)) {
-						return;
-					}
-					
-					cd2.add(p);
-					new BukkitRunnable() {
-						int t = 0;
-
-						public void run() {
-							t = t + 1;
-							if (t > 100) {
-								cd2.remove(p);
-								p.playSound(p.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1, (float) 0.9);
-								this.cancel();
-							}
-
-						}
-					}.runTaskTimerAsynchronously(main.plugin, 0, 0);
-
-					final ArmorStand as = (ArmorStand) p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
-					as.getEquipment().setItemInMainHand(p.getInventory().getItemInMainHand());
-					p.getInventory().setItemInMainHand(null);
-					as.setVisible(false);
-					as.setArms(true);
-					as.setMarker(true);
-
-					as.setRightArmPose(as.getRightArmPose().add(0, 0, 80));
-
-					new BukkitRunnable() {
-						double yaa = 0;
-
-						double t = 0;
-						Location loc = p.getLocation();
-						boolean hasdropped = false;
-						int toggle = 0;
-
-						public void run() {
-
-							t = t + 1;
-							toggle++;
-							Vector direction = loc.getDirection().normalize();
-							double x = direction.getX() * t;
-							double y = direction.getY() * t + 1.5;
-							double z = direction.getZ() * t;
-							loc.add(x, y, z);
-
-							as.teleport(loc);
-							//ParticleEffect.SWEEP_ATTACK.send(Bukkit.getOnlinePlayers(), loc.getX(), loc.getY(), loc.getZ(), 0.1, 0, 0.1, 0, 1);
-							yaa = yaa + 1;
-							as.setRightArmPose(as.getRightArmPose().add(-0.7, 0, 0));
-							if (loc.getBlock().getType() != Material.WATER) {
-								if (loc.getBlock().getType() != Material.AIR) {
-									//ParticleEffect.EXPLOSION_LARGE.send(Bukkit.getOnlinePlayers(), loc.getX(),loc.getY(), loc.getZ(), 0, 0, 0, 0, 1);
-
-									p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
-									for (Player pl : Bukkit.getOnlinePlayers()) {
-										pl.playSound(as.getLocation(), Sound.BLOCK_ANVIL_PLACE, 2, 2);
-									}
-
-									as.remove();
-
-									this.cancel();
-									return;
-								}
-							}
-
-							for (Player pl : Bukkit.getOnlinePlayers()) {
-									if (pl instanceof Player && ((Player) pl).getGameMode() == GameMode.SURVIVAL) {
-										
-										if (p == pl) {
-											continue;
-										}
-									Location ploc1 = pl.getLocation();
-									Location ploc2 = pl.getLocation();
-									ploc2.add(0, 1, 0);
-									if (ploc1.distance(loc) <= 1 || ploc2.distance(loc) <= 1) {
-										main.damageCause.remove((Player)pl);
-										main.damageCause.put((Player)pl, "Schwertwurf-" + p.getName()); //Damage Cause
-										//PlayerAPI.getPlayerInfo((Player)pl).damage(p, (int)getAttackDamage(as.getEquipment().getItemInMainHand()), "§3Schwertwurf");
-										p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
-										for (Player pl2 : Bukkit.getOnlinePlayers()) {
-											pl2.playSound(as.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 2, 2);
-										}
-										pl.damage(4);
-										as.remove();
-										this.cancel();
-										return;
-									}
-									}
-								
-							}
-
-							loc.subtract(x, y, z);
-
-							if (t > 30) {
-								if(!PlayerAPI.getPlayerInfo((Player)p).isAlive){
-									
-								}else{
-									p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
-								}
-								as.remove();
-								this.cancel();
-								return;
-							}
-						}
-					}.runTaskTimer(main.plugin, 0, 0);
+					//
 				}
 			
 				

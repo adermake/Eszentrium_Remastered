@@ -82,6 +82,10 @@ public class FirePiece extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
+		
+		if (isOnTeam(p)) {
+			return;
+		}
 		// TODO Auto-generated method stub
 		damage(p, 3, caster);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
@@ -98,8 +102,8 @@ public class FirePiece extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		
-		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
+		//ent.removePotionEffect(PotionEffectType.SLOW);
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 10, 3));
 		
 		if (!wd.hitEntitys.contains(ent)) {
 			wd.hitEntitys.add(ent);

@@ -27,9 +27,9 @@ import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
-public class ChainSegment extends Spell {
+public class ChainSeg extends Spell {
 
-	ChainSegment last;
+	ChainSeg last;
 	public HashMap<Entity,Integer> sticked = new HashMap<Entity,Integer>();
 	public ArrayList<Entity> cd = new ArrayList<Entity>();
 	public Vector vel = new Vector(0,0,0);
@@ -37,7 +37,7 @@ public class ChainSegment extends Spell {
 	Item chain;
 	ArmorStand a;
 	boolean crit = false;
-	public ChainSegment(Player p,String name,ChainSegment last,int i) {
+	public ChainSeg(Player p,String name,ChainSeg last,int i) {
 		loc = p.getEyeLocation().add(0,-5,0);
 		randId = i;
 		addSpellType(SpellType.MULTIHIT);
@@ -81,7 +81,7 @@ public class ChainSegment extends Spell {
 			lazySpell = true;
 		}
 		
-		if (i % 4 != 0) {
+		if (i % 2 == 0) {
 			if (last != null)
 				lazySpell = true;
 		}
@@ -116,7 +116,6 @@ public class ChainSegment extends Spell {
 	double length = 16;
 	double maxlength = 16;
 	double lastLength;
-	double speedGainFactor = 0.1F;
 	@Override
 	public void move() {
 		
@@ -131,12 +130,8 @@ public class ChainSegment extends Spell {
 				if (length < 2) {
 					length = 2;
 				}
-				hitPlayer = false;
-				hitEntity = false;
 			}
 			else {
-				hitPlayer = true;
-				hitEntity = true;
 				speed = 5;
 				hitboxSize = 2;
 				length+=1;
@@ -202,7 +197,7 @@ public class ChainSegment extends Spell {
 		loc = loc.add(vel);
 		Vector cVec = loc.toVector().subtract(last.loc.toVector()).normalize().multiply(space);
 		loc = last.loc.clone().add(cVec);
-		vel.add(cVec.multiply(-speedGainFactor));
+		vel.add(cVec.multiply(-0.5F));
 		
 		vel = vel.multiply(1-drag);
 		//ParUtils.createParticle(Particles.BARRIER, loc, 0, 0, 0, 1, 1);
