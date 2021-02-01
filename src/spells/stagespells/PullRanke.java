@@ -78,7 +78,10 @@ public class PullRanke extends Spell {
 	public void move() {
 		if (victim instanceof Player) {
 			Player ent = (Player) victim;
-			
+			if (ent.getGameMode() != GameMode.SURVIVAL) {
+				dead = true;
+				return;
+			}
 			if (!isOnTeam(ent)) {
 				ent.addPotionEffect(new PotionEffect(PotionEffectType.POISON,20,6));
 			}

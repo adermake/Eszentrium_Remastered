@@ -44,6 +44,7 @@ import net.minecraft.server.v1_15_R1.EnumItemSlot;
 import net.minecraft.server.v1_15_R1.GenericAttributes;
 import net.minecraft.server.v1_15_R1.Item;
 import net.minecraft.server.v1_15_R1.PacketPlayOutSetCooldown;
+import net.minecraft.server.v1_15_R1.Particles;
 import net.minecraft.server.v1_15_R1.PlayerConnection;
 import spells.spellcore.Spell;
 
@@ -213,10 +214,12 @@ public class WeaponAbilitys implements Listener {
 		//SPHERE
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if (NBTUtils.getNBT("Weapon", e.getPlayer().getInventory().getItemInMainHand()) == "true") {
-				if (!p.isSneaking()) {
+				if (true) {
 					if (lastLaunched.containsKey(p)) {
 						if (cd.contains(p))
 							return;
+						
+						ParUtils.createParticle(Particles.WITCH, p.getLocation(), 0.2, 0.2, 0.2, 5, 0.1F);
 						try {
 							String name = lastLaunched.get(p);
 							Class clazz = Class.forName(name);

@@ -30,7 +30,7 @@ public class Lamaturm extends Spell {
 		name = "§6Lamaturm";
 		cooldown = 20 * 75;
 		steprange = 20 * 50;
-		hitboxSize = 10;
+		hitboxSize = 2;
 		multihit = true;
 		
 		

@@ -84,7 +84,7 @@ public class GuardianLaser extends Spell {
 			damage(p,7,caster);
 		}
 		else {
-			damage(p,2,caster);
+			damage(p,1,caster);
 		}
 		
 		p.setVelocity(dir.clone().normalize().multiply(3));
@@ -98,7 +98,7 @@ public class GuardianLaser extends Spell {
 			damage(ent,7,caster);
 		}
 		else {
-			damage(ent,2,caster);
+			damage(ent,1,caster);
 		}
 		
 		ent.setVelocity(dir.clone().normalize().multiply(3));
@@ -160,7 +160,7 @@ public class GuardianLaser extends Spell {
 		dir.setPitch(dir.getPitch()-90);
 		ParUtils.createFlyingParticle(Particles.CLOUD, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
 		
-		Explosion e = new Explosion(3,  4, 1,1, caster, loc.clone(), name);
+		Explosion e = new Explosion(3,  3, 1,1, caster, loc.clone(), name);
 		
 		for (Entity ent : noTargetEntitys) {
 			e.addNoTarget(ent);

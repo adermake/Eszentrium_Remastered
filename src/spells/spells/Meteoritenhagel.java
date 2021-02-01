@@ -27,7 +27,7 @@ public class Meteoritenhagel extends Spell {
 		steprange = 25;
 		name = "§cMeteoritenhagel";
 		speed = 1;
-		
+		hitSpell = false;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);

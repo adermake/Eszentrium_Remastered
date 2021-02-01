@@ -77,7 +77,9 @@ public class Kettenbrecher extends Spell {
 			seg.vel.add(new Vector(0,-0.001F,0));
 		}
 	
-	
+		if (silenced.containsKey(caster)) {
+			dead = true;
+		}
 		//lead.vel = caster.getLocation().add(caster.getLocation().getDirection().multiply(10)).toVector().subtract(loc.toVector()).normalize();
 	}
 

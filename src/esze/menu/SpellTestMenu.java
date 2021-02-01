@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import esze.utils.NBTUtils;
+import esze.utils.SpellKeyUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
@@ -63,6 +64,7 @@ public class SpellTestMenu extends ItemMenu {
 		im.setLore(icon.getItemMeta().getLore());
 		i.setItemMeta(im);
 		i = NBTUtils.setNBT("Spell", "true", i);
+		i = NBTUtils.setNBT("SpellKey", ""+SpellKeyUtils.getNextSpellKey(), i);
         i = NBTUtils.setNBT("OriginalName", i.getItemMeta().getDisplayName(), i);
 		p.getInventory().addItem(i);
 		

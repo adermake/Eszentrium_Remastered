@@ -87,7 +87,7 @@ public class FirePiece extends Spell {
 			return;
 		}
 		// TODO Auto-generated method stub
-		damage(p, 3, caster);
+		damage(p, 2, caster);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
 		
 		if (!wd.hitEntitys.contains(p)) {
@@ -109,7 +109,7 @@ public class FirePiece extends Spell {
 			wd.hitEntitys.add(ent);
 			doKnockback(ent, loc,0.1F);
 		}
-		damage(ent, 3, caster);
+		damage(ent, 2, caster);
 		ent.setFireTicks(20);
 	}
 

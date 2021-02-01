@@ -22,7 +22,7 @@ public class SpellKeyUtils {
 				if (cd <= 0)
 					cd = 0;
 				is = NBTUtils.setNBT("Cooldown", ""+cd, is);	
-				Bukkit.broadcastMessage("FOUND BOOK");
+				//Bukkit.broadcastMessage("FOUND BOOK");
 				p.getInventory().setItem(i, is);
 				break;
 			}

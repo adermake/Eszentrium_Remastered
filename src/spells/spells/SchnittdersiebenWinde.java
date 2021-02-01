@@ -24,7 +24,7 @@ public class SchnittdersiebenWinde extends Spell {
 	
 	public SchnittdersiebenWinde() {
 		name = "§bSchnitt der sieben Winde";
-		cooldown = 20 * 30;
+		cooldown = 20 * 40;
 		steprange = 32;
 		
 		addSpellType(SpellType.KNOCKBACK);

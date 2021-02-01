@@ -89,6 +89,9 @@ public class Quantentunnel extends Spell{
 		loc.add(loc.getDirection());
 		loc.setDirection(caster.getLocation().getDirection());
 		
+		if (loc.getY()<66) {
+			dead = true;
+		}
 	}
 
 	int ti = 0;
@@ -158,7 +161,7 @@ public class Quantentunnel extends Spell{
 		for (Entity ent : rem) {
 			hitEntitys.remove(ent);
 		}
-		if (refined && caster.isSneaking()) {
+		if (caster.isSneaking()) {
 			hitEntitys.add(caster);
 		}
 		for (Entity ent : hitEntitys) {

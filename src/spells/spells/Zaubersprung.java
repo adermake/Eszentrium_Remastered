@@ -40,7 +40,7 @@ public class Zaubersprung extends Spell {
 		// TODO Auto-generated method stub
 		back = caster.getLocation();
 		block = block(caster);
-		if (block == null) {
+		if (block == null || block.getY()>250) {
 			refund = true;
 			dead = true;
 		}

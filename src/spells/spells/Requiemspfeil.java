@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
+import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -22,143 +23,174 @@ public class Requiemspfeil extends Spell {
 	Location toLoc;
 	Vector dir;
 	Arrow a;
+
 	public Requiemspfeil() {
-		
-		name = "§cReq";
-		steprange = 150;
-		cooldown = 20 * 50;
+
+		name = "§cRequiemspfeil";
+		steprange = 100;
+		cooldown = 20 * 40;
 		hitboxSize = 1.5;
 		speed = 1;
 		hitSpell = true;
-		
+
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.PROJECTILE);
 		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.# #§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
-		
+
 	}
+
 	Location ori;
 	Location point;
+
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		a = (Arrow) spawnEntity(EntityType.ARROW,caster.getEyeLocation().add(caster.getLocation().getDirection()));
-		
+		a = (Arrow) spawnEntity(EntityType.ARROW, caster.getEyeLocation().add(caster.getLocation().getDirection()));
+
 		dir = caster.getLocation().getDirection();
 		ori = caster.getLocation();
-		//caster.setGameMode(GameMode.SPECTATOR);
-		caster.teleport(caster.getLocation().add(0,1,0));
+		// caster.setGameMode(GameMode.SPECTATOR);
+		caster.teleport(caster.getLocation().add(0, 1, 0));
 		setGliding(caster, true);
 		PlayerUtils.hidePlayer(caster);
 		bindEntity(a);
-		caster.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20000, 1,true));
-		
-		
-		
-			
-			
+		caster.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20000, 1, true));
+
 	}
 
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	double dist = 2;
 	int speedX = 0;
+
 	@Override
 	public void move() {
-		
-		
+		if (swap()) {
+			if (dist != 6) {
+				dist = 6;
+			}
+			else {
+				dist = 2;
+			}
+			
+		}
+		clearswap();
 		if (a.isOnGround()) {
 			dead = true;
 		}
-		float f = ((float)speedX)/50;
+		float f = ((float) speedX) / 50;
+
 		
-		playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,0.3F,f);
 		caster.setNoDamageTicks(20);
 		// TODO Auto-generated method stub
 		loc = a.getLocation();
-		//a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(4)));
+		// a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(4)));
+		speedX++;
 		if (caster.isSneaking()) {
-			speedX++;
-			a.setVelocity(caster.getLocation().getDirection().multiply(1.5));
-			
-			//playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.1F,0.4F);
-			
-		}
-		else {
+			playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE, 0.3F, 2*f);
+			a.setVelocity(caster.getLocation().getDirection().multiply(2.5));
+			//ParUtils.createFlyingParticle(Particles.CLOUD, a.getLocation(), 2, 2,2,5, -3, a.getVelocity());
+			// playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.1F,0.4F);
+
+		} else {
 			a.setVelocity(caster.getLocation().getDirection().multiply(1));
-			
-			
+			playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE, 0.3F, f);
 		}
-		
-		
+
 		if (speedX <= 0)
 			speedX = 0;
-		doPull(caster,a.getLocation(),a.getLocation().distance(caster.getLocation())/6);
-		//Location aim = loc(caster,step);
-		//doPull(a,aim,a.getLocation().distance(aim)/5);
+		if (speedX > 50)
+			speedX = 50;
+		doPull(caster, a.getLocation(), a.getLocation().distance(caster.getLocation()) / dist);
+		// Location aim = loc(caster,step);
+		// doPull(a,aim,a.getLocation().distance(aim)/5);
 		loc = a.getLocation();
 	}
 
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		int color = ((int)speedX*2);
-		if (color >255)
+		int color = ((int) speedX * 2);
+		if (color > 255)
 			color = 255;
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.fromBGR(color, color, 0), 1.5F);
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
-		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,ori,5,1);
-		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,caster.getLocation(),5,1);
+		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, ori, 5, 1);
+		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);
 		// TODO Auto-generated method stub
+
+		damage(p, speedX / 5, caster);
 		
-			damage(p, speedX/5, caster);
-		
-		
-		
+
 		dead = true;
+		reduceCooldown(20 * 10);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.EXPLOSION_EMITTER, toLoc, 0,0, 0, 1, 1); REMOVED CAUSED ERRORS
-		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,ori,5,1);
-		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,caster.getLocation(),5,1);
-		damage(ent, speedX/5, caster);
+		// ParUtils.createParticle(Particles.EXPLOSION_EMITTER, toLoc, 0,0, 0, 1, 1);
+		// REMOVED CAUSED ERRORS
+		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, ori, 5, 1);
+		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);
+		damage(ent, speedX / 5, caster);
+
+		
 		dead = true;
+		reduceCooldown(20 * 10);
 	}
 
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
-		if (spell.isSpellType(SpellType.PROJECTILE) || spell.isSpellType(SpellType.AURA)) {
-			
-		
-		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
-		setGliding(originalCaster, false);
-		originalCaster.setVelocity(new Vector(0,0,0));
-		once = true;
-		PlayerUtils.showPlayer(originalCaster);
-		a.remove();
-		
-		originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);
+		/*
+		 * if (spell.isSpellType(SpellType.PROJECTILE) ||
+		 * spell.isSpellType(SpellType.AURA)) {
+		 * 
+		 * 
+		 * ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
+		 * setGliding(originalCaster, false); originalCaster.setVelocity(new
+		 * Vector(0,0,0)); once = true; PlayerUtils.showPlayer(originalCaster);
+		 * a.remove();
+		 * 
+		 * originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);
+		 * 
+		 * originalCaster.teleport(ori);
+		 * caster.setVelocity(caster.getVelocity().multiply(0)); dead = true; }
+		 */
 
-		originalCaster.teleport(ori);
-		caster.setVelocity(caster.getVelocity().multiply(0));
-		dead = true;
+		if (spell.getName().contains("Antlitz der Göttin")) {
+			originalCaster.setNoDamageTicks(1);
+			//ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
+			setGliding(originalCaster, false);
+			originalCaster.setVelocity(new Vector(0, 0, 0));
+			once = true;
+			PlayerUtils.showPlayer(originalCaster);
+			
+			originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);
+			// TODO Auto-generated method stub
+			originalCaster.teleport(ori);
+			ori = spell.caster.getLocation();
+			setGliding(spell.caster, true);
+			PlayerUtils.hidePlayer(spell.caster);
+			
+			spell.caster.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20000, 1, true));
 		}
+
 	}
 
 	@Override
@@ -168,24 +200,23 @@ public class Requiemspfeil extends Spell {
 	}
 
 	boolean once = false;
+
 	@Override
 	public void onDeath() {
 		if (!once) {
 			caster.setNoDamageTicks(1);
 			ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
 			setGliding(caster, false);
-			caster.setVelocity(new Vector(0,0,0));
+			caster.setVelocity(new Vector(0, 0, 0));
 			once = true;
 			PlayerUtils.showPlayer(caster);
 			a.remove();
 			caster.removePotionEffect(PotionEffectType.INVISIBILITY);
 			// TODO Auto-generated method stub
 			caster.teleport(ori);
-			
+
 		}
-		
+
 	}
-
-
 
 }

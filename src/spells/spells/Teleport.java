@@ -110,7 +110,7 @@ public class Teleport extends Spell {
 		// TODO Auto-generated method stub
 		getTop(loc);
 	
-		caster.teleport(loc.getBlock().getLocation().add(0.5,0,0.5));
+		caster.teleport(loc.getBlock().getLocation().add(0.5,0,0.5).setDirection(caster.getLocation().getDirection()));
 		dead = true;
 	}
 

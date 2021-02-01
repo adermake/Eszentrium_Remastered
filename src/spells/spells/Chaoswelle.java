@@ -188,7 +188,9 @@ public class Chaoswelle extends Spell{
 	@Override
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
-		
+		if (spell.getName().contains("Antlitz der Göttin")) {
+			setGliding(originalCaster, false);
+		}
 	}
 
 	@Override

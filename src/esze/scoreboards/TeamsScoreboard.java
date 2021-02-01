@@ -69,7 +69,7 @@ public class TeamsScoreboard extends Scoreboard {
 						for(EszeTeam et : teams.allTeamsAlive){
 							String ct = et.color+"";
 							for (Player p : et.players) {
-								
+								if (teams.players.contains(p)) {
 								if (et.players.contains(scoreBoarder) && et.players.contains(p)) {
 									score.add(ct+p.getName() +" "+ (int)p.getHealth());
 								}
@@ -86,7 +86,7 @@ public class TeamsScoreboard extends Scoreboard {
 									
 									
 								}
-								
+								}
 							}
 							
 						}

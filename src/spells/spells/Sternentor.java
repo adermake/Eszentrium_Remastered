@@ -57,6 +57,10 @@ public class Sternentor extends Spell {
 		if (l1 != null) {
 			loc = l1.add(0,2,0);
 			
+			
+		}
+		if (loc.getY() < 60) {
+			loc.setY(60);
 		}
 		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 3, 1);
 		playSound(Sound.BLOCK_END_PORTAL_SPAWN,loc,2,5);

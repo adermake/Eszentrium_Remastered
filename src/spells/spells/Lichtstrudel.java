@@ -24,7 +24,7 @@ public class Lichtstrudel extends Spell {
 		cooldown = 20 * 40;
 		name = "§cLichtstrudel";
 		steprange = 100;
-		
+		hitboxSize = 1;
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
@@ -56,7 +56,7 @@ public class Lichtstrudel extends Spell {
 	@Override
 	public void move() {
 		delay++;
-		
+		loc = caster.getLocation();
 		//playSound(Sound.UI_TOAST_CHALLENGE_COMPLETE,caster.getLocation(),0.1F,2f);
 		// TODO Auto-generated method stub
 		if (delay > 4) {
@@ -102,8 +102,10 @@ public class Lichtstrudel extends Spell {
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
 		if (spell.getName().contains("Antlitz der Göttin")){
-			originalCaster.setFlying(false);
-			originalCaster.setAllowFlight(false);
+			setGliding(spell.caster, true);
+			setGliding(originalCaster, false);
+			//originalCaster.setFlying(false);
+			//originalCaster.setAllowFlight(false);
 		}
 	}
 

@@ -27,7 +27,7 @@ public class Flammenwand extends Spell {
 		hitPlayer = false;
 		hitEntity = false;
 		steprange = 50;
-	
+		hitSpell = false;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.MULTIHIT);
 		

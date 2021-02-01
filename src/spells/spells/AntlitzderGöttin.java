@@ -61,14 +61,16 @@ public class AntlitzderGöttin extends Spell{
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+		if (refined) {
+			returns = 10;
+		}
 	}
 
 	@Override
 	public void move() {
 		loc = caster.getLocation();
-		if (refined)
-			caster.setNoDamageTicks(5);
+		//if (refined)
+		//	caster.setNoDamageTicks(5);
 		
 		if (caster.getLocation().getY()<62) {
 			dead = true;
@@ -103,13 +105,13 @@ public class AntlitzderGöttin extends Spell{
 			for (int i = 0;i<returns;i++) {
 				Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3 +i*15);
 				ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 2, 1, 1,new Vector(0,-1,0));
-				
+				ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, -0.3F);
 			}
 			//ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
 			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
 			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
 		}
-		if (returns <= 0 && !refined) {
+		if (returns <= 0 ) {
 			dead = true;
 		}
 		
@@ -133,8 +135,8 @@ public class AntlitzderGöttin extends Spell{
 		if (spell.getName().contains("Antlitz der Göttin") || spell.caster == caster) {
 			return;
 		}
-		if (returns > 0 || refined) {
-			if (!refined)
+		if (returns > 0) {
+			
 			returns--;
 			// TODO Auto-generated method stub
 			spell.caster = caster;

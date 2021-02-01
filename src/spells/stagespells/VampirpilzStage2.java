@@ -133,7 +133,7 @@ public class VampirpilzStage2 extends Spell {
 			doPull(p, loc, 2);
 		}
 		// TODO Auto-generated method stub
-		if (p.getNoDamageTicks()<= 1) {
+		if (p.getNoDamageTicks()<= 1 && !isOnTeam(p)) {
 			heal(caster, 2, caster);
 			ParUtils.pullItemEffectVector(p.getLocation(), Material.NETHER_WART_BLOCK, 44, loc.clone().add(0,0.6,0),0.3F);
 			damage(p,1,caster);

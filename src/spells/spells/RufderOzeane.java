@@ -28,7 +28,7 @@ public class RufderOzeane extends Spell{
 	public void setUp() {
 		
 		if (refined) {
-			new RufDerOzeaneRefined(caster,name);
+			new RufDerOzeaneRefined(caster,name).sendKey(spellkey);;
 			playSound(Sound.AMBIENT_UNDERWATER_LOOP_ADDITIONS,loc,1,1);
 		}
 		

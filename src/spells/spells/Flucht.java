@@ -28,7 +28,7 @@ public class Flucht extends Spell{
 		
 		hitPlayer = false;
 		hitBlock = false;
-		
+		hitSpell = false;
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
 		

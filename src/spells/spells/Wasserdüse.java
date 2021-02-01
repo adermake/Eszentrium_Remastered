@@ -26,7 +26,7 @@ import spells.stagespells.ThermolanzeLaser;
 public class Wasserdüse extends Spell {
 
 	public Wasserdüse() {
-		cooldown = 20 * 70;
+		cooldown = 20 * 80;
 		steprange = 20 * 20;
 		speed = 1;
 		name = "§cWasserdüse";

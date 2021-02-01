@@ -129,6 +129,16 @@ public class Stich extends Spell {
 			}
 			else {
 				
+				if (dashes == 2) {
+					reduceCooldown(20*15);
+					//Bukkit.broadcastMessage("REFUNED 15");
+				}
+				
+				if (dashes == 1) {
+					reduceCooldown(20*10);
+					//Bukkit.broadcastMessage("REFUNED 10" );
+				}
+				
 				caster.setVelocity(caster.getVelocity().multiply(0));
 				dead = true;
 			}

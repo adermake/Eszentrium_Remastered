@@ -26,7 +26,7 @@ public class Thermolanze extends Spell {
 		steprange = 30;
 		speed =2;
 		casttime = 10;
-		
+		hitSpell = false;
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.PROJECTILE);

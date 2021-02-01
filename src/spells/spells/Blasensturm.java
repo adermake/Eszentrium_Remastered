@@ -18,11 +18,11 @@ public class Blasensturm extends Spell{
 	int rec = 65;
 	public Blasensturm() {
 		name = "ßeBlasensturm";
-		steprange = 20 * 6;
+		steprange = 20 * 4;
 		speed =2;
 		
 		hitboxSize = 1;
-		cooldown = 20*45;
+		cooldown = 20*40;
 		hitSpell = true;
 		
 		setBetterLore("ß7Schieﬂt eine Menge Blasen, die nach kurzer Zeit#ß7den naheliegendsten Gegner verfolgen. Getroffene#ß7Gegner werden weggeschleudert.");

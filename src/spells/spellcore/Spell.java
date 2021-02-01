@@ -1475,7 +1475,7 @@ public abstract class Spell {
 		if (!NBTUtils.getNBT("SpellKey", is).equals("")) {
 			
 			spellkey = Integer.parseInt(NBTUtils.getNBT("SpellKey", is));
-			Bukkit.broadcastMessage("HAS KEY" + spellkey);
+			//Bukkit.broadcastMessage("HAS KEY" + spellkey);
 			
 		}
 		/*
@@ -1496,6 +1496,9 @@ public abstract class Spell {
 		setBetterLore(SaveUtils.getAnalytics().getSpellRefinedLore(name));
 	}
 	
+	public void sendKey(int k) {
+		spellkey = k;
+	}
 	public void reduceCooldown(int amount) {
 		SpellKeyUtils.reduceCooldown(caster,spellkey, amount);
 	}

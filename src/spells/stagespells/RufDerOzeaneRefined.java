@@ -111,8 +111,10 @@ public class RufDerOzeaneRefined extends Spell {
 		// TODO Auto-generated method stub
 		damage(p,1,caster);
 		doKnockback(p, caster.getLocation(), 1.5);
-		back = true;
+		//back = true;
+		reduceCooldown(52*20);
 		step = 0;
+		dead = true;
 	}
 
 	@Override
@@ -120,8 +122,10 @@ public class RufDerOzeaneRefined extends Spell {
 		// TODO Auto-generated method stub
 		damage(ent,1,caster);
 		doKnockback(ent, caster.getLocation(), 1.5);
-		back = true;
+		//back = true;
 		step = 0;
+		reduceCooldown(52*20);
+		dead = true;
 	}
 
 	@Override
