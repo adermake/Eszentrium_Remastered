@@ -3,6 +3,7 @@ package spells.spells;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
@@ -20,21 +21,27 @@ import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.Spell;
 import spells.stagespells.WebTrail;
 
-public class Spiderdunk extends Spell {
+public class Schweberknecht extends Spell {
 
 	
-	public Spiderdunk() {
+	public Schweberknecht() {
 		steprange = 20 * 6;
+		name = "§6Schweberknecht";
+		cooldown = 20 * 35;
 	}
 	Spider s;
 	boolean bounced = false;
 	boolean hitbounced = false;
 	@Override
 	public void setUp() {
+		
 		// TODO Auto-generated method stub
 		s = (Spider) spawnEntity(EntityType.SPIDER);
+		unHittable.add(s);
 		vel = caster.getLocation().getDirection().multiply(1);
-		
+		s.setInvulnerable(true);
+		addNoTarget(s);
+		playSound(Sound.ENTITY_SPIDER_DEATH,loc,2,1);
 		
 	}
 
@@ -57,13 +64,19 @@ public class Spiderdunk extends Spell {
 		doPin(s,loc,3);
 		vel.add(new Vector(0,-0.1,0));
 		
-		
+		if (bounced) {
+			//playSound(Sound.ENTITY_LEASH_KNOT_PLACE,loc,1,0.1F);
+		}
 		
 		if(hitbounced && !bounced) {
 			bounced = true;
-			
+			playSound(Sound.ENTITY_MAGMA_CUBE_JUMP,loc,3,0.5F);
 			vel = vel.setY(Math.abs(vel.getY()));
 			double y = vel.getY();
+			double cap = 3F;
+			if (y > cap) {
+				y = cap;
+			}
 			step = 0;
 			steprange = 20 * 4;
 			//vel = vel.normalize().multiply(y/1.2);
@@ -76,7 +89,7 @@ public class Spiderdunk extends Spell {
 			//new WebTrail(chase, caster, name);
 			loc = s.getLocation();
 			for(float i = 0;i<15;i++) {
-				 Spell s = new WebTrail(chase, caster, name,y);
+				 Spell s = new WebTrail(chase, caster, name,y,yLevel);
 				 chase = s;
 			}
 			
@@ -118,12 +131,16 @@ public class Spiderdunk extends Spell {
 
 	@Override
 	public void onBlockHit(Block block) {
+		if (hitbounced) {
+			dead = true;
+		}
 		hitbounced = true;
 		
 	}
 
 	@Override
 	public void onDeath() {
+		playSound(Sound.ENTITY_SPIDER_DEATH,loc,2,0.5);
 		// TODO Auto-generated method stub
 		s.remove();
 	}

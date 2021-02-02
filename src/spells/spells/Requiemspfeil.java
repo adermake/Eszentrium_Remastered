@@ -178,7 +178,7 @@ public class Requiemspfeil extends Spell {
 			//ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, 5);
 			setGliding(originalCaster, false);
 			originalCaster.setVelocity(new Vector(0, 0, 0));
-			once = true;
+			//once = true;
 			PlayerUtils.showPlayer(originalCaster);
 			
 			originalCaster.removePotionEffect(PotionEffectType.INVISIBILITY);

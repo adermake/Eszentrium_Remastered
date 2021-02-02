@@ -79,6 +79,7 @@ import spells.spells.Schwerkraftsmanipulation;
 import spells.spells.SchwerterausLicht;
 import spells.spells.SiegelderFurcht;
 import spells.spells.SpeerderZwietracht;
+import spells.spells.Schweberknecht;
 import spells.spells.Springkraut;
 import spells.spells.Stase;
 import spells.spells.Sternentor;
@@ -248,6 +249,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Vogelattacke());
 		registerSpell(new Stase());
 		registerSpell(new Kettenbrecher());
+		registerSpell(new Schweberknecht());
 		//registerSpell(new Springkraut());
 	}
 	

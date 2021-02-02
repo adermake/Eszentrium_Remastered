@@ -224,9 +224,10 @@ public class WeaponAbilitys implements Listener {
 							String name = lastLaunched.get(p);
 							Class clazz = Class.forName(name);
 							Spell sp = (Spell) clazz.newInstance();
+							sp.spellkey = -1;
 							if (!sp.castSpell(p, sp.getName())) {
 							cd.add(p);
-							
+							sp.spellkey = -1;
 							new BukkitRunnable() {
 								int sec = 0;
 								int cooldown = sp.getCooldown()*2;

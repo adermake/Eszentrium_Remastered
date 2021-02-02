@@ -13,6 +13,8 @@ public class SpellKeyUtils {
 		//Bukkit.broadcastMessage("LOOKING FOR BOOK "+spellkey);
 		for (int i = 0; i< p.getInventory().getSize();i++) {
 			ItemStack is = p.getInventory().getItem(i);
+			if (NBTUtils.getNBT("SpellKey", is) != "") {
+				
 			
 			int key =Integer.parseInt(NBTUtils.getNBT("SpellKey", is));
 			//Bukkit.broadcastMessage("Found key in inventory "+key);
@@ -25,6 +27,7 @@ public class SpellKeyUtils {
 				//Bukkit.broadcastMessage("FOUND BOOK");
 				p.getInventory().setItem(i, is);
 				break;
+			}
 			}
 		}
 	}

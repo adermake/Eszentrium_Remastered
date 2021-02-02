@@ -68,7 +68,7 @@ public abstract class Spell {
 	protected double speed  = 1;
 	protected double speedmultiplier = 1;
 	protected double hitboxSize = 1;
-	protected static int spellkey = -1;
+	public int spellkey = -1;
 	
 	protected boolean refined = false;
 	protected boolean hitEntity = true;
@@ -90,7 +90,7 @@ public abstract class Spell {
 	//VARS
 	
 	protected boolean spellLoopStarted = false;
-	protected ArrayList<Entity> noTargetEntitys = new ArrayList<Entity>();
+	public ArrayList<Entity> noTargetEntitys = new ArrayList<Entity>();
 	public ArrayList<Entity> hitEntitys = new ArrayList<Entity>();
 	public static ArrayList<Entity> pressingF = new ArrayList<Entity>();
 	public static ArrayList<Entity> clearpressingF = new ArrayList<Entity>();
@@ -144,7 +144,7 @@ public abstract class Spell {
 	
 	public boolean refund = false;
 	public boolean createdSpell(Player p) {
-		//applySpellKey(p);
+		applySpellKey(p);
 		spell.add(this); //XXXX
 		caster = p;
 		loc = p.getEyeLocation();
@@ -1500,6 +1500,7 @@ public abstract class Spell {
 		spellkey = k;
 	}
 	public void reduceCooldown(int amount) {
+		//Bukkit.broadcastMessage("Looking for "+spellkey);
 		SpellKeyUtils.reduceCooldown(caster,spellkey, amount);
 	}
 	// OVERRIDEABLES
