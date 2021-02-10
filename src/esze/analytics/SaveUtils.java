@@ -15,7 +15,7 @@ import esze.main.main;
 
 public class SaveUtils {
 
-	private static int currentGame = 1;
+	private static int currentGame = 0;
 	private static Connection currentConnection = null;
 	private static GameType.TypeEnum currentType = null;
 	private static AnalyticsInterface analytics = null;
@@ -252,7 +252,7 @@ public class SaveUtils {
 			Statement stmt = currentConnection.createStatement();
 			String query = "select " + DB_NAME + "." + function + ";";
 
-			System.out.println("Exe func: " + query);
+			//System.out.println("Exe func: " + query);
 			ResultSet rs = stmt.executeQuery(query);
 
 			int out = 0;
@@ -275,7 +275,7 @@ public class SaveUtils {
 		try {
 			Statement stmt = currentConnection.createStatement();
 			String query = "call " + DB_NAME + "." + function + ";";
-			System.out.println("Exe proc: " + query);
+			//System.out.println("Exe proc: " + query);
 			stmt.executeQuery(query);
 			stmt.close();
 		} catch (SQLException e) {
@@ -285,6 +285,9 @@ public class SaveUtils {
 	}
 
 	public static String rmColor(String s) {
+		if (s == null) {
+			return "";
+		}
 		for (String tag : main.colorTags) {
 			s = s.replace(tag, "");
 		}
