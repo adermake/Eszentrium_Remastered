@@ -15,7 +15,7 @@ import esze.main.main;
 
 public class SaveUtils {
 
-	private static int currentGame = 0;
+	private static int currentGame = 1;
 	private static Connection currentConnection = null;
 	private static GameType.TypeEnum currentType = null;
 	private static AnalyticsInterface analytics = null;
