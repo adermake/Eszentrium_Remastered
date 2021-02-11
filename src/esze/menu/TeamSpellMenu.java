@@ -16,6 +16,7 @@ import esze.types.TypeSOLO;
 import esze.types.TypeTEAMS;
 import esze.utils.NBTUtils;
 import esze.utils.PlayerUtils;
+import esze.utils.SpellKeyUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
@@ -54,6 +55,7 @@ public class TeamSpellMenu extends ItemMenu{
 		used = true;
 		p.closeInventory();
 		ItemStack is = NBTUtils.setNBT("Spell", "true", icon);
+		is = NBTUtils.setNBT("SpellKey", ""+SpellKeyUtils.getNextSpellKey(), is);
 		p.getInventory().addItem(is);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setNoDamageTicks(10);

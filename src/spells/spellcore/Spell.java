@@ -909,7 +909,49 @@ public abstract class Spell {
 		return null;
 
 	}
-	
+	public Player pointEntityCone(Location start,Player p) {
+		int range = 300;
+		int toleranz = 3;
+		Location loc = start.clone();
+		for (double t = 2; t <= range; t=t+0.5) {
+			toleranz +=0.25F;
+			Vector direction = loc.getDirection().normalize();
+			double x = direction.getX() * t;
+			double y = direction.getY() * t + 1.5;
+			double z = direction.getZ() * t;
+			loc.add(x, y, z);
+			Location lo = loc.clone();
+
+			// Particel
+
+
+			if (loc.getBlock().getType().isSolid()) {
+
+				break;
+			}
+
+			for (Player pl : Bukkit.getOnlinePlayers()) {
+				if (pl != p && pl.getGameMode() != GameMode.ADVENTURE) {
+					
+					Location ploc1 = pl.getLocation();
+					Location ploc2 = pl.getLocation();
+					ploc2.add(0, 1, 0);
+					if (ploc1.distance(loc) <= toleranz || ploc2.distance(loc) <= toleranz) {
+						
+
+						return pl;
+					}
+				}
+			}
+			
+			// SUBTRACTING LOCATION UM den prozess
+			// von vorne zu
+			// starten
+			loc.subtract(x, y, z);
+		}
+		return null;
+
+	}
 	public Entity pointRealEntity(Player p) {
 		int range = 300;
 		int toleranz = 3;
@@ -1163,6 +1205,50 @@ public abstract class Spell {
 			loca.add(0,-1,0);
 		}
 		return loca.getBlock().getLocation().add(0.5,0.5,0.5);
+		
+	}
+	public Location getCieling(Location loca) {
+		
+		
+		while (!loca.getBlock().getType().isSolid()) {
+			loca.add(0,1,0);
+		}
+		return loca.getBlock().getLocation().add(0.5,0.5,0.5);
+		
+	}
+	
+	public Location getFloor(Location loca,int cap) {
+		Location ori = loca.clone();
+		int t = 0;
+		while (!loca.getBlock().getType().isSolid()) {
+			loca.add(0,-1,0);
+			t++;
+			if (t >= cap ) {
+				return ori;
+			}
+		}
+		Location retLoc = loca.getBlock().getLocation();
+		retLoc.setX(loca.getX());
+		retLoc.setZ(loca.getZ());
+		return retLoc;
+		
+	}
+	public Location getCieling(Location loca,int cap) {
+		Location ori = loca.clone();
+		int t = 0;
+		while (!loca.getBlock().getType().isSolid()) {
+			t++;
+			if (t >= cap ) {
+				return ori;
+			}
+			loca.add(0,1,0);
+			
+			
+		}
+		Location retLoc = loca.getBlock().getLocation();
+		retLoc.setX(loca.getX());
+		retLoc.setZ(loca.getZ());
+		return retLoc;
 		
 	}
 	public String getName() {

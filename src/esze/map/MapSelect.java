@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
@@ -96,7 +97,11 @@ public class MapSelect implements Listener{
 				e.setCancelled(true);
 			}
 		}
+		
 		*/
+		if (item != null && item.getType() == Material.STONE_BUTTON && p.getGameMode() != GameMode.CREATIVE) {
+			e.setCancelled(true);
+		}
 		if(inv != null && e.getView().getTitle() != null){
 			if(e.getView().getTitle().equals("§aWähle eine Map:")){
 				e.setCancelled(true);

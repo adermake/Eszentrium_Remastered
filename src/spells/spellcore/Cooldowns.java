@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -35,7 +36,14 @@ public class Cooldowns {
 				
 				
 				for (Player p : Bukkit.getOnlinePlayers()) {
-					
+					//Bukkit.broadcastMessage(""+p.getOpenInventory());
+					/*
+					if (EventCollector.openInventory.containsKey(p)) {
+						Bukkit.broadcastMessage("opne");
+						continue;
+					}
+					Bukkit.broadcastMessage("close");
+					*/
 					for (int slot = 0;slot<p.getInventory().getSize();slot++) {
 						ItemStack i = p.getInventory().getItem(slot);
 						
@@ -43,7 +51,11 @@ public class Cooldowns {
 						if (i ==  null ) {
 							continue;
 						}
-						
+						//Bukkit.broadcastMessage(">>"+NBTUtils.getNBT("Cooldown", i) );
+						if (NBTUtils.getNBT("Cooldown", i) == "0" || NBTUtils.getNBT("Cooldown", i) == "" ) {
+							continue;
+						}
+						//Bukkit.broadcastMessage(""+i);
 						String nbtData = NBTUtils.getNBT("Cooldown", i);
 						String burn = NBTUtils.getNBT("Burn", i);
 						if (burn == "true") {
@@ -93,6 +105,7 @@ public class Cooldowns {
 								
 							}
 						}
+						//p.updateInventory();
 						
 					}
 					

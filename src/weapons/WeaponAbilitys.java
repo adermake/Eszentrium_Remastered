@@ -26,6 +26,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -87,6 +88,24 @@ public class WeaponAbilitys implements Listener {
 
 				}
 			}.runTaskTimerAsynchronously(main.plugin, 0, 0);
+			// BLOCK SYSTEM
+			int slot = e.getPlayer().getInventory().getHeldItemSlot();
+			
+			if (e.getPlayer().getInventory().getItem(slot) == null) {
+				
+				ItemStack ph = new ItemStack(Material.STONE_BUTTON);
+				
+				
+				ItemMeta phim = ph.getItemMeta();
+				//ph.setItemMeta(phim);
+				phim.setDisplayName("§cWarte auf Schwert");
+				ph.setItemMeta(phim);
+				
+				
+			
+			
+			//Bukkit.broadcastMessage("ITEM");
+			
 			//Bukkit.broadcastMessage(""+e.getItemDrop().getItemStack());
 			final ArmorStand as = (ArmorStand) p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
 			as.getEquipment().setItemInMainHand(e.getItemDrop().getItemStack().clone());
@@ -106,7 +125,7 @@ public class WeaponAbilitys implements Listener {
 				int toggle = 0;
 
 				public void run() {
-
+					e.getPlayer().getInventory().setItem(slot, ph);
 					t = t + 1;
 					toggle++;
 					Vector direction = loc.getDirection().normalize();
@@ -123,7 +142,7 @@ public class WeaponAbilitys implements Listener {
 						if (loc.getBlock().getType() != Material.AIR) {
 							//ParticleEffect.EXPLOSION_LARGE.send(Bukkit.getOnlinePlayers(), loc.getX(),loc.getY(), loc.getZ(), 0, 0, 0, 0, 1);
 
-							p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+							p.getInventory().setItem(slot,new ItemStack(as.getEquipment().getItemInMainHand()));
 							for (Player pl : Bukkit.getOnlinePlayers()) {
 								pl.playSound(as.getLocation(), Sound.BLOCK_ANVIL_PLACE, 2, 2);
 							}
@@ -148,7 +167,9 @@ public class WeaponAbilitys implements Listener {
 								main.damageCause.remove((Player)pl);
 								main.damageCause.put((Player)pl, "Schwertwurf-" + p.getName()); //Damage Cause
 								//PlayerAPI.getPlayerInfo((Player)pl).damage(p, (int)getAttackDamage(as.getEquipment().getItemInMainHand()), "§3Schwertwurf");
-								p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+								//p.getInventory().clear(slot);
+								p.getInventory().setItem(slot,new ItemStack(as.getEquipment().getItemInMainHand()));
+								//p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
 								for (Player pl2 : Bukkit.getOnlinePlayers()) {
 									pl2.playSound(as.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 2, 2);
 								}
@@ -167,7 +188,8 @@ public class WeaponAbilitys implements Listener {
 						if(!PlayerAPI.getPlayerInfo((Player)p).isAlive){
 							
 						}else{
-							p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
+							p.getInventory().setItem(slot,new ItemStack(as.getEquipment().getItemInMainHand()));
+							//p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
 						}
 						as.remove();
 						this.cancel();
@@ -175,6 +197,10 @@ public class WeaponAbilitys implements Listener {
 					}
 				}
 			}.runTaskTimer(main.plugin, 0, 0);
+			}
+			else {
+				e.setCancelled(true);
+			}
 		}
 		
 	}

@@ -1,6 +1,7 @@
 package spells.spellcore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -11,9 +12,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import esze.analytics.SaveUtils;
@@ -24,7 +29,7 @@ import weapons.WeaponAbilitys;
 
 public class EventCollector implements Listener {
 
-	
+	public static HashMap<Player,Inventory> openInventory = new HashMap<Player,Inventory>();
 	@EventHandler
 	public void onPressSpell(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
@@ -173,9 +178,19 @@ public class EventCollector implements Listener {
 		Spell.pressingF.add(e.getPlayer());
 		e.setCancelled(true);
 	}
+	/*
+	@EventHandler
+	public void onOpenInventory(InventoryClickEvent e) {
+		openInventory.put((Player)e.getWhoClicked(), e.getView().getTopInventory());
+		//Bukkit.broadcastMessage(""+ "NO BUGG");
+	}
 	
+	@EventHandler
+	public void onCloseInventory(InventoryCloseEvent e) {
+		openInventory.remove(e.getPlayer());
+	}
 	
-	
+	*/
 	
 	@EventHandler
 	public void plsDontLeave(PlayerToggleSneakEvent e) {

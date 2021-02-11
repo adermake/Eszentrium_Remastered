@@ -26,7 +26,7 @@ public class Schweberknecht extends Spell {
 	
 	public Schweberknecht() {
 		steprange = 20 * 6;
-		name = "§6Schweberknecht";
+		name = "§cSchweberknecht";
 		cooldown = 20 * 35;
 	}
 	Spider s;
@@ -69,6 +69,7 @@ public class Schweberknecht extends Spell {
 		}
 		
 		if(hitbounced && !bounced) {
+			speed = 2;
 			bounced = true;
 			playSound(Sound.ENTITY_MAGMA_CUBE_JUMP,loc,3,0.5F);
 			vel = vel.setY(Math.abs(vel.getY()));
@@ -81,7 +82,7 @@ public class Schweberknecht extends Spell {
 			steprange = 20 * 4;
 			//vel = vel.normalize().multiply(y/1.2);
 			vel = vel.setY(0);
-			vel.normalize().multiply(y/4);
+			vel.normalize().multiply(y/2);
 			vel.setY(y);
 			hitbounced = false;
 			yLevel = loc.getY();

@@ -21,6 +21,7 @@ import org.bukkit.util.EulerAngle;
 
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
+import esze.utils.SpellKeyUtils;
 
 public class Spelldrop implements Listener {
 	
@@ -82,6 +83,7 @@ public class Spelldrop implements Listener {
 		im.setDisplayName(SpellList.getRandomSpell().name);
 		item.setItemMeta(im);
 		item = NBTUtils.setNBT("Spell", "true", item);
+		item = NBTUtils.setNBT("SpellKey", ""+SpellKeyUtils.getNextSpellKey(), item);
 		return item;
 		
 	}

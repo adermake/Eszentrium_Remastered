@@ -895,7 +895,33 @@ public class ParUtils {
 		}.runTaskTimer(main.plugin, 1,1);
 		
 	}
+	public static void pullItemEffectVector(Location loc,Material m,int delay,Location toLocation,double speed,int offsetid) {
+		
+		
+		ItemStack im = new ItemStack(m);
+		
+		
+		ItemMeta imet = im.getItemMeta();
+		imet.setDisplayName(""+(offsetid));
+		im.setItemMeta(imet);
+		Item it = loc.getWorld().dropItem(loc, im);
+		it.setPickupDelay(1000+delay);
 	
+	
+	new BukkitRunnable() {
+		int t = 0;
+		public void run() {
+			
+			t++;
+			it.setVelocity(toLocation.toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
+			if (t>delay || it.getLocation().distance(toLocation)<0.3) {
+				this.cancel();
+				it.remove();
+			}
+		}
+	}.runTaskTimer(main.plugin, 1,1);
+	
+}
 	public static void pullItemEffectVector(Location loc,Material m,int delay,Entity ent,double speed) {
 		
 		

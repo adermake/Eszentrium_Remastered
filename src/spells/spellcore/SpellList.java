@@ -27,6 +27,7 @@ import spells.spells.Bienenschwarm;
 import spells.spells.Binden;
 import spells.spells.Blasensturm;
 import spells.spells.Blutsiegel;
+import spells.spells.ArkanesGeschütz;
 import spells.spells.Chaoswelle;
 import spells.spells.Enterhaken;
 import spells.spells.Erdsurfer;
@@ -37,6 +38,7 @@ import spells.spells.Flammenwand;
 import spells.spells.Feuerwerkshelix;
 import spells.spells.Flucht;
 import spells.spells.Delfintorpedo;
+import spells.spells.Dimensionsschnitt;
 import spells.spells.Eisstachel;
 import spells.spells.Heilen;
 import spells.spells.Heldenstoß;
@@ -250,6 +252,8 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Stase());
 		registerSpell(new Kettenbrecher());
 		registerSpell(new Schweberknecht());
+		registerSpell(new Dimensionsschnitt());
+		registerSpell(new ArkanesGeschütz());
 		//registerSpell(new Springkraut());
 	}
 	

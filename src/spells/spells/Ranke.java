@@ -97,7 +97,7 @@ public class Ranke extends Spell{
 		
 		if (refined) {
 			for (LivingEntity le : hitMobs) {
-				le.addPotionEffect(new PotionEffect(PotionEffectType.POISON,20,6));
+				//le.addPotionEffect(new PotionEffect(PotionEffectType.POISON,20,6));
 				doPin(le, loc.clone());
 			}
 		}

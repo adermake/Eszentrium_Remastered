@@ -28,6 +28,7 @@ public class Wurmloch extends Spell {
 		hitEntity = true;
 		hitSpell = false;
 		steprange = 120;
+		multihit = true;
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
@@ -77,6 +78,9 @@ public class Wurmloch extends Spell {
 		delay++;
 		if (delay > 5) {
 			delay = 0;
+			if (refined) {
+				ParUtils.parKreisDir(Particles.COMPOSTER, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
+			}
 			ParUtils.parKreisDir(Particles.DRAGON_BREATH, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
 		}
 		
