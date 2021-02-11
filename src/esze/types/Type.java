@@ -55,22 +55,22 @@ public abstract class Type {
 		}
 		
 		// CHECK IF ENTITY HAS A DAMAGE CAUSE IF NOT FILL IT WITH UNKNOWN
-		if (main.damageCause.get(p) == null) {
-			main.damageCause.remove(p);
-			main.damageCause.put(p, unknownDamage);
+		if (Spell.damageCause.get(p) == null) {
+			Spell.damageCause.remove(p);
+			Spell.damageCause.put(p, new DamageCauseContainer(null));
 		}
 
 		// DEATH MESSAGE 
 		if (!spectator.contains(p)) {
 			
-			String out = toStringCause(p);
+			String out = DamageCauseContainer.toMessage(Spell.damageCause.get(p), p.getName());
 			for (Player rec : Bukkit.getOnlinePlayers()) {
 				rec.sendMessage(out);
 			}
 			
 		} 
 
-		main.damageCause.put(p, unknownDamage);
+		Spell.damageCause.put(p, null);
 		p.setVelocity(new Vector(0, 0, 0));
 		
 		
@@ -162,15 +162,6 @@ public abstract class Type {
 		for (Player p : players) {
 			if (p.getLocation().getY()<60 && p.getGameMode() == GameMode.SURVIVAL) {
 				
-				if (main.damageCause.get(p) == null) {
-					main.damageCause.put(p, unknownDamage);
-				}
-				if (main.damageCause.get(p).equals("") || main.damageCause.get(p).equals(unknownDamage)) {
-					main.damageCause.put(p, voiddamage);
-				} else if (!main.damageCause.get(p).endsWith(voiddamage)){
-					main.damageCause.put(p, main.damageCause.get(p) + "-" + voiddamage);
-				}
-				
 				if (Spell.damageCause.get(p) == null) {
 					Spell.damageCause.put(p, new DamageCauseContainer(null, null));
 				}
@@ -188,8 +179,8 @@ public abstract class Type {
 	
 	
 	public void setupPlayer(Player p) {
-		main.damageCause.remove(p);
-		main.damageCause.put(p, unknownDamage); //Reset damage Cause		
+		Spell.damageCause.remove(p);
+		Spell.damageCause.put(p, null); //Reset damage Cause		
 		p.teleport(nextLoc());
 		p.setGameMode(GameMode.ADVENTURE);
 		p.getInventory().clear();	
@@ -215,6 +206,7 @@ public abstract class Type {
 		}.runTaskTimer(main.plugin, 2,2);
 	}
 	
+	/*
 	public static String toStringCause(Player p) {
 		String[] in = main.damageCause.get(p).split("-");
 		String color = "§7";
@@ -241,7 +233,8 @@ public abstract class Type {
 			out = main.damageCause.get(p);
 		}
 		return out;
-	}
+	}*/
+	
 	public void setupGame() {
 	
 		for (int i = 0; i < 16; i++) {

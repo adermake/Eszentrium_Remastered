@@ -47,6 +47,7 @@ import net.minecraft.server.v1_15_R1.Item;
 import net.minecraft.server.v1_15_R1.PacketPlayOutSetCooldown;
 import net.minecraft.server.v1_15_R1.Particles;
 import net.minecraft.server.v1_15_R1.PlayerConnection;
+import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 
 public class WeaponAbilitys implements Listener {
@@ -164,8 +165,10 @@ public class WeaponAbilitys implements Listener {
 							Location ploc2 = pl.getLocation();
 							ploc2.add(0, 1, 0);
 							if (ploc1.distance(loc) <= 1 || ploc2.distance(loc) <= 1) {
-								main.damageCause.remove((Player)pl);
-								main.damageCause.put((Player)pl, "Schwertwurf-" + p.getName()); //Damage Cause
+								if (Spell.damageCause.get((Player)pl) == null) {
+									Spell.damageCause.put(pl, new DamageCauseContainer(p));
+								}
+								Spell.damageCause.get((Player)pl).swordDamage(p, "Schwertwurf"); //Damage Cause
 								//PlayerAPI.getPlayerInfo((Player)pl).damage(p, (int)getAttackDamage(as.getEquipment().getItemInMainHand()), "§3Schwertwurf");
 								//p.getInventory().clear(slot);
 								p.getInventory().setItem(slot,new ItemStack(as.getEquipment().getItemInMainHand()));

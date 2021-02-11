@@ -17,6 +17,7 @@ import esze.enums.Gamestate;
 import esze.main.main;
 import esze.utils.Actionbar;
 import esze.utils.SoundUtils;
+import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
 import spells.spells.Blutsiegel;
@@ -97,7 +98,12 @@ public class Damage implements Listener{
 				} else {
 					
 					try {
-						main.damageCause.put((Player) e.getEntity(), p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() +  "-" + ((Player) e.getDamager()).getName());
+						DamageCauseContainer d =  Spell.damageCause.get((Player) e.getEntity());
+						if (d == null) {
+							d = new DamageCauseContainer(p);
+							Spell.damageCause.put(p, d);
+						}
+						d.swordDamage(p, p.getInventory().getItemInMainHand().getItemMeta().getDisplayName());
 					}
 					catch(NullPointerException ex) {
 						ex.printStackTrace();

@@ -81,15 +81,8 @@ public class TypeTTT extends Type{
 			
 			//TabList.setPlayerlistHeader(p, ""+secondsLeft);
 			if (p.getLocation().getY()<60 && p.getGameMode() == GameMode.SURVIVAL) {
-				if (main.damageCause.get(p) == null) {
-					main.damageCause.put(p, "");
-				}
-				if (main.damageCause.get(p).equals("")) {
-					main.damageCause.put(p, voiddamage);
-				} else if (!main.damageCause.get(p).endsWith(voiddamage)){
-					main.damageCause.put(p, main.damageCause.get(p) + "-" + voiddamage);
-				}
-				p.damage(40);
+				
+				//p.damage(40);
 			}
 			
 			

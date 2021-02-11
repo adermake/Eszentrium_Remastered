@@ -88,14 +88,9 @@ public class TypeSOLO extends Type {
 			return;
 		}
 
-		if (main.damageCause.get(p) == null) {
-			main.damageCause.remove(p);
-			main.damageCause.put(p, unknownDamage);
-		}
-
 		if (!spectator.contains(p)) {
 			// Output death message
-			String out = toStringCause(p);
+			String out = DamageCauseContainer.toMessage(Spell.damageCause.get(p), p.getName());
 			for (Player rec : Bukkit.getOnlinePlayers()) {
 				rec.sendMessage(out);
 			}
@@ -108,7 +103,6 @@ public class TypeSOLO extends Type {
 			// p.sendMessage("STOP DIEING!");
 		}
 
-		main.damageCause.put(p, unknownDamage);
 		Spell.damageCause.put(p, new DamageCauseContainer(null, null));
 		
 		p.setVelocity(new Vector(0, 0, 0));

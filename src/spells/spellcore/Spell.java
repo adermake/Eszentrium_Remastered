@@ -744,9 +744,6 @@ public abstract class Spell {
 	public void tagPlayer(Player ent) {
 		
 	
-		// FABIANS DAMAGE CAUSE
-		main.damageCause.remove(ent);
-		main.damageCause.put(ent, name + "-" + caster.getName());
 		
 		
 		//RALFS RICHTIGER DAMAGE CAUSE

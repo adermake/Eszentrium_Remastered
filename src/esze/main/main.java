@@ -80,7 +80,7 @@ public class main extends JavaPlugin {
 	public static String discord_TOKEN = "";
 	public static String mapname;
 
-	public static HashMap<Player, String> damageCause = new HashMap<Player, String>();
+	//public static HashMap<Player, String> damageCause = new HashMap<Player, String>();
 	public AppServer appServer;
 
 	public static ArrayList<String> colorTags = new ArrayList<String>();
@@ -197,7 +197,6 @@ public class main extends JavaPlugin {
 		LibUtils.initlibs();
 
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			main.damageCause.put(p, "unknown"); // Damage Cause
 			p.setExp(0F);
 			p.setLevel(0);
 			p.setFoodLevel(20);

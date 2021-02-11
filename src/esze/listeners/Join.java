@@ -25,7 +25,6 @@ public class Join implements Listener{
 	public void onJoin(PlayerJoinEvent e){
 		Player p = e.getPlayer();
 		
-		main.damageCause.put(p, ""); //Damage Cause
 		p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(20D);
 	    p.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(0.5D);
 		p.setExp(0F);
