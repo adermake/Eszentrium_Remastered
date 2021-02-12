@@ -78,7 +78,7 @@ public class SaveUtils {
 			}
 		});
 		
-		currentGame = 0;
+		currentGame = 1;
 		currentType = null;
 		update();
 	}

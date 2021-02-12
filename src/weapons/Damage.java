@@ -97,17 +97,18 @@ public class Damage implements Listener{
 					
 				} else {
 					
-					try {
-						DamageCauseContainer d =  Spell.damageCause.get((Player) e.getEntity());
-						if (d == null) {
-							d = new DamageCauseContainer(p);
-							Spell.damageCause.put(p, d);
-						}
+					
+					DamageCauseContainer d = Spell.damageCause.get((Player) e.getEntity());
+					if (d == null) {
+						d = new DamageCauseContainer(p);
+						Spell.damageCause.put(p, d);
+					}
+					if (p.getInventory() != null && p.getInventory().getItemInMainHand() != null && p.getInventory().getItemInMainHand().getItemMeta() != null && p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() != null) {
 						d.swordDamage(p, p.getInventory().getItemInMainHand().getItemMeta().getDisplayName());
+					} else {
+						d.swordDamage(p, "Hand");
 					}
-					catch(NullPointerException ex) {
-						ex.printStackTrace();
-					}
+					
 				}
 				
 				if (p.getInventory().getItemInMainHand().getType() == Material.BOW) {
