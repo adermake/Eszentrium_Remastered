@@ -1,5 +1,6 @@
 package spells.stagespells;
 
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Arrow;
@@ -43,7 +44,8 @@ public class CrossbowArrow extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+		//ParUtils.createFlyingParticle(Particles.END_ROD, loc.clone(), 0.1, 0.1, 0.1, 10, 3,loc.getDirection().multiply(1));
+		//ParUtils.createFlyingParticle(Particles.DRAGON_BREATH, loc.clone(), 0.2, 0.2, 0.2, 10, 3,loc.getDirection().multiply(1));
 	}
 
 	@Override
@@ -61,6 +63,7 @@ public class CrossbowArrow extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
+		playSound(Sound.ITEM_CROSSBOW_HIT,loc,1,1);
 		ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 1, 0, 4, v);
 		if (refined) {
 			damage(p, 3, caster);
@@ -75,7 +78,7 @@ public class CrossbowArrow extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 1, 0, 2, v);
-		
+		playSound(Sound.ITEM_CROSSBOW_HIT,loc,1,1);
 		if (refined) {
 			damage(ent, 3, caster);
 		}

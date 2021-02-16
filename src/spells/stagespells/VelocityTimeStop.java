@@ -84,6 +84,7 @@ public class VelocityTimeStop extends Spell {
 	float pitch = 0.5F;
 	@Override
 	public void move() {
+		
 		// TODO Auto-generated method stub
 		delay++;
 		if (delay > 20-speeder) {

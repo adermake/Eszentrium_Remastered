@@ -103,7 +103,7 @@ public class Damage implements Listener{
 						d = new DamageCauseContainer(p);
 						Spell.damageCause.put(p, d);
 					}
-					if (p.getInventory() != null && p.getInventory().getItemInMainHand() != null && p.getInventory().getItemInMainHand().getItemMeta() != null && p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() != null) {
+					if (p != null && p.getInventory() != null && p.getInventory().getItemInMainHand() != null && p.getInventory().getItemInMainHand().getItemMeta() != null && p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() != null) {
 						d.swordDamage(p, p.getInventory().getItemInMainHand().getItemMeta().getDisplayName());
 					} else {
 						d.swordDamage(p, "Hand");

@@ -100,7 +100,7 @@ public class DimensionCutSeg extends Spell {
 		}
 		//ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 0, 0);
 		if (active) {
-			if (step % 10 == 0) {
+			if (step % 60 == 0) {
 				playSound(Sound.AMBIENT_CAVE,loc,0.15F,2F);
 			}
 			if (step % 3 == 0) {
@@ -167,7 +167,7 @@ public class DimensionCutSeg extends Spell {
 		// TODO Auto-generated method stub
 		if (step < 15) {
 			if (refined) {
-				ent.damage(12);
+				ent.damage(9);
 			}
 			else {
 				ent.damage(7);

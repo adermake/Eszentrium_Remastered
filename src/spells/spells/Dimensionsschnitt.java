@@ -87,6 +87,11 @@ public class Dimensionsschnitt extends Spell {
 		new DimensionCutSeg(caster, loc.clone(), name, refined, true,loc.getDirection());
 		new DimensionCutSeg(caster, loc.clone(), name, refined, false,loc.getDirection());
 		
+		if (caster.isSneaking()) {
+			caster.setVelocity(caster.getLocation().getDirection().multiply(-2));
+			dead = true;
+		}
+		
 	}
 
 	@Override

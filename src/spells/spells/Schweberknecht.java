@@ -1,5 +1,7 @@
 package spells.spells;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -43,6 +45,15 @@ public class Schweberknecht extends Spell {
 		addNoTarget(s);
 		playSound(Sound.ENTITY_SPIDER_DEATH,loc,2,1);
 		
+		if (refined) {
+			Spell chase = this;
+			for(float i = 0;i<15;i++) {
+				 Spell s = new WebTrail(chase, caster, name,-1,yLevel);
+				 chase = s;
+				 trails.add(s);
+			}
+		}
+		
 	}
 
 	@Override
@@ -58,6 +69,8 @@ public class Schweberknecht extends Spell {
 	}
 	double yLevel = 0;
 	Vector vel;
+	
+	ArrayList<Spell> trails = new ArrayList<Spell>();
 	@Override
 	public void move() {
 		loc.add(vel);
@@ -69,6 +82,19 @@ public class Schweberknecht extends Spell {
 		}
 		
 		if(hitbounced && !bounced) {
+			if (refined) {
+				/*
+				for (Spell s : trails) {
+					s.kill();
+				}
+				*/
+				if (s instanceof WebTrail) {
+					WebTrail w = (WebTrail) s;
+					w.height = loc.clone().getY();
+					w.power = 0;
+				}
+				
+			}
 			speed = 2;
 			bounced = true;
 			playSound(Sound.ENTITY_MAGMA_CUBE_JUMP,loc,3,0.5F);

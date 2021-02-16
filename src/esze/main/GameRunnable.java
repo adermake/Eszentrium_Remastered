@@ -1,9 +1,12 @@
 package esze.main;
 
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
 import esze.enums.GameType;
 import esze.types.TypeTEAMS;
+import net.minecraft.server.v1_15_R1.EntityPlayer;
 
 public class GameRunnable {
 	
@@ -15,7 +18,7 @@ public class GameRunnable {
 			
 			@Override
 			public void run() {
-				
+				lagCheck();
 				GameType.getType().runEveryTick();
 				
 			}
@@ -39,4 +42,19 @@ public class GameRunnable {
 		GameType.refreshGameType();
 	}
 
+	
+	public static void lagCheck() {
+		boolean lag = true;
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			CraftPlayer cp = (CraftPlayer) p;
+			EntityPlayer ep = cp.getHandle();
+			if (ep.ping < 350 )
+				lag = false;
+		}
+		
+		if (lag) {
+			Bukkit.broadcastMessage("§c[L.A.G] Low ping detected");
+		}
+		
+	}
 }

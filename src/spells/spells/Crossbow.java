@@ -25,14 +25,14 @@ import spells.stagespells.CrossbowArrow;
 
 public class Crossbow extends Spell {
 	ArmorStand a = null;
-	int activationstep = 20 * 27;
+	int activationstep = 20 * 28 + 10;
 	Location moveTo;
 	Location ori;
 	public Crossbow(Player p,String name,boolean refined,Location l,Location moveTo) {
 		ori = l.clone();
 		steprange = 20 * 30;
 		if (refined) {
-			activationstep = 20;
+			activationstep = 20 * 22;
 		}
 		this.moveTo = moveTo;
 		castSpell(p, name);
@@ -73,30 +73,33 @@ public class Crossbow extends Spell {
 		// TODO Auto-generated method stub
 		//doPull(a,moveTo,0.3);
 		
-		if (step % 4 == 0) {
-			target = pointEntityCone(loc.clone(),caster);
+		if (step % 10 == 0) {
+			target = pointEntityCone(loc.clone(),caster,false);
 			if (target != null && ! activated) {
 				activated = true;
+				playSound(Sound.ENTITY_EVOKER_FANGS_ATTACK,loc,2,0.6F);
+				playSound(Sound.ENTITY_EVOKER_FANGS_ATTACK,target.getLocation(),2,0.6F);
 				step = activationstep;
 				playSound(Sound.BLOCK_CONDUIT_ACTIVATE,loc,4,2);
 			}
 		}
 		if (target != null) {
+			
 			Vector v = target.getLocation().toVector().subtract(a.getLocation().toVector());
 			Location l1 = target.getLocation();
 			l1.setDirection(v);
 			a.setRightArmPose(new EulerAngle(Math.PI/2-Math.PI*2*l1.getPitch()/360,-Math.toRadians(80)+Math.PI*2*l1.getYaw()/360, 0));
 			delay++;
-			if (delay > 5) {
+			if (delay > 3) {
 				delay = 0;
 				//Arrow ar = (Arrow) spawnEntity(EntityType.ARROW,a.getLocation().add(v.normalize()).add(new Vector(0,1,0)));
 				//		ar.setVelocity(v.multiply(3));
 				new CrossbowArrow(caster, a, v, name, refined);
-				playSound(Sound.ENTITY_ARROW_SHOOT, loc, 1, 1);
+				playSound(Sound.ENTITY_ARROW_SHOOT, loc, 5, 1);
 				setCrossbow(false);
 			}
 			
-			if (delay == 2) {
+			if (delay == 1) {
 				setCrossbow(true);
 			}
 		}

@@ -26,7 +26,7 @@ public class Requiemspfeil extends Spell {
 
 	public Requiemspfeil() {
 
-		name = "§cRequiemspfeil";
+		name = "§eRequiemspfeil";
 		steprange = 100;
 		cooldown = 20 * 40;
 		hitboxSize = 1.5;
@@ -81,7 +81,7 @@ public class Requiemspfeil extends Spell {
 				dist = 6;
 			}
 			else {
-				dist = 2;
+				dist = 3;
 			}
 			
 		}
@@ -98,7 +98,7 @@ public class Requiemspfeil extends Spell {
 		// a.teleport(caster.getLocation().add(caster.getLocation().getDirection().multiply(4)));
 		speedX++;
 		if (caster.isSneaking()) {
-			playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE, 0.3F, 2*f);
+			playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE, 0.3F, f);
 			a.setVelocity(caster.getLocation().getDirection().multiply(2.5));
 			//ParUtils.createFlyingParticle(Particles.CLOUD, a.getLocation(), 2, 2,2,5, -3, a.getVelocity());
 			// playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.1F,0.4F);
@@ -116,6 +116,9 @@ public class Requiemspfeil extends Spell {
 		// Location aim = loc(caster,step);
 		// doPull(a,aim,a.getLocation().distance(aim)/5);
 		loc = a.getLocation();
+		if (silenced.containsKey(caster)) {
+			dead = true;
+		}
 	}
 
 	@Override
@@ -133,11 +136,18 @@ public class Requiemspfeil extends Spell {
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);
 		// TODO Auto-generated method stub
 
-		damage(p, speedX / 5, caster);
 		
+		if (refined) {
+			damage(p, 2+speedX / 5, caster);
+			reduceCooldown(20 * 25);
+		}
+		else {
+			damage(p, speedX / 5, caster);
+			reduceCooldown(20 * 10);
+		}
 
 		dead = true;
-		reduceCooldown(20 * 10);
+		
 	}
 
 	@Override
@@ -147,11 +157,18 @@ public class Requiemspfeil extends Spell {
 		// REMOVED CAUSED ERRORS
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, ori, 5, 1);
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);
-		damage(ent, speedX / 5, caster);
+		if (refined) {
+			damage(ent, 2+speedX / 5, caster);
+			reduceCooldown(20 * 25);
+		}
+		else {
+			damage(ent, speedX / 5, caster);
+			reduceCooldown(20 * 10);
+		}
 
 		
 		dead = true;
-		reduceCooldown(20 * 10);
+		
 	}
 
 	@Override

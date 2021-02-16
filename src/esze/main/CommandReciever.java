@@ -743,6 +743,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 	public int getPing(Player p) {
 		CraftPlayer cp = (CraftPlayer) p;
 		EntityPlayer ep = cp.getHandle();
+		
 		return ep.ping;
 	}
 				

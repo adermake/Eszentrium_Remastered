@@ -19,8 +19,8 @@ public class WebTrail extends Spell {
 	
 	Spell trail;
 	FallingBlock web;
-	double power = 0;
-	double height;
+	public double power = 0;
+	public double height;
 	public WebTrail(Spell trail,Player caster,String name,double power,double height) {
 		this.trail = trail;
 		this.height = height;
@@ -43,7 +43,10 @@ public class WebTrail extends Spell {
 		web.setGravity(false);
 		
 	}
-
+	public void kill() {
+		web.remove();
+		dead = true;
+	}
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
@@ -87,7 +90,10 @@ public class WebTrail extends Spell {
 		//Bukkit.broadcastMessage(
 		//Bukkit.broadcastMessage(""+webded);
 		//Bukkit.broadcastMessage(""+last.getY() +" --- " +height+ " --- "+power +" --- desc" +desc + webded);
-		if (((loc.clone().add(0,-1,0).getBlock().getType().isSolid() ||webded|| last.getY()-1-2*power<= height) && desc) ) {
+		
+			
+		
+		if ((((loc.clone().add(0,-1,0).getBlock().getType().isSolid() ||webded|| last.getY()-1-2*power<= height) && desc)) ) {
 				web.teleport(trail.getLocation());
 				dead = true;
 				web.remove();

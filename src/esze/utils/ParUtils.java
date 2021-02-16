@@ -291,7 +291,7 @@ public class ParUtils {
 	public static void parVectorLine(ParticleType pt,Location l1,Vector vec,double split) {
 		for (double i = 0;i<split;i++) {
 			double m = i/split;
-			Bukkit.broadcastMessage(""+m);
+			//Bukkit.broadcastMessage(""+m);
 			createParticle(pt, l1.clone().add(vec.clone().multiply(m)), 0, 0, 0, 1, 0);
 		}
 		

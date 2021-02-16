@@ -42,6 +42,7 @@ import spells.spells.Dimensionsschnitt;
 import spells.spells.Eisstachel;
 import spells.spells.Heilen;
 import spells.spells.Heldenstoß;
+import spells.spells.Himmelsläufer;
 import spells.spells.HimmlischesUrteil;
 import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
@@ -254,6 +255,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Schweberknecht());
 		registerSpell(new Dimensionsschnitt());
 		registerSpell(new ArkanesGeschütz());
+		registerSpell(new Himmelsläufer());
 		//registerSpell(new Springkraut());
 	}
 	

@@ -906,7 +906,7 @@ public abstract class Spell {
 		return null;
 
 	}
-	public Player pointEntityCone(Location start,Player p) {
+	public Player pointEntityCone(Location start,Player p,boolean tarteammates) {
 		int range = 300;
 		int toleranz = 3;
 		Location loc = start.clone();
@@ -928,6 +928,9 @@ public abstract class Spell {
 			}
 
 			for (Player pl : Bukkit.getOnlinePlayers()) {
+				if (!tarteammates && isOnTeam(pl)) {
+					continue;
+				}
 				if (pl != p && pl.getGameMode() != GameMode.ADVENTURE) {
 					
 					Location ploc1 = pl.getLocation();
