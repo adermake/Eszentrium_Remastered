@@ -3,6 +3,7 @@ package spells.spells;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -11,6 +12,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
@@ -25,7 +27,7 @@ public class Himmelsläufer extends Spell {
 		
 		name = "§bHimmelsläufer";
 		steprange = 20 * 8;
-		cooldown = 30;
+		cooldown = 20* 30;
 		
 		addSpellType(SpellType.MOBILITY);
 	}
@@ -33,6 +35,12 @@ public class Himmelsläufer extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
+		if (refined) {
+			steprange = 20 * 10;
+			caster.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20* 10, 2));
+			caster.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20* 10, 2));
+		}
+		
 		
 	}
 
@@ -68,7 +76,7 @@ public class Himmelsläufer extends Spell {
 			blocks.remove(l1);
 		}
 		
-		if (caster.isSneaking()) {
+		if (swap()) {
 			dead = true;
 		}
 		length++;
@@ -77,12 +85,19 @@ public class Himmelsläufer extends Spell {
 	public void phantomBlock(Location l1) {
 		//if (blocks.contains(l1))
 		//	return;
-		playSound(Sound.BLOCK_BEACON_ACTIVATE,loc,1,1);
-		blocks.add(l1);
+		if (!blocks.contains(l1.getBlock().getLocation())) {
+			double lerpFactor = (double)length/(double)steprange;
+			//Bukkit.broadcastMessage(""+lerpFactor);
+			playSound(Sound.BLOCK_NOTE_BLOCK_DIDGERIDOO,l1,5,2F*lerpFactor);
+		}
+		blocks.add(l1.getBlock().getLocation());
 		caster.sendBlockChange(l1,Material.BARRIER, (byte)0);
 		
 		//ParUtils.parCubeEdgeFly(Particles.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 1, 1, 0.1F);
 		ParUtils.parCube(Particles.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5),1, 5);
+		if (refined) {
+			ParUtils.createParticle(Particles.CLOUD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 0.1, 0.1, 0.1, 10, 0);
+		}
 		
 	}
 
@@ -124,6 +139,10 @@ public class Himmelsläufer extends Spell {
 			
 			caster.sendBlockChange(l1, l1.getBlock().getBlockData());
 			
+		}
+		if (refined) {
+			caster.removePotionEffect(PotionEffectType.SPEED);
+			caster.removePotionEffect(PotionEffectType.JUMP);
 		}
 		int refunde = steprange*2 - length*2;
 		//Bukkit.broadcastMessage("X"+refunde/20);

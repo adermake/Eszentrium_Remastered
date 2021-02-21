@@ -28,7 +28,7 @@ public class Schweberknecht extends Spell {
 	
 	public Schweberknecht() {
 		steprange = 20 * 6;
-		name = "§cSchweberknecht";
+		name = "§6Schweberknecht";
 		cooldown = 20 * 35;
 	}
 	Spider s;

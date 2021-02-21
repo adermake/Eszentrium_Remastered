@@ -24,7 +24,7 @@ import spells.spells.Avatar;
 import spells.spells.DunklerWind;
 import spells.spells.Beben;
 import spells.spells.Bienenschwarm;
-import spells.spells.Binden;
+import spells.spells.BindenOld;
 import spells.spells.Blasensturm;
 import spells.spells.Blutsiegel;
 import spells.spells.ArkanesGeschütz;

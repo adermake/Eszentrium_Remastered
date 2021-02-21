@@ -906,6 +906,49 @@ public abstract class Spell {
 		return null;
 
 	}
+	
+	public Spell pointSpell(Player p) {
+		int range = 300;
+		int toleranz = 3;
+		Location loc = p.getLocation();
+		for (double t = 1; t <= range; t=t+0.5) {
+
+			Vector direction = loc.getDirection().normalize();
+			double x = direction.getX() * t;
+			double y = direction.getY() * t + 1.5;
+			double z = direction.getZ() * t;
+			loc.add(x, y, z);
+			Location lo = loc.clone();
+
+			// Particel
+
+
+			if (loc.getBlock().getType().isSolid()) {
+
+				break;
+			}
+
+			for (Spell sp : spell) {
+				if (sp.hitSpell) {
+					
+					Location ploc1 = sp.getLocation();
+				
+					if (ploc1.distance(loc) <= sp.hitboxSize + toleranz) {
+						
+
+						return sp;
+					}
+				}
+			}
+			
+			// SUBTRACTING LOCATION UM den prozess
+			// von vorne zu
+			// starten
+			loc.subtract(x, y, z);
+		}
+		return null;
+
+	}
 	public Player pointEntityCone(Location start,Player p,boolean tarteammates) {
 		int range = 300;
 		int toleranz = 3;

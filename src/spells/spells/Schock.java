@@ -16,35 +16,52 @@ public class Schock extends Spell {
 	public Schock() {
 		cooldown = 20 * 40;
 		name = "§eSchock";
-		casttime =  3;
+		//casttime =  3;
 		aim = null;
-		
+		steprange = 3;
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
 		
 		setLore("§7Schießt Blitze in Blickrichtung, die#§7an getroffenen Gegnern Schaden verursachen.#§7Der Schaden der Blitze steigt, wenn der#§7Zauber aus großer Höhe ausgeführt wird.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7weiten sich die Blitze aus, um mehr Fläche#§7zu treffen auf Kosten der Genauigkeit.");
 		setBetterLore("§7Schießt Blitze aus großer Höhe auf den#§7anvisierten Block und verursacht Schaden an#§7getroffenen Gegnern. # #§eShift:§7 Solange#§7diese Taste gedrückt bleibt, weiten sich#§7die Blitze aus, um mehr Fläche zu treffen auf#§7Kosten der Genauigkeit.");
 		
+		
+	}
+	Location aim;
+	@Override
+	public void setUp() {
+		// TODO Auto-generated method stub
 		if (refined) {
 			
 			
 			aim = block(caster);
 			if (aim == null) {
 				refund = true;
+				dead = true;
 			}
 			}
-	}
-	Location aim;
-	@Override
-	public void setUp() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
+	
+	}
+
+	@Override
+	public void launch() {
+		
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public void move() {
+		
 		if (refined) {
+			if (aim == null)
+				return;
 			new SchockLaser(caster.getLocation().add(0,100,0),aim.clone(),caster,name,refined);
 			new SchockLaser(caster.getLocation().add(0,100,0),aim.clone(),caster,name,refined);
 			new SchockLaser(caster.getLocation().add(0,100,0),aim.clone(),caster,name,refined);
@@ -57,19 +74,8 @@ public class Schock extends Spell {
 		}
 		
 		playSound(Sound.ENTITY_LIGHTNING_BOLT_THUNDER,caster.getLocation(),8F,2f);
-		
-	}
-
-	@Override
-	public void launch() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		dead = true;
 	}
 
 	@Override
