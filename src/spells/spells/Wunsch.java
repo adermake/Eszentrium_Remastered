@@ -39,6 +39,8 @@ public class Wunsch extends Spell{
 			}
 			if (h > caster.getHealth()) {
 				caster.setHealth(h);
+				
+				
 			}
 			
 		}
