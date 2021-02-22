@@ -87,8 +87,10 @@ public class SaveUtils {
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
+				Bukkit.broadcastMessage("Update start!");
 				checkConnection();
 				analytics.update(currentConnection);
+				Bukkit.broadcastMessage("Update done!");
 			}
 		});
 	}

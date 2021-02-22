@@ -76,8 +76,25 @@ public class DropPickup implements Listener {
 		ScoreboardTeamUtils.colorEntity(item, t.getTeamOfPlayer(p).color);
 		SoundUtils.playSound(Sound.ENTITY_SNOWBALL_THROW,p.getLocation(),0.2F,1);
 		item.setGlowing(true);
+		
+		if (p.isSneaking()) {
+			Player target = p;
+			for (Player pl : t.getTeammates(p)) {
+				if (pl.getLocation().distance(p.getLocation()) > target.getLocation().distance(p.getLocation())) {
+					target = pl;
+				}
+			}
+			
+			target.getInventory().addItem(is);
+			SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,target.getLocation(),1.2F,0.7F);
+			SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
+			item.remove();
+			
+		} else {
 	
 		new BukkitRunnable() {
+			
+			
 			Vector dir = p.getLocation().getDirection();
 			int i = 0;
 			double speedMult = 3;
@@ -157,7 +174,7 @@ public class DropPickup implements Listener {
 				
 			}
 		}.runTaskTimer(main.plugin,1,1);
-		
+		}
 		
 		
 		

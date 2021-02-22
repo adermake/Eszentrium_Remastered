@@ -40,6 +40,7 @@ public class Chaoswelle extends Spell{
 		
 	}
 	double up = 0.3;
+	double height = 0;
 	@Override
 	public void cast() {
 		
@@ -48,7 +49,7 @@ public class Chaoswelle extends Spell{
 		}
 		Vector v = caster.getVelocity();
 		v.setY(v.getY()+up);
-		
+		height = caster.getLocation().getY();
 		caster.setVelocity(v);
 		
 		
@@ -61,9 +62,13 @@ public class Chaoswelle extends Spell{
 	}
 
 	int tl = 0;
+	boolean doStuff = false;
 	@Override
 	public void move() {
 		
+		if (height + 50 > caster.getHeight()) {
+			doStuff = true;
+		}
 		
 		tl++;
 		
@@ -91,8 +96,10 @@ public class Chaoswelle extends Spell{
 			int pow = 70 - tl/5;
 			if (pow<0) 
 				pow = 0;
-			
+				
+			if (doStuff) {
 				doChaoswelle(caster,pow,false);
+			}
 			
 			dead = true;
 		}

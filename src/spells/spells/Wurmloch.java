@@ -41,7 +41,12 @@ public class Wurmloch extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		wormHolePlaceLoc = loc(caster,(int)(caster.getLocation().getY()-30));
+		
+		if (caster.isSneaking()) {
+			wormHolePlaceLoc = caster.getLocation().clone();
+		} else {
+			wormHolePlaceLoc = loc(caster,(int)(caster.getLocation().getY()-30));
+		}
 		wormHolePlaceLoc.setY(62);
 		playSound(Sound.BLOCK_PORTAL_TRAVEL, caster.getLocation(), 1, 2F);
 		playSound(Sound.BLOCK_PORTAL_TRAVEL, wormHolePlaceLoc, 1, 2F);
