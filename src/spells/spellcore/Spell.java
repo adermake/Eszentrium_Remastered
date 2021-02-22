@@ -70,6 +70,8 @@ public abstract class Spell {
 	protected double hitboxSize = 1;
 	public int spellkey = -1;
 	
+	
+	
 	protected boolean refined = false;
 	protected boolean hitEntity = true;
 	protected boolean hitPlayer = true;
@@ -177,6 +179,11 @@ public abstract class Spell {
 				cast++;
 				if (canBeSilenced && checkSilence()) {
 					this.cancel();
+				}
+				
+				if (caster.getGameMode() == GameMode.ADVENTURE) {
+					this.cancel();
+					return;
 				}
 				cast();
 				
@@ -287,7 +294,11 @@ public abstract class Spell {
 						}
 						
 					}
-					
+					if (spellTypes.contains(SpellType.SELFCAST) && (caster.getGameMode() == GameMode.ADVENTURE || isSilenced())) {
+						dead = true;
+						this.cancel();
+						return;
+					}
 					if (ts>=1/speed) {	
 						ts = 0;
 						
@@ -1627,6 +1638,10 @@ public abstract class Spell {
 	
 	public void sendKey(int k) {
 		spellkey = k;
+	}
+	
+	public boolean isSilenced() {
+		return silenced.get(caster).filter(spellTypes);
 	}
 	public void reduceCooldown(int amount) {
 		//Bukkit.broadcastMessage("Looking for "+spellkey);
