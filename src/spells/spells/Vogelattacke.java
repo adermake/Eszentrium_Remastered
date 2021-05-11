@@ -31,6 +31,7 @@ public class Vogelattacke extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.SELFCAST);
 		setLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
 		setBetterLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
 	}

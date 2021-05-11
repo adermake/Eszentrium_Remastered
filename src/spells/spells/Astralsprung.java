@@ -12,6 +12,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_15_R1.Particles;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellType;
 
 public class Astralsprung extends Spell{
 
@@ -23,7 +24,7 @@ public class Astralsprung extends Spell{
 		hitEntity = false;
 		hitSpell = false;
 		steprange =120;
-		
+		addSpellType(SpellType.SELFCAST);
 		
 	}
 	double dist = 0;

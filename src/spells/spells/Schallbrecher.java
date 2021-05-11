@@ -30,6 +30,7 @@ public class Schallbrecher extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.# #§eShift:§7 Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.");
 		setBetterLore("§7Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.# #§eShift:§7 Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.");
 	}

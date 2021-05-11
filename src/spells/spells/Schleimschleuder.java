@@ -36,7 +36,7 @@ public class Schleimschleuder extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.PROJECTILE);
-		
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Beschwört einen Schleim vor dem#§7Spieler, der Gegner in der Nähe verlangsamt. Je#§7weiter der Spieler vom Schleim entfernt ist,#§7desto größer wird dieser und der#§7Verlangsamungsradius. Nach kurzer Zeit wird der#§7Spieler zurück zum Schlim gezogen und schleudert#§7diesen weg. Alle Gegner in der Nähe des#§7Schleims werden mitgezogen.# #§eF:§7 Der#§7Spieler springt in Blickrichtung.");
 		setBetterLore("§7Beschwört einen Schleim vor dem Spieler,#§7der Gegner in der Nähe verlangsamt. Je#§7weiter der Spieler vom Schleim entfernt ist,#§7desto größer wird dieser und der#§7Verlangsamungsradius. Nach kurzer Zeit wird der Spieler#§7zurück zum Schlim gezogen und schleudert#§7diesen weg. Alle Gegner in der Nähe des#§7Schleims werden mitgezogen.# #§eF:§7 Der Spieler#§7springt in Blickrichtung und zieht alle#§7verlangsamten Gegner zum Schleim.");
 	}

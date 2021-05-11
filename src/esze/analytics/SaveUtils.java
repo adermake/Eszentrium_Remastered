@@ -20,7 +20,7 @@ public class SaveUtils {
 	private static GameType.TypeEnum currentType = null;
 	private static AnalyticsInterface analytics = null;
 	public static final String DB_NAME = "EszeData";
-	private static final String URL = "jdbc:mysql://37.187.220.26:3306/EszeData?autoReconnect=true&useSSL=false";
+	private static final String URL = "jdbc:mysql://localhost/EszeData?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false";
 	private static final String USER = "j_user";
 	private static String PASSWORD = "";
 

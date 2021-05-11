@@ -34,7 +34,7 @@ public class SchreidesPhönix extends Spell{
 		hitPlayer = false;
 		hitEntity = false;
 		
-		
+		addSpellType(SpellType.SELFCAST);
 		traitorSpell = true;
 		addSpellType(SpellType.SUPPORT);
 

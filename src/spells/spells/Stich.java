@@ -36,6 +36,7 @@ public class Stich extends Spell {
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Springt eine kurze Distanz in#§7Blickrichtung. Bei Gegnerkontakt springt der#§7Anwender vom Gegner ab und verursacht Schaden.##§7#§eF:§7 Wird ein Gegner getroffen, kann der#§7Anwender noch einmal in Blickrichtung#§7springen und den Effekt wiederholen. Maximal#§7zweimal möglich.");
 		setBetterLore("§7Springt eine kurze Distanz in#§7Blickrichtung. Bei Gegnerkontakt springt der Anwender#§7vom Gegner ab und verursacht Schaden.##§7#§eF:§7 Der Spieler spring in Blickrichtung#§7und wiederholt den Effekt. Maximal zweimal#§7möglich.");
 	}
@@ -53,6 +54,7 @@ public class Stich extends Spell {
 		steprange = 80;
 		hitPlayer = true;
 		hitEntity = true;
+		addSpellType(SpellType.SELFCAST);
 		castSpell(caster, name);
 	}
 	

@@ -28,6 +28,7 @@ public class Explosion extends Spell{
 		//addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.AURA);
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Lädt einen Angriff auf. Nach kurzer #§7Zeit explodiert der Spieler und#§7fügt allen Gegnern in der Nähe#§7Schaden zu.# #§eShift:§7 Zündet den Zauber vorzeitig#§7und katapultiert den Spieler hoch.#§7Je früher die Explosion ausgelöst wird,#§7desto geringer fallen Reichweite, Schaden und Höhe aus.");
 	}
 	

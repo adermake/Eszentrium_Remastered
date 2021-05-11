@@ -26,6 +26,7 @@ public class Zaubersprung extends Spell {
 		hitPlayer = false;
 		hitEntity = false;
 		hitSpell = false;
+		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.MOBILITY);
 		setLore("§7Teleportiert den Spieler auf den#§7anvisierten Block. Nach kurzer Zeit wird er#§7wieder zum Ursprungsort zurückteleportiert.##§7#§eF:§7 Teleportiert den Spieler sofort zum#§7Ursprungsort zurück.");
 		setBetterLore("§7Teleportiert den Spieler auf den#§7anvisierten Block. # #§eF:§7 Teleportiert den#§7Spieler zum Ursprungsort zurück.");

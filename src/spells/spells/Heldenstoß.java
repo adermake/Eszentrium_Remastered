@@ -30,6 +30,7 @@ public class Heldenstoﬂ extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.DAMAGE);
+		addSpellType(SpellType.SELFCAST);
 		setLore("ß7Der Spieler fliegt in Blickrichtung#ß7voran. Nach kurzer Zeit oder bei Bodenkontakt#ß7entsteht eine Explosion, die Gegnern#ß7schadet und sie wegschleudert. Je l‰nger der#ß7Zauber angehalten hat, desto st‰rker ist dieser#ß7Effekt.# #Shift: Stoppt den Zauber sofort.");
 	}
 	

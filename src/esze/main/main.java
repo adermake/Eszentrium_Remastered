@@ -234,6 +234,7 @@ public class main extends JavaPlugin {
 		}
 		
 		//Analytics
+		
 		if (getConfig().contains("settings.sqlPass")) {
 			SaveUtils.setPassword(getConfig().getString("settings.sqlPass"));
 			SaveUtils.update();
@@ -244,6 +245,7 @@ public class main extends JavaPlugin {
 				}
 			}
 		}
+		
 		SaveUtils.checkConnection();
 		
 
@@ -253,7 +255,7 @@ public class main extends JavaPlugin {
 		appServer = new AppServer();
 		appServer.startServer();
 		System.out.println("Esze | App-Server hochgefahren.");
-
+		
 		// PACKETS
 		/*
 		PacketListenerAPI.addPacketHandler(new PacketHandler() {

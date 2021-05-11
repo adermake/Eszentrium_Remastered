@@ -38,6 +38,7 @@ public class DunklerWind extends Spell {
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner, die mit dem Projektil in Kontakt kommen, weggeschleudert." + 
 				"F: Der Spieler springt Richtung Projektil und zieht alle Gegner in der Nähe mit sich.");
 	}

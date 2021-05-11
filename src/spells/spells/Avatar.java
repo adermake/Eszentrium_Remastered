@@ -34,7 +34,7 @@ public class Avatar extends Spell{
 		
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.DAMAGE);
-		
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Verwandelt den Spieler kurzzeitig in einen Riesen,#§7den dieser aus seinem Inneren steuern kann.#§7Bei Gegnerkontakt erhalten diese Schaden.# #§eShift:§7 Beendet den Zauber sofort.");
 		
 	}

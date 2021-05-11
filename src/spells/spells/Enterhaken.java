@@ -28,6 +28,7 @@ public class Enterhaken extends Spell{
 		hitPlayer = false;
 		
 		addSpellType(SpellType.MOBILITY);
+		addSpellType(SpellType.SELFCAST);
 		setLore("Zieht den Spieler an den nächsten Block in Blickrichtung. Dort bleibt er für kurze Zeit hängen. Shift: Der Spieler springt in Blickrichtung.");
 		setBetterLore("§7Zieht den Spieler an den nächsten#§7Block in Blickrichtung. Dort bleibt#§7er für kurze Zeit hängen.");
 	}	

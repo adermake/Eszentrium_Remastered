@@ -28,7 +28,7 @@ public class Himmelsläufer extends Spell {
 		name = "§bHimmelsläufer";
 		steprange = 20 * 8;
 		cooldown = 20* 30;
-		
+		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.MOBILITY);
 	}
 	

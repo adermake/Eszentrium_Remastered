@@ -25,6 +25,7 @@ public class Orbitar extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.KNOCKBACK);
+		addSpellType(SpellType.SELFCAST);
 		setLore("§7Beschwört 3 Projektile, die um den#§7Spieler kreisen. Getroffene Gegner werden in#§7die Luft geworfen.# #§eShift:§7 Schießt die#§7Projektile in Blickrichtung. Getroffene#§7Gegner werden zurückgeworfen.");
 		setBetterLore("§7Beschwört 9 Projektile, die um den#§7Spieler kreisen. Getroffene Gegner werden in die#§7Luft geworfen.# #§eShift:§7 Schießt die#§7Projektile in Blickrichtung. Getroffene#§7Gegner werden zurückgeworfen.");
 	}

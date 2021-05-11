@@ -31,7 +31,7 @@ public class Hühnchenluftschlag extends Spell{
 		
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.DAMAGE);
-		
+		addSpellType(SpellType.SELFCAST);
 		setLore("Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt." + 
 				"Shift: Springt vorzeitig vom Hühnchen ab und springt in die Höhe." + 
 				"F: Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.");

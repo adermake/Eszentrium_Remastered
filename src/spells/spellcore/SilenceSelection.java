@@ -3,6 +3,7 @@ package spells.spellcore;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.util.Vector;
 
 public class SilenceSelection {
 
@@ -10,7 +11,6 @@ public class SilenceSelection {
 	SilenceFilterType sft = SilenceFilterType.ALL;
 	
 	public SilenceSelection() {
-		
 		
 	}
 	

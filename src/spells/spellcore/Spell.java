@@ -294,11 +294,13 @@ public abstract class Spell {
 						}
 						
 					}
+					/*
 					if (spellTypes.contains(SpellType.SELFCAST) && (caster.getGameMode() == GameMode.ADVENTURE || isSilenced())) {
 						dead = true;
 						this.cancel();
 						return;
 					}
+					*/
 					if (ts>=1/speed) {	
 						ts = 0;
 						

@@ -32,6 +32,7 @@ public class Kettenbrecher extends Spell {
 		setLore("Beschwört eine Kette, die dem Mauszeiger hinterherfliegt. Getroffene Gegner werden in Flugrichtung der Kette weggeschleudert. Shift: Zieht die Kette an den Anwender heran. Sobald die Taste losgelassen wird, schnellt die Kette auf die Ursprungsentfernung zurück.");
 		//setLore("Beschwört eine Kette, die dem Mauszeiger hinterherfliegt. Getroffene Gegner werden in Flugrichtung der Kette weggeschleudert. Shift: Zieht die Kette an den Anwender heran. Sobald die Taste losgelassen wird, schnellt die Kette auf die Ursprungsentfernung zurück.");
 		addSpellType(SpellType.MULTIHIT);
+		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.PROJECTILE);
 		addSpellType(SpellType.KNOCKBACK);
 	}

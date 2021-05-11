@@ -25,7 +25,7 @@ public class Dimensionsschnitt extends Spell {
 		steprange= 100;
 		speed = 10;
 		cooldown = 45 * 20;
-		
+		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.DAMAGE);
