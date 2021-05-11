@@ -22,7 +22,7 @@ import esze.utils.CorpseUtils;
 import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.TTTRevive;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 

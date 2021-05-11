@@ -8,7 +8,7 @@ import org.inventivetalent.packetlistener.handler.PacketHandler;
 import org.inventivetalent.packetlistener.handler.ReceivedPacket;
 import org.inventivetalent.packetlistener.handler.SentPacket;
 
-import net.minecraft.server.v1_15_R1.PacketPlayInSteerVehicle;
+import net.minecraft.server.v1_16_R3.PacketPlayInSteerVehicle;
 
 
 

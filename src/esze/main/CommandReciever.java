@@ -18,7 +18,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -46,7 +46,7 @@ import esze.utils.SoundUtils;
 import esze.utils.SpellKeyUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.Title;
-import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_16_R3.EntityPlayer;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 

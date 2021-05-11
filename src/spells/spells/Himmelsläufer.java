@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 

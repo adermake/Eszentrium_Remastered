@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spells.Flammenwand;
 

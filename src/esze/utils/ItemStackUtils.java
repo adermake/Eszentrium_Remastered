@@ -6,16 +6,16 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
-import net.minecraft.server.v1_15_R1.NBTTagDouble;
-import net.minecraft.server.v1_15_R1.NBTTagInt;
-import net.minecraft.server.v1_15_R1.NBTTagList;
-import net.minecraft.server.v1_15_R1.NBTTagString;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
+import net.minecraft.server.v1_16_R3.NBTTagDouble;
+import net.minecraft.server.v1_16_R3.NBTTagInt;
+import net.minecraft.server.v1_16_R3.NBTTagList;
+import net.minecraft.server.v1_16_R3.NBTTagString;
 
 public class ItemStackUtils {
 	
@@ -52,7 +52,7 @@ public class ItemStackUtils {
 	}
 	
 	public static ItemStack attackSpeedify(ItemStack is) {
-		net.minecraft.server.v1_15_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
+		net.minecraft.server.v1_16_R3.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
         NBTTagCompound speed = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
 		
     
@@ -72,7 +72,7 @@ public class ItemStackUtils {
 	
 		  
 	      
-        net.minecraft.server.v1_15_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
+        net.minecraft.server.v1_16_R3.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
         NBTTagCompound compound = nmsStack.getTag();
         if (compound == null) {
            compound = new NBTTagCompound();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

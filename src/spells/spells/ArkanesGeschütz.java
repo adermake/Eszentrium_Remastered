@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 
 public class ArkanesGeschütz extends Spell {

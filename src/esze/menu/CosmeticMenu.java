@@ -66,12 +66,17 @@ public class CosmeticMenu extends ItemMenu{
 			addClickableItem(5, 4, Material.DIAMOND_HOE,prefix+"Diamanthacke");
 			addClickableItem(5, 5, Material.DIAMOND_SHOVEL,prefix+"Diamantschaufel");
 			
-			addClickableItem(6, 1, Material.STICK,prefix+"Stock","§7Es ist ein Stock");
-			addClickableItem(6, 2, Material.BLAZE_ROD,prefix+"Lohenstab");
-			addClickableItem(6, 3, Material.BONE,prefix+"Knochen");
-			addClickableItem(6, 4, Material.BAMBOO,prefix+"Bambus");
-			addClickableItem(6, 5, Material.CARROT_ON_A_STICK,prefix+"Karottenangel");
+			addClickableItem(6, 1, Material.NETHERITE_SWORD,prefix+"Netheriteschwert");
+			addClickableItem(6, 2, Material.NETHERITE_AXE,prefix+"Netheriteaxt");
+			addClickableItem(6, 3, Material.NETHERITE_PICKAXE,prefix+"Netheritespitzhacke");
+			addClickableItem(6, 4, Material.NETHERITE_HOE,prefix+"Netheritehacke");
+			addClickableItem(6, 5, Material.NETHERITE_SHOVEL,prefix+"Netheriteschaufel");
 			
+			addClickableItem(7, 1, Material.STICK,prefix+"Stock","§7Es ist ein Stock");
+			addClickableItem(7, 2, Material.BLAZE_ROD,prefix+"Lohenstab");
+			addClickableItem(7, 3, Material.BONE,prefix+"Knochen");
+			addClickableItem(7, 4, Material.BAMBOO,prefix+"Bambus");
+			addClickableItem(7, 5, Material.CARROT_ON_A_STICK,prefix+"Karottenangel");
 			Material m = PlayerConfig.getConfig(p).getWeapon();
 			
 			

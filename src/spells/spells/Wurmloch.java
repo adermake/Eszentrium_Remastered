@@ -13,7 +13,7 @@ import esze.enums.GameType;
 import esze.types.Type;
 import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 

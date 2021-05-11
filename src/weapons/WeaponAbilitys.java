@@ -10,8 +10,8 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -39,14 +39,14 @@ import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.AttributeBase;
-import net.minecraft.server.v1_15_R1.AttributeModifier;
-import net.minecraft.server.v1_15_R1.EnumItemSlot;
-import net.minecraft.server.v1_15_R1.GenericAttributes;
-import net.minecraft.server.v1_15_R1.Item;
-import net.minecraft.server.v1_15_R1.PacketPlayOutSetCooldown;
-import net.minecraft.server.v1_15_R1.Particles;
-import net.minecraft.server.v1_15_R1.PlayerConnection;
+import net.minecraft.server.v1_16_R3.AttributeBase;
+import net.minecraft.server.v1_16_R3.AttributeModifier;
+import net.minecraft.server.v1_16_R3.EnumItemSlot;
+import net.minecraft.server.v1_16_R3.GenericAttributes;
+import net.minecraft.server.v1_16_R3.Item;
+import net.minecraft.server.v1_16_R3.PacketPlayOutSetCooldown;
+import net.minecraft.server.v1_16_R3.Particles;
+import net.minecraft.server.v1_16_R3.PlayerConnection;
 import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 
@@ -617,13 +617,13 @@ public class WeaponAbilitys implements Listener {
 	public double getAttackDamage(ItemStack itemStack) {
         double attackDamage = 5.0;
         UUID uuid = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
-        net.minecraft.server.v1_15_R1.ItemStack craftItemStack = CraftItemStack.asNMSCopy(itemStack);
-        net.minecraft.server.v1_15_R1.Item item = craftItemStack.getItem();
-        if(item instanceof net.minecraft.server.v1_15_R1.ItemSword || item instanceof net.minecraft.server.v1_15_R1.ItemTool || item instanceof net.minecraft.server.v1_15_R1.ItemHoe) {
-            //Multimap<AttributeBase, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
-        	Multimap<String, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
+        net.minecraft.server.v1_16_R3.ItemStack craftItemStack = CraftItemStack.asNMSCopy(itemStack);
+        net.minecraft.server.v1_16_R3.Item item = craftItemStack.getItem();
+        if(item instanceof net.minecraft.server.v1_16_R3.ItemSword || item instanceof net.minecraft.server.v1_16_R3.ItemTool || item instanceof net.minecraft.server.v1_16_R3.ItemHoe) {
+            Multimap<AttributeBase, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
+        	//Multimap<String, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
             //Collection<AttributeModifier> attributes = map.get(GenericAttributes.ATTACK_DAMAGE);
-        	Collection<AttributeModifier> attributes = map.get("ATTACK_DAMAGE");
+        	//Collection<AttributeModifier> attributes = map.get(new com.sun.xml.internal.fastinfoset.stax.events.AttributeBase(arg0, arg1));
             /*
             if(!attributes.isEmpty()) {
                 Bukkit.getLogger().info("Found one or more attribute modifiers:");

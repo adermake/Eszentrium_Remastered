@@ -6,9 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_15_R1.util.CraftMagicNumbers;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.util.CraftMagicNumbers;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -19,14 +19,14 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import io.netty.util.internal.ThreadLocalRandom;
-import net.minecraft.server.v1_15_R1.Block;
-import net.minecraft.server.v1_15_R1.EntityPlayer;
-import net.minecraft.server.v1_15_R1.ParticleParamBlock;
-import net.minecraft.server.v1_15_R1.ParticleParamItem;
-import net.minecraft.server.v1_15_R1.ParticleParamRedstone;
-import net.minecraft.server.v1_15_R1.ParticleType;
-import net.minecraft.server.v1_15_R1.Particles;
-import net.minecraft.server.v1_15_R1.WorldServer;
+import net.minecraft.server.v1_16_R3.Block;
+import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.v1_16_R3.ParticleParamBlock;
+import net.minecraft.server.v1_16_R3.ParticleParamItem;
+import net.minecraft.server.v1_16_R3.ParticleParamRedstone;
+import net.minecraft.server.v1_16_R3.ParticleType;
+import net.minecraft.server.v1_16_R3.Particles;
+import net.minecraft.server.v1_16_R3.WorldServer;
 
 
 public class ParUtils {
@@ -83,12 +83,12 @@ public class ParUtils {
 	}
 
 	public static void createItemcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			net.minecraft.server.v1_15_R1.Item i) {
+			net.minecraft.server.v1_16_R3.Item i) {
 		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			EntityPlayer ep = ((CraftPlayer) p).getHandle();
 
-			nmsWorld.a(ep, new ParticleParamItem(Particles.ITEM, new net.minecraft.server.v1_15_R1.ItemStack(i)), true,
+			nmsWorld.a(ep, new ParticleParamItem(Particles.ITEM, new net.minecraft.server.v1_16_R3.ItemStack(i)), true,
 					loc.getX(), loc.getY(), loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
 		}
 	}

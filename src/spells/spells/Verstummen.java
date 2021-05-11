@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.Title;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;

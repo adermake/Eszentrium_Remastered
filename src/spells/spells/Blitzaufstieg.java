@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 

@@ -8,7 +8,7 @@ import org.bukkit.entity.Cat;
 import org.bukkit.entity.Cat.Type;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.players.DamageCall;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;

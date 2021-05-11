@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;

@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 import esze.enums.GameType;
 import esze.listeners.Join;
 import esze.main.main;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import weapons.WeaponAbilitys;
 import weapons.WeaponMenu;

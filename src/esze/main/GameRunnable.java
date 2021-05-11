@@ -1,12 +1,12 @@
 package esze.main;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import esze.enums.GameType;
 import esze.types.TypeTEAMS;
-import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_16_R3.EntityPlayer;
 
 public class GameRunnable {
 	

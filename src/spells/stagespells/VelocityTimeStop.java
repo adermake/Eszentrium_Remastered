@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;

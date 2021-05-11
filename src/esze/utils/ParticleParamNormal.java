@@ -3,9 +3,9 @@ package esze.utils;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import net.minecraft.server.v1_15_R1.PacketDataSerializer;
-import net.minecraft.server.v1_15_R1.Particle;
-import net.minecraft.server.v1_15_R1.ParticleParam;
+import net.minecraft.server.v1_16_R3.PacketDataSerializer;
+import net.minecraft.server.v1_16_R3.Particle;
+import net.minecraft.server.v1_16_R3.ParticleParam;
 
 
 

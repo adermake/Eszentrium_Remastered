@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Actionbar;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_15_R1.Particles;
+import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.SilenceFilterType;
 import spells.spellcore.SilenceSelection;
