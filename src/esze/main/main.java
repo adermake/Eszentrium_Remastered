@@ -179,7 +179,7 @@ public class main extends JavaPlugin {
 		PlayerUtils.stopVelocity();
 		JumpPadHandler.start();
 		Gamestate.setGameState(Gamestate.LOBBY);
-		SpellList.registerSpells();
+		
 		// SpellList.sortSpells();
 		WeaponList.setUpWeapons();
 		BuffHandler.tickMethod();
@@ -247,6 +247,7 @@ public class main extends JavaPlugin {
 		}
 		
 		SaveUtils.checkConnection();
+		SpellList.registerSpells();
 		
 
 		AppUserPasswordUtils.createPasswordConfig();

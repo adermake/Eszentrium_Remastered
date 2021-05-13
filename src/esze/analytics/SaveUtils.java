@@ -83,14 +83,15 @@ public class SaveUtils {
 		update();
 	}
 	
+	
 	public static void update() {
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("Update start!");
+				//Bukkit.broadcastMessage("Update start!");
 				checkConnection();
 				analytics.update(currentConnection);
-				Bukkit.broadcastMessage("Update done!");
+				//Bukkit.broadcastMessage("Update done!");
 			}
 		});
 	}
@@ -180,9 +181,7 @@ public class SaveUtils {
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
-				checkConnection();
 				executeSQLProcedure("setLore(" + format(spell) + ", " + format(lore) + ")");
-				update();
 			}
 		});
 	}
@@ -192,9 +191,7 @@ public class SaveUtils {
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
-				checkConnection();
 				executeSQLProcedure("setRefinedLore(" + format(spell) + ", " + format(lore) + ")");
-				update();
 			}
 		});
 	}
