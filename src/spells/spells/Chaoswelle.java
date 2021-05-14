@@ -24,7 +24,7 @@ public class Chaoswelle extends Spell{
 		name = "§cChaoswelle";
 		casttime = 20;
 		speed = 1;
-		cooldown = 20*52;
+		cooldown = 20*42;
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.DAMAGE);
@@ -37,7 +37,7 @@ public class Chaoswelle extends Spell{
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		
+		height = caster.getLocation().getY();
 	}
 	double up = 0.3;
 	double height = 0;
@@ -49,7 +49,7 @@ public class Chaoswelle extends Spell{
 		}
 		Vector v = caster.getVelocity();
 		v.setY(v.getY()+up);
-		height = caster.getLocation().getY();
+		
 		caster.setVelocity(v);
 		
 		
@@ -66,7 +66,7 @@ public class Chaoswelle extends Spell{
 	@Override
 	public void move() {
 		
-		if (height + 50 > caster.getHeight()) {
+		if (height + 30 < caster.getLocation().getY()) {
 			doStuff = true;
 		}
 		

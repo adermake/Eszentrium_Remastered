@@ -26,7 +26,7 @@ public class AugedesDrachen extends Spell{
 		hitSpell = true;
 		speed = 1F;
 		cooldown = 20*60;
-		steprange = 180;
+		steprange = 200;
 		hitboxSize = 1;
 		//multihit = true;
 		multihit = false;
@@ -70,7 +70,7 @@ public class AugedesDrachen extends Spell{
 	boolean calcH = false;
 	@Override
 	public void move() {
-		if (step<=30) {
+		if (step<=50) {
 			if (caster.isSneaking())
 			loc.setDirection(loc.getDirection().multiply(4).add(caster.getLocation().getDirection()));
 			loc.add(loc.getDirection().multiply(0.4));
@@ -78,7 +78,7 @@ public class AugedesDrachen extends Spell{
 		else {
 			loc.add(loc.getDirection().multiply(0.6));
 		}
-		if (step == 31) {
+		if (step == 51) {
 			hitboxSize = 7;
 			hitPlayer = true;
 			hitEntity = true;
@@ -96,7 +96,7 @@ public class AugedesDrachen extends Spell{
 			//d1.setPhase(Phase.CHARGE_PLAYER);
 			//d2.setPhase(Phase.HOVER);
 		}
-		if (step > 31) {
+		if (step > 51) {
 			
 			if (calcH) {
 				moveHelix(d1,3, (Math.PI));
@@ -113,10 +113,10 @@ public class AugedesDrachen extends Spell{
 
 	@Override
 	public void display() {
-		if (step == 30) {
+		if (step == 50) {
 			playGlobalSound(Sound.ENTITY_ENDER_DRAGON_DEATH,0.6f,1f);
 		}
-		if (step<=30) {
+		if (step<=50) {
 			ParUtils.createParticle(Particles.HAPPY_VILLAGER, loc, 0, 0, 0, 1, 0);
 		}
 		else {

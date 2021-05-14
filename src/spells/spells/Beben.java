@@ -153,7 +153,7 @@ public class Beben extends Spell{
 		
 		double h = 1;
 		if (refined) {
-			h += height/2;
+			h += height/3;
 		}
 		else {
 			h += height/4;

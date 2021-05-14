@@ -6,7 +6,11 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -56,8 +60,8 @@ public class ItemStackUtils {
         NBTTagCompound speed = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
 		
     
-		speed.set("AttributeName",  NBTTagString.a("generic.attackSpeed"));
-		speed.set("Name", NBTTagString.a("generic.attackSpeed"));
+		speed.set("AttributeName",  NBTTagString.a("generic.attack_speed"));
+		speed.set("Name", NBTTagString.a("generic.attack_speed"));
 		speed.set("Amount", NBTTagDouble.a(0));
 		speed.set("Operation", NBTTagInt.a(0));
 		speed.set("UUIDLeast", NBTTagInt.a(894654));
@@ -70,7 +74,7 @@ public class ItemStackUtils {
 	
 	public static ItemStack attackDamage(ItemStack is,int dmg) {
 	
-		  
+		  /*
 	      
         net.minecraft.server.v1_16_R3.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
         NBTTagCompound compound = nmsStack.getTag();
@@ -81,22 +85,26 @@ public class ItemStackUtils {
         }
         NBTTagList modifiers = new NBTTagList();
         NBTTagCompound damage = new NBTTagCompound();
-        damage.set("AttributeName", NBTTagString.a("generic.attackDamage"));
-        damage.set("Name", NBTTagString.a("generic.attackDamage"));
+        damage.set("AttributeName", NBTTagString.a("generic.attack_damage"));
+        damage.set("Name", NBTTagString.a("generic.attack_damage"));
         damage.set("Amount", NBTTagInt.a(dmg));
         damage.set("Slot", NBTTagString.a("mainhand"));
         damage.set("Operation", NBTTagInt.a(0));
-        damage.set("UUIDLeast", NBTTagInt.a(894654));
-        damage.set("UUIDMost", NBTTagInt.a(2872));
+       // damage.set("UUIDLeast", NBTTagInt.a(724099));
+       // damage.set("UUIDMost", NBTTagInt.a(439684));
+    	damage.set("UUIDLeast", NBTTagInt.a(894654));
+		damage.set("UUIDMost", NBTTagInt.a(2872));
         modifiers.add(damage);
         compound.set("AttributeModifiers", modifiers);
         nmsStack.setTag(compound);
         is = CraftItemStack.asBukkitCopy(nmsStack);
       
          
-		
-		
-		
+		*/
+		ItemMeta im  = is.getItemMeta();
+		im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier("AttackSpeed", 4, Operation.ADD_NUMBER));
+		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		is.setItemMeta(im);
 		return is;
 	}
 	

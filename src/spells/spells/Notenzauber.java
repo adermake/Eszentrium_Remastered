@@ -82,7 +82,7 @@ public class Notenzauber extends Spell {
 		// TODO Auto-generated method stub
 		
 			spawnWirbel(p, 5, 0.5, 2);
-		damage(p, 5, caster);
+		damage(p, 2, caster);
 		
 	}
 

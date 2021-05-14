@@ -18,12 +18,12 @@ import spells.spellcore.SpellType;
 
 public class SchockLaser extends Spell {
 
-	public SchockLaser(Player p, String namae,boolean refined) {
+	public SchockLaser(Player p, String namae,boolean refined, double height) {
 		name = namae;
 		this.refined = refined;
 		hitBlock = true;
 		steprange =  500;
-		speed = 4;
+		speed = 12;
 		hitSpell = true;
 		castSpell(p, name);
 		addSpellType(SpellType.DAMAGE);
@@ -47,19 +47,17 @@ public class SchockLaser extends Spell {
 	Location saveOrigin;
 	Location saveAim;
 	
-	public SchockLaser(Location origin,Location aim,Player p, String namae,boolean refined) {
+	public SchockLaser(Location origin,Location aim,Player p, String namae,boolean refined,double height) {
 		name = namae;
 		this.refined = refined;
 		hitBlock = true;
 		steprange =  500;
-		speed = 4;
+		speed = 15;
 		hitSpell = true;
 		saveOrigin = origin.clone();
 		saveAim = aim.clone();
 		castSpell(p, name);
-		if (refined) {
-			speed = 15;
-		}
+		
 		/*
 		new BukkitRunnable() {
 			

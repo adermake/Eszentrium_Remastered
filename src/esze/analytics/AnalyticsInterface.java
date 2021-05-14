@@ -284,7 +284,7 @@ public class AnalyticsInterface {
 		try {
 			Statement stmt = con.createStatement();
 			setPlayerWins(stmt.executeQuery(PLAYERWINS));
-			//setPlayerLosses(stmt.executeQuery(PLAYERLOSSES));
+			setPlayerLosses(stmt.executeQuery(PLAYERLOSSES));
 			setPlayerKills(stmt.executeQuery(PLAYERKILLS));
 			setPlayerDeaths(stmt.executeQuery(PLAYERDEATHS));
 

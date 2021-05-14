@@ -41,6 +41,7 @@ public class Himmelsläufer extends Spell {
 			caster.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20* 10, 2));
 		}
 		
+		caster.setVelocity(caster.getVelocity().setY(0));
 		
 	}
 

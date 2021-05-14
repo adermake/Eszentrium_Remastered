@@ -24,6 +24,7 @@ import spells.spells.Avatar;
 import spells.spells.DunklerWind;
 import spells.spells.Beben;
 import spells.spells.Bienenschwarm;
+import spells.spells.Binden;
 import spells.spells.BindenOld;
 import spells.spells.Blasensturm;
 import spells.spells.Blutsiegel;
@@ -174,7 +175,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		//registerSpell(new Ansturm());
 		//registerSpell(new Astralsprung());
 		//registerSpell(new HimmlischesUrteil());
-		//registerSpell(new Binden());
+		registerSpell(new Binden());
 		registerSpell(new AntlitzderGöttin());
 		registerSpell(new Aufwind());
 		registerSpell(new AugedesDrachen());
@@ -215,7 +216,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		
 		registerSpell(new Reqdum());
 		registerSpell(new Ranke());
-		registerSpell(new Schicksalsschnitt());
+		//registerSpell(new Schicksalsschnitt());
 		registerSpell(new SchnittdersiebenWinde());
 		registerSpell(new SpeerderZwietracht());
 		registerSpell(new SiegelderFurcht());

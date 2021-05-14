@@ -1,6 +1,7 @@
 package spells.spells;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -12,6 +13,8 @@ public class Binden extends Spell {
 	public Binden() {
 		hitSpell = false;
 		steprange = 20 * 5;
+		name = "§bBinden";
+		cooldown = 20 *10 ;
 	}
 	
 	Spell chase = null;
@@ -19,7 +22,8 @@ public class Binden extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		chase = pointSpell(caster);
-		Bukkit.broadcastMessage(""+chase.getName());
+		
+		
 		if (chase == null) 
 			dead = true;
 	}
@@ -33,12 +37,16 @@ public class Binden extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		
+		playGlobalSound(Sound.ENTITY_HOGLIN_CONVERTED_TO_ZOMBIFIED,2, 1.5F);
 	}
 
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
+		if (caster.isSneaking()) {
+			dead = true;
+			return;
+		}
 		if (chase.isDead()) {
 			dead = true;
 			return;
