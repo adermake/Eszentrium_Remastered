@@ -32,6 +32,7 @@ import org.bukkit.util.Vector;
 
 import com.google.common.collect.Multimap;
 
+import esze.analytics.SaveUtils;
 import esze.enums.GameType;
 import esze.main.main;
 import esze.players.PlayerAPI;
@@ -255,6 +256,7 @@ public class WeaponAbilitys implements Listener {
 							Spell sp = (Spell) clazz.newInstance();
 							sp.spellkey = -1;
 							if (!sp.castSpell(p, sp.getName())) {
+								SaveUtils.addSpellUse(p.getName(), sp.getName(), false);
 							cd.add(p);
 							sp.spellkey = -1;
 							new BukkitRunnable() {

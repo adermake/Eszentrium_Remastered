@@ -163,12 +163,12 @@ public class SaveUtils {
 
 	}
 	
+	
 	public static void addSpellUse(String player, String spell, boolean refined) {
 
 		Bukkit.getScheduler().runTaskAsynchronously(main.plugin, new Runnable() {
 			@Override
 			public void run() {
-				checkConnection();
 				executeSQLFunction("addSpellUse(" + (currentGame == 0 ? format(1) : format(currentGame)) + ", " + format(spell) + ", " + format(player) + ", " + format(refined) + ")");
 			}
 		});
