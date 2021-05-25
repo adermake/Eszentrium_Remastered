@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
@@ -90,7 +91,11 @@ public class Avatar extends Spell{
 		if (caster.isSneaking() || caster.getGameMode().equals(GameMode.ADVENTURE)) {
 			dead = true;
 		}
-		
+		if (caster.isSneaking()) {
+			playSound(Sound.ENTITY_WITHER_SHOOT, caster.getLocation(), 4, 0.7F);
+			spawnSpiraleAnim(caster, 2,3, 0);
+			caster.setVelocity(new Vector(0,3,0));
+		}
 		g.teleport(caster.getLocation().clone().add(0,-5,0));
 		if (i<=0) {
 			

@@ -6,6 +6,10 @@ api-version: 1.13
 depend: [PacketListenerApi,CorpseReborn]
 
 commands:
+  music:
+    description: Toggle music
+  nofboost:
+    description: Disable fboost!!
   spell:
     description: Make more SPELLS!!
     usage: spell [name]

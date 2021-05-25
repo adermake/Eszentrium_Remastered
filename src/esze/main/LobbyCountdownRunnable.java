@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.map.MapSelect;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.players.PlayerAPI;
 import esze.utils.Actionbar;
 import weapons.WeaponAbilitys;
@@ -47,9 +49,12 @@ public class LobbyCountdownRunnable {
 					new Actionbar("").sendAll();
 					WeaponAbilitys.lastLaunched.clear();
 					
-					
-					
-					
+					if (ModifierMenu.modifier.size() >0) {
+						Bukkit.broadcastMessage("§e[Modifikatoren]:");
+						for (GameModifier gm : ModifierMenu.modifier) {
+							Bukkit.broadcastMessage("§7-> "+gm.toString());
+						}
+					}
 					timeLeft = timeDefault;
 					GameRunnable.start();
 					LobbyBackgroundRunnable.stop();

@@ -33,7 +33,7 @@ public class Wunsch extends Spell{
 			ParUtils.createParticle(Particles.HEART, caster.getLocation().add(0,2,0), 0,00, 0, 0,2);
 		}
 		else {
-			double h = 21-caster.getHealth();
+			double h = 20-caster.getHealth();
 			if (h > caster.getMaxHealth()) {
 				h = caster.getMaxHealth();
 			}

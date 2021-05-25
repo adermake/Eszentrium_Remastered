@@ -26,19 +26,30 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
+import spells.spells.Kettenbrecher;
 
 public class ChainSegment extends Spell {
 
-	ChainSegment last;
+	public ChainSegment last;
 	public HashMap<Entity,Integer> sticked = new HashMap<Entity,Integer>();
 	public ArrayList<Entity> cd = new ArrayList<Entity>();
 	public Vector vel = new Vector(0,0,0);
+	Kettenbrecher kb;
 	int randId = 0;
+	
 	Item chain;
 	ArmorStand a;
 	boolean crit = false;
-	public ChainSegment(Player p,String name,ChainSegment last,int i) {
-		loc = p.getEyeLocation().add(0,-5,0);
+	public ChainSegment(Player p,String name,ChainSegment last,int i,Kettenbrecher k) {
+		kb = k;
+		if (last == null) {
+			loc = p.getEyeLocation().add(0,-5,0);
+		}
+		else {
+			loc = last.getLocation();
+		}
+		
+		
 		randId = i;
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);
@@ -61,7 +72,7 @@ public class ChainSegment extends Spell {
 		chain.setPickupDelay(1000);
 		 */
 		
-		if (true) {
+		
 			
 		
 		/*
@@ -69,17 +80,18 @@ public class ChainSegment extends Spell {
 		*/
 			
 		a = createArmorStand(loc);
+		//a.setVisible(true);
 		a.setSmall(true);
 		a.setSilent(true);
-		a.setHelmet(new ItemStack(Material.ANVIL));
+		a.setCollidable(false);
+			a.setHelmet(new ItemStack(Material.ANVIL));
+		
+		
 		
 		
 		a.setGravity(true);
-		}
-		else {
-			if (last != null)
-			lazySpell = true;
-		}
+		
+		
 		
 		if (i % 4 != 0) {
 			if (last != null)
@@ -117,6 +129,8 @@ public class ChainSegment extends Spell {
 	double maxlength = 16;
 	double lastLength;
 	double speedGainFactor = 0.1F;
+	
+	int zeroCount = 0;
 	@Override
 	public void move() {
 		
@@ -146,19 +160,34 @@ public class ChainSegment extends Spell {
 					speed = 2;
 				}
 			}
+			/*
+			
+			*/
 			loc =  caster.getLocation().add(caster.getEyeLocation().getDirection().multiply(length));
 			//loc = loc.add(new Vector(0,1,0));
-			vel = loc.toVector().subtract(lastLoc.toVector());
 			
 			
+			if (zeroCount % speed == 0) {
+				vel = loc.toVector().subtract(lastLoc.toVector());
+				zeroCount = 0;
+			}
 			
+			zeroCount++;
+			/*
+			Bukkit.broadcastMessage("L "+loc.toVector());
+			Bukkit.broadcastMessage("A "+lastLoc.toVector());
 				
+			if (vel.length() <= 0) {
+				Bukkit.broadcastMessage("No Movement "+randId);
+			}
+			*/
 			//Bukkit.broadcastMessage("LAST "+lastVel);
 			//Bukkit.broadcastMessage("NEW "+vel);
 			double length = vel.length();
+			//Bukkit.broadcastMessage("V"+length);
 			//Bukkit.broadcastMessage(""+(lastVel.subtract(vel).length()));
 			
-			if (vel.length()*speed > 4) {
+			if (swap()) {
 				
 				ArrayList<Entity> entList = new ArrayList<Entity>();
 				for (Entity ent : sticked.keySet()) {
@@ -173,6 +202,8 @@ public class ChainSegment extends Spell {
 				
 				for (Entity ent : sticked.keySet()) {
 					//Bukkit.broadcastMessage("X");
+					if (cd.contains(ent))
+						Bukkit.broadcastMessage("ERROR IN CHAIN");
 					doPin(ent,loc);
 				}
 			}
@@ -181,7 +212,7 @@ public class ChainSegment extends Spell {
 			lastLength = length;
 			lastLoc = loc.clone();
 			lastVel = vel.clone();
-			
+			/*
 			for (Entity all : sticked.keySet()) {
 				sticked.put(all, sticked.get(all)+1);
 				if (sticked.get(all)>40) {
@@ -194,10 +225,11 @@ public class ChainSegment extends Spell {
 					}
 				}
 			}
-			
+			*/
 			playSound(Sound.BLOCK_ANVIL_PLACE,loc,0.1F,1.5F);
 			return;
 		}
+		
 		
 		loc = loc.add(vel);
 		Vector cVec = loc.toVector().subtract(last.loc.toVector()).normalize().multiply(space);
@@ -206,20 +238,34 @@ public class ChainSegment extends Spell {
 		
 		vel = vel.multiply(1-drag);
 		//ParUtils.createParticle(Particles.BARRIER, loc, 0, 0, 0, 1, 1);
+		
+	
 	}
 	
-	public void launchEntity(final Entity ent) {
+	public void launchEntity(Entity ent) {
+		//ent.setVelocity(new Vector(4,0,0));
+		//Bukkit.broadcastMessage("LAUNCHED ENTITY");
+		kb.reduceStep(20*2);
+		cd.add(ent);
+		sticked.remove(ent);
 
 		//ParUtils.parKreisDir(Particles.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize(),vel.clone().normalize());
 		ParUtils.parKreisDot(Particles.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize());
+		
+		Location l = ent.getLocation();
+		
+		l.setDirection(vel);
+		//ParUtils.debugRay(l);
+		ent.setVelocity(vel.clone().multiply(2));
+		//Bukkit.broadcastMessage("Launched At "+vel.clone().multiply(2));
+		//Bukkit.broadcastMessage("Ent Launched At "+ent.getVelocity());
 	
-		ent.setVelocity(vel.multiply(speed/2));
-		cd.add(ent);
 		playSound(Sound.ENTITY_IRON_GOLEM_HURT,loc,4F,1.5F);
 		sticked.remove(ent);
 		new BukkitRunnable() {
 			public void run() {
 				cd.remove(ent);
+				//ent.setVelocity(vel.multiply(2));
 			}
 		}.runTaskLater(main.plugin, 20);
 		
@@ -227,18 +273,25 @@ public class ChainSegment extends Spell {
 	@Override
 	public void display() {
 		
-		if ( a!= null) {
+		
+		if ( a!= null && last != null) {
 			a.setFallDistance(0);
-			a.teleport(loc.clone().add(0,-1.3F,0));
+			
 			Location l1 = loc.clone();
-			l1.setDirection(vel);
-			a.setHeadPose(new EulerAngle(Math.PI*2*l1.getPitch()/360,Math.PI*2*l1.getYaw()/360, 0));
+			
+			Vector v = last.getArmorStand().getLocation().toVector().subtract(getArmorStand().getLocation().toVector()).normalize();
+			l1.setDirection(v);
+			a.teleport(l1.clone().add(0,-1.3F,0));
+			//Bukkit.broadcastMessage("v "+v);
+			l1.setPitch(l1.getPitch()-90);
+			a.setHeadPose(new EulerAngle(Math.PI*2*l1.getPitch()/360,0, 0));
+			//a.setHeadPose(new EulerAngle(Math.PI*2*l1.getPitch()/360,Math.PI*2*l1.getYaw()/360, 0));
 		}
 		
 		if (randId ==-1) {
 		
-			ParUtils.createParticle(Particles.CRIT, getTop(loc.clone()), 0.1, 0.1, 0.1, 3, 0);
-			ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0, 0., 0, 1, 0);
+			//ParUtils.createParticle(Particles.CRIT, getTop(loc.clone()), 0.1, 0.1, 0.1, 3, 0);
+			//ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0, 0., 0, 1, 0);
 		}
 		//doPin(a,loc.clone().add(0,-1,0),4);
 		// TODO Auto-generated method stub
@@ -259,17 +312,22 @@ public class ChainSegment extends Spell {
 			}
 			
 		}
+		/*
 		else {
 			if (!sticked.containsKey(p)) {
-				p.setVelocity(vel.multiply(2));
+				p.setVelocity(p.getVelocity().add(vel.normalize().multiply(0.01F)));
 				damage(p,1, caster);
 			}
 			
-		}
+		}*/
 		
 				
 	}
 
+	
+	public ArmorStand getArmorStand() {
+		return a;
+	}
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
@@ -279,21 +337,24 @@ public class ChainSegment extends Spell {
 		if (!cd.contains(ent) && !sticked.containsKey(ent)) {
 			playSound(Sound.ENTITY_IRON_GOLEM_HURT,loc,4F,2F);
 			sticked.put(ent,0);
-			sticked.put(ent,0);
+			
 			ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 2, 0, 1, vel.clone().normalize());
 			damage(ent, 2, caster);
 		}
-	
 		}
+	/*
+		
+		
 		else {
 			if (!sticked.containsKey(ent)) {
-				ent.setVelocity(vel.multiply(2));
+				ent.setVelocity(ent.getVelocity().add(vel.normalize().multiply(0.01F)));
 				damage(ent,1, caster);
 			}
 		
-		}
 		
+		*/
 	}
+		
 
 	/*
 	public void knockbackChain(Entity ent) {

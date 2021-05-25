@@ -159,7 +159,7 @@ public class Requiemspfeil extends Spell {
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);
 		if (refined) {
 			damage(ent, 2+speedX / 5, caster);
-			reduceCooldown(20 * 25);
+			reduceCooldown(20 * 20);
 		}
 		else {
 			damage(ent, speedX / 5, caster);

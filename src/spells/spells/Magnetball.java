@@ -1,11 +1,17 @@
 package spells.spells;
 
+import java.util.ArrayList;
+
 import org.bukkit.Color;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.EulerAngle;
 
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
@@ -14,15 +20,16 @@ import spells.spellcore.SpellType;
 
 public class Magnetball extends Spell{
 
+	ArrayList<ArmorStand> stands = new ArrayList<ArmorStand>();
 	public Magnetball() {
 		name = "ßeMagnetball";
 		cooldown = 20 * 22;
 		hitEntity = true;
 		hitSpell = true;
 		hitPlayer = true;
-		hitboxSize = 8;
-		steprange = 100;
-		speed = 2;
+		hitboxSize = 10;
+		steprange = 150;
+		speed = 5;
 		multihit = true;
 		
 		addSpellType(SpellType.KNOCKBACK);
@@ -31,10 +38,29 @@ public class Magnetball extends Spell{
 		setLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.");
 		setBetterLore("ß7Schieﬂt ein Projektil in#ß7Blickrichtung. Gegner in der N‰he werden markiert,#ß7solange sie sich in der Reichweite befinden.##ß7#ßeShift:ß7 Zieht markierte Gegner heran und#ß7schleudert sie weg.");
 	
+		
+		
+		
+		
+		
+		
 	}
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
+		for (int i = 0;i<5;i++) {
+			ArmorStand a = createArmorStand(caster.getLocation());
+			if (refined) {
+				a.getEquipment().setHelmet(new ItemStack(Material.GOLD_BLOCK));
+			}
+			else {
+				a.getEquipment().setHelmet(new ItemStack(Material.IRON_BLOCK));
+			}
+			
+			a.setGravity(true);
+			a.setMarker(false);
+			stands.add(a);
+		}
 		if (refined) {
 			hitboxSize = 14;
 		}
@@ -54,27 +80,46 @@ public class Magnetball extends Spell{
 
 	@Override
 	public void move() {
+		if (dead)
+			return;
 		// TODO Auto-generated method stub
-		loc.add(loc.getDirection().multiply(0.5));
-		playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET,loc,1f,2f);
+		
 		if (caster.isSneaking()) {
-			dead = true;
+			
+			onDeath();
+			return;
 			
 		}
+		loc.add(loc.getDirection().multiply(0.5));
+		for (ArmorStand a : stands) {
+			a.teleport(loc);
+		}
+		playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET,loc,1f,2f);
+	
 			
 	}
 
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0,0, 1, 1.1, loc.getDirection());
+		//ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0,0, 1, 4, loc.getDirection());
+		if (step % 2 == 0)
+		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 1, 0.2);
+		
+		for (ArmorStand a : stands) {
+			double randVal = 0.1;
+			a.setHeadPose(a.getHeadPose().add(randDouble(-randVal,randVal), randDouble(-randVal,randVal), randDouble(-randVal,randVal)));
+		}
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
 		double distance = p.getLocation().distance(loc);
-		if (step< steprange-10)
-		ParUtils.parLineRedstone(loc, p.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp((int) (100+distance*15), 0, 255)), 1, 0.5);
+		
+		ParUtils.parLine(Particles.BUBBLE, loc.clone(),  p.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		//if (step< steprange-10)
+			
+		//ParUtils.parLineRedstone(loc, p.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp((int) (100+distance*15), 0, 255)), 1, 0.5);
 		
 	}
 	
@@ -86,9 +131,11 @@ public class Magnetball extends Spell{
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		double distance = ent.getLocation().distance(loc);
+		ParUtils.parLine(Particles.BUBBLE, loc.clone(),  ent.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		/*
 		if (step< steprange-10)
 		ParUtils.parLineRedstone(loc, ent.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp( (int) (100+distance*15),0 ,255 )), 1, 0.5);
-		
+		*/
 	}
 
 	@Override
@@ -105,6 +152,10 @@ public class Magnetball extends Spell{
 
 	@Override
 	public void onDeath() {
+		if (dead)
+			return;
+		
+		dead = true;
 		// TODO Auto-generated method stub
 		ParUtils.chargeDot(loc, Particles.END_ROD, 0.2, 4,60);
 		playSound(Sound.ENTITY_WITHER_SPAWN,loc,4f,2f);
@@ -123,6 +174,11 @@ public class Magnetball extends Spell{
 				
 			}
 		}
+		
+		for (ArmorStand a : stands) {
+			a.remove();
+		}
+		ParUtils.createParticle(Particles.FLASH, loc,0, 0, 0, 1, 1);
 	}
 	
 

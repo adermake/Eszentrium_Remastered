@@ -28,7 +28,7 @@ import spells.spellcore.SpellType;
 public class Bienenschwarm extends Spell {
 
 	public Bienenschwarm() {
-		cooldown = 20 * 25;
+		cooldown = 20 * 20;
 		name = "§6Bienenschwarm";
 		speed = 1.2;
 		steprange =82;
@@ -64,12 +64,12 @@ public class Bienenschwarm extends Spell {
 				@Override
 				public void run() {
 					t++;
-					if (t > 1) {
+					if (t > 0) {
 						this.cancel();
 					}
 					new Bienenschwarm(caster,name);
 				}
-			}.runTaskTimer(main.plugin, 10, 10);
+			}.runTaskTimer(main.plugin, 15, 15);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class Bienenschwarm extends Spell {
 					for (Bee b : bees) {
 						Vector v = e.getEyeLocation().toVector().subtract(b.getLocation().toVector()).normalize();
 						ParUtils.parLine(Particles.CRIT, b.getLocation(), b.getLocation().add(v.multiply(5)), 0, 0, 0, 1, 0.01F, 0.2F);
-						damage(e, 4,caster);
+						damage(e, 5,caster);
 						playSound(Sound.ENTITY_BEE_STING,loc,1f,2f);
 						b.remove();
 					}

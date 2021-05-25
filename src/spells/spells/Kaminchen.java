@@ -38,13 +38,16 @@ public class Kaminchen extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		new KaminchenEntity(caster,caster.getLocation().getDirection(), name);
+		
 		if (refined) {
 			Location dirLoc = caster.getLocation();
 			dirLoc.setYaw(dirLoc.getYaw()+45);
 			new KaminchenEntity(caster,dirLoc.getDirection(), name);
 			dirLoc.setYaw(dirLoc.getYaw()-90);
 			new KaminchenEntity(caster,dirLoc.getDirection(), name);
+		}
+		else {
+			new KaminchenEntity(caster,caster.getLocation().getDirection(), name);
 		}
 		
 		dead = true;

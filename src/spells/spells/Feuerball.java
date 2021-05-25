@@ -81,7 +81,7 @@ public class Feuerball extends Spell {
 		
 		
 		if (refined) {
-			f.setVelocity(dir.multiply(1));
+			f.setVelocity(dir.clone().multiply(2));
 		}
 		
 		if (caster.isSneaking()) {

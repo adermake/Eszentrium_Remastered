@@ -16,8 +16,10 @@ public class SwordExplosion extends Spell{
 	
 	Location svloc;
 	
-	public SwordExplosion(Location loca,Player castguy, String namae) {
+	Vector vel;
+	public SwordExplosion(Location loca,Player castguy,Vector vel, String namae) {
 		loc = loca;
+		this.vel = vel;
 		svloc = loca;
 		steprange = 3;
 		caster = castguy;
@@ -76,14 +78,16 @@ public class SwordExplosion extends Spell{
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		doKnockback(p, loc.add(loc.getDirection().multiply(-2).add(new Vector(0, -0.4, 0))), 1.7);
-		damage(p, 6, caster);
+		p.setVelocity(p.getVelocity().add(vel.clone().normalize()));
+		//doKnockback(p, loc.add(loc.getDirection().multiply(-2).add(new Vector(0, -0.4, 0))), 1.7);
+		damage(p, 2, caster);
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		doKnockback(ent, loc.add(loc.getDirection().multiply(-2).add(new Vector(0, -0.4, 0))), 1.7);
+		ent.setVelocity(ent.getVelocity().add(vel.clone().normalize()));
+		//doKnockback(ent, loc.add(loc.getDirection().multiply(-2).add(new Vector(0, -0.4, 0))), 1.7);
 		
 	}
 

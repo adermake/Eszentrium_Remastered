@@ -22,7 +22,7 @@ public class Chaoswelle extends Spell{
 	boolean inair = false;
 	public Chaoswelle() {
 		name = "§cChaoswelle";
-		casttime = 20;
+		casttime = 10;
 		speed = 1;
 		cooldown = 20*42;
 		addSpellType(SpellType.KNOCKBACK);
@@ -39,7 +39,7 @@ public class Chaoswelle extends Spell{
 		// TODO Auto-generated method stub
 		height = caster.getLocation().getY();
 	}
-	double up = 0.3;
+	double up = 0.6;
 	double height = 0;
 	@Override
 	public void cast() {

@@ -24,7 +24,7 @@ public class Machtwort extends Spell {
 
 	
 	public Machtwort() {
-		name = "§cMachtwort";
+		name = "§3Machtwort";
 		multihit = true;
 		canHitSelf = true;
 		hitboxSize = 4;
@@ -33,7 +33,8 @@ public class Machtwort extends Spell {
 		
 		setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.");
 		
-		
+		if (refined)
+		steprange = 20 * 20;
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.SUPPORT);
 	}
@@ -61,7 +62,9 @@ public class Machtwort extends Spell {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		
+		if (step % 60 == 0 && refined) {
+			new Repulsion(4, 2, caster, caster.getLocation(), name);
+		}
 	}
 
 	@Override

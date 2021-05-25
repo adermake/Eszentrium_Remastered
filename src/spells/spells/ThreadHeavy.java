@@ -108,7 +108,7 @@ public class ThreadHeavy extends Spell{
 
 			l.add(v.getX(), v.getY(), v.getZ());
 			l.add(l.getDirection().multiply(-3));
-			new SchwertausLicht(l.clone(),caster,name);
+			//new SchwertausLicht(l.clone(),caster,dir,target,name);
 			ParUtils.createParticle(Particles.FLASH, l, 0, 0, 0, 1, 1);
 			Vector ve = j.subtract(l).toVector();
 			Location lala = l.clone();

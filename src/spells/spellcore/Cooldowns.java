@@ -13,6 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.utils.Actionbar;
 import esze.utils.MathUtils;
 import esze.utils.NBTUtils;
@@ -24,11 +26,19 @@ public class Cooldowns {
 	public static HashMap<ItemStack,Player> refund = new HashMap<ItemStack,Player>();
 	public static void startCooldownHandler() {
 		int barcount = 10;
-		int downticker = 1;
+	
+	
+		
 		
 		new BukkitRunnable() {
 			public void run() {
 				
+				int downticker = 1;
+				
+				if (ModifierMenu.hasModifier(GameModifier.SCHNELLFEUER)) {
+					downticker = 5;
+					
+				}
 				for (ItemStack is : removeLater) {
 					is.setType(Material.AIR);
 				}
@@ -111,7 +121,7 @@ public class Cooldowns {
 					
 				}
 			}
-		}.runTaskTimer(main.plugin, 1, downticker);
+		}.runTaskTimer(main.plugin, 1, 1);
 		
 		
 	}

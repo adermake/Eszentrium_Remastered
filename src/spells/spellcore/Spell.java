@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.bukkit.Axis;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -21,12 +22,14 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import esze.analytics.SaveUtils;
@@ -35,6 +38,7 @@ import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
+import esze.utils.Matrix;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SpellKeyUtils;
@@ -107,10 +111,13 @@ public abstract class Spell {
 	protected ArrayList<SpellType> spellTypes = new ArrayList<SpellType>();
 	protected ArrayList<String> lore = new ArrayList<String>();
 	protected ArrayList<String> betterlore = new ArrayList<String>();
+	protected ArrayList<Block> localPhantomBlock = new ArrayList<Block>();
+	
 	//FLAGS
 	
 	
 	//CC 
+	protected static ArrayList<Block> phantomBlock = new ArrayList<Block>();
 		public static HashMap<Player,SilenceSelection> silenced = new HashMap<Player,SilenceSelection>();
 		public static HashMap<Player,DamageCauseContainer> damageCause = new HashMap<Player,DamageCauseContainer>();
 	//
@@ -329,6 +336,8 @@ public abstract class Spell {
 							}
 							if (dead) {
 								
+								
+								
 								this.cancel();
 								break;
 							}
@@ -345,7 +354,9 @@ public abstract class Spell {
 						
 					}
 					if (dead == true) {
+						
 						onDeath();
+						clearPhantomBlocks();
 						this.cancel();
 					}
 				
@@ -358,6 +369,7 @@ public abstract class Spell {
 		}		
 		spellLoopStarted = true;
 	}
+	
 	
 	
 	
@@ -459,6 +471,9 @@ public abstract class Spell {
 				onBlockHit(loc.getBlock());
 				
 			}
+			if (phantomBlock.contains(loc.getBlock())) {
+				onBlockHit(loc.getBlock());
+			}
 		}
 	}
 	
@@ -475,6 +490,13 @@ public abstract class Spell {
 	//MEHTHODS
 	
 	
+	public void clearPhantomBlocks() {
+		for (Block b : localPhantomBlock) {
+			if (b != null)
+			removePhantomblock(b);
+		}
+		localPhantomBlock.clear();
+	}
 	public static int randInt(int min, int max) {
 		int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 		return randomNum;
@@ -1009,7 +1031,7 @@ public abstract class Spell {
 
 	}
 	public Entity pointRealEntity(Player p) {
-		int range = 300;
+		int range = 200;
 		int toleranz = 3;
 		Location loc = p.getLocation();
 		for (double t = 1; t <= range; t=t+0.5) {
@@ -1124,6 +1146,26 @@ public abstract class Spell {
 		return false;
 		
 	}
+	
+	
+	
+	public void spawnPhantomblock(Block b,Material m) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			p.sendBlockChange(b.getLocation(), m,((byte)0));
+		}
+		phantomBlock.add(b);
+		localPhantomBlock.add(b);
+	}
+	
+	public void removePhantomblock(Block c) {
+		
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			p.sendBlockChange(c.getLocation(), c.getBlockData());
+		}
+		phantomBlock.remove(c);
+	}
+	
+	
 	public Location block(Player p) {
 		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= 300; t++) {
@@ -1459,6 +1501,12 @@ public abstract class Spell {
 	public void kill() {
 		dead = true;
 	}
+	
+	public void instaKill() {
+		dead = true;
+		onDeath();
+		clearPhantomBlocks();
+	}
 	public boolean swap() {
 		
 			
@@ -1588,6 +1636,31 @@ public abstract class Spell {
 		return nearest;
 		
 	}
+	public FallingBlock spawnFallingBlock(Location l,Material m) {
+		return(FallingBlock) loc.getWorld().spawnFallingBlock(l, m,(byte)0);
+	}
+	public static ArrayList<Block> multiselect(Location l,Vector v, int height,int width) {
+		ArrayList<Block> ab = new ArrayList<Block>();
+		Location loc = l.clone();
+		loc.setDirection(v);
+		for (double i = -height/2;i<=height/2;i+=1) {
+			for (double j = -width/2;j<=width/2;j+=1) {
+				
+				Vector grid = new Vector(i,0,j);
+				Matrix.rotateMatrixVectorFunktion(grid, loc.clone());
+				loc.add(grid);
+				ab.add(loc.getBlock());
+				
+				loc.subtract(grid);
+			}
+			
+			
+		}
+		return ab;
+		 
+		
+	}
+
 	public ArmorStand createArmorStand(Location loca) {
 		ArmorStand a = (ArmorStand) loca.getWorld().spawnEntity(loca, EntityType.ARMOR_STAND);
 		
@@ -1603,7 +1676,35 @@ public abstract class Spell {
 		canBeSilenced = b;
 	}
 	
+	public void setArmorstandHeadPos(ArmorStand a,Vector dir,Vector str) {
+		Vector n = new Vector(0,0,1).crossProduct(str).normalize();
+		
+		double a1 = Math.acos(n.dot(new Vector(1,0,0)));
+		double a2 = Math.acos(new Vector(0,0,1).dot(str));
+		double a3 = Math.acos(n.dot(dir));
+		/*
+		double pitch = dir.dot(new Vector(0,1,0));
+		double yaw = new Vector(1,0,0).dot(dir.clone().setY(0).normalize());
+		double roll = str.dot(dir.crossProduct(new Vector(0,1,0)));
+		*/
+		
+		//123
+		//132
+		//231
+		//213
+		//321
+		//312
+		a.setHeadPose(new EulerAngle(a1, a2, a3));
+	}
 	
+	
+	public void armorStandPitch(Vector dir,ArmorStand a) {
+		a.setRightArmPose(EulerAngle.ZERO);
+		double pitch = dir.dot(new Vector(0,1,0));
+		EulerAngle ea = new EulerAngle(pitch, 0, 0);
+		
+		a.setHeadPose(ea);
+	}
 	public int getCooldown() {
 		return cooldown;
 	}

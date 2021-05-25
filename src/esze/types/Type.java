@@ -15,6 +15,8 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.map.JumpPadHandler;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.menu.SoloSpellMenu;
 import esze.scoreboards.Scoreboard;
 import esze.utils.EszeTeam;
@@ -185,6 +187,14 @@ public abstract class Type {
 		p.setGameMode(GameMode.ADVENTURE);
 		p.getInventory().clear();	
 		p.getInventory().addItem(ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(Material.WOODEN_SWORD, 1, 0, "§cSchwert", null, true)));
+		
+		if (ModifierMenu.hasModifier(GameModifier.GESCHWINDIGKEIT)) {
+			p.setWalkSpeed(0.6F);
+			p.setFlySpeed(0.3F);
+			Bukkit.broadcastMessage("FL"+p.getFlySpeed());
+		}
+		
+		
 	}
 	
 	public void openSpellSelection(Player p) {
@@ -252,7 +262,9 @@ public abstract class Type {
 		}
 	
 		if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
-			
+		if (p.isOp()) {
+			p.getInventory().setItem(0, ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));
+		}
 		p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
 		p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
 		p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));

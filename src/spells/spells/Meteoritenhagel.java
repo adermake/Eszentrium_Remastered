@@ -63,7 +63,7 @@ public class Meteoritenhagel extends Spell {
 
 	}
 
-	double range = 6;
+	double range = 5;
 
 	@Override
 	public void cast() {
@@ -88,7 +88,7 @@ public class Meteoritenhagel extends Spell {
 	public void move() {
 		delay++;
 		if (delay > 3) {
-			Location calc = loc.clone().add(0, 60, 0);
+			Location calc = loc.clone().add(0, 90, 0);
 			calc.add(randDouble(-range, range), 0, randDouble(-range, range));
 			new Meteor(calc, caster, name);
 			delay = 0;

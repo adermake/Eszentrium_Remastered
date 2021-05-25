@@ -36,7 +36,7 @@ public class Plasmablase extends Spell {
 		hitboxSize = rad;
 		
 		multihit = true;
-		steprange = 20 * 10;
+		steprange = 20 * 8;
 		
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.KNOCKBACK);

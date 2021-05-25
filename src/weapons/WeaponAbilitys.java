@@ -35,6 +35,8 @@ import com.google.common.collect.Multimap;
 import esze.analytics.SaveUtils;
 import esze.enums.GameType;
 import esze.main.main;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.players.PlayerAPI;
 import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
@@ -264,7 +266,13 @@ public class WeaponAbilitys implements Listener {
 								int cooldown = sp.getCooldown()*2;
 								@Override
 								public void run() {
-									sec++;
+									if (ModifierMenu.hasModifier(GameModifier.SCHNELLFEUER)) {
+										sec+=5;
+									}
+									else {
+										sec++;
+									}
+									
 									new Actionbar("§bZauberecho: §e"+(cooldown/20-sec)+" Sekunden").send(p);
 									if (sec*20 >= cooldown || !WeaponMenu.running) {
 										cd.remove(p);

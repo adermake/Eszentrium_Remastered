@@ -21,6 +21,7 @@ import esze.main.LobbyCountdownRunnable;
 import esze.main.main;
 import esze.menu.ColorTagSpellSelectionMenu;
 import esze.menu.CosmeticMenu;
+import esze.menu.ModifierMenu;
 import esze.menu.SpellAnalyticsMenu;
 import esze.menu.TeamSelectionMenu;
 import esze.utils.MathUtils;
@@ -103,6 +104,9 @@ public class Interact implements Listener{
 				}
 				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Kosmetik")) {
 					new CosmeticMenu(p).open(p);
+				}
+				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Modifikatoren")) {
+					ModifierMenu.getModifierWindow().open(p);
 				}
 				if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Georg")) {
 					if (p.isSneaking()) {

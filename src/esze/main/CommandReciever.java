@@ -31,6 +31,7 @@ import esze.app.AppUserPasswordUtils;
 import esze.enums.GameType;
 import esze.enums.GameType.TypeEnum;
 import esze.enums.Gamestate;
+import esze.listeners.FBoost;
 import esze.map.JumpPad;
 import esze.map.JumpPad.JumpPadType;
 import esze.map.JumpPadHandler;
@@ -39,13 +40,16 @@ import esze.menu.ColorTagSpellSelectionMenu;
 import esze.menu.SoloAnalyticsMenu;
 import esze.menu.SoloSelectionTopMenu;
 import esze.menu.WeaponsAnalyticsMenu;
+import esze.objects.ObjectUtils;
 import esze.utils.CorpseUtils;
 import esze.utils.MathUtils;
+import esze.utils.Music;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
 import esze.utils.SpellKeyUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.Title;
+import io.netty.util.internal.ObjectUtil;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
@@ -65,6 +69,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 	    //"/tmp/minecraft-memory-dump-"+System.currentTimeMillis()+".hptof", true
 	    //mxBean.dumpHeap(filePath, live);
 	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String [] args) {
 		final Player p = (Player) sender;			
 				
@@ -98,6 +103,12 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 					}
 		        }
 				
+				if(cmd.getName().startsWith("music")) {
+					
+						Music.toogleMusic(p);
+						
+					
+		        }
 				if(cmd.getName().startsWith("maps")) {
 					if(p.isOp()){
 						MapMenu.sendOverview(p);
@@ -274,6 +285,13 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 					if(p.isOp()){
 						JumpPadHandler.jumpPads.clear();
 						p.sendMessage("§8| §ePriuuuusch");
+					}
+				}
+				
+				if(cmd.getName().startsWith("nofboost")) {
+					if(p.isOp()){
+						FBoost.noFboost.add(p);
+						p.sendMessage("§8| §eFBoost disabled");
 					}
 				}
 				if(cmd.getName().startsWith("loadpad")) {
@@ -592,6 +610,8 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 				}catch(Exception e){}
 				return to;
 			}else if(cmdname.contains("ping")){
+				
+				
 				List<String> to = new ArrayList<String>();
 				List<String> from = new ArrayList<String>();
 				for(Player p : Bukkit.getOnlinePlayers()){

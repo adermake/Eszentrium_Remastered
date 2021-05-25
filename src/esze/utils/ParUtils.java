@@ -214,6 +214,7 @@ public class ParUtils {
 		if (thickness == 0) {
 			Bukkit.shutdown();
 		}
+		Location ori = Cl1.clone();
 		Location l1 = Cl1.clone();
 		Location l2 = Cl2.clone();
 		Vector v = l2.toVector().subtract(l1.toVector()).normalize();
@@ -223,15 +224,18 @@ public class ParUtils {
 			l1.add(v);
 			// pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
 			// 0, 1);
-			createParticle(p, l1, spreadX, spreadY, spreadZ, count, speed);
-			if (l1.distance(l2) < 1) {
+			
+			if (ori.distance(l2) - l1.distance(ori) < 0) {
 				break;
 			}
-
+			createParticle(p, l1, spreadX, spreadY, spreadZ, count, speed);
 		}
 
 	}
-
+	
+	
+	
+	
 	public static void parLineFly(ParticleType p, Location Cl1, Location Cl2, double speed, double thickness, Vector dir) {
 		Location l1 = Cl1.clone();
 		Location l2 = Cl2.clone();
@@ -502,6 +506,8 @@ public class ParUtils {
 			}
 		}.runTaskTimerAsynchronously(esze.main.main.plugin, 1, 1);
 	}
+	
+	
 	
 	public static void dashParticleToRedstone(Entity p,Location l,double spread,Color c,float size) {
 		Location loc = l.clone();

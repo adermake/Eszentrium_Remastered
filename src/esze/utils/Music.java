@@ -17,6 +17,7 @@ import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer;
 import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder;
 
+import esze.enums.Gamestate;
 import esze.main.main;
 
 
@@ -33,6 +34,7 @@ public class Music implements Listener {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
+				if (Gamestate.getGameState() == Gamestate.INGAME)
 				startRandomMusic();
 			}
 		}.runTaskLater(main.plugin, 20);
@@ -49,14 +51,20 @@ public class Music implements Listener {
 		sp.setAutoDestroy(true);
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			
+			if (PlayerConfig.getConfig(p).likesMusic) {
+				Bukkit.broadcastMessage(""+p.getName()+" music");
 				sp.addPlayer(p);
+			}
+				
 			
 		}
 		sp.setPlaying(true);
 		}catch(Exception e){e.printStackTrace();}
 	}
 	
-	public static void playMusicAndGoOn(String path) {
+/*
+ * 
+ * 	public static void playMusicAndGoOn(String path) {
 		try{
 		Song s = NBSDecoder.parse(new File(path));
 		sp = new RadioSongPlayer(s);
@@ -69,10 +77,33 @@ public class Music implements Listener {
 		sp.setPlaying(true);
 		}catch(Exception e){e.printStackTrace();}
 	}
+ */
 
 	public static Object getRandom(Object[] array) {
 		int rnd = new Random().nextInt(array.length);
 		return array[rnd];
+	}
+	
+	
+	
+	public static boolean toogleMusic(Player p) {
+		
+		boolean music  = !PlayerConfig.getConfig(p).likesMusic;
+		PlayerConfig.getConfig(p).setMusic(music);;
+		
+		if (!music) {
+			p.sendMessage("§aMusik ist aus");
+			for (Player f : Bukkit.getOnlinePlayers()) {
+				if (f.getName().equals("Fabiocean") && p!= f) {
+					f.sendMessage("§7"+p.getName() +" hat deine Musik ausgemacht!");
+				}
+			}
+		}else {
+			p.sendMessage("§aMusik ist an");
+		}
+		
+		PlayerConfig.getConfig(p).save();
+		return music;
 	}
 
 }

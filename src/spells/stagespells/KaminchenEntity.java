@@ -12,6 +12,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Rabbit.Type;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.enums.GameType;
@@ -129,10 +131,18 @@ public class KaminchenEntity extends Spell {
 		if (swap()) {
 			ParUtils.createRedstoneParticle(ent.getLocation(), 0.1F, 0.1F, 0.1F, 10, Color.RED,3);
 			playSound(Sound.ENTITY_RABBIT_ATTACK,ent.getLocation(),5,1);
+			
 			agrro = true;
 		}
 		
+		if (!agrro) {
+			
+			//ent.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,200,200,true,false));
+			ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,200,200,true,false));
+		}
+		
 		if (jumpAble && boundOnGround && agrro) {
+			
 			Player n = getNearestPlayer(caster);
 			if (n != null) {
 				jumpcooldown = 30;

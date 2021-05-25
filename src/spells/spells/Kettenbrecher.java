@@ -22,10 +22,15 @@ public class Kettenbrecher extends Spell {
 	ChainSegment last;
 	
 	
+	
+	public void reduceStep(int s) {
+		step -= s;
+	}
+	
 	public Kettenbrecher() {
 		name = "§cKettenbrecher";
-		cooldown = 20 * 40;
-		steprange = 20 * 6;
+		cooldown = 20 * 45;
+		steprange = 20 * 4;
 		hitEntity = false;
 		hitSpell = false;
 		hitPlayer = false;
@@ -39,7 +44,7 @@ public class Kettenbrecher extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		lead = new ChainSegment(caster, name, null,-1);
+		lead = new ChainSegment(caster, name, null,-1,this);
 		lead.loc = caster.getLocation();
 		last = lead;
 	
@@ -67,8 +72,12 @@ public class Kettenbrecher extends Spell {
 		if (segmentCount > 0) {
 			for (int i = 0;i<25;i++) {
 				segmentCount--;
-				ChainSegment c = new ChainSegment(caster, name, last,segmentCount);
+				if (segmentCount < -1) {
+					break;
+				}
+				ChainSegment c = new ChainSegment(caster, name, last,segmentCount,this);
 				segs.add(c);
+				c.last = last;
 				last = c;
 			}
 			

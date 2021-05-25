@@ -76,11 +76,13 @@ import spells.spells.Ghul;
 import spells.spells.Schicksalsschnitt;
 import spells.spells.Schleimschleuder;
 import spells.spells.Reqdum;
+import spells.spells.Requiemspfeil;
 import spells.spells.SchnittdersiebenWinde;
 import spells.spells.Schock;
 import spells.spells.SchreidesPhönix;
 import spells.spells.Schwerkraftsmanipulation;
 import spells.spells.SchwerterausLicht;
+
 import spells.spells.SiegelderFurcht;
 import spells.spells.SpeerderZwietracht;
 import spells.spells.Schweberknecht;
@@ -175,7 +177,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		//registerSpell(new Ansturm());
 		//registerSpell(new Astralsprung());
 		//registerSpell(new HimmlischesUrteil());
-		registerSpell(new Binden());
+		//registerSpell(new Binden());
 		registerSpell(new AntlitzderGöttin());
 		registerSpell(new Aufwind());
 		registerSpell(new AugedesDrachen());
@@ -214,7 +216,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new SchwerterausLicht());
 		registerSpell(new Schock());
 		
-		registerSpell(new Reqdum());
+		registerSpell(new Requiemspfeil());
 		registerSpell(new Ranke());
 		//registerSpell(new Schicksalsschnitt());
 		registerSpell(new SchnittdersiebenWinde());
@@ -255,7 +257,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Kettenbrecher());
 		registerSpell(new Schweberknecht());
 		registerSpell(new Dimensionsschnitt());
-		registerSpell(new ArkanesGeschütz());
+		//registerSpell(new ArkanesGeschütz());
 		registerSpell(new Himmelsläufer());
 		//registerSpell(new Springkraut());
 	}

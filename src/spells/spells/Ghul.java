@@ -41,7 +41,7 @@ public class Ghul extends Spell {
 	public Ghul(Player p,Vector v) {
 		
 		super();
-		name = "§cSchattengeist";
+		name = "§cGhul";
 		steprange = 150;
 		hitboxSize = 1.5;
 		powerlevel = 60;

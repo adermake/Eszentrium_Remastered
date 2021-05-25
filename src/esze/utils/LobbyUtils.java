@@ -49,8 +49,9 @@ public class LobbyUtils {
 				
 			}
 		}.runTaskTimer(main.plugin, 1, 1);
+		p.setWalkSpeed(0.2F);
 		
-		
+		p.setFlySpeed(0.1F);
 		
 	}
 	public static void recallAll() {
@@ -72,6 +73,8 @@ public class LobbyUtils {
 			p.setHealth(20);
 			PlayerUtils.hidePlayer(p,35);
 			GameType.getType().givePlayerLobbyItems(p);
+			p.setWalkSpeed(0.2F);
+			p.setFlySpeed(0.1F);
 		}
 		
 		

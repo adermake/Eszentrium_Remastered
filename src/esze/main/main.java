@@ -21,10 +21,7 @@ import net.minecraft.server.v1_13_R1.ParticleParamItem;*/
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.inventivetalent.packetlistener.PacketListenerAPI;
-import org.inventivetalent.packetlistener.handler.PacketHandler;
-import org.inventivetalent.packetlistener.handler.ReceivedPacket;
-import org.inventivetalent.packetlistener.handler.SentPacket;
+
 
 import com.google.gson.JsonObject;
 
@@ -67,6 +64,7 @@ import esze.voice.Discord;
 import net.minecraft.server.v1_16_R3.MinecraftServer;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
+import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 import spells.spellcore.Spelldrop;
 import weapons.BuffHandler;
@@ -144,8 +142,9 @@ public class main extends JavaPlugin {
 		this.getCommand("itemname").setExecutor(new CommandReciever());
 		this.getCommand("setjumppad").setExecutor(new CommandReciever());
 		this.getCommand("removepads").setExecutor(new CommandReciever());
-
-		this.getCommand("removepads").setExecutor(new CommandReciever());
+		this.getCommand("music").setExecutor(new CommandReciever());
+		
+		this.getCommand("nofboost").setExecutor(new CommandReciever());
 		// LOLAAa
 		this.getCommand("analytics").setExecutor(new CommandReciever());
 		getServer().getPluginManager().registerEvents(new Join(), this);
@@ -172,6 +171,7 @@ public class main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Reconnect(), this);
 		getServer().getPluginManager().registerEvents(new Launch(), this);
 		getServer().getPluginManager().registerEvents(new Projectiles(), this);
+		
 		TTTFusion.start();
 
 		//PacketListner.registerPackets();
@@ -238,6 +238,7 @@ public class main extends JavaPlugin {
 		if (getConfig().contains("settings.sqlPass")) {
 			SaveUtils.setPassword(getConfig().getString("settings.sqlPass"));
 			SaveUtils.update();
+			SaveUtils.checkConnection();
 		} else {
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (p.isOp()) {
@@ -246,15 +247,15 @@ public class main extends JavaPlugin {
 			}
 		}
 		
-		SaveUtils.checkConnection();
+		
 		SpellList.registerSpells();
 		
 
 		AppUserPasswordUtils.createPasswordConfig();
 
 		System.out.println("Esze | Fahre App-Server hoch.");
-		appServer = new AppServer();
-		appServer.startServer();
+		//appServer = new AppServer();
+		//appServer.startServer();
 		System.out.println("Esze | App-Server hochgefahren.");
 		
 		// PACKETS
@@ -280,6 +281,10 @@ public class main extends JavaPlugin {
 		// SaveUtils.backup();
 		//PlayerConfig.save();
 		
+		for (Spell spell : Spell.spell) {
+			spell.instaKill();
+			
+		}
 		
 		try {
 			CorpseUtils.removeAllCorpses();

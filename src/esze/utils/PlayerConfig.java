@@ -21,13 +21,15 @@ public class PlayerConfig implements ConfigurationSerializable{
 	
 	String playerName;
 	Material weaponMaterial = Material.WOODEN_SWORD;
+	boolean likesMusic = false;
+	
 	
 	@Override
 	public @NotNull Map<String, Object> serialize() {
 		 Map<String, Object> map = new HashMap<String, Object>();
 		 map.put("player", playerName);
 	     map.put("weapon", weaponMaterial.toString());
-	        
+	     map.put("music", likesMusic);
 	     return map;
 	}
 	
@@ -40,6 +42,7 @@ public class PlayerConfig implements ConfigurationSerializable{
 		//this.weaponMaterial = (String) map.get("weapon");
 		
 		this.weaponMaterial = Material.getMaterial( (String)map.get("weapon"), false);
+		this.likesMusic = (boolean)map.get("music");
 	}
 	public static void load() {
 	/*
@@ -61,17 +64,8 @@ public class PlayerConfig implements ConfigurationSerializable{
 		
 		
 	}
-	public static void save() {
-	/*
-		for (PlayerConfig c : playerConfigs.values()) {
-			main.plugin.getConfig().set("playerconfig."+c.playerName, c);
-			main.plugin.saveConfig();
-		}
-		*/
-		
-		
-	}
-	public void saveMe() {
+
+	public void save() {
 		
 	
 			main.plugin.getConfig().set("playerconfig."+playerName,this);
@@ -99,7 +93,12 @@ public class PlayerConfig implements ConfigurationSerializable{
 	public void setWeapon(Material m) {
 		
 		weaponMaterial = m;
-		saveMe();
+		save();
+	}
+	
+	public void setMusic(boolean b) {
+		likesMusic = b;
+		save();
 	}
 	public Material getWeapon() {
 		

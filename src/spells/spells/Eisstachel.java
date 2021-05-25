@@ -27,7 +27,7 @@ public class Eisstachel extends Spell {
 	public static  ArrayList<Eisstachel> eistacheln = new ArrayList<Eisstachel>();
 	public Eisstachel() {
 		cooldown = 20*40;
-		name = "§cEisstachel";
+		name = "§eEisstachel";
 		speed = 10;
 		steprange =32;
 		hitPlayer = true;
@@ -40,24 +40,12 @@ public class Eisstachel extends Spell {
 		setLore("Schießt einen Eiszapfen in Blickrichtung. Bei Gegnerkontakt wird dieser vereist und an der Stelle für kurze Zeit festgehalten. Schaden, den der Gegner in dieser Zeit erleidet, wird erhöht und bricht das Eis.");
 		setBetterLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
 		eistacheln.add(this);
+		
+		
 	}
 	Location saveLoc = null;
 	boolean noSpikes = false;
-	public Eisstachel(Location l,Vector dir,Player caster) {
-		super();
-		cooldown = 20*40;
-		name = "§eEisstachel";
-		speed = 10;
-		steprange =32;
-		hitPlayer = true;
-		hitSpell = true;
-		hitboxSize = 3;
-		refined = false;
-		noSpikes = true;
-		saveLoc = l.clone().setDirection(dir);
-		castSpell(caster, name);
-		
-	}
+
 	
 	@Override
 	public void setUp() {
@@ -65,7 +53,12 @@ public class Eisstachel extends Spell {
 		//ParUtils.parKreisDir(Particles.CLOUD, loc, 3, 2, c, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 		if (saveLoc != null)	
 		loc = saveLoc;
-			
+	
+		if (refined) {
+			steprange = 90;
+			speed = 20;
+		}
+		l = steprange/3;
 	}
 	Vector last;
 	int c = 0;

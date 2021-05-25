@@ -26,7 +26,7 @@ public class KnochenpartySkeleton extends Spell {
 	public KnochenpartySkeleton(Player caster,Location l,Vector dir, Location origin,String namae,Knochenparty k) {
 		steprange = 20 * 10;
 		this.origin = origin;
-		hitboxSize = 1.6;
+		hitboxSize = 2;
 		hitPlayer = true;
 		hitEntity = true;
 		loc = caster.getEyeLocation();

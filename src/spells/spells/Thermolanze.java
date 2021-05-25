@@ -22,8 +22,10 @@ public class Thermolanze extends Spell {
 	
 	public Thermolanze() {
 		cooldown = 20 * 32;
-		name = "§cThermolanze";
+		name = "§eThermolanze";
 		steprange = 30;
+		
+		
 		speed =2;
 		casttime = 10;
 		hitSpell = false;
@@ -41,6 +43,9 @@ public class Thermolanze extends Spell {
 		SoundUtils.playSound(Sound.ENTITY_IRON_GOLEM_DEATH, caster.getLocation(),1F,50);
 		caster.setVelocity(caster.getVelocity().setY(2));
 		ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
+		if (refined) {
+			steprange = 70;
+		}
 	}
 
 	@Override
@@ -75,7 +80,10 @@ public class Thermolanze extends Spell {
 		new ThermolanzeLaser(caster,dirLoc.getDirection(),false);
 		playSound(Sound.ENTITY_HUSK_DEATH,loc,10F,1F);
 		
-		
+		if (refined) {
+			if (caster.getVelocity().getY() <0 )
+				caster.setVelocity(caster.getVelocity().setY(caster.getVelocity().getY()/2));
+		}
 		
 		
 	}

@@ -16,6 +16,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import esze.enums.GameType;
 import esze.enums.Gamestate;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import spells.spells.AntlitzderGöttin;
@@ -29,13 +31,13 @@ public class Death implements Listener {
 			
 		}
 		if (e.getEntity() instanceof Player) {
-			if(e.getCause() != DamageCause.FALL && e.getCause() != DamageCause.FLY_INTO_WALL ){
+			if((e.getCause() != DamageCause.FALL && e.getCause() != DamageCause.FLY_INTO_WALL) || (ModifierMenu.hasModifier(GameModifier.FALLSCHADEN)&& Gamestate.getGameState() == Gamestate.INGAME )){
 				Player p = (Player) e.getEntity();
 				
 				if (p.getHealth() - e.getFinalDamage() <= 0 ) {
 				
 				PlayerDeathEvent event = new PlayerDeathEvent(p, null, 0, "he dead");
-	
+				
 				e.setCancelled(true);
 				
 				p.setHealth(20);
@@ -47,7 +49,11 @@ public class Death implements Listener {
 				GameType.getType().death(event);
 				}
 			}else{
-				e.setCancelled(true);
+				if (!(ModifierMenu.hasModifier(GameModifier.FALLSCHADEN)&& Gamestate.getGameState() == Gamestate.INGAME)) {
+					e.setCancelled(true);
+					
+				}
+				
 			}
 		}
 		

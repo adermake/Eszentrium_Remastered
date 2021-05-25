@@ -20,8 +20,12 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.analytics.SaveUtils;
+import esze.main.main;
+import esze.menu.GameModifier;
+import esze.menu.ModifierMenu;
 import esze.utils.Actionbar;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
@@ -85,6 +89,8 @@ public class EventCollector implements Listener {
 							is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
 							is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
 							is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
+							
+							
 							}
 							SaveUtils.addSpellUse(p.getName(), sp.getName(), refined);
 							sp.applySpellKey(p);
@@ -100,7 +106,10 @@ public class EventCollector implements Listener {
 								is = NBTUtils.setNBT("Burn","true", is);
 							}
 							
+								doubleShot(p,sp,refined);
 								p.getInventory().setItemInMainHand(is);
+								
+								randomSpell(p, is, refined);
 							
 						} catch (Exception ex) {
 							ex.printStackTrace(System.out);
@@ -145,9 +154,9 @@ public class EventCollector implements Listener {
 								is = NBTUtils.setNBT("Burn","true", is);
 							}
 							
-								p.getInventory().setItemInMainHand(is);
-							
-							
+							p.getInventory().setItemInMainHand(is);
+							doubleShot(p,sp,refined);
+							randomSpell(p, is, refined);
 							
 
 						} catch (Exception ex) {
@@ -167,6 +176,47 @@ public class EventCollector implements Listener {
 		}
 		
 
+	}
+	
+	
+	public void doubleShot(Player p,Spell s,boolean refined) {
+	
+		if (ModifierMenu.hasModifier(GameModifier.DOPPELSCHUSS)) {
+			new BukkitRunnable() {
+				public void run() {
+					Class clazz = s.getClass();
+					try {
+						Spell sp = (Spell) clazz.newInstance();
+						sp.refined = refined;
+						sp.castSpell(p, sp.getName());
+						
+					} catch (InstantiationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}.runTaskLater(main.plugin, 20);
+		}
+	}
+	
+	
+	public void randomSpell(Player p,ItemStack is,boolean refined) {
+		if (ModifierMenu.hasModifier(GameModifier.ZUFALLSZAUBER)) {
+			
+	
+		Spell sp = SpellList.getRandomSpell();
+		if (refined) {
+			sp = SpellList.getDiffrentRandomGreen(1).get(0);
+		}
+		is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
+		is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
+		is = NBTUtils.setNBT("OriginalName", sp.getName(), is);
+		
+		p.getInventory().setItemInMainHand(is);
+		}
 	}
 	public static ArrayList<Player> quickSwap = new ArrayList<Player>();
 	@EventHandler
