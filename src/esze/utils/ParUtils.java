@@ -331,7 +331,7 @@ public class ParUtils {
 			t = t + Math.PI / randInt(4, 16);
 
 			double x = r * Math.cos(t);
-			double y = 1 + offset;
+			double y = offset;
 			double z = r * Math.sin(t);
 			Location j = loc.clone();
 			Vector v = new Vector(x, y, z);
@@ -367,7 +367,7 @@ public class ParUtils {
 			t = t + Math.PI / randInt(4, 16);
 
 			double x = r * Math.cos(t);
-			double y = 1 + offset;
+			double y = offset;
 			double z = r * Math.sin(t);
 			Location j = loc.clone();
 			Vector v = new Vector(x, y, z);
@@ -439,7 +439,7 @@ public class ParUtils {
 			t = t + Math.PI / randInt(4, 16);
 
 			double x = r * Math.cos(t);
-			double y = 1 + offset;
+			double y = offset;
 			double z = r * Math.sin(t);
 			Location j = loc.clone();
 			Vector v = new Vector(x, y, z);
@@ -472,7 +472,7 @@ public class ParUtils {
 			t = t + Math.PI /ti;
 
 			double x = r * Math.cos(t);
-			double y = 1 + offset;
+			double y = offset;
 			double z = r * Math.sin(t);
 			Location j = loc.clone();
 			Vector v = new Vector(x, y, z);
@@ -763,7 +763,7 @@ public class ParUtils {
 		Location loc = l.clone();
 		Location rot = loc.clone().setDirection(rotV);
 		double x = r * Math.cos(t);
-		double y = 1 + offset;
+		double y = offset;
 		double z = r * Math.sin(t);
 		Location j = loc.clone();
 		Vector v = new Vector(x, y, z);
