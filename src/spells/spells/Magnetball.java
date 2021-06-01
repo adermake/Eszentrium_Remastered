@@ -161,7 +161,7 @@ public class Magnetball extends Spell{
 		playSound(Sound.ENTITY_WITHER_SPAWN,loc,4f,2f);
 		for (Entity ent : hitEntitys) {
 			LivingEntity e = (LivingEntity) ent;
-			if (e.getEyeLocation().distance(loc)<0.6+hitboxSize || e.getLocation().distance(loc)<0.6+hitboxSize ) {
+			if (e.getEyeLocation().distance(loc)<0.6+hitboxSize+speed || e.getLocation().distance(loc)<0.6+hitboxSize+speed ) {
 				if (e instanceof Player) {
 					tagPlayer((Player) e);
 				}

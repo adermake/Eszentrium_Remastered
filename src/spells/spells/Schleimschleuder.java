@@ -104,7 +104,7 @@ public class Schleimschleuder extends Spell {
 			//if (time == 20*2)
 				
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				if (checkHit(p, g.getLocation(), caster, g.getSize()*3+3)) {
+				if (checkHit(p, g.getLocation(), caster, g.getSize()*2+3)) {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,3));
 				}
 			}

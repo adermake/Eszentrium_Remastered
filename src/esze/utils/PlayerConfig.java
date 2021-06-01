@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
+
 
 import esze.main.main;
 
@@ -21,11 +21,11 @@ public class PlayerConfig implements ConfigurationSerializable{
 	
 	String playerName;
 	Material weaponMaterial = Material.WOODEN_SWORD;
-	boolean likesMusic = false;
+	boolean likesMusic = true;
 	
 	
 	@Override
-	public @NotNull Map<String, Object> serialize() {
+	public Map<String, Object> serialize() {
 		 Map<String, Object> map = new HashMap<String, Object>();
 		 map.put("player", playerName);
 	     map.put("weapon", weaponMaterial.toString());

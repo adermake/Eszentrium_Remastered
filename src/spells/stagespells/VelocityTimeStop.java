@@ -1,6 +1,8 @@
 package spells.stagespells;
 
-import org.bukkit.Bukkit;
+import java.util.ArrayList;
+
+
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,7 +15,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import org.jetbrains.annotations.NotNull;
 
 import esze.main.main;
 import esze.utils.ParUtils;
@@ -25,7 +26,7 @@ import spells.spellcore.SpellType;
 public class VelocityTimeStop extends Spell {
 	
 	LivingEntity target;
-	
+	public static ArrayList<Entity> timestop = new ArrayList<Entity>();
 	public VelocityTimeStop(LivingEntity target,Player caster,String name) {
 		
 		this.caster = caster;
@@ -61,8 +62,9 @@ public class VelocityTimeStop extends Spell {
 		if (target instanceof Player) {
 			Player t = (Player) target;
 			silence(t, s);
+			
 		}
-		
+		timestop.add(target);
 
 	}
 
@@ -208,7 +210,7 @@ public class VelocityTimeStop extends Spell {
 				
 			}
 		}.runTaskTimer(main.plugin,1,1);
-		
+		timestop.remove(target);
 		silenced.remove(target);
 	}
 

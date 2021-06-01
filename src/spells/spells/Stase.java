@@ -38,7 +38,10 @@ public class Stase extends Spell {
 	HashMap<ArmorStand,Vector> aList = new HashMap<ArmorStand,Vector>();
 	@Override
 	public void setUp() {
-
+		if (caster.isSneaking()) {
+			dead = true;
+			new VelocityTimeStop(caster, caster, name);
+		}
 		
 	}
 

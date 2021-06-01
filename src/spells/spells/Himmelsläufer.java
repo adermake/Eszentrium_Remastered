@@ -12,7 +12,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.NotNull;
+
 
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
@@ -30,6 +30,7 @@ public class Himmelsläufer extends Spell {
 		cooldown = 20* 30;
 		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.MOBILITY);
+		silencable = true;
 	}
 	
 	@Override

@@ -33,8 +33,7 @@ public class Machtwort extends Spell {
 		
 		setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.");
 		
-		if (refined)
-		steprange = 20 * 20;
+	
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.SUPPORT);
 	}
@@ -45,6 +44,9 @@ public class Machtwort extends Spell {
 		loc = caster.getLocation().add(0,-0.5,0);
 		playSound(Sound.ITEM_TOTEM_USE,loc,1,2);
 		new Repulsion(4, 2, caster, caster.getLocation(), name);
+		
+		if (refined)
+			steprange = 20 * 20;
 	}
 
 	@Override
@@ -63,7 +65,8 @@ public class Machtwort extends Spell {
 	public void move() {
 		// TODO Auto-generated method stub
 		if (step % 60 == 0 && refined) {
-			new Repulsion(4, 2, caster, caster.getLocation(), name);
+			new Repulsion(4, 2, caster, loc, name);
+			ParUtils.parKreisDot(Particles.TOTEM_OF_UNDYING, loc,1, 1, 1, new Vector(0,1,0));
 		}
 	}
 

@@ -61,6 +61,8 @@ public class Schock extends Spell {
 		
 		float c = cast;
 		float ct = casttime;
+		if (cast < 5)
+		playGlobalSound(Sound.ENTITY_BLAZE_DEATH, 5, 0.8F);
 		playSound(Sound.BLOCK_SHROOMLIGHT_HIT,caster.getLocation(),4,2*(c/ct));
 		// TODO Auto-generated method stub
 		Location l1 =  caster.getLocation();

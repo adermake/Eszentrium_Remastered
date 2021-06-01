@@ -44,6 +44,7 @@ public class SchwertausLicht extends Spell {
 		castSpell(caster,namae);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.PROJECTILE);
+		silencable = true;
 	}
 	ArmorStand a;
 	@Override

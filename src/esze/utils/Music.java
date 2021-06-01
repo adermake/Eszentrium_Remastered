@@ -52,7 +52,7 @@ public class Music implements Listener {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			
 			if (PlayerConfig.getConfig(p).likesMusic) {
-				Bukkit.broadcastMessage(""+p.getName()+" music");
+				//Bukkit.broadcastMessage(""+p.getName()+" music");
 				sp.addPlayer(p);
 			}
 				

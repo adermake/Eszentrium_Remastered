@@ -118,17 +118,26 @@ public class Flucht extends Spell{
 		unHittable.add(bat);
 		
 		
-	
+		int start = 0;
+		if (refined) {
+			start = randInt(-40,0);
+		}
+		final int  fstart = start;
 		new BukkitRunnable() {
-			int t = 0;
+			int t = fstart;
 			public void run() {
 				t++;
 				if (t>100) {
+					if (refined) {
+						new spells.stagespells.Explosion(3,6,1,1.2F,caster,bat.getLocation(),name);
+					}
 					this.cancel();
 					bat.remove();
 				}
 				
-				if (refined) {
+				if (refined && t % 10 == 0) {
+					ParUtils.createParticle(Particles.FLAME, bat.getLocation(), 0.01, 0.01,0.01,1,0.01);
+					/*
 					bat.setVelocity(bat.getLocation().getDirection());
 					for (Player p : Bukkit.getOnlinePlayers()) {
 						if (caster == p)
@@ -141,7 +150,7 @@ public class Flucht extends Spell{
 							}
 						}
 					}
-					
+					*/
 				}
 			}
 		}.runTaskTimer(main.plugin, 1,1);

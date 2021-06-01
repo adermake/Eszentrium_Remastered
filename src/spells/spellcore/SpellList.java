@@ -97,6 +97,7 @@ import spells.spells.Verstummen;
 import spells.spells.Vogelattacke;
 import spells.spells.Wunsch;
 import spells.spells.Wurmloch;
+import spells.spells.Wildwuchs;
 import spells.spells.Zaubersprung;
 import esze.analytics.SaveUtils;
 import esze.enums.GameType;
@@ -259,6 +260,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Dimensionsschnitt());
 		//registerSpell(new ArkanesGeschütz());
 		registerSpell(new Himmelsläufer());
+		registerSpell(new Wildwuchs());
 		//registerSpell(new Springkraut());
 	}
 	

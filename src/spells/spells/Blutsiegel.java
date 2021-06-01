@@ -80,13 +80,13 @@ public class Blutsiegel extends Spell {
 		// TODO Auto-generated method stub
 			
 			
-		ParUtils.parKreisRedstone(Color.fromBGR(0, 0, 100), 2, loc.clone().add(0,offset,0), rad, 0, 1,16, new Vector(0,1,0));
+		ParUtils.parKreisRedstone(Color.fromBGR(0, 0, 100), 2, loc.clone().add(0,offset,0), rad, 0, 1,32, new Vector(0,1,0));
 		Location l1 = ParUtils.stepCalcCircle(loc.clone().add(0,offset,0), rad, new Vector(0,1,0), 0, 8.8);
 		Location l2 = ParUtils.stepCalcCircle(loc.clone().add(0,offset,0), rad, new Vector(0,1,0), 0, 8.8*2);
 		Location l3 = ParUtils.stepCalcCircle(loc.clone().add(0,offset,0), rad, new Vector(0,1,0), 0, 8.8*3);
 		Location l4 = ParUtils.stepCalcCircle(loc.clone().add(0,offset,0), rad, new Vector(0,1,0), 0, 8.8*4);
 		Location l5 = ParUtils.stepCalcCircle(loc.clone().add(0,offset,0), rad, new Vector(0,1,0), 0, 8.8*5);
-		double tic = 0.8;
+		double tic = 0.5;
 		ParUtils.parLineRedstone(l1, l3, Color.RED, 1, tic);
 		ParUtils.parLineRedstone(l1, l4, Color.RED, 1, tic);
 		ParUtils.parLineRedstone(l3, l5, Color.RED, 1, tic);

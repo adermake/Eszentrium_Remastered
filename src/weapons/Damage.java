@@ -25,6 +25,7 @@ import spells.spells.AntlitzderGöttin;
 import spells.spells.Blutsiegel;
 import spells.spells.Eisstachel;
 import spells.spells.Schwerkraftsmanipulation;
+import spells.stagespells.VelocityTimeStop;
 
 public class Damage implements Listener{
 	
@@ -79,12 +80,21 @@ public class Damage implements Listener{
 	@EventHandler
 	public void onEntityDamage(EntityDamageByEntityEvent e) {
 		
+		
+		
+		
+		
+		
 		if (!(e.getDamager() instanceof Player)) {
 			e.setCancelled(true);
 			return;
 		}
 		if (((Player) e.getDamager()).getGameMode().equals(GameMode.ADVENTURE)) {
 			e.setCancelled(true);
+		}
+		
+		if (VelocityTimeStop.timestop.contains(e.getEntity())) {
+			e.getEntity().setVelocity(e.getEntity().getLocation().toVector().subtract(e.getDamager().getLocation().toVector()).normalize());
 		}
 		if(e.getDamager() instanceof Player) {
 			if (e.getEntity() instanceof Player) {

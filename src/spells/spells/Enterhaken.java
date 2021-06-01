@@ -51,7 +51,7 @@ public class Enterhaken extends Spell{
 	public void launch() {
 		
 		// TODO Auto-generated method stub
-		loc = blockHo(caster);
+		loc = block(caster);
 		
 		
 		

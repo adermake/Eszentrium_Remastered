@@ -18,7 +18,7 @@ import esze.objects.EszeFace;
 import esze.objects.EszeObject;
 import esze.objects.ObjectUtils;
 import esze.utils.ParUtils;
-import net.dv8tion.jda.api.entities.ISnowflake;
+
 import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 

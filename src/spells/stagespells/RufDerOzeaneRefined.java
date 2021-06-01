@@ -110,7 +110,7 @@ public class RufDerOzeaneRefined extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		damage(p,1,caster);
-		doKnockback(p, caster.getLocation(), 2.5);
+		doKnockback(p, caster.getLocation(), 4.5);
 		//back = true;
 		reduceCooldown(52*20);
 		step = 0;
@@ -121,7 +121,7 @@ public class RufDerOzeaneRefined extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		damage(ent,1,caster);
-		doKnockback(ent, caster.getLocation(), 2.5);
+		doKnockback(ent, caster.getLocation(), 4.5);
 		//back = true;
 		step = 0;
 		reduceCooldown(52*20);

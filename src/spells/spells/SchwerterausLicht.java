@@ -39,6 +39,7 @@ public class SchwerterausLicht extends Spell {
 		setLore("§7Feuert Schwerter in Blickrichtung, die#§7bei Kontakt mit Gegnern oder Blöcken#§7explodieren. Getroffene Gegner erhalten Schaden.");
 		casttime = 40;
 		
+		setCanBeSilenced(true);
 		
 	}
 	@Override

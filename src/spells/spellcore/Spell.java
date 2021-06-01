@@ -84,6 +84,7 @@ public abstract class Spell {
 	protected boolean canHitSelf = false;
 	protected boolean canHitCastersSpells = false;
 	protected boolean canBeSilenced = true;
+	protected boolean autocancel = false;
 	protected boolean multihit = false;
 	protected boolean dieOnLowPower = true;
 	protected boolean powerBattle = false;
@@ -1193,6 +1194,7 @@ public abstract class Spell {
 
 	}
 	
+	
 	public Location preblock(Player p) {
 		Location loc = p.getEyeLocation();
 		for (int t = 1; t <= 300; t++) {
@@ -1221,7 +1223,7 @@ public abstract class Spell {
 	}
 	public Location block(Player p,int range) {
 		Location loc = p.getEyeLocation();
-		for (int t = 1; t <= range; t++) {
+		for (int t = 1; t <= range*2; t++) {
 
 			Vector direction = loc.getDirection().normalize().multiply(0.5);
 			double x = direction.getX() * t;
@@ -1660,7 +1662,31 @@ public abstract class Spell {
 		 
 		
 	}
+	public Vector slerp(Vector start, Vector end, double percent)
+	{
+		Vector s = start.clone();
+		Vector e = end.clone();
+	    
+	     double dot = s.dot(e);
 
+	     clamp(dot, -1.0, 1.0);
+
+	     double theta = Math.acos(dot)*percent;
+	     Vector RelativeVec = e.clone().subtract(s.clone().multiply(dot));
+	     RelativeVec = RelativeVec.normalize();
+
+	     return (s.clone().multiply(Math.cos(theta))).add((RelativeVec.clone().multiply(Math.sin(theta))));
+	}
+	
+	
+	public double clamp(double d,double a,double b) {
+		if (d <a)
+			d = a;
+		if (d > b)
+			d= b;
+		return d;
+	}
+	
 	public ArmorStand createArmorStand(Location loca) {
 		ArmorStand a = (ArmorStand) loca.getWorld().spawnEntity(loca, EntityType.ARMOR_STAND);
 		

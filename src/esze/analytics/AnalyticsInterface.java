@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sun.javafx.collections.SetListenerHelper;
-
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
