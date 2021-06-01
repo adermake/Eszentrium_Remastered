@@ -38,6 +38,7 @@ import spells.spells.Feuerball;
 import spells.spells.Flammenwand;
 import spells.spells.Feuerwerkshelix;
 import spells.spells.Flucht;
+import spells.spells.Fokusspirale;
 import spells.spells.Delfintorpedo;
 import spells.spells.Dimensionsschnitt;
 import spells.spells.Eisstachel;
@@ -261,6 +262,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		//registerSpell(new ArkanesGeschütz());
 		registerSpell(new Himmelsläufer());
 		registerSpell(new Wildwuchs());
+		registerSpell(new Fokusspirale());
 		//registerSpell(new Springkraut());
 	}
 	
