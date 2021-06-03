@@ -134,6 +134,9 @@ public class Schleimschleuder extends Spell {
 					hitEntity = true;
 					hitboxSize = 2+size*3F;
 					playSound(Sound.BLOCK_SLIME_BLOCK_HIT,loc,10,1);
+					if(caster.isSneaking()) {
+					    caster.setVelocity(caster.getVelocity().multiply(-1));
+					}
 				}
 				if (dash > 30) {
 					dead = true;

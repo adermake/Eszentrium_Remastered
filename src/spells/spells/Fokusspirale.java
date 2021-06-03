@@ -16,7 +16,7 @@ public class Fokusspirale extends Spell {
     
     public Fokusspirale() {
         // TODO Auto-generated constructor stub
-        name = "Â§eFokusspirale";
+        name = "§eFokusspirale";
         cooldown = 20*40;
         steprange = 300;
         speed = 6;
