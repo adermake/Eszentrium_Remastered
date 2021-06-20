@@ -16,11 +16,11 @@ public class Fokusspirale extends Spell {
     
     public Fokusspirale() {
         // TODO Auto-generated constructor stub
-        name = "§eFokusspirale";
+        name = "Â§eFokusspirale";
         cooldown = 20*40;
         steprange = 300;
-        speed = 6;
-        hitboxSize = 2;
+        speed = 7;
+        hitboxSize = 3;
         
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
@@ -59,8 +59,13 @@ public class Fokusspirale extends Spell {
         if (!nextStage) {
             if (!caster.isSneaking()) {
                 loc.add(caster.getLocation().getDirection().multiply(0.5));
-                if (isSneaking) {
+                if (isSneaking || step>=steprange-10) {
                     playSound(Sound.ITEM_FIRECHARGE_USE, loc, 50, 0.5);
+                    blocLoc = block(caster);
+                    if (blocLoc == null) {
+                        blocLoc = loc(caster, 10);
+                    }
+                    loc.setDirection(blocLoc.toVector().subtract(loc.toVector()));
                     nextStage = true;
                     step = 0;
                     speed = 4;
@@ -70,7 +75,7 @@ public class Fokusspirale extends Spell {
                 isSneaking = true;
                 blocLoc = block(caster);
                 if (blocLoc == null) {
-                    blocLoc = loc(caster, 20);
+                    blocLoc = loc(caster, 10);
                 }
                 loc.setDirection(blocLoc.toVector().subtract(loc.toVector()));
                 double distance = blocLoc.toVector().subtract(loc.toVector()).length();
@@ -107,17 +112,17 @@ public class Fokusspirale extends Spell {
         // TODO Auto-generated method stub
             if(step%speed==0) {
                 if(!refined) {
-                    Location l = ParUtils.stepCalcCircle(loc, 1 + damage/10, caster.getLocation().getDirection(), damage/3, steppo);
-                    Location l2 = ParUtils.stepCalcCircle(loc, 1 + damage/10, caster.getLocation().getDirection(), damage/3, steppo+22);
-                    steppo+=2;
+                    Location l = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo);
+                    Location l2 = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo+22);
+                    steppo+=(2+damage/13);
                     ParUtils.createFlyingParticle(Particles.SOUL_FIRE_FLAME, l, damage*0.05, damage*0.05, damage*0.05, (int)damage*2 + 1, 0.2, l.toVector().subtract(loc.toVector()));
                     ParUtils.createFlyingParticle(Particles.FLAME, l2, damage*0.05, damage*0.05, damage*0.05, (int)damage*2 + 1, 0.2, l2.toVector().subtract(loc.toVector()));
                 } else {
-                    Location l = ParUtils.stepCalcCircle(loc, 1, caster.getLocation().getDirection(), damage/3, steppo);
-                    Location l2 = ParUtils.stepCalcCircle(loc, 1, caster.getLocation().getDirection(), damage/3, steppo+11);
-                    Location l3 = ParUtils.stepCalcCircle(loc, 1, caster.getLocation().getDirection(), damage/3, steppo+22);
-                    Location l4 = ParUtils.stepCalcCircle(loc, 1, caster.getLocation().getDirection(), damage/3, steppo+33);
-                    steppo++;
+                    Location l = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo);
+                    Location l2 = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo+11);
+                    Location l3 = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo+22);
+                    Location l4 = ParUtils.stepCalcCircle(loc, 1 + damage/8, caster.getLocation().getDirection(), damage/3, steppo+33);
+                    steppo+=(1.5+damage/18);
                     ParUtils.createFlyingParticle(Particles.SOUL_FIRE_FLAME, l, damage*0.02, damage*0.02, damage*0.02, (int)damage*2 + 1, 0.2, l.toVector().subtract(loc.toVector()).add(randVector().multiply(0.5 - damage/20)));
                     ParUtils.createFlyingParticle(Particles.FLAME, l2, damage*0.02, damage*0.02, damage*0.02, (int)damage*2 + 1, 0.2, l2.toVector().subtract(loc.toVector()).add(randVector().multiply(0.5 - damage/20)));
                     ParUtils.createFlyingParticle(Particles.SOUL_FIRE_FLAME, l3, damage*0.02, damage*0.02, damage*0.02, (int)damage*2 + 1, 0.2, l3.toVector().subtract(loc.toVector()).add(randVector().multiply(0.5 - damage/20)));
@@ -162,15 +167,15 @@ public class Fokusspirale extends Spell {
     @Override
     public void onBlockHit(Block block) {
         // TODO Auto-generated method stub
-        new spells.stagespells.Explosion(2 + damage/4, 2 + damage/2, 1, 2, caster, loc, name);
+        new spells.stagespells.Explosion(3 + damage/2, 2 + damage/2, 1, 2, caster, loc, name);
         kill();
     }
 
     @Override
     public void onDeath() {
         // TODO Auto-generated method stub
-        ParUtils.createParticle(Particles.SOUL_FIRE_FLAME, loc, damage/2, damage/2, damage/2, (int)damage*20, 0.3);
-        ParUtils.createParticle(Particles.FLAME, loc, damage/3, damage/3, damage/3, (int)damage*20, 0.4);
+        ParUtils.createParticle(Particles.SOUL_FIRE_FLAME, loc, damage/2, damage/2, damage/2, (int)damage*30, 0.2);
+        ParUtils.createParticle(Particles.FLAME, loc, damage/3, damage/3, damage/3, (int)damage*30, 0.3);
         playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc, damage*2 - 4, 1.2);
         playSound(Sound.ENTITY_BLAZE_SHOOT, loc, damage*5, 2 - (damage/4));
     }
