@@ -176,7 +176,7 @@ public class Reqdum extends Spell {
 		// TODO Auto-generated method stub
 		dead = true;
 	}
-
+	
 	boolean once = false;
 	@Override
 	public void onDeath() {

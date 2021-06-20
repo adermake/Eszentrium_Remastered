@@ -115,7 +115,7 @@ public abstract class Type {
 	}
 	
 	public void out(Player p) {
-	
+		p.getWorld().strikeLightningEffect(p.getLocation());
 		p.getInventory().clear();
 		p.setGameMode(GameMode.ADVENTURE);
 		p.setAllowFlight(true);

@@ -759,7 +759,7 @@ public class ParUtils {
 		return locs;
 	}
 	public static Location stepCalcCircle(Location l,double r,Vector rotV,double offset,double steps) {
-		double t =  (Math.PI / 22)* ((double)steps);
+		double t =  (Math.PI / 22D)* ((double)steps);
 		Location loc = l.clone();
 		Location rot = loc.clone().setDirection(rotV);
 		double x = r * Math.cos(t);

@@ -16,6 +16,7 @@ import spells.spells.Ansturm;
 import spells.spells.Mondkugel;
 import spells.spells.AntlitzderGöttin;
 import spells.spells.Wasserdüse;
+import spells.spells.Wassergeysir;
 import spells.spells.Archon;
 import spells.spells.Astralsprung;
 import spells.spells.Aufwind;
@@ -93,6 +94,7 @@ import spells.spells.Sternentor;
 import spells.spells.Stich;
 import spells.spells.Teleport;
 import spells.spells.Thermolanze;
+import spells.spells.Todessäge;
 import spells.spells.Vampirpilz;
 import spells.spells.Verstummen;
 import spells.spells.Vogelattacke;
@@ -263,6 +265,8 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Himmelsläufer());
 		registerSpell(new Wildwuchs());
 		registerSpell(new Fokusspirale());
+		registerSpell(new Wassergeysir());
+		registerSpell(new Todessäge());
 		//registerSpell(new Springkraut());
 	}
 	

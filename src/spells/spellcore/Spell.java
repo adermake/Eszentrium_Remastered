@@ -287,9 +287,10 @@ public abstract class Spell {
 			
 			//MoveLoop
 			
-			
+			final Spell sp = this;
 			new BukkitRunnable() {
 				int ts = 0;
+				
 				public void run() {
 					
 					ts++;
@@ -338,7 +339,7 @@ public abstract class Spell {
 							if (dead) {
 								
 								
-								
+								spell.remove(sp);
 								this.cancel();
 								break;
 							}
@@ -355,6 +356,7 @@ public abstract class Spell {
 						
 					}
 					if (dead == true) {
+						
 						
 						onDeath();
 						clearPhantomBlocks();
@@ -1688,7 +1690,7 @@ public abstract class Spell {
 	}
 	
 	public ArmorStand createArmorStand(Location loca) {
-		ArmorStand a = (ArmorStand) loca.getWorld().spawnEntity(loca, EntityType.ARMOR_STAND);
+		ArmorStand a = (ArmorStand) loca.getWorld().spawnEntity(loca.clone(), EntityType.ARMOR_STAND);
 		
 		a.setInvulnerable(true);
 		a.setVisible(false);
