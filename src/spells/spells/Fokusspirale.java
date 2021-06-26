@@ -58,7 +58,7 @@ public class Fokusspirale extends Spell {
         // TODO Auto-generated method stub
         if (!nextStage) {
             if (!caster.isSneaking()) {
-                loc.add(caster.getLocation().getDirection().multiply(0.5));
+                loc.add(loc.getDirection().multiply(0.5));
                 if (isSneaking || step>=steprange-10) {
                     playSound(Sound.ITEM_FIRECHARGE_USE, loc, 50, 0.5);
                     blocLoc = block(caster);
@@ -68,7 +68,7 @@ public class Fokusspirale extends Spell {
                     loc.setDirection(blocLoc.toVector().subtract(loc.toVector()));
                     nextStage = true;
                     step = 0;
-                    speed = 4;
+                    speed = 5;
                 }
             } else {
                 step--;
@@ -135,9 +135,9 @@ public class Fokusspirale extends Spell {
     public void onPlayerHit(Player p) {
         // TODO Auto-generated method stub
         if(!refined) {
-            damage(p, 2 + damage, caster);
+            damage(p, 2 + damage*0.7, caster);
         } else {
-            damage(p, 4 + damage, caster);
+            damage(p, 2 + damage*0.7, caster);
             playSound(Sound.ENTITY_BLAZE_SHOOT, loc, 5 + damage*5, 2 - (damage/4));
         }
         p.setVelocity(caster.getLocation().getDirection());
@@ -149,13 +149,12 @@ public class Fokusspirale extends Spell {
         // TODO Auto-generated method stub
         if(!refined) {
             damage(ent, 2 + damage*0.7, caster);
-            ent.setVelocity(caster.getLocation().getDirection());
-            kill();
         } else {
-            damage(ent, 4 + damage*0.7, caster);
-            ent.setVelocity(caster.getLocation().getDirection());
+            damage(ent, 2 + damage*0.7, caster);
             playSound(Sound.ENTITY_BLAZE_SHOOT, loc, 5 + damage*5, 2 - (damage/4));
         }
+        ent.setVelocity(caster.getLocation().getDirection());
+        kill();
     }
 
     @Override
@@ -167,7 +166,7 @@ public class Fokusspirale extends Spell {
     @Override
     public void onBlockHit(Block block) {
         // TODO Auto-generated method stub
-        new spells.stagespells.Explosion(3 + damage/2, 2 + damage/2, 1, 2, caster, loc, name);
+        new spells.stagespells.Explosion(2 + damage/2, 2 + damage*0.7 , 1, 2, caster, loc, name);
         kill();
     }
 
