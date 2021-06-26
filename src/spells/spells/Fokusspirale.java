@@ -11,7 +11,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
-//das ist ein Spell!
+
 public class Fokusspirale extends Spell {
     
     public Fokusspirale() {
