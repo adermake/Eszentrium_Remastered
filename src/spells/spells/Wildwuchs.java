@@ -135,8 +135,10 @@ public class Wildwuchs extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
+	    if(!seeking) {
+	        p.setVelocity(vel.clone().normalize().multiply(2));
+	    }
 		damage(p, 3, caster);
-		p.setVelocity(vel.clone().normalize().multiply(2));
 		playSound(Sound.BLOCK_WOOD_BREAK,loc,1,0.5F);
 		ParUtils.createBlockcrackParticle(p.getLocation(), 0.2F,1.2F, 1.2F, 35, Material.OAK_LOG);
 	}
@@ -144,8 +146,10 @@ public class Wildwuchs extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
+	    if(!seeking) {
+	       ent.setVelocity(vel.clone().normalize().multiply(2));
+	    }
 		damage(ent, 3, caster);
-		ent.setVelocity(vel.clone().normalize().multiply(2));
 		playSound(Sound.BLOCK_WOOD_BREAK,loc,1,0.5F);
 		ParUtils.createBlockcrackParticle(ent.getLocation(), 0.2F,1.2F, 1.2F, 35, Material.OAK_LOG);
 	}
