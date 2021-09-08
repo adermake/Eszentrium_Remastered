@@ -32,6 +32,7 @@ import esze.enums.GameType;
 import esze.enums.GameType.TypeEnum;
 import esze.enums.Gamestate;
 import esze.listeners.Block;
+import esze.listeners.BoatControll;
 import esze.listeners.CancelClick;
 import esze.listeners.Chat;
 import esze.listeners.Death;
@@ -147,6 +148,7 @@ public class main extends JavaPlugin {
 		this.getCommand("nofboost").setExecutor(new CommandReciever());
 		// LOLAAa
 		this.getCommand("analytics").setExecutor(new CommandReciever());
+		getServer().getPluginManager().registerEvents(new BoatControll(), this);
 		getServer().getPluginManager().registerEvents(new Join(), this);
 		getServer().getPluginManager().registerEvents(new Move(), this);
 		getServer().getPluginManager().registerEvents(new Death(), this);

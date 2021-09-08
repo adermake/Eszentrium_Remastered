@@ -87,11 +87,13 @@ import spells.spells.SchwerterausLicht;
 
 import spells.spells.SiegelderFurcht;
 import spells.spells.SpeerderZwietracht;
+import spells.spells.Seelenmarionette;
 import spells.spells.Schweberknecht;
 import spells.spells.Springkraut;
 import spells.spells.Stase;
 import spells.spells.Sternentor;
 import spells.spells.Stich;
+import spells.spells.Substitution;
 import spells.spells.Teleport;
 import spells.spells.Thermolanze;
 import spells.spells.Todessäge;
@@ -196,14 +198,13 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Blasensturm());
 		registerSpell(new Feuerball());
 		registerSpell(new Flucht());
-		registerSpell(new Archon(), TypeTTT.class);
+		//registerSpell(new Archon(), TypeTTT.class);
 		registerSpell(new Erlösung(), TypeTTT.class);
 		registerSpell(new Heilen(), TypeTTT.class);
 		registerSpell(new Heilen(), TypeTEAMS.class);
 		registerSpell(new Hühnchenluftschlag());
 		registerSpell(new Kätzchenkanone());
-		registerSpell(new Kaminchen());
-		
+		registerSpell(new Kaminchen());	
 		registerSpell(new Lamaturm());
 		registerSpell(new Lichtstrudel());
 		registerSpell(new Luftsprung());
@@ -218,11 +219,9 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Erdsurfer());
 		registerSpell(new Schallbrecher());
 		registerSpell(new SchwerterausLicht());
-		registerSpell(new Schock());
-		
+		registerSpell(new Schock());	
 		registerSpell(new Requiemspfeil());
-		registerSpell(new Ranke());
-		//registerSpell(new Schicksalsschnitt());
+		registerSpell(new Ranke());	
 		registerSpell(new SchnittdersiebenWinde());
 		registerSpell(new SpeerderZwietracht());
 		registerSpell(new SiegelderFurcht());
@@ -230,7 +229,6 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Thermolanze());
 		registerSpell(new Verstummen());
 		registerSpell(new Vampirpilz());
-		
 		registerSpell(new Wunsch());
 		registerSpell(new Wurmloch());
 		registerSpell(new Zaubersprung());
@@ -238,7 +236,6 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Feuerwerkshelix());
 		registerSpell(new Delfintorpedo());
 		registerSpell(new Knochenparty());
-		
 		registerSpell(new Stich());
 		registerSpell(new Schleimschleuder());
 		registerSpell(new Sternentor());
@@ -257,16 +254,19 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Flammenwand());
 		registerSpell(new Machtwort());
 		registerSpell(new Vogelattacke());
-		registerSpell(new Stase());
-		registerSpell(new Kettenbrecher());
+		registerSpell(new Stase());	
 		registerSpell(new Schweberknecht());
-		registerSpell(new Dimensionsschnitt());
-		//registerSpell(new ArkanesGeschütz());
+		registerSpell(new Dimensionsschnitt());	
 		registerSpell(new Himmelsläufer());
 		registerSpell(new Wildwuchs());
 		registerSpell(new Fokusspirale());
 		registerSpell(new Wassergeysir());
 		registerSpell(new Todessäge());
+		registerSpell(new Substitution());
+		registerSpell(new Seelenmarionette());
+		//registerSpell(new Schicksalsschnitt());
+		//registerSpell(new Kettenbrecher());
+		//registerSpell(new ArkanesGeschütz());
 		//registerSpell(new Springkraut());
 	}
 	

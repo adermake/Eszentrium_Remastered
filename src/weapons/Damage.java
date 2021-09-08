@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Drowned;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +26,7 @@ import spells.spells.AntlitzderGöttin;
 import spells.spells.Blutsiegel;
 import spells.spells.Eisstachel;
 import spells.spells.Schwerkraftsmanipulation;
+import spells.spells.Seelenmarionette;
 import spells.stagespells.VelocityTimeStop;
 
 public class Damage implements Listener{
@@ -48,6 +50,21 @@ public class Damage implements Listener{
 			e.setCancelled(true);
 			return;
 		}
+		if (e.getEntity() instanceof Drowned) {
+			
+			Drowned ghost = (Drowned) e.getEntity();
+			
+			for (Seelenmarionette sg : Seelenmarionette.souls) {
+				if (sg.ghost == ghost) {
+					
+					sg.ghostDamaged(e.getDamage());
+					
+				}
+			}
+			
+		}
+		
+		
 		if(e.getEntity() instanceof Player){
 			Player p = (Player) e.getEntity();
 			lastHealthTaken.put(p, p.getHealth());
@@ -60,6 +77,14 @@ public class Damage implements Listener{
 				
 				eis.playerTookDamage(p,e.getDamage());
 			}
+			
+			for (Spell s : Spell.takeDamageEvent) {
+				if (s.caster == p) {
+					s.callEvent("takeDamageEvent");
+				}
+				
+			}
+			
 			
 			
 			if (p.getGameMode().equals(GameMode.ADVENTURE) ){
@@ -83,6 +108,8 @@ public class Damage implements Listener{
 		
 		
 		
+	
+		
 		
 		
 		if (!(e.getDamager() instanceof Player)) {
@@ -94,7 +121,9 @@ public class Damage implements Listener{
 		}
 		
 		if (VelocityTimeStop.timestop.contains(e.getEntity())) {
-			e.getEntity().setVelocity(e.getEntity().getLocation().toVector().subtract(e.getDamager().getLocation().toVector()).normalize());
+			//Bukkit.broadcastMessage("ADD VELO To " +e.getEntity().getName());
+			e.setCancelled(true);
+			e.getEntity().setVelocity(e.getEntity().getLocation().toVector().subtract(e.getDamager().getLocation().toVector()).normalize().multiply(0.5));
 		}
 		if(e.getDamager() instanceof Player) {
 			if (e.getEntity() instanceof Player) {
@@ -103,6 +132,12 @@ public class Damage implements Listener{
 				}
 				Player p = (Player) e.getDamager();
 				
+				for (Seelenmarionette sg : Seelenmarionette.souls) {
+					if (sg.caster == e.getEntity()) {
+						e.getEntity().setVelocity(p.getLocation().getDirection().multiply(1.5F));
+						e.setCancelled(true);
+					}
+				}
 				
 				if (p.getInventory().getItemInMainHand().getType() == Material.BOOK || p.getInventory().getItemInMainHand().getType() == Material.ENCHANTED_BOOK) {
 					

@@ -105,12 +105,18 @@ public class Discord {
 	
 	
 	public static void unMuteAll(){
+		try  {
 		for(Player p : ((HashMap<Player, Member>)muted.clone()).keySet()){
 			setMuted(p, false);
+		}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public static void setMuted(Player player, boolean shouldMute){
+		try  {
 		for(Member member : g.getMembers()) {
 			User p = member.getUser();
 			if(p.getName().equalsIgnoreCase(player.getName()) || (member.getNickname() != null && member.getNickname().equalsIgnoreCase(player.getName()))){
@@ -122,6 +128,10 @@ public class Discord {
 					muted.put(player, member);
 				}
 			}
+		}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

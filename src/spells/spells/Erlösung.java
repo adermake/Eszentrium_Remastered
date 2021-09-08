@@ -29,7 +29,7 @@ public class Erlösung extends Spell {
 		hitSpell = false;
 		hitboxSize = 3;
 		multihit = true;
-		traitorSpell = true;
+	
 		addSpellType(SpellType.KNOCKBACK);
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.PROJECTILE);

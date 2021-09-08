@@ -94,7 +94,9 @@ public class KaminchenEntity extends Spell {
 		if(jumpAble && boundOnGround) {
 			damage = 9;
 			for (Player target : Bukkit.getOnlinePlayers()) {
-				
+				if (GameType.getType().spectator.contains(target)) {
+					continue;
+				}
 				if (isOnTeam(target)) {
 					continue;
 				}
@@ -144,7 +146,7 @@ public class KaminchenEntity extends Spell {
 		if (jumpAble && boundOnGround && agrro) {
 			
 			Player n = getNearestPlayer(caster);
-			if (n != null) {
+			if (n != null && n.getGameMode() != GameMode.ADVENTURE) {
 				jumpcooldown = 30;
 				ent.setTarget(n);
 				doPull(ent, n.getEyeLocation(), 1.2F);

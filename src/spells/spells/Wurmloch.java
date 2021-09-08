@@ -69,11 +69,7 @@ public class Wurmloch extends Spell {
 		loc = wormHolePlaceLoc.clone();
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	int delay = 0;
 	@Override
@@ -126,6 +122,12 @@ public class Wurmloch extends Spell {
 
 	@Override
 	public void onDeath() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void move() {
 		// TODO Auto-generated method stub
 		
 	}

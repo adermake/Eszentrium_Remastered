@@ -155,12 +155,12 @@ public class Erdsurfer extends Spell {
 			}
 		}.runTaskTimer(main.plugin, 1, 1);
 		if (ab > 7) {
-			caster.setAllowFlight(false);
+			originalCaster.setAllowFlight(false);
 			caster.setFlying(false);
 		} else {
-			caster.setVelocity(caster.getVelocity().setY(0.5));
-			caster.setAllowFlight(true);
-			caster.setFlying(true);
+			originalCaster.setVelocity(caster.getVelocity().setY(0.5));
+			originalCaster.setAllowFlight(true);
+			originalCaster.setFlying(true);
 		}
 		Vector v = caster.getLocation().getDirection();
 		v.setY(0);
@@ -174,8 +174,8 @@ public class Erdsurfer extends Spell {
 
 		if (t > 70 || caster.isSneaking()) {
 
-			caster.setFlying(false);
-			caster.setAllowFlight(false);
+			originalCaster.setFlying(false);
+			originalCaster.setAllowFlight(false);
 			if (refined) {
 				caster.setVelocity(caster.getLocation().getDirection().multiply(-3).add(new Vector(0,1.5,0)));
 			}
@@ -226,8 +226,10 @@ public class Erdsurfer extends Spell {
 	public void onSpellHit(Spell spell) {
 		// TODO Auto-generated method stub
 		if (spell.getName().contains("Antlitz der Göttin")){
-			caster.setFlying(false);
-			caster.setAllowFlight(false);
+			caster.setFlying(true);
+			caster.setAllowFlight(true);
+			originalCaster.setFlying(false);
+			originalCaster.setAllowFlight(true);
 		}
 	}
 

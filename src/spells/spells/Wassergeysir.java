@@ -25,11 +25,11 @@ public class Wassergeysir extends Spell {
 	ArrayList<FallingBlock> allBlocks = new ArrayList<FallingBlock>();
 	public Wassergeysir() {
 		
-		cooldown = 20 * 22;
+		cooldown = 20 * 20;
 		name = "§6Wassergeysir";
 		speed = 4;
 		steprange = (int) (speed * 20 *5);
-		casttime =20;
+		casttime =10;
 		hitboxSize = scale;
 		canHitSelf = true;
 		multihit =true;
@@ -44,7 +44,7 @@ public class Wassergeysir extends Spell {
 		this.name = name;
 		speed = 4;
 		steprange = (int) (speed * 20 *5);
-		casttime =10;
+		casttime =5;
 		hitboxSize = scale;
 		canHitSelf = true;
 		multihit =true;
@@ -61,9 +61,10 @@ public class Wassergeysir extends Spell {
 				refund = true;
 				dead = true;
 			}
-			loc.add(0,1,0);
+			//loc.add(0,1,0);
+			loc.add(loc.getDirection().multiply(-1));
 		
-			
+			loc.setDirection(caster.getLocation().getDirection());
 		}
 		
 		if (over != null)
@@ -74,14 +75,27 @@ public class Wassergeysir extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		for (int i = 0;i<2;i++) {
-			Location l = ParUtils.stepCalcCircle(loc, scale, new Vector(0,1,0),0, 2*cast+i*22);
-			
-			ParUtils.createParticle(Particles.CLOUD, l, 0, 1, 0, 0, 0.1);
+		if (refined) {
+			for (int i = 0;i<2;i++) {
+				Location l = ParUtils.stepCalcCircle(loc, scale, loc.getDirection().multiply(-1),0, 2*cast+i*22);
+				ParUtils.createFlyingParticle(Particles.CLOUD, l, 0, 0,0, 1,0.1, loc.getDirection().multiply(-1));
+				//ParUtils.createParticle(Particles.CLOUD, l, 0, 1, 0, 0, 0.1);
+			}
+			ParUtils.createParticle(Particles.BUBBLE_POP, loc,scale/4, scale/4, scale/4, 20, 0);
+			ParUtils.createRedstoneParticle(loc, scale/2,  scale/2, scale/2, 10, Color.fromRGB(51, 51,201),5);
+			playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,loc,1,1);
 		}
-		ParUtils.createParticle(Particles.BUBBLE_POP, loc,scale/4, 0.2, scale/4, 20, 0);
-		ParUtils.createRedstoneParticle(loc, scale/2, 0, scale/2, 10, Color.fromRGB(51, 51,201),5);
-		playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,loc,1,1);
+		else {
+			for (int i = 0;i<2;i++) {
+				Location l = ParUtils.stepCalcCircle(loc, scale, new Vector(0,1,0),0, 2*cast+i*22);
+				
+				ParUtils.createParticle(Particles.CLOUD, l, 0, 1, 0, 0, 0.1);
+			}
+			ParUtils.createParticle(Particles.BUBBLE_POP, loc,scale/4, 0.2, scale/4, 20, 0);
+			ParUtils.createRedstoneParticle(loc, scale/2, 0, scale/2, 10, Color.fromRGB(51, 51,201),5);
+			playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,loc,1,1);
+		}
+	
 		
 	}
 
@@ -100,10 +114,23 @@ public class Wassergeysir extends Spell {
 		if (count > 0) {
 			count--;
 			FallingBlock b = spawnFallingBlock(loc, Material.BLUE_STAINED_GLASS);
-			b.setVelocity(new Vector(0,2,0).add(randVector().normalize().multiply(0.1)));
+			if (refined) {
+				b.setVelocity(loc.getDirection().multiply(-2).add(randVector().normalize().multiply(0.1)));
+			}
+			else {
+				b.setVelocity(new Vector(0,2,0).add(randVector().normalize().multiply(0.1)));
+			}
+			
 			allBlocks.add(b);
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,new Vector(0,1,0));
-		}
+			if(refined) {
+				ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,loc.getDirection().multiply(-1));
+				
+			}
+			else {
+				ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,new Vector(0,1,0));
+				
+			}
+			}
 		else {
 			if (!launched) {
 				
@@ -111,9 +138,11 @@ public class Wassergeysir extends Spell {
 				hitPlayer = false;
 				hitEntity = false;
 				hitSpell = false;
+				/*
 				if (refined == scale < 10) {
 					new Wassergeysir(loc.clone(), caster, name, scale+3);
 				}
+				*/
 			}
 		}
 		// TODO Auto-generated method stub
@@ -138,7 +167,13 @@ public class Wassergeysir extends Spell {
 			}
 		
 			int other = 50+(int) (200*factor*factor*factor*factor);
-			
+			if (other > 255) {
+				other= 255;
+			}
+			if (other < 1) {
+				other = 1;
+			}
+		
 			double stepFactor = (float)count/(float) maxCount;
 			ParUtils.createRedstoneParticle(bl.getLocation(), 0, 0, 0, 1, Color.fromRGB(other,other, (int)blueness), (float) (1*(1-stepFactor)));
 		}
@@ -156,24 +191,43 @@ public class Wassergeysir extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		if (p != caster ) {
-			p.setVelocity(new Vector(0,2.5F,0));
-		}
+			if (refined) {
+				p.setVelocity(loc.getDirection().multiply(-2.5));
+			}
+		
+			else {
+				p.setVelocity(new Vector(0,2.5F,0));
+			}
+			}
+			
 		else {
 			if (!caster.isSneaking()) {
-				p.setVelocity(new Vector(0,2.5F,0));
+				if (refined) {
+					p.setVelocity(loc.getDirection().multiply(-2.5));
+				}
+			
+				else {
+					p.setVelocity(new Vector(0,2.5F,0));
+				}
 			}
 		}
 		
 		if (p != caster) {
-			damage(p, 3, caster);
+			damage(p, 4, caster);
 		}
 	}
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ent.setVelocity(new Vector(0,2.5F,0));
-		damage(ent, 3, caster);
+		if (refined) {
+			ent.setVelocity(loc.getDirection().multiply(-2.5));
+		}
+	
+		else {
+			ent.setVelocity(new Vector(0,2.5F,0));
+		}
+		damage(ent, 4, caster);
 	}
 
 	@Override

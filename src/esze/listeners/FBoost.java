@@ -2,6 +2,7 @@ package esze.listeners;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +15,7 @@ public class FBoost implements Listener{
 	public static ArrayList<Player> noFboost = new ArrayList<Player>();
 	@EventHandler
 	public void onF(PlayerSwapHandItemsEvent e){
+	
 		Player p = e.getPlayer();
 		if (noFboost.contains(p))
 			return;

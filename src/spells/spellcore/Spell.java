@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.bukkit.Axis;
@@ -23,11 +27,13 @@ import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
@@ -116,7 +122,9 @@ public abstract class Spell {
 	
 	//FLAGS
 	
-	
+	//EVENTS 
+	public static ArrayList<Spell> hitSpellEvent = new ArrayList<Spell>();
+	public static ArrayList<Spell> takeDamageEvent = new ArrayList<Spell>();
 	//CC 
 	protected static ArrayList<Block> phantomBlock = new ArrayList<Block>();
 		public static HashMap<Player,SilenceSelection> silenced = new HashMap<Player,SilenceSelection>();
@@ -303,6 +311,11 @@ public abstract class Spell {
 						}
 						
 					}
+					if (autocancel) {
+						if (caster.getGameMode() == GameMode.ADVENTURE) {
+							dead = true;
+						}
+					}
 					/*
 					if (spellTypes.contains(SpellType.SELFCAST) && (caster.getGameMode() == GameMode.ADVENTURE || isSilenced())) {
 						dead = true;
@@ -402,8 +415,14 @@ public abstract class Spell {
 				if (p.getGameMode().equals(GameMode.ADVENTURE)) {
 					continue;
 				}
+			
+				
 				if (p.getEyeLocation().distance(loc)<0.6+hitboxSize ||p.getLocation().distance(loc)<0.6+hitboxSize ) {
 					hitEntitys.add(p);	
+					
+					if (spellHitPlayerEvent(p)) {
+						continue;
+					}
 					onPlayerHit(p);
 					//tags Players
 					if (tagPlayer) {
@@ -1184,7 +1203,9 @@ public abstract class Spell {
 			if (loc.getY()<= 60) {
 				return null;
 			}
-
+			if (loc.getY() > 250) {
+				return null;
+			}
 			if (loc.getBlock().getType() != Material.AIR) {
 				return loc;
 
@@ -1577,6 +1598,10 @@ public abstract class Spell {
 		double distance = 10000;
 		Player nearest = c;
 		for (Player p : Bukkit.getOnlinePlayers()) {
+			
+			if (p.getGameMode() != GameMode.SURVIVAL) {
+				continue;
+			}
 			if (nearest == c) {
 				nearest = p;
 				distance = c.getLocation().distance(p.getLocation());
@@ -1774,9 +1799,79 @@ public abstract class Spell {
 	public boolean isSilenced() {
 		return silenced.get(caster).filter(spellTypes);
 	}
+	
 	public void reduceCooldown(int amount) {
 		//Bukkit.broadcastMessage("Looking for "+spellkey);
 		SpellKeyUtils.reduceCooldown(caster,spellkey, amount);
+	}
+	
+	public boolean spellHitPlayerEvent(Player p) {
+		boolean re = false;
+		for (Spell  s : hitSpellEvent) {
+			if (s.caster == p) {
+				re = s.callEvent("spellHitPlayerEvent");
+			}
+			
+		}
+		return re;
+	}
+	
+	
+	public static int[] getMostCommonColour(Map map) {
+        LinkedList list = new LinkedList(map.entrySet());
+        Collections.sort(list, new Comparator() {
+              public int compare(Object o1, Object o2) {
+                return ((Comparable) ((Map.Entry) (o1)).getValue())
+                  .compareTo(((Map.Entry) (o2)).getValue());
+              }
+        });    
+        Map.Entry me = (Map.Entry )list.get(list.size()-1);
+        int[] rgb= getRGBArr((Integer)me.getKey());
+        return rgb;        
+    }    
+
+    public static int[] getRGBArr(int pixel) {
+        int alpha = (pixel >> 24) & 0xff;
+        int red = (pixel >> 16) & 0xff;
+        int green = (pixel >> 8) & 0xff;
+        int blue = (pixel) & 0xff;
+        return new int[]{red,green,blue};
+
+  }
+    public static boolean isGray(int[] rgbArr) {
+        int rgDiff = rgbArr[0] - rgbArr[1];
+        int rbDiff = rgbArr[0] - rgbArr[2];
+        // Filter out black, white and grays...... (tolerance within 10 pixels)
+        int tolerance = 10;
+        if (rgDiff > tolerance || rgDiff < -tolerance) 
+            if (rbDiff > tolerance || rbDiff < -tolerance) { 
+                return false;
+            }                 
+        return true;
+    }
+
+	
+	public boolean callEvent(String name) {
+		return false;
+	}
+	
+	
+	public static void setLeatherArmor(LivingEntity s,Color c) {
+		ItemStack bchest = new ItemStack(Material.LEATHER_CHESTPLATE);
+        LeatherArmorMeta meta2 = (LeatherArmorMeta) bchest.getItemMeta();
+        meta2.setColor(c);
+        bchest.setItemMeta(meta2);
+        ItemStack blegs = new ItemStack(Material.LEATHER_LEGGINGS);
+        LeatherArmorMeta meta3 = (LeatherArmorMeta) blegs.getItemMeta();
+        meta3.setColor(c);
+       blegs.setItemMeta(meta3);
+        ItemStack bboots = new ItemStack(Material.LEATHER_BOOTS);
+        LeatherArmorMeta meta4 = (LeatherArmorMeta) bboots.getItemMeta();
+        meta4.setColor(c);
+        bboots.setItemMeta(meta4);
+        s.getEquipment().setChestplate(bchest);
+        s.getEquipment().setLeggings(blegs);
+        s.getEquipment().setBoots(bboots);
 	}
 	// OVERRIDEABLES
 	

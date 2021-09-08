@@ -71,6 +71,9 @@ public class Bienenschwarm extends Spell {
 				}
 			}.runTaskTimer(main.plugin, 15, 15);
 		}
+		if (caster.isSneaking()) {
+			canHitSelf = true;
+		}
 	}
 
 	@Override
