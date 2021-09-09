@@ -17,7 +17,7 @@ import esze.utils.ParUtils;
 import spells.spellcore.Spell;
 
 public class Disk extends Spell {
-
+//s
 	
 	
 	ArrayList<ArmorStand> stands = new ArrayList<ArmorStand>();
