@@ -14,7 +14,7 @@ import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ChainSegment;
 
-public class Kettenbrecher extends Spell {
+public class KettenbrecherOld extends Spell {
 
 	
 	ArrayList<ChainSegment> segs = new ArrayList<ChainSegment>();
@@ -27,7 +27,7 @@ public class Kettenbrecher extends Spell {
 		step -= s;
 	}
 	
-	public Kettenbrecher() {
+	public KettenbrecherOld() {
 		name = "§cKettenbrecher";
 		cooldown = 20 * 45;
 		steprange = 20 * 4;

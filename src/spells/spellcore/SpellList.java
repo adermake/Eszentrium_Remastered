@@ -51,7 +51,7 @@ import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
 import spells.spells.Impulsion;
 import spells.spells.Kaminchen;
-import spells.spells.Kettenbrecher;
+import spells.spells.KettenbrecherOld;
 import spells.spells.Knochenparty;
 import spells.spells.KosmischeBindung;
 import spells.spells.Kätzchenkanone;

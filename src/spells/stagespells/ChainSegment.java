@@ -26,7 +26,7 @@ import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
-import spells.spells.Kettenbrecher;
+import spells.spells.KettenbrecherOld;
 
 public class ChainSegment extends Spell {
 
@@ -34,13 +34,13 @@ public class ChainSegment extends Spell {
 	public HashMap<Entity,Integer> sticked = new HashMap<Entity,Integer>();
 	public ArrayList<Entity> cd = new ArrayList<Entity>();
 	public Vector vel = new Vector(0,0,0);
-	Kettenbrecher kb;
+	KettenbrecherOld kb;
 	int randId = 0;
 	
 	Item chain;
 	ArmorStand a;
 	boolean crit = false;
-	public ChainSegment(Player p,String name,ChainSegment last,int i,Kettenbrecher k) {
+	public ChainSegment(Player p,String name,ChainSegment last,int i,KettenbrecherOld k) {
 		kb = k;
 		if (last == null) {
 			loc = p.getEyeLocation().add(0,-5,0);
