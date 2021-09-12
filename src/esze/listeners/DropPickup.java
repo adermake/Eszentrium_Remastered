@@ -1,6 +1,10 @@
 package esze.listeners;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -52,6 +56,18 @@ public class DropPickup implements Listener {
 			p.getInventory().setItemInMainHand(null);
 			e.setCancelled(false);
 		}
+		if (Gamestate.getGameState() == Gamestate.LOBBY && p.getLocation().distance(new Location(p.getWorld(),-2000,150,-2000))<500) {
+			
+			if (p.getInventory().getItemInMainHand().getAmount() > 1) {
+				p.getInventory().getItemInMainHand().setAmount(p.getInventory().getItemInMainHand().getAmount());
+			}
+			else {
+				p.getInventory().setItemInMainHand(null);
+			}
+			throwItem(p,e.getItemDrop().getItemStack().clone());
+			e.getItemDrop().remove();
+			e.setCancelled(false);
+		}
 		
 		
 	}
@@ -65,6 +81,95 @@ public class DropPickup implements Listener {
 	
 	/// TEAMS TOSS
 
+	public void throwItem(Player p,ItemStack is) {
+		
+		
+		
+		Item item = p.getWorld().dropItem(p.getEyeLocation(), is);
+		item.setPickupDelay(100000);
+		ScoreboardTeamUtils.colorEntity(item, ChatColor.GOLD);
+		SoundUtils.playSound(Sound.ENTITY_SNOWBALL_THROW,p.getLocation(),0.2F,1);
+		item.setGlowing(true);
+		
+		
+	
+		new BukkitRunnable() {
+			
+			
+			Vector dir = p.getLocation().getDirection();
+			int i = 0;
+			double speedMult = 3;
+			public void run() {
+				
+			
+				i++;
+				
+				
+				/*
+				speedMult-=0.05F;
+				if (speedMult <= 1.5)
+					speedMult = 1.5;
+					*/
+				SoundUtils.playSound(Sound.ENTITY_ILLUSIONER_CAST_SPELL,item.getLocation(),2,1);
+				Player target = null;
+				Player closest = null;
+				double dist = 100000;
+				for (Player pl : Bukkit.getOnlinePlayers()) {
+					
+					if (pl != p  && pl.getLocation().distance(item.getLocation())<dist) {
+						dist = pl.getLocation().distance(item.getLocation());
+						closest = pl;
+						
+					}
+					
+					if (pl != p && pl.getLocation().distance(item.getLocation())<5) {
+						
+						if (item.getLocation().distance(pl.getLocation())<4) {
+							
+							pl.getInventory().addItem(is);
+							SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,pl.getLocation(),1.2F,0.7F);
+							SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
+							item.remove();
+							this.cancel();
+							
+							return;
+						}
+						if (target == null) {
+							target = pl;
+						}
+						else {
+							if (pl.getLocation().distance(item.getLocation())< target.getLocation().distance(item.getLocation())) {
+								target = pl;
+							}
+						}
+					}
+					
+				}
+				
+			
+				if (i > 20 * 3) {
+					SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER,p.getLocation(),1.2F,0.7F);
+					p.getInventory().addItem(is);
+					item.remove();
+					this.cancel();
+				}
+				ParUtils.createRedstoneParticle(item.getLocation().add(0,0.3,0), 0.05, 0.05, 0.05, 2, Color.YELLOW, 1.3F);
+				item.setVelocity(dir.clone().multiply(speedMult));
+				if (target != null ) {
+					Vector vec = target.getLocation().toVector().subtract(item.getLocation().toVector()).normalize();
+					dir = dir.add(vec).normalize();
+				}
+				
+				
+			}
+		}.runTaskTimer(main.plugin,1,1);
+		}
+		
+		
+		
+		
+		
+		
 	
 	
 	public void throwBook(Player p,ItemStack is) {

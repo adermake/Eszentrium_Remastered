@@ -1643,6 +1643,9 @@ public abstract class Spell {
 		LivingEntity nearest = null;
 		for (LivingEntity p : c.getWorld().getLivingEntities()) {
 			
+			if (unHittable.contains(p)) {
+				continue;
+			}
 			if (p instanceof Player) {
 				Player player = (Player) p;
 				

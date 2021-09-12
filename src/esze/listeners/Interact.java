@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,7 +27,11 @@ import esze.menu.ModifierMenu;
 import esze.menu.SpellAnalyticsMenu;
 import esze.menu.TeamSelectionMenu;
 import esze.utils.MathUtils;
-
+import spells.stagespells.Table;
+import spells.stagespells.TimerSpell;
+import spells.stagespells.TimerSpellClock;
+import spells.stagespells.WheelOfFortune;
+import spells.stagespells.WheelOfFortuneWheel;
 import weapons.WeaponMenu;
 
 public class Interact implements Listener{
@@ -93,6 +99,28 @@ public class Interact implements Listener{
 		Player p = e.getPlayer();
 		
 		if (e.getAction() == Action.RIGHT_CLICK_AIR ||e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			
+			if (p.getInventory().getItemInMainHand().getType() == Material.WRITTEN_BOOK) {
+				ItemStack writtenBook = p.getInventory().getItemInMainHand();
+				BookMeta bookMeta = (BookMeta) writtenBook.getItemMeta();
+				//Bukkit.broadcastMessage(""+[0]);
+				if (bookMeta.getTitle().toLowerCase().contains("wheel")) {
+					new WheelOfFortune(p,bookMeta.getPage(1).split("\\n"));
+					e.setCancelled(true);
+				}
+				if (bookMeta.getTitle().toLowerCase().contains("timer")) {
+					
+					new TimerSpell(p,Integer.parseInt(bookMeta.getPage(1)));
+					e.setCancelled(true);
+				}
+				if (bookMeta.getTitle().toLowerCase().contains("table")) {
+					
+					new Table(p,bookMeta.getPages());
+					e.setCancelled(true);
+				}
+				
+			}
+		
 			if (p.getInventory().getItemInMainHand().getType() == Material.ARROW) {
 				e.setCancelled(true);
 			}
