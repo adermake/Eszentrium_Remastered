@@ -97,6 +97,7 @@ import spells.spells.Substitution;
 import spells.spells.Teleport;
 import spells.spells.Thermolanze;
 import spells.spells.Todessäge;
+import spells.spells.UntotePhalanx;
 import spells.spells.Vampirpilz;
 import spells.spells.Verstummen;
 import spells.spells.Vogelattacke;
@@ -264,6 +265,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Todessäge());
 		registerSpell(new Substitution());
 		registerSpell(new Seelenmarionette());
+		registerSpell(new UntotePhalanx());
 		//registerSpell(new Schicksalsschnitt());
 		//registerSpell(new Kettenbrecher());
 		//registerSpell(new ArkanesGeschütz());

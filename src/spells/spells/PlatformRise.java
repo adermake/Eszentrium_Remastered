@@ -27,7 +27,7 @@ import esze.utils.Actionbar;
 import esze.utils.ParUtils;
 import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
-import sun.awt.SunToolkit.InfiniteLoop;
+
 
 public class PlatformRise extends Spell {
 
