@@ -68,7 +68,7 @@ public class Juan extends Spell{
 		Vector a = loc.getDirection();
 		loc=juan.getLocation();
 		loc.setDirection(a);
-		if(step%15==0) {
+		if(step%25==0) {
 			new Pfeilsucher(caster, name, dave.getLocation().add(new Vector(0,2,0)));
 			playSound(Sound.ENTITY_HORSE_GALLOP,loc,0.1f,1f);
 			
@@ -87,7 +87,7 @@ public class Juan extends Spell{
 	@Override
 	public void onPlayerHit(Player p) {
 		damage(p, 3,caster);
-		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,42,100));
+		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,100));
 			}
 
 	@Override
@@ -95,7 +95,7 @@ public class Juan extends Spell{
 		// TODO Auto-generated method stub
 		
 		damage(ent, 3,caster);
-		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,42,100));
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,100));
 	}
 
 	@Override
