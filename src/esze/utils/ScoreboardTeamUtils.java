@@ -62,6 +62,7 @@ public class ScoreboardTeamUtils {
 		t.setColor(color);
 		
 	}
+	
 	public static void colorPlayer(Player e,Player p,ChatColor color) {
 		
 		Scoreboard sb = getBoard(p);

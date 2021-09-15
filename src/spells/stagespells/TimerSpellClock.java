@@ -30,7 +30,7 @@ import spells.spellcore.Spell;
 public class TimerSpellClock extends Spell {
 
 	int seconds;
-	int blockCount = 100;
+	int blockCount = 30;
 	Location ori;
 	public TimerSpellClock(Player c,int seconds,Location ori) {
 		this.ori = ori;
@@ -48,18 +48,24 @@ public class TimerSpellClock extends Spell {
 	public void setUp() {
 		loc = ori.clone();
 		// TODO Auto-generated method stub
+		double s = 0;
+		ParUtils.parKreisDot(Particles.CLOUD, loc, 6, 0, 0.02F, loc.getDirection());
+		ParUtils.parKreisDot(Particles.CLOUD, loc, 6, 0, 0.05F, loc.getDirection());
 		playGlobalSound(Sound.BLOCK_CONDUIT_ACTIVATE, 1, 1);
 		for (int i = 0;i<blockCount;i++) {
-			FallingBlock fb = spawnFallingBlock(loc, Material.SEA_PICKLE);
+			
 			//Slime fb = (Slime) spawnEntity(EntityType.SLIME,loc);
 			//fb.setRotation(0, 0);
 			//fb.setSize(1);
+			Location l = ParUtils.stepCalcCircle(loc.clone(), 6, loc.getDirection(), 0, s*(44/(double)blockCount));
 			//fb.setCollidable(false);
+			FallingBlock fb = spawnFallingBlock(l, Material.SEA_PICKLE);
 			fb.setGravity(false);
 			fb.setGlowing(true);
 			//fb.setInvisible(true);
 			blocks.add(fb);
 			ScoreboardTeamUtils.colorEntity(fb, ChatColor.GREEN);
+			s++;
 		}
 		clearswap();
 		new BukkitRunnable() {
@@ -103,10 +109,12 @@ public class TimerSpellClock extends Spell {
 		
 	}
 	int tick = 0;
+	int delay = 0;
 	@Override
 	public void move() {
-		
-		if (swap() ) {
+		delay--;
+		if (delay <= 0 && swap() ) {
+			delay = 20;
 			step = 0;
 			tick = 0;
 			for (Entity f : red) {
@@ -138,7 +146,7 @@ public class TimerSpellClock extends Spell {
 	        firework.setFireworkMeta(fd);
 	      
 	        firework.detonate();
-	        clearswap();
+	     
 		}
 		if (step % 20 == 0) {
 			tick++;
@@ -171,7 +179,7 @@ public class TimerSpellClock extends Spell {
 		double s = 0;
 		for (Entity fb : blocks) {
 			Location l = ParUtils.stepCalcCircle(loc.clone(), 6, loc.getDirection(), 0, s*(44/(double)blocks.size()));
-			doPin(fb,l,0.2F);
+			doPin(fb,l,0.1F);
 			s++;
 			fb.setTicksLived(1);
 			

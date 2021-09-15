@@ -16,6 +16,7 @@ public class TimerSpell extends Spell {
 		// TODO Auto-generated constructor stub
 		sec = seconds;
 		steprange = 200;
+	
 		castSpell(c, "§eWheel of Time");
 	}
 	

@@ -1553,7 +1553,27 @@ public abstract class Spell {
 			
 		return false;
 	}
-	
+	public boolean swap(Player p) {
+		
+		
+		
+		
+		if (EventCollector.quickSwap.contains(p)) {
+			new BukkitRunnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (EventCollector.quickSwap.contains(p)) {
+					EventCollector.quickSwap.remove(p);
+				}
+			}
+		}.runTaskLater(main.plugin, 1);
+		return true;
+		
+	}
+		
+	return false;
+}
 	public void clearswap() {
 		
 		
@@ -1562,7 +1582,14 @@ public abstract class Spell {
 		}
 		
 	}
-
+	public void clearswap(Player p) {
+		
+		
+		if (EventCollector.quickSwap.contains(p)) {
+			EventCollector.quickSwap.remove(p);
+		}
+		
+	}
 	
 	public static Location lookAt(Location loc, Location lookat) {
 
