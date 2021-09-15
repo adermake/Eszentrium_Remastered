@@ -31,6 +31,8 @@ public class Wildwuchs extends Spell {
 		cooldown = 20 * 20;
 		speed = 2;
 		hitboxSize = 3;
+		setLore("§7Beschwört eine Wurzel am anvisierten Block, die sich auf den Spieler zubewegt und Gegnern auf dem Weg Schaden zufügt. Sobald der Anwender in Kontakt mit der Wurzel kommt, reitet er auf dieser, was ihn in Blickrichtung fortbewegt und getroffene Gegner zurückwirft.§eShift: §7Bricht den Zauber ab.");
+		setBetterLore("§7Beschwört eine Wurzel am anvisierten Block, die sich auf den Spieler zubewegt und Gegnern auf dem Weg Schaden zufügt. Sobald der Anwender in Kontakt mit der Wurzel kommt, reitet er auf dieser, was ihn in Blickrichtung fortbewegt und getroffene Gegner zurückwirft.§eShift: §7Bricht den Zauber ab.§eF: §7Beschwört eine zweite Wurzel, sobald die erste endet.");
 		
 	}
 	

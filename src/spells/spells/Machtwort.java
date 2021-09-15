@@ -32,6 +32,7 @@ public class Machtwort extends Spell {
 		cooldown = 20 * 70;
 		
 		setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.");
+		setBetterLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird. Gegner werden außerdem aus dem Kreis geworfen.");
 		
 	
 		addSpellType(SpellType.AURA);

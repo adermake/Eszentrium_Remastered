@@ -30,6 +30,8 @@ public class Schweberknecht extends Spell {
 		steprange = 20 * 6;
 		name = "§6Schweberknecht";
 		cooldown = 20 * 35;
+		setLore("§7Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.");
+		setBetterLore("§7Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.");
 	}
 	Spider s;
 	boolean bounced = false;

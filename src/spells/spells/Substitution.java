@@ -32,6 +32,8 @@ public class Substitution extends Spell {
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.SELFCAST);
+		setLore("§7Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar und bewegt sich schneller.");
+		setBetterLore("§7Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar, bewegt sich schneller und hinterlässt eine Bombe, die nach kurzer Zeit explodiert und Gegnern Schaden zufügt.");
 	}
 
 	@Override

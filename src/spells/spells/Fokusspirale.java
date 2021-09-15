@@ -25,6 +25,8 @@ public class Fokusspirale extends Spell {
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
+        setLore("§7Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.§eShift: §7Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.");
+        setBetterLore("§7Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.§eShift: §7Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.");
     }
     boolean isSneaking = false;
     double damage = 1;

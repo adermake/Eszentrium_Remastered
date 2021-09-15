@@ -30,6 +30,8 @@ public class Dimensionsschnitt extends Spell {
 		addSpellType(SpellType.MOBILITY);
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.KNOCKBACK);
+		setLore("§7Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert. §eShift: §7Bricht den Sprung ab.");
+	    setBetterLore("§7Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert. §eShift: §7Bricht den Sprung ab.");
 	}
 	
 	@Override

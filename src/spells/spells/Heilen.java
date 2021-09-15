@@ -33,6 +33,8 @@ public class Heilen extends Spell{
 		hitBlock = true;
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.PROJECTILE);
+	    setLore("§7Schießt einen Strahl, der einen getroffenen Verbündeten heilt.");
+	    setBetterLore("§7Schießt einen Strahl, der einen getroffenen Verbündeten heilt. Wird ein Spieler getroffen, heilt sich der Anwender ebenfalls.");
 	}
 	public Heilen(int s,boolean ref) {
 		super();
@@ -48,8 +50,6 @@ public class Heilen extends Spell{
 		hitEntity = true;
 		hitPlayer = true;
 		hitBlock = true;
-		
-		
 	}
 	
 	@Override

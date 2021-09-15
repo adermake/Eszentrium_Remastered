@@ -55,6 +55,7 @@ public class Seelenmarionette extends Spell {
 		hitBlock = false;
 		hitPlayer = false;
 		steprange = 20 * 10;
+		setLore("§7Die Seele des Spielers verlässt seinen Körper, was ihn fliegen lässt und unverwundbar macht. Der Körper bleibt hierbei zurück und kann weiterhin angegriffen werden, was dem Spieler auch schadet. §eF: §7Beendet den Zauber.");
 	}
 	
 	double radius = 30;

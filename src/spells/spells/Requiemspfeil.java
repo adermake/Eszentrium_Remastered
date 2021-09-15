@@ -36,7 +36,8 @@ public class Requiemspfeil extends Spell {
 		addSpellType(SpellType.DAMAGE);
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.PROJECTILE);
-		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.# #§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
+		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
+        setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
 
 	}
 

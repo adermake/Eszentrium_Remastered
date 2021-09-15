@@ -33,6 +33,8 @@ public class Wassergeysir extends Spell {
 		hitboxSize = scale;
 		canHitSelf = true;
 		multihit =true;
+		setLore("§7Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler hochwirft und allen Gegnern Schaden zufügt.");
+		setBetterLore("§7Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler zum Anwender wirft und allen Gegnern Schaden zufügt.");
 	}
 	
 	Location over; 

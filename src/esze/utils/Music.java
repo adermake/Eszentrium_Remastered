@@ -45,6 +45,7 @@ public class Music implements Listener {
 		try{
 			
 		File[] files = new File(main.plugin.getDataFolder().getAbsolutePath() + "/music/").listFiles();
+		Bukkit.broadcastMessage(""+files.length);
 		File file = (File) getRandom(files);
 		Song s = NBSDecoder.parse(file);
 		sp = new RadioSongPlayer(s);

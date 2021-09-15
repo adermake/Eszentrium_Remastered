@@ -30,6 +30,8 @@ public class Himmelsläufer extends Spell {
 		cooldown = 20* 30;
 		addSpellType(SpellType.SELFCAST);
 		addSpellType(SpellType.MOBILITY);
+		setLore("§7Der Spieler kreiiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann.§eF: §7Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.");
+		setBetterLore("§7Der Spieler kreiiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann und erhöht zusätzlich seine Geschwindigkeit und Sprungkraft.§eF: §7Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.");
 		silencable = true;
 	}
 	

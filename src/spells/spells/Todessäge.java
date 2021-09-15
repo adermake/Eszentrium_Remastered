@@ -25,6 +25,8 @@ public class Todessäge extends Spell {
 		addSpellType(SpellType.MULTIHIT);
 		addSpellType(SpellType.SUPPORT);
 		addSpellType(SpellType.PROJECTILE);
+		setLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
+	    setBetterLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
 		autocancel = true;
 	}
 	
