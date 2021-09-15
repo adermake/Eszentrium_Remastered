@@ -54,7 +54,7 @@ public class SchwerterausLicht extends Spell {
 			return;
 		}
 		*/
-		Entity t = pointEntity(caster);
+		Entity t = pointRealEntity(caster);
 		
 		if (t != null) {
 			
@@ -99,18 +99,18 @@ public class SchwerterausLicht extends Spell {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		/*
+
 		if (caster.isSneaking()) {
-			speed =1F;
+			speed = 2F;
 			for (SchwertausLicht sw : lightsword) {
 				sw.rotate(caster.getLocation().getDirection());
 			}
 			
 		}
 		else {
-			speed =10F;
+			speed = 4F;
 		}
-		*/
+
 	}
 
 	@Override

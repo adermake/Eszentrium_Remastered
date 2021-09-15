@@ -245,7 +245,6 @@ public class EventCollector implements Listener {
 	@EventHandler
 	public void plsDontLeave(PlayerToggleSneakEvent e) {
 		if (e.getPlayer().getVehicle() != null) {
-			Bukkit.broadcastMessage("STAY");
 			e.setCancelled(true);
 		}
 		

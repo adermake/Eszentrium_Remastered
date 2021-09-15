@@ -95,7 +95,7 @@ public class Wurmloch extends Spell {
 		ParUtils.createRedstoneParticle(p.getLocation(), 0, 0, 0, 1, Color.PURPLE, 15);
 		p.teleport(wormToLoc);	
 		if (refined) {
-			heal(p,10,caster);
+			healAll(p,10,caster);
 			ParUtils.createParticle(Particles.HEART, p.getEyeLocation(), 1, 1, 1, 5, 1);
 		}
 		ParUtils.createRedstoneParticle(p.getLocation(), 0, 0, 0, 1, Color.PURPLE, 15);

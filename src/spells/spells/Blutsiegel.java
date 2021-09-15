@@ -23,8 +23,8 @@ public class Blutsiegel extends Spell {
 	public static ArrayList<Blutsiegel> blutsiegel = new ArrayList<Blutsiegel>();
 	
 	public Blutsiegel() {
-		name = "§cBlutsiegel";
-		cooldown = 20*45;
+		name = "ï¿½cBlutsiegel";
+		cooldown = 20*40;
 		steprange = 20 * 8;
 		hitboxSize = rad;
 		hitPlayer = true;
@@ -32,7 +32,7 @@ public class Blutsiegel extends Spell {
 		addSpellType(SpellType.AURA);
 		addSpellType(SpellType.SUPPORT);
 		
-		setLore("§7Beschwört ein Pentagramm auf dem Boden#§7in Blickrichtung. Gegner, die sich auf dem#§7Pentagramm befinden, erhalten einmalig#§7Schaden.Außerdem wird der Anwender um den#§7Schaden geheilt, den ein Gegner in diesem Feld#§7erleidet.");
+		setLore("ï¿½7Beschwï¿½rt ein Pentagramm auf dem Boden#ï¿½7in Blickrichtung. Gegner, die sich auf dem#ï¿½7Pentagramm befinden, erhalten einmalig#ï¿½7Schaden.Auï¿½erdem wird der Anwender um den#ï¿½7Schaden geheilt, den ein Gegner in diesem Feld#ï¿½7erleidet.");
 	}
 	@Override
 	public void setUp() {

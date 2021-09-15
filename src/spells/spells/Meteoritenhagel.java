@@ -53,7 +53,6 @@ public class Meteoritenhagel extends Spell {
 			while (hBlock.getBlock().getType() == Material.AIR) {
 				hBlock.add(0, -1, 0);
 				if (hBlock.getY() < 10) {
-					Bukkit.broadcastMessage("§c[Error] Logic doesnt seem to apply in this universe");
 					break;
 
 				}

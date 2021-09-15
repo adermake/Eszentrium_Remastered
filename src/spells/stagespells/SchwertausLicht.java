@@ -172,7 +172,7 @@ public class SchwertausLicht extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		dead =true;
+		dead = true;
 	}
 
 	@Override

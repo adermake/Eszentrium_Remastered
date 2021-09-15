@@ -157,7 +157,9 @@ public class Bienenschwarm extends Spell {
 					for (Bee b : bees) {
 						Vector v = e.getEyeLocation().toVector().subtract(b.getLocation().toVector()).normalize();
 						ParUtils.parLine(Particles.CRIT, b.getLocation(), b.getLocation().add(v.multiply(5)), 0, 0, 0, 1, 0.01F, 0.2F);
-						damage(e, 5,caster);
+						if(e!=caster) {
+						    damage(e, 5,caster);
+						}
 						playSound(Sound.ENTITY_BEE_STING,loc,1f,2f);
 						b.remove();
 					}

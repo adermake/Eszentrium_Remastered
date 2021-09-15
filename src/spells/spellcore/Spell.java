@@ -834,6 +834,20 @@ public abstract class Spell {
 		
 	}
 	
+	   public void healAll(LivingEntity ent, double damage,Player healer) {
+	        
+	        double newhealth = ent.getHealth()+damage;
+	        
+	        if (ent.getMaxHealth()<newhealth) {
+	            ent.setHealth(ent.getMaxHealth());
+	        }
+	        else {
+	            ent.setHealth(newhealth);
+	        }
+	        
+	        
+	    }
+	
 	public boolean isSpellType(SpellType st) {
 		return spellTypes.contains(st); 
 	}
