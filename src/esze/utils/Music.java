@@ -45,7 +45,6 @@ public class Music implements Listener {
 		try{
 			
 		File[] files = new File(main.plugin.getDataFolder().getAbsolutePath() + "/music/").listFiles();
-		Bukkit.broadcastMessage(""+files.length);
 		File file = (File) getRandom(files);
 		Song s = NBSDecoder.parse(file);
 		sp = new RadioSongPlayer(s);
@@ -93,14 +92,14 @@ public class Music implements Listener {
 		PlayerConfig.getConfig(p).setMusic(music);;
 		
 		if (!music) {
-			p.sendMessage("§aMusik ist aus");
+			p.sendMessage("ï¿½aMusik ist aus");
 			for (Player f : Bukkit.getOnlinePlayers()) {
 				if (f.getName().equals("Fabiocean") && p!= f) {
-					f.sendMessage("§7"+p.getName() +" hat deine Musik ausgemacht!");
+					f.sendMessage("ï¿½7"+p.getName() +" hat deine Musik ausgemacht!");
 				}
 			}
 		}else {
-			p.sendMessage("§aMusik ist an");
+			p.sendMessage("ï¿½aMusik ist an");
 		}
 		
 		PlayerConfig.getConfig(p).save();
