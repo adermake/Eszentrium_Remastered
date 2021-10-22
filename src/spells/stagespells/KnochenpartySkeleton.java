@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.spells.Knochenparty;
@@ -164,7 +164,7 @@ public class KnochenpartySkeleton extends Spell {
 		p.setVelocity(v.multiply(2).add(new Vector(0,0.4,0)));
 		damage(p,2,caster);
 				
-		ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 3, 1);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 3, 1);
 		playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,1);
 		
 		}
@@ -181,7 +181,7 @@ public class KnochenpartySkeleton extends Spell {
 			ent.setVelocity(v.multiply(2).add(new Vector(0,0.4,0)));
 			damage(ent,2,caster);
 					
-			ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 3, 1);
+			ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 3, 1);
 			playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,1);
 			
 			}
@@ -207,7 +207,7 @@ public class KnochenpartySkeleton extends Spell {
 		
 		if (ent != null) {
 			playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,10);
-			ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
+			ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
 			ent.remove();
 		}
 			

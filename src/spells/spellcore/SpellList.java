@@ -51,6 +51,7 @@ import spells.spells.Höllenhast;
 import spells.spells.Hühnchenluftschlag;
 import spells.spells.Impulsion;
 import spells.spells.Kaminchen;
+import spells.spells.Kettenbrecher;
 import spells.spells.KettenbrecherOld;
 import spells.spells.Knochenparty;
 import spells.spells.KosmischeBindung;
@@ -267,7 +268,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new Seelenmarionette());
 		registerSpell(new UntotePhalanx());
 		//registerSpell(new Schicksalsschnitt());
-		//registerSpell(new Kettenbrecher());
+		registerSpell(new Kettenbrecher());
 		//registerSpell(new ArkanesGeschütz());
 		//registerSpell(new Springkraut());
 	}

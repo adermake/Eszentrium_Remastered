@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Repulsion;
@@ -46,9 +46,9 @@ public class Schockwelle extends Spell {
 			dead = true;
 		}
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
-		//ParUtils.createParticle(Particles.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
-		//ParUtils.createParticle(Particles.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
+		//ParUtils.createParticle(Particle.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
+		//ParUtils.createParticle(Particle.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
 		SoundUtils.playSound(Sound.ENTITY_WITHER_AMBIENT, loc,0.3F,30F);
 		noTargetEntitys.add(target);
 	}
@@ -56,7 +56,7 @@ public class Schockwelle extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		ParUtils.chargeDot(target.getLocation(), Particles.END_ROD, 0.2F, 10, 10);
+		ParUtils.chargeDot(target.getLocation(), Particle.END_ROD, 0.2F, 10, 10);
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class Schockwelle extends Spell {
 			// ParticleEffect.FIREWORKS_SPARK.display(loc,0,0,0,0,1);
 
 			
-			ParUtils.createParticle(Particles.CLOUD, loc.clone().add(0,1,0), 0, 1, 0, 0,1);
-			ParUtils.createParticle(Particles.FLASH, loc.clone().add(0,1,0), 1, 2,1, 1, 0);
+			ParUtils.createParticle(Particle.CLOUD, loc.clone().add(0,1,0), 0, 1, 0, 0,1);
+			ParUtils.createParticle(Particle.FLASH, loc.clone().add(0,1,0), 1, 2,1, 1, 0);
 			
 			collideWithEntity();
 			collideWithPlayer();

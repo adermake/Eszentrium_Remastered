@@ -11,7 +11,7 @@ import org.bukkit.util.Vector;
 import com.mojang.datafixers.types.templates.Tag;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.DimensionCutSeg;
@@ -62,7 +62,7 @@ public class Dimensionsschnitt extends Spell {
 			Vector v = l.toVector().subtract(loc.toVector());
 			
 			//ParUtils.debug(loc.clone());
-			ParUtils.createFlyingParticle(Particles.END_ROD, l, 0, 0, 0, 1, 2, v);
+			ParUtils.createFlyingParticle(Particle.END_ROD, l, 0, 0, 0, 1, 2, v);
 			
 		}
 	}
@@ -77,14 +77,14 @@ public class Dimensionsschnitt extends Spell {
 		Location top = getCieling(loc.clone(),30).add(0,-1,0);
 		
 		if (loc.distance(top)> 1.1) {
-			ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 60, 0.2);
+			ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 60, 0.2);
 		}
 		
-		ParUtils.createParticle(Particles.BARRIER, top, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.BARRIER, top, 0, 0, 0, 1, 1);
 		if (loc.distance(bot)> 1.1)
-		ParUtils.createParticle(Particles.BARRIER, bot, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.BARRIER, bot, 0, 0, 0, 1, 1);
 		
-		ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 60, 0.2);
+		ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 60, 0.2);
 		*/
 		new DimensionCutSeg(caster, loc.clone(), name, refined, true,loc.getDirection());
 		new DimensionCutSeg(caster, loc.clone(), name, refined, false,loc.getDirection());
@@ -99,7 +99,7 @@ public class Dimensionsschnitt extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.BUBBLE, loc, 0, 0, 0, 1, 0);
+		//ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0, 0, 0, 1, 0);
 	}
 
 	@Override

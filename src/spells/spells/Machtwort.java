@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -67,7 +67,7 @@ public class Machtwort extends Spell {
 		// TODO Auto-generated method stub
 		if (step % 60 == 0 && refined) {
 			new Repulsion(4, 2, caster, loc, name);
-			ParUtils.parKreisDot(Particles.TOTEM_OF_UNDYING, loc,1, 1, 1, new Vector(0,1,0));
+			ParUtils.parKreisDot(Particle.TOTEM, loc,1, 1, 1, new Vector(0,1,0));
 		}
 	}
 
@@ -82,8 +82,8 @@ public class Machtwort extends Spell {
 		
 		for (int i = 0;i<2;i++) {
 			Location l = ParUtils.stepCalcCircle(loc, 4, new Vector(0,1,0), 0, step +22*i);
-			ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
-			ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l, 0, 0, 0, 1, 1, new Vector(0,0.7F,0));
+			ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
+			ParUtils.createFlyingParticle(Particle.TOTEM, l, 0, 0, 0, 1, 1, new Vector(0,0.7F,0));
 
 			ParUtils.createRedstoneParticle(l, 0.3F, 0.3F, 0.3F, 4, Color.GREEN, 1);
 		}
@@ -93,7 +93,7 @@ public class Machtwort extends Spell {
 	@Override
 	public void onPlayerHit(Player p) {
 		//p.damage(0.5F);
-		ParUtils.createParticle(Particles.ENCHANT, p.getLocation().add(0,-1,0), 1, 0, 1, 8, 1);
+		ParUtils.createParticle(Particle.ENCHANTMENT_TABLE, p.getLocation().add(0,-1,0), 1, 0, 1, 8, 1);
 		// TODO Auto-generated method stub
 		tickCooldown(15,p);
 		

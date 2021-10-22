@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -113,7 +113,7 @@ public class Spike extends Spell {
 		
 		// TODO Auto-generated method stub
 		//ParUtils.createFlyingParticle(Particle.BUBBLE_POP, loc,0, 0, 0, 1, 2, loc.getDirection().multiply(-1));
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 3, 0);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 3, 0);
 		
 	}
 

@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -97,10 +97,10 @@ public class Himmelsläufer extends Spell {
 		blocks.add(l1.getBlock().getLocation());
 		caster.sendBlockChange(l1,Material.BARRIER, (byte)0);
 		
-		//ParUtils.parCubeEdgeFly(Particles.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 1, 1, 0.1F);
-		ParUtils.parCube(Particles.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5),1, 5);
+		//ParUtils.parCubeEdgeFly(Particle.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 1, 1, 0.1F);
+		ParUtils.parCube(Particle.END_ROD, l1.getBlock().getLocation().add(0.5,0.5,0.5),1, 5);
 		if (refined) {
-			ParUtils.createParticle(Particles.CLOUD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 0.1, 0.1, 0.1, 10, 0);
+			ParUtils.createParticle(Particle.CLOUD, l1.getBlock().getLocation().add(0.5,0.5,0.5), 0.1, 0.1, 0.1, 10, 0);
 		}
 		
 	}

@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -86,7 +86,7 @@ public class Heilen extends Spell{
 
 	@Override
 	public void move() {
-		ParUtils.createParticle(Particles.HAPPY_VILLAGER, loc, 0, 0, 0, 1,0);
+		ParUtils.createParticle(Particle.VILLAGER_HAPPY, loc, 0, 0, 0, 1,0);
 		loc.add(loc.getDirection().multiply(0.4));
 		
 	}
@@ -140,7 +140,7 @@ public class Heilen extends Spell{
 		// TODO Auto-generated method stub
 		if (refined) {
 			heal(caster,1,caster);
-			ParUtils.parKreisDirSolid(Particles.TOTEM_OF_UNDYING, loc, 1, 0, 3, loc.getDirection(), loc.getDirection().multiply(-2));
+			ParUtils.parKreisDirSolid(Particle.TOTEM, loc, 1, 0, 3, loc.getDirection(), loc.getDirection().multiply(-2));
 		}
 	}
 	

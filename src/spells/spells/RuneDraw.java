@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class RuneDraw extends Spell {
@@ -79,7 +79,7 @@ public class RuneDraw extends Spell {
 		shapedetector();
 		for (Vector vec : offsets) {
 			
-			ParUtils.createParticle(Particles.BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);
+			ParUtils.createParticle(Particle.WATER_BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);
 			
 			
 			

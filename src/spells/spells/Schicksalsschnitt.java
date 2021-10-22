@@ -12,7 +12,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -61,7 +61,7 @@ public class Schicksalsschnitt extends Spell {
 			return;
 		Location locTp = target.getLocation();
 		locTp.setDirection(caster.getLocation().getDirection());
-		ParUtils.createFlyingParticle(Particles.CLOUD, caster.getLocation(), 0.1, 0.4, 0.1, 30, 2, locTp.toVector().subtract(caster.getLocation().toVector()).normalize());
+		ParUtils.createFlyingParticle(Particle.CLOUD, caster.getLocation(), 0.1, 0.4, 0.1, 30, 2, locTp.toVector().subtract(caster.getLocation().toVector()).normalize());
 		caster.teleport(locTp);
 		//PlayerUtils.hidePlayer(caster,80);
 	}
@@ -148,7 +148,7 @@ public class Schicksalsschnitt extends Spell {
 			Vector v = new Vector(randInt(-10,10)/6,randInt(-10,10)/6,randInt(-10,10)/6);
 			rot.setDirection(v);
 			//parKreisCut(l,p,randInt(2,4),0,rot);
-			ParUtils.parKreisDot(Particles.CRIT, l, randInt(2,4), 0, 1, rot.getDirection());
+			ParUtils.parKreisDot(Particle.CRIT, l, randInt(2,4), 0, 1, rot.getDirection());
 		}
 		
 	}

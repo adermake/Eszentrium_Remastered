@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -62,7 +62,7 @@ public class Sternentor extends Spell {
 		if (loc.getY() < 60) {
 			loc.setY(60);
 		}
-		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 3, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 3, 1);
 		playSound(Sound.BLOCK_END_PORTAL_SPAWN,loc,2,5);
 		if (refined) {
 			rad = 6;
@@ -108,7 +108,7 @@ public class Sternentor extends Spell {
 		// TODO Auto-generated method stub
 		for (int i = 0;i<3;i++) {
 			Location l = ParUtils.stepCalcCircle(loc, rad, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
-			//ParUtils.createParticle(Particles.FISHING, l, 0, 0, 0, 1, 0);
+			//ParUtils.createParticle(Particle.FISHING, l, 0, 0, 0, 1, 0);
 			float f = 1F;
 			if (step > setuptime) {
 				f = 2F;
@@ -124,14 +124,14 @@ public class Sternentor extends Spell {
 			
 		}
 		if (caster.isSneaking()) {
-			ParUtils.createFlyingParticle(Particles.END_ROD, loc, 0.1, 0.1, 0.1, 1, 2,dirvec.clone().multiply(-1));
+			ParUtils.createFlyingParticle(Particle.END_ROD, loc, 0.1, 0.1, 0.1, 1, 2,dirvec.clone().multiply(-1));
 		}
 		else {
-			ParUtils.createFlyingParticle(Particles.END_ROD, loc, 0.1, 0.1, 0.1, 1, 2,dirvec);
+			ParUtils.createFlyingParticle(Particle.END_ROD, loc, 0.1, 0.1, 0.1, 1, 2,dirvec);
 		}
 		if (step == setuptime && !refined) {
 			playSound(Sound.BLOCK_BEACON_ACTIVATE,loc,2,5);
-			ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 3, 1);
+			ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 3, 1);
 		}
 		
 		
@@ -147,7 +147,7 @@ public class Sternentor extends Spell {
 			tagPlayer(p);
 		}
 		playSound(Sound.ENTITY_BLAZE_SHOOT,loc,0.3F,5);
-		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 3, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 3, 1);
 		// TODO Auto-generated method stub
 		if (caster.isSneaking()) {
 			Vector d = dirvec.clone().multiply(-5);
@@ -168,7 +168,7 @@ public class Sternentor extends Spell {
 
 	@Override
 	public void onEntityHit(LivingEntity ent) {
-		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 3, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 3, 1);
 		// TODO Auto-generated method stub
 		if (caster.isSneaking()) {
 			ent.setVelocity(dirvec.clone().multiply(-5));

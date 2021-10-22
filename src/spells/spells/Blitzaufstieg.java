@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -57,7 +57,7 @@ public class Blitzaufstieg extends Spell {
 		else {
 			loc = l.clone();
 			if (!dead) {
-				ParUtils.parKreisDot(Particles.CLOUD,loc, 3, 0, 0.1, new Vector(0,1,0));
+				ParUtils.parKreisDot(Particle.CLOUD,loc, 3, 0, 0.1, new Vector(0,1,0));
 				SoundUtils.playSound(Sound.BLOCK_CONDUIT_ACTIVATE, loc, 1, 40);
 			}
 			
@@ -67,9 +67,9 @@ public class Blitzaufstieg extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		//ParUtils.chargeDot(loc, Particles.CLOUD, 1, 5);
+		//ParUtils.chargeDot(loc, Particle.CLOUD, 1, 5);
 		if (!dead)
-		ParUtils.chargeDot(loc, Particles.END_ROD, 0.2, 5,10);
+		ParUtils.chargeDot(loc, Particle.END_ROD, 0.2, 5,10);
 		
 	}
 
@@ -80,13 +80,13 @@ public class Blitzaufstieg extends Spell {
 		
 		// TODO Auto-generated method stub
 		loc.add(0,1,0);
-		ParUtils.createParticle(Particles.FLASH, loc, 3, 3, 3, 10, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 3, 3, 3, 10, 1);
 		float speed = 3;
-		ParUtils.parKreisDot(Particles.CLOUD,loc, 3, 0, -0.5, new Vector(0,1,0));
-		ParUtils.parKreisDir(Particles.CLOUD,loc, 3, 0, 2*speed, new Vector(0,1,0), new Vector(0,1,0));
-		ParUtils.parKreisDir(Particles.CLOUD,loc, 5, 0, 1.5*speed, new Vector(0,1,0), new Vector(0,1,0));
-		ParUtils.parKreisDir(Particles.CLOUD,loc, 7, 0, 1*speed, new Vector(0,1,0), new Vector(0,1,0));
-		ParUtils.parKreisDir(Particles.CLOUD,loc, 9, 0, 0.5*speed, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDot(Particle.CLOUD,loc, 3, 0, -0.5, new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.CLOUD,loc, 3, 0, 2*speed, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.CLOUD,loc, 5, 0, 1.5*speed, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.CLOUD,loc, 7, 0, 1*speed, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.CLOUD,loc, 9, 0, 0.5*speed, new Vector(0,1,0), new Vector(0,1,0));
 		loc.getWorld().strikeLightningEffect(loc);
 		loc.getWorld().strikeLightningEffect(loc);
 		loc.getWorld().strikeLightningEffect(loc);

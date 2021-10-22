@@ -1,12 +1,11 @@
 package spells.spells;
 
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ArchonRing;
@@ -31,7 +30,7 @@ public class ArchonAura extends Spell {
 	ArchonRing ar;
 	@Override
 	public void setUp() {
-		ParticleType pt = Particles.BUBBLE;
+		Particle pt = Particle.WATER_BUBBLE;
 		ar = new ArchonRing(name, caster, caster.getLocation(), 1.3,1,pt);
 		new ArchonRing(name, caster, caster.getLocation(), 1,0.5F,pt);
 		new ArchonRing(name, caster, caster.getLocation(), 1,1,pt);
@@ -73,7 +72,7 @@ public class ArchonAura extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.03F, 0.03F, 0.03F, 2, 0F);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.03F, 0.03F, 0.03F, 2, 0F);
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class ArchonAura extends Spell {
 		// TODO Auto-generated method stub
 		damage(p, 1, caster);
 		doKnockback(p, caster.getLocation(), 1);
-		ParUtils.createParticle(Particles.FIREWORK, p.getLocation(), 0, 0, 0, 5, 1);
+		ParUtils.createParticle(Particle.FIREWORKS_SPARK, p.getLocation(), 0, 0, 0, 5, 1);
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class ArchonAura extends Spell {
 		// TODO Auto-generated method stub
 		damage(ent, 1, caster);
 		doKnockback(ent, caster.getLocation(), 1);
-		ParUtils.createParticle(Particles.FIREWORK, ent.getLocation(), 0, 0, 0, 5, 1);
+		ParUtils.createParticle(Particle.FIREWORKS_SPARK, ent.getLocation(), 0, 0, 0, 5, 1);
 	}
 
 	@Override

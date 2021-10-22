@@ -6,9 +6,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R3.util.CraftMagicNumbers;
+import org.bukkit.Particle;
+import org.bukkit.Particle.DustOptions;
+import org.bukkit.Particle.DustTransition;
+import org.bukkit.Vibration;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -19,108 +23,42 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import io.netty.util.internal.ThreadLocalRandom;
-import net.minecraft.server.v1_16_R3.Block;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.ParticleParamBlock;
-import net.minecraft.server.v1_16_R3.ParticleParamItem;
-import net.minecraft.server.v1_16_R3.ParticleParamRedstone;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
-import net.minecraft.server.v1_16_R3.WorldServer;
 
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.server.level.WorldServer;
+import net.minecraft.world.level.block.Block;
 
 public class ParUtils {
 
 	public static void debug(Location loc) {
-		createParticle(Particles.BARRIER, loc, 0, 0, 0, 1, 0);
+		createParticle(Particle.BARRIER, loc, 0, 0, 0, 1, 0);
 	}
 
 	public static void createRedstoneParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			Color color, float size,Player p) {
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
+			Color color, float size, Player p) {
 		
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-			nmsWorld.a(ep,
-					new ParticleParamRedstone(color.getRed() / 255.0F, color.getGreen() / 255.0F,
-							color.getBlue() / 255.0F, size),
-					true, loc.getX(), loc.getY(), loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
-		
+		DustOptions dustOptions = new DustOptions(color, size);
+		p.spawnParticle(Particle.REDSTONE, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
+
 	}
-	
+
 	public static void createRedstoneParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
 			Color color, float size) {
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-			nmsWorld.a(ep,
-					new ParticleParamRedstone(color.getRed() / 255.0F, color.getGreen() / 255.0F,
-							color.getBlue() / 255.0F, size),
-					true, loc.getX(), loc.getY(), loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
-		}
-	}
-
-	public static void createBlockcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			Material m) {
-		Block c = CraftMagicNumbers.getBlock(m);
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-
-			nmsWorld.a(ep, new ParticleParamBlock(Particles.BLOCK, c.getBlockData()), true, loc.getX(), loc.getY(),
-					loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
-		}
-	}
-
-	public static void createBlockfallParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			Block b) {
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-
-			nmsWorld.a(ep, new ParticleParamBlock(Particles.FALLING_DUST, b.getBlockData()), true, loc.getX(), loc.getY(),
-					loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
-		}
-	}
-
-	public static void createItemcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			net.minecraft.server.v1_16_R3.Item i) {
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-
-			nmsWorld.a(ep, new ParticleParamItem(Particles.ITEM, new net.minecraft.server.v1_16_R3.ItemStack(i)), true,
-					loc.getX(), loc.getY(), loc.getZ(), count, spreadX, spreadY, spreadZ, 0);
-		}
-	}
-
-	public static void createParticle(ParticleType par, Location loc, double spreadX, double spreadY, double spreadZ,
-			int count, double speed) {
-
-		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			EntityPlayer ep = ((CraftPlayer) p).getHandle();
-			nmsWorld.a(ep, new ParticleParamNormal(par), true, loc.getX(), loc.getY(), loc.getZ(),
-					count, spreadX, spreadY, spreadZ, speed);
-		}
-		// a(EntityPlayer target, ParticleParam particle, boolean longDistance, double
-		// x, double y, double z, int count, double offsetX, double offsetY, double
-		// offsetZ, double speed)
-	}
-
-	public static void createParticleSqareHorizontal(ParticleType par, Location loc,double size) {
 		
-		ParUtils.createParticle(par, loc.add(size,0,0), 0, 0, size-0.1, 5, 0);
-		ParUtils.createParticle(par, loc.add(0,0,0), 0, 0, size-0.1, 5, 0);
-		ParUtils.createParticle(par, loc.add(0,0,size), size-0.1, 0, 0, 5, 0);
-		ParUtils.createParticle(par, loc.add(0,0,0), size-0.1, 0, 0, 5, 0);
+		for (Player p : Bukkit.getOnlinePlayers()) {
 		
+			DustOptions dustOptions = new DustOptions(color, size);
+			p.spawnParticle(Particle.REDSTONE, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
+		}
 	}
-	public static void createFlyingParticle(ParticleType par, Location loc, double spreadX, double spreadY, double spreadZ,
-			int count, double speed, Vector v) {
 
-		for (int i = 0; i < count; i++) {
-			WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-			for (Player p : Bukkit.getOnlinePlayers()) {
+	public static void createSpellMobParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
+			int r,int b,int g) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			double red = r / 255D;
+			double green = b / 255D;
+			double blue = g / 255D;
+			for ( int i = 0;i< count;i++) {
 				Location loctmp = loc.clone();
 				double randX = 0;
 				double randY = 0;
@@ -132,10 +70,124 @@ public class ParUtils {
 				if (spreadZ != 0)
 					randZ = ThreadLocalRandom.current().nextDouble(-spreadZ, spreadZ);
 				loctmp.add(randX, randY, randZ);
-				EntityPlayer ep = ((CraftPlayer) p).getHandle();
-				nmsWorld.a(ep, new ParticleParamNormal(par), true, loctmp.getX(), loctmp.getY(),
-						loctmp.getZ(), 0, v.getX(), v.getY(), v.getZ(), speed);
+				p.spawnParticle(Particle.SPELL_MOB, loctmp, 0, red, green, blue, 1);
 			}
+			
+		}
+		
+
+	}
+	
+	public static void createNoteParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
+			double noteID) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+
+			for ( int i = 0;i< count;i++) {
+				Location loctmp = loc.clone();
+				double randX = 0;
+				double randY = 0;
+				double randZ = 0;
+				if (spreadX != 0)
+					randX = ThreadLocalRandom.current().nextDouble(-spreadX, spreadX);
+				if (spreadY != 0)
+					randY = ThreadLocalRandom.current().nextDouble(-spreadY, spreadY);
+				if (spreadZ != 0)
+					randZ = ThreadLocalRandom.current().nextDouble(-spreadZ, spreadZ);
+				loctmp.add(randX, randY, randZ);
+				p.spawnParticle(Particle.NOTE, loctmp, 0, noteID/24D, 0, 0, 1);
+			}
+			
+		}
+		
+
+	}
+	public static void createDustTransition(Location loc, double spreadX, double spreadY, double spreadZ, int count,
+			Color from,Color to,float size) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			DustTransition dustTransition = new DustTransition(from, to, size);	
+			p.spawnParticle(Particle.DUST_COLOR_TRANSITION, loc, count,spreadX,spreadY,spreadZ,0, dustTransition);
+		}
+	}
+	public static void createVibration(Location loc,Location to, double spreadX, double spreadY, double spreadZ, int count,
+			int ticks) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			Vibration vibration = new Vibration(loc,new Vibration.Destination.BlockDestination(to.getBlock()), ticks);
+			p.spawnParticle(Particle.VIBRATION, loc, count,spreadX,spreadY,spreadZ,0, vibration);
+		}
+	}
+	public static void createVibration(Location loc,Entity to, double spreadX, double spreadY, double spreadZ, int count,
+			int ticks) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			Vibration vibration = new Vibration(loc,new Vibration.Destination.EntityDestination(to), ticks);
+			p.spawnParticle(Particle.VIBRATION, loc, count,spreadX,spreadY,spreadZ,0, vibration);
+		}
+	}
+	public static void createBlockcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
+			Material m) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			BlockData fallingDustData = m.createBlockData();
+			p.spawnParticle(Particle.BLOCK_CRACK, loc, count,spreadX,spreadY,spreadZ,0, fallingDustData);
+		}
+		
+
+	}
+	public static void createItemcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
+			Material m) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			ItemStack itemCrackData = new ItemStack(Material.STONE);
+			p.spawnParticle(Particle.ITEM_CRACK, loc, count,spreadX,spreadY,spreadZ,0, itemCrackData);
+		}
+		
+
+	}
+	
+
+
+	public static void createParticle(Particle par, Location loc, double spreadX, double spreadY, double spreadZ,
+			int count, double speed) {
+
+		WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			/*
+			 * PRE 1.17 EntityPlayer ep = ((CraftPlayer) p).getHandle(); nmsWorld.a(ep, new
+			 * ParticleParamNormal(par), true, loc.getX(), loc.getY(), loc.getZ(), count,
+			 * spreadX, spreadY, spreadZ, speed);
+			 */
+			p.spawnParticle(par, loc, count, spreadX, spreadY, spreadZ, speed);
+		}
+
+		// a(EntityPlayer target, ParticleParam particle, boolean longDistance, double
+		// x, double y, double z, int count, double offsetX, double offsetY, double
+		// offsetZ, double speed)
+	}
+
+	public static void createParticleqareHorizontal(Particle par, Location loc, double size) {
+
+		ParUtils.createParticle(par, loc.add(size, 0, 0), 0, 0, size - 0.1, 5, 0);
+		ParUtils.createParticle(par, loc.add(0, 0, 0), 0, 0, size - 0.1, 5, 0);
+		ParUtils.createParticle(par, loc.add(0, 0, size), size - 0.1, 0, 0, 5, 0);
+		ParUtils.createParticle(par, loc.add(0, 0, 0), size - 0.1, 0, 0, 5, 0);
+
+	}
+
+	public static void createFlyingParticle(Particle par, Location loc, double spreadX, double spreadY, double spreadZ,
+			int count, double speed, Vector v) {
+
+		for (int i = 0; i < count; i++) {
+			WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
+
+			Location loctmp = loc.clone();
+			double randX = 0;
+			double randY = 0;
+			double randZ = 0;
+			if (spreadX != 0)
+				randX = ThreadLocalRandom.current().nextDouble(-spreadX, spreadX);
+			if (spreadY != 0)
+				randY = ThreadLocalRandom.current().nextDouble(-spreadY, spreadY);
+			if (spreadZ != 0)
+				randZ = ThreadLocalRandom.current().nextDouble(-spreadZ, spreadZ);
+			loctmp.add(randX, randY, randZ);
+			createParticle(par,loctmp,  v.getX(), v.getY(), v.getZ(),0, speed);
 		}
 
 		// a(EntityPlayer target, ParticleParam particle, boolean longDistance, double
@@ -164,8 +216,9 @@ public class ParUtils {
 		}
 
 	}
-	
-	public static void parLineRedstone(Location l1C, Location l2C, Color color, float size, double thickness,Player p) {
+
+	public static void parLineRedstone(Location l1C, Location l2C, Color color, float size, double thickness,
+			Player p) {
 		if (thickness == 0) {
 			Bukkit.shutdown();
 		}
@@ -178,7 +231,7 @@ public class ParUtils {
 			l1.add(v);
 			// pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
 			// 0, 1);
-			createRedstoneParticle(l1, 0, 0, 0, 1, color, size,p);
+			createRedstoneParticle(l1, 0, 0, 0, 1, color, size, p);
 			if (l1.distance(l2) < 1) {
 				break;
 			}
@@ -186,6 +239,7 @@ public class ParUtils {
 		}
 
 	}
+
 	public static void parLineRedstoneSpike(Location l1C, Location l2C, Color color, double thickness) {
 		float size = 5;
 		if (thickness == 0) {
@@ -201,7 +255,7 @@ public class ParUtils {
 			// pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
 			// 0, 1);
 			createRedstoneParticle(l1, 0, 0, 0, 1, color, size);
-			size = size-0.05F;
+			size = size - 0.05F;
 			if (l1.distance(l2) < 1) {
 				break;
 			}
@@ -210,7 +264,8 @@ public class ParUtils {
 
 	}
 
-	public static void parLine(ParticleType p, Location Cl1, Location Cl2, double spreadX, double spreadY, double spreadZ,int count, double speed, double thickness) {
+	public static void parLine(Particle p, Location Cl1, Location Cl2, double spreadX, double spreadY, double spreadZ,
+			int count, double speed, double thickness) {
 		if (thickness == 0) {
 			Bukkit.shutdown();
 		}
@@ -224,7 +279,7 @@ public class ParUtils {
 			l1.add(v);
 			// pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
 			// 0, 1);
-			
+
 			if (ori.distance(l2) - l1.distance(ori) < 0) {
 				break;
 			}
@@ -232,11 +287,8 @@ public class ParUtils {
 		}
 
 	}
-	
-	
-	
-	
-	public static void parLineFly(ParticleType p, Location Cl1, Location Cl2, double speed, double thickness, Vector dir) {
+
+	public static void parLineFly(Particle p, Location Cl1, Location Cl2, double speed, double thickness, Vector dir) {
 		Location l1 = Cl1.clone();
 		Location l2 = Cl2.clone();
 		Vector v = l2.toVector().subtract(l1.toVector()).normalize();
@@ -254,68 +306,85 @@ public class ParUtils {
 		}
 
 	}
-	public static void parCube(ParticleType pt,Location l1,double size,double count) {
-		
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(-size,0,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(0,-size,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,size/2), new Vector(0,0,-size), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(size,0,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(0,size,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,-size/2,-size/2), new Vector(0,0,size), count);
-		
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,-size/2,size/2), new Vector(-size,0,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,-size/2,size/2), new Vector(0,0,-size), count);
-		
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,-size/2), new Vector(size,0,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,-size/2), new Vector(0,0,size), count);
-		
-		ParUtils.parVectorLine(pt, l1.clone().add(size/2,size/2,-size/2), new Vector(0,-size,0), count);
-		ParUtils.parVectorLine(pt, l1.clone().add(-size/2,size/2,size/2), new Vector(0,-size,0), count);
-		
+
+	public static void parCube(Particle pt, Location l1, double size, double count) {
+
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, size / 2, size / 2), new Vector(-size, 0, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, size / 2, size / 2), new Vector(0, -size, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, size / 2, size / 2), new Vector(0, 0, -size), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), new Vector(size, 0, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), new Vector(0, size, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), new Vector(0, 0, size), count);
+
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, -size / 2, size / 2), new Vector(-size, 0, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, -size / 2, size / 2), new Vector(0, 0, -size), count);
+
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, size / 2, -size / 2), new Vector(size, 0, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, size / 2, -size / 2), new Vector(0, 0, size), count);
+
+		ParUtils.parVectorLine(pt, l1.clone().add(size / 2, size / 2, -size / 2), new Vector(0, -size, 0), count);
+		ParUtils.parVectorLine(pt, l1.clone().add(-size / 2, size / 2, size / 2), new Vector(0, -size, 0), count);
+
 	}
-	public static void parCubeEdgeFly(ParticleType pt,Location l1,double size,double count,double speed) {
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(-size,0,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,0,-size));
-		
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(size,0,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,size,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,0,size));
-		
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,-size/2,size/2), 0, 0, 0, 1, speed, new Vector(-size,0,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,-size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,0,-size));
-		
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(size,0,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,-size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,0,size));
-		
-		ParUtils.createFlyingParticle(pt, l1.clone().add(size/2,size/2,-size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
-		ParUtils.createFlyingParticle(pt, l1.clone().add(-size/2,size/2,size/2), 0, 0, 0, 1, speed, new Vector(0,-size,0));
-		
+
+	public static void parCubeEdgeFly(Particle pt, Location l1, double size, double count, double speed) {
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(-size, 0, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, -size, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, 0, -size));
+
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(size, 0, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, size, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, 0, size));
+
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, -size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(-size, 0, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, -size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, 0, -size));
+
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(size, 0, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, 0, size));
+
+		ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, -size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, -size, 0));
+		ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
+				new Vector(0, -size, 0));
+
 	}
-	public static void parVectorLine(ParticleType pt,Location l1,Vector vec,double split) {
-		for (double i = 0;i<split;i++) {
-			double m = i/split;
-			//Bukkit.broadcastMessage(""+m);
+
+	public static void parVectorLine(Particle pt, Location l1, Vector vec, double split) {
+		for (double i = 0; i < split; i++) {
+			double m = i / split;
+			// Bukkit.broadcastMessage(""+m);
 			createParticle(pt, l1.clone().add(vec.clone().multiply(m)), 0, 0, 0, 1, 0);
 		}
-		
+
 	}
-	
-	public static void chargeDot(Location l,ParticleType pe,double speed,int spread) {
-		Location loc = l.clone().add(randInt(-spread,spread),randInt(-spread,spread),randInt(-spread,spread));
-		
-		createParticle(pe, loc, l.getX()-loc.getX(), l.getY()-loc.getY(), l.getZ()-loc.getZ(), 0, speed);
-		
+
+	public static void chargeDot(Location l, Particle pe, double speed, int spread) {
+		Location loc = l.clone().add(randInt(-spread, spread), randInt(-spread, spread), randInt(-spread, spread));
+
+		createParticle(pe, loc, l.getX() - loc.getX(), l.getY() - loc.getY(), l.getZ() - loc.getZ(), 0, speed);
+
 	}
-	
-	public static void chargeDot(Location l,ParticleType pe,double speed,int spread,int count) {
-		
-		for (int i = 0;i<count;i++) {
+
+	public static void chargeDot(Location l, Particle pe, double speed, int spread, int count) {
+
+		for (int i = 0; i < count; i++) {
 			ParUtils.chargeDot(l.clone(), pe, speed, count);
 		}
-		
+
 	}
-	public static void parKreisDot(ParticleType pe, final Location l, double radius, double offset, double speed,Vector rotV) {
+
+	public static void parKreisDot(Particle pe, final Location l, double radius, double offset, double speed,
+			Vector rotV) {
 
 		double r = radius;
 		Location loc = l.clone();
@@ -323,7 +392,7 @@ public class ParUtils {
 
 		double ti = radius * 12;
 		if (radius < 1)
-			ti = 6; 
+			ti = 6;
 		ti = ti > 600 ? 600 : ti;
 
 		for (double t = 0; t <= ti;) {
@@ -340,9 +409,8 @@ public class ParUtils {
 			loc.add(v.getX(), v.getY(), v.getZ());
 
 			Vector ve = j.subtract(loc).toVector();
-			createParticle(pe, loc,  (float)(loc.getX() - l.clone().getX()),
-					(float)(loc.getY() - l.clone().getY()), (float)(loc.getZ() - l.clone().getZ()), 0, (float)speed);
-			
+			createParticle(pe, loc, (float) (loc.getX() - l.clone().getX()), (float) (loc.getY() - l.clone().getY()),
+					(float) (loc.getZ() - l.clone().getZ()), 0, (float) speed);
 
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
@@ -350,7 +418,8 @@ public class ParUtils {
 
 	}
 
-	public static void parKreisDir(ParticleType pe, final Location l, double radius, double offset, double speed,Vector rotV, Vector dir) {
+	public static void parKreisDir(Particle pe, final Location l, double radius, double offset, double speed,
+			Vector rotV, Vector dir) {
 
 		double r = radius;
 		Location loc = l.clone();
@@ -358,7 +427,7 @@ public class ParUtils {
 
 		double ti = radius * 6;
 		if (radius < 1)
-			ti = 6; 
+			ti = 6;
 		ti = ti > 100 ? 100 : ti;
 		ti = ti > 100 ? 100 : ti;
 
@@ -376,17 +445,17 @@ public class ParUtils {
 			loc.add(v.getX(), v.getY(), v.getZ());
 
 			Vector ve = j.subtract(loc).toVector();
-			
-			
-			createParticle(pe, loc, (float)dir.getX(),(float) dir.getY(),(float)dir.getZ(), 0, (float)speed);
+
+			createParticle(pe, loc, (float) dir.getX(), (float) dir.getY(), (float) dir.getZ(), 0, (float) speed);
 
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
 		}
 
 	}
-	
-	public static void parKreisDirSolid(ParticleType pe, final Location l, double radius, double offset, double speed,Vector rotV, Vector dir) {
+
+	public static void parKreisDirSolid(Particle pe, final Location l, double radius, double offset, double speed,
+			Vector rotV, Vector dir) {
 
 		double r = radius;
 		Location loc = l.clone();
@@ -394,7 +463,7 @@ public class ParUtils {
 
 		double ti = 100;
 		if (radius < 1)
-			ti = 6; 
+			ti = 6;
 		ti = ti > 100 ? 100 : ti;
 		ti = ti > 100 ? 100 : ti;
 
@@ -412,17 +481,17 @@ public class ParUtils {
 			loc.add(v.getX(), v.getY(), v.getZ());
 
 			Vector ve = j.subtract(loc).toVector();
-			
-			
-			createParticle(pe, loc, (float)dir.getX(),(float) dir.getY(),(float)dir.getZ(), 0, (float)speed);
+
+			createParticle(pe, loc, (float) dir.getX(), (float) dir.getY(), (float) dir.getZ(), 0, (float) speed);
 
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
 		}
 
 	}
-	
-	public static void parKreisSolidRedstone(Color color, float size,final Location l, double radius, double offset, double speed,Vector rotV) {
+
+	public static void parKreisSolidRedstone(Color color, float size, final Location l, double radius, double offset,
+			double speed, Vector rotV) {
 
 		double r = radius;
 		Location loc = l.clone();
@@ -430,7 +499,7 @@ public class ParUtils {
 
 		double ti = 100;
 		if (radius < 1)
-			ti = 6; 
+			ti = 6;
 		ti = ti > 100 ? 100 : ti;
 		ti = ti > 100 ? 100 : ti;
 
@@ -448,28 +517,28 @@ public class ParUtils {
 			loc.add(v.getX(), v.getY(), v.getZ());
 
 			Vector ve = j.subtract(loc).toVector();
-			
-			
-			//createParticle(pe, loc, (float)dir.getX(),(float) dir.getY(),(float)dir.getZ(), 0, (float)speed);
+
+			// createParticle(pe, loc, (float)dir.getX(),(float)
+			// dir.getY(),(float)dir.getZ(), 0, (float)speed);
 			createRedstoneParticle(loc, 0, 0, 0, 0, color, size);
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
 		}
 
 	}
-	public static void parKreisRedstone(Color color, float size,final Location l, double radius, double offset, double speed,double thickness,Vector rotV) {
+
+	public static void parKreisRedstone(Color color, float size, final Location l, double radius, double offset,
+			double speed, double thickness, Vector rotV) {
 
 		double r = radius;
 		Location loc = l.clone();
 		Location rot = l.clone().setDirection(rotV);
 
 		double ti = thickness;
-		
-	
 
-		for (double t = 0; t <= Math.PI*2;) {
+		for (double t = 0; t <= Math.PI * 2;) {
 
-			t = t + Math.PI /ti;
+			t = t + Math.PI / ti;
 
 			double x = r * Math.cos(t);
 			double y = offset;
@@ -481,254 +550,121 @@ public class ParUtils {
 			loc.add(v.getX(), v.getY(), v.getZ());
 
 			Vector ve = j.subtract(loc).toVector();
-			
-			
-			//createParticle(pe, loc, (float)dir.getX(),(float) dir.getY(),(float)dir.getZ(), 0, (float)speed);
+
+			// createParticle(pe, loc, (float)dir.getX(),(float)
+			// dir.getY(),(float)dir.getZ(), 0, (float)speed);
 			createRedstoneParticle(loc, 0, 0, 0, 0, color, size);
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
 		}
 
 	}
-	public static void dashParticleTo(ParticleType par,Entity p,Location l) {
+
+	public static void dashParticleTo(Particle par, Entity p, Location l) {
 		Location loc = l.clone();
-		
-		loc.add(randInt(-16,16),randInt(-16,16),randInt(-16,16));
-		
+
+		loc.add(randInt(-16, 16), randInt(-16, 16), randInt(-16, 16));
+
 		new BukkitRunnable() {
 			public void run() {
 				Vector flyTo = p.getLocation().toVector().subtract(loc.toVector()).normalize();
 				createParticle(par, loc, 0, 0, 0, 1, 0);
 				loc.add(p.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(1));
-				if (loc.distance(p.getLocation())<1) {
+				if (loc.distance(p.getLocation()) < 1) {
 					this.cancel();
 				}
 			}
 		}.runTaskTimerAsynchronously(esze.main.main.plugin, 1, 1);
 	}
-	
-	
-	
-	public static void dashParticleToRedstone(Entity p,Location l,double spread,Color c,float size) {
+
+	public static void dashParticleToRedstone(Entity p, Location l, double spread, Color c, float size) {
 		Location loc = l.clone();
 		if (spread != 0)
-		loc.add(randDouble(-spread,spread),randDouble(-spread,spread),randDouble(-spread,spread));
-		
+			loc.add(randDouble(-spread, spread), randDouble(-spread, spread), randDouble(-spread, spread));
+
 		new BukkitRunnable() {
 			public void run() {
 				Vector flyTo = p.getLocation().toVector().subtract(loc.toVector()).normalize();
-				createRedstoneParticle(loc, 0, 0, 0, 1, c,size);
+				createRedstoneParticle(loc, 0, 0, 0, 1, c, size);
 				loc.add(p.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(1));
-				if (loc.distance(p.getLocation())<1) {
+				if (loc.distance(p.getLocation()) < 1) {
 					this.cancel();
 				}
 			}
 		}.runTaskTimerAsynchronously(esze.main.main.plugin, 1, 1);
 	}
-	
-	public static void auraParticle(ParticleType par,Entity p,double speed,int time) {
+
+	public static void auraParticle(Particle par, Entity p, double speed, int time) {
 		Location loc = p.getLocation();
-		
-		loc.add(0,randInt(1,16)/16,0);
-		
+
+		loc.add(0, randInt(1, 16) / 16, 0);
+
 		new BukkitRunnable() {
 			int t = 0;
+
 			public void run() {
 				t++;
 				createParticle(par, loc, 0, 0, 0, 1, 0);
-				loc.add(randDouble(-speed, speed),randDouble(-speed, speed),randDouble(-speed, speed));
-				if (t>time)
+				loc.add(randDouble(-speed, speed), randDouble(-speed, speed), randDouble(-speed, speed));
+				if (t > time)
 					this.cancel();
 			}
 		}.runTaskTimerAsynchronously(esze.main.main.plugin, 1, 1);
 	}
-	
-	
+
 	/*
-	public static ArrayList<Location> grabBlocks(Location l,int count) {
-		ArrayList<Location> locList = new ArrayList<Location>();
-		ArrayList<Location> locSecList = new ArrayList<Location>();
-		for (BlockFace bf : BlockFace.values()) {
-			
-			if (MathUtils.randInt(1, 3) == 1) {
-				continue;
-			}
-			else {
-				Bukkit.broadcastMessage("L");
-			}
-			
-			if (count>1) {
-				locSecList = grabBlocks(l.getBlock().getRelative(bf).getLocation(),count-1);
-			}
-			else {
-				locSecList.add(l.getBlock().getRelative(bf).getLocation());
-			}
-				
-			
-			for (Location locSec : locSecList ) {
-				Bukkit.broadcastMessage(""+locSec);
-				locList.add(locSec);
-			}
-		}
-		return locList;
-	}
-	*/
-	public static ArrayList<Location> grabBlocks(Location l,int count,int radius) {
+	 * public static ArrayList<Location> grabBlocks(Location l,int count) {
+	 * ArrayList<Location> locList = new ArrayList<Location>(); ArrayList<Location>
+	 * locSecList = new ArrayList<Location>(); for (BlockFace bf :
+	 * BlockFace.values()) {
+	 * 
+	 * if (MathUtils.randInt(1, 3) == 1) { continue; } else {
+	 * Bukkit.broadcastMessage("L"); }
+	 * 
+	 * if (count>1) { locSecList =
+	 * grabBlocks(l.getBlock().getRelative(bf).getLocation(),count-1); } else {
+	 * locSecList.add(l.getBlock().getRelative(bf).getLocation()); }
+	 * 
+	 * 
+	 * for (Location locSec : locSecList ) { Bukkit.broadcastMessage(""+locSec);
+	 * locList.add(locSec); } } return locList; }
+	 */
+	public static ArrayList<Location> grabBlocks(Location l, int count, int radius) {
 		ArrayList<Location> locs = new ArrayList<Location>();
-		for (int i = count;i>0;i--) {
+		for (int i = count; i > 0; i--) {
 			Location loc = l.clone();
-			loc.add(MathUtils.randInt(-radius,radius),0,MathUtils.randInt(-radius,radius));
-			
+			loc.add(MathUtils.randInt(-radius, radius), 0, MathUtils.randInt(-radius, radius));
+
 			locs.add(loc);
 		}
 		return locs;
 	}
-	/*
-	public static ParticleType translateParticle(Particle par) {
-		Particle.valueOf(par.toString());
-		
-		
 
-		if (par == Particle.BARRIER)
-			return Particles.c;
-		if (par == Particle.CLOUD)
-			return Particles.g;
-		if (par == Particle.CRIT)
-			return Particles.h;
-		if (par == Particle.DAMAGE_INDICATOR)
-			return Particles.i;
-		if (par == Particle.DRAGON_BREATH)
-			return Particles.j;
-		if (par == Particle.SPELL)
-			return Particles.n;
-		if (par == Particle.CRIT_MAGIC)
-			return Particles.p;
-		if (par == Particle.END_ROD)
-			return Particles.r;
-		if (par == Particle.EXPLOSION_HUGE)
-			return Particles.t;
-		if (par == Particle.EXPLOSION_LARGE)
-			return Particles.u;
-		if (par == Particle.FIREWORKS_SPARK)
-			return Particles.w;
-		if (par == Particle.WATER_WAKE)
-			return Particles.x;
-		if (par == Particle.FLAME)
-			return Particles.y;
-		if (par == Particle.SPELL_INSTANT)
-			return Particles.B;
-		if (par == Particle.SMOKE_LARGE)
-			return Particles.F;
-		if (par == Particle.EXPLOSION_NORMAL)
-			return Particles.J;
-		if (par == Particle.SMOKE_NORMAL)
-			return Particles.M;
-		if (par == Particle.SPIT)
-			return Particles.N;
-		if (par == Particle.TOTEM)
-			return Particles.P;
-		if (par == Particle.SPELL_WITCH)
-			return Particles.S;
-		if (par == Particle.BUBBLE_POP)
-			return Particles.T;
-		if (par == Particle.SQUID_INK)
-			return Particles.V;
-
-		// NO SPEED
-
-		if (par == Particle.VILLAGER_ANGRY)
-			return Particles.b;
-		if (par == Particle.DRIP_LAVA)
-			return Particles.k;
-		if (par == Particle.DRIP_WATER)
-			return Particles.l;
-		if (par == Particle.VILLAGER_HAPPY)
-			return Particles.z;
-		if (par == Particle.HEART)
-			return Particles.A;
-		if (par == Particle.SLIME)
-			return Particles.D;
-		if (par == Particle.SNOWBALL)
-			return Particles.E;
-		if (par == Particle.LAVA)
-			return Particles.G;
-		if (par == Particle.TOWN_AURA)
-			return Particles.H;
-		if (par == Particle.WATER_DROP)
-			return Particles.L;
-		if (par == Particle.SWEEP_ATTACK)
-			return Particles.O;
-		if (par == Particle.WATER_SPLASH)
-			return Particles.R;
-		if (par == Particle.DOLPHIN)
-			return Particles.X;
-
-		// PULLIN
-
-		if (par == Particle.ENCHANTMENT_TABLE)
-			return Particles.q;
-		if (par == Particle.PORTAL)
-			return Particles.K;
-		if (par == Particle.NAUTILUS)
-			return Particles.W;
-
-		// WATER
-
-		if (par == Particle.WATER_BUBBLE)
-			return Particles.e;
-		if (par == Particle.BUBBLE_COLUMN_UP)
-			return Particles.f;
-		if (par == Particle.SUSPENDED_DEPTH)
-			return Particles.Q;
-		if (par == Particle.BUBBLE_COLUMN_UP)
-			return Particles.U;
-
-		// SPECIAL
-
-		if (par == Particle.NOTE)
-			return Particles.I;
-		if (par == Particle.MOB_APPEARANCE)
-			return Particles.o;
-
-		// COLOR
-		if (par == Particle.SPELL_MOB_AMBIENT)
-			return Particles.a;
-		if (par == Particle.SPELL_MOB)
-			return Particles.s;
-
-		return null;
-		
-	}
-*/
 	public static int randInt(int min, int max) {
 		int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 		return randomNum;
 	}
-	
+
 	public static double randDouble(double min, double max) {
 		double randomNum = ThreadLocalRandom.current().nextDouble(min, max);
 		return randomNum;
 	}
-	
-	
-	
+
 	public static Vector randVector() {
-		int ix = randInt(-100,100);
-		int iy = randInt(-100,100);
-		int iz = randInt(-100,100);
-		double dx = ((double)ix)/100;
-		double dy = ((double)iy)/100;
-		double dz = ((double)iz)/100;
-		Vector v = new Vector(dx,dy,dz);
+		int ix = randInt(-100, 100);
+		int iy = randInt(-100, 100);
+		int iz = randInt(-100, 100);
+		double dx = ((double) ix) / 100;
+		double dy = ((double) iy) / 100;
+		double dz = ((double) iz) / 100;
+		Vector v = new Vector(dx, dy, dz);
 		return v;
-		
+
 	}
-	
-	
-	public static ArrayList<Location> preCalcCircle(Location l,double radius,Vector rotV,double offset) {
+
+	public static ArrayList<Location> preCalcCircle(Location l, double radius, Vector rotV, double offset) {
 		ArrayList<Location> locs = new ArrayList<Location>();
-		
-		
+
 		double r = radius;
 		Location loc = l.clone();
 		Location rot = l.clone().setDirection(rotV);
@@ -751,15 +687,15 @@ public class ParUtils {
 
 			Vector ve = j.subtract(loc).toVector();
 			locs.add(loc.clone());
-			
 
 			loc.subtract(v.getX(), v.getY(), v.getZ());
 
 		}
 		return locs;
 	}
-	public static Location stepCalcCircle(Location l,double r,Vector rotV,double offset,double steps) {
-		double t =  (Math.PI / 22D)* ((double)steps);
+
+	public static Location stepCalcCircle(Location l, double r, Vector rotV, double offset, double steps) {
+		double t = (Math.PI / 22D) * ((double) steps);
 		Location loc = l.clone();
 		Location rot = loc.clone().setDirection(rotV);
 		double x = r * Math.cos(t);
@@ -771,17 +707,15 @@ public class ParUtils {
 
 		loc.add(v.getX(), v.getY(), v.getZ());
 
-		
 		return loc;
-		
 
-		
 	}
-	public static Location stepCalcSpiral(Location l,double r,Vector rotV,double offset,double steps) {
-		double t =  (Math.PI / 22)* ((double)steps);
+
+	public static Location stepCalcSpiral(Location l, double r, Vector rotV, double offset, double steps) {
+		double t = (Math.PI / 22) * ((double) steps);
 		Location loc = l.clone();
 		Location rot = loc.clone().setDirection(rotV);
-		r = r - steps/44;
+		r = r - steps / 44;
 		double x = r * Math.cos(t);
 		double y = 1 + offset;
 		double z = r * Math.sin(t);
@@ -791,32 +725,28 @@ public class ParUtils {
 
 		loc.add(v.getX(), v.getY(), v.getZ());
 
-		
 		return loc;
-		
 
-		
 	}
 
-	
-
 	// SPECIAL EFFECTS
-	
-	public static ArrayList<Item> dropItemEffectRandomVector(Location loc,Material m,int count,int delay,double power) {
+
+	public static ArrayList<Item> dropItemEffectRandomVector(Location loc, Material m, int count, int delay,
+			double power) {
 		ArrayList<Item> items = new ArrayList<Item>();
-		for (int i = 0;i<count;i++) {
+		for (int i = 0; i < count; i++) {
 			ItemStack im = new ItemStack(m);
 			ItemMeta imet = im.getItemMeta();
-			imet.setDisplayName(""+i);
+			imet.setDisplayName("" + i);
 			im.setItemMeta(imet);
 			Item it = loc.getWorld().dropItem(loc, im);
-			
-			it.setCustomName(""+i);
+
+			it.setCustomName("" + i);
 			it.setVelocity(randVector().multiply(power));
 			it.setPickupDelay(1000);
 			items.add(it);
 		}
-		
+
 		new BukkitRunnable() {
 			public void run() {
 				for (Item i : items) {
@@ -826,22 +756,23 @@ public class ParUtils {
 		}.runTaskLater(main.plugin, delay);
 		return items;
 	}
-	public static ArrayList<Item> dropItemEffectVector(Location loc,Material m,int count,int delay,double power,Vector dir) {
+
+	public static ArrayList<Item> dropItemEffectVector(Location loc, Material m, int count, int delay, double power,
+			Vector dir) {
 		ArrayList<Item> items = new ArrayList<Item>();
-		for (int i = 0;i<count;i++) {
+		for (int i = 0; i < count; i++) {
 			ItemStack im = new ItemStack(m);
-			
+
 			ItemMeta imet = im.getItemMeta();
-			imet.setDisplayName(""+i);
+			imet.setDisplayName("" + i);
 			im.setItemMeta(imet);
 			Item it = loc.getWorld().dropItem(loc, im);
-			
-		
+
 			it.setVelocity(dir.multiply(power));
 			it.setPickupDelay(1000);
 			items.add(it);
 		}
-		
+
 		new BukkitRunnable() {
 			public void run() {
 				for (Item i : items) {
@@ -849,25 +780,26 @@ public class ParUtils {
 				}
 			}
 		}.runTaskLater(main.plugin, delay);
-		
+
 		return items;
 	}
-	public static ArrayList<Item> dropItemEffectVector(Location loc,Material m,int count,int delay,double power,Vector dir,int idoffset) {
+
+	public static ArrayList<Item> dropItemEffectVector(Location loc, Material m, int count, int delay, double power,
+			Vector dir, int idoffset) {
 		ArrayList<Item> items = new ArrayList<Item>();
-		for (int i = 0;i<count;i++) {
+		for (int i = 0; i < count; i++) {
 			ItemStack im = new ItemStack(m);
-			
+
 			ItemMeta imet = im.getItemMeta();
-			imet.setDisplayName(""+(i+idoffset));
+			imet.setDisplayName("" + (i + idoffset));
 			im.setItemMeta(imet);
 			Item it = loc.getWorld().dropItem(loc, im);
-			
-		
+
 			it.setVelocity(dir.multiply(power));
 			it.setPickupDelay(1000);
 			items.add(it);
 		}
-		
+
 		new BukkitRunnable() {
 			public void run() {
 				for (Item i : items) {
@@ -875,97 +807,126 @@ public class ParUtils {
 				}
 			}
 		}.runTaskLater(main.plugin, delay);
-		
+
 		return items;
 	}
-	public static void pullItemEffectVector(Location loc,Material m,int delay,Location toLocation,double speed) {
-	
-		
-			ItemStack im = new ItemStack(m);
-			Item it = loc.getWorld().dropItem(loc, im);
-			
-			it.setPickupDelay(1000+delay);
-		
-		
+
+	public static void pullItemEffectVector(Location loc, Material m, int delay, Location toLocation, double speed) {
+
+		ItemStack im = new ItemStack(m);
+		Item it = loc.getWorld().dropItem(loc, im);
+
+		it.setPickupDelay(1000 + delay);
+
 		new BukkitRunnable() {
 			int t = 0;
+
 			public void run() {
-				
+
 				t++;
 				it.setVelocity(toLocation.toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
-				if (t>delay || it.getLocation().distance(toLocation)<0.3) {
+				if (t > delay || it.getLocation().distance(toLocation) < 0.3) {
 					this.cancel();
 					it.remove();
 				}
 			}
-		}.runTaskTimer(main.plugin, 1,1);
-		
+		}.runTaskTimer(main.plugin, 1, 1);
+
 	}
-	public static void pullItemEffectVector(Location loc,Material m,int delay,Location toLocation,double speed,int offsetid) {
-		
-		
+
+	public static void pullItemEffectVector(Location loc, Material m, int delay, Location toLocation, double speed,
+			int offsetid) {
+
 		ItemStack im = new ItemStack(m);
-		
-		
+
 		ItemMeta imet = im.getItemMeta();
-		imet.setDisplayName(""+(offsetid));
+		imet.setDisplayName("" + (offsetid));
 		im.setItemMeta(imet);
 		Item it = loc.getWorld().dropItem(loc, im);
-		it.setPickupDelay(1000+delay);
-	
-	
-	new BukkitRunnable() {
-		int t = 0;
-		public void run() {
-			
-			t++;
-			it.setVelocity(toLocation.toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
-			if (t>delay || it.getLocation().distance(toLocation)<0.3) {
-				this.cancel();
-				it.remove();
+		it.setPickupDelay(1000 + delay);
+
+		new BukkitRunnable() {
+			int t = 0;
+
+			public void run() {
+
+				t++;
+				it.setVelocity(toLocation.toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
+				if (t > delay || it.getLocation().distance(toLocation) < 0.3) {
+					this.cancel();
+					it.remove();
+				}
 			}
-		}
-	}.runTaskTimer(main.plugin, 1,1);
-	
-}
-	public static void pullItemEffectVector(Location loc,Material m,int delay,Entity ent,double speed) {
-		
-		
+		}.runTaskTimer(main.plugin, 1, 1);
+
+	}
+
+	public static void pullItemEffectVector(Location loc, Material m, int delay, Entity ent, double speed) {
+
 		ItemStack im = new ItemStack(m);
 		Item it = loc.getWorld().dropItem(loc, im);
-		
-		it.setPickupDelay(1000+delay);
-	
-	
-	new BukkitRunnable() {
-		int t = 0;
-		public void run() {
-			
-			t++;
-			it.setVelocity(ent.getLocation().toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
-			if (t>delay || it.getLocation().distance(ent.getLocation())<0.3) {
-				this.cancel();
-				it.remove();
+
+		it.setPickupDelay(1000 + delay);
+
+		new BukkitRunnable() {
+			int t = 0;
+
+			public void run() {
+
+				t++;
+				it.setVelocity(
+						ent.getLocation().toVector().subtract(it.getLocation().toVector()).normalize().multiply(speed));
+				if (t > delay || it.getLocation().distance(ent.getLocation()) < 0.3) {
+					this.cancel();
+					it.remove();
+				}
 			}
-		}
-	}.runTaskTimer(main.plugin, 1,1);
-	
-}
-	
+		}.runTaskTimer(main.plugin, 1, 1);
+
+	}
+
 	public static void debugRay(Location locC) {
 		Location loc = locC.clone();
-		for (double t = 1; t <= 10; t=t+0.5) {
-			
+		for (double t = 1; t <= 10; t = t + 0.5) {
+
 			Vector direction = loc.getDirection().normalize();
 			double x = direction.getX() * t;
 			double y = direction.getY() * t + 1.5;
 			double z = direction.getZ() * t;
 			loc.add(x, y, z);
-			
-			ParUtils.createParticle(Particles.FLAME, loc, 0, 0, 0, 1, 0);
-			
+
+			ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 0);
+
 			loc.subtract(x, y, z);
 		}
-	
+
 	}
+
+	/*
+	 * public static Particle getNmsParticle(EszeParticle par) { switch(par){ case
+	 * ENTITY_EFFECT: return Particle.a; case ANGRY_VILLAGER: return Particle.b;
+	 * case BARRIER: return Particle.c; case LIGHT: return Particle.d; case BLOCK:
+	 * return Particle.e; case BUBBLE: return Particle.f; case CLOUD: return
+	 * Particle.g; case CRIT: return Particle.h; case case WATER_SPLASH: case
+	 * WATER_WAKE: case SUSPENDED: case SUSPENDED_DEPTH: case CRIT: case CRIT_MAGIC:
+	 * case SMOKE_NORMAL: case SMOKE_LARGE: case SPELL: case SPELL_INSTANT: case
+	 * SPELL_MOB: case SPELL_MOB_AMBIENT: case SPELL_WITCH: case DRIP_WATER: case
+	 * DRIP_LAVA: case VILLAGER_ANGRY: case VILLAGER_HAPPY: case TOWN_AURA: case
+	 * NOTE: case PORTAL: case ENCHANTMENT_TABLE: case FLAME: case LAVA: case CLOUD:
+	 * case REDSTONE: case SNOWBALL: case SNOW_SHOVEL: case SLIME: case HEART: case
+	 * BARRIER: case ITEM_CRACK: case BLOCK_CRACK: case BLOCK_DUST: case WATER_DROP:
+	 * case MOB_APPEARANCE: case DRAGON_BREATH: case END_ROD: case DAMAGE_INDICATOR:
+	 * case SWEEP_ATTACK: case FALLING_DUST: case TOTEM: case SPIT: case SQUID_INK:
+	 * case BUBBLE_POP: case CURRENT_DOWN: case BUBBLE_COLUMN_UP: case NAUTILUS:
+	 * case DOLPHIN: case SNEEZE: case CAMPFIRE_COSY_SMOKE: case
+	 * CAMPFIRE_SIGNAL_SMOKE: case COMPOSTER: case FLASH: case FALLING_LAVA: case
+	 * LANDING_LAVA: case FALLING_WATER: case DRIPPING_HONEY: case FALLING_HONEY:
+	 * case LANDING_HONEY: case FALLING_NECTAR: case SOUL_FIRE_FLAME: case ASH: case
+	 * CRIMSON_SPORE: case WARPED_SPORE: case SOUL: case DRIPPING_OBSIDIAN_TEAR:
+	 * case FALLING_OBSIDIAN_TEAR: case LANDING_OBSIDIAN_TEAR: case REVERSE_PORTAL:
+	 * case WHITE_ASH: case LEGACY_BLOCK_CRACK: case LEGACY_BLOCK_DUST: case
+	 * LEGACY_FALLING_DUST: default: return Particle.b;
+	 * 
+	 * } }
+	 */
 }

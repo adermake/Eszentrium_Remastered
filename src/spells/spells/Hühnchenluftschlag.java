@@ -1,7 +1,7 @@
 package spells.spells;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -14,8 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.EntityChicken;
-import net.minecraft.server.v1_16_R3.Particles;
+import net.minecraft.world.entity.animal.EntityChicken;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Eggsplosive;
@@ -75,7 +74,7 @@ public class Hühnchenluftschlag extends Spell{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticleSqareHorizontal(Particles.FLAME, caster.getLocation(), step/10);
+		//ParUtils.createParticleSqareHorizontal(Particle.FLAME, caster.getLocation(), step/10);
 		//mcChicken.setHeadRotation(caster.getLocation().getYaw());
 		//mcChicken.setPositionRotation(c.getLocation().getX(), c.getLocation().getY(), c.getLocation().getZ(), caster.getLocation().getYaw(), caster.getLocation().getPitch());
 		//c.setVelocity(caster.getLocation().getDirection());
@@ -110,7 +109,7 @@ public class Hühnchenluftschlag extends Spell{
 				if (c.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
 
 					
-					ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, 0, 0, 0, 3, 1);
+					ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 3, 1);
 					new ExplosionDamage(4, 8, caster, c.getLocation(), name);
 					new Repulsion(4, 1, caster, c.getLocation(), name);
 					c.remove();

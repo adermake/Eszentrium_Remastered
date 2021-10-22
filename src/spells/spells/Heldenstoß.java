@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -64,8 +64,8 @@ public class Heldenstoﬂ extends Spell {
 		
 		playSound(Sound.BLOCK_GRINDSTONE_USE,caster.getLocation(),1,2F);
 		ParUtils.createRedstoneParticle(caster.getLocation(), 0, 0, 0, 1, Color.ORANGE, 10);
-		ParUtils.createFlyingParticle(Particles.CRIT, caster.getLocation(), 1, 2, 1, 25,0.8F, caster.getVelocity());
-		ParUtils.createFlyingParticle(Particles.FIREWORK, caster.getLocation(), 1, 2, 1, 5,0.8F, caster.getVelocity());
+		ParUtils.createFlyingParticle(Particle.CRIT, caster.getLocation(), 1, 2, 1, 25,0.8F, caster.getVelocity());
+		ParUtils.createFlyingParticle(Particle.FIREWORKS_SPARK, caster.getLocation(), 1, 2, 1, 5,0.8F, caster.getVelocity());
 		if (!caster.getLocation().getBlock().getType().isSolid()) {
 			FallingBlock fb = caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getVelocity().multiply(-1)), Material.GOLD_BLOCK,(byte) 0);
 			fb.setGravity(false);

@@ -9,7 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -53,7 +53,7 @@ public class LamaturmProjectile extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
 	}
 
 	@Override
@@ -72,13 +72,13 @@ public class LamaturmProjectile extends Spell {
 		double flstep = step;
 		float sFlot = (float) (flstep/flsteprange);
 		//ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.WHITE, sFlot*9);
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.CLOUD, p.getLocation(), 2, 0, 2, loc.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, p.getLocation(), 2, 0, 2, loc.getDirection());
 		doKnockback(p, origin, 4);
 		damage(p,5,caster);
 		playSound(Sound.ENTITY_GUARDIAN_FLOP, loc, 3, 1);
@@ -88,7 +88,7 @@ public class LamaturmProjectile extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.CLOUD, ent.getLocation(), 2, 0, 2, loc.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, ent.getLocation(), 2, 0, 2, loc.getDirection());
 		doKnockback(ent, origin, 4);
 		ent.damage(5);
 		playSound(Sound.ENTITY_GUARDIAN_FLOP, loc, 3, 1);

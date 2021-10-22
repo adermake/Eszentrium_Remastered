@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Creepermissle extends Spell {
@@ -49,14 +49,14 @@ public class Creepermissle extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.FLAME, cre.getLocation().add(0,-2,0), 0.2F, 0.1F, 0.2F, 5, 0.3F, cre.getVelocity().normalize().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.FLAME, cre.getLocation().add(0,-2,0), 0.2F, 0.1F, 0.2F, 5, 0.3F, cre.getVelocity().normalize().multiply(-1));
 		
 		if (step % 5 == 0) {
-			ParUtils.parKreisDot(Particles.SMOKE, cre.getLocation(), 2, 0, 0.05, cre.getVelocity());
+			ParUtils.parKreisDot(Particle.SMOKE_NORMAL, cre.getLocation(), 2, 0, 0.05, cre.getVelocity());
 		}
 		if (step < 30)
-		ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 10, 1);
-		//ParUtils.createFlyingParticle(Particles.SMOKE, cre.getLocation(), 0.1F, 0.1F, 0.1F, 5, 1, cre.getVelocity().normalize().multiply(-0.5));
+		ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 10, 1);
+		//ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, cre.getLocation(), 0.1F, 0.1F, 0.1F, 5, 1, cre.getVelocity().normalize().multiply(-0.5));
 	}
 
 	@Override

@@ -144,7 +144,7 @@ public class Reqdum extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.EXPLOSION_EMITTER, toLoc, 0,0, 0, 1, 1); REMOVED CAUSED ERRORS
+		//ParUtils.createParticle(Particle.EXPLOSION_HUGE, toLoc, 0,0, 0, 1, 1); REMOVED CAUSED ERRORS
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,ori,5,1);
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,caster.getLocation(),5,1);
 		damage(ent, speedX/5, caster);

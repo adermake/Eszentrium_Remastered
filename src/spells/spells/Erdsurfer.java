@@ -242,6 +242,8 @@ public class Erdsurfer extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
+		caster.setFlying(false);
+		caster.setAllowFlight(false);
 
 	}
 	

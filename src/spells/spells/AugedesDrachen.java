@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -103,8 +103,8 @@ public class AugedesDrachen extends Spell{
 				moveHelix(d2,3,0);
 				ParUtils.createRedstoneParticle(d1.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
 				ParUtils.createRedstoneParticle(d2.getLocation(), 0, 0, 0, 1, Color.PURPLE, 3);
-				ParUtils.createParticle(Particles.LARGE_SMOKE, d1.getLocation(), 0, 0, 0, 1, 0);
-				ParUtils.createParticle(Particles.LARGE_SMOKE, d2.getLocation(), 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particle.SMOKE_LARGE, d1.getLocation(), 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particle.SMOKE_LARGE, d2.getLocation(), 0, 0, 0, 1, 0);
 			}
 			calcH = !calcH;
 		}
@@ -117,7 +117,7 @@ public class AugedesDrachen extends Spell{
 			playGlobalSound(Sound.ENTITY_ENDER_DRAGON_DEATH,0.6f,1f);
 		}
 		if (step<=50) {
-			ParUtils.createParticle(Particles.HAPPY_VILLAGER, loc, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.VILLAGER_HAPPY, loc, 0, 0, 0, 1, 0);
 		}
 		else {
 			ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.fromBGR(255, 170, 231), 4);

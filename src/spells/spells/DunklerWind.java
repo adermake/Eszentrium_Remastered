@@ -14,8 +14,8 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
+
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.RepulsionDirectional;
@@ -88,7 +88,7 @@ public class DunklerWind extends Spell {
 			}
 			else {
 				
-				ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
+				ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
 				stopped = false;
 			}
 			
@@ -115,7 +115,7 @@ public class DunklerWind extends Spell {
 		
 		if (jumpcooldown <=0 && swap()) {
 			playSound(Sound.BLOCK_CONDUIT_ACTIVATE,loc,2,2F);
-			ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
 			jumpcooldown = 5*10;
 			ParUtils.parLineRedstone(caster.getLocation(), loc.clone(), Color.PURPLE, 1, 2);
 			caster.setVelocity(loc.toVector().subtract(caster.getLocation().toVector()).multiply(0.1));
@@ -157,7 +157,7 @@ public class DunklerWind extends Spell {
 			
 		}
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.BUBBLE, loc, 0.1F, 0.1F, 0.1F, 1, 1);
+		//ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0.1F, 0.1F, 0.1F, 1, 1);
 		double lf = (double)step/(speed * 20 * 2);
 		if (lf > 1)
 			lf = 1;
@@ -165,12 +165,12 @@ public class DunklerWind extends Spell {
 		if (lf >= 1) {
 			if (activate == false) {
 				playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,10,1F);
-				ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 60, 0.2);
+				ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 60, 0.2);
 			}
 			activate = true;
 			
 			
-			ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 2, 0.05);
+			ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 2, 0.05);
 		}
 		
 		
@@ -193,9 +193,9 @@ public class DunklerWind extends Spell {
 	
 		if (p.isOnGround())
 			return;
-		//ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
+		//ParUtils.parKreisDir(Particle.SMOKE_LARGE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
 		p.setVelocity(p.getVelocity().normalize().multiply(2));
 		
@@ -211,7 +211,7 @@ public class DunklerWind extends Spell {
 		if (ent.isOnGround())
 			return;
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDir(Particles.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
+		ParUtils.parKreisDir(Particle.SMOKE_LARGE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
 		ent.setVelocity(ent.getVelocity().normalize().multiply(2));
 		hitEntity = false;

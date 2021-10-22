@@ -11,7 +11,7 @@ import org.bukkit.entity.Skeleton;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Pfeilsucher extends Spell{
@@ -74,7 +74,7 @@ public class Pfeilsucher extends Spell{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.WITCH, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.SPELL_WITCH, loc, 0, 0, 0, 1, 0);
 	}
 
 	@Override

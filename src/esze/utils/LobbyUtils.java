@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 import esze.enums.GameType;
 import esze.listeners.Join;
 import esze.main.main;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import weapons.WeaponAbilitys;
 import weapons.WeaponMenu;
@@ -40,7 +40,7 @@ public class LobbyUtils {
 				ArrayList<Location> locs = ParUtils.preCalcCircle(l, 4, new Vector(0,0,-1), 0);
 				
 				for (Location loc : locs) {
-					ParUtils.createFlyingParticle(Particles.END_ROD, loc, 0, 0, 0, 1, 1, p.getLocation().toVector().subtract(loc.toVector()).multiply(0.1));
+					ParUtils.createFlyingParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 1, p.getLocation().toVector().subtract(loc.toVector()).multiply(0.1));
 				}
 				
 				if (t>20) {
@@ -88,7 +88,7 @@ public class LobbyUtils {
 				ArrayList<Location> locs = ParUtils.preCalcCircle(l, 4, new Vector(0,0,-1), 0);
 				
 				for (Location loc : locs) {
-					ParUtils.createFlyingParticle(Particles.END_ROD, loc, 0, 0, 0, 1, 1,((Location) main.plugin.getConfig().get("lobby.loc")).toVector().subtract(loc.toVector()).multiply(0.1));
+					ParUtils.createFlyingParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 1,((Location) main.plugin.getConfig().get("lobby.loc")).toVector().subtract(loc.toVector()).multiply(0.1));
 				}
 				
 				if (t>20) {

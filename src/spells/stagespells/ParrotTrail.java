@@ -9,7 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class ParrotTrail extends Spell {
@@ -116,7 +116,7 @@ public class ParrotTrail extends Spell {
 	@Override
 	public void onBlockHit(Block block) {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 1);
 		dead = true;
 	}
 

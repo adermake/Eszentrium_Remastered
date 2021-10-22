@@ -13,7 +13,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -64,7 +64,7 @@ public class ThermolanzeLaser extends Spell{
 	public void display() {
 		// TODO Auto-generated method stub
 		if (step > 3) {
-			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0, 0, 0, 1, 5, loc.getDirection());
+			ParUtils.createFlyingParticle(Particle.FLAME, loc, 0, 0, 0, 1, 5, loc.getDirection());
 			ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.ORANGE, 1);
 		}
 		
@@ -142,7 +142,7 @@ public class ThermolanzeLaser extends Spell{
 		ParUtils.createRedstoneParticle(loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, Color.ORANGE, 5);
 		Location dir = loc.clone();
 		dir.setPitch(dir.getPitch()-90);
-		ParUtils.createFlyingParticle(Particles.CAMPFIRE_COSY_SMOKE, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
+		ParUtils.createFlyingParticle(Particle.CAMPFIRE_COSY_SMOKE, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
 		
 		
 			FallingBlock fb = loc.clone().add(loc.getDirection().multiply(-1)).getWorld().spawnFallingBlock(loc.clone().add(loc.getDirection().multiply(-1)), Material.FIRE, (byte)0);

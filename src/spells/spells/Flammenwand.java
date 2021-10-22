@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.FirePiece;
@@ -165,7 +165,7 @@ public class Flammenwand extends Spell {
 	public void display() {
 		playSound(Sound.BLOCK_FIRE_AMBIENT,l1,11,0.7F);
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.SMOKE, l1, 1, 1, 1, 5, 0.1F);
+		ParUtils.createParticle(Particle.SMOKE_NORMAL, l1, 1, 1, 1, 5, 0.1F);
 	}
 
 	@Override

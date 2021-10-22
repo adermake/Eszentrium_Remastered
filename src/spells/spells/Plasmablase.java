@@ -17,7 +17,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -72,7 +72,7 @@ public class Plasmablase extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		ParUtils.auraParticle(Particles.ENCHANTED_HIT, caster, 1, 1);
+		ParUtils.auraParticle(Particle.CRIT_MAGIC, caster, 1, 1);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class Plasmablase extends Spell {
 					}
 				}
 				Vector v = ent.getLocation().toVector().subtract(loc.toVector());
-				ParUtils.parKreisDir(Particles.ENCHANTED_HIT, ent.getLocation(), 2, 0, 0, v,v);
+				ParUtils.parKreisDir(Particle.CRIT_MAGIC, ent.getLocation(), 2, 0, 0, v,v);
 				doPull(ent, loc.clone(), 1.5F);
 				playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,1.8F);
 			}
@@ -120,8 +120,8 @@ public class Plasmablase extends Spell {
 			Vector d = loc.toVector().subtract(caster.getLocation().toVector());
 			animCooldown = 0;
 			bulletHitEffect(d,loc.clone());
-			ParUtils.createFlyingParticle(Particles.END_ROD, caster.getLocation(), 2, 2, 2, 10, 3, caster.getLocation().getDirection());
-			ParUtils.parKreisDir(Particles.END_ROD, caster.getLocation(), 3, 0, 5, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+			ParUtils.createFlyingParticle(Particle.END_ROD, caster.getLocation(), 2, 2, 2, 10, 3, caster.getLocation().getDirection());
+			ParUtils.parKreisDir(Particle.END_ROD, caster.getLocation(), 3, 0, 5, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 		}
 	}
 	
@@ -133,7 +133,7 @@ public class Plasmablase extends Spell {
 		for (int i = 0;i<3;i++) {
 			loc.setPitch(loc.getPitch()+15);
 			Location l = ParUtils.stepCalcCircle(loc, rad+1, loc.getDirection().add(new Vector(0,i,0)), 0, step*(i+1));
-			//ParUtils.createParticle(Particles.FISHING, l, 0, 0, 0, 1, 0);
+			//ParUtils.createParticle(Particle.FISHING, l, 0, 0, 0, 1, 0);
 			float f = 3F;
 			
 			
@@ -153,7 +153,7 @@ public class Plasmablase extends Spell {
 			
 				playSound(Sound.BLOCK_CONDUIT_DEACTIVATE, loc, 12,1.8F);
 		animCooldown = 15;
-		ParUtils.createParticle(Particles.FLASH, inl, 0, 0, 0,1, 1);
+		ParUtils.createParticle(Particle.FLASH, inl, 0, 0, 0,1, 1);
 		Vector d = ind.clone();
 		Location l = inl.clone();
 		Location ori = inl.clone();
@@ -168,7 +168,7 @@ public class Plasmablase extends Spell {
 				
 				l.add(ind.clone().normalize().multiply(1.5));
 				double distance = l.distance(ori);
-				ParUtils.parKreisDir(Particles.ENCHANTED_HIT, l, calcWidthOfCircle(rad+1, distance+rad+1), 0, 0, d, d);
+				ParUtils.parKreisDir(Particle.CRIT_MAGIC, l, calcWidthOfCircle(rad+1, distance+rad+1), 0, 0, d, d);
 				
 				//ParUtils.parKreisSolidRedstone(Color.AQUA, 3, l, calcWidthOfCircle(rad, distance+rad),0, 1, ind);
 				if (distance > (rad+1)*2) {
@@ -198,7 +198,7 @@ public class Plasmablase extends Spell {
 		}
 		// TODO Auto-generated method stub
 		Vector v = p.getLocation().toVector().subtract(loc.toVector());
-		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, p.getLocation(), 2, 0, 0, v,v);
+		//ParUtils.parKreisDir(Particle.CRIT_MAGIC, p.getLocation(), 2, 0, 0, v,v);
 		bulletHitEffect(v.multiply(-1), loc.clone());
 		doKnockback(p, loc.clone(), 1);
 		
@@ -208,7 +208,7 @@ public class Plasmablase extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		Vector v = ent.getLocation().toVector().subtract(loc.toVector());
-		//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, ent.getLocation(), 2, 0, 0, v,v);
+		//ParUtils.parKreisDir(Particle.CRIT_MAGIC, ent.getLocation(), 2, 0, 0, v,v);
 		bulletHitEffect(v.multiply(-1), loc.clone());
 		doKnockback(ent, loc.clone(), 1);
 		

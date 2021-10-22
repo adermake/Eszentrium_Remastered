@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -58,13 +58,13 @@ public class Quantentunnel extends Spell{
 		t++;
 		stage++;
 		if (t<10) {
-			//ParUtils.parKreisDir(Particles.ENCHANTED_HIT, caster.getLocation(), 3*casttime/cast, 0, 1, new Vector(0,1,0),new Vector(0,1,0));
+			//ParUtils.parKreisDir(Particle.CRIT_MAGIC, caster.getLocation(), 3*casttime/cast, 0, 1, new Vector(0,1,0),new Vector(0,1,0));
 			
 			loc = caster.getLocation();
 			Location dot = ParUtils.stepCalcCircle(loc, 0.7, new Vector(0,1,0), -0.3, step*33);
 			Location dot2 = ParUtils.stepCalcCircle(loc, 0.7, new Vector(0,1,0), -0.3, step*33+22);
-			//ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 14);
-			//ParUtils.createParticle(Particles.FLAME, dot2, 0, 1, 0, 0, 14);
+			//ParUtils.createParticle(Particle.FLAME, dot, 0, 1, 0, 0, 14);
+			//ParUtils.createParticle(Particle.FLAME, dot2, 0, 1, 0, 0, 14);
 			
 			ParUtils.dropItemEffectVector(dot, Material.ENDER_PEARL, 1, 1, 0,new Vector(0,1,0));
 			ParUtils.dropItemEffectVector(dot2, Material.ENDER_PEARL, 1, 1, 0,new Vector(0,1,0));
@@ -101,7 +101,7 @@ public class Quantentunnel extends Spell{
 		// TODO Auto-generated method stub
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.BLUE, 1);
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.TEAL, 1);
-		ParUtils.createParticle(Particles.ENCHANTED_HIT, loc, 0, 0,0, 1, 0);
+		ParUtils.createParticle(Particle.CRIT_MAGIC, loc, 0, 0,0, 1, 0);
 		ParUtils.dropItemEffectVector(loc, Material.ENDER_PEARL, 1, 1, 0,new Vector(0,1,0));
 		ti++;
 		if (ti > 20) {
@@ -166,7 +166,7 @@ public class Quantentunnel extends Spell{
 		}
 		for (Entity ent : hitEntitys) {
 			playSound(Sound.BLOCK_END_PORTAL_SPAWN,ent.getLocation(), 50,1.5F);
-			ParUtils.parLineFly(Particles.END_ROD, loc.clone(), ent.getLocation(), 35, 1, loc.toVector().subtract(ent.getLocation().toVector()).normalize());
+			ParUtils.parLineFly(Particle.END_ROD, loc.clone(), ent.getLocation(), 35, 1, loc.toVector().subtract(ent.getLocation().toVector()).normalize());
 			ent.teleport(loc.add(loc.getDirection().multiply(-2)));
 			
 		}
@@ -187,13 +187,13 @@ public class Quantentunnel extends Spell{
 				for (double i = 0;i<gain*16;i++) {
 					Location l1 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 4*gain, v, 0, (i*44/gain)+(s*6*gain));
 					Location l2 = ParUtils.stepCalcCircle(loc.clone().add(0,1,0), 2*gain, v, 0, (i*44/gain)+(s*6*gain));
-					ParUtils.createFlyingParticle(Particles.END_ROD, l1, 0.01, 0.01, 0.01, 1, 35*gain, l2.toVector().subtract(l1.toVector()).normalize());
-					ParUtils.createFlyingParticle(Particles.BUBBLE, l1, 0.01, 0.01, 0.01, 4, 0, v);
+					ParUtils.createFlyingParticle(Particle.END_ROD, l1, 0.01, 0.01, 0.01, 1, 35*gain, l2.toVector().subtract(l1.toVector()).normalize());
+					ParUtils.createFlyingParticle(Particle.WATER_BUBBLE, l1, 0.01, 0.01, 0.01, 4, 0, v);
 				}
 				
 				//Location l2 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 3*gain, v, 0, 22D+s*6*gain);
 				
-				//ParUtils.createFlyingParticle(Particles.END_ROD, l2, 0.01, 0.01, 0.01, 11, 16*gain, v);
+				//ParUtils.createFlyingParticle(Particle.END_ROD, l2, 0.01, 0.01, 0.01, 11, 16*gain, v);
 				if (dead ) {
 					this.cancel();
 				}

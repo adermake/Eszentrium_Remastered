@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -59,7 +59,7 @@ public class SwordExplosion extends Spell{
 
 	@Override
 	public void display() {
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0.5, 0.5, 0.5, 3, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0.5, 0.5, 0.5, 3, 1);
 		//ParUtils.createRedstoneParticle(loc, 2, 2, 2, 10, Color.YELLOW, 5);
 		
 		for (int i = 0;i<=10;i++) {
@@ -69,7 +69,7 @@ public class SwordExplosion extends Spell{
 				v= v.setY(-v.getY());
 			
 			v.setY(v.getY()/9);
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 1, v);
+			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 1, v);
 			//ParUtils.createFlyingParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 1, randVector().add(loc.getDirection().multiply(-1.2)).normalize());
 		}
 		

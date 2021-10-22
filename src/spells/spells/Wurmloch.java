@@ -13,7 +13,7 @@ import esze.enums.GameType;
 import esze.types.Type;
 import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -80,9 +80,9 @@ public class Wurmloch extends Spell {
 		if (delay > 5) {
 			delay = 0;
 			if (refined) {
-				ParUtils.parKreisDir(Particles.COMPOSTER, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
+				ParUtils.parKreisDir(Particle.COMPOSTER, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
 			}
-			ParUtils.parKreisDir(Particles.DRAGON_BREATH, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
+			ParUtils.parKreisDir(Particle.DRAGON_BREATH, loc.clone().add(0,16,0), 6, 0, 2, new Vector(0,1,0), new Vector(0,-1,0));
 		}
 		
 	}
@@ -96,7 +96,7 @@ public class Wurmloch extends Spell {
 		p.teleport(wormToLoc);	
 		if (refined) {
 			healAll(p,10,caster);
-			ParUtils.createParticle(Particles.HEART, p.getEyeLocation(), 1, 1, 1, 5, 1);
+			ParUtils.createParticle(Particle.HEART, p.getEyeLocation(), 1, 1, 1, 5, 1);
 		}
 		ParUtils.createRedstoneParticle(p.getLocation(), 0, 0, 0, 1, Color.PURPLE, 15);
 		playSound(Sound.ENTITY_ENDERMAN_TELEPORT, p.getLocation(), 3, 0.2F);

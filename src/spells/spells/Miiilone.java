@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
@@ -121,7 +121,7 @@ public class Miiilone extends Spell {
 		// TODO Auto-generated method stub
 		loc = i.getLocation();
 		ParUtils.dropItemEffectRandomVector(loc, Material.MELON_SLICE, 22, 50, 1);
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 5, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 5, 1);
 		new ExplosionDamage(7, 11, caster, loc,name);
 		new Repulsion(7, 3, caster, loc,name);
 		i.remove();

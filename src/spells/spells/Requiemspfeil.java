@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -101,7 +101,7 @@ public class Requiemspfeil extends Spell {
 		if (caster.isSneaking()) {
 			playGlobalSound(Sound.BLOCK_NOTE_BLOCK_FLUTE, 0.3F, f);
 			a.setVelocity(caster.getLocation().getDirection().multiply(2.5));
-			//ParUtils.createFlyingParticle(Particles.CLOUD, a.getLocation(), 2, 2,2,5, -3, a.getVelocity());
+			//ParUtils.createFlyingParticle(Particle.CLOUD, a.getLocation(), 2, 2,2,5, -3, a.getVelocity());
 			// playSound(Sound.BLOCK_LAVA_EXTINGUISH,a.getLocation(),0.1F,0.4F);
 
 		} else {
@@ -154,7 +154,7 @@ public class Requiemspfeil extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		// ParUtils.createParticle(Particles.EXPLOSION_EMITTER, toLoc, 0,0, 0, 1, 1);
+		// ParUtils.createParticle(Particle.EXPLOSION_HUGE, toLoc, 0,0, 0, 1, 1);
 		// REMOVED CAUSED ERRORS
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, ori, 5, 1);
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER, caster.getLocation(), 5, 1);

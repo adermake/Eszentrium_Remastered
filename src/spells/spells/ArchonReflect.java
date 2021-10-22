@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -70,7 +70,7 @@ public class ArchonReflect extends Spell{
 		caster.setAllowFlight((true));
 		loc = caster.getLocation();
 		
-		//ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 14);
+		//ParUtils.createParticle(Particle.FLAME, dot, 0, 1, 0, 0, 14);
 	
 		
 		//ParUtils.createParticle(Particle.VILLAGER_ANGRY, caster.getEyeLocation().add(0,-1.7,0), 0, 1, 0, 0, 1);

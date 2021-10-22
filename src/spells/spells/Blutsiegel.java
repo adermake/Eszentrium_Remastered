@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -43,7 +43,7 @@ public class Blutsiegel extends Spell {
 			dead = true;
 		}
 		else {
-			ParUtils.parKreisDir(Particles.LARGE_SMOKE, l, 8, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
+			ParUtils.parKreisDir(Particle.SMOKE_LARGE, l, 8, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
 			//playSound(Sound.BLOCK_ANVIL_PLACE,l,0.5,0.1F);
 			playSound(Sound.ENTITY_ENDERMAN_SCREAM,l,0.5,0.5F);
 		}
@@ -92,14 +92,14 @@ public class Blutsiegel extends Spell {
 		ParUtils.parLineRedstone(l3, l5, Color.RED, 1, tic);
 		ParUtils.parLineRedstone(l2, l4, Color.RED, 1, tic);
 		ParUtils.parLineRedstone(l2, l5, Color.RED, 1, tic);
-		ParUtils.createFlyingParticle(Particles.FLAME, l1, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
-		ParUtils.createFlyingParticle(Particles.FLAME, l2, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
-		ParUtils.createFlyingParticle(Particles.FLAME, l3, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
-		ParUtils.createFlyingParticle(Particles.FLAME, l4, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
-		ParUtils.createFlyingParticle(Particles.FLAME, l5, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
-		//ParUtils.parKreisDot(Particles.SMOKE,loc.clone().add(0,offset,0), rad, 0, -1, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, l1, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, l2, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, l3, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, l4, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, l5, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
+		//ParUtils.parKreisDot(Particle.SMOKE_NORMAL,loc.clone().add(0,offset,0), rad, 0, -1, new Vector(0,1,0));
 		}
-		ParUtils.createFlyingParticle(Particles.SMOKE, loc.clone(), rad/2, 0, rad/2, 10, 0, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, loc.clone(), rad/2, 0, rad/2, 10, 0, new Vector(0,1,0));
 		
 	}
 

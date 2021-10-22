@@ -1,6 +1,5 @@
 package esze.utils;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,36 +8,17 @@ import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.golde.bukkit.corpsereborn.CorpseAPI.CorpseAPI;
-import org.golde.bukkit.corpsereborn.CorpseAPI.events.CorpseRemoveEvent;
 import org.golde.bukkit.corpsereborn.nms.Corpses.CorpseData;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+import net.minecraft.core.BlockPosition;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
+import net.minecraft.network.syncher.DataWatcher;
+import net.minecraft.server.level.EntityPlayer;
 
-
-import net.minecraft.server.v1_16_R3.BlockPosition;
-import net.minecraft.server.v1_16_R3.DataWatcher;
-import net.minecraft.server.v1_16_R3.DataWatcherObject;
-import net.minecraft.server.v1_16_R3.DataWatcherRegistry;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.Packet;
-import net.minecraft.server.v1_16_R3.PacketPlayOutEntity.PacketPlayOutEntityLook;
-import net.minecraft.server.v1_16_R3.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_16_R3.PacketPlayOutEntityMetadata;
-import net.minecraft.server.v1_16_R3.PacketPlayOutEntityTeleport;
-import net.minecraft.server.v1_16_R3.PacketPlayOutNamedEntitySpawn;
-import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_16_R3.PlayerConnection;
-import net.minecraft.server.v1_16_R3.PlayerInteractManager;
 
 
 public class CorpseUtils {
@@ -169,14 +149,14 @@ public class CorpseUtils {
 	
 	public static void removeCorpseForPlayers(int cID, List<Player> removeFrom){
 		for(Player all : removeFrom){
-			((CraftPlayer) all).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityDestroy(cID));
+			((CraftPlayer) all).getHandle().b.sendPacket(new PacketPlayOutEntityDestroy(cID));
 		}
 	}
 	
 	
 	public static void removeCorpseForAll(int cID){
 		for(Player all : Bukkit.getOnlinePlayers()){
-			((CraftPlayer) all).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityDestroy(cID));
+			((CraftPlayer) all).getHandle().b.sendPacket(new PacketPlayOutEntityDestroy(cID));
 		}
 		allCorpses.remove(cID);
 	}
@@ -200,14 +180,14 @@ public class CorpseUtils {
 		  
 	      //entityPlayer.e(entityPlayer.getId());
 	      try {
-	        setFinalStatic(entityPlayer, net.minecraft.server.v1_16_R3.Entity.class.getDeclaredField("datawatcher"), playerDW);
+	        setFinalStatic(entityPlayer, net.minecraft.world.entity.Entity.class.getDeclaredField("datawatcher"), playerDW);
 	      } catch (Exception ex) {
 	        ex.printStackTrace();
 	      } 
 	      Bukkit.broadcastMessage("ENT " +entityPlayer +"B  "+bedPos);
 	      entityPlayer.entitySleep(bedPos);
 	      for (Player pl : Bukkit.getOnlinePlayers()) {
-	    	 ((CraftPlayer)pl).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
+	    	 ((CraftPlayer)pl).getHandle().b.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
 	    	 
 	      
 	      }

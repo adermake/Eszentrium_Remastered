@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spells.Flammenwand;
 
@@ -55,7 +55,7 @@ public class FirePiece extends Spell {
 	@Override
 	public void move() {
 			if (step == 1)
-			ParUtils.createParticle(Particles.LARGE_SMOKE, loc.clone().add(0,-0.5,0), 0.1F, 0.1F, 0.1F,30, 0.2F);
+			ParUtils.createParticle(Particle.SMOKE_LARGE, loc.clone().add(0,-0.5,0), 0.1F, 0.1F, 0.1F,30, 0.2F);
 			activated = true;
 			
 		
@@ -72,11 +72,11 @@ public class FirePiece extends Spell {
 		
 		// TODO Auto-generated method stub
 			if (step % 3 == 0)
-			ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
+			ParUtils.createFlyingParticle(Particle.FLAME, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
 		
 		
 		if (randInt(1, 100) == 2)
-		ParUtils.createFlyingParticle(Particles.LAVA, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.LAVA, loc, 0.5, 0.5, 0.5, 1, 0.3, new Vector(0,1,0));
 		
 	}
 

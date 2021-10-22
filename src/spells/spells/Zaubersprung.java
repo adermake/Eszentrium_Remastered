@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -134,7 +134,7 @@ public class Zaubersprung extends Spell {
 					
 					l1.add(dir.clone().multiply(0.5));
 					Location pos = ParUtils.stepCalcCircle(l1, r, dir, 0, t);
-					ParUtils.createParticle(Particles.SNEEZE, pos,0, 0, 0, 0, 0);
+					ParUtils.createParticle(Particle.SNEEZE, pos,0, 0, 0, 0, 0);
 				}
 				
 				if (t>100 || caster.isSneaking()) {

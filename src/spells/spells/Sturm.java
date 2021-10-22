@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Sturm extends Spell{
@@ -63,7 +63,7 @@ public class Sturm extends Spell{
 			Location last = ParUtils.stepCalcCircle(loc, ((float)(i*i)/60)+1, new Vector(0,1,0), i, (step-1)*s);
 			Location p1 = ParUtils.stepCalcCircle(loc, ((float)(i*i)/60)+1, new Vector(0,1,0), i, step*s);
 			Vector dir = p1.toVector().subtract(last.toVector()).normalize().add(new Vector(0,1,0));
-			ParUtils.createFlyingParticle(Particles.CLOUD, p1, 0.1F, 0.1F,0.1F, 1, 0.5F, dir);
+			ParUtils.createFlyingParticle(Particle.CLOUD, p1, 0.1F, 0.1F,0.1F, 1, 0.5F, dir);
 			vel = dir.clone();
 		}
 		spawnFallingBlock--;
@@ -76,7 +76,7 @@ public class Sturm extends Spell{
 			spawnFallingBlock = randInt(0, 11);
 		}
 		
-		ParUtils.createParticle(Particles.CLOUD, loc, 0, 4, 0, 2, 0.05F);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0, 4, 0, 2, 0.05F);
 		if (step % speed == 0 ) {
 			ArrayList<FallingBlock> removeLater = new ArrayList<FallingBlock>();
 			for (FallingBlock fb :  fBlocks) {

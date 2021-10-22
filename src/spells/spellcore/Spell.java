@@ -1,19 +1,14 @@
 package spells.spellcore;
 
-import java.awt.List;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Scanner;
 
-import org.bukkit.Axis;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -22,16 +17,15 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftArmorStand;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -50,6 +44,7 @@ import esze.utils.ParUtils;
 import esze.utils.SpellKeyUtils;
 import io.netty.util.internal.ThreadLocalRandom;
 import spells.spells.AntlitzderGöttin;
+
 
 public abstract class Spell {
 	
@@ -151,7 +146,7 @@ public abstract class Spell {
 		
 		if (checkSilence()) {
 			
-			Actionbar bar = new Actionbar("§cDu bist verstummt!");
+			Actionbar bar = new Actionbar("bist verstummt!");
 			bar.send(p);
 			
 			return true;
@@ -178,7 +173,7 @@ public abstract class Spell {
 			startSpellLoop();
 		}
 		if (refund) {
-			Actionbar a = new Actionbar("§c Kein Ziel gefunden!");
+			Actionbar a = new Actionbar("Kein Ziel gefunden!");
 			a.send(caster);
 		}
 		return refund;
@@ -227,7 +222,19 @@ public abstract class Spell {
 		
 	}
 	
-
+	public void disableEntityHitbox(Entity ent) {
+		try  {
+		Method getHandle = ent.getClass().getMethod("getHandle");
+		Object entityObject = getHandle.invoke(ent);
+		Field field = entityObject.getClass().getField("P");
+		field.setAccessible(true);
+		field.setBoolean(entityObject, true);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public void silence(Player p,SilenceSelection s) {
 		silenced.put(p, s);
 		
@@ -808,7 +815,20 @@ public abstract class Spell {
 		damageCause.put(ent,new DamageCauseContainer(caster,name));
 		
 	}
-	
+	 public void healAll(LivingEntity ent, double damage,Player healer) {
+	        
+	        double newhealth = ent.getHealth()+damage;
+	        
+	        if (ent.getMaxHealth()<newhealth) {
+	            ent.setHealth(ent.getMaxHealth());
+	        }
+	        else {
+	            ent.setHealth(newhealth);
+	        }
+	        
+	        
+	    }
+	 
 	public void heal(LivingEntity ent, double damage,Player healer) {
 		
 		if (GameType.getType() instanceof TypeTEAMS) {
@@ -833,20 +853,6 @@ public abstract class Spell {
 		
 		
 	}
-	
-	   public void healAll(LivingEntity ent, double damage,Player healer) {
-	        
-	        double newhealth = ent.getHealth()+damage;
-	        
-	        if (ent.getMaxHealth()<newhealth) {
-	            ent.setHealth(ent.getMaxHealth());
-	        }
-	        else {
-	            ent.setHealth(newhealth);
-	        }
-	        
-	        
-	    }
 	
 	public boolean isSpellType(SpellType st) {
 		return spellTypes.contains(st); 
@@ -1187,12 +1193,12 @@ public abstract class Spell {
 	
 	public void spawnPhantomblock(Block b,Material m) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.sendBlockChange(b.getLocation(), m,((byte)0));
+			p.sendBlockChange(b.getLocation(),Bukkit.createBlockData(m));
 		}
 		phantomBlock.add(b);
 		localPhantomBlock.add(b);
 	}
-	
+
 	public void removePhantomblock(Block c) {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
@@ -1448,7 +1454,7 @@ public abstract class Spell {
 		}
 		
 		lore.add(" ");
-		lore.add("§eCooldown: §7"+ cooldown/20 +"s");
+		lore.add("§eCooldown: §7" + cooldown/20 +"s");
 	}
 	public void setBetterLore(String ls) {
 		betterlore.clear();
@@ -1459,7 +1465,7 @@ public abstract class Spell {
 		}
 		
 		betterlore.add(" ");
-		betterlore.add("§eCooldown: §7"+ cooldown/20 +"s");
+		betterlore.add("§eCooldown: §7" + cooldown/20 +"s");
 	}
 	
 	public boolean isDead() {
@@ -1477,8 +1483,8 @@ public abstract class Spell {
 
 		lore = "§7"+lore;
 		String spl = "";
-		//lore = lore.replace("F:", "# #§eF:§7");
-		//lore = lore.replace("Shift:", "# #§eShift:§7");
+		//lore = lore.replace("F:", "# #
+		//lore = lore.replace("Shift:", "# #
 		
 			String m1 = "";
 			String f2 = "";
@@ -1773,32 +1779,29 @@ public abstract class Spell {
 		canBeSilenced = b;
 	}
 	
-	public void setArmorstandHeadPos(ArmorStand a,Vector dir,Vector str) {
-		Vector n = new Vector(0,0,1).crossProduct(str).normalize();
-		
-		double a1 = Math.acos(n.dot(new Vector(1,0,0)));
-		double a2 = Math.acos(new Vector(0,0,1).dot(str));
-		double a3 = Math.acos(n.dot(dir));
-		/*
-		double pitch = dir.dot(new Vector(0,1,0));
-		double yaw = new Vector(1,0,0).dot(dir.clone().setY(0).normalize());
-		double roll = str.dot(dir.crossProduct(new Vector(0,1,0)));
-		*/
-		
-		//123
-		//132
-		//231
-		//213
-		//321
-		//312
-		a.setHeadPose(new EulerAngle(a1, a2, a3));
+	public void setArmorstandHeadPos(ArmorStand a,Vector dir,float offsetPitch,float offsetYaw) {
+
+		Location del = a.getLocation().setDirection(dir);
+		//Bukkit.broadcastMessage(""+del.getPitch());
+		a.setHeadPose(new EulerAngle(Math.toRadians(del.getPitch()+offsetPitch),Math.PI/2+Math.toRadians(del.getYaw()+offsetYaw), 0));
 	}
 	
-	
+
 	public void armorStandPitch(Vector dir,ArmorStand a) {
 		a.setRightArmPose(EulerAngle.ZERO);
-		double pitch = dir.dot(new Vector(0,1,0));
-		EulerAngle ea = new EulerAngle(pitch, 0, 0);
+		double top = Math.acos(dir.dot(new Vector(0,1,0)));
+		
+		
+		EulerAngle ea = new EulerAngle(top, 0, 0);
+		
+		a.setHeadPose(ea);
+	}
+	public void armorStandPitchYaw(Vector dir,ArmorStand a) {
+		a.setRightArmPose(EulerAngle.ZERO);
+		double yaw = Math.atan(dir.getX()/-dir.getY());
+		double pitch = Math.atan(Math.sqrt(dir.getX()*dir.getX() + dir.getY()*dir.getY())/dir.getZ());
+		
+		EulerAngle ea = new EulerAngle(pitch, yaw, 0);
 		
 		a.setHeadPose(ea);
 	}

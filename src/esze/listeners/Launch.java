@@ -75,7 +75,7 @@ public class Launch implements Listener {
 			dir = dir.add(new Vector(0,-0.052,0));
 			
 			l.add(dir);
-			ParUtils.createParticle(Particles.BUBBLE, l, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.WATER_BUBBLE, l, 0, 0, 0, 1, 0);
 		}
 		
 	}

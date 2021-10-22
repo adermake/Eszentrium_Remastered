@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -47,7 +47,7 @@ public class ParrotProjectile extends Spell {
 		if (randInt(0, 1) == 1) {
 			l1 = ParUtils.stepCalcCircle(caster.getLocation(), rad, caster.getLocation().getDirection(), -1, 22).add(0,1,0);
 		}
-		ParUtils.createFlyingParticle(Particles.CLOUD, l1, 0, 0, 0, 1, 1, caster.getLocation().getDirection());
+		ParUtils.createFlyingParticle(Particle.CLOUD, l1, 0, 0, 0, 1, 1, caster.getLocation().getDirection());
 		Location side = l1;
 		par = (Parrot) spawnEntity(EntityType.PARROT,side);
 		par.setBaby();
@@ -112,7 +112,7 @@ public class ParrotProjectile extends Spell {
 	@Override
 	public void onDeath() {
 		playSound(Sound.ENTITY_PARROT_DEATH,loc,5,2);
-		//ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, 0, 0, 0, 3, 1);
+		//ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 3, 1);
 		ParUtils.dropItemEffectRandomVector(loc, Material.FEATHER, 5, 20, 1);
 		// TODO Auto-generated method stub
 		if (par!=null)

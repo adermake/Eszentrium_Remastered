@@ -14,7 +14,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.spells.Todessäge;
@@ -110,7 +110,7 @@ public class Sythe extends Spell {
 				kill();
 				
 			}
-			ParUtils.createFlyingParticle(Particles.SMOKE, loc.clone().add(0,1,0), 0, 0, 0, 1, 0.5, caster.getLocation().toVector().subtract(loc.clone().add(0,1,0).toVector()).normalize());
+			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, loc.clone().add(0,1,0), 0, 0, 0, 1, 0.5, caster.getLocation().toVector().subtract(loc.clone().add(0,1,0).toVector()).normalize());
 			
 		}else {
 			if (speed <= 1)  {
@@ -166,9 +166,9 @@ public class Sythe extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.DRAGON_BREATH, loc, 0, 0, 0, 1, 0);
+		//ParUtils.createParticle(Particle.DRAGON_BREATH, loc, 0, 0, 0, 1, 0);
 		if (speed <= 1)  {
-			ParUtils.createParticle(Particles.ASH, loc.clone().add(0,0.9,0), 0.2, 0.2, 0.2 ,1, 1);
+			ParUtils.createParticle(Particle.ASH, loc.clone().add(0,0.9,0), 0.2, 0.2, 0.2 ,1, 1);
 		}
 		
 		sythe.setRightArmPose(sythe.getRightArmPose().add(0.09, 0, 0));

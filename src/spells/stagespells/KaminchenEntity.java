@@ -18,7 +18,7 @@ import org.bukkit.util.Vector;
 
 import esze.enums.GameType;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -114,7 +114,7 @@ public class KaminchenEntity extends Spell {
 						
 						playSound(Sound.ENTITY_RABBIT_DEATH,loc,5,1);
 						playSound(Sound.ENTITY_RABBIT_JUMP,loc,5,1);
-						ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 5, 1.2, loc.getDirection());
+						ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 5, 1.2, loc.getDirection());
 						ParUtils.dropItemEffectRandomVector(loc, loc.clone().add(0,-1,0).getBlock().getType(), 6, 30, 1);
 						ent.setVelocity(loc.getDirection().multiply(2));
 						
@@ -173,7 +173,7 @@ public class KaminchenEntity extends Spell {
 		dead = true;
 		loc = ent.getLocation();
 		ent.remove();
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 0, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 0, 1);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,1,1);
 	}
 
@@ -203,7 +203,7 @@ public class KaminchenEntity extends Spell {
 		
 		if (ent != null) {
 			ent.remove();
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
+			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
 		}
 			
 	}

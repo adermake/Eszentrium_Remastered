@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -59,6 +59,7 @@ public class Schleimschleuder extends Spell {
 		playSound(Sound.ENTITY_SLIME_ATTACK,loc,5,1);
 		// TODO Auto-generated method stub
 		g = (Slime) spawnEntity(EntityType.SLIME);
+		disableEntityHitbox(g);
 		g.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS,10000000,100));
 		g.setInvulnerable(true);
 		g.setSize(1);
@@ -187,7 +188,7 @@ public class Schleimschleuder extends Spell {
 		// TODO Auto-generated method stub
 		p.setVelocity(g.getVelocity());
 		damage(p, 4, caster);
-		ParUtils.createParticle(Particles.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
 	}
 
 	@Override
@@ -195,7 +196,7 @@ public class Schleimschleuder extends Spell {
 		// TODO Auto-generated method stub
 		ent.setVelocity(g.getVelocity());
 		damage(ent, 4, caster);
-		ParUtils.createParticle(Particles.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
 	}
 
 	@Override
@@ -214,7 +215,7 @@ public class Schleimschleuder extends Spell {
 	public void onDeath() {
 		// TODO Auto-generated method stub
 		
-		ParUtils.createParticle(Particles.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
 		if (!g.isDead())
 			g.remove();
 		

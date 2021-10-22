@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
@@ -52,7 +52,7 @@ public class Feuerball extends Spell {
 	public void cast() {
 		// TODO Auto-generated method stub
 		
-		ParUtils.dashParticleTo(Particles.FLAME, caster, caster.getLocation().add(randVector().multiply(3)));
+		ParUtils.dashParticleTo(Particle.FLAME, caster, caster.getLocation().add(randVector().multiply(3)));
 		
 		
 	}
@@ -74,7 +74,7 @@ public class Feuerball extends Spell {
 	@Override
 	public void move() {
 		if (step < 19 && refined)
-		ParUtils.dashParticleTo(Particles.FLAME, f, caster.getLocation().add(randVector().multiply(3)));
+		ParUtils.dashParticleTo(Particle.FLAME, f, caster.getLocation().add(randVector().multiply(3)));
 		
 		
 		loc = f.getLocation();
@@ -141,7 +141,7 @@ public class Feuerball extends Spell {
 		
 		loc = f.getLocation();
 		if (refined) {
-			ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, 0, 0, 0, 4, 1);
+			ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 4, 1);
 			new ExplosionDamage(6, 10, caster, loc, name);
 		
 			

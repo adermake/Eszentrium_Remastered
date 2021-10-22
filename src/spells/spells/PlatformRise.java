@@ -25,7 +25,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.Actionbar;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 
@@ -210,7 +210,7 @@ public class PlatformRise extends Spell {
 					h = YY;
 				}
 				l3.setY(YY);
-		        ParUtils.createParticle(Particles.CLOUD,l3 , 0, 0, 0,1, 0);
+		        ParUtils.createParticle(Particle.CLOUD,l3 , 0, 0, 0,1, 0);
 		        
 		        doPin(core,l3,2);
 		        

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class ArkanesGeschütz extends Spell {
@@ -53,7 +53,7 @@ public class ArkanesGeschütz extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 1, 0);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 1, 0);
 		ParUtils.pullItemEffectVector(loc.clone().add(randVector().multiply(3)), Material.STICK, 52, loc, 0.3,(int)step);
 		// TODO Auto-generated method stub
 		doPull(bowA,loc,1);

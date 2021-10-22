@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Wildwuchs extends Spell {
@@ -180,7 +180,7 @@ public class Wildwuchs extends Spell {
 						return;
 					}
 					Entity e = blocks.get(0);
-					ParUtils.createParticle(Particles.COMPOSTER, e.getLocation(), 0.2, 0.2, 0.2, 1, 1);
+					ParUtils.createParticle(Particle.COMPOSTER, e.getLocation(), 0.2, 0.2, 0.2, 1, 1);
 					ParUtils.createBlockcrackParticle(e.getLocation(), 0.2F,0.2F, 0.2F, 5, Material.OAK_LOG);
 					e.remove();
 					blocks.remove(e);

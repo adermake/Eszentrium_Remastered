@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -114,7 +114,7 @@ public class TypeTTT extends Type{
 	public void runEveryTick() {
 		for(org.bukkit.entity.ArmorStand as : Spelldrop.items.keySet()){
 			as.setRightArmPose(as.getRightArmPose().add(0, 0.1, 0));
-			ParUtils.createParticle(Particles.CLOUD, as.getLocation().clone().add(0, 0.5, 0), 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.CLOUD, as.getLocation().clone().add(0, 0.5, 0), 0, 0, 0, 1, 0);
 		}		
 	}
 	

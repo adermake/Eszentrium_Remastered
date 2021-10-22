@@ -9,7 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -99,7 +99,7 @@ public class RufDerOzeaneRefined extends Spell {
 		if (step>2) {
 			ParUtils.createBlockcrackParticle(loc, 0.1,0.1,0.1, 2, Material.LIGHT_BLUE_STAINED_GLASS);
 			ParUtils.createBlockcrackParticle(loc, 0.1,0.1,0.1, 2, Material.LIGHT_BLUE_CONCRETE_POWDER);
-			ParUtils.createParticle(Particles.BUBBLE_COLUMN_UP, loc, 0.4, 0.4, 0.4, 3, 1);
+			ParUtils.createParticle(Particle.BUBBLE_COLUMN_UP, loc, 0.4, 0.4, 0.4, 3, 1);
 		}
 		
 		

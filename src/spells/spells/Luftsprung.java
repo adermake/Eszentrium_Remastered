@@ -6,7 +6,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -53,7 +53,7 @@ public class Luftsprung extends Spell {
 			
 		
 		if (step%3 == 0) {
-			ParUtils.parKreisDot(Particles.CLOUD, caster.getLocation(), 1,0, 0.1, caster.getLocation().getDirection());
+			ParUtils.parKreisDot(Particle.CLOUD, caster.getLocation(), 1,0, 0.1, caster.getLocation().getDirection());
 			
 			if (reversed) {
 				caster.setVelocity(caster.getLocation().getDirection().multiply(-2));

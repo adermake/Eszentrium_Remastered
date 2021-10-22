@@ -18,7 +18,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -120,15 +120,15 @@ public class VelocityTimeStop extends Spell {
 		ParUtils.dropItemEffectVector(l2, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
 		
 		if (delay == 0) {
-			ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l1, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l1.toVector()).multiply(-1));
-			ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l2, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l2.toVector()).multiply(-1));
+			ParUtils.createFlyingParticle(Particle.TOTEM, l1, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l1.toVector()).multiply(-1));
+			ParUtils.createFlyingParticle(Particle.TOTEM, l2, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l2.toVector()).multiply(-1));
 		}
-		//ParUtils.createParticle(Particles.TOTEM_OF_UNDYING, l1, 0, 0, 0, 0, 0);
-		//ParUtils.createParticle(Particles.TOTEM_OF_UNDYING, l2, 0, 0, 0, 0, 0);
+		//ParUtils.createParticle(Particle.TOTEM, l1, 0, 0, 0, 0, 0);
+		//ParUtils.createParticle(Particle.TOTEM, l2, 0, 0, 0, 0, 0);
 		
-		ParUtils.createParticle(Particles.SMOKE, target.getLocation(), 0.1, 0.3, 0.1, 1, 0.1F);
+		ParUtils.createParticle(Particle.SMOKE_NORMAL, target.getLocation(), 0.1, 0.3, 0.1, 1, 0.1F);
 		
-		//ParUtils.createFlyingParticle(Particles.END_ROD,target.getLocation(), 0.6F, 0.6, 0.6F, 1, 0.6F, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.END_ROD,target.getLocation(), 0.6F, 0.6, 0.6F, 1, 0.6F, new Vector(0,1,0));
 		
 		Vector d =  v.clone().multiply(vfactor);
 		

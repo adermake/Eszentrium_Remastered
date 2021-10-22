@@ -11,7 +11,7 @@ import org.bukkit.util.Vector;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -40,9 +40,9 @@ public class Phasenwechsel extends Spell {
 			dead = true;
 		}
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
-		//ParUtils.createParticle(Particles.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
-		//ParUtils.createParticle(Particles.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
+		//ParUtils.createParticle(Particle.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
+		//ParUtils.createParticle(Particle.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
 		SoundUtils.playSound(Sound.ENTITY_WITHER_HURT, loc,0.3F,30F);
 		noTargetEntitys.add(target);
 		loc = target.getLocation();
@@ -65,17 +65,17 @@ public class Phasenwechsel extends Spell {
 		if (charging) {
 			Vector dir = caster.getLocation().toVector().subtract(loc.toVector()).normalize();
 			
-			ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 3, 0);
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 0.2F, dir);
-			ParUtils.createParticle(Particles.ENCHANT, loc, 0.1, 0.1, 0.1, 5, 5);
+			ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 3, 0);
+			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0.2F, dir);
+			ParUtils.createParticle(Particle.ENCHANTMENT_TABLE, loc, 0.1, 0.1, 0.1, 5, 5);
 			loc.add(dir.multiply(2F));
 		}
 	
 		
 		if (loc.distance(caster.getLocation())<2 && charging) {
-			//ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
-			ParUtils.createParticle(Particles.FLASH, target.getLocation(), 0,0, 0, 1, 1);
-			ParUtils.createParticle(Particles.FLASH, caster.getLocation(), 0,0, 0, 1, 1);
+			//ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.FLASH, target.getLocation(), 0,0, 0, 1, 1);
+			ParUtils.createParticle(Particle.FLASH, caster.getLocation(), 0,0, 0, 1, 1);
 			SoundUtils.playSound(Sound.ENTITY_SHULKER_TELEPORT, loc, 1.4F, 10);
 			target.teleport(caster.getLocation());
 			dead = true;
@@ -140,8 +140,8 @@ public class Phasenwechsel extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.FLASH, target.getLocation(), 0,0, 0, 1, 1);
-		ParUtils.createParticle(Particles.FLASH, caster.getLocation(), 0,0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, target.getLocation(), 0,0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, caster.getLocation(), 0,0, 0, 1, 1);
 		SoundUtils.playSound(Sound.ENTITY_SHULKER_TELEPORT, loc, 1.4F, 10);
 		target.teleport(caster.getLocation());
 	}

@@ -58,7 +58,7 @@ public class Align extends Spell {
 		//axis = dir.clone().crossProduct(axis);
 		
 		Vector str = caster.getLocation().getDirection().crossProduct(new Vector(0,1,0));
-		setArmorstandHeadPos(a, caster.getLocation().getDirection(), str);
+		//setArmorstandHeadPos(a, caster.getLocation().getDirection(), str);
 		Bukkit.broadcastMessage(""+Math.toDegrees(a.getHeadPose().getX()) +" "+Math.toDegrees(a.getHeadPose().getY())+" "+Math.toDegrees(a.getHeadPose().getZ()));
 		//a.setHeadPose(new EulerAngle(Math.toRadians(90), 0, 0));
 	}

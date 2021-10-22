@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
@@ -13,7 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -89,27 +90,27 @@ public class AntlitzderGöttin extends Spell{
 		//Location dot3 = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3+30);
 		loc = caster.getLocation();
 		
-		//ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 14);
-		//ParUtils.createParticle(Particles.FLAME, dot2, 0, 1, 0, 0, 14);
+		//ParUtils.createParticle(Particle.FLAME, dot, 0, 1, 0, 0, 14);
+		//ParUtils.createParticle(Particle.FLAME, dot2, 0, 1, 0, 0, 14);
 		if (refined) {
-			//ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
-			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
-			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM_OF_UNDYING, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot, Material.TOTEM, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM, 1, 6, 5,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM, 1, 6, 5,new Vector(0,1,0));
 			for (int i = 0;i<returns;i++) {
 				Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3 +i*(44/returns));
 				ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
-				ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, 0.3F);
+				ParUtils.createParticle(Particle.FLAME, dot, 0, 1, 0, 0, 0.3F);
 			}
 		}
 		else {
 			for (int i = 0;i<returns;i++) {
 				Location dot = ParUtils.stepCalcCircle(loc, 1.3, new Vector(0,1,0), -0.3, step*3 +i*15);
 				ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 2, 1, 1,new Vector(0,-1,0));
-				ParUtils.createParticle(Particles.FLAME, dot, 0, 1, 0, 0, -0.3F);
+				ParUtils.createParticle(Particle.FLAME, dot, 0, 1, 0, 0, -0.3F);
 			}
-			//ParUtils.dropItemEffectVector(dot, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
-			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
-			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM_OF_UNDYING, 1, 1, 1,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot, Material.TOTEM, 1, 1, 1,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot2, Material.TOTEM, 1, 1, 1,new Vector(0,1,0));
+			//ParUtils.dropItemEffectVector(dot3, Material.TOTEM, 1, 1, 1,new Vector(0,1,0));
 		}
 		if (returns <= 0 ) {
 			dead = true;

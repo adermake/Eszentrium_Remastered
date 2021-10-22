@@ -22,7 +22,7 @@ import org.bukkit.util.Vector;
 import com.google.common.collect.ImmutableList;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -82,7 +82,7 @@ public class SiegelderFurcht extends Spell {
 	        firework.setFireworkMeta(fd);
 		firework.detonate();
 		
-		ParUtils.parKreisDir(Particles.LARGE_SMOKE, caster.getLocation(), 4, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.SMOKE_LARGE, caster.getLocation(), 4, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
 		playSound(Sound.ENTITY_ENDER_DRAGON_GROWL,caster.getLocation(),10,0.4F);
 		caster.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20* 5, 2));
 	}
@@ -107,7 +107,7 @@ public class SiegelderFurcht extends Spell {
 			hitEntity = false;
 			hitSpell = false;
 		}else {
-			ParUtils.parKreisDir(Particles.LARGE_SMOKE, caster.getLocation(), 4+step*2, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
+			ParUtils.parKreisDir(Particle.SMOKE_LARGE, caster.getLocation(), 4+step*2, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
 		}
 		
 		for (Entity ent : hitEntitys) {

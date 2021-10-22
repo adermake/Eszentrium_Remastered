@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -161,8 +161,8 @@ public class SchockLaser extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		
-		ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 1, 0);
-		//ParUtils.createParticle(Particles.FIREWORK, loc, 0,1, 0, 0, 0.05);
+		ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 0);
+		//ParUtils.createParticle(Particle.FIREWORKS_SPARK, loc, 0,1, 0, 0, 0.05);
 	}
 
 	@Override
@@ -200,7 +200,7 @@ public class SchockLaser extends Spell {
 		double dmg = 4 + 15/(1 + Math.exp(-0.06*x) * 15);
 		//Bukkit.broadcastMessage("DMG "+dmg);
 		new Explosion(6, dmg,1, 1,caster, loc, name);
-		ParUtils.parKreisDot(Particles.CLOUD, loc, 5, 0, 0.05, loc.getDirection().multiply(-1));
+		ParUtils.parKreisDot(Particle.CLOUD, loc, 5, 0, 0.05, loc.getDirection().multiply(-1));
 		dead = true;
 		playSound(Sound.ENTITY_LIGHTNING_BOLT_IMPACT, loc, 4, 0.3F);
 		

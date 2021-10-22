@@ -16,7 +16,7 @@ import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -116,7 +116,7 @@ public class Archon extends Spell {
 		
 		
 		
-		ParUtils.createParticle(Particles.END_ROD, caster.getLocation(), 0, 0, 0, 1, 0.005F);
+		ParUtils.createParticle(Particle.END_ROD, caster.getLocation(), 0, 0, 0, 1, 0.005F);
 		
 		
 		

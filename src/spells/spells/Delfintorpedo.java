@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
@@ -88,8 +88,8 @@ public class Delfintorpedo extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (refined)
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 3, speed, loc.getDirection().multiply(-1));
-		ParUtils.createFlyingParticle(Particles.RAIN, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 11, speed, loc.getDirection().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 3, speed, loc.getDirection().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.WATER_WAKE, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 11, speed, loc.getDirection().multiply(-1));
 	}
 
 	@Override

@@ -62,7 +62,7 @@ import esze.utils.PlayerUtils;
 import esze.utils.TTTFusion;
 import esze.utils.TTTTrade;
 import esze.voice.Discord;
-import net.minecraft.server.v1_16_R3.MinecraftServer;
+import net.minecraft.server.MinecraftServer;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;

@@ -18,7 +18,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -50,7 +50,7 @@ import esze.utils.SpellKeyUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.Title;
 import io.netty.util.internal.ObjectUtil;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.level.EntityPlayer;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
@@ -764,7 +764,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 		CraftPlayer cp = (CraftPlayer) p;
 		EntityPlayer ep = cp.getHandle();
 		
-		return ep.ping;
+		return -1;
 	}
 				
 

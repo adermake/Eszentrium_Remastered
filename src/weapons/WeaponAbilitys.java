@@ -1,7 +1,6 @@
 package weapons;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -9,13 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,14 +41,12 @@ import esze.types.TypeTEAMS;
 import esze.utils.Actionbar;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.AttributeBase;
-import net.minecraft.server.v1_16_R3.AttributeModifier;
-import net.minecraft.server.v1_16_R3.EnumItemSlot;
-import net.minecraft.server.v1_16_R3.GenericAttributes;
-import net.minecraft.server.v1_16_R3.Item;
-import net.minecraft.server.v1_16_R3.PacketPlayOutSetCooldown;
-import net.minecraft.server.v1_16_R3.Particles;
-import net.minecraft.server.v1_16_R3.PlayerConnection;
+import net.minecraft.network.protocol.game.PacketPlayOutSetCooldown;
+import net.minecraft.server.network.PlayerConnection;
+import net.minecraft.world.entity.EnumItemSlot;
+import net.minecraft.world.entity.ai.attributes.AttributeBase;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.Item;
 import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 
@@ -251,7 +248,7 @@ public class WeaponAbilitys implements Listener {
 						if (cd.contains(p))
 							return;
 						
-						ParUtils.createParticle(Particles.WITCH, p.getLocation(), 0.2, 0.2, 0.2, 5, 0.1F);
+						ParUtils.createParticle(Particle.SPELL_WITCH, p.getLocation(), 0.2, 0.2, 0.2, 5, 0.1F);
 						try {
 							String name = lastLaunched.get(p);
 							Class clazz = Class.forName(name);
@@ -338,7 +335,7 @@ public class WeaponAbilitys implements Listener {
 			if (p.getInventory().getItemInMainHand().getType() == Material.BOW && p.isSneaking()) {
 				p.setVelocity(p.getLocation().getDirection().multiply(-2));
 				SoundUtils.playSound(Sound.ENTITY_WITHER_SHOOT, p.getLocation(),2,5);
-				ParUtils.createParticle(Particles.CLOUD, p.getLocation(), 0, 0, 0, 11, 2);
+				ParUtils.createParticle(Particle.CLOUD, p.getLocation(), 0, 0, 0, 11, 2);
 				cd.add(p);
 				new BukkitRunnable() {
 					int t = 0;
@@ -613,7 +610,7 @@ public class WeaponAbilitys implements Listener {
 	public void sendCooldownPacket(Player p,ItemStack is,int time) {
 		
 		
-		 PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+		 PlayerConnection connection = ((CraftPlayer) p).getHandle().b;
 		
 		 Item item = CraftItemStack.asNMSCopy(is).getItem();
 		 PacketPlayOutSetCooldown packet = new PacketPlayOutSetCooldown(item, time);
@@ -627,10 +624,10 @@ public class WeaponAbilitys implements Listener {
 	public double getAttackDamage(ItemStack itemStack) {
         double attackDamage = 5.0;
         UUID uuid = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
-        net.minecraft.server.v1_16_R3.ItemStack craftItemStack = CraftItemStack.asNMSCopy(itemStack);
-        net.minecraft.server.v1_16_R3.Item item = craftItemStack.getItem();
-        if(item instanceof net.minecraft.server.v1_16_R3.ItemSword || item instanceof net.minecraft.server.v1_16_R3.ItemTool || item instanceof net.minecraft.server.v1_16_R3.ItemHoe) {
-            Multimap<AttributeBase, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
+        net.minecraft.world.item.ItemStack craftItemStack = CraftItemStack.asNMSCopy(itemStack);
+        net.minecraft.world.item.Item item = craftItemStack.getItem();
+        if(item instanceof net.minecraft.world.item.ItemSword || item instanceof net.minecraft.world.item.ItemTool || item instanceof net.minecraft.world.item.ItemHoe) {
+            Multimap<AttributeBase, AttributeModifier> map = item.a(EnumItemSlot.a);
         	//Multimap<String, AttributeModifier> map = item.a(EnumItemSlot.MAINHAND);
             //Collection<AttributeModifier> attributes = map.get(GenericAttributes.ATTACK_DAMAGE);
         	//Collection<AttributeModifier> attributes = map.get(new com.sun.xml.internal.fastinfoset.stax.events.AttributeBase(arg0, arg1));

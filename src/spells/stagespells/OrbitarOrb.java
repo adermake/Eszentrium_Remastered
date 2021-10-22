@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -115,14 +115,14 @@ public class OrbitarOrb extends Spell {
 		dir = loc.toVector().subtract(lastloc.toVector());
 		
 		ParUtils.createRedstoneParticle(loc.clone().add(0,0.5,0), 0.1F, 0.1F, 0.1F, 8, Color.GREEN, 0.6F);
-			//ParUtils.createFlyingParticle(Particles.CRIT, loc.clone().add(0,2.5,0), 0, 0, 0, 1, 5, dir.normalize());
+			//ParUtils.createFlyingParticle(Particle.CRIT, loc.clone().add(0,2.5,0), 0, 0, 0, 1, 5, dir.normalize());
 		//ParUtils.createRedstoneParticle(loc.clone().add(0,2.5,0), 0.5,0.5, 0.5, 1, Color.GREEN, 1.5F);
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,1,1);
 		//p.setVelocity(dir.multiply(speed/2));
 		doKnockback(p, caster.getLocation(), 1);
@@ -133,7 +133,7 @@ public class OrbitarOrb extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,1,1);
 		doKnockback(ent, caster.getLocation(), 1);
 		ent.setVelocity(ent.getVelocity().add(new Vector(0,1.5F,0)));

@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -83,7 +83,7 @@ public class Stich extends Spell {
 				ParUtils.createRedstoneParticle(loc, 0.1, 0.1, 0.1, 5, Color.WHITE, 1);
 			if (dashes == 0)
 				ParUtils.createRedstoneParticle(loc, 0.1, 0.1, 0.1, 5, Color.RED, 1);
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc,0.1, 0.1, 0.1, 5, 1.5F, caster.getLocation().getDirection().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc,0.1, 0.1, 0.1, 5, 1.5F, caster.getLocation().getDirection().multiply(-1));
 		SoundUtils.playSound(Sound.ENTITY_WITHER_SHOOT, loc,2,5);
 		if (dashes < 2) {
 			length = 14;
@@ -116,7 +116,7 @@ public class Stich extends Spell {
 				caster.setVelocity(caster.getLocation().getDirection().multiply(5));
 			
 			
-			ParUtils.createParticle(Particles.END_ROD, loc, 1, 1, 1, 1, speed);
+			ParUtils.createParticle(Particle.END_ROD, loc, 1, 1, 1, 1, speed);
 		}
 		else {
 			
@@ -146,7 +146,7 @@ public class Stich extends Spell {
 			}
 			
 		
-			//ParUtils.createFlyingParticle(Particles.CLOUD, loc,0.1, 0.1, 0.1, 5, 1.5F, caster.getVelocity().multiply(-1));
+			//ParUtils.createFlyingParticle(Particle.CLOUD, loc,0.1, 0.1, 0.1, 5, 1.5F, caster.getVelocity().multiply(-1));
 		}
 		
 	}
@@ -163,8 +163,8 @@ public class Stich extends Spell {
 		
 		if (dashes == 0) {
 			SoundUtils.playSound(Sound.ENTITY_FIREWORK_ROCKET_BLAST, loc, 1F, 5);
-			ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0,1, 1);
-			ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 70, 2);
+			ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0,1, 1);
+			ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 70, 2);
 			ParUtils.createRedstoneParticle(loc, 1, 1, 1,65, Color.RED, 1);
 			p.setVelocity(caster.getVelocity());
 		}
@@ -191,8 +191,8 @@ public class Stich extends Spell {
 		
 		if (dashes == 0) {
 			SoundUtils.playSound(Sound.ENTITY_FIREWORK_ROCKET_BLAST, loc, 1F, 5);
-			ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0,1, 1);
-			ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 70, 2);
+			ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0,1, 1);
+			ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 70, 2);
 			ParUtils.createRedstoneParticle(loc, 1, 1, 1,65, Color.RED, 1);
 			ent.setVelocity(caster.getVelocity());
 		}

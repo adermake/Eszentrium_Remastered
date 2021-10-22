@@ -22,7 +22,7 @@ import esze.utils.CorpseUtils;
 import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
 import esze.utils.TTTRevive;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -202,7 +202,7 @@ public class SchreidesPhönix extends Spell{
 								else {
 									revive(p,id,ti+1);
 									ParUtils.parLineRedstone(c.cows.get(0).getLocation(), p.getLocation(), Color.BLACK, 2, 0.2F);
-									ParUtils.chargeDot(c.cows.get(0).getLocation(), Particles.TOTEM_OF_UNDYING, 0.3F, 4);
+									ParUtils.chargeDot(c.cows.get(0).getLocation(), Particle.TOTEM, 0.3F, 4);
 									ParUtils.createRedstoneParticle(c.cows.get(0).getLocation(),0, 0, 0, 1, Color.BLACK, 1F);
 									playSound(Sound.ENTITY_ILLUSIONER_MIRROR_MOVE,p.getLocation(),1,1);
 								}

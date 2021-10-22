@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class BowArrow extends Spell {
@@ -66,7 +66,7 @@ public class BowArrow extends Spell {
 		a.setVelocity(loc.getDirection().multiply(speed/2));
 		a.setPierceLevel(100);
 		if (step > 10)
-		ParUtils.createParticle(Particles.CRIT, loc, 0.05F, 0.05F, 0.05F, 1, 0);
+		ParUtils.createParticle(Particle.CRIT, loc, 0.05F, 0.05F, 0.05F, 1, 0);
 		
 	}
 
@@ -99,7 +99,7 @@ public class BowArrow extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.05F, 0.05F, 0.05F, 5, 0.3F);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.05F, 0.05F, 0.05F, 5, 0.3F);
 		if (a != null)
 		a.remove();
 	}
