@@ -32,7 +32,7 @@ public abstract class Monument extends Spell {
 	public static ArrayList<Monument> monuments = new ArrayList<Monument>();
 
 	ArrayList<Player> inside = new ArrayList<Player>();
-	ArrayList<ArmorStand> cores = new ArrayList<ArmorStand>();
+	HashMap<ArmorStand, Material> cores = new HashMap<ArmorStand, Material>();
 	HashMap<ArmorStand, Vector> blocks = new HashMap<ArmorStand, Vector>();
 	HashMap<ArmorStand, Double> rotation = new HashMap<ArmorStand, Double>();
 	HashMap<ArmorStand, Vector> lastHeadDir = new HashMap<ArmorStand, Vector>();
@@ -54,7 +54,8 @@ public abstract class Monument extends Spell {
 	Material pState1 = Material.STONE_BRICKS;
 	Material pState2 = Material.CRACKED_STONE_BRICKS;
 	Material pState3 = Material.COBBLESTONE;
-	
+	int currentNoDamageTicks = 0;
+	int noDamageTicks = 20* 5;
 	// True Health
 	double monumentMaxHealth = 20;
 	double monumentHealth = 20;
@@ -90,10 +91,7 @@ public abstract class Monument extends Spell {
 			hitBoxesMonument.put(gol,this);
 		}
 		for (int i = 0; i < platingCount; i++) {
-			ArmorStand plating = createArmorStand(loc);
-			plating.setGravity(true);
-			disableEntityHitbox(plating);
-			plating.getEquipment().setHelmet(new ItemStack(pState1));
+		
 			new Plating(this);
 		}
 	}
@@ -131,7 +129,7 @@ public abstract class Monument extends Spell {
 			if (!(p.getEyeLocation().distance(loc) < 0.6 + hitboxSize
 					|| p.getLocation().distance(loc) < 0.6 + hitboxSize)) {
 				onLeave(p);
-				inside.remove(p);
+				removeLater.add(p);
 			}
 		}
 		for (Player p : removeLater) {
@@ -140,7 +138,7 @@ public abstract class Monument extends Spell {
 
 		// Monement Body Animation
 		for (ArmorStand ar : blocks.keySet()) {
-			if (cores.contains(ar))
+			if (cores.keySet().contains(ar))
 				continue;
 
 			Location rot = rotatedPosition(ar);
@@ -150,7 +148,7 @@ public abstract class Monument extends Spell {
 		}
 
 		// Core Animation
-		for (ArmorStand core : cores) {
+		for (ArmorStand core : cores.keySet()) {
 			doPin(core, loc.clone().add(blocks.get(core)).clone().add(monumentOffset), 3);
 			Entity p = target;
 			if (p != null) {
@@ -164,11 +162,15 @@ public abstract class Monument extends Spell {
 
 		// Platings
 		if (platings.size() > 0) {
-			double stepOffset = 44 / platings.size();
+			double stepOffset = 44D / (double)platings.size();
 			int index = 0;
 			for (Plating plating : platings) {
+				
+				plating.checkState();
+	
 				Location pLoc = ParUtils.stepCalcCircle(getOffsetLoc(), platingOrbit, new Vector(0, 1, 0), 0,
-						index * stepOffset -step*platingOrbitSpeed);
+						((double)index * (double)stepOffset) -(double)(step*platingOrbitSpeed));
+				
 				Vector v = doPin(plating.getArmorStand(), pLoc, 3);
 				setArmorstandHeadPos(plating.getArmorStand(), v, 0, 0);
 				for (Player p : Bukkit.getOnlinePlayers()) 
@@ -176,24 +178,55 @@ public abstract class Monument extends Spell {
 				index++;
 			}
 		}
-
+		
+		currentNoDamageTicks--;
+	
+		
+		//No Damage Animation Disable
+		if (currentNoDamageTicks <= 0) {
+			for (ArmorStand core : cores.keySet()) {
+			
+				if (core.getEquipment().getHelmet().getType() == Material.BEDROCK) {
+					core.getEquipment().setHelmet(new ItemStack(cores.get(core)));
+				}
+				currentNoDamageTicks = 0;
+			}
+		}
+		
 		onTick();
+		
 
 	}
 	
 	public void onHitGolem(Entity damager,double damage) {
+		if (currentNoDamageTicks > 0) {
+			playSound(Sound.ITEM_SHIELD_BLOCK,loc,1,1);
+			return;
+		}
+		
+			
+		
+		
 		if (platings.size() > 0) {
 			Plating plating = platings.get(0);
 			playSound(Sound.ENTITY_IRON_GOLEM_HURT,loc,1,1);
 			if (plating.damage(damage)) {			
 				plating.destroy();
+				for (ArmorStand core : cores.keySet()) {
+					if (core.getEquipment().getHelmet().getType() != Material.BEDROCK) {
+						core.getEquipment().setHelmet(new ItemStack(Material.BEDROCK));
+					}
+				}
+				currentNoDamageTicks = noDamageTicks;
 			}
+			
 			
 		}
 		else {
 			monumentHealth -= damage;
 			if (monumentHealth <= 0) {
 				playSound(Sound.ENTITY_IRON_GOLEM_DAMAGE,loc,1,0.5);
+				playSound(Sound.BLOCK_CHEST_LOCKED,loc,1,0.5F);
 				explode();
 			}	
 		}
@@ -275,6 +308,10 @@ public abstract class Monument extends Spell {
 
 	public ArmorStand addBlock(Material m, Vector gridPos) {
 
+		return addBlock(m, gridPos, 0.05D);
+	}
+	public ArmorStand addBlock(Material m, Vector gridPos,double rot) {
+
 		Vector v = new Vector(gridPos.getX() * armorStandHeadConstant, gridPos.getY() * armorStandHeadConstant,
 				gridPos.getZ() * armorStandHeadConstant);
 		ArmorStand ar = createArmorStand(loc.clone().setDirection(new Vector(1, 0, 0)));
@@ -286,10 +323,9 @@ public abstract class Monument extends Spell {
 		blocks.put(ar, v);
 		lastHeadDir.put(ar, ar.getLocation().getDirection());
 		// rotation.put(ar, 0.18D);
-		rotation.put(ar, 0.05D);
+		rotation.put(ar, rot);
 		return ar;
 	}
-
 	public void addCore(Material m, Vector gridPos) {
 
 		Vector v = new Vector(gridPos.getX() * armorStandHeadConstant, gridPos.getY() * armorStandHeadConstant,
@@ -299,7 +335,7 @@ public abstract class Monument extends Spell {
 		ar.setGravity(true);
 		noTargetEntitys.add(ar);
 		disableEntityHitbox(ar);
-		cores.add(ar);
+		cores.put(ar,m);
 		lastHeadDir.put(ar, ar.getLocation().getDirection());
 		blocks.put(ar, v);
 	}

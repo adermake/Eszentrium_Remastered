@@ -91,6 +91,7 @@ public class TraitorshopMenu extends ItemMenu {
 	public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 		
 	

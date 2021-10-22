@@ -101,6 +101,9 @@ public class Interact implements Listener{
 		if (e.getAction() == Action.RIGHT_CLICK_AIR ||e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			
 			if (p.getInventory().getItemInMainHand().getType() == Material.WRITTEN_BOOK) {
+				
+			}
+			if (p.getInventory().getItemInMainHand().getType() == Material.WRITTEN_BOOK) {
 				ItemStack writtenBook = p.getInventory().getItemInMainHand();
 				BookMeta bookMeta = (BookMeta) writtenBook.getItemMeta();
 				//Bukkit.broadcastMessage(""+[0]);

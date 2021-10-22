@@ -47,7 +47,31 @@ public class Plating {
 
 		return currentHealth <= 0;
 	}
+	
+	public void checkState() {
+	
+		double per = currentHealth / maxHealth;
+	
+		if (m.currentNoDamageTicks > 0) {
+			if (armorStand.getEquipment().getHelmet().getType() != Material.BEDROCK)
+			armorStand.getEquipment().setHelmet(new ItemStack(Material.BEDROCK));
+			
+		}
+		
+		else if (per < 1D / 3D) {
+			if (armorStand.getEquipment().getHelmet().getType() != m.pState3)
+			armorStand.getEquipment().setHelmet(new ItemStack(m.pState3));
+		
+		} else if (per < 2D / 3D) {
+			if (armorStand.getEquipment().getHelmet().getType() != m.pState2)
+			armorStand.getEquipment().setHelmet(new ItemStack(m.pState2));
 
+		} else  {
+			if (armorStand.getEquipment().getHelmet().getType() != m.pState1)
+			armorStand.getEquipment().setHelmet(new ItemStack(m.pState1));
+		
+		}
+	}
 	public void destroy() {
 		ParUtils.createParticle(Particle.EXPLOSION_LARGE, getLocation(), 0, 0, 0, 1, 1);
 		m.playSound(Sound.ENTITY_GENERIC_EXPLODE, getLocation(), 1, 0.5F);
