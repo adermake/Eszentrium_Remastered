@@ -43,6 +43,7 @@ public abstract class Monument extends Spell {
 	Entity target;
 
 	Vector monumentOffset = new Vector(0, 0, 0);
+	// SpellData
 	EszeTeam team;
 
 	// Platings
@@ -65,9 +66,14 @@ public abstract class Monument extends Spell {
 	public static HashMap<IronGolem, Monument> hitBoxesMonument = new HashMap<IronGolem, Monument>();
 
 	public Monument(Player caster, String name, EszeTeam team) {
+		this.caster = caster;
+		this.name = name;
+		this.team = team;
+	}
+	
+	public void constructMonument() {
 		castSpell(caster, name);
 	}
-
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
@@ -316,13 +322,10 @@ public abstract class Monument extends Spell {
 				gridPos.getZ() * armorStandHeadConstant);
 		ArmorStand ar = createArmorStand(loc.clone().setDirection(new Vector(1, 0, 0)));
 		ar.getEquipment().setHelmet(new ItemStack(m));
-		ar.setGravity(true);
 		noTargetEntitys.add(ar);
 		disableEntityHitbox(ar);
-
 		blocks.put(ar, v);
 		lastHeadDir.put(ar, ar.getLocation().getDirection());
-		// rotation.put(ar, 0.18D);
 		rotation.put(ar, rot);
 		return ar;
 	}

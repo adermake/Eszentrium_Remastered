@@ -51,7 +51,7 @@ public class GameType {
 	}
 	
 	public static enum TypeEnum {
-		SOLO,TTT,TEAMS;
+		SOLO,TTT,TEAMS,MONUMENTE;
 	}
 
 	public static void refreshGameType() {

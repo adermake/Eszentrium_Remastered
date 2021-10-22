@@ -235,7 +235,7 @@ public abstract class Spell {
 		}
 		
 	}
-	public void silence(Player p,SilenceSelection s) {
+	public static void silence(Player p,SilenceSelection s) {
 		silenced.put(p, s);
 		
 	}

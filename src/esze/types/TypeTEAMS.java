@@ -39,9 +39,9 @@ import spells.spellcore.Spell;
 import weapons.Damage;
 import weapons.WeaponMenu;
 
-public class TypeTEAMS extends Type{
+public class TypeTEAMS extends TypeTeamBased{
 
-	public ArrayList<EszeTeam> allTeams = new ArrayList<EszeTeam>();
+	
 	public ArrayList<EszeTeam> allTeamsAlive = new ArrayList<EszeTeam>();
 	public static HashMap<Player, Location> loc = new HashMap<Player, Location>();
 	public HashMap<EszeTeam,Integer> lives = new HashMap<EszeTeam,Integer>();
@@ -63,35 +63,7 @@ public class TypeTEAMS extends Type{
 	}
 	
 	
-	public void removePlayerFromAllTeams(Player p) {
-		for (EszeTeam t : allTeams) {
-			if (t.players.contains(p)) {
-				t.removePlayer(p);
-			}
-		}
-	}
 	
-	public boolean playerHasTeam(Player p) {
-		boolean hasTeam = false;
-		for (EszeTeam t : allTeams) {
-			if (t.players.contains(p)) {
-				hasTeam = true;
-			}
-		}
-		return hasTeam;
-		
-	}
-	
-	public ArrayList<Player> getTeammates(Player p) {
-		
-		for (EszeTeam t : allTeams) {
-			if (t.players.contains(p)) {
-				return t.players;
-			}
-		}
-		return null;
-		
-	}
 	@Override
 	public void endGame() {
 		// TODO Auto-generated method stub
