@@ -13,13 +13,14 @@ import esze.utils.ParUtils;
 
 public class Nexus extends Monument{
     
-    Location ori;
+
     public Nexus(Player p) {
         super(p,"§eNexus",null);
         range = 6;
-        ori = loc.clone();
+      
         platingCount = 0;
         constructMonument();
+        
         Bukkit.broadcastMessage("bro");
     }
     

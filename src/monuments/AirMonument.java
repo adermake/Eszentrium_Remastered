@@ -18,12 +18,12 @@ import spells.spells.Aufwind;
 
 public class AirMonument extends Monument{
 
-	Location ori;
+	
 	public AirMonument(Player p) {
 		super(p,"§eAir Monument",null);
 		range = 6;
-		ori = loc.clone();
-		
+	
+		constructMonument();
 	}
 	
 	@Override

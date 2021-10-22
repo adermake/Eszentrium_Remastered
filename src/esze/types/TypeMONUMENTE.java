@@ -17,9 +17,7 @@ import spells.spellcore.Spell;
 
 public class TypeMONUMENTE extends TypeTeamBased{
 
-	enum State {
-		BUILDPHASE,BATTLEPHASE,LASERPHASE
-	};
+	
 	
 	public TypeMONUMENTE() {
 		name = "MONUMENTE";
@@ -105,5 +103,9 @@ public class TypeMONUMENTE extends TypeTeamBased{
 		resendScorboardTeams(p);
 		}
 	}
+	
+	enum State {
+		BUILDPHASE,BATTLEPHASE,LASERPHASE
+	};
 	
 }

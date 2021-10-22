@@ -43,7 +43,6 @@ public abstract class Monument extends Spell {
 	Entity target;
 
 	Vector monumentOffset = new Vector(0, 0, 0);
-	// SpellData
 	EszeTeam team;
 
 	// Platings
@@ -73,6 +72,7 @@ public abstract class Monument extends Spell {
 	
 	public void constructMonument() {
 		castSpell(caster, name);
+		
 	}
 	@Override
 	public void setUp() {
@@ -106,7 +106,6 @@ public abstract class Monument extends Spell {
 	public void cast() {
 		for (ArmorStand ar : blocks.keySet()) {
 			doPin(ar, loc.clone().add(blocks.get(ar)).add(monumentOffset));
-
 		}
 	}
 
@@ -323,6 +322,7 @@ public abstract class Monument extends Spell {
 		ArmorStand ar = createArmorStand(loc.clone().setDirection(new Vector(1, 0, 0)));
 		ar.getEquipment().setHelmet(new ItemStack(m));
 		noTargetEntitys.add(ar);
+		ar.setGravity(true);
 		disableEntityHitbox(ar);
 		blocks.put(ar, v);
 		lastHeadDir.put(ar, ar.getLocation().getDirection());
