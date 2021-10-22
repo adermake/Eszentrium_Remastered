@@ -22,32 +22,45 @@ public class Nexus extends Monument{
       
         platingCount = 0;
         constructMonument();
-        
-        Bukkit.broadcastMessage("bro");
     }
     
     @Override
     public void onConstruct() {
-        Material TeamMaterial = Material.CRIMSON_HYPHAE;
-        Material TeamCore = Material.RED_STAINED_GLASS;
-        addBlock(TeamMaterial, new Vector(0.4,1.5,0),0.05);
-        addBlock(TeamMaterial, new Vector(-0.4,1.5,0),0.05);
-        addBlock(TeamMaterial, new Vector(0,1.5,0),0.05);
+        //Material TeamMaterial = Material.FIRE_CORAL_BLOCK;
+        //Material TeamMaterial2 = Material.CRIMSON_HYPHAE;
+        //Material TeamOrbitar = Material.RED_STAINED_GLASS;
+        //Material TeamCore = Material.REDSTONE_BLOCK; 
+        Material TeamMaterial = Material.TUBE_CORAL_BLOCK;
+        Material TeamMaterial2 = Material.LAPIS_BLOCK;
+        Material TeamOrbitar = Material.BLUE_STAINED_GLASS;
+        Material TeamCore = Material.DIAMOND_BLOCK;
+        addBlock(TeamMaterial2, new Vector(0.4,2,0),0.05);
+        addBlock(TeamMaterial2, new Vector(-0.4,2,0),0.05);
         addBlock(TeamMaterial, new Vector(0,2,0),0.05);
-        addBlock(TeamMaterial, new Vector(0,1.5,0.4),0.05);
-        addBlock(TeamMaterial, new Vector(0,1.5,-0.4),0.05);
-
-        addBlock(TeamMaterial, new Vector(0.4,-1.5,0),-0.05);
-        addBlock(TeamMaterial, new Vector(-0.4,-1.5,0),-0.05);
-        addBlock(TeamMaterial, new Vector(0,-1.5,0),-0.05);
-        addBlock(TeamMaterial, new Vector(0,-2,0),-0.05);
-        addBlock(TeamMaterial, new Vector(0,-1.5,0.4),-0.05);
-        addBlock(TeamMaterial, new Vector(0,-1.5,-0.4),-0.05);
+        addBlock(TeamMaterial2, new Vector(0,2,0.4),0.05);
+        addBlock(TeamMaterial2, new Vector(0,2,-0.4),0.05);
+        addBlock(TeamMaterial, new Vector(0.6,1.5,0.6),0.05);
+        addBlock(TeamMaterial, new Vector(-0.6,1.5,0.6),0.05);
+        addBlock(TeamMaterial, new Vector(0.6,1.5,-0.6),0.05);
+        addBlock(TeamMaterial, new Vector(-0.6,1.5,-0.6),0.05);
+        addBlock(Material.CRACKED_DEEPSLATE_TILES, new Vector(0,2.5,0),0.05);
         
-        addBlock(TeamCore, new Vector(5,1,0),0.2);
-        addBlock(TeamCore, new Vector(-5,1,0),0.2);
-        addBlock(TeamCore, new Vector(0,-1,5),-0.2);
-        addBlock(TeamCore, new Vector(0,-1,-5),-0.2);
+
+        addBlock(TeamMaterial2, new Vector(0.4,-2,0),-0.05);
+        addBlock(TeamMaterial2, new Vector(-0.4,-2,0),-0.05);
+        addBlock(TeamMaterial, new Vector(0,-2,0),-0.05);
+        addBlock(TeamMaterial2, new Vector(0,-2,0.4),-0.05);
+        addBlock(TeamMaterial2, new Vector(0,-2,-0.4),-0.05);
+        addBlock(TeamMaterial, new Vector(0.6,-1.5,0.6),-0.05);
+        addBlock(TeamMaterial, new Vector(-0.6,-1.5,0.6),-0.05);
+        addBlock(TeamMaterial, new Vector(0.6,-1.5,-0.6),-0.05);
+        addBlock(TeamMaterial, new Vector(-0.6,-1.5,-0.6),-0.05);
+        addBlock(Material.CRACKED_DEEPSLATE_TILES, new Vector(0,-2.5,0),-0.05);
+        
+        addBlock(TeamOrbitar, new Vector(3,1,0),0.15);
+        addBlock(TeamOrbitar, new Vector(-3,1,0),0.15);
+        addBlock(TeamOrbitar, new Vector(0,-1,3),0.15);
+        addBlock(TeamOrbitar, new Vector(0,-1,-3),0.15);
 
         addCore(TeamCore, new Vector(0,0,0));
 
