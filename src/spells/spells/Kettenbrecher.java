@@ -151,6 +151,7 @@ public class Kettenbrecher extends Spell {
 			speed = 1;
 			if (target != null) {
 				speed = 2;
+				steprange = 20 * 20;
 			}
 			hitPlayer = false;
 			hitEntity = false;
