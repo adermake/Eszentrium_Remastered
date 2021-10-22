@@ -1,6 +1,5 @@
 package spells.stagespells;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -8,7 +7,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 
-import net.minecraft.server.v1_16_R3.EntityTNTPrimed;
 import spells.spellcore.Spell;
 
 public class Tnt extends Spell {

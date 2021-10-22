@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -64,7 +64,7 @@ public class Höllenhast extends Spell {
 		if (swap()) {
 			cast = casttime;
 		}
-		ParUtils.createFlyingParticle(Particles.FLAME, caster.getEyeLocation(), 0.9, 0.9, 0.9, 1, -0.4F,caster.getLocation().getDirection().multiply(-2) );
+		ParUtils.createFlyingParticle(Particle.FLAME, caster.getEyeLocation(), 0.9, 0.9, 0.9, 1, -0.4F,caster.getLocation().getDirection().multiply(-2) );
 		
 	}
 
@@ -78,7 +78,7 @@ public class Höllenhast extends Spell {
 		loc = caster.getEyeLocation();
 		// TODO Auto-generated method stub
 		
-		ParUtils.parKreisDir(Particles.CAMPFIRE_COSY_SMOKE, caster.getLocation(), 3, 0, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+		ParUtils.parKreisDir(Particle.CAMPFIRE_COSY_SMOKE, caster.getLocation(), 3, 0, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 		if (refined && charges > 0) {
 			
 			clearswap();
@@ -99,7 +99,7 @@ public class Höllenhast extends Spell {
 			i.setFireTicks(2000);
 		}
 		if (step <20)
-		ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.2F, 0.2F, 0.2F, 5, 1, loc.getDirection().multiply(2));
+		ParUtils.createFlyingParticle(Particle.FLAME, loc, 0.2F, 0.2F, 0.2F, 5, 1, loc.getDirection().multiply(2));
 	}
 
 	@Override

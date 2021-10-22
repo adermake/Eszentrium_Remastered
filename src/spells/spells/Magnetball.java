@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -102,9 +102,9 @@ public class Magnetball extends Spell{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		//ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0,0, 1, 4, loc.getDirection());
+		//ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0,0, 1, 4, loc.getDirection());
 		if (step % 2 == 0)
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 1, 0.2);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 1, 0.2);
 		
 		for (ArmorStand a : stands) {
 			double randVal = 0.1;
@@ -116,7 +116,7 @@ public class Magnetball extends Spell{
 	public void onPlayerHit(Player p) {
 		double distance = p.getLocation().distance(loc);
 		
-		ParUtils.parLine(Particles.BUBBLE, loc.clone(),  p.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(),  p.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
 		//if (step< steprange-10)
 			
 		//ParUtils.parLineRedstone(loc, p.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp((int) (100+distance*15), 0, 255)), 1, 0.5);
@@ -131,7 +131,7 @@ public class Magnetball extends Spell{
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		double distance = ent.getLocation().distance(loc);
-		ParUtils.parLine(Particles.BUBBLE, loc.clone(),  ent.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(),  ent.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
 		/*
 		if (step< steprange-10)
 		ParUtils.parLineRedstone(loc, ent.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp( (int) (100+distance*15),0 ,255 )), 1, 0.5);
@@ -157,7 +157,7 @@ public class Magnetball extends Spell{
 		
 		dead = true;
 		// TODO Auto-generated method stub
-		ParUtils.chargeDot(loc, Particles.END_ROD, 0.2, 4,60);
+		ParUtils.chargeDot(loc, Particle.END_ROD, 0.2, 4,60);
 		playSound(Sound.ENTITY_WITHER_SPAWN,loc,4f,2f);
 		for (Entity ent : hitEntitys) {
 			LivingEntity e = (LivingEntity) ent;
@@ -178,7 +178,7 @@ public class Magnetball extends Spell{
 		for (ArmorStand a : stands) {
 			a.remove();
 		}
-		ParUtils.createParticle(Particles.FLASH, loc,0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, loc,0, 0, 0, 1, 1);
 	}
 	
 

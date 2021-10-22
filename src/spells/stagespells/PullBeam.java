@@ -5,7 +5,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class PullBeam extends Spell {
@@ -75,8 +75,8 @@ public class PullBeam extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 3, 3, 3, 3, 0, caster.getLocation().getDirection().multiply(-10));
-		ParUtils.createFlyingParticle(Particles.END_ROD, loc, 5, 5, 5, 3, 1.2F, caster.getLocation().getDirection().multiply(-10));
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc, 3, 3, 3, 3, 0, caster.getLocation().getDirection().multiply(-10));
+		ParUtils.createFlyingParticle(Particle.END_ROD, loc, 5, 5, 5, 3, 1.2F, caster.getLocation().getDirection().multiply(-10));
 	}
 
 }

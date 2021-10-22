@@ -9,8 +9,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
+
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -66,9 +66,9 @@ public class Explosion extends Spell {
 	@Override
 	public void display() {
 		if (hitboxSize>2) {
-			ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, hitboxSize/3, hitboxSize/3, hitboxSize/3, (int)hitboxSize/2, 0);
+			ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, hitboxSize/3, hitboxSize/3, hitboxSize/3, (int)hitboxSize/2, 0);
 		}
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 3, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 3, 0);
 		
 	}
 

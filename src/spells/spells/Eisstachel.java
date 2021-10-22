@@ -18,7 +18,7 @@ import org.bukkit.util.Vector;
 import esze.enums.Gamestate;
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -50,7 +50,7 @@ public class Eisstachel extends Spell {
 	@Override
 	public void setUp() {
 		// TODO Auto-generated method stub
-		//ParUtils.parKreisDir(Particles.CLOUD, loc, 3, 2, c, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+		//ParUtils.parKreisDir(Particle.CLOUD, loc, 3, 2, c, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 		if (saveLoc != null)	
 		loc = saveLoc;
 	
@@ -75,11 +75,11 @@ public class Eisstachel extends Spell {
 			last = l.toVector();
 		}
 		Vector d = l.toVector().subtract(last);
-		ParUtils.createFlyingParticle(Particles.CLOUD, l, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
+		ParUtils.createFlyingParticle(Particle.CLOUD, l, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
 		
 		for (int i = 0;i<2;i++) {
 			Location l1 = ParUtils.stepCalcCircle(caster.getEyeLocation(), 3, caster.getLocation().getDirection(), 3, c*i);
-			ParUtils.createFlyingParticle(Particles.CLOUD, l1, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
+			ParUtils.createFlyingParticle(Particle.CLOUD, l1, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
 		}
 		last = l.toVector();
 		*/
@@ -120,7 +120,7 @@ public class Eisstachel extends Spell {
 		
 		// TODO Auto-generated method stub
 		//ParUtils.createFlyingParticle(Particle.BUBBLE_POP, loc,0, 0, 0, 1, 2, loc.getDirection().multiply(-1));
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.1, 0.1, 0.1, 3, 0);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.1, 0.1, 0.1, 3, 0);
 		
 	}
 	ArrayList<Player> frozen = new ArrayList<Player>();
@@ -241,7 +241,7 @@ public class Eisstachel extends Spell {
 						}
 					}.runTaskLater(main.plugin, 40);
 					playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,p.getLocation(),1f,2f);
-			ParUtils.createParticle(Particles.EXPLOSION_EMITTER, p.getLocation(), 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.EXPLOSION_LARGE, p.getLocation(), 0, 0, 0, 1, 1);
 			for (FallingBlock fb : blocks) {
 				
 				ParUtils.createBlockcrackParticle(fb.getLocation(), 0.1F, 0.1F, 0.1F, 4, Material.PACKED_ICE);

@@ -23,7 +23,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -200,13 +200,13 @@ public class ChainSeg extends Spell {
 		vel.add(cVec.multiply(-0.5F));
 		
 		vel = vel.multiply(1-drag);
-		//ParUtils.createParticle(Particles.BARRIER, loc, 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.BARRIER, loc, 0, 0, 0, 1, 1);
 	}
 	
 	public void launchEntity(final Entity ent) {
 
-		//ParUtils.parKreisDir(Particles.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize(),vel.clone().normalize());
-		ParUtils.parKreisDot(Particles.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize());
+		//ParUtils.parKreisDir(Particle.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize(),vel.clone().normalize());
+		ParUtils.parKreisDot(Particle.CLOUD, loc.clone(), 2, 0, 0.2, vel.clone().normalize());
 	
 		ent.setVelocity(vel.multiply(speed/2));
 		cd.add(ent);
@@ -232,13 +232,13 @@ public class ChainSeg extends Spell {
 		
 		if (randId ==-1) {
 		
-			ParUtils.createParticle(Particles.CRIT, getTop(loc.clone()), 0.1, 0.1, 0.1, 3, 0);
-			ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0, 0., 0, 1, 0);
+			ParUtils.createParticle(Particle.CRIT, getTop(loc.clone()), 0.1, 0.1, 0.1, 3, 0);
+			ParUtils.createParticle(Particle.SPELL_MOB_AMBIENT, loc, 0, 0., 0, 1, 0);
 		}
 		//doPin(a,loc.clone().add(0,-1,0),4);
 		// TODO Auto-generated method stub
 		//if (crit)
-		//ParUtils.createParticle(Particles.BUBBLE, loc, 0, 0, 0, 0, 0);
+		//ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0, 0, 0, 0, 0);
 		//ParUtils.dropItemEffectVector(loc, Material.IRON_BARS, 1, 1, 0.1F, loc.toVector().subtract(last.loc.toVector()).normalize(),);
 	}
 
@@ -249,7 +249,7 @@ public class ChainSeg extends Spell {
 			if (!cd.contains(p)&& !sticked.containsKey(p)) {
 				playSound(Sound.ENTITY_IRON_GOLEM_HURT,loc,4F,2F);
 				sticked.put(p,0);
-				ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 2, 0, 1, vel.clone().normalize());
+				ParUtils.parKreisDot(Particle.CRIT, loc.clone(), 2, 0, 1, vel.clone().normalize());
 				damage(p, 2, caster);
 			}
 			
@@ -275,7 +275,7 @@ public class ChainSeg extends Spell {
 			playSound(Sound.ENTITY_IRON_GOLEM_HURT,loc,4F,2F);
 			sticked.put(ent,0);
 			sticked.put(ent,0);
-			ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 2, 0, 1, vel.clone().normalize());
+			ParUtils.parKreisDot(Particle.CRIT, loc.clone(), 2, 0, 1, vel.clone().normalize());
 			damage(ent, 2, caster);
 		}
 	

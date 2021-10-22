@@ -2,36 +2,24 @@ package spells.spells;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftArmorStand;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftArrow;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPig;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftArmorStand;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Entity;
-import net.minecraft.server.v1_16_R3.EntityArmorStand;
-import net.minecraft.server.v1_16_R3.EntityArrow;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.Particles;
+import net.minecraft.world.entity.decoration.EntityArmorStand;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ChainConnection;
@@ -173,14 +161,14 @@ public class Kettenbrecher extends Spell {
 				if (target == null) {
 					caster.setVelocity(caster.getVelocity().add(caster.getLocation().getDirection().multiply(3)));
 					
-					ParUtils.parKreisDir(Particles.CLOUD, caster.getLocation(), 3, 0, 0.1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
-					ParUtils.parKreisDir(Particles.CLOUD, caster.getLocation(), 1, 0, 2, caster.getLocation().getDirection(), caster.getLocation().getDirection());
-					ParUtils.parKreisDir(Particles.CLOUD, caster.getLocation(), 2, 0, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+					ParUtils.parKreisDir(Particle.CLOUD, caster.getLocation(), 3, 0, 0.1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+					ParUtils.parKreisDir(Particle.CLOUD, caster.getLocation(), 1, 0, 2, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+					ParUtils.parKreisDir(Particle.CLOUD, caster.getLocation(), 2, 0, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 				}
 				else {
-					ParUtils.parKreisDir(Particles.CLOUD,target.getLocation(), 3, 0, 0.1, target.getLocation().getDirection(), target.getVelocity().normalize());
-					ParUtils.parKreisDir(Particles.CLOUD, target.getLocation(), 1, 0, 2, target.getLocation().getDirection(), target.getVelocity().normalize());
-					ParUtils.parKreisDir(Particles.CLOUD, target.getLocation(), 2, 0, 1, target.getLocation().getDirection(), target.getVelocity().normalize());
+					ParUtils.parKreisDir(Particle.CLOUD,target.getLocation(), 3, 0, 0.1, target.getLocation().getDirection(), target.getVelocity().normalize());
+					ParUtils.parKreisDir(Particle.CLOUD, target.getLocation(), 1, 0, 2, target.getLocation().getDirection(), target.getVelocity().normalize());
+					ParUtils.parKreisDir(Particle.CLOUD, target.getLocation(), 2, 0, 1, target.getLocation().getDirection(), target.getVelocity().normalize());
 				
 				}
 				playSound(Sound.ENTITY_WITHER_SHOOT,caster.getLocation(),1F,1.2F);
@@ -198,7 +186,7 @@ public class Kettenbrecher extends Spell {
 				//Bukkit.broadcastMessage("ON");
 				if (target == null) {
 					
-					ParUtils.createFlyingParticle(Particles.CLOUD, caster.getLocation(), 0.6, 0.6, 0.6, 1, 0.2F, caster.getVelocity().multiply(-1));
+					ParUtils.createFlyingParticle(Particle.CLOUD, caster.getLocation(), 0.6, 0.6, 0.6, 1, 0.2F, caster.getVelocity().multiply(-1));
 					doPin(caster, end.loc.toLocation(caster.getWorld()), 2);
 					end.setLocked(false);
 
@@ -224,7 +212,7 @@ public class Kettenbrecher extends Spell {
 					gravity = -0.01F;
 					start.setLocked(false);
 					doPin(target,start.loc.toLocation(caster.getWorld()),2);
-					ParUtils.createFlyingParticle(Particles.CLOUD,target.getLocation(), 0.6, 0.6, 0.6, 1, 0.2F,target.getVelocity().multiply(-1));
+					ParUtils.createFlyingParticle(Particle.CLOUD,target.getLocation(), 0.6, 0.6, 0.6, 1, 0.2F,target.getVelocity().multiply(-1));
 					
 					
 					avrg.add(target.getVelocity().clone());
@@ -388,16 +376,7 @@ public class Kettenbrecher extends Spell {
 		segments.add(newChain);
 		next = newChain;
 
-		EntityArmorStand nmsStand = ((CraftArmorStand) ar).getHandle();
-		Class nmsStandClass = Entity.class;
-		try {
-			Field noClip = nmsStandClass.getDeclaredField("noclip");
-			noClip.setBoolean(nmsStand, true);
-		}
-
-		catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		disableEntityHitbox(ar);
 
 		end.setLocked(false);
 		end = next;

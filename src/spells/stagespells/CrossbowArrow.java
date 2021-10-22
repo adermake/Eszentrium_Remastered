@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class CrossbowArrow extends Spell {
@@ -44,8 +44,8 @@ public class CrossbowArrow extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		//ParUtils.createFlyingParticle(Particles.END_ROD, loc.clone(), 0.1, 0.1, 0.1, 10, 3,loc.getDirection().multiply(1));
-		//ParUtils.createFlyingParticle(Particles.DRAGON_BREATH, loc.clone(), 0.2, 0.2, 0.2, 10, 3,loc.getDirection().multiply(1));
+		//ParUtils.createFlyingParticle(Particle.END_ROD, loc.clone(), 0.1, 0.1, 0.1, 10, 3,loc.getDirection().multiply(1));
+		//ParUtils.createFlyingParticle(Particle.DRAGON_BREATH, loc.clone(), 0.2, 0.2, 0.2, 10, 3,loc.getDirection().multiply(1));
 	}
 
 	@Override
@@ -57,14 +57,14 @@ public class CrossbowArrow extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.CRIT, loc, 0, 0, 0, 1, 1, v);
+		ParUtils.createFlyingParticle(Particle.CRIT, loc, 0, 0, 0, 1, 1, v);
 	}
 
 	@Override
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		playSound(Sound.ITEM_CROSSBOW_HIT,loc,1,1);
-		ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 1, 0, 4, v);
+		ParUtils.parKreisDot(Particle.CRIT, loc.clone(), 1, 0, 4, v);
 		if (refined) {
 			damage(p, 3, caster);
 		}
@@ -77,7 +77,7 @@ public class CrossbowArrow extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.CRIT, loc.clone(), 1, 0, 2, v);
+		ParUtils.parKreisDot(Particle.CRIT, loc.clone(), 1, 0, 2, v);
 		playSound(Sound.ITEM_CROSSBOW_HIT,loc,1,1);
 		if (refined) {
 			damage(ent, 3, caster);

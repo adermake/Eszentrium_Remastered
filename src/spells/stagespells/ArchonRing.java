@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
+
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class ArchonRing extends Spell {
 	Location overrideLoc;
-	ParticleType p;
-	public ArchonRing(String name,Player caster,Location loca,double radius,double speed,ParticleType p) {
+	Particle p;
+	public ArchonRing(String name,Player caster,Location loca,double radius,double speed,Particle p) {
 		this.name = name;
 		this.p = p;
 		overrideLoc = loca;
@@ -70,7 +70,7 @@ public class ArchonRing extends Spell {
 		}
 		
 		ParUtils.createParticle(p, ParUtils.stepCalcCircle(caster.getLocation().add(0,1,0), radius*mult, d, 0, step), 0, 0, 0, 5, 0);
-		ParUtils.createParticle(Particles.BUBBLE_POP, ParUtils.stepCalcCircle(caster.getLocation().add(0,1,0), radius*mult, d, 0, step), 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.BUBBLE_POP, ParUtils.stepCalcCircle(caster.getLocation().add(0,1,0), radius*mult, d, 0, step), 0, 0, 0, 5, 0);
 	}
 
 	@Override

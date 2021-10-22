@@ -18,7 +18,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.stagespells.BowArrow;
 import spells.stagespells.CrossbowArrow;
@@ -124,10 +124,10 @@ public class Crossbow extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (step % 10 == 0)
-		ParUtils.createParticle(Particles.WITCH, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
+		ParUtils.createParticle(Particle.SPELL_WITCH, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
 		
 		if (step % 10 == 0 && refined)
-			ParUtils.createParticle(Particles.SNEEZE, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
+			ParUtils.createParticle(Particle.SNEEZE, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
 	}
 
 	@Override

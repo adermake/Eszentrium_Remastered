@@ -11,7 +11,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -63,15 +63,15 @@ public class DimensionCutSeg extends Spell {
 		}
 		
 		if (top) {
-			ParUtils.createFlyingParticle(Particles.SMOKE,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
-			ParUtils.createFlyingParticle(Particles.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
-			ParUtils.createFlyingParticle(Particles.PORTAL, loc.clone().add(0,-0.3,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,-1,0)).multiply(-1));
-			//ParUtils.createFlyingParticle(Particles.DRAGON_BREATH, loc.clone().add(0,-0.3,0), 0, 0, 0, 1,0, new Vector(0,-1,0));
+			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
+			ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
+			ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,-0.3,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,-1,0)).multiply(-1));
+			//ParUtils.createFlyingParticle(Particle.DRAGON_BREATH, loc.clone().add(0,-0.3,0), 0, 0, 0, 1,0, new Vector(0,-1,0));
 		}
 		else {
-			ParUtils.createFlyingParticle(Particles.SMOKE,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
-			ParUtils.createFlyingParticle(Particles.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
-			ParUtils.createFlyingParticle(Particles.PORTAL, loc.clone().add(0,0.7,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
+			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
+			ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
+			ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,0.7,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
 		}
 	}
 
@@ -98,7 +98,7 @@ public class DimensionCutSeg extends Spell {
 			hitSpell = true;
 			active = true;
 		}
-		//ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 0, 0);
+		//ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 0, 0);
 		if (active) {
 			if (step % 60 == 0) {
 				playSound(Sound.AMBIENT_CAVE,loc,0.15F,2F);
@@ -106,27 +106,27 @@ public class DimensionCutSeg extends Spell {
 			if (step % 3 == 0) {
 				
 			if (top) {
-				ParUtils.createFlyingParticle(Particles.SMOKE,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
-				ParUtils.createFlyingParticle(Particles.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
+				ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
+				ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
 				
 				if (refined && step % 8 == 0) {
-					ParUtils.createFlyingParticle(Particles.SNEEZE, loc.clone().add(0,-0.3,0), 1, 1, 1, 2,0, v.clone().add(new Vector(0,-1,0)).multiply(-1));
+					ParUtils.createFlyingParticle(Particle.SNEEZE, loc.clone().add(0,-0.3,0), 1, 1, 1, 2,0, v.clone().add(new Vector(0,-1,0)).multiply(-1));
 				}
 				
-					ParUtils.createFlyingParticle(Particles.PORTAL, loc.clone().add(0,-0.3,0), 8, 8, 8, 1,2, v.clone().add(new Vector(0,-1,0)).multiply(-1));
+					ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,-0.3,0), 8, 8, 8, 1,2, v.clone().add(new Vector(0,-1,0)).multiply(-1));
 				
 				
-				//ParUtils.createFlyingParticle(Particles.DRAGON_BREATH, loc.clone().add(0,-0.3,0), 0, 0, 0, 1,0, new Vector(0,-1,0));
+				//ParUtils.createFlyingParticle(Particle.DRAGON_BREATH, loc.clone().add(0,-0.3,0), 0, 0, 0, 1,0, new Vector(0,-1,0));
 			}
 			else {
 				if (refined && step % 8 == 0) {
-					ParUtils.createFlyingParticle(Particles.SNEEZE, loc.clone().add(0,0.7,0), 1,1, 1, 2,0, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
+					ParUtils.createFlyingParticle(Particle.SNEEZE, loc.clone().add(0,0.7,0), 1,1, 1, 2,0, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
 				}
 				
-					ParUtils.createFlyingParticle(Particles.PORTAL, loc.clone().add(0,0.7,0), 8,8, 8, 1,2, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
+					ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,0.7,0), 8,8, 8, 1,2, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
 				
-				ParUtils.createFlyingParticle(Particles.SMOKE,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
-				ParUtils.createFlyingParticle(Particles.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
+				ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
+				ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
 				
 			}
 			}
@@ -137,7 +137,7 @@ public class DimensionCutSeg extends Spell {
 		
 		
 		
-		//ParUtils.createFlyingParticle(Particles.DRAGON_BREATH, loc.clone().add(0,-0.7,0), 0, 0, 0, 3, 0.1, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.DRAGON_BREATH, loc.clone().add(0,-0.7,0), 0, 0, 0, 3, 0.1, new Vector(0,1,0));
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class DimensionCutSeg extends Spell {
 
 	
 	public void swapTp(LivingEntity e) {
-		ParUtils.createParticle(Particles.FLASH, e.getLocation(), 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, e.getLocation(), 0, 0, 0, 1, 1);
 		playSound(Sound.ITEM_CHORUS_FRUIT_TELEPORT,loc,1,0.6F);
 		//hitEntitys.add(e);
 		Location l1 = loc.clone();

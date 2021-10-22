@@ -8,7 +8,7 @@ import org.bukkit.entity.Cat;
 import org.bukkit.entity.Cat.Type;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -129,7 +129,7 @@ public class Kätzchenkanone extends Spell {
 				new SelfRepulsion(8, 4, caster, loc,name);
 			}
 			playSound(Sound.ENTITY_GENERIC_EXPLODE, caster.getLocation(), 3.0F, 1F);
-			ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 4, 1);
+			ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 4, 1);
 			ParUtils.dropItemEffectRandomVector(loc, Material.TROPICAL_FISH, 1,40, 0.3);
 			ParUtils.dropItemEffectRandomVector(loc, Material.RABBIT_HIDE, 1,40, 0.3);
 		}

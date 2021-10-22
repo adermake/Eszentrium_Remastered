@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -55,15 +55,15 @@ public class Explosion extends Spell{
 		SoundUtils.playSound(Sound.BLOCK_SMOKER_SMOKE, loc, 1, 0.3F);
 		
 		
-		//ParUtils.auraParticle(Particles.LARGE_SMOKE, caster, 0.6F, 20*1);
+		//ParUtils.auraParticle(Particle.SMOKE_LARGE, caster, 0.6F, 20*1);
 		
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, loc, 0.5, 1, 0.5, 10, dist, d);
-		//ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 1, 0.5, 10, dist, d);
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
-		//ParUtils.createFlyingParticle(Particles.FLAME, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0.5, 1, 0.5, 10, dist, d);
+		//ParUtils.createFlyingParticle(Particle.FLAME, loc, 0.5, 1, 0.5, 10, dist, d);
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.FLAME, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
 		
 		//kRotLoc.setPitch(kRotLoc.getPitch()+5);
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, caster.getLocation(), 1, 1F, 1, 3, 0.2F,new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, caster.getLocation(), 1, 1F, 1, 3, 0.2F,new Vector(0,1,0));
 		float c = cast;
 		float ct = casttime;
 		float speed = 2*(c/ct);
@@ -74,10 +74,10 @@ public class Explosion extends Spell{
 		//ParUtils.dropItemEffectVector(p2, Material.TNT, 1, 1, 0, new Vector(0,1,0));
 		if (lp1 != null && lp2 != null) {
 			
-			//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector().add(new Vector(0,1,0))));
-			//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector().add(new Vector(0,1,0))));
-			ParUtils.createFlyingParticle(Particles.FLAME, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector()));
-			ParUtils.createFlyingParticle(Particles.FLAME, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector()));
+			//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector().add(new Vector(0,1,0))));
+			//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector().add(new Vector(0,1,0))));
+			ParUtils.createFlyingParticle(Particle.FLAME, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector()));
+			ParUtils.createFlyingParticle(Particle.FLAME, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector()));
 		}
 				lp1 = p1;
 				lp2 = p2;
@@ -116,7 +116,7 @@ public class Explosion extends Spell{
 			
 		
 		spawnShockWaffel(caster, 5,loc.clone());
-		//ParUtils.createParticle(Particles.BARRIER, loc, (power/ct)*8, (power/ct)*8, (power/ct)*8, (int)(power/ct)*10, 10);
+		//ParUtils.createParticle(Particle.BARRIER, loc, (power/ct)*8, (power/ct)*8, (power/ct)*8, (int)(power/ct)*10, 10);
 		
 		if (!refined)
 		//caster.setVelocity(caster.getVelocity().setY(1.0D));
@@ -129,8 +129,8 @@ public class Explosion extends Spell{
 			}
 		}
 		
-		ParUtils.parKreisDir(Particles.FLAME, caster.getLocation(), (power/ct)*15, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
-		ParUtils.parKreisDir(Particles.EXPLOSION_EMITTER, caster.getLocation(), (power/ct)*12, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.FLAME, caster.getLocation(), (power/ct)*15, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.EXPLOSION_HUGE, caster.getLocation(), (power/ct)*12, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
 		dead = true;
 	}
 
@@ -189,7 +189,7 @@ public class Explosion extends Spell{
 					double z = t * Math.sin(theta);
 					loc.add(x, y, z);
 					// ParticleEffect.FIREWORKS_SPARK.display(loc,0,0,0,0,1);
-					ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 0, 0);
+					ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 0, 0);
 				
 					loc.subtract(x, y, z);
 
@@ -200,7 +200,7 @@ public class Explosion extends Spell{
 					z = t * Math.sin(theta);
 					loc.add(x, y, z);
 					// ParticleEffect.WITCH_MAGIC.display(loc,0,0,0,0,1);
-					ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 0, 0);
+					ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 0, 0);
 					loc.subtract(x, y, z);
 				}
 				if (t > length) {

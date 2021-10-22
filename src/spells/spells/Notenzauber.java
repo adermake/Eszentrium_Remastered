@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -54,7 +54,7 @@ public class Notenzauber extends Spell {
 		loc = caster.getLocation();
 		Location loca = ParUtils.stepCalcSpiral(loc.clone(), 2, new Vector(0,1,0),0, cast);
 		playSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,loc,(float) 0.3,(float) 0.3);
-		ParUtils.createParticle(Particles.NOTE, loca, 0, 0, 0, 1,1);
+		ParUtils.createParticle(Particle.NOTE, loca, 0, 0, 0, 1,1);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class Notenzauber extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.NOTE, loc, 0.2, 0.2, 0.2, 1,2);
+		ParUtils.createParticle(Particle.NOTE, loc, 0.2, 0.2, 0.2, 1,2);
 		
 		playSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,loc,(float) 0.3,(float) 1);
 	}
@@ -132,7 +132,7 @@ public class Notenzauber extends Spell {
 					locP.setDirection(loca.toVector().subtract(locP.toVector()));
 					p.teleport(locP);
 				
-				ParUtils.createParticle(Particles.NOTE, loca, 0.1,0.1, 0.1, 1,0);
+				ParUtils.createParticle(Particle.NOTE, loca, 0.1,0.1, 0.1, 1,0);
 				playSound(Sound.BLOCK_NOTE_BLOCK_FLUTE,loca,(float) 0.3,2);
 				loca.subtract(x, y, z);
 				if (t > Math.PI * 2) {

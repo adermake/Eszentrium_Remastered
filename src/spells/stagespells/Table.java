@@ -32,7 +32,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.ScoreboardTeamUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Table extends Spell {
@@ -126,7 +126,7 @@ public class Table extends Spell {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 0);
+		//ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0);
 		Vector ruler = loc.getDirection().crossProduct(new Vector(0,1,0)).normalize();
 		Vector ruler2 = new Vector(0,-1,0);
 		Vector offset = ruler.clone().multiply(0.9+-1.8*((double)table.size())/2D).add(new Vector(0,table.get(0).split("\\n").length/2,0));

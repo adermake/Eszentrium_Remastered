@@ -17,7 +17,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -97,7 +97,7 @@ public class Mondkugel extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (refined)
-			ParUtils.createParticle(Particles.FIREWORK, s.getLocation(), 0.1F, 0.1F, 0.1F, 5, 0.01F);
+			ParUtils.createParticle(Particle.FIREWORKS_SPARK, s.getLocation(), 0.1F, 0.1F, 0.1F, 5, 0.01F);
 		
 	}
 
@@ -133,7 +133,7 @@ public class Mondkugel extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.FLASH, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
 		s.remove();
 	}
 

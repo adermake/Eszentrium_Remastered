@@ -5,8 +5,7 @@ import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftGuardian;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
@@ -17,7 +16,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.GuardianLaser;
@@ -99,17 +98,17 @@ public class Wasserdüse extends Spell {
 		g1.teleport(g1.getLocation().setDirection(caster.getLocation().getDirection()));
 		g2.teleport(g2.getLocation().setDirection(caster.getLocation().getDirection()));
 		
-		//ParUtils.parKreisDir(Particles.BUBBLE, caster.getLocation(), 1, 2, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
+		//ParUtils.parKreisDir(Particle.WATER_BUBBLE, caster.getLocation(), 1, 2, 1, caster.getLocation().getDirection(), caster.getLocation().getDirection());
 		for (double i = 0;i<charges;i++) {
 			
 			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 1, caster.getLocation().getDirection(), 3, step+(i*44/maxcharges*10));
-			ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+			ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 		}
 		int cruncher = 20;
 		for (double i = 0;i<steprange/cruncher-step/cruncher;i++) {
 			
 			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 0.7, caster.getLocation().getDirection(), 3,-step+(i*(44/(double)(steprange/cruncher))));
-			ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+			ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 		}
 		//
 		//g1.teleport(l1);
@@ -117,8 +116,8 @@ public class Wasserdüse extends Spell {
 		
 		//spawnEntity(EntityType.GUARDIAN,l1,1);
 		//spawnEntity(EntityType.GUARDIAN,l2,1);
-		//ParUtils.createParticle(Particles.ANGRY_VILLAGER, l1, 0, 0, 0, 1, 1);
-		//ParUtils.createParticle(Particles.ANGRY_VILLAGER, l2, 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.ANGRY_VILLAGER, l1, 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.ANGRY_VILLAGER, l2, 0, 0, 0, 1, 1);
 		if (swap() && shooting <= 0 && charges > 0) {
 			shooting = 10;
 			charges--;

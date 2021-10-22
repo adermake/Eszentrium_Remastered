@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.Title;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -66,7 +66,7 @@ public class Teleport extends Spell {
 			speed = 2+calcLerpFactor(step,40)*2;
 		}
 		
-		ParUtils.createParticle(Particles.WITCH, loc, 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.SPELL_WITCH, loc, 0, 0, 0, 5, 0);
 		
 	}
 
@@ -117,7 +117,7 @@ public class Teleport extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDirSolid(Particles.DRAGON_BREATH, loc, 2, 0, 4, loc.getDirection(), loc.getDirection().multiply(-1));
+		ParUtils.parKreisDirSolid(Particle.DRAGON_BREATH, loc, 2, 0, 4, loc.getDirection(), loc.getDirection().multiply(-1));
 	}
 
 	

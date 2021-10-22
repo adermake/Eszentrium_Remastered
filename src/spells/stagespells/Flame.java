@@ -11,7 +11,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Flame extends Spell {
@@ -61,8 +61,8 @@ public class Flame extends Spell {
 		// TODO Auto-generated method stub
 		i++;
 		
-		ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.1F, 0.1F, 0.1F, 1, 0.3F, new Vector(0,1,0));
-		//ParUtils.createFlyingParticle(Particles.LAVA, loc, 0.5F, 0.5F, 0.5F, 1, 0.3F, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.FLAME, loc, 0.1F, 0.1F, 0.1F, 1, 0.3F, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.LAVA, loc, 0.5F, 0.5F, 0.5F, 1, 0.3F, new Vector(0,1,0));
 		SoundUtils.playSound(Sound.BLOCK_FIRE_AMBIENT, loc,1.3F,0.3F);
 	}
 

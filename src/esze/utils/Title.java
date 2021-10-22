@@ -8,6 +8,9 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 /**
  * Minecraft 1.8 Title
  * For 1.11
@@ -43,7 +46,7 @@ public class Title {
     private boolean ticks = false;
     private static final Map<Class<?>, Class<?>> CORRESPONDING_TYPES = new HashMap<Class<?>, Class<?>>();
     public Title() {
-        loadClasses();
+       
     }
     /**
      * Create a new 1.8 title
@@ -52,7 +55,7 @@ public class Title {
      */
     public Title(String title) {
         this.title = title;
-        loadClasses();
+      
     }
     /**
      * Create a new 1.8 title
@@ -63,7 +66,7 @@ public class Title {
     public Title(String title, String subtitle) {
         this.title = title;
         this.subtitle = subtitle;
-        loadClasses();
+
     }
     /**
      * Copy 1.8 title
@@ -80,7 +83,7 @@ public class Title {
         this.fadeOutTime = title.getFadeOutTime();
         this.stayTime = title.getStayTime();
         this.ticks = title.isTicks();
-        loadClasses();
+        //loadClasses();
     }
     /**
      * Create a new 1.8 title
@@ -98,7 +101,7 @@ public class Title {
         this.fadeInTime = fadeInTime;
         this.stayTime = stayTime;
         this.fadeOutTime = fadeOutTime;
-        loadClasses();
+     //   loadClasses();
     }
     /**
      * Load spigot and NMS classes
@@ -213,43 +216,10 @@ public class Title {
     public void send(Player player) {
         if (packetTitle != null) {
             // First reset previous settings
-            resetTitle(player);
-            try {
-                // Send timings first
-                Object handle = getHandle(player);
-                Object connection = playerConnection.get(handle);
-                Object[] actions = packetActions.getEnumConstants();
-                Object packet = packetTitle.getConstructor(packetActions,
-                        chatBaseComponent, Integer.TYPE, Integer.TYPE,
-                        Integer.TYPE).newInstance(actions[3], null,
-                        fadeInTime * (ticks ? 1 : 20),
-                        stayTime * (ticks ? 1 : 20),
-                        fadeOutTime * (ticks ? 1 : 20));
-                // Send if set
-                if (fadeInTime != -1 && fadeOutTime != -1 && stayTime != -1)
-                    sendPacket.invoke(connection, packet);
-                Object serialized;
-                if (!subtitle.equals("")) {
-                    // Send subtitle if present
-                    serialized = nmsChatSerializer.getConstructor(String.class)
-                            .newInstance(subtitleColor +
-                                    ChatColor.translateAlternateColorCodes('&',
-                                            subtitle));
-                    packet = packetTitle.getConstructor(packetActions,
-                            chatBaseComponent).newInstance(actions[1],
-                            serialized);
-                    sendPacket.invoke(connection, packet);
-                }
-                // Send title
-                serialized = nmsChatSerializer.getConstructor(
-                        String.class).newInstance(titleColor +
-                        ChatColor.translateAlternateColorCodes('&', title));
-                packet = packetTitle.getConstructor(packetActions,
-                        chatBaseComponent).newInstance(actions[0], serialized);
-                sendPacket.invoke(connection, packet);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	resetTitle(player);
+        	player.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
+            ;
+         
         }
     }
     public void updateTimes(Player player) {

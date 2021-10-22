@@ -31,7 +31,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -135,7 +135,7 @@ public class Seelenmarionette extends Spell {
 		}.runTaskLaterAsynchronously(main.plugin, 0);
 	
 		
-		caster.setVelocity(new Vector(0,4,0));
+		caster.setVelocity(new Vector(0,0.5,0).add(caster.getLocation().getDirection()));
 	}
 
 	@Override
@@ -154,17 +154,17 @@ public class Seelenmarionette extends Spell {
 	public void move() {
 	
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, ghost.getLocation(), 0.05, 1, 0.05, 2, 0.05F, new Vector(0,1,0).add(randVector().normalize().multiply(0.2F)));
-		ParUtils.createFlyingParticle(Particles.SMOKE, ghost.getLocation(), 0.05, 1, 0.05, 10, 0.1F, caster.getLocation().toVector().subtract(ghost.getLocation().toVector()).normalize().multiply(4).add(randVector()));
+		ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, ghost.getLocation(), 0.05, 1, 0.05, 2, 0.05F, new Vector(0,1,0).add(randVector().normalize().multiply(0.2F)));
+		ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, ghost.getLocation(), 0.05, 1, 0.05, 10, 0.1F, caster.getLocation().toVector().subtract(ghost.getLocation().toVector()).normalize().multiply(4).add(randVector()));
 		
 		if (caster.getLocation().distance(ghost.getLocation()) > radius) {
 			
-			ParUtils.parLine(Particles.SMOKE, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
+			ParUtils.parLine(Particle.SMOKE_NORMAL, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
 			doPull(caster, ghost.getLocation(),1);
 			playSound(Sound.ENTITY_VEX_AMBIENT,caster.getLocation(),5,0.7F);
 		}
 		if (caster.getLocation().distance(ghost.getLocation()) > radius*2) {
-			ParUtils.parLine(Particles.SMOKE, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
+			ParUtils.parLine(Particle.SMOKE_NORMAL, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
 			caster.teleport(ghost.getLocation());
 		}
 		
@@ -175,11 +175,11 @@ public class Seelenmarionette extends Spell {
 		Vector v = caster.getLocation().toVector().subtract(lastLoc.toVector());
 		
 		
-		ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, lastLoc, 0.5F, 0.5F,0.5F, 1, v.length(), v.normalize().multiply(1));
+		ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, lastLoc, 0.5F, 0.5F,0.5F, 1, v.length(), v.normalize().multiply(1));
 		ParUtils.createRedstoneParticle(caster.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 2, Color.BLACK, 10);
 		lastLoc = caster.getLocation();
 		//ParUtils.parLineRedstone(caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), Color.BLACK, 0.4F, 0.5F);
-		//ParUtils.createParticle(Particles.ASH, ghost.getLocation(), 1, 1, 1,2, 1);
+		//ParUtils.createParticle(Particle.ASH, ghost.getLocation(), 1, 1, 1,2, 1);
 	}
 
 	
@@ -188,8 +188,8 @@ public class Seelenmarionette extends Spell {
 		caster.damage(dmg);
 		//caster.setHealth(caster.getHealth()-dmg);
 		//ghost.setHealth(caster.getHealth());
-		ParUtils.parLine(Particles.CRIT, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
-		//ParUtils.dashParticleTo(Particles.EFFECT, caster, ghost.getLocation());
+		ParUtils.parLine(Particle.CRIT, caster.getLocation().add(0,1,0), ghost.getLocation().add(0,1,0), 0.1F, 0.1F, 0.1F, 1, 0.01,0.5);
+		//ParUtils.dashParticleTo(Particle.EFFECT, caster, ghost.getLocation());
 	}
 	
 	

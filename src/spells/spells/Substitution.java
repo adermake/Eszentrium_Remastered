@@ -1,6 +1,8 @@
 package spells.spells;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
@@ -11,8 +13,6 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
-import net.minecraft.server.v1_16_R3.Particles;
-import net.minecraft.server.v1_16_R3.ItemStack.HideFlags;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Tnt;
@@ -54,7 +54,7 @@ public class Substitution extends Spell {
 	public void launch() {
 		// TODO Auto-generated method stub
 		playSingleSound(Sound.BLOCK_BAMBOO_BREAK, caster, 5, 1);
-		//ParUtils.createParticle(Particles.COMPOSTER, caster.getEyeLocation(), 1, 1, 1, 5, 0);
+		//ParUtils.createParticle(Particle.COMPOSTER, caster.getEyeLocation(), 1, 1, 1, 5, 0);
 	}
 
 	@Override
@@ -111,15 +111,17 @@ public class Substitution extends Spell {
 		Spell.takeDamageEvent.remove(this);
 		
 		if (triggered) {
+			if (caster.getGameMode() != GameMode.ADVENTURE) {
+				PlayerUtils.showPlayer(caster);
+			}
 			
-			PlayerUtils.showPlayer(caster);
 			playSound(Sound.BLOCK_WOOD_FALL, caster.getLocation(), 5, 1);
 			playSound(Sound.BLOCK_BAMBOO_STEP, caster.getLocation(), 5, 2);
 			playSound(Sound.ENTITY_PUFFER_FISH_BLOW_UP, caster.getLocation(), 5, 1);
 			
-			ParUtils.createParticle(Particles.EXPLOSION, caster.getLocation(), 0, 0, 0, 1, 0);
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.5F, 0.5F, 0.5F, 10, 1, new Vector(0,1,0));
-			ParUtils.createParticle(Particles.HAPPY_VILLAGER, caster.getLocation(), 1, 1, 1, 10, 0);
+			ParUtils.createParticle(Particle.EXPLOSION_LARGE, caster.getLocation(), 0, 0, 0, 1, 0);
+			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0.5F, 0.5F, 0.5F, 10, 1, new Vector(0,1,0));
+			ParUtils.createParticle(Particle.VILLAGER_HAPPY, caster.getLocation(), 1, 1, 1, 10, 0);
 		}
 		
 		
@@ -143,8 +145,8 @@ public class Substitution extends Spell {
 				playSound(Sound.BLOCK_BAMBOO_STEP, caster.getLocation(), 5, 1);
 				playSound(Sound.BLOCK_NOTE_BLOCK_COW_BELL, caster.getLocation(), 5, 0.5F);
 				playSound(Sound.ENTITY_PUFFER_FISH_BLOW_OUT, caster.getLocation(), 5, 1);
-				ParUtils.createParticle(Particles.EXPLOSION, caster.getLocation(), 0, 0, 0, 1, 0);
-				ParUtils.createParticle(Particles.HAPPY_VILLAGER, caster.getLocation(), 1, 1, 1, 10, 0);
+				ParUtils.createParticle(Particle.EXPLOSION_LARGE, caster.getLocation(), 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particle.VILLAGER_HAPPY, caster.getLocation(), 1, 1, 1, 10, 0);
 				PlayerUtils.hidePlayer(caster);
 				triggered = true;
 				step = 0;

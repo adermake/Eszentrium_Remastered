@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.players.DamageCall;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
@@ -78,7 +78,7 @@ public class GriffdersiebenWinde extends Spell {
 					}
 					
 					
-					ParUtils.createParticle(Particles.CLOUD, target.getLocation(), 0, 0, 0, 1, 0);
+					ParUtils.createParticle(Particle.CLOUD, target.getLocation(), 0, 0, 0, 1, 0);
 					playSound(Sound.ENTITY_CAT_HISS, loca, 0.1F, 0.1F);
 					
 				}

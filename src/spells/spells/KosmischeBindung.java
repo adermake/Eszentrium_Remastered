@@ -19,7 +19,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -69,15 +69,15 @@ public class KosmischeBindung extends Spell{
 		
 		
 		
-		//ParUtils.auraParticle(Particles.LARGE_SMOKE, caster, 0.6F, 20*1);
+		//ParUtils.auraParticle(Particle.SMOKE_LARGE, caster, 0.6F, 20*1);
 		
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, loc, 0.5, 1, 0.5, 10, dist, d);
-		//ParUtils.createFlyingParticle(Particles.FLAME, loc, 0.5, 1, 0.5, 10, dist, d);
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
-		//ParUtils.createFlyingParticle(Particles.FLAME, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0.5, 1, 0.5, 10, dist, d);
+		//ParUtils.createFlyingParticle(Particle.FLAME, loc, 0.5, 1, 0.5, 10, dist, d);
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.FLAME, loc, 0, 0, 0, 1, 1, new Vector(0,1,0));
 		
 		//kRotLoc.setPitch(kRotLoc.getPitch()+5);
-		//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, caster.getLocation(), 1, 1F, 1, 3, 0.2F,new Vector(0,1,0));
+		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, caster.getLocation(), 1, 1F, 1, 3, 0.2F,new Vector(0,1,0));
 		float c = cast;
 		float ct = casttime;
 		float speed = 2*(c/ct);
@@ -93,10 +93,10 @@ public class KosmischeBindung extends Spell{
 			//ParUtils.dropItemEffectVector(lp2, Material.SNOWBALL, 1, 5, 1, p2.toVector().subtract(lp2.toVector()).normalize());
 			ParUtils.dropItemEffectVector(lp1, Material.NETHER_STAR, 1, 5, 1, new Vector(0,1,0));
 			ParUtils.dropItemEffectVector(lp2, Material.NETHER_STAR, 1, 5, 1, new Vector(0,1,0));
-			//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector().add(new Vector(0,1,0))));
-			//ParUtils.createFlyingParticle(Particles.LARGE_SMOKE, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector().add(new Vector(0,1,0))));
-			//ParUtils.createFlyingParticle(Particles.END_ROD, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector()).normalize());
-			//ParUtils.createFlyingParticle(Particles.END_ROD, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector()).normalize());
+			//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector().add(new Vector(0,1,0))));
+			//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector().add(new Vector(0,1,0))));
+			//ParUtils.createFlyingParticle(Particle.END_ROD, p1, 0.1, 0.1, 0.1, 10, 1, p1.toVector().subtract(lp1.toVector()).normalize());
+			//ParUtils.createFlyingParticle(Particle.END_ROD, p2, 0.1, 0.1, 0.1, 10, 1, p2.toVector().subtract(lp2.toVector()).normalize());
 		}
 				lp1 = p1;
 				lp2 = p2;
@@ -119,12 +119,12 @@ public class KosmischeBindung extends Spell{
 		SoundUtils.playSound(Sound.BLOCK_BELL_RESONATE, loc, 2, 2F);
 		SoundUtils.playSound(Sound.BLOCK_BELL_USE, loc, 0.2F, 2F);
 		SoundUtils.playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET, loc, 0.2F, 0.4F);
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range,0, 0.3F, randVector().normalize());
 	}
 
 	@Override
@@ -155,7 +155,7 @@ public class KosmischeBindung extends Spell{
 		}
 		
 		for (Entity ent : hitList.keySet()) {
-			ParUtils.parLine(Particles.BUBBLE, caster.getLocation().add(0,1,0), ent.getLocation().add(0,1,0), 0, 0, 0, 1, 1, 0.5F);
+			ParUtils.parLine(Particle.WATER_BUBBLE, caster.getLocation().add(0,1,0), ent.getLocation().add(0,1,0), 0, 0, 0, 1, 1, 0.5F);
 			float angleOffset = caster.getLocation().getYaw()-angle;
 			float pitchOffset = caster.getLocation().getPitch()-pitch;
 			Location fLoc = caster.getLocation();
@@ -216,9 +216,9 @@ public class KosmischeBindung extends Spell{
 		SoundUtils.playSound(Sound.BLOCK_BELL_USE, loc,2F, 2F);
 		SoundUtils.playSound(Sound.BLOCK_CONDUIT_ATTACK_TARGET, loc, 2F, 0.4F);
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), range/2,0, -0.3F, randVector().normalize());
 		
 	}
 	

@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 public class Flucht extends Spell{
@@ -57,7 +57,7 @@ public class Flucht extends Spell{
 			pl.hidePlayer(main.plugin, caster);
 		}
 		
-		ParUtils.createParticle(Particles.LARGE_SMOKE, loc, 1, 1, 1, 100, 0);
+		ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 1, 1, 1, 100, 0);
 		caster.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
 		follow(bat(caster,refined),caster);
 		for (int i = 0;i<35;i++) {
@@ -136,7 +136,7 @@ public class Flucht extends Spell{
 				}
 				
 				if (refined && t % 10 == 0) {
-					ParUtils.createParticle(Particles.FLAME, bat.getLocation(), 0.01, 0.01,0.01,1,0.01);
+					ParUtils.createParticle(Particle.FLAME, bat.getLocation(), 0.01, 0.01,0.01,1,0.01);
 					/*
 					bat.setVelocity(bat.getLocation().getDirection());
 					for (Player p : Bukkit.getOnlinePlayers()) {

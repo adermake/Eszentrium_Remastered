@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -85,7 +85,7 @@ public class Aufwind extends Spell{
 				}
 			}
 			if (caster.isSneaking()) {
-				ParUtils.parKreisDir(Particles.CLOUD, caster.getLocation(), 3, 0, 1, caster.getLocation().getDirection(),caster.getLocation().getDirection());
+				ParUtils.parKreisDir(Particle.CLOUD, caster.getLocation(), 3, 0, 1, caster.getLocation().getDirection(),caster.getLocation().getDirection());
 				dead = true;
 			}
 			
@@ -141,7 +141,7 @@ public class Aufwind extends Spell{
 				if (p.getGameMode() == GameMode.ADVENTURE) {
 					this.cancel();
 				}
-				ParUtils.createParticle(Particles.CLOUD, la, 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particle.CLOUD, la, 0, 0, 0, 1, 0);
 				
 				
 				p.setVelocity(p.getVelocity().setY(0.5));

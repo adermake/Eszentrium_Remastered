@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.ParticleType;
-import net.minecraft.server.v1_16_R3.Particles;
+
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -81,9 +81,9 @@ public class Erlösung extends Spell {
 			vel.normalize().multiply(4);
 		}
 		
-		ParUtils.createParticle(Particles.ENCHANTED_HIT, loc, 0.1, 0.1, 0.1, 40, 0.01);
-		ParUtils.createParticle(Particles.BUBBLE_POP, loc, 0.1, 0.1, 0.1, 40, 0.01);
-		ParUtils.createParticle(Particles.END_ROD, loc, 0.1, 0.1, 0.1, 1, 0.01);
+		ParUtils.createParticle(Particle.CRIT_MAGIC, loc, 0.1, 0.1, 0.1, 40, 0.01);
+		ParUtils.createParticle(Particle.BUBBLE_POP, loc, 0.1, 0.1, 0.1, 40, 0.01);
+		ParUtils.createParticle(Particle.END_ROD, loc, 0.1, 0.1, 0.1, 1, 0.01);
 		
 	}
 
@@ -99,8 +99,8 @@ public class Erlösung extends Spell {
 	public void onPlayerHit(Player p) {
 		// TODO Auto-generated method stub
 		tagPlayer(p);
-		ParUtils.parKreisDot(Particles.END_ROD, loc, 3, 0, 0.25, vel);
-		ParUtils.createParticle(Particles.FLASH, loc, 0.1, 0.1, 0.1, 1, 0.01);
+		ParUtils.parKreisDot(Particle.END_ROD, loc, 3, 0, 0.25, vel);
+		ParUtils.createParticle(Particle.FLASH, loc, 0.1, 0.1, 0.1, 1, 0.01);
 		p.setVelocity(vel.multiply(2).add(new Vector(0,1,0)));
 		playSound(Sound.BLOCK_BELL_USE,loc,60,1);
 	}
@@ -108,8 +108,8 @@ public class Erlösung extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.END_ROD, loc, 3, 0, 0.25, vel);
-		ParUtils.createParticle(Particles.FLASH, loc, 0.1, 0.1, 0.1, 1, 0.01);
+		ParUtils.parKreisDot(Particle.END_ROD, loc, 3, 0, 0.25, vel);
+		ParUtils.createParticle(Particle.FLASH, loc, 0.1, 0.1, 0.1, 1, 0.01);
 		ent.setVelocity(vel.multiply(2));
 	}
 

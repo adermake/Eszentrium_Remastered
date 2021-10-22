@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -124,7 +124,7 @@ public class Enterhaken extends Spell{
 	@Override
 	public void display() {
 		if (loc != null && caster != null)
-		ParUtils.parLine(Particles.CRIT,caster.getLocation(), loc.clone(), 0, 0, 0, 0, 0, 3);
+		ParUtils.parLine(Particle.CRIT,caster.getLocation(), loc.clone(), 0, 0, 0, 0, 0, 3);
 		
 	}
 
@@ -189,7 +189,7 @@ public class Enterhaken extends Spell{
 			double x = direction.getX() * t;
 			double y = direction.getY() * t + 1.5;
 			double z = direction.getZ() * t;
-			ParUtils.createParticle(Particles.CRIT, l, 0, 0, 0, 1, z);
+			ParUtils.createParticle(Particle.CRIT, l, 0, 0, 0, 1, z);
 			
 			Location lo = l.clone();
 

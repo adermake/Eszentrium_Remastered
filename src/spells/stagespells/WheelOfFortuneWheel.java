@@ -23,7 +23,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.ScoreboardTeamUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class WheelOfFortuneWheel extends Spell {
@@ -61,7 +61,7 @@ public class WheelOfFortuneWheel extends Spell {
 	public void setUp() {
 		playGlobalSound(Sound.BLOCK_CONDUIT_ACTIVATE, 1, 1);
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDot(Particles.CLOUD, dir.clone().add(0,1,0), 12, 0, -0.07, dir.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, dir.clone().add(0,1,0), 12, 0, -0.07, dir.getDirection());
 		Location l = dir;
 		loc = dir;
 		int index = 0;
@@ -131,7 +131,7 @@ public class WheelOfFortuneWheel extends Spell {
 			
 			Location l = ParUtils.stepCalcCircle(loc.clone(), 4, dir.getDirection(), 0, spe*2+s*(44/cc));
 			doPin((org.bukkit.entity.Entity) carrier,l);
-			ParUtils.createParticle(Particles.CLOUD, carrier.getLocation().add(0,1,0), 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.CLOUD, carrier.getLocation().add(0,1,0), 0, 0, 0, 1, 0);
 			s++;
 			carrier.getPassengers().get(1).setGlowing(false);
 		}
@@ -188,7 +188,7 @@ public class WheelOfFortuneWheel extends Spell {
 		new BukkitRunnable() {
 			public void run() {
 				playGlobalSound(Sound.BLOCK_CONDUIT_DEACTIVATE, 1, 1);
-				ParUtils.parKreisDot(Particles.CLOUD, loc, 2, 0, 1, dir.getDirection());
+				ParUtils.parKreisDot(Particle.CLOUD, loc, 2, 0, 1, dir.getDirection());
 				for (Entity carrier : carriers) {
 					for (Entity c :carrier.getPassengers() ) {
 						c.remove();

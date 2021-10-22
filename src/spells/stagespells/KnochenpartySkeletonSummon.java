@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.spells.Knochenparty;
@@ -127,7 +127,7 @@ public class KnochenpartySkeletonSummon extends Spell{
 			new KnochenpartySkeleton(caster,  loc.clone().add(0,0,0),new Vector(0,0.5F,0),origin.clone(),name,kno);
 			
 			ParUtils.dropItemEffectRandomVector(loc, Material.BONE, 6, 50, 0.4);
-			//ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 5, 2);
+			//ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 5, 2);
 			SoundUtils.playSound(Sound.ENTITY_SKELETON_AMBIENT, loc,1,10);
 
 		

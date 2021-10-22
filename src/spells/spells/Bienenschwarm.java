@@ -21,7 +21,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.NoCollision;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -91,7 +91,7 @@ public class Bienenschwarm extends Spell {
 
 	@Override
 	public void display() {
-		ParUtils.createFlyingParticle(Particles.LANDING_HONEY, loc, 0, 0, 0, 1, 1, loc.getDirection().multiply(1));
+		ParUtils.createFlyingParticle(Particle.LANDING_HONEY, loc, 0, 0, 0, 1, 1, loc.getDirection().multiply(1));
 		ParUtils.createBlockcrackParticle(loc, 0.1F, 0.1F, 0.1F, 4, Material.HONEY_BLOCK);
 		
 	}
@@ -150,13 +150,13 @@ public class Bienenschwarm extends Spell {
 				}
 				t++;
 				
-				ParUtils.createParticle(Particles.FALLING_HONEY, e.getLocation(), 0.2, 1, 0.2, 10, 1);
+				ParUtils.createParticle(Particle.FALLING_HONEY, e.getLocation(), 0.2, 1, 0.2, 10, 1);
 				if (t > 20) {
 					
 					
 					for (Bee b : bees) {
 						Vector v = e.getEyeLocation().toVector().subtract(b.getLocation().toVector()).normalize();
-						ParUtils.parLine(Particles.CRIT, b.getLocation(), b.getLocation().add(v.multiply(5)), 0, 0, 0, 1, 0.01F, 0.2F);
+						ParUtils.parLine(Particle.CRIT, b.getLocation(), b.getLocation().add(v.multiply(5)), 0, 0, 0, 1, 0.01F, 0.2F);
 						if(e!=caster) {
 						    damage(e, 5,caster);
 						}

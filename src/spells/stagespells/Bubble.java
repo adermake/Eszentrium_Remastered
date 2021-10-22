@@ -11,7 +11,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -79,7 +79,7 @@ public class Bubble extends Spell {
 		}
 		if (step == swapTime) {
 			SoundUtils.playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, loc,2F,0.1F);
-			ParUtils.createParticle(Particles.SWEEP_ATTACK, loc, 1, 1, 1, 1, 1);
+			ParUtils.createParticle(Particle.SWEEP_ATTACK, loc, 1, 1, 1, 1, 1);
 		}
 		if (step<swapTime) {
 			loc.add(vel.clone().multiply(sp));
@@ -124,7 +124,7 @@ public class Bubble extends Spell {
 	
 	@Override
 	public void display() {
-		ParUtils.createParticle(Particles.BUBBLE, loc, 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0, 0, 0, 5, 0);
 		
 	}
 
@@ -160,7 +160,7 @@ public class Bubble extends Spell {
 
 	@Override
 	public void onDeath() {
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 1);
 		SoundUtils.playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc,2F,0.1F);
 	}
 	

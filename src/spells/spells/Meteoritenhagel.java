@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -70,14 +70,14 @@ public class Meteoritenhagel extends Spell {
 		// ParUtils.parKreisSolidRedstone(Color.RED, 1, loc.clone(), cast/4, 0, 1, new
 		// Vector(0,1,0));
 
-		// ParUtils.createParticle(Particles.CAMPFIRE_SIGNAL_SMOKE, dot, 0, 1, 0, 0, 5);
+		// ParUtils.createParticle(Particle.CAMPFIRE_SIGNAL_SMOKE, dot, 0, 1, 0, 0, 5);
 	}
 
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		// ParUtils.parKreisDot(Particles.FLAME, loc, 3, 1, 1.5, new Vector(0,-1,0));
-		// ParUtils.parKreisDot(Particles.FLAME, loc, 2, 1, 0.5, new Vector(0,-1,0));
+		// ParUtils.parKreisDot(Particle.FLAME, loc, 3, 1, 1.5, new Vector(0,-1,0));
+		// ParUtils.parKreisDot(Particle.FLAME, loc, 2, 1, 0.5, new Vector(0,-1,0));
 		ParUtils.parKreisSolidRedstone(Color.ORANGE, 1.5F, loc, range * 2, 0, 1, new Vector(0, 1, 0));
 	}
 

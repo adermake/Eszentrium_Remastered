@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Actionbar;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.SilenceFilterType;
 import spells.spellcore.SilenceSelection;
@@ -49,7 +49,7 @@ public class SchnittdersiebenWinde extends Spell {
 			
 		
 				target.setVelocity(target.getVelocity().setY(1));
-				ParUtils.parKreisDirSolid(Particles.CLOUD, target.getLocation(), 3, 0, 3, new Vector(0,1,0), new Vector(0,1,0));
+				ParUtils.parKreisDirSolid(Particle.CLOUD, target.getLocation(), 3, 0, 3, new Vector(0,1,0), new Vector(0,1,0));
 			
 			
 				
@@ -107,7 +107,7 @@ public class SchnittdersiebenWinde extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (target != null)
-		ParUtils.chargeDot(target.getLocation(), Particles.CLOUD, 0.4F, 8);
+		ParUtils.chargeDot(target.getLocation(), Particle.CLOUD, 0.4F, 8);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ import esze.objects.EszeObject;
 import esze.objects.ObjectUtils;
 import esze.utils.ParUtils;
 
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Earthwall extends Spell {
@@ -104,8 +104,8 @@ public class Earthwall extends Spell {
 			doPin(fb.get(index), loc.clone().add(v),2);
 			//fb.get(index).teleport(loc.clone().add(v));
 			//fb.get(index).setPortalCooldown(0);
-			//ParUtils.createParticle(Particles.BUBBLE, loc.clone().add(v), 0, 0, 0,1, 0);
-			//ParUtils.createParticle(Particles.BUBBLE, loc.clone().add(v), 0, 0, 0, 1, 1);
+			//ParUtils.createParticle(Particle.WATER_BUBBLE, loc.clone().add(v), 0, 0, 0,1, 0);
+			//ParUtils.createParticle(Particle.WATER_BUBBLE, loc.clone().add(v), 0, 0, 0, 1, 1);
 			index++;
 		}
 			

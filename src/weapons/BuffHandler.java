@@ -8,7 +8,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 
 public class BuffHandler {
 
@@ -25,7 +25,7 @@ public class BuffHandler {
 					
 					if (bambusDebuf.get(p)>0) {
 						bambusDebuf.put(p, bambusDebuf.get(p)-5);
-						ParUtils.createParticle(Particles.CLOUD, p.getLocation(), 0.1F, 0.1F, 0.1F, 2, 0.1F);
+						ParUtils.createParticle(Particle.CLOUD, p.getLocation(), 0.1F, 0.1F, 0.1F, 2, 0.1F);
 					}
 				}
 				

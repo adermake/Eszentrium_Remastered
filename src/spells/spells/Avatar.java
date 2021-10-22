@@ -17,7 +17,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -182,7 +182,7 @@ public class Avatar extends Spell{
 				double z = r*(t/(10)) * Math.sin(t);
 				la.add(x, y, z);
 				
-				ParUtils.createParticle(Particles.CLOUD, la, 0, 0, 0, 1, 0);
+				ParUtils.createParticle(Particle.CLOUD, la, 0, 0, 0, 1, 0);
 				
 		
 

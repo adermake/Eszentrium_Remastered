@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -61,7 +61,7 @@ public class Magmanadel extends Spell{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.DRIPPING_LAVA, loc, 0, 0, 0, 0, 0);
+		ParUtils.createParticle(Particle.DRIP_LAVA, loc, 0, 0, 0, 0, 0);
 		
 	}
 

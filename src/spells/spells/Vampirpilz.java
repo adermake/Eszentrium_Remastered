@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
@@ -112,7 +112,7 @@ public class Vampirpilz extends Spell{
 		new VampirpilzStage2(caster, name, loc,refined);
 		loc = i.getLocation();
 		ParUtils.dropItemEffectRandomVector(loc, i.getLocation().add(0,-1,0).getBlock().getType(), 6, 50, 0.4);
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 5, 2);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 5, 2);
 		
 		
 		i.remove();

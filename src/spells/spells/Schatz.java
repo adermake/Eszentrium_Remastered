@@ -10,7 +10,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.EntityHuman;
+
 import spells.spellcore.Spell;
 
 public class Schatz extends Spell {

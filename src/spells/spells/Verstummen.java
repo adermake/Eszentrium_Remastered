@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.Title;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
@@ -65,10 +65,10 @@ public class Verstummen extends Spell {
 		// TODO Auto-generated method stub
 		loc.add(loc.getDirection().multiply(0.5));
 		for (int i = 0;i<5 ;i++) {
-			ParUtils.chargeDot(loc, Particles.ENCHANT, 1, 3);
+			ParUtils.chargeDot(loc, Particle.ENCHANTMENT_TABLE, 1, 3);
 		}
 		
-		ParUtils.createParticle(Particles.BUBBLE, loc, 0.01, 0.01, 0.01, 1, 1);
+		ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0.01, 0.01, 0.01, 1, 1);
 		effect.teleport(loc);
 	}
 
@@ -83,7 +83,7 @@ public class Verstummen extends Spell {
 		damage(p,3,caster);
 		playSound(Sound.ENTITY_ARROW_HIT_PLAYER,caster.getLocation(),5,1);
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDir(Particles.END_ROD, loc, 2, 0,1, loc.getDirection().multiply(-1), loc.getDirection().multiply(-1));
+		ParUtils.parKreisDir(Particle.END_ROD, loc, 2, 0,1, loc.getDirection().multiply(-1), loc.getDirection().multiply(-1));
 		playSound (Sound.ENTITY_EVOKER_CAST_SPELL,p.getLocation(), (float) 1, 1);
 	
 		SilenceSelection s = new SilenceSelection();
@@ -95,7 +95,7 @@ public class Verstummen extends Spell {
 			public void run() {
 				t++;
 				for (int i = 0;i<5 ;i++) {
-					ParUtils.chargeDot(p.getLocation().add(0,1,0), Particles.ENCHANT, 1, 3);
+					ParUtils.chargeDot(p.getLocation().add(0,1,0), Particle.ENCHANTMENT_TABLE, 1, 3);
 				}
 			
 				Title verstummt = new Title("§cVerstummt!","",0,2,0);

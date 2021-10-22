@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Buzzer extends Spell {
@@ -44,7 +44,7 @@ public class Buzzer extends Spell {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.FIREWORK, caster.getLocation(), 0,-1, 0, 0, 1);
+		ParUtils.createParticle(Particle.FIREWORKS_SPARK, caster.getLocation(), 0,-1, 0, 0, 1);
 	}
 
 	@Override

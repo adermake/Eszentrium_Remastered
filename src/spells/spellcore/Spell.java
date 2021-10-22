@@ -1,19 +1,14 @@
 package spells.spellcore;
 
-import java.awt.List;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Scanner;
 
-import org.bukkit.Axis;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -22,16 +17,15 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftArmorStand;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -228,7 +222,19 @@ public abstract class Spell {
 		
 	}
 	
-
+	public void disableEntityHitbox(Entity ent) {
+		try  {
+		Method getHandle = ent.getClass().getMethod("getHandle");
+		Object entityObject = getHandle.invoke(ent);
+		Field field = entityObject.getClass().getField("P");
+		field.setAccessible(true);
+		field.setBoolean(entityObject, true);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public void silence(Player p,SilenceSelection s) {
 		silenced.put(p, s);
 		
@@ -1187,12 +1193,12 @@ public abstract class Spell {
 	
 	public void spawnPhantomblock(Block b,Material m) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.sendBlockChange(b.getLocation(), m,((byte)0));
+			p.sendBlockChange(b.getLocation(),Bukkit.createBlockData(m));
 		}
 		phantomBlock.add(b);
 		localPhantomBlock.add(b);
 	}
-	
+
 	public void removePhantomblock(Block c) {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {

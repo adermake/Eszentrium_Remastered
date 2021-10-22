@@ -3,11 +3,7 @@ package spells.spells;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -16,9 +12,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -27,7 +24,6 @@ import org.bukkit.entity.Sheep;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
-import net.minecraft.server.v1_16_R3.Particles;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -178,9 +174,9 @@ public class Verzaubern extends Spell {
 			target.setFlying(true);
 			
 			((CraftPlayer) target).getHandle().setSpectatorTarget(((CraftEntity) sheep).getHandle());
-			ParUtils.createParticle(Particles.EXPLOSION, target.getLocation(), 0, 0, 0, 3, 1);
+			ParUtils.createParticle(Particle.EXPLOSION_LARGE, target.getLocation(), 0, 0, 0, 3, 1);
 			
-			ParUtils.chargeDot(target.getLocation(), Particles.WITCH, 0.1, 4,10);
+			ParUtils.chargeDot(target.getLocation(), Particle.SPELL_WITCH, 0.1, 4,10);
 			
 		}
 	}

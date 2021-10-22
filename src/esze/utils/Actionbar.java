@@ -7,8 +7,12 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_16_R3.ChatMessageType;
-import net.minecraft.server.v1_16_R3.PacketPlayOutChat;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+
+
+
+
 
 public class Actionbar {
 	
@@ -26,20 +30,9 @@ public class Actionbar {
 	}
 	
 	public Actionbar send(Player p) {
-		
+		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
 	
-		try {
-		    Constructor<?> constructor = getNMSClass("PacketPlayOutChat").getConstructor(getNMSClass("IChatBaseComponent"), ChatMessageType.class,UUID.class);
-		       
-		    Object icbc = getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + message + "\"}");
-		    Object packet = constructor.newInstance(icbc, ChatMessageType.GAME_INFO,p.getUniqueId());//(byte) 2
-		    Object entityPlayer= p.getClass().getMethod("getHandle").invoke(p);
-		    Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
-		    
-		    playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-		  } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchFieldException | InstantiationException e) {
-		    e.printStackTrace();
-		  }
+	
 		return this;
 	}
 	

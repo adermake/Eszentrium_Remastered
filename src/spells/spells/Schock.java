@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.SchockLaser;
@@ -49,8 +49,8 @@ public class Schock extends Spell {
 		}
 		*/
 		
-		//ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 0.1f, randVector());
-		//ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 0.1f, randVector());
+		//ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 0.1f, randVector());
+		//ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 0.1f, randVector());
 		castheight = caster.getLocation().getY();
 		playGlobalSound(Sound.ENTITY_BLAZE_DEATH, 5, 0.8F);
 		
@@ -68,8 +68,8 @@ public class Schock extends Spell {
 		Location l1 =  caster.getLocation();
 		l1.setY(castheight);
 		ParUtils.parLineRedstone(caster.getLocation(),l1,Color.GRAY , 1F, 0.5D);
-		//ParUtils.createParticle(Particles.END_ROD, caster.getLocation(), 0, -1, 0, 0,1);
-		ParUtils.createFlyingParticle(Particles.END_ROD, caster.getLocation(), 1, 1, 1,1, 1, new Vector(0,-1,0));
+		//ParUtils.createParticle(Particle.END_ROD, caster.getLocation(), 0, -1, 0, 0,1);
+		ParUtils.createFlyingParticle(Particle.END_ROD, caster.getLocation(), 1, 1, 1,1, 1, new Vector(0,-1,0));
 		if (swap() ) {
 			cast = casttime;
 		}
@@ -82,11 +82,11 @@ public class Schock extends Spell {
 		// TODO Auto-generated method stub
 		
 		playSound(Sound.ENTITY_LIGHTNING_BOLT_THUNDER,caster.getLocation(),4,0.2F);
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
-		ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
+		ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 3, 1, 1, randVector());
 	}
 
 	@Override

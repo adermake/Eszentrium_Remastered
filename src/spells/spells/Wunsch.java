@@ -9,7 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -30,7 +30,7 @@ public class Wunsch extends Spell{
 		caster.setVelocity(caster.getVelocity().multiply(-1));
 		if (refined) {
 			caster.setHealth(20);
-			ParUtils.createParticle(Particles.HEART, caster.getLocation().add(0,2,0), 0,00, 0, 0,2);
+			ParUtils.createParticle(Particle.HEART, caster.getLocation().add(0,2,0), 0,00, 0, 0,2);
 		}
 		else {
 			double h = 20-caster.getHealth();
@@ -49,7 +49,7 @@ public class Wunsch extends Spell{
 		ArrayList<Location> locs = ParUtils.preCalcCircle(caster.getLocation(), 3, caster.getVelocity(), 0);
 		
 		for (Location loc : locs) {
-			ParUtils.createParticle(Particles.ENTITY_EFFECT, loc, 0,0.1, 0, 10,2);
+			ParUtils.createParticle(Particle.SPELL_MOB_AMBIENT, loc, 0,0.1, 0, 10,2);
 		}
 		playSound(Sound.ENTITY_STRAY_DEATH, caster.getLocation(), 3, 0.2F);
 		dead = true;

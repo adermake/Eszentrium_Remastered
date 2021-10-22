@@ -12,7 +12,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -50,8 +50,8 @@ public class Beben extends Spell{
 		// TODO Auto-generated method stub
 		height = caster.getLocation().getY();
 		caster.setVelocity(caster.getVelocity().add(new Vector(0,-6,0)));
-		ParUtils.createFlyingParticle(Particles.CLOUD, caster.getLocation(), 0, 2, 0, 10, 1, new Vector(0,-1,0));
-		ParUtils.parKreisDot(Particles.CLOUD, caster.getLocation(), 2, 0, 2, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.CLOUD, caster.getLocation(), 0, 2, 0, 10, 1, new Vector(0,-1,0));
+		ParUtils.parKreisDot(Particle.CLOUD, caster.getLocation(), 2, 0, 2, new Vector(0,1,0));
 		playSound(Sound.ENTITY_MOOSHROOM_CONVERT,caster.getLocation(),15,2);
 	}
 

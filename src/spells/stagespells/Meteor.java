@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -70,7 +70,7 @@ public class Meteor extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, -1, 0, 0, 2);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, -1, 0, 0, 2);
 	}
 
 	@Override

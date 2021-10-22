@@ -1,12 +1,10 @@
 package spells.stagespells;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_16_R3.MaterialMapColor;
 import spells.spellcore.Spell;
 
 public class HealingAura extends Spell {

@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -42,12 +42,12 @@ Location b;
 		/*
 		if (c== 0) {
 			
-			ParUtils.parKreisDot(Particles.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0));
+			ParUtils.parKreisDot(Particle.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0));
 		}
 			
 		c++;
 		if (c>10) {
-			ParUtils.parKreisDir(Particles.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0),new Vector(0,1,0));
+			ParUtils.parKreisDir(Particle.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0),new Vector(0,1,0));
 			c=1;
 		}
 		caster.setVelocity(caster.getVelocity().multiply(0));
@@ -97,17 +97,17 @@ Location b;
 		k++;
 		if (k>30) {
 			k = 0;
-			ParUtils.parKreisDir(Particles.FLAME, loc,randInt(1,5), 0, 0.1, new Vector(0,1,0),new Vector(0,-1,0));
+			ParUtils.parKreisDir(Particle.FLAME, loc,randInt(1,5), 0, 0.1, new Vector(0,1,0),new Vector(0,-1,0));
 		}
 		if (t<100){
 			//ParUtils.parLine(Color.ORANGE, caster.getLocation(), loc);
-			ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 1, 0);
-			ParUtils.createParticle(Particles.FLAME, loc, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 0);
 			}
 		if (t>100) {
 			//ParUtils.parLine(Color.ORANGE, b, loc);
-			ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 1, 0);
-			ParUtils.createParticle(Particles.FLAME, loc, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 1, 0);
+			ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 0);
 		}
 		
 	}
@@ -117,10 +117,10 @@ Location b;
 		dead = true;
 		
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,10,0.1F);
-		ParUtils.createParticle(Particles.FLAME, loc, 0, 0, 0, 1, 100);
+		ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 100);
 		new ExplosionDamage(12,15,caster,loc, name);
 		new Repulsion(12, 1, caster, loc, name);
-		ParUtils.createParticle(Particles.EXPLOSION_EMITTER, loc, 4, 4,4, 22, 2);
+		ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 4, 4,4, 22, 2);
 		for (Location block : ParUtils.grabBlocks(loc,134,8)) {
 			
 			int t = 0;

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -45,9 +45,9 @@ public class Astralsprung extends Spell{
 		else {
 			playSound(Sound.BLOCK_CONDUIT_DEACTIVATE,caster.getLocation(),5,2F);
 			playSound(Sound.BLOCK_CONDUIT_ACTIVATE,caster.getLocation(),5,2F);
-			ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
-			ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
-			ParUtils.parKreisDot(Particles.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
+			ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
+			ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
+			ParUtils.parKreisDot(Particle.END_ROD, caster.getLocation(), 0, 1, 0.3F, randVector());
 			dist = target.getLocation().distance(caster.getLocation());
 		}
 		
@@ -105,10 +105,10 @@ public class Astralsprung extends Spell{
 			playSound(Sound.BLOCK_END_PORTAL_FRAME_FILL,caster.getLocation(),5,0.3F);
 			playSound(Sound.ENTITY_SHULKER_TELEPORT,caster.getLocation(),0.6F,0.3F);
 			
-			ParUtils.parKreisDirSolid(Particles.END_ROD, caster.getLocation(), 1f, 3, 3F, new Vector(0,1,0),new Vector(0,-1,0));
+			ParUtils.parKreisDirSolid(Particle.END_ROD, caster.getLocation(), 1f, 3, 3F, new Vector(0,1,0),new Vector(0,-1,0));
 			
 			caster.teleport(loc);
-			ParUtils.parKreisDirSolid(Particles.END_ROD, caster.getLocation(), 1f, 0, 3F, new Vector(0,1,0),new Vector(0,1,0));
+			ParUtils.parKreisDirSolid(Particle.END_ROD, caster.getLocation(), 1f, 0, 3F, new Vector(0,1,0),new Vector(0,1,0));
 		}
 	}
 

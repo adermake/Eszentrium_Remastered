@@ -1,10 +1,10 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftLlama;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftLlama;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
@@ -14,9 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.EntityLlama;
-import net.minecraft.server.v1_16_R3.Particles;
-import spells.spellcore.Cooldowns;
+import net.minecraft.world.entity.animal.horse.EntityLlama;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
@@ -145,7 +143,7 @@ public class Lamaturm extends Spell {
 			for (double i = 0;i<shots;i++) {
 				Location l = ParUtils.stepCalcCircle(turret.getEyeLocation().clone(), 2, loc.getDirection(), 3, step+(i*44/maxShots));
 				
-				ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,1,0), 0, 0, 0, 5, 0);
+				ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,1,0), 0, 0, 0, 5, 0);
 			}
 			
 		}
@@ -156,7 +154,7 @@ public class Lamaturm extends Spell {
 			for (double i = 0;i<shots;i++) {
 				Location l = ParUtils.stepCalcCircle(turret.getEyeLocation().clone(), 2, new Vector(0,1,0), -1, step+(i*44/maxShots));
 				
-				ParUtils.createParticle(Particles.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+				ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 			}
 			
 		}

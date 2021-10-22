@@ -14,7 +14,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -56,7 +56,7 @@ public class GuardianLaser extends Spell {
 	@Override
 	public void launch() {
 		// TODO Auto-generated method stub
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 5, loc.getDirection());
 	}
 
 	@Override
@@ -153,12 +153,12 @@ public class GuardianLaser extends Spell {
 		loc.add(0,-1,0);
 		
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_DOLPHIN_JUMP,loc,8,1);
 		ParUtils.createRedstoneParticle(loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, Color.AQUA, 5);
 		Location dir = loc.clone();
 		dir.setPitch(dir.getPitch()-90);
-		ParUtils.createFlyingParticle(Particles.CLOUD, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
+		ParUtils.createFlyingParticle(Particle.CLOUD, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
 		
 		Explosion e = new Explosion(3,  3, 1,1, caster, loc.clone(), name);
 		

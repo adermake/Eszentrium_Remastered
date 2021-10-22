@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
@@ -181,7 +181,7 @@ public class Feuerwerkshelix extends Spell {
 		// TODO Auto-generated method stub
 		new ExplosionDamage(3, 6, caster, loc, name);
 		new RepulsionDirectional(3, power, caster, loc, loc.getDirection(), name);
-		//ParUtils.parKreisDir(Particles.SMOKE, loc, 3, 0, 0.5F, caster.getLocation().getDirection(), caster.getLocation().getDirection().multiply(-1));
+		//ParUtils.parKreisDir(Particle.SMOKE_NORMAL, loc, 3, 0, 0.5F, caster.getLocation().getDirection(), caster.getLocation().getDirection().multiply(-1));
 		f.teleport(loc);
 		f1.teleport(loc);
 		f2.teleport(loc);

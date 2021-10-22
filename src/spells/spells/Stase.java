@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.VelocityTimeStop;
@@ -68,13 +68,13 @@ public class Stase extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 0, 1);
+		//ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 0, 1);
 		Location l1 = ParUtils.stepCalcCircle(loc.clone(), 1, new Vector(0,1,0),0, step*6);
 		ParUtils.dropItemEffectVector(l1, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
 		Location l2 = ParUtils.stepCalcCircle(loc.clone(), 1, new Vector(0,1,0),0, 22+step*6);
 		ParUtils.dropItemEffectVector(l2, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
-		ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l1, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l1.toVector()));
-		ParUtils.createFlyingParticle(Particles.TOTEM_OF_UNDYING, l2, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l2.toVector()));
+		ParUtils.createFlyingParticle(Particle.TOTEM, l1, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l1.toVector()));
+		ParUtils.createFlyingParticle(Particle.TOTEM, l2, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l2.toVector()));
 	}
 
 	@Override

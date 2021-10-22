@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -74,7 +74,7 @@ public class Lichtstrudel extends Spell {
 			
 		
 		
-		ParUtils.parKreisDir(Particles.END_ROD, caster.getLocation().add(0,1,0), 2, 0, 0.1, caster.getLocation().getDirection(), caster.getLocation().getDirection().multiply(-1));
+		ParUtils.parKreisDir(Particle.END_ROD, caster.getLocation().add(0,1,0), 2, 0, 0.1, caster.getLocation().getDirection(), caster.getLocation().getDirection().multiply(-1));
 		if (caster.isSneaking()) {
 			dead = true;
 		}
@@ -131,7 +131,7 @@ public void dot(Location la,Location to,Player p,int time ) {
 			
 			public void run() {
 				t--;
-				ParUtils.createParticle(Particles.END_ROD, l, 0, 0,0,0, 0);
+				ParUtils.createParticle(Particle.END_ROD, l, 0, 0,0,0, 0);
 				for (LivingEntity le : p.getWorld().getLivingEntities()) {
 					if (!blackList.contains(le)) {
 						

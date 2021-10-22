@@ -19,7 +19,7 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.stagespells.WebTrail;
 
@@ -123,7 +123,7 @@ public class Schweberknecht extends Spell {
 			}
 			
 			
-			//ParUtils.parKreisDirSolid(Particles.CLOUD, loc, 3, 0, yLevel/80, new Vector(0,1,0), vel.clone().multiply(-1));
+			//ParUtils.parKreisDirSolid(Particle.CLOUD, loc, 3, 0, yLevel/80, new Vector(0,1,0), vel.clone().multiply(-1));
 		}
 		if (loc.getY() < yLevel) {
 			dead = true;
@@ -137,7 +137,7 @@ public class Schweberknecht extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0);
 	}
 
 	@Override

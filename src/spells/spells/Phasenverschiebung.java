@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Phasenverschiebung extends Spell {
@@ -77,7 +77,7 @@ public class Phasenverschiebung extends Spell {
 		// TODO Auto-generated method stub
 		//caster.teleport(loc);
 		openTunnel();
-		ParUtils.createParticle(Particles.INSTANT_EFFECT, loc, 0, 0, 0,1, 0);
+		ParUtils.createParticle(Particle.SPELL_INSTANT, loc, 0, 0, 0,1, 0);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class Phasenverschiebung extends Spell {
 				break;
 			
 			
-				ParUtils.createParticle(Particles.MYCELIUM, loc,5, 5,5, 11, 1);
+				ParUtils.createParticle(Particle.SUSPENDED, loc,5, 5,5, 11, 1);
 			
 			for (int x = -size;x<size;x++) {
 				for (int y = -size;y<size;y++) {

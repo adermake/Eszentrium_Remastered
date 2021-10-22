@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -61,8 +61,8 @@ public class OrbitarShot extends Spell {
 		// TODO Auto-generated method stub
 		playSound(Sound.ENTITY_WITHER_SHOOT,caster.getLocation(),2,1);
 		ParUtils.createRedstoneParticle(loc, 0.6F, 0.6F, 0.6F, 15, Color.GREEN, 2F);
-		ParUtils.createFlyingParticle(Particles.CLOUD, caster.getEyeLocation(), 0.5F, 0.5F, 0.5F, 15, -1, caster.getLocation().getDirection());
-		ParUtils.parKreisDot(Particles.CLOUD, caster.getLocation(), 1, 0, 1, caster.getLocation().getDirection().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.CLOUD, caster.getEyeLocation(), 0.5F, 0.5F, 0.5F, 15, -1, caster.getLocation().getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, caster.getLocation(), 1, 0, 1, caster.getLocation().getDirection().multiply(-1));
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class OrbitarShot extends Spell {
 			a = caster.getWorld().spawnFallingBlock(loc, Material.CACTUS,(byte)  0);
 		}
 		
-		//ParUtils.createParticle(Particles.FLAME, loc, 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 1);
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class OrbitarShot extends Spell {
 		// TODO Auto-generated method stub
 		
 		
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
 		if (refined) {
 			damage(p,4,caster);
@@ -116,7 +116,7 @@ public class OrbitarShot extends Spell {
 			damage(ent,2,caster);
 			ent.setVelocity(loc.getDirection().multiply(2));
 		}
-		ParUtils.createParticle(Particles.EXPLOSION, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
 	}
 

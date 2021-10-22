@@ -12,7 +12,7 @@ import org.bukkit.util.Vector;
 import esze.utils.NBTUtils;
 import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 
@@ -42,9 +42,9 @@ public class Druckwelle extends Spell {
 			dead = true;
 		}
 		// TODO Auto-generated method stub
-		//ParUtils.createParticle(Particles.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
-		//ParUtils.createParticle(Particles.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
-		//ParUtils.createParticle(Particles.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
+		//ParUtils.createParticle(Particle.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
+		//ParUtils.createParticle(Particle.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
+		//ParUtils.createParticle(Particle.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
 		SoundUtils.playSound(Sound.ENTITY_WITHER_HURT, loc,0.3F,30F);
 		noTargetEntitys.add(target);
 		loc = target.getLocation();
@@ -66,15 +66,15 @@ public class Druckwelle extends Spell {
 	public void move() {
 		if (charging) {
 			Vector dir = caster.getLocation().toVector().subtract(loc.toVector()).normalize();
-			ParUtils.createParticle(Particles.END_ROD, loc, 0, 0, 0, 3, 0);
-			ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0, 0, 0, 1, 0.2F, dir);
-			ParUtils.createParticle(Particles.ENCHANT, loc, 0.1, 0.1, 0.1, 5, 5);
+			ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 3, 0);
+			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0.2F, dir);
+			ParUtils.createParticle(Particle.CRIT_MAGIC, loc, 0.1, 0.1, 0.1, 5, 5);
 			loc.add(dir.multiply(1.3F));
 		}
 		else {
 			
 			loc.add(caster.getLocation().getDirection().multiply(2));
-			ParUtils.createParticle(Particles.FLASH, loc, 4, 4, 3, 10, 1);
+			ParUtils.createParticle(Particle.FLASH, loc, 4, 4, 3, 10, 1);
 			
 		}
 		
@@ -88,8 +88,8 @@ public class Druckwelle extends Spell {
 			caster.setVelocity(caster.getLocation().getDirection().multiply(-1));
 			SoundUtils.playSound(Sound.BLOCK_CONDUIT_ACTIVATE, loc,2,5);
 			SoundUtils.playSound(Sound.ENTITY_GENERIC_EXPLODE, loc,0.5F,5);
-			ParUtils.parKreisDir(Particles.CLOUD, loc, 3, 0, 2, caster.getLocation().getDirection(),caster.getLocation().getDirection());
-			ParUtils.parKreisDir(Particles.CLOUD, loc, 5, 0, 1, caster.getLocation().getDirection(),caster.getLocation().getDirection());
+			ParUtils.parKreisDir(Particle.CLOUD, loc, 3, 0, 2, caster.getLocation().getDirection(),caster.getLocation().getDirection());
+			ParUtils.parKreisDir(Particle.CLOUD, loc, 5, 0, 1, caster.getLocation().getDirection(),caster.getLocation().getDirection());
 		}
 	}
 

@@ -24,7 +24,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.ScoreboardTeamUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class TimerSpellClock extends Spell {
@@ -49,8 +49,8 @@ public class TimerSpellClock extends Spell {
 		loc = ori.clone();
 		// TODO Auto-generated method stub
 		double s = 0;
-		ParUtils.parKreisDot(Particles.CLOUD, loc, 6, 0, 0.02F, loc.getDirection());
-		ParUtils.parKreisDot(Particles.CLOUD, loc, 6, 0, 0.05F, loc.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, loc, 6, 0, 0.02F, loc.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, loc, 6, 0, 0.05F, loc.getDirection());
 		playGlobalSound(Sound.BLOCK_CONDUIT_ACTIVATE, 1, 1);
 		for (int i = 0;i<blockCount;i++) {
 			
@@ -78,12 +78,12 @@ public class TimerSpellClock extends Spell {
 				
 				for (int i = 0;i<3;i++) {
 					Location l = ParUtils.stepCalcCircle(loc.clone(), 7, loc.getDirection(), 0, -t/10+i*(44/3));
-					ParUtils.createFlyingParticle(Particles.END_ROD, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
+					ParUtils.createFlyingParticle(Particle.END_ROD, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
 				}
 				
 				for (int i = 0;i<3;i++) {
 					Location l = ParUtils.stepCalcCircle(loc.clone(), 5, loc.getDirection(), 0,t/5+i*(44/3));
-					ParUtils.createFlyingParticle(Particles.END_ROD, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
+					ParUtils.createFlyingParticle(Particle.END_ROD, l, 0, 0, 0, 1, 0, new Vector(0,1,0));
 				}
 				
 				if (t % 5 == 0) {
@@ -186,9 +186,9 @@ public class TimerSpellClock extends Spell {
 		}
 		
 	
-		ParUtils.createParticle(Particles.CLOUD, loc, 0.1F, 0.1F, 0.1F, 1, 0.02F);
+		ParUtils.createParticle(Particle.CLOUD, loc, 0.1F, 0.1F, 0.1F, 1, 0.02F);
 		Entity ent = blocks.get((tick)%blocks.size());
-		ParUtils.parLine(Particles.BUBBLE, loc.clone(), ent.getLocation(), 0, 0,0,1, 0, 0.2F);
+		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(), ent.getLocation(), 0, 0,0,1, 0, 0.2F);
 	}
 
 	@Override
@@ -265,7 +265,7 @@ public class TimerSpellClock extends Spell {
 		}
 		}.runTaskTimer(main.plugin,0,1);
 		playGlobalSound(Sound.BLOCK_CONDUIT_DEACTIVATE, 1, 1);
-		ParUtils.parKreisDot(Particles.CLOUD, loc, 2, 0, 1, loc.getDirection());
+		ParUtils.parKreisDot(Particle.CLOUD, loc, 2, 0, 1, loc.getDirection());
 		// TODO Auto-generated method stub
 		for (Entity fb : blocks) {
 			fb.remove();

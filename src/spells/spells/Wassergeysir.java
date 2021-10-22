@@ -16,7 +16,7 @@ import org.bukkit.entity.Trident;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.server.v1_16_R3.Particles;
+import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Wassergeysir extends Spell {
@@ -80,10 +80,10 @@ public class Wassergeysir extends Spell {
 		if (refined) {
 			for (int i = 0;i<2;i++) {
 				Location l = ParUtils.stepCalcCircle(loc, scale, loc.getDirection().multiply(-1),0, 2*cast+i*22);
-				ParUtils.createFlyingParticle(Particles.CLOUD, l, 0, 0,0, 1,0.1, loc.getDirection().multiply(-1));
-				//ParUtils.createParticle(Particles.CLOUD, l, 0, 1, 0, 0, 0.1);
+				ParUtils.createFlyingParticle(Particle.CLOUD, l, 0, 0,0, 1,0.1, loc.getDirection().multiply(-1));
+				//ParUtils.createParticle(Particle.CLOUD, l, 0, 1, 0, 0, 0.1);
 			}
-			ParUtils.createParticle(Particles.BUBBLE_POP, loc,scale/4, scale/4, scale/4, 20, 0);
+			ParUtils.createParticle(Particle.BUBBLE_POP, loc,scale/4, scale/4, scale/4, 20, 0);
 			ParUtils.createRedstoneParticle(loc, scale/2,  scale/2, scale/2, 10, Color.fromRGB(51, 51,201),5);
 			playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,loc,1,1);
 		}
@@ -91,9 +91,9 @@ public class Wassergeysir extends Spell {
 			for (int i = 0;i<2;i++) {
 				Location l = ParUtils.stepCalcCircle(loc, scale, new Vector(0,1,0),0, 2*cast+i*22);
 				
-				ParUtils.createParticle(Particles.CLOUD, l, 0, 1, 0, 0, 0.1);
+				ParUtils.createParticle(Particle.CLOUD, l, 0, 1, 0, 0, 0.1);
 			}
-			ParUtils.createParticle(Particles.BUBBLE_POP, loc,scale/4, 0.2, scale/4, 20, 0);
+			ParUtils.createParticle(Particle.BUBBLE_POP, loc,scale/4, 0.2, scale/4, 20, 0);
 			ParUtils.createRedstoneParticle(loc, scale/2, 0, scale/2, 10, Color.fromRGB(51, 51,201),5);
 			playSound(Sound.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT,loc,1,1);
 		}
@@ -125,11 +125,11 @@ public class Wassergeysir extends Spell {
 			
 			allBlocks.add(b);
 			if(refined) {
-				ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,loc.getDirection().multiply(-1));
+				ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,loc.getDirection().multiply(-1));
 				
 			}
 			else {
-				ParUtils.createFlyingParticle(Particles.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,new Vector(0,1,0));
+				ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0.3, 1, 0.3, 10, (double)count/(double)maxCount,new Vector(0,1,0));
 				
 			}
 			}
@@ -154,7 +154,7 @@ public class Wassergeysir extends Spell {
 		
 		for (FallingBlock bl : allBlocks) {
 			if (bl.getVelocity().getY() < 0) {
-				//ParUtils.createParticle(Particles.CLOUD, bl.getLocation(), 0.2,0.2, 0.2, 1, 0.01);
+				//ParUtils.createParticle(Particle.CLOUD, bl.getLocation(), 0.2,0.2, 0.2, 1, 0.01);
 			}
 			double maxHeight = 33;
 			double factor = (bl.getLocation().getY()-loc.getY())/maxHeight;
