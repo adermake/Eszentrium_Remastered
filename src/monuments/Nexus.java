@@ -13,8 +13,10 @@ import esze.utils.ParUtils;
 
 public class Nexus extends Monument{
     
+	int soulCount = 0;
+  
 
-    public Nexus(Player p) {
+	public Nexus(Player p) {
         super(p,"§eNexus",null);
         range = 6;
       
@@ -94,7 +96,13 @@ public class Nexus extends Monument{
         setMonumentOffset(0,Math.sin(step/15),0);
     }
 
+    public int getSoulCount() {
+  		return soulCount;
+  	}
 
+  	public void setSoulCount(int soulCount) {
+  		this.soulCount = soulCount;
+  	}
     
 
 }

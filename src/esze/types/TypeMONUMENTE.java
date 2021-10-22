@@ -12,12 +12,14 @@ import org.bukkit.entity.Player;
 import esze.utils.EszeTeam;
 import esze.utils.ItemStackUtils;
 import esze.utils.ScoreboardTeamUtils;
+import monuments.Monument;
 import spells.spellcore.SilenceSelection;
 import spells.spellcore.Spell;
 
 public class TypeMONUMENTE extends TypeTeamBased{
 
-	
+	Monument redNexus;
+	Monument blueNexus;
 	
 	public TypeMONUMENTE() {
 		name = "MONUMENTE";
@@ -46,7 +48,8 @@ public class TypeMONUMENTE extends TypeTeamBased{
 
 	@Override
 	public void gameStart() {
-		// TODO Auto-generated method stub
+		
+		//redNexus = new Nexus() CONSTRUCT NEXUS
 		
 	}
 
@@ -78,9 +81,7 @@ public class TypeMONUMENTE extends TypeTeamBased{
 		}
 		//--------------------------------------
 		if (phase == State.BATTLEPHASE) {
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				Spell.silenced.clear();	
-			}
+			Spell.silenced.clear();	
 		}
 		
 	}
