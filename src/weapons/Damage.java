@@ -7,6 +7,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Drowned;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +21,7 @@ import esze.menu.GameModifier;
 import esze.menu.ModifierMenu;
 import esze.utils.Actionbar;
 import esze.utils.SoundUtils;
+import monuments.Monument;
 import spells.spellcore.DamageCauseContainer;
 import spells.spellcore.Spell;
 import spells.spells.AntlitzderGöttin;
@@ -34,6 +36,7 @@ public class Damage implements Listener{
 	public static HashMap<Player,Double> lastHealthTaken = new HashMap<Player,Double>();
 	@EventHandler
 	public void onDamage(EntityDamageEvent e){
+		
 		
 		
 		/*
@@ -106,7 +109,14 @@ public class Damage implements Listener{
 	public void onEntityDamage(EntityDamageByEntityEvent e) {
 		
 		
-		
+		if (e.getEntity() instanceof IronGolem) {
+			IronGolem i = (IronGolem) e.getEntity();
+			i.setHealth(i.getMaxHealth());
+			if (Monument.hitBoxesMonument.containsKey(i)) {
+				Monument.hitBoxesMonument.get(i).onHitGolem(e.getDamager(),e.getDamage());
+			}
+			e.setCancelled(true);
+		}
 		
 	
 		

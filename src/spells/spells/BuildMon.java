@@ -10,7 +10,7 @@ import spells.spellcore.Spell;
 public class BuildMon extends Spell {
 	
 	public BuildMon() {
-		
+		cooldown = 20;
 	}
 	
 	@Override
