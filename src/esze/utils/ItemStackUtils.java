@@ -10,10 +10,12 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
@@ -109,6 +111,16 @@ public class ItemStackUtils {
 		return is;
 	}
 	
+	
+	public static ItemStack getPlayerHead(Player p) {
+		ItemStack playerhead = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short) 3);
+		String name = p.getName();
+	    SkullMeta playerheadmeta = (SkullMeta) playerhead.getItemMeta();
+	    playerheadmeta.setOwner(name);
+	    playerheadmeta.setDisplayName(name+"'s Kopf");
+	    playerhead.setItemMeta(playerheadmeta);
+	    return playerhead;
+	}
 	
 	public static ItemStack createSpell(String name) {
 		ItemStack is = new ItemStack(Material.ENCHANTED_BOOK);

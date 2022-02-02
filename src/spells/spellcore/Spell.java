@@ -235,6 +235,21 @@ public abstract class Spell {
 		}
 		
 	}
+	
+	public static void disableEntityHitboxStatic(Entity ent) {
+		
+		try  {
+		Method getHandle = ent.getClass().getMethod("getHandle");
+		Object entityObject = getHandle.invoke(ent);
+		Field field = entityObject.getClass().getField("P");
+		field.setAccessible(true);
+		field.setBoolean(entityObject, true);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public static void silence(Player p,SilenceSelection s) {
 		silenced.put(p, s);
 		
@@ -252,6 +267,7 @@ public abstract class Spell {
 		
 		if(!spellEnt.isValid() && bound) {
 			dead = true;
+			spell.remove(this);
 			onDeath();
 			
 		}
@@ -379,6 +395,7 @@ public abstract class Spell {
 						
 						
 						onDeath();
+						spell.remove(sp);
 						clearPhantomBlocks();
 						this.cancel();
 					}
@@ -1550,6 +1567,7 @@ public abstract class Spell {
 	public void instaKill() {
 		dead = true;
 		onDeath();
+		spell.remove(this);
 		clearPhantomBlocks();
 	}
 	public boolean swap() {
@@ -1864,6 +1882,11 @@ public abstract class Spell {
 	}
 	
 	
+	public double getLerp() {
+		double a = step;
+		double b = steprange;
+		return a/b;
+	}
 	public static int[] getMostCommonColour(Map map) {
         LinkedList list = new LinkedList(map.entrySet());
         Collections.sort(list, new Comparator() {

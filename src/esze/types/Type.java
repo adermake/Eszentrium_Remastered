@@ -97,6 +97,20 @@ public abstract class Type {
 		
 		return loc;
 	}
+	
+	public Location getLoc(int id){
+		Location loc = null;
+		
+		
+		
+		if(main.plugin.getConfig().contains("maps."+currentmap+"."+id)){
+			
+			loc = (Location) main.plugin.getConfig().get("maps."+currentmap+"."+id);
+			loc = loc.clone();
+		}
+		
+		return loc;
+	}
 	public void setupJumpPad(String map) {
 		JumpPadHandler.loadJumpPads(map);
 		//setup();

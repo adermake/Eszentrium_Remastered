@@ -16,7 +16,7 @@ public class BuildMan extends Spell {
     @Override
     public void setUp() {
         // TODO Auto-generated method stub
-        new Nexus(caster);
+       
     }
 
     @Override

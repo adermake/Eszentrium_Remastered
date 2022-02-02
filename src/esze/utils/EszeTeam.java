@@ -45,7 +45,12 @@ public class EszeTeam {
 	}
 	
 	
-	
+	public Player getRandomPlayer() {
+		if (players.size() > 1) {
+			return players.get(MathUtils.randInt(0, players.size()-1));
+		}
+		return players.get(0);
+	}
 	
 	public void clearTeam() {
 		

@@ -800,7 +800,6 @@ public class ParUtils {
 			imet.setDisplayName("" + i);
 			im.setItemMeta(imet);
 			Item it = loc.getWorld().dropItem(loc, im);
-
 			it.setVelocity(dir.multiply(power));
 			it.setPickupDelay(1000);
 			items.add(it);

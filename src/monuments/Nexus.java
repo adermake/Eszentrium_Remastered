@@ -1,6 +1,9 @@
 package monuments;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -9,31 +12,50 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import esze.enums.GameType;
+import esze.enums.Gamestate;
+import esze.types.TypeMONUMENTE;
+import esze.utils.EszeTeam;
 import esze.utils.ParUtils;
 
 public class Nexus extends Monument{
     
 	int soulCount = 0;
-  
-
-	public Nexus(Player p) {
-        super(p,"§eNexus",null);
+	ArrayList<Player> allAllies = new ArrayList<Player>();
+	ArrayList<Player> allEnemies = new ArrayList<Player>();
+	
+	Location ori;
+	public Nexus(Player p,Location ori,EszeTeam team) {
+        super(p,"§eNexus",team);
         range = 6;
-      
+        this.team = team;
+        this.ori = ori;
         platingCount = 0;
         constructMonument();
     }
     
     @Override
     public void onConstruct() {
-        //Material TeamMaterial = Material.FIRE_CORAL_BLOCK;
-        //Material TeamMaterial2 = Material.CRIMSON_HYPHAE;
-        //Material TeamOrbitar = Material.RED_STAINED_GLASS;
-        //Material TeamCore = Material.REDSTONE_BLOCK; 
-        Material TeamMaterial = Material.TUBE_CORAL_BLOCK;
-        Material TeamMaterial2 = Material.LAPIS_BLOCK;
-        Material TeamOrbitar = Material.BLUE_STAINED_GLASS;
-        Material TeamCore = Material.DIAMOND_BLOCK;
+    	loc = ori.clone();
+    	Material TeamMaterial;
+    	Material TeamMaterial2;
+    	Material TeamOrbitar;
+    	Material TeamCore;
+    	Bukkit.broadcastMessage("NExus" +team +team.color);
+    	if (team.color == ChatColor.RED) {
+    		 TeamMaterial = Material.FIRE_CORAL_BLOCK;
+             TeamMaterial2 = Material.CRIMSON_HYPHAE;
+             TeamOrbitar = Material.RED_STAINED_GLASS;
+             TeamCore = Material.REDSTONE_BLOCK; 
+    	}
+    	else {
+    	     TeamMaterial = Material.TUBE_CORAL_BLOCK;
+             TeamMaterial2 = Material.LAPIS_BLOCK;
+             TeamOrbitar = Material.BLUE_STAINED_GLASS;
+             TeamCore = Material.DIAMOND_BLOCK;
+    	}
+        
+    
         addBlock(TeamMaterial2, new Vector(0.4,2,0),0.05);
         addBlock(TeamMaterial2, new Vector(-0.4,2,0),0.05);
         addBlock(TeamMaterial, new Vector(0,2,0),0.05);
@@ -67,28 +89,54 @@ public class Nexus extends Monument{
     }
     @Override
     public void onEnter(Player p) {
-        playSound(Sound.ENTITY_CHICKEN_DEATH, loc, 100D, 2D);
+    	
+
+      
     }
 
     @Override
     public void onLeave(Player p) {
         // TODO Auto-generated method stub
+    	
+    	
         if (p == target) {
             target = null;
         }
+ 
     }
 
     @Override
     public void onEnterEnemy(Player p) {
         // TODO Auto-generated method stub
-        
+    	Bukkit.broadcastMessage("Enemy Enter");
+    	if (!allEnemies.contains(p))
+        	allEnemies.add(p);
     }
 
     @Override
     public void onLeaveEnemy(Player p) {
         // TODO Auto-generated method stub
-        
+    	Bukkit.broadcastMessage("Enemy  leave");
+    	if (allEnemies.contains(p))
+        	allEnemies.remove(p);
     }
+    
+	@Override
+	public void onEnterAlly(Player p) {
+		// TODO Auto-generated method stub
+    	Bukkit.broadcastMessage("Ally enter");
+    	if (!allAllies.contains(p))
+    	allAllies.add(p);
+	}
+
+	@Override
+	public void onLeaveAlly(Player p) {
+		// TODO Auto-generated method stub
+	       Bukkit.broadcastMessage("Ally leave");
+	    	if (allAllies.contains(p))
+	        	allAllies.remove(p);
+	}
+  	
 
     @Override
     public void onActivate(Player p) {
@@ -103,10 +151,28 @@ public class Nexus extends Monument{
         ParUtils.createParticle(Particle.CLOUD, ar.getLocation().add(0,1.5,0), 0, 0, 0, 0, 0);
     }
 
+    int sec = 0;
     @Override
     public void onTick() {
+
         // TODO Auto-generated method stub
         setMonumentOffset(0,Math.sin(step/15),0);
+        if (sec % 5 == 0) {
+     
+        	for (Player p : allEnemies) {
+        		Bukkit.broadcastMessage("C");
+        		stealSoul(p);
+        	}
+        	for (Player p : allAllies) {
+        		Bukkit.broadcastMessage("D");
+        		giveSoul(p);
+        	}
+        }
+        
+        
+        
+        
+        sec++;
     }
 
     public int getSoulCount() {
@@ -116,6 +182,29 @@ public class Nexus extends Monument{
   	public void setSoulCount(int soulCount) {
   		this.soulCount = soulCount;
   	}
+  	
+  	public void giveSoul(Player p) {
+  		TypeMONUMENTE monu = (TypeMONUMENTE) GameType.getType();
+  		if (monu.soulCount.containsKey(p) && monu.soulCount.get(p)> 0) {
+  			monu.removeSoul(p, 1);
+  			playSound(Sound.BLOCK_SMALL_AMETHYST_BUD_PLACE,loc,1,5);
+  		    
+  			soulCount++;
+  		}
+  	}
+  	
+  	public void stealSoul(Player p) {
+  		if (soulCount > 0) {
+  			TypeMONUMENTE monu = (TypeMONUMENTE) GameType.getType();
+  			int c = monu.soulCount.get(p);
+  			//monu.soulCount.put(p, c+1);
+  			playSound(Sound.BLOCK_SMALL_AMETHYST_BUD_BREAK,loc,1,5);
+  			new Soul(p,p,loc.clone());
+  			soulCount--;
+  		}
+  	}
+
+
     
 
 }

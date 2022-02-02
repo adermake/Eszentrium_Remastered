@@ -76,13 +76,14 @@ public class TypeTEAMS extends TypeTeamBased{
 			}
 		}
 
-		Music.sp.destroy();
+		
 		new BukkitRunnable() {
 			public void run() {
 				if (Music.sp != null)
 					Music.sp.destroy();
 			}
 		}.runTaskLater(main.plugin, 5);
+		Music.sp.destroy();
 		GameRunnable.stop();
 		Gamestate.setGameState(Gamestate.LOBBY);
 		LobbyBackgroundRunnable.start();
@@ -257,7 +258,7 @@ public class TypeTEAMS extends TypeTeamBased{
 			allTeamsAlive.remove(getTeamOfPlayer(p));
 		}
 	}
-	
+
 	@Override
 	public void gameStart() {
 	
@@ -266,14 +267,8 @@ public class TypeTEAMS extends TypeTeamBased{
 		loc.clear();
 		lives.clear();
 		allTeamsAlive.clear();
+		autoFillPlayers();
 		
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (!playerHasTeam(p)) {
-				EszeTeam et = allTeams.get(randInt(0, allTeams.size()-1));
-				et.addPlayer(p);
-			}
-			p.setGlowing(false);
-		}
 		
 		allTeamsAlive.clear();
 		// TODO Auto-generated method stub

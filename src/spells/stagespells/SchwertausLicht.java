@@ -110,6 +110,7 @@ public class SchwertausLicht extends Spell {
 		Vector v = target.getLocation().toVector().subtract(loc.toVector());
 		
 		
+		
 		float lifetime = (float)(steprange-step);
 		if (lifetime > 0) {
 			velocity = homeVector(lifetime, velocity.clone(), v);

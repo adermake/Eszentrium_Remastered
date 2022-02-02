@@ -51,6 +51,7 @@ import esze.map.JumpPad;
 import esze.map.JumpPadHandler;
 import esze.map.MapSelect;
 import esze.menu.Menu;
+import esze.neural.NeuralNetworks;
 import esze.utils.ChatUtils;
 import esze.utils.CorpseUtils;
 import esze.utils.ItemStackUtils;
@@ -121,7 +122,7 @@ public class main extends JavaPlugin {
 		 * arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) Particle.REGISTRY.get(new
 		 * MinecraftKey("<particlename>"))
 		 */
-
+		this.getCommand("setmonumap").setExecutor(new CommandReciever());
 		this.getCommand("playrandomsound").setExecutor(new CommandReciever());
 		this.getCommand("showpads").setExecutor(new CommandReciever());
 		this.getCommand("loadpads").setExecutor(new CommandReciever());
@@ -177,6 +178,7 @@ public class main extends JavaPlugin {
 		TTTFusion.start();
 
 		//PacketListner.registerPackets();
+		NeuralNetworks.loadNeuralNetworks();
 		PlayerUtils.showAllPlayers();
 		PlayerUtils.stopVelocity();
 		JumpPadHandler.start();

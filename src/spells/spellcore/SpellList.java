@@ -98,6 +98,7 @@ import spells.spells.Substitution;
 import spells.spells.Teleport;
 import spells.spells.Thermolanze;
 import spells.spells.Todessäge;
+import spells.spells.TordesRuins;
 import spells.spells.UntotePhalanx;
 import spells.spells.Vampirpilz;
 import spells.spells.Verstummen;
@@ -106,6 +107,7 @@ import spells.spells.Wunsch;
 import spells.spells.Wurmloch;
 import spells.spells.Wildwuchs;
 import spells.spells.Zaubersprung;
+import spells.stagespells.KompassEffect;
 import esze.analytics.SaveUtils;
 import esze.enums.GameType;
 import esze.types.TypeSOLO;
@@ -269,6 +271,7 @@ public static ArrayList<Spell> getDiffrentRandomGreen(int count) {
 		registerSpell(new UntotePhalanx());
 		//registerSpell(new Schicksalsschnitt());
 		registerSpell(new Kettenbrecher());
+		registerSpell(new TordesRuins());
 		//registerSpell(new ArkanesGeschütz());
 		//registerSpell(new Springkraut());
 	}

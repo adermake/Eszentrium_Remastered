@@ -113,6 +113,7 @@ public abstract class Monument extends Spell {
 	public void launch() {
 		// TODO Auto-generated method stub
 		Location floor = getFloor(loc.clone()).add(0, -1, 0);
+		/*
 		for (Location l : ParUtils.preCalcCircle(floor, range, new Vector(0, 1, 0), 0)) {
 			if (l.getBlock().getType().isSolid()) {
 
@@ -120,6 +121,7 @@ public abstract class Monument extends Spell {
 			}
 
 		}
+		*/
 	}
 
 	@Override
@@ -134,6 +136,12 @@ public abstract class Monument extends Spell {
 			if (!(p.getEyeLocation().distance(loc) < 0.6 + hitboxSize
 					|| p.getLocation().distance(loc) < 0.6 + hitboxSize)) {
 				onLeave(p);
+				if (team.players.contains(p)) {
+					onLeaveAlly(p);
+				}
+				else {
+					onLeaveEnemy(p);
+				}
 				removeLater.add(p);
 			}
 		}
@@ -202,6 +210,11 @@ public abstract class Monument extends Spell {
 		
 
 	}
+	boolean silentDead = false;
+	public void killSilent() {
+		silentDead = true;
+		kill();
+	}
 	
 	public void onHitGolem(Entity damager,double damage) {
 		if (currentNoDamageTicks > 0) {
@@ -260,6 +273,12 @@ public abstract class Monument extends Spell {
 		if (!inside.contains(p)) {
 			inside.add(p);
 			onEnter(p);
+			if (team.players.contains(p)) {
+				onEnterAlly(p);
+			}
+			else {
+				onEnterEnemy(p);
+			}
 		}
 	}
 
@@ -287,21 +306,31 @@ public abstract class Monument extends Spell {
 		for (IronGolem golem : hitBoxes) {
 			golem.remove();
 		}
-		new BukkitRunnable() {
-			int t = 0;
-			public void run() {
-				for (ArmorStand ar : blocks.keySet()) {
-					ParUtils.createParticle(Particle.CLOUD,ar.getEyeLocation(), 0, 0, 0, 1, 0);
-					setArmorstandHeadPos(ar, ar.getVelocity(), 0, 0);
-				}
-				t++;
-				if (t > 20* 4) {
+		if (silentDead) {
+			for (ArmorStand ar : blocks.keySet()) {
+				ar.remove();
+			}
+			
+		}
+		else {
+			new BukkitRunnable() {
+				int t = 0;
+				public void run() {
 					for (ArmorStand ar : blocks.keySet()) {
-						ar.remove();
+						ParUtils.createParticle(Particle.CLOUD,ar.getEyeLocation(), 0, 0, 0, 1, 0);
+						setArmorstandHeadPos(ar, ar.getVelocity(), 0, 0);
+					}
+					t++;
+					if (t > 20* 4) {
+						for (ArmorStand ar : blocks.keySet()) {
+							ar.remove();
+						}
+						this.cancel();
 					}
 				}
-			}
-		}.runTaskTimer(main.plugin,1,1);
+			}.runTaskTimer(main.plugin,1,1);
+			
+		}
 		monuments.remove(this);
 	}
 
@@ -373,6 +402,10 @@ public abstract class Monument extends Spell {
 
 	public abstract void onLeave(Player p);
 
+	public abstract void onEnterAlly(Player p);
+	
+	public abstract void onLeaveAlly(Player p);
+	
 	public abstract void onEnterEnemy(Player p);
 
 	public abstract void onLeaveEnemy(Player p);

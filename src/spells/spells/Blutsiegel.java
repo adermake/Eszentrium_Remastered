@@ -23,7 +23,7 @@ public class Blutsiegel extends Spell {
 	public static ArrayList<Blutsiegel> blutsiegel = new ArrayList<Blutsiegel>();
 	
 	public Blutsiegel() {
-		name = "ï¿½cBlutsiegel";
+		name = "§cBlutsiegel";
 		cooldown = 20*40;
 		steprange = 20 * 8;
 		hitboxSize = rad;

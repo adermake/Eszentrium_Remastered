@@ -369,6 +369,25 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 						}
 					}
 		        }
+				if (cmd.getName().startsWith("setmonumap")) {
+					if(p.isOp()){
+						p.sendMessage("§eMonument Settings Changed!");
+						String name = args[0];
+						if (args.length > 1 && args[1] == "false") {
+							main.plugin.getConfig().set("maps."+name+".monuments", false);
+							main.plugin.saveConfig();
+						}
+						if (args.length > 1 && args[1] == "true") {
+							main.plugin.getConfig().set("maps."+name+".monuments", true);
+							main.plugin.saveConfig();
+						}
+						else {
+							main.plugin.getConfig().set("maps."+name+".monuments", true);
+							main.plugin.saveConfig();
+						}
+						
+					}
+				}
 				if(cmd.getName().startsWith("removemap")) {
 					if(p.isOp()){
 						if(args.length == 1){
@@ -589,7 +608,8 @@ public class CommandReciever implements CommandExecutor, TabCompleter{
 					}
 				}catch(Exception e){}
 				return to;
-			}else if(cmdname.contains("setjumppad")){ 
+			}
+			else if(cmdname.contains("setjumppad")){ 
 				List<String> to = new ArrayList<String>();
 				List<String> from = new ArrayList<String>();
 				for(String arena: main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)){

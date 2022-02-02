@@ -109,6 +109,18 @@ public class AirMonument extends Monument{
 		setMonumentOffset(0,Math.sin(step/15),0);
 	}
 
+	@Override
+	public void onEnterAlly(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLeaveAlly(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 

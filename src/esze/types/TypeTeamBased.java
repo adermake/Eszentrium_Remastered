@@ -2,6 +2,7 @@ package esze.types;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import esze.utils.EszeTeam;
@@ -19,6 +20,15 @@ public abstract class TypeTeamBased extends Type {
 		}
 	}
 	
+	public void autoFillPlayers() {
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (!playerHasTeam(p)) {
+				EszeTeam et = allTeams.get(randInt(0, allTeams.size()-1));
+				et.addPlayer(p);
+			}
+			p.setGlowing(false);
+		}
+	}
 	public boolean playerHasTeam(Player p) {
 		boolean hasTeam = false;
 		for (EszeTeam t : allTeams) {

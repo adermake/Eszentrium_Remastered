@@ -1,16 +1,27 @@
 package spells.spells;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+
+import esze.objects.Vector2D;
+import esze.utils.FileWriter;
 import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
+
 import spells.spellcore.Spell;
 
 public class RuneDraw extends Spell {
@@ -18,7 +29,7 @@ public class RuneDraw extends Spell {
 	ArrayList<Vector> offsets = new ArrayList<Vector>();
 	
 	public RuneDraw() {
-		steprange = 20 * 2;
+		steprange = 25;
 	}
 	@Override
 	public void setUp() {
@@ -33,7 +44,11 @@ public class RuneDraw extends Spell {
 	}
 	Vector origin;
 	Vector normalVec;
+	Vector rightVec;
+	Vector topVec;
 	Vector vec;
+	
+	
 	double neg = 1;
 	double vlen = 5;
 	@Override
@@ -41,6 +56,8 @@ public class RuneDraw extends Spell {
 		// TODO Auto-generated method stub
 		vec = caster.getLocation().getDirection().multiply(vlen);
 		normalVec = caster.getLocation().getDirection();
+		rightVec = normalVec.clone().crossProduct(new Vector(0,1,0)).normalize();
+		topVec = rightVec.clone().crossProduct(normalVec.clone()).normalize();
 		//neg = Math.signum(normalVec.getX()*normalVec.getY()*normalVec.getZ());
 		yang =  singedangle(caster.getLocation().getDirection(),new Vector(0,1,0));
 		//Bukkit.broadcastMessage(""+yang);
@@ -75,15 +92,12 @@ public class RuneDraw extends Spell {
 		if (offsets.size() > 50) {
 			offsets.remove(0);
 		}
-		
-		shapedetector();
+		//shapedetector();
+		//shapedetector();
 		for (Vector vec : offsets) {
-			
-			ParUtils.createParticle(Particle.WATER_BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);
-			
-			
-			
+			ParUtils.createParticle(Particle.WATER_BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);	
 		}
+		
 		double distance = getAvgDistanceToCenter();
 		//Bukkit.broadcastMessage(""+distance);
 	}
@@ -138,7 +152,7 @@ public class RuneDraw extends Spell {
 			p.setY(0);
 			p.setX(10*acc+p.getX()*acc);
 			p.setZ(10*acc+p.getZ()*acc);
-			Bukkit.broadcastMessage(""+p);
+		
 			if (p.getX()>0 && p.getX() < 20*acc && p.getZ()>0 && p.getZ() < 20*acc ) {
 				//Bukkit.broadcastMessage("ADDED ");
 				vecs.add(p);
@@ -187,7 +201,7 @@ public class RuneDraw extends Spell {
 			}
 		}
 		
-		//Bukkit.broadcastMessage("found "+ max +" dots in line");
+		Bukkit.broadcastMessage("found "+ max +" dots in line");
 		
 	}
 	
@@ -226,7 +240,81 @@ public class RuneDraw extends Spell {
 	@Override
 	public void onDeath() {
 		// TODO Auto-generated method stub
+		ArrayList<Vector2D> vectors = new ArrayList<Vector2D>();
 		
+		for (Vector vec : offsets) {
+			double y = vec.clone().dot(topVec.clone());
+			double x = vec.clone().dot(rightVec.clone());
+			vectors.add(new Vector2D(x, y));
+		}
+		
+		ArrayList<Vector2D> drawVector = new ArrayList<Vector2D>();
+		int index = 0;
+		for (Vector2D v : vectors) {
+			index++;
+			
+			if (index < vectors.size()) {
+				drawVector.add(vectors.get(index).subtract(v));
+			}
+		}
+		
+		
+		
+		writeToFile("Line", drawVector);
+		playSound(Sound.BLOCK_NOTE_BLOCK_PLING,loc,1D,1D);
+		/*
+		Location dLoc = caster.getLocation();
+		for (Vector2D dv : drawVector) {
+			ParUtils.debug(dLoc);
+			dLoc = dLoc.add(dv.getX(),dv.getY(),0);
+			
+		}
+		*/
+		
+		
+	}
+	
+	
+	public void writeToFile(String shape,ArrayList<Vector2D> vectors) {
+		try {
+		File file1 = new File("vectordata.txt");
+		if (!file1.exists()) {
+			 FileOutputStream fileOut = new FileOutputStream("vectordata.txt");
+		    
+		        fileOut.write("0".getBytes());
+		        
+		        fileOut.close();
+		}
+		
+		
+			BufferedReader file = new BufferedReader(new FileReader("vectordata.txt"));
+			  ArrayList<String> lines = new ArrayList<String>();
+		        String line;
+
+		        while ((line = file.readLine()) != null) {
+		            lines.add(line);
+		        }
+		        file.close();
+		        //------------ ShapeCount
+		        int count = Integer.parseInt(lines.get(0))+1;
+		        lines.set(0, ""+count);
+		        //
+		        lines.add(shape);
+		        lines.add(""+vectors.size());
+		        for (Vector2D vec : vectors) {
+		        	 lines.add(vec.getX() +" "+vec.getY());
+		        }
+		        
+		        FileOutputStream fileOut = new FileOutputStream("vectordata.txt");
+		        for (String line2 : lines) {
+		        	 fileOut.write((line2 +"\n").getBytes());
+		        }
+		        fileOut.close();
+		        
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

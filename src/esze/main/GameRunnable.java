@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import esze.enums.GameType;
 import esze.types.TypeTEAMS;
+import esze.types.TypeTeamBased;
 import net.minecraft.server.level.EntityPlayer;
 
 
@@ -39,7 +40,7 @@ public class GameRunnable {
 	public static void stop(){
 		Bukkit.getScheduler().cancelTask(runnableTickID);
 		Bukkit.getScheduler().cancelTask(runnableSecID);
-		if (!(GameType.getType() instanceof TypeTEAMS))
+		if (!(GameType.getType() instanceof TypeTeamBased))
 		GameType.refreshGameType();
 	}
 
