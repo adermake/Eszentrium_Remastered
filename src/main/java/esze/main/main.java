@@ -82,7 +82,6 @@ public class main extends JavaPlugin {
 
         this.getCommand("nofboost").setExecutor(new CommandReciever());
         this.getCommand("analytics").setExecutor(new CommandReciever());
-        getServer().getPluginManager().registerEvents(new BoatControll(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Move(), this);
         getServer().getPluginManager().registerEvents(new Death(), this);
@@ -106,7 +105,6 @@ public class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Chat(), this);
         getServer().getPluginManager().registerEvents(new Reconnect(), this);
         getServer().getPluginManager().registerEvents(new Launch(), this);
-        getServer().getPluginManager().registerEvents(new Projectiles(), this);
 
         TTTFusion.start();
 
