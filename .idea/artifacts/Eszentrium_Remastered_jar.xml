@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Eszentrium_Remastered:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Eszentrium_Remastered_jar</output-path>
+    <root id="archive" name="Eszentrium_Remastered.jar" />
+  </artifact>
+</component>
