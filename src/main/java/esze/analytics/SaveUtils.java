@@ -18,6 +18,7 @@ public class SaveUtils {
     private static final String URL = "jdbc:mysql://localhost/EszeData?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false";
     private static final String USER = "j_user";
     private static String PASSWORD = "";
+    private static boolean debug = false;
 
     private static void startGame() {
         checkConnection();
@@ -208,8 +209,7 @@ public class SaveUtils {
                 System.out.println("Init SQL connection no error!");
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -221,6 +221,7 @@ public class SaveUtils {
                 currentConnection.close();
             }
         } catch (SQLException e) {
+            if(debug) e.printStackTrace();
         }
 
     }
@@ -254,8 +255,8 @@ public class SaveUtils {
             rs.close();
             stmt.close();
             return out;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | NullPointerException e) {
+            if(debug) e.printStackTrace();
         }
 
         return 1;
@@ -271,7 +272,7 @@ public class SaveUtils {
             stmt.executeQuery(query);
             stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            if(debug) e.printStackTrace();
         }
 
     }

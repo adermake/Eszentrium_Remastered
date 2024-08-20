@@ -7,10 +7,7 @@ import esze.main.LobbyBackgroundRunnable;
 import esze.main.main;
 import esze.menu.SoloSpellMenu;
 import esze.scoreboards.SoloScoreboard;
-import esze.utils.LobbyUtils;
-import esze.utils.Music;
-import esze.utils.PlayerUtils;
-import esze.utils.Title;
+import esze.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -183,36 +180,23 @@ public class TypeSOLO extends Type {
                 scoreboard.hideScoreboard();
                 gameOver = true;
 
-                for (Player p : Bukkit.getOnlinePlayers()) {
+                Player winner = players.getFirst();
+                new Title(
+                        PlayerHeadUtils.getHeadAsString(winner.getUniqueId().toString(), true) + " §a" + winner.getName(),
+                        "§7hat gewonnen!"
+                ).sendAll();
+                won = true;
 
-                    for (Player winner : players) {
-                        Title t = new Title("�a" + winner.getName() + " hat gewonnen!");
-                        won = true;
-                        t.send(p);
-                        postResult(winner);
-                    }
-
-                }
-
-                for (Player winner : players) {
-                    SaveUtils.setPlayerPlace(winner.getName(), 1);
-                }
-                if (won) {
-
-                    endGame();
-
-                }
-
+                postResult(winner);
+                SaveUtils.setPlayerPlace(winner.getName(), 1);
+                endGame();
             }
         }
     }
 
     public void endGame() {
-        for (Player winner : players) {
-
-            postResult(winner);
-        }
-
+        Player winner = players.getFirst();
+        postResult(winner);
 
         for (Entity e : Bukkit.getWorld("world").getEntities()) {
             if (e.getType() != EntityType.PLAYER) {

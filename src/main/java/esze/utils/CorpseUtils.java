@@ -1,17 +1,24 @@
 package esze.utils;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import net.minecraft.core.BlockPosition;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
+import net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_21_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class CorpseUtils {
@@ -34,11 +41,31 @@ public class CorpseUtils {
         return spawnCorpseForPlayers(player, loc, players);
     }
 
+
     public static int spawnCorpseForPlayers(Player player, Location loc, List<Player> showTo) {
-        int cID = 0;
-		
-		
-		
+        //int cID = 0;
+
+		EntityPlayer entityPlayerToCorpse = ((CraftPlayer) player).getHandle();
+
+		Property textures = (Property) entityPlayerToCorpse.fX().getProperties().get("textures").toArray()[0];
+		GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
+		gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
+
+		EntityPlayer corpse = new EntityPlayer(
+				((CraftServer)Bukkit.getServer()).getServer(),
+				((CraftWorld)player.getWorld()).getHandle(),
+				gameProfile,
+				null
+		);
+		corpse.d(loc.getX(), loc.getY(), loc.getZ());
+
+
+		for(Player all : showTo){
+			((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutSpawnEntity(corpse, 0, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())));
+			//((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer));
+		}
+
+
 		/*
 		Property textures = (Property) ((CraftPlayer) player).getHandle().getProfile().getProperties().get("textures").toArray()[0];
 		String signature = textures.getSignature();
@@ -102,7 +129,7 @@ public class CorpseUtils {
 		makePlayerSleep(entityPlayer, new BlockPosition(bed.getX(), bed.getY(), bed.getZ()), watcher); 
 		*/
         /*allCorpses.put(cID, CorpseAPI.spawnCorpse(player, loc));*/
-        return cID;
+        return 0/*cID*/;
     }
 
 

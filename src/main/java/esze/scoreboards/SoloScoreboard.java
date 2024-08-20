@@ -5,6 +5,7 @@ import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeSOLO;
+import esze.utils.PlayerHeadUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,19 +32,17 @@ public class SoloScoreboard extends Scoreboard {
                         TypeSOLO solo = ((TypeSOLO) GameType.getType());
                         for (Player p : solo.lives.keySet()) {
                             int live = solo.lives.get(p);
-                            if (live == 4) {
-                                lives.put("§a" + p.getName(), live);
-                            } else if (live == 3) {
-                                lives.put("§e" + p.getName(), live);
-                            } else if (live == 2) {
-                                lives.put("§6" + p.getName(), live);
-                            } else if (live == 1) {
-                                lives.put("§c" + p.getName(), live);
-                            } else if (live == 0) {
-                                lives.put("§4" + p.getName(), live);
-                            }
-
-
+                            String output = PlayerHeadUtils.getHeadAsString(p.getUniqueId().toString(), true) + " ";
+                            output += switch (live) {
+                                case 4 -> "§a";
+                                case 3 -> "§e";
+                                case 2 -> "§6";
+                                case 1 -> "§c";
+                                case 0 -> "§4";
+                                default -> throw new IllegalStateException("Unexpected value: " + live);
+                            };
+                            output += p.getName();
+                            lives.put(output, live);
                         }
 
 

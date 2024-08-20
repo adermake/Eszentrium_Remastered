@@ -41,28 +41,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandReciever implements CommandExecutor, TabCompleter {
-    public static void dumpHeap(String filePath, boolean live) throws IOException {
-		/*
-		MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
-		memoryMXBean.gc();
-		MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
-		long used = heapMemoryUsage.getUsed();//bytes used
-*/
-		/*
-	    MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer();
-	    HotSpotDiagnosticMXBean mxBean = ManagementFactory.newPlatformMXBeanProxy(
-	    		platformMBeanServer, "com.sun.management:type=HotSpotDiagnostic", HotSpotDiagnosticMXBean.class);*/
-        //"/tmp/minecraft-memory-dump-"+System.currentTimeMillis()+".hptof", true
-        //mxBean.dumpHeap(filePath, live);
-    }
-
     public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
         final Player p = (Player) sender;
 
 
         if (cmd.getName().equals("game")) {
-
-
             if (p.isOp()) {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("start")) {
@@ -242,13 +225,8 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
         }
         if (cmd.getName().startsWith("ping")) {
             //CorpseUtils.spawnCorpseForAll(p, p.getLocation());
+            new Title(PlayerHeadUtils.getHeadAsString(p.getUniqueId().toString(), true)).sendAll();
 
-            try {
-                dumpHeap("mcmemory.hprof", true);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
 
             if (args.length == 1) {
                 String name = args[0];
@@ -771,10 +749,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
     }
 
     public int getPing(Player p) {
-        CraftPlayer cp = (CraftPlayer) p;
-        EntityPlayer ep = cp.getHandle();
-
-        return -1;
+        return p.getPing();
     }
 
 

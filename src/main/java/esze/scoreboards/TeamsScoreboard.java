@@ -7,6 +7,7 @@ import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.EszeTeam;
 import esze.utils.NBTUtils;
+import esze.utils.PlayerHeadUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -35,27 +36,13 @@ public class TeamsScoreboard extends Scoreboard {
                             score.add("Leben");
                             TypeTEAMS teams = ((TypeTEAMS) GameType.getType());
                             String li = "";
-                            int totalLives = 0;
-                            double maxBars = 40;
 
-                            for (EszeTeam et : teams.allTeamsAlive) {
-
-                                totalLives += teams.lives.get(et);
-
-                            }
 
                             for (EszeTeam et : teams.allTeamsAlive) {
                                 li += (et.color);
-
-                                //Bukkit.broadcastMessage("teams.lives.get(et)"+teams.lives.get(et));
-                                //Bukkit.broadcastMessage("(double)totalLives;"+(double)totalLives);
-                                //Bukkit.broadcastMessage("BARS"+bars);
-
                                 li += teams.lives.get(et) + " ";
-
                             }
 
-                            //li = "|||||||||||||||||||";
                             score.add(li);
                             score.add("- - - -");
                             for (EszeTeam et : teams.allTeamsAlive) {
@@ -63,9 +50,9 @@ public class TeamsScoreboard extends Scoreboard {
                                 for (Player p : et.players) {
                                     if (teams.players.contains(p)) {
                                         if (et.players.contains(scoreBoarder) && et.players.contains(p)) {
-                                            score.add(ct + p.getName() + " " + (int) p.getHealth());
+                                            score.add(PlayerHeadUtils.getHeadAsString(p.getUniqueId().toString(), true) + " " + ct + p.getName() + " " + (int) p.getHealth());
                                         } else {
-                                            score.add(ct + p.getName());
+                                            score.add(PlayerHeadUtils.getHeadAsString(p.getUniqueId().toString(), true) + " " + ct + p.getName());
                                         }
 
 

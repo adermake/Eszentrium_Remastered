@@ -25,10 +25,10 @@ public class ScoreboardUtil {
         if (elements[0].length() > 32)
             elements[0] = elements[0].substring(0, 32);
 
-        for (int i = 1; i < elements.length; i++)
+        /*for (int i = 1; i < elements.length; i++)
             if (elements[i] != null)
                 if (elements[i].length() > 40)
-                    elements[i] = elements[i].substring(0, 40);
+                    elements[i] = elements[i].substring(0, 40);*/
 
         return elements;
     }
@@ -60,13 +60,13 @@ public class ScoreboardUtil {
             elements.remove(minimumKey);
         }
 
-        for (String string : new ArrayList<>(elements.keySet()))
+        /*for (String string : new ArrayList<>(elements.keySet()))
             if (string != null)
                 if (string.length() > 40) {
                     int value = elements.get(string);
                     elements.remove(string);
                     elements.put(string.substring(0, 40), value);
-                }
+                }*/
 
         return elements;
 
