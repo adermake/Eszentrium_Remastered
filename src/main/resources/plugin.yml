@@ -51,12 +51,6 @@ commands:
   ping:
     description: Ping
     usage:
-  gamemode:
-    description: Gamemode
-    usage:
-  gm:
-    description: Gamemode
-    usage:
   setjumppad:
     description: set a pad
     usage:

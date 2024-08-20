@@ -308,26 +308,6 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
             }
         }
 
-        if (cmd.getName().startsWith("gamemode") || cmd.getName().startsWith("gm")) {
-            if (p.isOp()) {
-                if (args.length == 1) {
-                    String gamemode = args[0];
-                    if (gamemode.equals("1")) {
-                        p.setGameMode(GameMode.CREATIVE);
-                    }
-                    if (gamemode.equals("0")) {
-                        p.setGameMode(GameMode.SURVIVAL);
-                    }
-                    if (gamemode.equals("2")) {
-                        p.setGameMode(GameMode.ADVENTURE);
-                    }
-                    if (gamemode.equals("3")) {
-                        p.setGameMode(GameMode.SPECTATOR);
-                    }
-
-                }
-            }
-        }
         if (cmd.getName().startsWith("setmonumap")) {
             if (p.isOp()) {
                 p.sendMessage("§eMonument Settings Changed!");
