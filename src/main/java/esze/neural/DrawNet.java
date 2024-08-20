@@ -1,24 +1,23 @@
 package esze.neural;
 
-import java.util.ArrayList;
-
+import esze.objects.Vector2D;
 import org.bukkit.util.Vector;
 
-import esze.objects.Vector2D;
+import java.util.ArrayList;
 
 public class DrawNet extends NeuralNetwork {
 
-	public DrawNet(ArrayList<String> lines) {
-		super(lines);
+    public DrawNet(ArrayList<String> lines) {
+        super(lines);
 
-	}
+    }
 
-	public Vector xy2nn(Vector2D v) {
-		float x = (float) v.getX();
-		float y = (float) v.getY();
-		return new Vector(Math.sqrt(x * x + y * y), x / Math.max(Math.max(Math.abs(x), Math.abs(y)), Math.pow(10, -20)),
-				y / Math.max(Math.max(Math.abs(x), Math.abs(y)), Math.pow(10, -20)));
-	}
+    public Vector xy2nn(Vector2D v) {
+        float x = (float) v.getX();
+        float y = (float) v.getY();
+        return new Vector(Math.sqrt(x * x + y * y), x / Math.max(Math.max(Math.abs(x), Math.abs(y)), Math.pow(10, -20)),
+                y / Math.max(Math.max(Math.abs(x), Math.abs(y)), Math.pow(10, -20)));
+    }
 /*
 	public float[][] getNNinpt(Vector[] nnlist,int numsamples,int numneurons,int[] numpoints) {
 	    float[][] NNinpt = new float[numsamples][];

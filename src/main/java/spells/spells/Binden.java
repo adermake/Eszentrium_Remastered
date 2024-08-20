@@ -10,90 +10,91 @@ import spells.spellcore.Spell;
 
 public class Binden extends Spell {
 
-	public Binden() {
-		hitSpell = false;
-		steprange = 20 * 5;
-		name = "§bBinden";
-		cooldown = 20 *10 ;
-	}
-	
-	Spell chase = null;
-	@Override
-	public void setUp() {
-		// TODO Auto-generated method stub
-		chase = pointSpell(caster);
-		
-		
-		if (chase == null)  {
-			
-			refund = true;
-		
-			dead = true;
-		}
-	}
+    public Binden() {
+        hitSpell = false;
+        steprange = 20 * 5;
+        name = "§bBinden";
+        cooldown = 20 * 10;
+    }
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-	}
+    Spell chase = null;
 
-	@Override
-	public void launch() {
-		if (dead)
-			return;
-		// TODO Auto-generated method stub
-		playGlobalSound(Sound.ENTITY_HOGLIN_CONVERTED_TO_ZOMBIFIED,2, 1.5F);
-	}
+    @Override
+    public void setUp() {
+        // TODO Auto-generated method stub
+        chase = pointSpell(caster);
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		if (caster.isSneaking()) {
-			dead = true;
-			return;
-		}
-		if (chase.isDead()) {
-			dead = true;
-			return;
-		}
-		doPin(caster,chase.getLocation(),1);
-	}
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
+        if (chase == null) {
 
-	@Override
-	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
+            refund = true;
 
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
-		
-	}
+            dead = true;
+        }
+    }
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void cast() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void launch() {
+        if (dead)
+            return;
+        // TODO Auto-generated method stub
+        playGlobalSound(Sound.ENTITY_HOGLIN_CONVERTED_TO_ZOMBIFIED, 2, 1.5F);
+    }
+
+    @Override
+    public void move() {
+        // TODO Auto-generated method stub
+        if (caster.isSneaking()) {
+            dead = true;
+            return;
+        }
+        if (chase.isDead()) {
+            dead = true;
+            return;
+        }
+        doPin(caster, chase.getLocation(), 1);
+    }
+
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onPlayerHit(Player p) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onSpellHit(Spell spell) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onBlockHit(Block block) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onDeath() {
+        // TODO Auto-generated method stub
+
+    }
 
 }

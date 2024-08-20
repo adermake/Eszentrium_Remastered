@@ -1,6 +1,6 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,126 +9,121 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-
-import org.bukkit.Particle;
-import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
 import spells.stagespells.Meteor;
 
 public class Meteoritenhagel extends Spell {
 
-	public Meteoritenhagel() {
-		cooldown = 20 * 40;
-		casttime = 0;
-		steprange = 65;
-		name = "§cMeteoritenhagel";
-		speed = 1;
-		hitSpell = false;
-		addSpellType(SpellType.DAMAGE);
-		addSpellType(SpellType.MULTIHIT);
-		addSpellType(SpellType.PROJECTILE);
+    public Meteoritenhagel() {
+        cooldown = 20 * 40;
+        casttime = 0;
+        steprange = 65;
+        name = "§cMeteoritenhagel";
+        speed = 1;
+        hitSpell = false;
+        addSpellType(SpellType.DAMAGE);
+        addSpellType(SpellType.MULTIHIT);
+        addSpellType(SpellType.PROJECTILE);
 
-		setLore("§7Lässt nach kurzer Verzögerung#§7Meteoriten vom Himmel fallen, die bei Bodenkontakt#§7explodieren und nahe Gegner schaden.");
+        setLore("§7Lässt nach kurzer Verzögerung#§7Meteoriten vom Himmel fallen, die bei Bodenkontakt#§7explodieren und nahe Gegner schaden.");
 
-	}
+    }
 
-	@Override
-	public void setUp() {
+    @Override
+    public void setUp() {
 
-		// TODO Auto-generated method stub
-		loc = null;
-		// loc = block(caster,200);
-		loc = caster.getLocation();
-		if (loc == null) {
-			dead = true;
-			refund = true;
-		} else {
-			playSound(Sound.ENTITY_SHULKER_CLOSE, loc, 10, 0.1F);
-			playSound(Sound.ENTITY_CAT_HISS, loc, 10, 0.5F);
-			Location hBlock = loc.clone();
-			hBlock.setY(255);
-			while (hBlock.getBlock().getType() == Material.AIR) {
-				hBlock.add(0, -1, 0);
-				if (hBlock.getY() < 10) {
-					break;
+        // TODO Auto-generated method stub
+        loc = null;
+        // loc = block(caster,200);
+        loc = caster.getLocation();
+        if (loc == null) {
+            dead = true;
+            refund = true;
+        } else {
+            playSound(Sound.ENTITY_SHULKER_CLOSE, loc, 10, 0.1F);
+            playSound(Sound.ENTITY_CAT_HISS, loc, 10, 0.5F);
+            Location hBlock = loc.clone();
+            hBlock.setY(255);
+            while (hBlock.getBlock().getType() == Material.AIR) {
+                hBlock.add(0, -1, 0);
+                if (hBlock.getY() < 10) {
+                    break;
 
-				}
-			}
-			loc = hBlock;
-		}
+                }
+            }
+            loc = hBlock;
+        }
 
-	}
+    }
 
-	double range = 5;
+    double range = 5;
 
-	@Override
-	public void cast() {
+    @Override
+    public void cast() {
 
-		// ParUtils.parKreisSolidRedstone(Color.RED, 1, loc.clone(), cast/4, 0, 1, new
-		// Vector(0,1,0));
+        // ParUtils.parKreisSolidRedstone(Color.RED, 1, loc.clone(), cast/4, 0, 1, new
+        // Vector(0,1,0));
 
-		// ParUtils.createParticle(Particle.CAMPFIRE_SIGNAL_SMOKE, dot, 0, 1, 0, 0, 5);
-	}
+        // ParUtils.createParticle(Particle.CAMPFIRE_SIGNAL_SMOKE, dot, 0, 1, 0, 0, 5);
+    }
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		// ParUtils.parKreisDot(Particle.FLAME, loc, 3, 1, 1.5, new Vector(0,-1,0));
-		// ParUtils.parKreisDot(Particle.FLAME, loc, 2, 1, 0.5, new Vector(0,-1,0));
-		ParUtils.parKreisSolidRedstone(Color.ORANGE, 1.5F, loc, range * 2, 0, 1, new Vector(0, 1, 0));
-	}
+    @Override
+    public void launch() {
+        // TODO Auto-generated method stub
+        // ParUtils.parKreisDot(Particle.FLAME, loc, 3, 1, 1.5, new Vector(0,-1,0));
+        // ParUtils.parKreisDot(Particle.FLAME, loc, 2, 1, 0.5, new Vector(0,-1,0));
+        ParUtils.parKreisSolidRedstone(Color.ORANGE, 1.5F, loc, range * 2, 0, 1, new Vector(0, 1, 0));
+    }
 
-	int delay = 0;
+    int delay = 0;
 
-	@Override
-	public void move() {
-		delay++;
-		if (delay > 3) {
-			Location calc = loc.clone().add(0, 90, 0);
-			calc.add(randDouble(-range, range), 0, randDouble(-range, range));
-			new Meteor(calc, caster, name);
-			delay = 0;
-		}
+    @Override
+    public void move() {
+        delay++;
+        if (delay > 3) {
+            Location calc = loc.clone().add(0, 90, 0);
+            calc.add(randDouble(-range, range), 0, randDouble(-range, range));
+            new Meteor(calc, caster, name);
+            delay = 0;
+        }
 
-	}
+    }
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
+    @Override
+    public void onPlayerHit(Player p) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
+    @Override
+    public void onSpellHit(Spell spell) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
+    @Override
+    public void onBlockHit(Block block) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
+    @Override
+    public void onDeath() {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }

@@ -1,46 +1,35 @@
 package esze.listeners;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import esze.main.main;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 
-import esze.main.main;
-import esze.utils.ParUtils;
+import java.util.HashMap;
 
 
 public class Launch implements Listener {
-	
-	@EventHandler
-	public void onLaunch(ProjectileLaunchEvent e) {
-		if (e.getEntity() instanceof Arrow) {
-			Arrow a = (Arrow) e.getEntity();
-			
-			new BukkitRunnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					if (a.getTicksLived() > 20 * 10) {
-						a.remove();
-						this.cancel();
-					}
-				}
-			}.runTaskTimer(main.plugin, 20, 20);
-		}
+
+    @EventHandler
+    public void onLaunch(ProjectileLaunchEvent e) {
+        if (e.getEntity() instanceof Arrow) {
+            Arrow a = (Arrow) e.getEntity();
+
+            new BukkitRunnable() {
+
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    if (a.getTicksLived() > 20 * 10) {
+                        a.remove();
+                        this.cancel();
+                    }
+                }
+            }.runTaskTimer(main.plugin, 20, 20);
+        }
 		/*
 		if (e.getEntity().getShooter() instanceof Player) {
 			Player p = (Player) e.getEntity().getShooter();
@@ -50,12 +39,10 @@ public class Launch implements Listener {
 			drawing.remove(p);
 		}
 		*/
-	}
-	
-	
+    }
 
-	
-	HashMap<Player,Integer> chargeTime = new HashMap<Player,Integer>();
+
+    HashMap<Player, Integer> chargeTime = new HashMap<Player, Integer>();
 /*	
 	public void onCharge(Player p) {
 		

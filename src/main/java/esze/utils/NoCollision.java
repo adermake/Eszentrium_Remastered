@@ -10,30 +10,30 @@ import org.bukkit.scoreboard.Team.OptionStatus;
 
 public class NoCollision {
 
-	public static Team noCollision;
-	public static Scoreboard scoreboard;
-	 
-	public static Team getOrCreateTeam(String name) {
-	    Team team = scoreboard.getTeam(name);
-	    if (team == null)
-	      team = scoreboard.registerNewTeam(name); 
-	    return team;
-	  }
-	  
-	  
-	  public static void setUpCollsionStopper() {
-		 scoreboard =  Bukkit.getScoreboardManager().getMainScoreboard();
-		 noCollision = getOrCreateTeam("noCollision");
-		 noCollision.setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
-	  }
-	  
-	  public static void dontCollide(Entity ent) {
-		  if (ent instanceof Player) {
-			  Player p = (Player)ent;
-			  noCollision.addEntry(""+p.getName());
-			  p.setScoreboard(scoreboard);
-		  }
-		  noCollision.addEntry(""+ent.getUniqueId());
-	  }
-	
+    public static Team noCollision;
+    public static Scoreboard scoreboard;
+
+    public static Team getOrCreateTeam(String name) {
+        Team team = scoreboard.getTeam(name);
+        if (team == null)
+            team = scoreboard.registerNewTeam(name);
+        return team;
+    }
+
+
+    public static void setUpCollsionStopper() {
+        scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        noCollision = getOrCreateTeam("noCollision");
+        noCollision.setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
+    }
+
+    public static void dontCollide(Entity ent) {
+        if (ent instanceof Player) {
+            Player p = (Player) ent;
+            noCollision.addEntry("" + p.getName());
+            p.setScoreboard(scoreboard);
+        }
+        noCollision.addEntry("" + ent.getUniqueId());
+    }
+
 }

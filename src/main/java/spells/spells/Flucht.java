@@ -16,127 +16,128 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
-public class Flucht extends Spell{
 
-	public Flucht() {
-		
-		
-		steprange = 20*3;
-		cooldown = 20*30;
-		name = "§bFlucht";
-		speed = 1;
-		
-		hitPlayer = false;
-		hitBlock = false;
-		hitSpell = false;
-		addSpellType(SpellType.MOBILITY);
-		addSpellType(SpellType.AURA);
-		addSpellType(SpellType.SELFCAST);
-		setLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen. Solange sich der#§7Spieler in dieser Form befindet, fliegt er in#§7Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
-		setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen, die nahe Gegner wegschieben.#§7Solange sich der Spieler in dieser Form befindet,#§7fliegt er in Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
-	}
-	
-	
+public class Flucht extends Spell {
 
-	@Override
-	public void setUp() {
-		// TODO Auto-generated method stub
-		
-	}
+    public Flucht() {
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		for (Player pl : Bukkit.getOnlinePlayers()) {
-			pl.hidePlayer(main.plugin, caster);
-		}
-		
-		ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 1, 1, 1, 100, 0);
-		caster.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
-		follow(bat(caster,refined),caster);
-		for (int i = 0;i<35;i++) {
-			bat(caster,refined);
-		}
-	}
+        steprange = 20 * 3;
+        cooldown = 20 * 30;
+        name = "§bFlucht";
+        speed = 1;
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		caster.setVelocity(caster.getLocation().getDirection().multiply(0.6));
-	}
+        hitPlayer = false;
+        hitBlock = false;
+        hitSpell = false;
+        addSpellType(SpellType.MOBILITY);
+        addSpellType(SpellType.AURA);
+        addSpellType(SpellType.SELFCAST);
+        setLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen. Solange sich der#§7Spieler in dieser Form befindet, fliegt er in#§7Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
+        setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen, die nahe Gegner wegschieben.#§7Solange sich der Spieler in dieser Form befindet,#§7fliegt er in Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
+    }
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void setUp() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void cast() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
-		if (caster.getGameMode() != GameMode.ADVENTURE) {
-			for (Player pl : Bukkit.getOnlinePlayers()) {
-				pl.showPlayer(main.plugin, caster);
-			}
-		}
-		
-	}
-	
-	public LivingEntity bat(final Player p,boolean refined) {
-		
-		final Bat bat = (Bat) p.getWorld().spawnEntity(p.getLocation(), EntityType.BAT);
-		unHittable.add(bat);
-		
-		
-		int start = 0;
-		if (refined) {
-			start = randInt(-40,0);
-		}
-		final int  fstart = start;
-		new BukkitRunnable() {
-			int t = fstart;
-			public void run() {
-				t++;
-				if (t>100) {
-					if (refined) {
-						new spells.stagespells.Explosion(3,6,1,1.2F,caster,bat.getLocation(),name);
-					}
-					this.cancel();
-					bat.remove();
-				}
-				
-				if (refined && t % 10 == 0) {
-					ParUtils.createParticle(Particle.FLAME, bat.getLocation(), 0.01, 0.01,0.01,1,0.01);
+    @Override
+    public void launch() {
+        // TODO Auto-generated method stub
+        for (Player pl : Bukkit.getOnlinePlayers()) {
+            pl.hidePlayer(main.plugin, caster);
+        }
+
+        ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 1, 1, 1, 100, 0);
+        caster.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
+        follow(bat(caster, refined), caster);
+        for (int i = 0; i < 35; i++) {
+            bat(caster, refined);
+        }
+    }
+
+    @Override
+    public void move() {
+        // TODO Auto-generated method stub
+        caster.setVelocity(caster.getLocation().getDirection().multiply(0.6));
+    }
+
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onPlayerHit(Player p) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onSpellHit(Spell spell) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onBlockHit(Block block) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onDeath() {
+        // TODO Auto-generated method stub
+        if (caster.getGameMode() != GameMode.ADVENTURE) {
+            for (Player pl : Bukkit.getOnlinePlayers()) {
+                pl.showPlayer(main.plugin, caster);
+            }
+        }
+
+    }
+
+    public LivingEntity bat(final Player p, boolean refined) {
+
+        final Bat bat = (Bat) p.getWorld().spawnEntity(p.getLocation(), EntityType.BAT);
+        unHittable.add(bat);
+
+
+        int start = 0;
+        if (refined) {
+            start = randInt(-40, 0);
+        }
+        final int fstart = start;
+        new BukkitRunnable() {
+            int t = fstart;
+
+            public void run() {
+                t++;
+                if (t > 100) {
+                    if (refined) {
+                        new spells.stagespells.Explosion(3, 6, 1, 1.2F, caster, bat.getLocation(), name);
+                    }
+                    this.cancel();
+                    bat.remove();
+                }
+
+                if (refined && t % 10 == 0) {
+                    ParUtils.createParticle(Particle.FLAME, bat.getLocation(), 0.01, 0.01, 0.01, 1, 0.01);
 					/*
 					bat.setVelocity(bat.getLocation().getDirection());
 					for (Player p : Bukkit.getOnlinePlayers()) {
@@ -151,29 +152,29 @@ public class Flucht extends Spell{
 						}
 					}
 					*/
-				}
-			}
-		}.runTaskTimer(main.plugin, 1,1);
-		return bat;
-	}
-	public void follow (LivingEntity le,LivingEntity p) {
-		new BukkitRunnable() {
-			public void run() {
-				
-				if (caster.isSneaking()) {
-					this.cancel();
-					dead = true;
-					le.remove();
-				}
-				if (le.isDead()) {
-					this.cancel();
-				}
-				le.teleport(p);
-				//doPull(le, p.getLocation(), 0.8D);
-			}
-		}.runTaskTimer(main.plugin, 1, 1);
-	}
+                }
+            }
+        }.runTaskTimer(main.plugin, 1, 1);
+        return bat;
+    }
 
+    public void follow(LivingEntity le, LivingEntity p) {
+        new BukkitRunnable() {
+            public void run() {
+
+                if (caster.isSneaking()) {
+                    this.cancel();
+                    dead = true;
+                    le.remove();
+                }
+                if (le.isDead()) {
+                    this.cancel();
+                }
+                le.teleport(p);
+                //doPull(le, p.getLocation(), 0.8D);
+            }
+        }.runTaskTimer(main.plugin, 1, 1);
+    }
 
 
 }

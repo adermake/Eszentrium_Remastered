@@ -1,9 +1,9 @@
 name: Eszentrium
 main: esze.main.main
 version: 1.0
-author: [Philipp0002, adermake, Astromake]
+author: [ Philipp0002, adermake, Astromake ]
 api-version: 1.21.1
-depend: [NoteBlockAPI]
+depend: [ NoteBlockAPI ]
 
 commands:
   setmonumap:
@@ -17,61 +17,61 @@ commands:
     usage: spell [name]
   game:
     description: Game management
-    usage: 
+    usage:
   maps:
     description: Arena overview
-    usage: 
+    usage:
   itemname:
     description: Change name of held item
-    usage: 
+    usage:
   setspawn:
     description: Set a spawn
-    usage: 
+    usage:
   removemap:
     description: Remove an arena
-    usage: 
+    usage:
   setlobby:
     description: Set spawnlocation
-    usage: 
+    usage:
   setmode:
     description: Set the gamemode
-    usage: 
+    usage:
   setpassword:
     description: Set app password
-    usage: 
+    usage:
   setdiscordtoken:
     description: Set discord token
-    usage: 
+    usage:
   setitem:
     description: Set the gamemode
-    usage: 
+    usage:
   downloadfile:
     description: Download a file
-    usage: 
+    usage:
   ping:
     description: Ping
-    usage: 
+    usage:
   gamemode:
     description: Gamemode
-    usage: 
+    usage:
   gm:
     description: Gamemode
-    usage: 
+    usage:
   setjumppad:
     description: set a pad
-    usage: 
+    usage:
   removepads:
     description: Gamemode
-    usage: 
+    usage:
   showpads:
     description: shows pads
     usage: /showpads map
   unload:
     description: unloads all pads
-    usage: 
+    usage:
   loadpads:
     description: load pads
-    usage: 
+    usage:
   analytics:
     description: Shows Stats
     usage: /analytics [stats/spellmenu] name

@@ -1,15 +1,13 @@
 package esze.utils;
 
 /**
-*
-* Created by SirSpoodles
-* Modified by ZombieHDGaming for MotD Usage
-*
-* https://www.spigotmc.org/threads/free-code-sending-perfectly-centered-chat-message.95872/
-*
-* Contains original method, method MK.2, and MotD method
-*
-*/
+ * Created by SirSpoodles
+ * Modified by ZombieHDGaming for MotD Usage
+ * <p>
+ * https://www.spigotmc.org/threads/free-code-sending-perfectly-centered-chat-message.95872/
+ * <p>
+ * Contains original method, method MK.2, and MotD method
+ */
 public enum ChatUtils {
     A('A', 5),
     a('a', 5),
@@ -122,24 +120,24 @@ public enum ChatUtils {
         this.length = length;
     }
 
-    public char getCharacter(){
+    public char getCharacter() {
         return this.character;
     }
 
-    public int getLength(){
+    public int getLength() {
         return this.length;
     }
 
-    public int getBoldLength(){
-        if(this == ChatUtils.SPACE) {
+    public int getBoldLength() {
+        if (this == ChatUtils.SPACE) {
             return this.getLength();
         }
         return this.length + 1;
     }
 
-    public static ChatUtils getDefaultFontInfo(char c){
-        for(ChatUtils dFI : ChatUtils.values()){
-            if(dFI.getCharacter() == c) {
+    public static ChatUtils getDefaultFontInfo(char c) {
+        for (ChatUtils dFI : ChatUtils.values()) {
+            if (dFI.getCharacter() == c) {
                 return dFI;
             }
         }
@@ -147,7 +145,7 @@ public enum ChatUtils {
     }
 
 
-    public static String centerMotD(String message){
+    public static String centerMotD(String message) {
         int messagePxSize = 0;
         boolean previousCode = false;
         boolean isBold = false;
@@ -155,27 +153,27 @@ public enum ChatUtils {
         int lastSpaceIndex = 0;
         String toSendAfter = null;
         String recentColorCode = "";
-        for(char c : message.toCharArray()){
-            if(c == '§'){
+        for (char c : message.toCharArray()) {
+            if (c == '§') {
                 previousCode = true;
                 continue;
-            }else if(previousCode == true){
+            } else if (previousCode == true) {
                 previousCode = false;
                 recentColorCode = "§" + c;
-                if(c == 'l' || c == 'L'){
+                if (c == 'l' || c == 'L') {
                     isBold = true;
                     continue;
                 } else {
                     isBold = false;
                 }
-            }else if(c == ' ') {
+            } else if (c == ' ') {
                 lastSpaceIndex = charIndex;
-            } else{
+            } else {
                 ChatUtils dFI = ChatUtils.getDefaultFontInfo(c);
                 messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
                 messagePxSize++;
             }
-            if(messagePxSize >= MAX_PX){
+            if (messagePxSize >= MAX_PX) {
                 toSendAfter = recentColorCode + message.substring(lastSpaceIndex + 1, message.length());
                 message = message.substring(0, lastSpaceIndex + 1);
                 break;
@@ -187,18 +185,18 @@ public enum ChatUtils {
         int spaceLength = ChatUtils.SPACE.getLength() + 1;
         int compensated = 0;
         StringBuilder sb = new StringBuilder();
-        while(compensated < toCompensate){
+        while (compensated < toCompensate) {
             sb.append(" ");
             compensated += spaceLength;
         }
-        if(toSendAfter != null) {
+        if (toSendAfter != null) {
             centerMotD(toSendAfter);
         }
         return sb.toString() + message;
     }
 
-    public static String sendCenteredMessageV1(String message){
-        if(message == null || message.equals("")) {
+    public static String sendCenteredMessageV1(String message) {
+        if (message == null || message.equals("")) {
             return "";
         }
 
@@ -206,19 +204,19 @@ public enum ChatUtils {
         boolean previousCode = false;
         boolean isBold = false;
 
-        for(char c : message.toCharArray()){
-            if(c == '§'){
+        for (char c : message.toCharArray()) {
+            if (c == '§') {
                 previousCode = true;
                 continue;
-            }else if(previousCode == true){
+            } else if (previousCode == true) {
                 previousCode = false;
-                if(c == 'l' || c == 'L'){
+                if (c == 'l' || c == 'L') {
                     isBold = true;
                     continue;
                 } else {
                     isBold = false;
                 }
-            }else{
+            } else {
                 ChatUtils dFI = ChatUtils.getDefaultFontInfo(c);
                 messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
                 messagePxSize++;
@@ -230,14 +228,14 @@ public enum ChatUtils {
         int spaceLength = ChatUtils.SPACE.getLength() + 1;
         int compensated = 0;
         StringBuilder sb = new StringBuilder();
-        while(compensated < toCompensate){
+        while (compensated < toCompensate) {
             sb.append(" ");
             compensated += spaceLength;
         }
         return sb.toString() + message;
     }
 
-    public static String sendCenteredMessageV2(String message){
+    public static String sendCenteredMessageV2(String message) {
         int messagePxSize = 0;
         boolean previousCode = false;
         boolean isBold = false;
@@ -245,27 +243,27 @@ public enum ChatUtils {
         int lastSpaceIndex = 0;
         String toSendAfter = null;
         String recentColorCode = "";
-        for(char c : message.toCharArray()){
-            if(c == '§'){
+        for (char c : message.toCharArray()) {
+            if (c == '§') {
                 previousCode = true;
                 continue;
-            }else if(previousCode == true){
+            } else if (previousCode == true) {
                 previousCode = false;
                 recentColorCode = "§" + c;
-                if(c == 'l' || c == 'L'){
+                if (c == 'l' || c == 'L') {
                     isBold = true;
                     continue;
                 } else {
                     isBold = false;
                 }
-            }else if(c == ' ') {
+            } else if (c == ' ') {
                 lastSpaceIndex = charIndex;
-            } else{
+            } else {
                 ChatUtils dFI = ChatUtils.getDefaultFontInfo(c);
                 messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
                 messagePxSize++;
             }
-            if(messagePxSize >= MAX_CHAT_PX){
+            if (messagePxSize >= MAX_CHAT_PX) {
                 toSendAfter = recentColorCode + message.substring(lastSpaceIndex + 1, message.length());
                 message = message.substring(0, lastSpaceIndex + 1);
                 break;
@@ -277,7 +275,7 @@ public enum ChatUtils {
         int spaceLength = ChatUtils.SPACE.getLength() + 1;
         int compensated = 0;
         StringBuilder sb = new StringBuilder();
-        while(compensated < toCompensate){
+        while (compensated < toCompensate) {
             sb.append(" ");
             compensated += spaceLength;
         }

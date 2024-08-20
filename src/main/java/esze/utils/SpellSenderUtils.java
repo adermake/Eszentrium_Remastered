@@ -1,19 +1,18 @@
 package esze.utils;
-import java.lang.reflect.Field;
 
 import com.google.gson.JsonObject;
 
+import java.lang.reflect.Field;
+
 public class SpellSenderUtils {
 
-	
-	
-	
-	public String objToJson(Object obj){
+
+    public String objToJson(Object obj) {
         Class<?> objClass = obj.getClass();
 
         Field[] fields = objClass.getFields();
         JsonObject Jobj = new JsonObject();
-        for(Field field : fields) {
+        for (Field field : fields) {
             String name = field.getName();
             Object value = "ERROR-objToJsonMethod";
             try {

@@ -1,7 +1,6 @@
 package esze.utils;
 
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -12,7 +11,7 @@ public class Title {
 
     private String title = "";
     private ChatColor titleColor = ChatColor.WHITE;
- 
+
     private String subtitle = "";
     private ChatColor subtitleColor = ChatColor.WHITE;
 
@@ -22,12 +21,12 @@ public class Title {
     private boolean ticks = false;
 
     public Title() {
-       
+
     }
 
     public Title(String title) {
         this.title = title;
-      
+
     }
 
     public Title(String title, String subtitle) {
@@ -56,7 +55,7 @@ public class Title {
         this.fadeInTime = fadeInTime;
         this.stayTime = stayTime;
         this.fadeOutTime = fadeOutTime;
-     //   loadClasses();
+        //   loadClasses();
     }
 
     public void setTitle(String title) {
@@ -87,7 +86,7 @@ public class Title {
         this.fadeInTime = time;
         return this;
     }
- 
+
 
     public Title setFadeOutTime(int time) {
         this.fadeOutTime = time;
@@ -108,34 +107,39 @@ public class Title {
     }
 
     public void send(Player player) {
-       
-        	player.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
+
+        player.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
 
     }
- 
+
     public void sendAll() {
-        
-    	for (Player p : Bukkit.getOnlinePlayers()) {
-    		p.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
-    	}
-}
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
+        }
+    }
 
 
     public ChatColor getTitleColor() {
         return titleColor;
     }
+
     public ChatColor getSubtitleColor() {
         return subtitleColor;
     }
+
     public int getFadeInTime() {
         return fadeInTime;
     }
+
     public int getFadeOutTime() {
         return fadeOutTime;
     }
+
     public int getStayTime() {
         return stayTime;
     }
+
     public boolean isTicks() {
         return ticks;
     }

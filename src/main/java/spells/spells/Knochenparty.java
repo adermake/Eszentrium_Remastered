@@ -27,146 +27,146 @@ import spells.stagespells.KnochenpartySkeletonSummon;
 import spells.stagespells.Repulsion;
 import spells.stagespells.VampirpilzStage2;
 
-public class Knochenparty extends Spell{
+public class Knochenparty extends Spell {
 
-	HashMap<Entity,Integer> bounces = new HashMap<Entity,Integer>();
-	ArrayList<Entity> noChargeLoss = new ArrayList<Entity>();
-	public Knochenparty() {
-		cooldown = 20 * 32;
-		steprange = 60;
-		name = "§cKnochenparty";
-		hitSpell = true;
-		addSpellType(SpellType.LOCKDOWN);
-		addSpellType(SpellType.DAMAGE);
-		addSpellType(SpellType.PROJECTILE);
-		setLore("§7Wirft einen Knochen in Blickrichtung.#§7Um ihn herum erscheint nach kurzer Zeit ein#§7Ring aus Skeletten, die Gegner bei#§7Berührung Schadenzufügen und sie in die Mitte des#§7Rings schleudern.");
-	}
-	
-	boolean holding = true;
-	Item i;
-	@Override
-	public void setUp() {
-		// TODO Auto-generated method stub
-		ItemStack m = new ItemStack(Material.BONE);
-		
-		i = caster.getWorld().dropItem(loc, m);
-	
-		playSound(Sound.ENTITY_SKELETON_DEATH,loc,2,5);
-		 
-		//ar.addPassenger(i);
-		if (caster.isSneaking()) {
-			i.setVelocity(caster.getLocation().getDirection().multiply(2));
-		}
-		else {
-			i.setVelocity(caster.getLocation().getDirection().multiply(1));
-			step = 20;
-		}
-		
-	}
+    HashMap<Entity, Integer> bounces = new HashMap<Entity, Integer>();
+    ArrayList<Entity> noChargeLoss = new ArrayList<Entity>();
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-	}
+    public Knochenparty() {
+        cooldown = 20 * 32;
+        steprange = 60;
+        name = "§cKnochenparty";
+        hitSpell = true;
+        addSpellType(SpellType.LOCKDOWN);
+        addSpellType(SpellType.DAMAGE);
+        addSpellType(SpellType.PROJECTILE);
+        setLore("§7Wirft einen Knochen in Blickrichtung.#§7Um ihn herum erscheint nach kurzer Zeit ein#§7Ring aus Skeletten, die Gegner bei#§7Berührung Schadenzufügen und sie in die Mitte des#§7Rings schleudern.");
+    }
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		
-	}
+    boolean holding = true;
+    Item i;
 
-	
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-		loc = i.getLocation();	
-		if (i.isOnGround()) {
-			
-			dead = true;
-		}
-	}
+    @Override
+    public void setUp() {
+        // TODO Auto-generated method stub
+        ItemStack m = new ItemStack(Material.BONE);
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
+        i = caster.getWorld().dropItem(loc, m);
 
-	
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
-		
-	}
+        playSound(Sound.ENTITY_SKELETON_DEATH, loc, 2, 5);
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
-		if (spell.getName().contains("Antlitz der Göttin"))
-			i.setVelocity(spell.caster.getLocation().getDirection().multiply(2));
-	}
+        //ar.addPassenger(i);
+        if (caster.isSneaking()) {
+            i.setVelocity(caster.getLocation().getDirection().multiply(2));
+        } else {
+            i.setVelocity(caster.getLocation().getDirection().multiply(1));
+            step = 20;
+        }
 
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
-		loc = i.getLocation();
-		loc.setDirection(new Vector(1,0,0));
-		for (int i = 0;i<20;i++) {
-			
-			loc.setYaw(loc.getYaw()+18);
-			
-			new KnochenpartySkeletonSummon(caster,  loc.clone(),loc.getDirection().multiply(0.6F),this);
-			//ParUtils.debugRay(loc.clone());
-			
-			
-		}
-		
-		i.remove();
-		
-	}
+    @Override
+    public void cast() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public boolean canBounce(Entity p) {
-		if (noChargeLoss.contains(p)) {
-			return false;
-		}
-		if (bounces.containsKey(p) ) {
-			if (bounces.get(p) > 8) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public void addBounce(Entity p) {
-		
-		if (!bounces.containsKey(p)) {
-			bounces.put(p, 1);
-		}
-		else {
-			bounces.put(p, bounces.get(p)+1);
-		}
-		
-		noChargeLoss.add(p);
-		new BukkitRunnable() {
-			public void run() {
-				noChargeLoss.remove(p);
-			}
-		}.runTaskLater(main.plugin,3);
-		
-	}
+    }
+
+    @Override
+    public void launch() {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void move() {
+        // TODO Auto-generated method stub
+
+        loc = i.getLocation();
+        if (i.isOnGround()) {
+
+            dead = true;
+        }
+    }
+
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onSpellHit(Spell spell) {
+        // TODO Auto-generated method stub
+        if (spell.getName().contains("Antlitz der Göttin"))
+            i.setVelocity(spell.caster.getLocation().getDirection().multiply(2));
+    }
+
+    @Override
+    public void onBlockHit(Block block) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onDeath() {
+        // TODO Auto-generated method stub
+        loc = i.getLocation();
+        loc.setDirection(new Vector(1, 0, 0));
+        for (int i = 0; i < 20; i++) {
+
+            loc.setYaw(loc.getYaw() + 18);
+
+            new KnochenpartySkeletonSummon(caster, loc.clone(), loc.getDirection().multiply(0.6F), this);
+            //ParUtils.debugRay(loc.clone());
+
+
+        }
+
+        i.remove();
+
+    }
+
+    @Override
+    public void onPlayerHit(Player p) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public boolean canBounce(Entity p) {
+        if (noChargeLoss.contains(p)) {
+            return false;
+        }
+        if (bounces.containsKey(p)) {
+            if (bounces.get(p) > 8) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addBounce(Entity p) {
+
+        if (!bounces.containsKey(p)) {
+            bounces.put(p, 1);
+        } else {
+            bounces.put(p, bounces.get(p) + 1);
+        }
+
+        noChargeLoss.add(p);
+        new BukkitRunnable() {
+            public void run() {
+                noChargeLoss.remove(p);
+            }
+        }.runTaskLater(main.plugin, 3);
+
+    }
 
 }

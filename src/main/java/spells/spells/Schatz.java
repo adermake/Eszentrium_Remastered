@@ -15,70 +15,70 @@ import spells.spellcore.Spell;
 
 public class Schatz extends Spell {
 
-	public Schatz()
-	{
-		name = "§3Schatz";
-		cooldown = 20;
-	}
-	public void setUp() {
-		// TODO Auto-generated method stub
-		Bukkit.broadcastMessage("XX");
-		ParUtils.debug(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)));
-		caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)), Material.TRAPPED_CHEST,(byte)1);
-	}
+    public Schatz() {
+        name = "§3Schatz";
+        cooldown = 20;
+    }
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setUp() {
+        // TODO Auto-generated method stub
+        Bukkit.broadcastMessage("XX");
+        ParUtils.debug(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)));
+        caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getLocation().getDirection().multiply(5)), Material.TRAPPED_CHEST, (byte) 1);
+    }
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void cast() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void launch() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onPlayerHit(Player p) {
-		
-		
-	}
+    }
 
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		
-		
-	}
+    @Override
+    public void move() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		
-		
-	}
+    }
 
-	@Override
-	public void onBlockHit(Block block) {
-		
-		
-	}
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onDeath() {
-		
-	}
+    }
+
+    @Override
+    public void onPlayerHit(Player p) {
+
+
+    }
+
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+
+
+    }
+
+    @Override
+    public void onSpellHit(Spell spell) {
+
+
+    }
+
+    @Override
+    public void onBlockHit(Block block) {
+
+
+    }
+
+    @Override
+    public void onDeath() {
+
+    }
 
 
 }

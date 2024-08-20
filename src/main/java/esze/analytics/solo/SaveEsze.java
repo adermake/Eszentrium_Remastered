@@ -1,47 +1,43 @@
 package esze.analytics.solo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Pattern;
-
-import esze.main.main;
 
 public class SaveEsze {
-	
-	
-	private ArrayList<SaveGame> sv;
-	
-	public SaveEsze() {
-		sv = new ArrayList<>();
-	}
-	
-	public SaveEsze(String s) {
-		sv = new ArrayList<>();
-		String[] args = OldSaveUtils.readString(s);
-		for (int i = 0; i < args.length; i++) {
-			sv.add(new SaveGame(args[i]));
-		}
-	}
-	
-	public void add(SaveGame g) {
-		sv.add(g);
-	}
-	
-	@Override
-	public String toString() {
-		String s = "[";
-		
-		for (SaveGame g : sv) {
-			s += g.toString() + ",";
-		}
-		if (s.length() > 1) {
-			s = s.substring(0, s.length()-1);
-		}
-		return s + "]";
-	}
-	
-	
-	//Analytics ----------------------------------------------------------------------------------------------
+
+
+    private ArrayList<SaveGame> sv;
+
+    public SaveEsze() {
+        sv = new ArrayList<>();
+    }
+
+    public SaveEsze(String s) {
+        sv = new ArrayList<>();
+        String[] args = OldSaveUtils.readString(s);
+        for (int i = 0; i < args.length; i++) {
+            sv.add(new SaveGame(args[i]));
+        }
+    }
+
+    public void add(SaveGame g) {
+        sv.add(g);
+    }
+
+    @Override
+    public String toString() {
+        String s = "[";
+
+        for (SaveGame g : sv) {
+            s += g.toString() + ",";
+        }
+        if (s.length() > 1) {
+            s = s.substring(0, s.length() - 1);
+        }
+        return s + "]";
+    }
+
+
+    //Analytics ----------------------------------------------------------------------------------------------
 	/*
 	public double getWorth(String s) {
 		s = SaveUtils.rmColor(s);

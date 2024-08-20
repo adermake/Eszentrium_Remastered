@@ -1,12 +1,6 @@
 package esze.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
@@ -14,9 +8,9 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class JarUtils {
-	
-	private static boolean RUNNING_FROM_JAR = false;
-	 
+
+    private static boolean RUNNING_FROM_JAR = false;
+
     static {
         final URL resource = JarUtils.class.getClassLoader()
                 .getResource("plugin.yml");
@@ -24,7 +18,7 @@ public class JarUtils {
             RUNNING_FROM_JAR = true;
         }
     }
-    
+
     public static JarFile getRunningJar() throws IOException {
         if (!RUNNING_FROM_JAR) {
             return null; // null if not running from jar
@@ -34,9 +28,9 @@ public class JarUtils {
         path = URLDecoder.decode(path, "UTF-8");
         return new JarFile(path);
     }
-    
+
     public static boolean extractFromJar(final String fileName,
-            final String dest) throws IOException {
+                                         final String dest) throws IOException {
         if (getRunningJar() == null) {
             return false;
         }
@@ -48,7 +42,7 @@ public class JarUtils {
         if (!file.exists()) {
             file.getParentFile().mkdirs();
         }
- 
+
         final JarFile jar = getRunningJar();
         final Enumeration<JarEntry> e = jar.entries();
         while (e.hasMoreElements()) {
@@ -67,9 +61,9 @@ public class JarUtils {
         jar.close();
         return false;
     }
- 
+
     private final static void copyInputStream(final InputStream in,
-            final OutputStream out) throws IOException {
+                                              final OutputStream out) throws IOException {
         try {
             final byte[] buff = new byte[4096];
             int n;
@@ -82,7 +76,7 @@ public class JarUtils {
             in.close();
         }
     }
-    
+
     public static URL getJarUrl(final File file) throws IOException {
         return new URL("jar:" + file.toURI().toURL().toExternalForm() + "!/");
     }

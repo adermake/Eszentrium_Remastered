@@ -15,150 +15,146 @@ import org.bukkit.util.Vector;
 
 import spells.spellcore.Spell;
 
-public class Ansturm extends Spell{
+public class Ansturm extends Spell {
 
-	IronGolem golem;
-	
-	
-	public Ansturm() {
-		name = "§6Ansturm";
-		hitEntity = true;
-		cooldown = 20*24;
-		steprange = 60;
-		speed = 1;
-		hitboxSize = 2;
-		
-	}
-	
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
-		golem.remove();
-	}
+    IronGolem golem;
 
-	@Override
-	public void setUp() {
-		golem = (IronGolem) spawnEntity(EntityType.IRON_GOLEM);
-		noTargetEntitys.add(golem);
-		Location l = loc.clone();
-		l.setPitch(0);
-		moveDir = l.getDirection();
-	}
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-	}
+    public Ansturm() {
+        name = "§6Ansturm";
+        hitEntity = true;
+        cooldown = 20 * 24;
+        steprange = 60;
+        speed = 1;
+        hitboxSize = 2;
 
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	Vector moveDir;
-	@Override
-	public void move() {
+    @Override
+    public void onDeath() {
+        // TODO Auto-generated method stub
+        golem.remove();
+    }
+
+    @Override
+    public void setUp() {
+        golem = (IronGolem) spawnEntity(EntityType.IRON_GOLEM);
+        noTargetEntitys.add(golem);
+        Location l = loc.clone();
+        l.setPitch(0);
+        moveDir = l.getDirection();
+    }
+
+    @Override
+    public void cast() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void launch() {
+        // TODO Auto-generated method stub
+
+    }
+
+    Vector moveDir;
+
+    @Override
+    public void move() {
 		/*
 		if (!caster.isSneaking()) {
 			loc.setDirection(loc.getDirection().add(new Vector(0,0.1,0)));
 		}
 		*/
-		if (caster.isSneaking()) {
-			// REFINED
-			if (refined) {
-				canHitSelf = true;
-				
-			}
-			
-			// REFINED
-			for (BlockFace bf : BlockFace.values()) {
-				if (bf == BlockFace.DOWN)
-					continue;
-				if (golem.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
-					golem.setVelocity(moveDir.clone().multiply(-1).setY(0.5D));
-					break;
-				}
-				else {
-					golem.setVelocity(moveDir.clone().multiply(-1).setY(-1D));
-				}
-			}
-		} else {
-			canHitSelf = false;
-			for (BlockFace bf : BlockFace.values()) {
-				if (bf == BlockFace.DOWN)
-					continue;
-				if (golem.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
-					golem.setVelocity(moveDir.clone().multiply(1).setY(0.5D));
-					
-					break;
-				}
-				else {
-					golem.setVelocity(moveDir.clone().multiply(1).setY(-1D));
-				}
-				
-			}
-		}
-		Vector dir = loc.getDirection();
-		loc = golem.getLocation();
-		loc.setDirection(dir);
-		
-	}
+        if (caster.isSneaking()) {
+            // REFINED
+            if (refined) {
+                canHitSelf = true;
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
+            }
 
-	@Override
-	public void onPlayerHit(Player p) {
-		double velAdder = 0;
-		if (refined)
-			velAdder = 3;
-		if (caster != p)
-		damage(p,5,caster);
-		if (caster.isSneaking()) {
-			
-			p.setVelocity(loc.getDirection().multiply(3+velAdder));
-		}
-		else {
-			p.setVelocity(loc.getDirection().multiply(-3-velAdder));
-		}
-		
-		playSound(Sound.ENTITY_IRON_GOLEM_ATTACK, loc, 1, 1);
-		p.setVelocity(p.getVelocity().setY(2.0D));	
-	}
+            // REFINED
+            for (BlockFace bf : BlockFace.values()) {
+                if (bf == BlockFace.DOWN)
+                    continue;
+                if (golem.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
+                    golem.setVelocity(moveDir.clone().multiply(-1).setY(0.5D));
+                    break;
+                } else {
+                    golem.setVelocity(moveDir.clone().multiply(-1).setY(-1D));
+                }
+            }
+        } else {
+            canHitSelf = false;
+            for (BlockFace bf : BlockFace.values()) {
+                if (bf == BlockFace.DOWN)
+                    continue;
+                if (golem.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
+                    golem.setVelocity(moveDir.clone().multiply(1).setY(0.5D));
 
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		double velAdder = 0;
-		if (refined)
-			velAdder = 3;
-		damage(ent,5,caster);
-		if (caster.isSneaking()) {
-			ent.setVelocity(loc.getDirection().multiply(3+velAdder));
-		}
-		else {
-			ent.setVelocity(loc.getDirection().multiply(-3-velAdder));
-		}
-		playSound(Sound.ENTITY_IRON_GOLEM_ATTACK, loc, 1, 1);
-		ent.setVelocity(ent.getVelocity().setY(2.0D));
-	}
+                    break;
+                } else {
+                    golem.setVelocity(moveDir.clone().multiply(1).setY(-1D));
+                }
 
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
-		
-	}
+            }
+        }
+        Vector dir = loc.getDirection();
+        loc = golem.getLocation();
+        loc.setDirection(dir);
 
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onPlayerHit(Player p) {
+        double velAdder = 0;
+        if (refined)
+            velAdder = 3;
+        if (caster != p)
+            damage(p, 5, caster);
+        if (caster.isSneaking()) {
+
+            p.setVelocity(loc.getDirection().multiply(3 + velAdder));
+        } else {
+            p.setVelocity(loc.getDirection().multiply(-3 - velAdder));
+        }
+
+        playSound(Sound.ENTITY_IRON_GOLEM_ATTACK, loc, 1, 1);
+        p.setVelocity(p.getVelocity().setY(2.0D));
+    }
+
+    @Override
+    public void onEntityHit(LivingEntity ent) {
+        double velAdder = 0;
+        if (refined)
+            velAdder = 3;
+        damage(ent, 5, caster);
+        if (caster.isSneaking()) {
+            ent.setVelocity(loc.getDirection().multiply(3 + velAdder));
+        } else {
+            ent.setVelocity(loc.getDirection().multiply(-3 - velAdder));
+        }
+        playSound(Sound.ENTITY_IRON_GOLEM_ATTACK, loc, 1, 1);
+        ent.setVelocity(ent.getVelocity().setY(2.0D));
+    }
+
+    @Override
+    public void onSpellHit(Spell spell) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onBlockHit(Block block) {
+        // TODO Auto-generated method stub
+
+    }
+
 
 }
