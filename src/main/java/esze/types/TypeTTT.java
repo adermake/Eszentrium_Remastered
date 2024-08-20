@@ -8,6 +8,7 @@ import esze.main.main;
 import esze.scoreboards.TTTScoreboard;
 import esze.utils.*;
 import esze.voice.Discord;
+import net.dv8tion.jda.api.EmbedBuilder;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
@@ -20,8 +21,10 @@ import spells.spellcore.Spell;
 import spells.spellcore.Spelldrop;
 import weapons.WeaponMenu;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 
 public class TypeTTT extends Type {
@@ -234,10 +237,7 @@ public class TypeTTT extends Type {
             if (traitor.contains(dcc.killer)) {
                 dcc.killer.setLevel(dcc.killer.getLevel() + 5);
             }
-
-
         }
-
 
         p.setHealth(20);
         if (p.getLocation().getY() < 60) {
@@ -343,8 +343,6 @@ public class TypeTTT extends Type {
             }
         }
         new Spelldrop(loc);
-
-
     }
 
     public void setTraitor(Player p) {
@@ -364,22 +362,15 @@ public class TypeTTT extends Type {
 
     public void checkWinner() {
         if (!won) {
-
             if (innocent.isEmpty() && !gameOver) {
-
                 scoreboard.hideScoreboard();
 
-
                 for (Player p : Bukkit.getOnlinePlayers()) {
-
-
                     Title t = new Title("§cVerräter");
                     t.setSubtitle("§7haben gewonnen!");
                     won = true;
 
                     t.send(p);
-
-
                 }
 
                 postResult(false);
@@ -390,76 +381,40 @@ public class TypeTTT extends Type {
 
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-
-
                     Title t = new Title("§7Die §aUnschuldigen");
                     t.setSubtitle("§7haben gewonnen!");
                     won = true;
                     t.send(p);
-
-
                 }
                 postResult(true);
-
-
             }
 
             if (won && !gameOver) {
-
-
                 endGame();
-
             }
-
-
         }
     }
 
+
     public void postResult(boolean innoWin) {
-		/*
-	    EmbedBuilder builder = new EmbedBuilder();
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.addField("Gewinnerteam", innoWin ? "Die Unschuldigen" : "Die Verräter", true);
+        String winners = (innoWin ? startInnocent : startTraitor).stream().map(Player::getName).collect(Collectors.joining(" "));
 
-	    ArrayList<String> winners = new ArrayList<String>();
-	    if (innoWin) {
-	    	builder.appendField("Gewinnerteam", "Die Unschuldigen", true);
-	    	
-	    	for (Player p : startInnocent) {
-	    		winners.add(p.getName());
-	    	}
-	    }
-	    else {
-	    	builder.appendField("Gewinnerteam", "Die Verräter", true);
-	    	for (Player p : startTraitor) {
-	    		winners.add(p.getName());
-	    	}
-	    }
-	    String text = "";
-	    for (String s : winners) {
-	    	text += s+" ";
-	    }
-	    if (text == null)
-	    	return;
-	    builder.appendField("Gewinner", text, false);
-	    String allPlayers = "";
-	    for (Player p : Bukkit.getOnlinePlayers()) {
-	    	allPlayers += p.getName()+" ";
-	    }
-	    builder.appendField("Teilnehmer", allPlayers, false);
-	    builder.withAuthorName("Raiton-Game Info Service");
-	    builder.withAuthorIcon("http://minel0l.lima-city.de/esze.jpg");
+        builder.addField("Gewinner", winners, false);
+        String allPlayers = Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.joining(" "));
+        builder.addField("Teilnehmer", allPlayers, false);
+        builder.setAuthor("Raiton-Game Info Service", null, "http://minel0l.lima-city.de/esze.jpg");
 
-	    builder.withColor(java.awt.Color.BLUE);
-	    builder.withTitle("Eszentrium TTT");
-	    builder.withTimestamp(System.currentTimeMillis());
-	    
-	    
-	    builder.withDescription("Spielzeit: "+ secToMin(gameLengthSeconds-secondsLeft));
+        builder.setColor(java.awt.Color.BLUE);
+        builder.setTitle("Eszentrium TTT");
+        builder.setTimestamp(OffsetDateTime.now());
 
-	    builder.withThumbnail("http://minel0l.lima-city.de/ttt.jpg");
+        builder.setDescription("Spielzeit: " + secToMin(gameLengthSeconds - secondsLeft));
 
-	    RequestBuffer.request(() -> Discord.channel.getGuild().getChannelByID(621398787155558400L).sendMessage(builder.build()));
-		*/
+        builder.setThumbnail("http://minel0l.lima-city.de/ttt.jpg");
 
+        Discord.sendLog(builder.build());
     }
 
 

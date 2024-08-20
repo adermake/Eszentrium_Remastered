@@ -1,6 +1,5 @@
 package esze.main;
 
-import com.google.gson.JsonObject;
 import esze.analytics.SaveUtils;
 import esze.app.AppServer;
 import esze.app.AppUserPasswordUtils;
@@ -30,8 +29,9 @@ import weapons.Damage;
 import weapons.WeaponAbilitys;
 import weapons.WeaponList;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class main extends JavaPlugin {
 
@@ -42,29 +42,13 @@ public class main extends JavaPlugin {
     //public static HashMap<Player, String> damageCause = new HashMap<Player, String>();
     public AppServer appServer;
 
-    public static ArrayList<String> colorTags = new ArrayList<String>();
+    public static List<String> colorTags = new ArrayList<String>();
 
     @Override
     public void onEnable() {
-        // S
-        NoCollision.setUpCollsionStopper();
-        colorTags.add("§1");
-        colorTags.add("§2");
-        colorTags.add("§3");
-        colorTags.add("§4");
-        colorTags.add("§5");
-        colorTags.add("§6");
-        colorTags.add("§7");
-        colorTags.add("§8");
-        colorTags.add("§9");
-        colorTags.add("§a");
-        colorTags.add("§b");
-        colorTags.add("§c");
-        colorTags.add("§d");
-        colorTags.add("§e");
-        colorTags.add("§f");
         plugin = this;
-        // R
+        NoCollision.setUpCollsionStopper();
+        colorTags = Arrays.asList("§0", "§1", "§2", "§3", "§4", "§5", "§6", "§7", "§8", "§9", "§a", "§b", "§c", "§d", "§e", "§f");
 
         PlayerConfig.load();
         this.getServer().getPluginManager().registerEvents(new EventCollector(), this);
@@ -72,15 +56,6 @@ public class main extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(JumpPad.class);
         ConfigurationSerialization.registerClass(PlayerConfig.class);
-        // R
-        /*
-         * ParticleParam p = new ParticleParamItem((Particle<ParticleParamItem>)
-         * Particle.REGISTRY.get(new MinecraftKey("hugeexplosion")), null);
-         *
-         * PacketPlayOutWorldParticles w = new PacketPlayOutWorldParticles(arg0, arg1,
-         * arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) Particle.REGISTRY.get(new
-         * MinecraftKey("<particlename>"))
-         */
         this.getCommand("setmonumap").setExecutor(new CommandReciever());
         this.getCommand("playrandomsound").setExecutor(new CommandReciever());
         this.getCommand("showpads").setExecutor(new CommandReciever());
@@ -106,7 +81,6 @@ public class main extends JavaPlugin {
         this.getCommand("music").setExecutor(new CommandReciever());
 
         this.getCommand("nofboost").setExecutor(new CommandReciever());
-        // LOLAAa
         this.getCommand("analytics").setExecutor(new CommandReciever());
         getServer().getPluginManager().registerEvents(new BoatControll(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);
@@ -136,7 +110,6 @@ public class main extends JavaPlugin {
 
         TTTFusion.start();
 
-        //PacketListner.registerPackets();
         NeuralNetworks.loadNeuralNetworks();
         PlayerUtils.showAllPlayers();
         PlayerUtils.stopVelocity();
@@ -183,11 +156,10 @@ public class main extends JavaPlugin {
                 }
             }.runTaskAsynchronously(main.plugin);
         } else {
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                if (p.isOp()) {
-                    p.sendMessage("Der Discord Token wurde nicht in der Config gefunden! (/setdiscordtoken <TOKEN>)");
-                }
-            }
+            Bukkit.getOnlinePlayers()
+                    .stream()
+                    .filter(Player::isOp)
+                    .forEach(p -> p.sendMessage("Der Discord Token wurde nicht in der Config gefunden! (/setdiscordtoken <TOKEN>)"));
         }
 
         //Analytics
@@ -197,11 +169,10 @@ public class main extends JavaPlugin {
             SaveUtils.update();
             SaveUtils.checkConnection();
         } else {
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                if (p.isOp()) {
-                    p.sendMessage("Kein SQL Password eingetragen! (/analytics setPassword <Password>");
-                }
-            }
+            Bukkit.getOnlinePlayers()
+                    .stream()
+                    .filter(Player::isOp)
+                    .forEach(p -> p.sendMessage("Kein SQL Password eingetragen! (/analytics setPassword <Password>"));
         }
 
 
@@ -254,31 +225,6 @@ public class main extends JavaPlugin {
             System.out.println("Esze | Discord herunterfahren fehlgeschlagen.");
         }
 
-        /*
-         * try { wait(2000); } catch (InterruptedException e1) { // TODO Auto-generated
-         * catch block e1.printStackTrace(); }
-         */
-
     }
-
-    public String objToJson(Object obj) {
-        Class<?> objClass = obj.getClass();
-
-        Field[] fields = objClass.getFields();
-        JsonObject Jobj = new JsonObject();
-        for (Field field : fields) {
-            String name = field.getName();
-            Object value = "ERROR-objToJsonMethod";
-            try {
-                value = field.get(obj);
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            Jobj.addProperty(name, value.toString());
-        }
-        return Jobj.toString();
-    }
-
 
 }

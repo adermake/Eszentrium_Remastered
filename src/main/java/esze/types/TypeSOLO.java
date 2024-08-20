@@ -8,6 +8,8 @@ import esze.main.main;
 import esze.menu.SoloSpellMenu;
 import esze.scoreboards.SoloScoreboard;
 import esze.utils.*;
+import esze.voice.Discord;
+import net.dv8tion.jda.api.EmbedBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -23,8 +25,10 @@ import spells.spellcore.Spell;
 import weapons.Damage;
 import weapons.WeaponMenu;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class TypeSOLO extends Type {
 
@@ -187,7 +191,6 @@ public class TypeSOLO extends Type {
                 ).sendAll();
                 won = true;
 
-                postResult(winner);
                 SaveUtils.setPlayerPlace(winner.getName(), 1);
                 endGame();
             }
@@ -222,32 +225,20 @@ public class TypeSOLO extends Type {
     }
 
     public void postResult(Player winner) {
-        /*
-         * EmbedBuilder builder = new EmbedBuilder();
-         *
-         *
-         *
-         *
-         * builder.appendField("Gewinner", winner.getName(), false); String allPlayers =
-         * ""; for (Player p : Bukkit.getOnlinePlayers()) { allPlayers +=
-         * p.getName()+" "; } builder.appendField("Teilnehmer", allPlayers, false);
-         * builder.withAuthorName("Raiton-Game Info Service");
-         * builder.withAuthorIcon("http://minel0l.lima-city.de/esze.jpg");
-         *
-         * builder.withColor(java.awt.Color.GREEN);
-         * builder.withTitle("Eszentrium SOLO");
-         * builder.withTimestamp(System.currentTimeMillis());
-         *
-         *
-         *
-         *
-         * builder.withThumbnail("http://minel0l.lima-city.de/solo.jpg");
-         *
-         * RequestBuffer.request(() ->
-         * Discord.channel.getGuild().getChannelByID(621398787155558400L).sendMessage(
-         * builder.build()));
-         *
-         */
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.addField("Gewinner", winner.getName(), false);
+        String allPlayers = Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.joining(" "));
+        builder.addField("Teilnehmer", allPlayers, false);
+        builder.setAuthor("Raiton-Game Info Service", null, "http://minel0l.lima-city.de/esze.jpg");
+
+        builder.setColor(java.awt.Color.GREEN);
+        builder.setTitle("Eszentrium SOLO");
+        builder.setTimestamp(OffsetDateTime.now());
+
+        builder.setThumbnail("http://minel0l.lima-city.de/solo.jpg");
+
+        Discord.sendLog(builder.build());
     }
 
 }

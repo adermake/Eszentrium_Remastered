@@ -3,10 +3,8 @@ package esze.voice;
 import esze.main.main;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -14,26 +12,21 @@ import java.util.HashMap;
 
 public class Discord {
 
-    public static JDA jda;
-    public static HashMap<Player, Member> muted = new HashMap<Player, Member>();
-    public static Guild g;
-    static long gID = 429733093050679306L;
-    static long rID = 1;
+    public static HashMap<Player, Member> muted = new HashMap<>();
+    private static JDA jda;
+    private static Guild g;
 
     public static void run() {
-
         try {
             jda = JDABuilder.createLight(main.discord_TOKEN)
                     .setActivity(Activity.watching("people die"))
                     .build()
                     .awaitReady();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         g = jda.getGuildById(429733093050679306L);
-
     }
 
     public static void logout() {
@@ -73,5 +66,8 @@ public class Discord {
         jda.getPresence().setActivity(a);
     }
 
+    public static void sendLog(MessageEmbed embed) {
+        g.getChannelById(TextChannel.class, 621398787155558400L).sendMessageEmbeds(embed).queue();
+    }
 
 }

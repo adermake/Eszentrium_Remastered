@@ -45,7 +45,6 @@ public class SoloScoreboard extends Scoreboard {
                             lives.put(output, live);
                         }
 
-
                         ScoreboardUtil.rankedSidebarDisplay((Collection<Player>) Bukkit.getOnlinePlayers(), "Leben", lives);
 
 

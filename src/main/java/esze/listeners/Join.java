@@ -32,11 +32,8 @@ public class Join implements Listener {
         //Clears Inventory of Players
         GameType.getType().givePlayerLobbyItems(p);
         if (Gamestate.getGameState() == Gamestate.LOBBY) {
-            //p.teleport((Location) main.plugin.getConfig().get("lobby.loc"));
             e.setJoinMessage("§8> §3" + p.getName() + " §7ist beigetreten.");
             LobbyUtils.recall(p);
-
-
         } else if (Gamestate.getGameState() == Gamestate.INGAME) {
             e.setJoinMessage("");
             if (PlayerAPI.getPlayerInfo(p) == null) {
@@ -44,7 +41,6 @@ public class Join implements Listener {
                 pi.isAlive = false;
                 pi.isInRound = false;
             }
-
         }
     }
 
@@ -54,13 +50,9 @@ public class Join implements Listener {
         e.setQuitMessage("§8< §6" + p.getName() + " §7hat das Spiel verlassen");
         ScoreboardTeamUtils.giveScoreboard(p);
 
-        if (GameType.getType() instanceof TypeTEAMS) {
-            TypeTEAMS tt = (TypeTEAMS) GameType.getType();
+        if (GameType.getType() instanceof TypeTEAMS tt) {
             tt.removePlayerFromAllTeams(p);
         }
-
-
     }
-
 
 }

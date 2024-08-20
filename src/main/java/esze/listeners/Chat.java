@@ -10,18 +10,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class Chat implements Listener {
 
-
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
-
-        if (GameType.getType() instanceof TypeTTT) {
-
-            TypeTTT type = (TypeTTT) GameType.getType();
-            if (!type.players.contains(e.getPlayer()) && e.getPlayer().getGameMode() != GameMode.CREATIVE && Gamestate.getGameState() == Gamestate.INGAME) {
-                e.setCancelled(true);
-            }
-
+        if (GameType.getType() instanceof TypeTTT type &&
+                !type.players.contains(e.getPlayer()) &&
+                e.getPlayer().getGameMode() != GameMode.CREATIVE &&
+                Gamestate.getGameState() == Gamestate.INGAME) {
+            e.setCancelled(true);
         }
     }
-
 }
+

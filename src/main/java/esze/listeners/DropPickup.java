@@ -13,8 +13,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -24,20 +24,10 @@ public class DropPickup implements Listener {
     @EventHandler
     public void onDrop(PlayerDropItemEvent e) {
         Player p = e.getPlayer();
-		/*
-		if (p.getGameMode() != GameMode.CREATIVE) {
-			e.setCancelled(true);
-		}
-		*/
-        //Player p = e.getPlayer();
 
         if (!NBTUtils.getNBT("Weapon", e.getItemDrop().getItemStack()).equals("true")) {
             e.setCancelled(true);
         }
-		
-		/*if(Gamestate.getGameState() == Gamestate.INGAME && Gametype.type == Gametype.TTT){
-			p.getInventory().setItemInMainHand(null);
-		}*/
 
         if (Gamestate.getGameState() == Gamestate.INGAME && GameType.getType() instanceof TypeTEAMS) {
             if (!NBTUtils.getNBT("Spell", e.getItemDrop().getItemStack().clone()).equals("true")) {
@@ -49,7 +39,6 @@ public class DropPickup implements Listener {
             e.setCancelled(false);
         }
         if (Gamestate.getGameState() == Gamestate.LOBBY && p.getLocation().distance(new Location(p.getWorld(), -2000, 150, -2000)) < 500) {
-
             if (p.getInventory().getItemInMainHand().getAmount() > 1) {
                 p.getInventory().getItemInMainHand().setAmount(p.getInventory().getItemInMainHand().getAmount());
             } else {
@@ -59,22 +48,15 @@ public class DropPickup implements Listener {
             e.getItemDrop().remove();
             e.setCancelled(false);
         }
-
-
     }
 
     @EventHandler
-    public void onPickUp(PlayerPickupItemEvent e) {
-
+    public void onPickUp(EntityPickupItemEvent e) {
         e.setCancelled(true);
     }
 
-
     /// TEAMS TOSS
-
     public void throwItem(Player p, ItemStack is) {
-
-
         Item item = p.getWorld().dropItem(p.getEyeLocation(), is);
         item.setPickupDelay(100000);
         ScoreboardTeamUtils.colorEntity(item, ChatColor.GOLD);
@@ -83,33 +65,21 @@ public class DropPickup implements Listener {
 
 
         new BukkitRunnable() {
-
-
             Vector dir = p.getLocation().getDirection();
             int i = 0;
-            double speedMult = 3;
+            final double speedMult = 3;
 
             public void run() {
 
-
                 i++;
-				
-				
-				/*
-				speedMult-=0.05F;
-				if (speedMult <= 1.5)
-					speedMult = 1.5;
-					*/
+
                 SoundUtils.playSound(Sound.ENTITY_ILLUSIONER_CAST_SPELL, item.getLocation(), 2, 1);
                 Player target = null;
-                Player closest = null;
                 double dist = 100000;
                 for (Player pl : Bukkit.getOnlinePlayers()) {
 
                     if (pl != p && pl.getLocation().distance(item.getLocation()) < dist) {
                         dist = pl.getLocation().distance(item.getLocation());
-                        closest = pl;
-
                     }
 
                     if (pl != p && pl.getLocation().distance(item.getLocation()) < 5) {
@@ -132,9 +102,7 @@ public class DropPickup implements Listener {
                             }
                         }
                     }
-
                 }
-
 
                 if (i > 20 * 3) {
                     SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER, p.getLocation(), 1.2F, 0.7F);
@@ -156,8 +124,6 @@ public class DropPickup implements Listener {
 
 
     public void throwBook(Player p, ItemStack is) {
-
-
         TypeTEAMS t = (TypeTEAMS) GameType.getType();
         Item item = p.getWorld().dropItem(p.getEyeLocation(), is);
         item.setPickupDelay(100000);
@@ -179,13 +145,11 @@ public class DropPickup implements Listener {
             item.remove();
 
         } else {
-
             new BukkitRunnable() {
-
 
                 Vector dir = p.getLocation().getDirection();
                 int i = 0;
-                double speedMult = 3;
+                final double speedMult = 3;
 
                 public void run() {
 
@@ -195,11 +159,6 @@ public class DropPickup implements Listener {
                     if (t.gameOver || Gamestate.getGameState() == Gamestate.LOBBY) {
                         this.cancel();
                     }
-				/*
-				speedMult-=0.05F;
-				if (speedMult <= 1.5)
-					speedMult = 1.5;
-					*/
                     SoundUtils.playSound(Sound.ITEM_BOOK_PAGE_TURN, item.getLocation(), 2, 1);
                     Player target = null;
                     Player closest = null;
@@ -236,7 +195,6 @@ public class DropPickup implements Listener {
                     }
 
                     if (!t.players.contains(p)) {
-
                         if (closest != null) {
                             closest.getInventory().addItem(is);
                             SoundUtils.playSound(Sound.ENTITY_ARROW_HIT_PLAYER, closest.getLocation(), 1.2F, 0.7F);

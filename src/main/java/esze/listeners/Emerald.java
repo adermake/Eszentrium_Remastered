@@ -19,26 +19,19 @@ public class Emerald implements Listener {
         Player p = e.getPlayer();
         ItemStack i = e.getItem();
 
-
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-
             if (GameType.getType() instanceof TypeTTT) {
-                if (i != null && i.getType() == Material.EMERALD) {
-                    if (i.hasItemMeta() && i.getItemMeta().hasDisplayName() && i.getItemMeta().getDisplayName().equals("§cSchwarzmarkt")) {
+                if (i != null && i.getType() == Material.EMERALD && i.hasItemMeta() && i.getItemMeta().hasDisplayName()) {
+                    if (i.getItemMeta().getDisplayName().equals("§cSchwarzmarkt")) {
                         e.setCancelled(true);
                         new TraitorshopMenu().open(p);
                     }
-                }
-
-                if (i != null && i.getType() == Material.EMERALD) {
-                    if (i.hasItemMeta() && i.getItemMeta().hasDisplayName() && i.getItemMeta().getDisplayName().equals("§eWeltenkatalysator")) {
+                    if (i.getItemMeta().getDisplayName().equals("§eWeltenkatalysator")) {
                         e.setCancelled(true);
                         TTTFusion.open(p);
                     }
                 }
-
             }
-
         }
     }
 }

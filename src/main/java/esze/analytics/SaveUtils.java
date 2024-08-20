@@ -209,7 +209,7 @@ public class SaveUtils {
                 System.out.println("Init SQL connection no error!");
             }
         } catch (SQLException e) {
-            if(debug) e.printStackTrace();
+            if (debug) e.printStackTrace();
         }
     }
 
@@ -221,7 +221,7 @@ public class SaveUtils {
                 currentConnection.close();
             }
         } catch (SQLException e) {
-            if(debug) e.printStackTrace();
+            if (debug) e.printStackTrace();
         }
 
     }
@@ -256,7 +256,7 @@ public class SaveUtils {
             stmt.close();
             return out;
         } catch (SQLException | NullPointerException e) {
-            if(debug) e.printStackTrace();
+            if (debug) e.printStackTrace();
         }
 
         return 1;
@@ -272,7 +272,7 @@ public class SaveUtils {
             stmt.executeQuery(query);
             stmt.close();
         } catch (SQLException e) {
-            if(debug) e.printStackTrace();
+            if (debug) e.printStackTrace();
         }
 
     }

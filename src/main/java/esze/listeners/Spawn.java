@@ -9,7 +9,6 @@ public class Spawn implements Listener {
 
     @EventHandler
     public void onSpawn(CreatureSpawnEvent e) {
-
         if (e.getSpawnReason() == SpawnReason.EGG) {
             e.setCancelled(true);
         }

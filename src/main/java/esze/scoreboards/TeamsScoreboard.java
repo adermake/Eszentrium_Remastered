@@ -31,7 +31,6 @@ public class TeamsScoreboard extends Scoreboard {
 
                         for (Player scoreBoarder : Bukkit.getOnlinePlayers()) {
 
-
                             ArrayList<String> score = new ArrayList<String>();
                             score.add("Leben");
                             TypeTEAMS teams = ((TypeTEAMS) GameType.getType());
@@ -61,8 +60,6 @@ public class TeamsScoreboard extends Scoreboard {
                                             for (String s : getSpells(p)) {
                                                 score.add(s);
                                             }
-
-
                                         }
                                     }
                                 }

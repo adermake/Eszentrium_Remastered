@@ -32,7 +32,6 @@ public class Block implements Listener {
 
     @EventHandler
     public void onBlockComb(EntityExplodeEvent e) {
-
         e.setCancelled(true);
     }
 

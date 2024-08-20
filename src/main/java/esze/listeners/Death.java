@@ -19,34 +19,24 @@ public class Death implements Listener {
 
     @EventHandler
     public void onDeath(EntityDamageEvent e) {
-        // TEST
-        if (e.getCause() != DamageCause.ENTITY_EXPLOSION) {
-
-        }
-        if (e.getEntity() instanceof Player) {
+        if (e.getEntity() instanceof Player p) {
             if ((e.getCause() != DamageCause.FALL && e.getCause() != DamageCause.FLY_INTO_WALL) || (ModifierMenu.hasModifier(GameModifier.FALLSCHADEN) && Gamestate.getGameState() == Gamestate.INGAME)) {
-                Player p = (Player) e.getEntity();
-
                 if (p.getHealth() - e.getFinalDamage() <= 0) {
 
                     PlayerDeathEvent event = new PlayerDeathEvent(p, null, null, 0, "he dead");
-
                     e.setCancelled(true);
-
                     p.setHealth(20);
 
-
-                    if (p.getLocation().getY() < 60)
+                    if (p.getLocation().getY() < 60) {
                         p.teleport(GameType.getType().nextLoc());
+                    }
                     ParUtils.createRedstoneParticle(e.getEntity().getLocation(), 0.3, 0.5, 0.3, 10, Color.RED, 3);
                     GameType.getType().death(event);
                 }
             } else {
                 if (!(ModifierMenu.hasModifier(GameModifier.FALLSCHADEN) && Gamestate.getGameState() == Gamestate.INGAME)) {
                     e.setCancelled(true);
-
                 }
-
             }
         }
 
@@ -54,8 +44,7 @@ public class Death implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player) {
-            Player p = (Player) event.getDamager();
+        if (event.getDamager() instanceof Player p) {
             if (event.getDamage() > 6 && event.getCause() == DamageCause.ENTITY_ATTACK && NBTUtils.getNBT("Weapon", p.getInventory().getItemInMainHand()) == "true") {
                 event.setDamage(6);
             }

@@ -3,7 +3,6 @@ package esze.main;
 import easyscoreboards.ScoreboardUtil;
 import esze.enums.GameType;
 import esze.listeners.Reconnect;
-import esze.utils.PlayerHeadUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

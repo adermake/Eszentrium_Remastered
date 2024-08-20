@@ -1,7 +1,5 @@
 package esze.scoreboards;
 
-import org.bukkit.Bukkit;
-
 public abstract class Scoreboard {
 
     public boolean hide = false;
@@ -11,7 +9,6 @@ public abstract class Scoreboard {
     }
 
     public void hideScoreboard() {
-        Bukkit.broadcastMessage("Hiding scoreboard");
         hide = true;
     }
 }

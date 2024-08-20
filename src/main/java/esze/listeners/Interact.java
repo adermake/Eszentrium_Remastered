@@ -33,7 +33,7 @@ public class Interact implements Listener {
     @EventHandler
     public void onPlayerDoorOpen(PlayerInteractEvent event) {
         Action action = event.getAction();
-        org.bukkit.block.Block clicked = (org.bukkit.block.Block) event.getClickedBlock();
+        org.bukkit.block.Block clicked = event.getClickedBlock();
 
         //Left or Right click?
 
@@ -91,47 +91,40 @@ public class Interact implements Listener {
         Player p = e.getPlayer();
 
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-
-            if (p.getInventory().getItemInMainHand().getType() == Material.WRITTEN_BOOK) {
-
-            }
-            if (p.getInventory().getItemInMainHand().getType() == Material.WRITTEN_BOOK) {
-                ItemStack writtenBook = p.getInventory().getItemInMainHand();
-                BookMeta bookMeta = (BookMeta) writtenBook.getItemMeta();
-                //Bukkit.broadcastMessage(""+[0]);
+            ItemStack handItem = p.getInventory().getItemInMainHand();
+            if (handItem.getType() == Material.WRITTEN_BOOK) {
+                BookMeta bookMeta = (BookMeta) handItem.getItemMeta();
                 if (bookMeta.getTitle().toLowerCase().contains("wheel")) {
                     new WheelOfFortune(p, bookMeta.getPage(1).split("\\n"));
                     e.setCancelled(true);
                 }
                 if (bookMeta.getTitle().toLowerCase().contains("timer")) {
-
                     new TimerSpell(p, Integer.parseInt(bookMeta.getPage(1)));
                     e.setCancelled(true);
                 }
                 if (bookMeta.getTitle().toLowerCase().contains("table")) {
-
                     new Table(p, bookMeta.getPages());
                     e.setCancelled(true);
                 }
 
             }
 
-            if (p.getInventory().getItemInMainHand().getType() == Material.ARROW) {
+            if (handItem.getType() == Material.ARROW) {
                 e.setCancelled(true);
             }
-            if (p.getInventory().getItemInMainHand() != null && p.getInventory().getItemInMainHand().hasItemMeta()) {
-                if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§cErbrochene Fragmente")) {
+            if (handItem.hasItemMeta()) {
+                if (handItem.getItemMeta().getDisplayName().equals("§cErbrochene Fragmente")) {
                     if (p.isSneaking()) {
                         p.openInventory(new ColorTagSpellSelectionMenu(p.getName()).getInventory());
                     }
                 }
-                if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Kosmetik")) {
+                if (handItem.getItemMeta().getDisplayName().equals("§3Kosmetik")) {
                     new CosmeticMenu(p).open(p);
                 }
-                if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Modifikatoren")) {
+                if (handItem.getItemMeta().getDisplayName().equals("§3Modifikatoren")) {
                     ModifierMenu.getModifierWindow().open(p);
                 }
-                if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Georg")) {
+                if (handItem.getItemMeta().getDisplayName().equals("§3Georg")) {
                     if (p.isSneaking()) {
                         p.openInventory(new ColorTagSpellSelectionMenu(p.getName()).getInventory());
                     } else {
@@ -159,12 +152,11 @@ public class Interact implements Listener {
                         s += "§r'";
 
                         p.sendMessage(s);
-                        org.bukkit.inventory.ItemStack is = p.getInventory().getItemInMainHand();
-                        is.setType(Material.PRISMARINE_CRYSTALS);
-                        ItemMeta im = is.getItemMeta();
+                        handItem.setType(Material.PRISMARINE_CRYSTALS);
+                        ItemMeta im = handItem.getItemMeta();
                         im.setDisplayName("§cErbrochene Fragmente");
-                        is.setItemMeta(im);
-                        p.getInventory().setItemInMainHand(is);
+                        handItem.setItemMeta(im);
+                        p.getInventory().setItemInMainHand(handItem);
                     }
 
                 }
@@ -177,8 +169,7 @@ public class Interact implements Listener {
 
             }
             if (p.isSneaking() && !p.getPassengers().isEmpty()) {
-                if (p.getPassengers().get(0) instanceof Sheep) {
-                    Sheep s = (Sheep) p.getPassengers().get(0);
+                if (p.getPassengers().getFirst() instanceof Sheep s) {
                     p.removePassenger(s);
                     s.setVelocity(p.getLocation().getDirection());
                 }

@@ -3,7 +3,6 @@ package esze.utils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.core.BlockPosition;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
 import net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity;
 import net.minecraft.network.syncher.DataWatcher;
@@ -45,25 +44,25 @@ public class CorpseUtils {
     public static int spawnCorpseForPlayers(Player player, Location loc, List<Player> showTo) {
         //int cID = 0;
 
-		EntityPlayer entityPlayerToCorpse = ((CraftPlayer) player).getHandle();
+        EntityPlayer entityPlayerToCorpse = ((CraftPlayer) player).getHandle();
 
-		Property textures = (Property) entityPlayerToCorpse.fX().getProperties().get("textures").toArray()[0];
-		GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
-		gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
+        Property textures = (Property) entityPlayerToCorpse.fX().getProperties().get("textures").toArray()[0];
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
+        gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
 
-		EntityPlayer corpse = new EntityPlayer(
-				((CraftServer)Bukkit.getServer()).getServer(),
-				((CraftWorld)player.getWorld()).getHandle(),
-				gameProfile,
-				null
-		);
-		corpse.d(loc.getX(), loc.getY(), loc.getZ());
+        EntityPlayer corpse = new EntityPlayer(
+                ((CraftServer) Bukkit.getServer()).getServer(),
+                ((CraftWorld) player.getWorld()).getHandle(),
+                gameProfile,
+                null
+        );
+        corpse.d(loc.getX(), loc.getY(), loc.getZ());
 
 
-		for(Player all : showTo){
-			((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutSpawnEntity(corpse, 0, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())));
-			//((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer));
-		}
+        for (Player all : showTo) {
+            ((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutSpawnEntity(corpse, 0, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())));
+            //((CraftPlayer) all).getHandle().c.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer));
+        }
 
 
 		/*

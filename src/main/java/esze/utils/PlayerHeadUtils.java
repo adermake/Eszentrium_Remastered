@@ -4,7 +4,6 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.OfflinePlayer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +24,7 @@ public class PlayerHeadUtils {
     private static final HashMap<String, BaseComponent[]> skinCache = new HashMap<>();
 
     public static BaseComponent[] getHead(String uuid, boolean overlay) {
-        if(skinCache.containsKey(uuid)){
+        if (skinCache.containsKey(uuid)) {
             return skinCache.get(uuid);
         }
         BaseComponent[] head = toBaseComponent(getPixelColorsFromSkin(getPlayerSkinFromMojang(uuid), overlay));
