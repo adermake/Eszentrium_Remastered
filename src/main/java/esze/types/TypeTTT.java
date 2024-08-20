@@ -436,7 +436,7 @@ public class TypeTTT extends Type {
                     Music.sp.destroy();
             }
         }.runTaskLater(main.plugin, 5);
-        CorpseUtils.removeAllCorpses();
+        CorpseUtils.resetAllCorpses();
         for (Entity e : Bukkit.getWorld("world").getEntities()) {
             if (e.getType() != EntityType.PLAYER) {
                 e.remove();

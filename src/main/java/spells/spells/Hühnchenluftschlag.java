@@ -2,7 +2,6 @@ package spells.spells;
 
 import esze.main.main;
 import esze.utils.ParUtils;
-import net.minecraft.world.entity.animal.EntityChicken;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -50,7 +49,6 @@ public class Hühnchenluftschlag extends Spell {
 
     }
 
-    EntityChicken mcChicken;
     Chicken c;
 
     @Override

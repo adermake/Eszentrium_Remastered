@@ -197,7 +197,7 @@ public class main extends JavaPlugin {
         }
 
         try {
-            CorpseUtils.removeAllCorpses();
+            CorpseUtils.resetAllCorpses();
         } catch (Error e) {
             System.out.println("Esze | Fehler beim Löschen der Leichen");
         }

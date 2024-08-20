@@ -2,7 +2,6 @@ package esze.utils;
 
 import esze.main.main;
 import io.netty.util.internal.ThreadLocalRandom;
-import net.minecraft.server.level.WorldServer;
 import org.bukkit.*;
 import org.bukkit.Particle.DustOptions;
 import org.bukkit.Particle.DustTransition;
@@ -65,7 +64,6 @@ public class ParUtils {
     public static void createParticle(Particle par, Location loc, double spreadX, double spreadY, double spreadZ,
                                       int count, double speed) {
 
-        WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
         for (Player p : Bukkit.getOnlinePlayers()) {
             /*
              * PRE 1.17 EntityPlayer ep = ((CraftPlayer) p).getHandle(); nmsWorld.a(ep, new
@@ -93,8 +91,6 @@ public class ParUtils {
                                             int count, double speed, Vector v) {
 
         for (int i = 0; i < count; i++) {
-            WorldServer nmsWorld = ((CraftWorld) loc.getWorld()).getHandle();
-
             Location loctmp = loc.clone();
             double randX = 0;
             double randY = 0;

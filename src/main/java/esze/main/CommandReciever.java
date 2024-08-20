@@ -36,9 +36,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CommandReciever implements CommandExecutor, TabCompleter {
+
+    boolean a = true;
+
     public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
         final Player p = (Player) sender;
 
@@ -222,7 +226,14 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
             }
         }
         if (cmd.getName().startsWith("ping")) {
-            //CorpseUtils.spawnCorpseForAll(p, p.getLocation());
+
+            if(a) {
+                CorpseUtils.spawnCorpseForAll(p, p.getLocation());
+                a=!a;
+            } else {
+                CorpseUtils.teleportCorpseForAll(CorpseUtils.getAllCorpseIDs()[0], p.getLocation());
+            }
+
             new Title(PlayerHeadUtils.getHeadAsString(p.getUniqueId().toString(), true)).sendAll();
 
 

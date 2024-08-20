@@ -14,7 +14,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
-import net.minecraft.world.entity.animal.horse.EntityLlama;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
