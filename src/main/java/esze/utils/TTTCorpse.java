@@ -9,7 +9,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftCow;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftCow;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -102,7 +102,7 @@ public class TTTCorpse implements Listener{
 		if(!isExposed && e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
 			isExposed = true;
 			
-			armor = Bukkit.getWorlds().get(0).spawn(CorpseUtils.allCorpses.get(corpseID).getTrueLocation().clone().add(0,-1.5,0), ArmorStand.class);
+			//TODO armor = Bukkit.getWorlds().get(0).spawn(CorpseUtils.allCorpses.get(corpseID).getTrueLocation().clone().add(0,-1.5,0), ArmorStand.class);
 			TypeTTT type = (TypeTTT) GameType.getType();
 			armor.setCustomName(type.startTraitor.contains(player) ? "§cTraitor" : "§aInnocent");
 			armor.setCustomNameVisible(true);

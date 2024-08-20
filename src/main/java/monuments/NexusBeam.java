@@ -45,7 +45,7 @@ public class NexusBeam {
 		Location middlePoint = redLoc.clone().add(blueLoc.toVector().subtract(redLoc.toVector()).multiply(percentage));
 		ParUtils.parLineRedstone(redLoc, middlePoint, Color.RED, 1.5F, 0.5F);
 		ParUtils.parLineRedstone(blueLoc, middlePoint, Color.BLUE, 1.5F, 0.5F);
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, middlePoint, 0.5, 0.5, 0.5, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, middlePoint, 0.5, 0.5, 0.5, 1, 1);
 		step++;
 	}
 	

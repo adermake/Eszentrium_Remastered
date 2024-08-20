@@ -61,7 +61,7 @@ public class Magmanadel extends Spell{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.DRIP_LAVA, loc, 0, 0, 0, 0, 0);
+		ParUtils.createParticle(Particle.DRIPPING_LAVA, loc, 0, 0, 0, 0, 0);
 		
 	}
 

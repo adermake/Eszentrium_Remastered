@@ -102,13 +102,13 @@ public class Wasserdüse extends Spell {
 		for (double i = 0;i<charges;i++) {
 			
 			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 1, caster.getLocation().getDirection(), 3, step+(i*44/maxcharges*10));
-			ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+			ParUtils.createParticle(Particle.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 		}
 		int cruncher = 20;
 		for (double i = 0;i<steprange/cruncher-step/cruncher;i++) {
 			
 			Location l = ParUtils.stepCalcCircle(caster.getEyeLocation().clone().add(0,1,0), 0.7, caster.getLocation().getDirection(), 3,-step+(i*(44/(double)(steprange/cruncher))));
-			ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+			ParUtils.createParticle(Particle.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 		}
 		//
 		//g1.teleport(l1);

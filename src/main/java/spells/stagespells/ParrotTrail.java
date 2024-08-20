@@ -116,7 +116,7 @@ public class ParrotTrail extends Spell {
 	@Override
 	public void onBlockHit(Block block) {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 1);
 		dead = true;
 	}
 

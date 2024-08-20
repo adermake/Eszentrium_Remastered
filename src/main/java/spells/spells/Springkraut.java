@@ -149,13 +149,13 @@ public class Springkraut extends Spell {
 			vel.normalize().multiply(1.5);
 		}
 		if (refined) {
-			ParUtils.parKreisDot(Particle.SMOKE_NORMAL, loc,4, 0.2, 0, new Vector(0,1,0));
+			ParUtils.parKreisDot(Particle.SMOKE, loc,4, 0.2, 0, new Vector(0,1,0));
 		}
 		else {
-			ParUtils.parKreisDot(Particle.VILLAGER_HAPPY, loc,4, 0.2, 0, new Vector(0,1,0));
+			ParUtils.parKreisDot(Particle.HAPPY_VILLAGER, loc,4, 0.2, 0, new Vector(0,1,0));
 		}
 		
-		ParUtils.parKreisDot(Particle.TOTEM, loc,1, 1, 1, new Vector(0,1,0));
+		ParUtils.parKreisDot(Particle.TOTEM_OF_UNDYING, loc,1, 1, 1, new Vector(0,1,0));
 		for (float f = 0;f<44;f+=2) {
 			ParUtils.dropItemEffectVector(ParUtils.stepCalcCircle(loc.clone(), 3, new Vector(0,1,0), 0,f), flowerMat.get(randInt(0,flowerMat.size()-1)), 1, 15, 0.3F,new Vector(0,1,0),(int)f);
 		}
@@ -164,7 +164,7 @@ public class Springkraut extends Spell {
 			float t = 0;
 			public void run() {
 				t++;
-				ParUtils.parKreisDot(Particle.TOTEM, l1,t/1.5F, 0, 1, new Vector(0,1,0));
+				ParUtils.parKreisDot(Particle.TOTEM_OF_UNDYING, l1,t/1.5F, 0, 1, new Vector(0,1,0));
 				if (t>2) {
 					this.cancel();
 				}

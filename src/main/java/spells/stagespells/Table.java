@@ -226,7 +226,7 @@ public class Table extends Spell {
 							
 							carriers.remove(ent);
 							
-							Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(0,1,0), EntityType.FIREWORK);
+							Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(0,1,0), EntityType.FIREWORK_ROCKET);
 					        FireworkMeta fd = (FireworkMeta) firework.getFireworkMeta();
 
 					        fd.addEffect(FireworkEffect.builder()

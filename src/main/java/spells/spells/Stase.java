@@ -73,8 +73,8 @@ public class Stase extends Spell {
 		ParUtils.dropItemEffectVector(l1, Material.CLOCK, 1, 1, 1, new Vector(0,0,0));
 		Location l2 = ParUtils.stepCalcCircle(loc.clone(), 1, new Vector(0,1,0),0, 22+step*6);
 		ParUtils.dropItemEffectVector(l2, Material.CLOCK, 1, 1, 1, new Vector(0,0,0));
-		ParUtils.createFlyingParticle(Particle.TOTEM, l1, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l1.toVector()));
-		ParUtils.createFlyingParticle(Particle.TOTEM, l2, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l2.toVector()));
+		ParUtils.createFlyingParticle(Particle.TOTEM_OF_UNDYING, l1, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l1.toVector()));
+		ParUtils.createFlyingParticle(Particle.TOTEM_OF_UNDYING, l2, 0, 0, 0, 1, 0.5F, loc.toVector().subtract(l2.toVector()));
 	}
 
 	@Override

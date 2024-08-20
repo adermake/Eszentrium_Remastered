@@ -133,8 +133,8 @@ public class BindenOld extends Spell {
 			double speed = 2;
 			loc = caster.getLocation();
 			ParUtils.parLineRedstone(caster.getLocation(), ent1.getLocation(), Color.LIME, 1, 1);
-			ParUtils.createParticle(Particle.SLIME,ParUtils.stepCalcCircle(loc.clone(), 3, caster.getLocation().getDirection(), 0, step*speed), 0, 0, 0, 1, 1);
-			ParUtils.createParticle(Particle.SLIME,ParUtils.stepCalcCircle(loc.clone(), 3,caster.getLocation().getDirection(), 0, -step*speed), 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.ITEM_SLIME,ParUtils.stepCalcCircle(loc.clone(), 3, caster.getLocation().getDirection(), 0, step*speed), 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.ITEM_SLIME,ParUtils.stepCalcCircle(loc.clone(), 3,caster.getLocation().getDirection(), 0, -step*speed), 0, 0, 0, 1, 1);
 		}
 		
 	}

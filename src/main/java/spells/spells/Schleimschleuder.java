@@ -106,7 +106,7 @@ public class Schleimschleuder extends Spell {
 				
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				if (checkHit(p, g.getLocation(), caster, g.getSize()*2+3)) {
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,3));
+					p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,20,3));
 				}
 			}
 			if (time > 30) {
@@ -188,7 +188,7 @@ public class Schleimschleuder extends Spell {
 		// TODO Auto-generated method stub
 		p.setVelocity(g.getVelocity());
 		damage(p, 4, caster);
-		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class Schleimschleuder extends Spell {
 		// TODO Auto-generated method stub
 		ent.setVelocity(g.getVelocity());
 		damage(ent, 4, caster);
-		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
 	}
 
 	@Override
@@ -215,7 +215,7 @@ public class Schleimschleuder extends Spell {
 	public void onDeath() {
 		// TODO Auto-generated method stub
 		
-		ParUtils.createParticle(Particle.SLIME, loc, 1, 1, 1, 10, 1);
+		ParUtils.createParticle(Particle.ITEM_SLIME, loc, 1, 1, 1, 10, 1);
 		if (!g.isDead())
 			g.remove();
 		

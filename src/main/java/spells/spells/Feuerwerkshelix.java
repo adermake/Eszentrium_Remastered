@@ -48,9 +48,9 @@ public class Feuerwerkshelix extends Spell {
 		if (refined)
 			steprange = 30;
 		
-		f = (Firework) spawnEntity(EntityType.FIREWORK);
-		f1 = (Firework) spawnEntity(EntityType.FIREWORK);
-		f2 = (Firework) spawnEntity(EntityType.FIREWORK);
+		f = (Firework) spawnEntity(EntityType.FIREWORK_ROCKET);
+		f1 = (Firework) spawnEntity(EntityType.FIREWORK_ROCKET);
+		f2 = (Firework) spawnEntity(EntityType.FIREWORK_ROCKET);
 		
 		f.setInvulnerable(true);
 		f1.setInvulnerable(true);

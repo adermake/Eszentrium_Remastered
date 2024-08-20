@@ -89,7 +89,7 @@ public class Delfintorpedo extends Spell {
 		// TODO Auto-generated method stub
 		if (refined)
 		ParUtils.createFlyingParticle(Particle.CLOUD, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 3, speed, loc.getDirection().multiply(-1));
-		ParUtils.createFlyingParticle(Particle.WATER_WAKE, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 11, speed, loc.getDirection().multiply(-1));
+		ParUtils.createFlyingParticle(Particle.FISHING, loc.clone().subtract(loc.getDirection().multiply(2)), 0.3, 0.3, 0.3, 11, speed, loc.getDirection().multiply(-1));
 	}
 
 	@Override

@@ -2,12 +2,10 @@ package esze.main;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -54,8 +52,6 @@ import esze.menu.Menu;
 import esze.neural.NeuralNetworks;
 import esze.utils.ChatUtils;
 import esze.utils.CorpseUtils;
-import esze.utils.ItemStackUtils;
-import esze.utils.LibUtils;
 import esze.utils.Music;
 import esze.utils.NoCollision;
 import esze.utils.PlayerConfig;
@@ -63,7 +59,6 @@ import esze.utils.PlayerUtils;
 import esze.utils.TTTFusion;
 import esze.utils.TTTTrade;
 import esze.voice.Discord;
-import net.minecraft.server.MinecraftServer;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
@@ -195,10 +190,8 @@ public class main extends JavaPlugin {
 
 		LobbyBackgroundRunnable.start();
 
-		MinecraftServer.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered").substring(2) + "\n§8"
+		Bukkit.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered").substring(2) + "\n§8"
 				+ ChatUtils.centerMotD("Der Klassiker neu aufgelegt!").substring(3));
-
-		LibUtils.initlibs();
 
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			p.setExp(0F);
@@ -262,22 +255,6 @@ public class main extends JavaPlugin {
 		//appServer.startServer();
 		System.out.println("Esze | App-Server hochgefahren.");
 		
-		// PACKETS
-		/*
-		PacketListenerAPI.addPacketHandler(new PacketHandler() {
-			@Override
-			public void onSend(SentPacket packet) {
-				if (packet.getPacketName().contains("Chat")) 
-					return;
-				
-				Bukkit.broadcastMessage(""+packet.getPacketName());
-			}
-
-			@Override
-			public void onReceive(ReceivedPacket packet) {
-			}
-		});
-*/
 	}
 
 	@Override

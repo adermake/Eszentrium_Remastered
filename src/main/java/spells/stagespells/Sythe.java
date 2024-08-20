@@ -110,7 +110,7 @@ public class Sythe extends Spell {
 				kill();
 				
 			}
-			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, loc.clone().add(0,1,0), 0, 0, 0, 1, 0.5, caster.getLocation().toVector().subtract(loc.clone().add(0,1,0).toVector()).normalize());
+			ParUtils.createFlyingParticle(Particle.SMOKE, loc.clone().add(0,1,0), 0, 0, 0, 1, 0.5, caster.getLocation().toVector().subtract(loc.clone().add(0,1,0).toVector()).normalize());
 			
 		}else {
 			if (speed <= 1)  {

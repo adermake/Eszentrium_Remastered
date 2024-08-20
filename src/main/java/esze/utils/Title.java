@@ -110,9 +110,7 @@ public class Title {
     public void send(Player player) {
        
         	player.sendTitle(getTitle(), getSubtitle(), fadeInTime, stayTime, fadeOutTime);
-         
-         
-        
+
     }
  
     public void sendAll() {

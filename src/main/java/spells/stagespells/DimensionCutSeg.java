@@ -63,13 +63,13 @@ public class DimensionCutSeg extends Spell {
 		}
 		
 		if (top) {
-			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
+			ParUtils.createFlyingParticle(Particle.SMOKE,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
 			ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
 			ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,-0.3,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,-1,0)).multiply(-1));
 			//ParUtils.createFlyingParticle(Particle.DRAGON_BREATH, loc.clone().add(0,-0.3,0), 0, 0, 0, 1,0, new Vector(0,-1,0));
 		}
 		else {
-			ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
+			ParUtils.createFlyingParticle(Particle.SMOKE,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
 			ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.6, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
 			ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,0.7,0), 1, 1, 1, 1,1, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
 		}
@@ -106,7 +106,7 @@ public class DimensionCutSeg extends Spell {
 			if (step % 3 == 0) {
 				
 			if (top) {
-				ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
+				ParUtils.createFlyingParticle(Particle.SMOKE,  loc.clone().add(0,-0.3,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,-1,0)));
 				ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,-0.3,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,-0.8,0)).add(randVector().normalize().multiply(0.5)));
 				
 				if (refined && step % 8 == 0) {
@@ -125,7 +125,7 @@ public class DimensionCutSeg extends Spell {
 				
 					ParUtils.createFlyingParticle(Particle.PORTAL, loc.clone().add(0,0.7,0), 8,8, 8, 1,2, v.clone().add(new Vector(0,0.3,0)).multiply(-1));
 				
-				ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
+				ParUtils.createFlyingParticle(Particle.SMOKE,  loc.clone().add(0,0.7,0), 0, 4, 0, 1, 0.5, v.clone().add(new Vector(0,1,0)));
 				ParUtils.createFlyingParticle(Particle.SQUID_INK,  loc.clone().add(0,0.7,0), 0, 0, 0, 1, 0.3, v.clone().add(new Vector(0,0.8,0)).add(randVector().normalize().multiply(0.5)));
 				
 			}

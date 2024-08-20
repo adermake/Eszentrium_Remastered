@@ -55,7 +55,7 @@ public class VelocityTimeStop extends Spell {
 			silence((Player) target, new SilenceSelection());
 		}
 		//target.setNoDamageTicks(20*6);
-		target.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,20*6,200,true)); 
+		target.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,20*6,200,true));
 		target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS,20*6,200,true)); 
 		playSound(Sound.ENTITY_RAVAGER_ATTACK,target.getEyeLocation(),2,1);
 		SilenceSelection s = new SilenceSelection();
@@ -120,13 +120,13 @@ public class VelocityTimeStop extends Spell {
 		ParUtils.dropItemEffectVector(l2, Material.CLOCK, 1, 0, 1, new Vector(0,0,0));
 		
 		if (delay == 0) {
-			ParUtils.createFlyingParticle(Particle.TOTEM, l1, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l1.toVector()).multiply(-1));
-			ParUtils.createFlyingParticle(Particle.TOTEM, l2, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l2.toVector()).multiply(-1));
+			ParUtils.createFlyingParticle(Particle.TOTEM_OF_UNDYING, l1, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l1.toVector()).multiply(-1));
+			ParUtils.createFlyingParticle(Particle.TOTEM_OF_UNDYING, l2, 0, 0, 0, 1, 1, target.getLocation().toVector().subtract(l2.toVector()).multiply(-1));
 		}
 		//ParUtils.createParticle(Particle.TOTEM, l1, 0, 0, 0, 0, 0);
 		//ParUtils.createParticle(Particle.TOTEM, l2, 0, 0, 0, 0, 0);
 		
-		ParUtils.createParticle(Particle.SMOKE_NORMAL, target.getLocation(), 0.1, 0.3, 0.1, 1, 0.1F);
+		ParUtils.createParticle(Particle.SMOKE, target.getLocation(), 0.1, 0.3, 0.1, 1, 0.1F);
 		
 		//ParUtils.createFlyingParticle(Particle.END_ROD,target.getLocation(), 0.6F, 0.6, 0.6F, 1, 0.6F, new Vector(0,1,0));
 		

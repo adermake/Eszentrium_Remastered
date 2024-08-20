@@ -57,7 +57,7 @@ public class Flucht extends Spell{
 			pl.hidePlayer(main.plugin, caster);
 		}
 		
-		ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 1, 1, 1, 100, 0);
+		ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 1, 1, 1, 100, 0);
 		caster.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
 		follow(bat(caster,refined),caster);
 		for (int i = 0;i<35;i++) {

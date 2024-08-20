@@ -86,7 +86,7 @@ public class Heilen extends Spell{
 
 	@Override
 	public void move() {
-		ParUtils.createParticle(Particle.VILLAGER_HAPPY, loc, 0, 0, 0, 1,0);
+		ParUtils.createParticle(Particle.HAPPY_VILLAGER, loc, 0, 0, 0, 1,0);
 		loc.add(loc.getDirection().multiply(0.4));
 		
 	}
@@ -140,7 +140,7 @@ public class Heilen extends Spell{
 		// TODO Auto-generated method stub
 		if (refined) {
 			heal(caster,1,caster);
-			ParUtils.parKreisDirSolid(Particle.TOTEM, loc, 1, 0, 3, loc.getDirection(), loc.getDirection().multiply(-2));
+			ParUtils.parKreisDirSolid(Particle.TOTEM_OF_UNDYING, loc, 1, 0, 3, loc.getDirection(), loc.getDirection().multiply(-2));
 		}
 	}
 	

@@ -233,7 +233,7 @@ public class ChainSeg extends Spell {
 		if (randId ==-1) {
 		
 			ParUtils.createParticle(Particle.CRIT, getTop(loc.clone()), 0.1, 0.1, 0.1, 3, 0);
-			ParUtils.createParticle(Particle.SPELL_MOB_AMBIENT, loc, 0, 0., 0, 1, 0);
+			ParUtils.createParticle(Particle.ENTITY_EFFECT, loc, 0, 0., 0, 1, 0);
 		}
 		//doPin(a,loc.clone().add(0,-1,0),4);
 		// TODO Auto-generated method stub

@@ -65,7 +65,7 @@ public class Heldenstoß extends Spell {
 		playSound(Sound.BLOCK_GRINDSTONE_USE,caster.getLocation(),1,2F);
 		ParUtils.createRedstoneParticle(caster.getLocation(), 0, 0, 0, 1, Color.ORANGE, 10);
 		ParUtils.createFlyingParticle(Particle.CRIT, caster.getLocation(), 1, 2, 1, 25,0.8F, caster.getVelocity());
-		ParUtils.createFlyingParticle(Particle.FIREWORKS_SPARK, caster.getLocation(), 1, 2, 1, 5,0.8F, caster.getVelocity());
+		ParUtils.createFlyingParticle(Particle.FIREWORK, caster.getLocation(), 1, 2, 1, 5,0.8F, caster.getVelocity());
 		if (!caster.getLocation().getBlock().getType().isSolid()) {
 			FallingBlock fb = caster.getWorld().spawnFallingBlock(caster.getLocation().add(caster.getVelocity().multiply(-1)), Material.GOLD_BLOCK,(byte) 0);
 			fb.setGravity(false);

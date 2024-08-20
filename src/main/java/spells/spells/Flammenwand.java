@@ -165,7 +165,7 @@ public class Flammenwand extends Spell {
 	public void display() {
 		playSound(Sound.BLOCK_FIRE_AMBIENT,l1,11,0.7F);
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.SMOKE_NORMAL, l1, 1, 1, 1, 5, 0.1F);
+		ParUtils.createParticle(Particle.SMOKE, l1, 1, 1, 1, 5, 0.1F);
 	}
 
 	@Override

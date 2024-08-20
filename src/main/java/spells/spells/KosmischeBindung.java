@@ -155,7 +155,7 @@ public class KosmischeBindung extends Spell{
 		}
 		
 		for (Entity ent : hitList.keySet()) {
-			ParUtils.parLine(Particle.WATER_BUBBLE, caster.getLocation().add(0,1,0), ent.getLocation().add(0,1,0), 0, 0, 0, 1, 1, 0.5F);
+			ParUtils.parLine(Particle.BUBBLE, caster.getLocation().add(0,1,0), ent.getLocation().add(0,1,0), 0, 0, 0, 1, 1, 0.5F);
 			float angleOffset = caster.getLocation().getYaw()-angle;
 			float pitchOffset = caster.getLocation().getPitch()-pitch;
 			Location fLoc = caster.getLocation();

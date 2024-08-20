@@ -94,7 +94,7 @@ public class Opfersuche extends Spell {
 		
 		
 			
-			ParUtils.createParticle(Particle.SMOKE_LARGE, ent.getLocation().add(0,2,0), 0, 0, 0, 2, 0.01);
+			ParUtils.createParticle(Particle.LARGE_SMOKE, ent.getLocation().add(0,2,0), 0, 0, 0, 2, 0.01);
 			ent.teleport(loc.add(loc.getDirection().multiply(2)));
 			
 				
@@ -184,7 +184,7 @@ public class Opfersuche extends Spell {
 				int u = t;
 				if (u > 10) 
 					u = 10;
-				ParUtils.createParticle(Particle.SMOKE_LARGE, fa.getLocation(), 0, 0, 0, 2, 0.01);
+				ParUtils.createParticle(Particle.LARGE_SMOKE, fa.getLocation(), 0, 0, 0, 2, 0.01);
 				fa.setSize(u);
 				Location pos = ParUtils.stepCalcCircle(p.getLocation(), 3, new Vector(0,0.1,0), 0, t*spin);
 				pos.setDirection(pos.toVector().subtract(lastPos.toVector()));

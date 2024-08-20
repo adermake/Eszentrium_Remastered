@@ -153,7 +153,7 @@ public class GuardianLaser extends Spell {
 		loc.add(0,-1,0);
 		
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 1);
 		playSound(Sound.ENTITY_DOLPHIN_JUMP,loc,8,1);
 		ParUtils.createRedstoneParticle(loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, Color.AQUA, 5);
 		Location dir = loc.clone();

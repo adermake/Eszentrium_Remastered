@@ -66,9 +66,9 @@ public class Explosion extends Spell {
 	@Override
 	public void display() {
 		if (hitboxSize>2) {
-			ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, hitboxSize/3, hitboxSize/3, hitboxSize/3, (int)hitboxSize/2, 0);
+			ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, hitboxSize/3, hitboxSize/3, hitboxSize/3, (int)hitboxSize/2, 0);
 		}
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 3, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 3, 0);
 		
 	}
 

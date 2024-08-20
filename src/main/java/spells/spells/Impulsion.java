@@ -139,7 +139,7 @@ public class Impulsion extends Spell {
 			int r = randInt(0,100);
 			ParUtils.createRedstoneParticle(loc,0.3, 0.3, 0.3, 2, Color.fromRGB(r, 0, r), 2F);
 		}
-		ParUtils.parKreisDot(Particle.SMOKE_LARGE, loc, 7, 1, -0.1F, new Vector(0,1,0));
+		ParUtils.parKreisDot(Particle.LARGE_SMOKE, loc, 7, 1, -0.1F, new Vector(0,1,0));
 		new BukkitRunnable() {
 			double t = Math.PI / 4;
 			Location loc = setloc;

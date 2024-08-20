@@ -67,7 +67,7 @@ public class Phasenwechsel extends Spell {
 			
 			ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 3, 0);
 			ParUtils.createFlyingParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0.2F, dir);
-			ParUtils.createParticle(Particle.ENCHANTMENT_TABLE, loc, 0.1, 0.1, 0.1, 5, 5);
+			ParUtils.createParticle(Particle.ENCHANT, loc, 0.1, 0.1, 0.1, 5, 5);
 			loc.add(dir.multiply(2F));
 		}
 	

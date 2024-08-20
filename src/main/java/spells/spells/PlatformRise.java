@@ -50,7 +50,7 @@ public class PlatformRise extends Spell {
 		dist = caster.getLocation().distance(ori);
 		core.setGravity(false);
 		core.setInvulnerable(true);
-		core.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,20*60*6,200));
+		core.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,20*60*6,200));
 		core.setCustomName("Core");
 		core.setPersistent(true);
 		core.setTamed(true);

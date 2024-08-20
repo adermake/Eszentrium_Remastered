@@ -2,8 +2,8 @@ name: Eszentrium
 main: esze.main.main
 version: 1.0
 author: [Philipp0002, adermake, Astromake]
-api-version: 1.13
-depend: [PacketListenerApi,CorpseReborn]
+api-version: 1.21.1
+depend: [NoteBlockAPI]
 
 commands:
   setmonumap:

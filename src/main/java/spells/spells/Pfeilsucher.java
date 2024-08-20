@@ -74,7 +74,7 @@ public class Pfeilsucher extends Spell{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.SPELL_WITCH, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.WITCH, loc, 0, 0, 0, 1, 0);
 	}
 
 	@Override

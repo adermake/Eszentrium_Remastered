@@ -91,7 +91,7 @@ public class OrbitarShot extends Spell {
 		// TODO Auto-generated method stub
 		
 		
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
 		if (refined) {
 			damage(p,4,caster);
@@ -116,7 +116,7 @@ public class OrbitarShot extends Spell {
 			damage(ent,2,caster);
 			ent.setVelocity(loc.getDirection().multiply(2));
 		}
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,5,1);
 	}
 

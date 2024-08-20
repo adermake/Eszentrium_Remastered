@@ -14,8 +14,8 @@ import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -172,11 +172,12 @@ public class Verzaubern extends Spell {
 			target.setGameMode(GameMode.SPECTATOR);
 			target.setAllowFlight(true);
 			target.setFlying(true);
+
+			target.setSpectatorTarget(sheep);
+			//((CraftPlayer) target).getHandle().setSpectatorTarget(((CraftEntity) sheep).getHandle());
+			ParUtils.createParticle(Particle.EXPLOSION_EMITTER, target.getLocation(), 0, 0, 0, 3, 1);
 			
-			((CraftPlayer) target).getHandle().setSpectatorTarget(((CraftEntity) sheep).getHandle());
-			ParUtils.createParticle(Particle.EXPLOSION_LARGE, target.getLocation(), 0, 0, 0, 3, 1);
-			
-			ParUtils.chargeDot(target.getLocation(), Particle.SPELL_WITCH, 0.1, 4,10);
+			ParUtils.chargeDot(target.getLocation(), Particle.WITCH, 0.1, 4,10);
 			
 		}
 	}

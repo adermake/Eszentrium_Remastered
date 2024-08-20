@@ -75,7 +75,7 @@ public class Scharfschuss extends Spell{
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.RED, 1);
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.FUCHSIA, 1);
 		ParUtils.createParticle(Particle.CRIT, loc, 0, 0,0, 1, 0);
-		ParUtils.createParticle(Particle.SMOKE_NORMAL, loc, 0, 0,0, 1, 0);
+		ParUtils.createParticle(Particle.SMOKE, loc, 0, 0,0, 1, 0);
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class Scharfschuss extends Spell{
 	public void onBlockHit(Block block) {
 		// TODO Auto-generated method stub
 		playSound(Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST,loc, 10, 1);
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0,0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0,0, 1, 0);
 		dead = true;
 	}
 

@@ -97,7 +97,7 @@ public class Mondkugel extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (refined)
-			ParUtils.createParticle(Particle.FIREWORKS_SPARK, s.getLocation(), 0.1F, 0.1F, 0.1F, 5, 0.01F);
+			ParUtils.createParticle(Particle.FIREWORK, s.getLocation(), 0.1F, 0.1F, 0.1F, 5, 0.01F);
 		
 	}
 

@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftLlama;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftLlama;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
@@ -143,7 +143,7 @@ public class Lamaturm extends Spell {
 			for (double i = 0;i<shots;i++) {
 				Location l = ParUtils.stepCalcCircle(turret.getEyeLocation().clone(), 2, loc.getDirection(), 3, step+(i*44/maxShots));
 				
-				ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,1,0), 0, 0, 0, 5, 0);
+				ParUtils.createParticle(Particle.BUBBLE, l.clone().add(0,1,0), 0, 0, 0, 5, 0);
 			}
 			
 		}
@@ -154,14 +154,14 @@ public class Lamaturm extends Spell {
 			for (double i = 0;i<shots;i++) {
 				Location l = ParUtils.stepCalcCircle(turret.getEyeLocation().clone(), 2, new Vector(0,1,0), -1, step+(i*44/maxShots));
 				
-				ParUtils.createParticle(Particle.WATER_BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
+				ParUtils.createParticle(Particle.BUBBLE, l.clone().add(0,-1,0), 0, 0, 0, 5, 0);
 			}
 			
 		}
 		
 		if (turret.getVelocity().length()<0.1) {
-			EntityLlama nmsEnt = ((CraftLlama)turret).getHandle();
-			nmsEnt.setHeadRotation(loc.getYaw());
+			/*TODO? EntityLlama nmsEnt = ((CraftLlama)turret).getHandle();
+			nmsEnt.setHeadRotation(loc.getYaw());*/
 			
 			turret.teleport(loc);
 		}

@@ -35,7 +35,7 @@ public class Death implements Listener {
 				
 				if (p.getHealth() - e.getFinalDamage() <= 0 ) {
 				
-				PlayerDeathEvent event = new PlayerDeathEvent(p, null, 0, "he dead");
+				PlayerDeathEvent event = new PlayerDeathEvent(p, null, null, 0, "he dead");
 				
 				e.setCancelled(true);
 				

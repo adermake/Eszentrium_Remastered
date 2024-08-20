@@ -43,7 +43,7 @@ public class Blutsiegel extends Spell {
 			dead = true;
 		}
 		else {
-			ParUtils.parKreisDir(Particle.SMOKE_LARGE, l, 8, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
+			ParUtils.parKreisDir(Particle.LARGE_SMOKE, l, 8, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
 			//playSound(Sound.BLOCK_ANVIL_PLACE,l,0.5,0.1F);
 			playSound(Sound.ENTITY_ENDERMAN_SCREAM,l,0.5,0.5F);
 		}
@@ -99,7 +99,7 @@ public class Blutsiegel extends Spell {
 		ParUtils.createFlyingParticle(Particle.FLAME, l5, 0.05, 0, 0.05, 1, 0.1, new Vector(0,1,0));
 		//ParUtils.parKreisDot(Particle.SMOKE_NORMAL,loc.clone().add(0,offset,0), rad, 0, -1, new Vector(0,1,0));
 		}
-		ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, loc.clone(), rad/2, 0, rad/2, 10, 0, new Vector(0,1,0));
+		ParUtils.createFlyingParticle(Particle.SMOKE, loc.clone(), rad/2, 0, rad/2, 10, 0, new Vector(0,1,0));
 		
 	}
 

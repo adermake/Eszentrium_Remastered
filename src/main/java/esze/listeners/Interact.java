@@ -90,7 +90,7 @@ public class Interact implements Listener{
 		}
 		if(e.getRightClicked().getType() == EntityType.SHEEP) {
 			p.addPassenger(e.getRightClicked());
-			p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*14, 1));
+			p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 20*14, 1));
 		}
 	}
 	

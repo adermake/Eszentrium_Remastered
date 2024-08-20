@@ -72,7 +72,7 @@ public class Plasmablase extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		ParUtils.auraParticle(Particle.CRIT_MAGIC, caster, 1, 1);
+		ParUtils.auraParticle(Particle.CRIT, caster, 1, 1);
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class Plasmablase extends Spell {
 				
 				l.add(ind.clone().normalize().multiply(1.5));
 				double distance = l.distance(ori);
-				ParUtils.parKreisDir(Particle.CRIT_MAGIC, l, calcWidthOfCircle(rad+1, distance+rad+1), 0, 0, d, d);
+				ParUtils.parKreisDir(Particle.CRIT, l, calcWidthOfCircle(rad+1, distance+rad+1), 0, 0, d, d);
 				
 				//ParUtils.parKreisSolidRedstone(Color.AQUA, 3, l, calcWidthOfCircle(rad, distance+rad),0, 1, ind);
 				if (distance > (rad+1)*2) {

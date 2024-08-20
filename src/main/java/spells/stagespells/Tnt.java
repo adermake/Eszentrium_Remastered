@@ -25,7 +25,7 @@ public class Tnt extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		playSound(Sound.ENTITY_TNT_PRIMED,loc,4,1);
-		tnt  = (TNTPrimed) spawnEntity(EntityType.PRIMED_TNT);
+		tnt  = (TNTPrimed) spawnEntity(EntityType.TNT);
 		tnt.setFuseTicks(30);
 	}
 

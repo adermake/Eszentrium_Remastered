@@ -26,9 +26,9 @@ public class PotionSeller extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		
-		potions.put(0,(ThrownPotion) spawnEntity(EntityType.SPLASH_POTION));
-		potions.put(1,(ThrownPotion) spawnEntity(EntityType.SPLASH_POTION));
-		potions.put(2,(ThrownPotion) spawnEntity(EntityType.SPLASH_POTION));
+		potions.put(0,(ThrownPotion) spawnEntity(EntityType.POTION));
+		potions.put(1,(ThrownPotion) spawnEntity(EntityType.POTION));
+		potions.put(2,(ThrownPotion) spawnEntity(EntityType.POTION));
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class PotionSeller extends Spell {
 			holoLoc.setDirection(loc.getDirection());
 			Location l1 = ParUtils.stepCalcCircle(holoLoc, 3, new Vector(0,1,0), 1,7+ i*5);
 			if (potions.get((int) i).isDead()) {
-				potions.put((int) i,(ThrownPotion) spawnEntity(EntityType.SPLASH_POTION,l1));
+				potions.put((int) i,(ThrownPotion) spawnEntity(EntityType.POTION,l1));
 			}
 			doPin(potions.get((int) i),l1);
 		}

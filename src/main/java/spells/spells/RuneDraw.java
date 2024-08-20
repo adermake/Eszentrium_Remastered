@@ -95,7 +95,7 @@ public class RuneDraw extends Spell {
 		//shapedetector();
 		//shapedetector();
 		for (Vector vec : offsets) {
-			ParUtils.createParticle(Particle.WATER_BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);	
+			ParUtils.createParticle(Particle.BUBBLE, caster.getEyeLocation().add(vec), 0, 0, 0, 5, 0);
 		}
 		
 		double distance = getAvgDistanceToCenter();

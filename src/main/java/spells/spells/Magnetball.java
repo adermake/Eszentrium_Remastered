@@ -116,7 +116,7 @@ public class Magnetball extends Spell{
 	public void onPlayerHit(Player p) {
 		double distance = p.getLocation().distance(loc);
 		
-		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(),  p.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		ParUtils.parLine(Particle.BUBBLE, loc.clone(),  p.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
 		//if (step< steprange-10)
 			
 		//ParUtils.parLineRedstone(loc, p.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp((int) (100+distance*15), 0, 255)), 1, 0.5);
@@ -131,7 +131,7 @@ public class Magnetball extends Spell{
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		double distance = ent.getLocation().distance(loc);
-		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(),  ent.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
+		ParUtils.parLine(Particle.BUBBLE, loc.clone(),  ent.getLocation().add(0,0.5,0), 0, 0, 0, 1, 0, 0.4);
 		/*
 		if (step< steprange-10)
 		ParUtils.parLineRedstone(loc, ent.getLocation().add(0,0.5,0), Color.fromBGR(0, clamp(200-(int)distance*15, 0, 255),clamp( (int) (100+distance*15),0 ,255 )), 1, 0.5);

@@ -85,7 +85,7 @@ public class CosmeticMenu extends ItemMenu{
 				ItemStack is = getInventory().getItem(i);
 				if (is != null && is.getType() == m) {
 					ItemMeta im = is.getItemMeta();
-					im.addEnchant(Enchantment.DAMAGE_ALL,1, false);
+					im.addEnchant(Enchantment.SHARPNESS,1, false);
 					im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 					is.setItemMeta(im);
 				}
@@ -122,14 +122,14 @@ public class CosmeticMenu extends ItemMenu{
 			ItemStack is = getInventory().getItem(i);
 			if (is != null && is.getType() == m) {
 				ItemMeta im = is.getItemMeta();
-				im.addEnchant(Enchantment.DAMAGE_ALL,1, false);
+				im.addEnchant(Enchantment.SHARPNESS,1, false);
 				im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				is.setItemMeta(im);
 			}
 			else {
 				if (is != null) {
 					ItemMeta im = is.getItemMeta();
-					im.removeEnchant(Enchantment.DAMAGE_ALL);
+					im.removeEnchant(Enchantment.SHARPNESS);
 					is.setItemMeta(im);
 					
 				}

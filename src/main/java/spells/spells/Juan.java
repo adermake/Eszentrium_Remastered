@@ -87,7 +87,7 @@ public class Juan extends Spell{
 	@Override
 	public void onPlayerHit(Player p) {
 		damage(p, 3,caster);
-		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,100));
+		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,20,100));
 			}
 
 	@Override
@@ -95,7 +95,7 @@ public class Juan extends Spell{
 		// TODO Auto-generated method stub
 		
 		damage(ent, 3,caster);
-		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,100));
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,20,100));
 	}
 
 	@Override

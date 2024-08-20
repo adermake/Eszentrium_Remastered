@@ -140,7 +140,7 @@ public class KaminchenEntity extends Spell {
 		if (!agrro) {
 			
 			//ent.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,200,200,true,false));
-			ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,200,200,true,false));
+			ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,200,200,true,false));
 		}
 		
 		if (jumpAble && boundOnGround && agrro) {
@@ -173,7 +173,7 @@ public class KaminchenEntity extends Spell {
 		dead = true;
 		loc = ent.getLocation();
 		ent.remove();
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 0, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 0, 1);
 		playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,loc,1,1);
 	}
 

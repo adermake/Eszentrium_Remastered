@@ -66,7 +66,7 @@ public class Teleport extends Spell {
 			speed = 2+calcLerpFactor(step,40)*2;
 		}
 		
-		ParUtils.createParticle(Particle.SPELL_WITCH, loc, 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.WITCH, loc, 0, 0, 0, 5, 0);
 		
 	}
 

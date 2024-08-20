@@ -49,7 +49,7 @@ public class Wunsch extends Spell{
 		ArrayList<Location> locs = ParUtils.preCalcCircle(caster.getLocation(), 3, caster.getVelocity(), 0);
 		
 		for (Location loc : locs) {
-			ParUtils.createParticle(Particle.SPELL_MOB_AMBIENT, loc, 0,0.1, 0, 10,2);
+			ParUtils.createParticle(Particle.ENTITY_EFFECT, loc, 0,0.1, 0, 10,2);
 		}
 		playSound(Sound.ENTITY_STRAY_DEATH, caster.getLocation(), 3, 0.2F);
 		dead = true;

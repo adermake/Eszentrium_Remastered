@@ -81,7 +81,7 @@ public class Erlösung extends Spell {
 			vel.normalize().multiply(4);
 		}
 		
-		ParUtils.createParticle(Particle.CRIT_MAGIC, loc, 0.1, 0.1, 0.1, 40, 0.01);
+		ParUtils.createParticle(Particle.CRIT, loc, 0.1, 0.1, 0.1, 40, 0.01);
 		ParUtils.createParticle(Particle.BUBBLE_POP, loc, 0.1, 0.1, 0.1, 40, 0.01);
 		ParUtils.createParticle(Particle.END_ROD, loc, 0.1, 0.1, 0.1, 1, 0.01);
 		

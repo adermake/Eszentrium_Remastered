@@ -8,32 +8,34 @@ import java.util.ArrayList;
 
 public class NeuralNetworks {
 
-	public static NeuralNetwork drawNet;
+    public static NeuralNetwork drawNet;
 
-	public static void loadNeuralNetworks() {
-		drawNet = loadNet("SDNettext");
-	}
+    public static void loadNeuralNetworks() {
+        drawNet = loadNet("SDNettext");
+    }
 
-	public static NeuralNetwork loadNet(String name) {
-		try {
-			BufferedReader file = new BufferedReader(new FileReader(name + ".txt"));
+    public static NeuralNetwork loadNet(String name) {
+        try {
+            BufferedReader file = new BufferedReader(new FileReader(name + ".txt"));
 
-			ArrayList<String> lines = new ArrayList<String>();
-			String liner;
+            ArrayList<String> lines = new ArrayList<String>();
+            String liner;
 
-			while ((liner = file.readLine()) != null) {
-				lines.add(liner);
-			}
-			file.close();
-			
-			return new NeuralNetwork(lines);
-			
+            while ((liner = file.readLine()) != null) {
+                lines.add(liner);
+            }
+            file.close();
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+            return new NeuralNetwork(lines);
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Esze | SDNettext.txt nicht gefunden!");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

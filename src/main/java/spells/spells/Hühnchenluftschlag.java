@@ -109,7 +109,7 @@ public class Hühnchenluftschlag extends Spell{
 				if (c.getLocation().getBlock().getRelative(bf).getType() != Material.AIR) {
 
 					
-					ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 3, 1);
+					ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 3, 1);
 					new ExplosionDamage(4, 8, caster, c.getLocation(), name);
 					new Repulsion(4, 1, caster, c.getLocation(), name);
 					c.remove();

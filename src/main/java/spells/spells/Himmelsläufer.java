@@ -41,7 +41,7 @@ public class Himmelsläufer extends Spell {
 		if (refined) {
 			steprange = 20 * 10;
 			caster.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20* 10, 2));
-			caster.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20* 10, 2));
+			caster.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 20* 10, 2));
 		}
 		
 		caster.setVelocity(caster.getVelocity().setY(0));
@@ -146,7 +146,7 @@ public class Himmelsläufer extends Spell {
 		}
 		if (refined) {
 			caster.removePotionEffect(PotionEffectType.SPEED);
-			caster.removePotionEffect(PotionEffectType.JUMP);
+			caster.removePotionEffect(PotionEffectType.JUMP_BOOST);
 		}
 		int refunde = steprange*2 - length*2;
 		//Bukkit.broadcastMessage("X"+refunde/20);

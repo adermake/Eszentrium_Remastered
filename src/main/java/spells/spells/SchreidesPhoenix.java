@@ -195,7 +195,7 @@ public class SchreidesPhoenix extends Spell{
 								else {
 									revive(p,id,ti+1);
 									ParUtils.parLineRedstone(c.cows.get(0).getLocation(), p.getLocation(), Color.BLACK, 2, 0.2F);
-									ParUtils.chargeDot(c.cows.get(0).getLocation(), Particle.TOTEM, 0.3F, 4);
+									ParUtils.chargeDot(c.cows.get(0).getLocation(), Particle.TOTEM_OF_UNDYING, 0.3F, 4);
 									ParUtils.createRedstoneParticle(c.cows.get(0).getLocation(),0, 0, 0, 1, Color.BLACK, 1F);
 									playSound(Sound.ENTITY_ILLUSIONER_MIRROR_MOVE,p.getLocation(),1,1);
 								}

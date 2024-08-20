@@ -104,8 +104,8 @@ public class KompassEffect extends Spell {
 			playSound(Sound.BLOCK_CHEST_LOCKED,loc,2,0.4F);
 			playSound(Sound.BLOCK_CHEST_LOCKED,loc,2,0.8F);
 			for (Entity carrier : circle) {	
-				ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, carrier.getLocation().add(0,1,0),0.2, 0.2, 0.2, 6, 0.1, carrier.getLocation().add(0,1,0).toVector().subtract(loc.toVector()).normalize());
-				ParUtils.createFlyingParticle(Particle.SMOKE_NORMAL, carrier.getLocation().add(0,1,0),0.1, 0.1, 0.1, 6, 0.2, carrier.getLocation().add(0,1,0).toVector().subtract(loc.toVector()).normalize());
+				ParUtils.createFlyingParticle(Particle.LARGE_SMOKE, carrier.getLocation().add(0,1,0),0.2, 0.2, 0.2, 6, 0.1, carrier.getLocation().add(0,1,0).toVector().subtract(loc.toVector()).normalize());
+				ParUtils.createFlyingParticle(Particle.SMOKE, carrier.getLocation().add(0,1,0),0.1, 0.1, 0.1, 6, 0.2, carrier.getLocation().add(0,1,0).toVector().subtract(loc.toVector()).normalize());
 				
 			}
 		}

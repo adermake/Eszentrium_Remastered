@@ -257,7 +257,7 @@ public abstract class Monument extends Spell {
 			//ar.setVelocity(new Vector(0,5,0));
 		}
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,1,1);
-		ParUtils.createParticle(Particle.EXPLOSION_HUGE, getOffsetLoc(), 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, getOffsetLoc(), 0, 0, 0, 1, 1);
 		dead = true;
 	}
 	

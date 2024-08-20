@@ -37,7 +37,7 @@ public class BubbleOld extends Spell{
 	public void cast() {
 		loc.setDirection(lerp(loc.getDirection(),(target.getLocation().toVector()).subtract(loc.toVector()), 0.1));
 		loc.add(loc.getDirection().normalize());	
-		ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.BUBBLE, loc, 0, 0, 0, 5, 0);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class BubbleOld extends Spell{
 
 	@Override
 	public void display() {
-		ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0, 0, 0, 5, 0);
+		ParUtils.createParticle(Particle.BUBBLE, loc, 0, 0, 0, 5, 0);
 		
 	}
 

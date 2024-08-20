@@ -55,7 +55,7 @@ public class FirePiece extends Spell {
 	@Override
 	public void move() {
 			if (step == 1)
-			ParUtils.createParticle(Particle.SMOKE_LARGE, loc.clone().add(0,-0.5,0), 0.1F, 0.1F, 0.1F,30, 0.2F);
+			ParUtils.createParticle(Particle.LARGE_SMOKE, loc.clone().add(0,-0.5,0), 0.1F, 0.1F, 0.1F,30, 0.2F);
 			activated = true;
 			
 		
@@ -88,7 +88,7 @@ public class FirePiece extends Spell {
 		}
 		// TODO Auto-generated method stub
 		damage(p, 2, caster);
-		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*2, 3));
+		p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 20*2, 3));
 		
 		if (!wd.hitEntitys.contains(p)) {
 			wd.hitEntitys.add(p);
@@ -103,7 +103,7 @@ public class FirePiece extends Spell {
 	public void onEntityHit(LivingEntity ent) {
 		// TODO Auto-generated method stub
 		//ent.removePotionEffect(PotionEffectType.SLOW);
-		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 10, 3));
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 10, 3));
 		
 		if (!wd.hitEntitys.contains(ent)) {
 			wd.hitEntitys.add(ent);

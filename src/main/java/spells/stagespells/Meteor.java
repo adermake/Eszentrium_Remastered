@@ -70,7 +70,7 @@ public class Meteor extends Spell {
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, -1, 0, 0, 2);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, -1, 0, 0, 2);
 	}
 
 	@Override

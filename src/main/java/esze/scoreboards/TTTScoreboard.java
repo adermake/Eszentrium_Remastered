@@ -63,7 +63,7 @@ public class TTTScoreboard extends Scoreboard{
 							if(game.players.contains(p)) {
 								innoBoard.add(p.getName());
 							}else if(game.spectator.contains(p)) {
-								for(Integer corpseID : CorpseUtils.getAllCorpseIDs()) {
+								/*for(Integer corpseID : CorpseUtils.getAllCorpseIDs()) {
 									if(CorpseUtils.getCorpseName(corpseID).equalsIgnoreCase(p.getName())) {
 										TTTCorpse corpse = null;
 										for(TTTCorpse _corpse : TTTCorpse.allCorpses) {
@@ -83,7 +83,7 @@ public class TTTScoreboard extends Scoreboard{
 										}
 										
 									}
-								}
+								}*/
 							}
 						}
 						

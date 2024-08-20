@@ -1,16 +1,19 @@
 package esze.utils;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
-import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -59,7 +62,19 @@ public class ItemStackUtils {
 	}
 	
 	public static ItemStack attackSpeedify(ItemStack is) {
-		net.minecraft.world.item.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
+		ItemMeta meta = is.getItemMeta();
+		meta.addAttributeModifier(
+				Attribute.GENERIC_ATTACK_SPEED,
+				new AttributeModifier(
+						NamespacedKey.fromString("generic.attack_speed"),
+						0,
+						AttributeModifier.Operation.ADD_NUMBER,
+						EquipmentSlotGroup.HAND
+				)
+		);
+		is.setItemMeta(meta);
+		return is;
+		/*net.minecraft.world.item.ItemStack nmsStack = CraftItemStack.asNMSCopy(is);
         NBTTagCompound speed = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
 		
     
@@ -72,7 +87,7 @@ public class ItemStackUtils {
 		speed.set("Slot", NBTTagString.a("mainhand"));
 		
 		
-		return NBTUtils.setNBT(speed, is);
+		return NBTUtils.setNBT(speed, is);*/
 	}
 	
 	public static ItemStack attackDamage(ItemStack is,int dmg) {

@@ -101,7 +101,7 @@ public class Quantentunnel extends Spell{
 		// TODO Auto-generated method stub
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.BLUE, 1);
 		ParUtils.createRedstoneParticle(loc, 0, 0, 0, 1, Color.TEAL, 1);
-		ParUtils.createParticle(Particle.CRIT_MAGIC, loc, 0, 0,0, 1, 0);
+		ParUtils.createParticle(Particle.CRIT, loc, 0, 0,0, 1, 0);
 		ParUtils.dropItemEffectVector(loc, Material.ENDER_PEARL, 1, 1, 0,new Vector(0,1,0));
 		ti++;
 		if (ti > 20) {
@@ -188,7 +188,7 @@ public class Quantentunnel extends Spell{
 					Location l1 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 4*gain, v, 0, (i*44/gain)+(s*6*gain));
 					Location l2 = ParUtils.stepCalcCircle(loc.clone().add(0,1,0), 2*gain, v, 0, (i*44/gain)+(s*6*gain));
 					ParUtils.createFlyingParticle(Particle.END_ROD, l1, 0.01, 0.01, 0.01, 1, 35*gain, l2.toVector().subtract(l1.toVector()).normalize());
-					ParUtils.createFlyingParticle(Particle.WATER_BUBBLE, l1, 0.01, 0.01, 0.01, 4, 0, v);
+					ParUtils.createFlyingParticle(Particle.BUBBLE, l1, 0.01, 0.01, 0.01, 4, 0, v);
 				}
 				
 				//Location l2 = ParUtils.stepCalcCircle(e.getLocation().add(0,1,0), 3*gain, v, 0, 22D+s*6*gain);

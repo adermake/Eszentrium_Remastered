@@ -47,7 +47,7 @@ public class SiegelderFurcht extends Spell {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		
-		Firework firework = (Firework) caster.getWorld().spawnEntity(caster.getLocation().add(0,7,0), EntityType.FIREWORK);
+		Firework firework = (Firework) caster.getWorld().spawnEntity(caster.getLocation().add(0,7,0), EntityType.FIREWORK_ROCKET);
 	
 		
 		
@@ -82,7 +82,7 @@ public class SiegelderFurcht extends Spell {
 	        firework.setFireworkMeta(fd);
 		firework.detonate();
 		
-		ParUtils.parKreisDir(Particle.SMOKE_LARGE, caster.getLocation(), 4, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.LARGE_SMOKE, caster.getLocation(), 4, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
 		playSound(Sound.ENTITY_ENDER_DRAGON_GROWL,caster.getLocation(),10,0.4F);
 		caster.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20* 5, 2));
 	}
@@ -107,7 +107,7 @@ public class SiegelderFurcht extends Spell {
 			hitEntity = false;
 			hitSpell = false;
 		}else {
-			ParUtils.parKreisDir(Particle.SMOKE_LARGE, caster.getLocation(), 4+step*2, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
+			ParUtils.parKreisDir(Particle.LARGE_SMOKE, caster.getLocation(), 4+step*2, 0, 0.7, new Vector(0,1,0),new Vector(0,1,0));
 		}
 		
 		for (Entity ent : hitEntitys) {

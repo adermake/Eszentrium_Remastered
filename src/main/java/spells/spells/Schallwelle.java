@@ -53,7 +53,7 @@ public class Schallwelle extends Spell{
 	public void display() {
 		// TODO Auto-generated method stub
 		//ParUtils.createFlyingParticle(Particle.BUBBLE_POP, loc,0, 0, 0, 1, 2, loc.getDirection().multiply(-1));
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
 		
 	}
 

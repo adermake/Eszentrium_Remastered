@@ -11,8 +11,7 @@ import org.bukkit.Particle.DustOptions;
 import org.bukkit.Particle.DustTransition;
 import org.bukkit.Vibration;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -24,21 +23,19 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import io.netty.util.internal.ThreadLocalRandom;
 
-import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.level.WorldServer;
-import net.minecraft.world.level.block.Block;
 
 public class ParUtils {
 
 	public static void debug(Location loc) {
-		createParticle(Particle.BARRIER, loc, 0, 0, 0, 1, 0);
+		createParticle(Particle.BLOCK_MARKER, loc, 0, 0, 0, 1, 0);
 	}
 
 	public static void createRedstoneParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
 			Color color, float size, Player p) {
 		
 		DustOptions dustOptions = new DustOptions(color, size);
-		p.spawnParticle(Particle.REDSTONE, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
+		p.spawnParticle(Particle.DUST, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
 
 	}
 
@@ -48,59 +45,11 @@ public class ParUtils {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 		
 			DustOptions dustOptions = new DustOptions(color, size);
-			p.spawnParticle(Particle.REDSTONE, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
+			p.spawnParticle(Particle.DUST, loc, count,spreadX,spreadY,spreadZ,0, dustOptions);
 		}
 	}
 
-	public static void createSpellMobParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			int r,int b,int g) {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			double red = r / 255D;
-			double green = b / 255D;
-			double blue = g / 255D;
-			for ( int i = 0;i< count;i++) {
-				Location loctmp = loc.clone();
-				double randX = 0;
-				double randY = 0;
-				double randZ = 0;
-				if (spreadX != 0)
-					randX = ThreadLocalRandom.current().nextDouble(-spreadX, spreadX);
-				if (spreadY != 0)
-					randY = ThreadLocalRandom.current().nextDouble(-spreadY, spreadY);
-				if (spreadZ != 0)
-					randZ = ThreadLocalRandom.current().nextDouble(-spreadZ, spreadZ);
-				loctmp.add(randX, randY, randZ);
-				p.spawnParticle(Particle.SPELL_MOB, loctmp, 0, red, green, blue, 1);
-			}
-			
-		}
-		
 
-	}
-	
-	public static void createNoteParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			double noteID) {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-
-			for ( int i = 0;i< count;i++) {
-				Location loctmp = loc.clone();
-				double randX = 0;
-				double randY = 0;
-				double randZ = 0;
-				if (spreadX != 0)
-					randX = ThreadLocalRandom.current().nextDouble(-spreadX, spreadX);
-				if (spreadY != 0)
-					randY = ThreadLocalRandom.current().nextDouble(-spreadY, spreadY);
-				if (spreadZ != 0)
-					randZ = ThreadLocalRandom.current().nextDouble(-spreadZ, spreadZ);
-				loctmp.add(randX, randY, randZ);
-				p.spawnParticle(Particle.NOTE, loctmp, 0, noteID/24D, 0, 0, 1);
-			}
-			
-		}
-		
-
-	}
 	public static void createDustTransition(Location loc, double spreadX, double spreadY, double spreadZ, int count,
 			Color from,Color to,float size) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
@@ -108,39 +57,16 @@ public class ParUtils {
 			p.spawnParticle(Particle.DUST_COLOR_TRANSITION, loc, count,spreadX,spreadY,spreadZ,0, dustTransition);
 		}
 	}
-	public static void createVibration(Location loc,Location to, double spreadX, double spreadY, double spreadZ, int count,
-			int ticks) {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			Vibration vibration = new Vibration(loc,new Vibration.Destination.BlockDestination(to.getBlock()), ticks);
-			p.spawnParticle(Particle.VIBRATION, loc, count,spreadX,spreadY,spreadZ,0, vibration);
-		}
-	}
-	public static void createVibration(Location loc,Entity to, double spreadX, double spreadY, double spreadZ, int count,
-			int ticks) {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			Vibration vibration = new Vibration(loc,new Vibration.Destination.EntityDestination(to), ticks);
-			p.spawnParticle(Particle.VIBRATION, loc, count,spreadX,spreadY,spreadZ,0, vibration);
-		}
-	}
 	public static void createBlockcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
 			Material m) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			BlockData fallingDustData = m.createBlockData();
-			p.spawnParticle(Particle.BLOCK_CRACK, loc, count,spreadX,spreadY,spreadZ,0, fallingDustData);
+			p.spawnParticle(Particle.BLOCK, loc, count,spreadX,spreadY,spreadZ,0, fallingDustData);
 		}
 		
 
 	}
-	public static void createItemcrackParticle(Location loc, double spreadX, double spreadY, double spreadZ, int count,
-			Material m) {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			ItemStack itemCrackData = new ItemStack(Material.STONE);
-			p.spawnParticle(Particle.ITEM_CRACK, loc, count,spreadX,spreadY,spreadZ,0, itemCrackData);
-		}
-		
 
-	}
-	
 
 
 	public static void createParticle(Particle par, Location loc, double spreadX, double spreadY, double spreadZ,

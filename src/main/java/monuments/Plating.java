@@ -73,7 +73,7 @@ public class Plating {
 		}
 	}
 	public void destroy() {
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, getLocation(), 0, 0, 0, 1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, getLocation(), 0, 0, 0, 1, 1);
 		m.playSound(Sound.ENTITY_GENERIC_EXPLODE, getLocation(), 1, 0.5F);
 		m.platings.remove(this);
 		armorStand.remove();

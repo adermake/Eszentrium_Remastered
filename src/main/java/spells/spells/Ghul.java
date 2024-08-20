@@ -133,7 +133,7 @@ public class Ghul extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		//ParUtils.createFlyingParticle(Particle.BUBBLE_POP, loc,0, 0, 0, 1, 2, loc.getDirection().multiply(-1));
-		ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 1, 0);
+		ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 0, 0, 0, 1, 0);
 		
 		
 		
@@ -141,7 +141,7 @@ public class Ghul extends Spell {
 
 	@Override
 	public void onPlayerHit(Player p) {
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0,1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0,1, 1);
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,13,2);
 		
 			p.setVelocity(loc.getDirection().multiply(5));
@@ -154,7 +154,7 @@ public class Ghul extends Spell {
 	@Override
 	public void onEntityHit(LivingEntity ent) {
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,13,2);
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0,1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0,1, 1);
 		// TODO Auto-generated method stub
 		damage(ent, 4,caster);
 	
@@ -174,7 +174,7 @@ public class Ghul extends Spell {
 	public void onBlockHit(Block block) {
 		
 		playSound(Sound.ENTITY_GENERIC_EXPLODE,loc,11,1);
-		ParUtils.createParticle(Particle.EXPLOSION_LARGE, loc, 0, 0, 0,1, 1);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0,1, 1);
 		loc.setDirection(vel);
 		BlockFace bf = bounce();
 		double lvel = vel.length();

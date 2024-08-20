@@ -43,7 +43,7 @@ public class Thermolanze extends Spell {
 		// TODO Auto-generated method stub
 		SoundUtils.playSound(Sound.ENTITY_IRON_GOLEM_DEATH, caster.getLocation(),1F,50);
 		caster.setVelocity(caster.getVelocity().setY(2));
-		ParUtils.parKreisDir(Particle.SMOKE_LARGE, loc, 4, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.LARGE_SMOKE, loc, 4, 0, 1, new Vector(0,1,0), new Vector(0,1,0));
 		if (refined) {
 			steprange = 70;
 		}
@@ -52,7 +52,7 @@ public class Thermolanze extends Spell {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
-		ParUtils.dashParticleTo(Particle.SMOKE_NORMAL, caster, caster.getLocation().add(randVector().multiply(15)));
+		ParUtils.dashParticleTo(Particle.SMOKE, caster, caster.getLocation().add(randVector().multiply(15)));
 		caster.setVelocity(caster.getVelocity().add(new Vector(0,0.1F,0)));
 	}
 

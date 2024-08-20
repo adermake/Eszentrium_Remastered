@@ -118,7 +118,7 @@ public class JumpPad implements ConfigurationSerializable{
 				public void run() {
 					t++;
 					
-					ParUtils.createParticle(Particle.CRIT_MAGIC, p.getLocation(), 0, 0, 0, 2, 0.06);
+					ParUtils.createParticle(Particle.CRIT, p.getLocation(), 0, 0, 0, 2, 0.06);
 					if (t>30 || p.isOnGround()) {
 						this.cancel();
 					}
@@ -171,8 +171,8 @@ public class JumpPad implements ConfigurationSerializable{
 				Location dot = ParUtils.stepCalcCircle(loc, 1, new Vector(0,1,0), -0.3, step*3);
 				Location dot2 = ParUtils.stepCalcCircle(loc, 1, new Vector(0,1,0), -0.3, step*3+22);
 				
-				ParUtils.createParticle(Particle.TOTEM, dot, 0, 1, 0, 0, 3*4.2);
-				ParUtils.createParticle(Particle.TOTEM, dot2, 0, 1, 0, 0, 3*4.2);
+				ParUtils.createParticle(Particle.TOTEM_OF_UNDYING, dot, 0, 1, 0, 0, 3*4.2);
+				ParUtils.createParticle(Particle.TOTEM_OF_UNDYING, dot2, 0, 1, 0, 0, 3*4.2);
 				if (step > 15)
 					this.cancel();
 			}

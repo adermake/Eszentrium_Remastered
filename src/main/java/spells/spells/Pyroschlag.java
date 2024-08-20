@@ -120,7 +120,7 @@ Location b;
 		ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 100);
 		new ExplosionDamage(12,15,caster,loc, name);
 		new Repulsion(12, 1, caster, loc, name);
-		ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 4, 4,4, 22, 2);
+		ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 4, 4,4, 22, 2);
 		for (Location block : ParUtils.grabBlocks(loc,134,8)) {
 			
 			int t = 0;

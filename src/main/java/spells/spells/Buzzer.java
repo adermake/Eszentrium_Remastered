@@ -44,7 +44,7 @@ public class Buzzer extends Spell {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.FIREWORKS_SPARK, caster.getLocation(), 0,-1, 0, 0, 1);
+		ParUtils.createParticle(Particle.FIREWORK, caster.getLocation(), 0,-1, 0, 0, 1);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class Buzzer extends Spell {
 	public void onDeath() {
 		// TODO Auto-generated method stub
 		
-		Firework firework = (Firework) caster.getWorld().spawnEntity(caster.getLocation().add(0,5,0), EntityType.FIREWORK);
+		Firework firework = (Firework) caster.getWorld().spawnEntity(caster.getLocation().add(0,5,0), EntityType.FIREWORK_ROCKET);
 		
 		
 		

@@ -130,7 +130,7 @@ public class Explosion extends Spell{
 		}
 		
 		ParUtils.parKreisDir(Particle.FLAME, caster.getLocation(), (power/ct)*15, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
-		ParUtils.parKreisDir(Particle.EXPLOSION_HUGE, caster.getLocation(), (power/ct)*12, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
+		ParUtils.parKreisDir(Particle.EXPLOSION_EMITTER, caster.getLocation(), (power/ct)*12, 0, 2, new Vector(0,1,0), new Vector(0,1,0));
 		dead = true;
 	}
 
@@ -189,7 +189,7 @@ public class Explosion extends Spell{
 					double z = t * Math.sin(theta);
 					loc.add(x, y, z);
 					// ParticleEffect.FIREWORKS_SPARK.display(loc,0,0,0,0,1);
-					ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 0, 0);
+					ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 0, 0, 0, 0, 0);
 				
 					loc.subtract(x, y, z);
 

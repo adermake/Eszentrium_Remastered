@@ -30,7 +30,7 @@ public class ArchonAura extends Spell {
 	ArchonRing ar;
 	@Override
 	public void setUp() {
-		Particle pt = Particle.WATER_BUBBLE;
+		Particle pt = Particle.BUBBLE;
 		ar = new ArchonRing(name, caster, caster.getLocation(), 1.3,1,pt);
 		new ArchonRing(name, caster, caster.getLocation(), 1,0.5F,pt);
 		new ArchonRing(name, caster, caster.getLocation(), 1,1,pt);
@@ -80,7 +80,7 @@ public class ArchonAura extends Spell {
 		// TODO Auto-generated method stub
 		damage(p, 1, caster);
 		doKnockback(p, caster.getLocation(), 1);
-		ParUtils.createParticle(Particle.FIREWORKS_SPARK, p.getLocation(), 0, 0, 0, 5, 1);
+		ParUtils.createParticle(Particle.FIREWORK, p.getLocation(), 0, 0, 0, 5, 1);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class ArchonAura extends Spell {
 		// TODO Auto-generated method stub
 		damage(ent, 1, caster);
 		doKnockback(ent, caster.getLocation(), 1);
-		ParUtils.createParticle(Particle.FIREWORKS_SPARK, ent.getLocation(), 0, 0, 0, 5, 1);
+		ParUtils.createParticle(Particle.FIREWORK, ent.getLocation(), 0, 0, 0, 5, 1);
 	}
 
 	@Override

@@ -141,7 +141,7 @@ public class Feuerball extends Spell {
 		
 		loc = f.getLocation();
 		if (refined) {
-			ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 4, 1);
+			ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 4, 1);
 			new ExplosionDamage(6, 10, caster, loc, name);
 		
 			

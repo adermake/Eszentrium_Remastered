@@ -241,7 +241,7 @@ public class Eisstachel extends Spell {
 						}
 					}.runTaskLater(main.plugin, 40);
 					playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE,p.getLocation(),1f,2f);
-			ParUtils.createParticle(Particle.EXPLOSION_LARGE, p.getLocation(), 0, 0, 0, 1, 1);
+			ParUtils.createParticle(Particle.EXPLOSION, p.getLocation(), 0, 0, 0, 1, 1);
 			for (FallingBlock fb : blocks) {
 				
 				ParUtils.createBlockcrackParticle(fb.getLocation(), 0.1F, 0.1F, 0.1F, 4, Material.PACKED_ICE);

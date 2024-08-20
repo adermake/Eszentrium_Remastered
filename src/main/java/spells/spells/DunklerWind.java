@@ -165,12 +165,12 @@ public class DunklerWind extends Spell {
 		if (lf >= 1) {
 			if (activate == false) {
 				playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,10,1F);
-				ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 60, 0.2);
+				ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 0, 0, 0, 60, 0.2);
 			}
 			activate = true;
 			
 			
-			ParUtils.createParticle(Particle.SMOKE_LARGE, loc, 0, 0, 0, 2, 0.05);
+			ParUtils.createParticle(Particle.LARGE_SMOKE, loc, 0, 0, 0, 2, 0.05);
 		}
 		
 		
@@ -211,7 +211,7 @@ public class DunklerWind extends Spell {
 		if (ent.isOnGround())
 			return;
 		// TODO Auto-generated method stub
-		ParUtils.parKreisDir(Particle.SMOKE_LARGE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
+		ParUtils.parKreisDir(Particle.LARGE_SMOKE, loc, 4, 0, 12, new Vector(0, -1, 0), new Vector(0, -1, 0));
 		playSound(Sound.ENTITY_ELDER_GUARDIAN_DEATH,loc,2,1.5F);
 		ent.setVelocity(ent.getVelocity().normalize().multiply(2));
 		hitEntity = false;

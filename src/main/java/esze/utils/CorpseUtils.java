@@ -8,14 +8,11 @@ import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.golde.bukkit.corpsereborn.CorpseAPI.CorpseAPI;
-import org.golde.bukkit.corpsereborn.nms.Corpses.CorpseData;
 
 import net.minecraft.core.BlockPosition;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
-import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import net.minecraft.network.syncher.DataWatcher;
 import net.minecraft.server.level.EntityPlayer;
 
@@ -23,7 +20,7 @@ import net.minecraft.server.level.EntityPlayer;
 
 public class CorpseUtils {
 	
-	public static HashMap<Integer, CorpseData> allCorpses = new HashMap<Integer, CorpseData>();
+	/*public static HashMap<Integer, CorpseData> allCorpses = new HashMap<Integer, CorpseData>();
 	
 	public static Set<Integer> getAllCorpseIDs(){
 		return (Set<Integer>)allCorpses.keySet();
@@ -31,7 +28,7 @@ public class CorpseUtils {
 	
 	public static String getCorpseName(int cID){
 		return allCorpses.get(cID).getCorpseName();
-	}
+	}*/
 	
 	public static int spawnCorpseForAll(Player player, Location loc){
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -108,7 +105,7 @@ public class CorpseUtils {
 		
 		makePlayerSleep(entityPlayer, new BlockPosition(bed.getX(), bed.getY(), bed.getZ()), watcher); 
 		*/
-		allCorpses.put(cID, CorpseAPI.spawnCorpse(player, loc));
+		/*allCorpses.put(cID, CorpseAPI.spawnCorpse(player, loc));*/
 		return cID;
 	}
 	
@@ -116,8 +113,8 @@ public class CorpseUtils {
 	
 	public static void teleportCorpseForPlayers(int cID, Location loc, List<Player> teleportFor){
 		removeCorpseForPlayers(cID, teleportFor);
-		
-		allCorpses.put(cID, CorpseAPI.spawnCorpse(Bukkit.getPlayer(allCorpses.get(cID).getCorpseName()), loc));
+
+		/*allCorpses.put(cID, CorpseAPI.spawnCorpse(Bukkit.getPlayer(allCorpses.get(cID).getCorpseName()), loc));*/
 		//Bukkit.broadcastMessage("loc: "+loc);
 		//Bukkit.broadcastMessage("ent: "+allCorpses.get(cID));
 		//allCorpses.get(cID).(loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw());
@@ -149,25 +146,25 @@ public class CorpseUtils {
 	
 	public static void removeCorpseForPlayers(int cID, List<Player> removeFrom){
 		for(Player all : removeFrom){
-			((CraftPlayer) all).getHandle().b.sendPacket(new PacketPlayOutEntityDestroy(cID));
+			((CraftPlayer) all).getHandle().c.a(new PacketPlayOutEntityDestroy(cID));
 		}
 	}
 	
 	
 	public static void removeCorpseForAll(int cID){
 		for(Player all : Bukkit.getOnlinePlayers()){
-			((CraftPlayer) all).getHandle().b.sendPacket(new PacketPlayOutEntityDestroy(cID));
+			((CraftPlayer) all).getHandle().c.a(new PacketPlayOutEntityDestroy(cID));
 		}
-		allCorpses.remove(cID);
+		//allCorpses.remove(cID);
 	}
 	
 	
 	public static void removeAllCorpses() {
-		HashMap<Integer,EntityPlayer> keyInts = (HashMap<Integer, EntityPlayer>) allCorpses.clone();
+		/*HashMap<Integer,EntityPlayer> keyInts = (HashMap<Integer, EntityPlayer>) allCorpses.clone();
 		for (int key : keyInts.keySet()) {
 			removeCorpseForAll(key);
 		}
-		keyInts.clear();
+		keyInts.clear();*/
 	}
 	private static byte getFixRotation(float yawpitch){
         return (byte) ((int) (yawpitch * 256.0F / 360.0F));
@@ -185,9 +182,9 @@ public class CorpseUtils {
 	        ex.printStackTrace();
 	      } 
 	      Bukkit.broadcastMessage("ENT " +entityPlayer +"B  "+bedPos);
-	      entityPlayer.entitySleep(bedPos);
+	      //entityPlayer.entitySleep(bedPos);
 	      for (Player pl : Bukkit.getOnlinePlayers()) {
-	    	 ((CraftPlayer)pl).getHandle().b.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
+	    	 //((CraftPlayer)pl).getHandle().c.a(new PacketPlayOutEntityMetadata(entityPlayer.getId(), playerDW, false));
 	    	 
 	      
 	      }

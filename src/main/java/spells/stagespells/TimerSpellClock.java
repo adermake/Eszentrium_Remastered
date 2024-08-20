@@ -122,7 +122,7 @@ public class TimerSpellClock extends Spell {
 			}
 			red.clear();
 			playGlobalSound(Sound.ENTITY_ARROW_HIT_PLAYER, 1, 0.5F);
-			Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(0,1,0), EntityType.FIREWORK);
+			Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(0,1,0), EntityType.FIREWORK_ROCKET);
 	        FireworkMeta fd = (FireworkMeta) firework.getFireworkMeta();
 
 	        fd.addEffect(FireworkEffect.builder()
@@ -188,7 +188,7 @@ public class TimerSpellClock extends Spell {
 	
 		ParUtils.createParticle(Particle.CLOUD, loc, 0.1F, 0.1F, 0.1F, 1, 0.02F);
 		Entity ent = blocks.get((tick)%blocks.size());
-		ParUtils.parLine(Particle.WATER_BUBBLE, loc.clone(), ent.getLocation(), 0, 0,0,1, 0, 0.2F);
+		ParUtils.parLine(Particle.BUBBLE, loc.clone(), ent.getLocation(), 0, 0,0,1, 0, 0.2F);
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public class TimerSpellClock extends Spell {
 			int t = 0;
 		public void run() {
 			t++;
-			Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(randVector().multiply(7)), EntityType.FIREWORK);
+			Firework firework = (Firework) caster.getWorld().spawnEntity(loc.clone().add(randVector().multiply(7)), EntityType.FIREWORK_ROCKET);
 			
 			
 			

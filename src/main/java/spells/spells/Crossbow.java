@@ -124,7 +124,7 @@ public class Crossbow extends Spell {
 	public void display() {
 		// TODO Auto-generated method stub
 		if (step % 10 == 0)
-		ParUtils.createParticle(Particle.SPELL_WITCH, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
+		ParUtils.createParticle(Particle.WITCH, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);
 		
 		if (step % 10 == 0 && refined)
 			ParUtils.createParticle(Particle.SNEEZE, loc.clone().add(0,1,0), 0.3, 0.3, 0.3, 1, 0);

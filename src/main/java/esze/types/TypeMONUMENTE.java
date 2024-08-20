@@ -195,7 +195,7 @@ public class TypeMONUMENTE extends TypeTeamBased {
 		
 		//ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, p.getLocation(), 0.2F, 0.5F, 0.2F, 25, 1, new Vector(0,1,0));
 		ParUtils.createParticle(Particle.SOUL, p.getLocation(), 0.5F,  0.5F,  0.5F, 50, 0.01);
-		ParUtils.createParticle(Particle.SMOKE_LARGE, p.getLocation(), 0.5F,  0.5F,  0.5F, 10, 0.001);
+		ParUtils.createParticle(Particle.LARGE_SMOKE, p.getLocation(), 0.5F,  0.5F,  0.5F, 10, 0.001);
 		//SoundUtils.playSound(Sound.BLOCK_SCULK_SENSOR_BREAK, p.getLocation(),1,1);
 		SoundUtils.playSound(Sound.ENTITY_GOAT_RAM_IMPACT, p.getLocation(),1F,1F);
 		if (Spell.damageCause.get(p) != null &&Spell.damageCause.get(p).killer != null && !getTeammates(Spell.damageCause.get(p).killer).contains(p)) {

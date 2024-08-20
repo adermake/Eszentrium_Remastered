@@ -52,7 +52,7 @@ public class KnochenpartySkeleton extends Spell {
 		
 		unHittable.add(ent);
 		//ent.getEquipment().setItemInOffHand(new ItemStack(Material.WHITE_DYE));
-		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 250, true));
+		ent.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100000, 250, true));
 		skelvel = dir;
 		//ent.setInvulnerable(false);
 		name = namae;
@@ -207,7 +207,7 @@ public class KnochenpartySkeleton extends Spell {
 		
 		if (ent != null) {
 			playSound(Sound.ENTITY_WITHER_SKELETON_DEATH,loc,1,10);
-			ParUtils.createFlyingParticle(Particle.SMOKE_LARGE, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
+			ParUtils.createFlyingParticle(Particle.LARGE_SMOKE, loc, 0.1, 0.1, 0.1, 5, 0.6, ent.getVelocity());
 			ent.remove();
 		}
 			

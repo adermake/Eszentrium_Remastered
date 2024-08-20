@@ -65,10 +65,10 @@ public class Verstummen extends Spell {
 		// TODO Auto-generated method stub
 		loc.add(loc.getDirection().multiply(0.5));
 		for (int i = 0;i<5 ;i++) {
-			ParUtils.chargeDot(loc, Particle.ENCHANTMENT_TABLE, 1, 3);
+			ParUtils.chargeDot(loc, Particle.ENCHANT, 1, 3);
 		}
 		
-		ParUtils.createParticle(Particle.WATER_BUBBLE, loc, 0.01, 0.01, 0.01, 1, 1);
+		ParUtils.createParticle(Particle.BUBBLE, loc, 0.01, 0.01, 0.01, 1, 1);
 		effect.teleport(loc);
 	}
 
@@ -95,7 +95,7 @@ public class Verstummen extends Spell {
 			public void run() {
 				t++;
 				for (int i = 0;i<5 ;i++) {
-					ParUtils.chargeDot(p.getLocation().add(0,1,0), Particle.ENCHANTMENT_TABLE, 1, 3);
+					ParUtils.chargeDot(p.getLocation().add(0,1,0), Particle.ENCHANT, 1, 3);
 				}
 			
 				Title verstummt = new Title("§cVerstummt!","",0,2,0);
