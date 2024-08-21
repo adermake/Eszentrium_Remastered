@@ -15,7 +15,10 @@ import esze.menu.SoloAnalyticsMenu;
 import esze.menu.SoloSelectionTopMenu;
 import esze.menu.WeaponsAnalyticsMenu;
 import esze.utils.*;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,10 +26,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
@@ -40,9 +43,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommandReciever implements CommandExecutor, TabCompleter {
+public class CommandReceiver implements CommandExecutor, TabCompleter {
 
-    public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String cmdlabel, @NotNull String[] args) {
         final Player p = (Player) sender;
 
 
@@ -52,33 +55,21 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
                     if (args[0].equalsIgnoreCase("start")) {
                         LobbyCountdownRunnable.start();
                     } else if (args[0].equalsIgnoreCase("stop")) {
-
                         GameType.getType().endGame();
-                        for (Player p2 : Bukkit.getOnlinePlayers()) {
-                            Title t = new Title("§e" + p.getName(), "§ehat das Spiel abgebrochen!");
-
-                            t.send(p2);
-
-                        }
-
-                    } else if (args[0].equalsIgnoreCase("info")) {
-                        //p.sendMessage("§8| §3Discord4J §7- "+Discord.getVersion() + " - " + (Discord.isLoggedIn() ? "§aCONNECTED" : "§cDISCONNECTED"));
+                        new Title("§e" + p.getName(), "§ehat das Spiel abgebrochen!").sendAll();
                     } else {
-                        p.sendMessage("§8| §c/game <start/stop/info>");
+                        p.sendMessage("§8| §c/game <start/stop>");
                     }
-
                 } else {
-                    p.sendMessage("§8| §c/game <start/stop/info>");
+                    p.sendMessage("§8| §c/game <start/stop>");
                 }
             }
         }
 
         if (cmd.getName().startsWith("music")) {
-
             Music.toogleMusic(p);
-
-
         }
+
         if (cmd.getName().startsWith("maps")) {
             if (p.isOp()) {
                 MapMenu.sendOverview(p);
@@ -95,12 +86,14 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
         }
 
         if (cmd.getName().startsWith("setdiscordtoken")) {
-            if (args.length == 1) {
-                main.plugin.getConfig().set("settings.dcToken", args[0]);
-                main.plugin.saveConfig();
-                p.sendMessage("§8| §aDiscord-Token geändert! Der Server muss reloaded werden, damit die Änderungen in Kraft treten.");
-            } else {
-                p.sendMessage("§8| §c/setdiscordtoken <Token>");
+            if (p.isOp()) {
+                if (args.length == 1) {
+                    main.plugin.getConfig().set("settings.dcToken", args[0]);
+                    main.plugin.saveConfig();
+                    p.sendMessage("§8| §aDiscord-Token geändert! Der Server muss reloaded werden, damit die Änderungen in Kraft treten.");
+                } else {
+                    p.sendMessage("§8| §c/setdiscordtoken <Token>");
+                }
             }
         }
 
@@ -214,22 +207,15 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
                 String map = args[0];
                 int padNumber = 0;
                 while (main.plugin.getConfig().contains("jumppads." + map + "." + padNumber)) {
-                    JumpPad jp = (JumpPad) main.plugin.getConfig().get("maps." + map + "." + padNumber);
                     padNumber++;
                     main.plugin.getConfig().set("jumppads." + map + "." + padNumber, null);
                 }
-
-
             } else {
                 p.sendMessage("§8| §c/removepads <Map> ");
             }
         }
+
         if (cmd.getName().startsWith("ping")) {
-
-            String title = CharRepo.getNeg(8) + "§f" + CharRepo.MENU_CONTAINER_45_TEAM;
-            Inventory inv = Bukkit.createInventory(null, 5*9, title);
-            p.openInventory(inv);
-
             if (args.length == 1) {
                 String name = args[0];
                 OfflinePlayer statss = Bukkit.getOfflinePlayer(name);
@@ -302,9 +288,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
                             return false;
                         }
                         SpellList.registerSpells();
-                        p.sendMessage("§8| §cModus geändert!");
-
-
+                        p.sendMessage("§8| §7Modus geändert!");
                     } else {
                         p.sendMessage("§8| §c/setmode <Modus>");
                     }
@@ -339,6 +323,7 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
                     main.plugin.getConfig().set("maps." + name, null);
                     main.plugin.saveConfig();
                     MapMenu.sendOverview(p);
+                    p.sendMessage("§8| §7Map entfernt!");
                 } else {
                     p.sendMessage("§8| §c/removemap <Map>");
                 }
@@ -468,64 +453,61 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
                     return false;
             }
         }
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (cmd.getName().equals("spell")) {
-                if (args.length == 0) {
-                    return false;
-                }
-
-
-                ItemStack is = new ItemStack(Material.BOOK);
-                ItemMeta im = is.getItemMeta();
-
-                String name = args[0];
-                String spellname = args[0];
-                for (String partName : args) {
-                    if (partName == name)
-                        continue;
-                    name = name + " " + partName;
-                    spellname += partName;
-                }
-                //name = name.replace("&", "§");
-
-                boolean refined = false;
-                if (name.contains("+")) {
-                    name = "§2" + name;
-                    refined = true;
-                } else {
-                    name = "§e" + name;
-                }
-                name = name.replace("+", "");
-                spellname = spellname.replace("+", "");
-                try {
-                    spellname = spellname.substring(0, spellname.length());
-                    spellname = spellname.replace(" ", "");
-                    spellname = "spells.spells." + spellname;
-                    // Bukkit.broadcastMessage("F" + s);
-                    Class clazz = Class.forName(spellname);
-                    Spell sp = (Spell) clazz.newInstance();
-                    if (refined) {
-                        im.setLore(sp.getBetterLore());
-                    } else {
-                        im.setLore(sp.getLore());
-                    }
-
-                    sp.kill();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                im.setDisplayName(name);
-                is.setItemMeta(im);
-
-                is = NBTUtils.setNBT("Spell", "true", is);
-                is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
-                is = NBTUtils.setNBT("SpellKey", "" + SpellKeyUtils.getNextSpellKey(), is);
-                player.getInventory().addItem(is);
-                return true;
+        if (cmd.getName().equals("spell")) {
+            if (args.length == 0) {
+                return false;
             }
+
+
+            ItemStack is = new ItemStack(Material.BOOK);
+            ItemMeta im = is.getItemMeta();
+
+            String name = args[0];
+            String spellname = args[0];
+            for (String partName : args) {
+                if (partName == name)
+                    continue;
+                name = name + " " + partName;
+                spellname += partName;
+            }
+            //name = name.replace("&", "§");
+
+            boolean refined = false;
+            if (name.contains("+")) {
+                name = "§2" + name;
+                refined = true;
+            } else {
+                name = "§e" + name;
+            }
+            name = name.replace("+", "");
+            spellname = spellname.replace("+", "");
+            try {
+                spellname = spellname.substring(0, spellname.length());
+                spellname = spellname.replace(" ", "");
+                spellname = "spells.spells." + spellname;
+                // Bukkit.broadcastMessage("F" + s);
+                Class clazz = Class.forName(spellname);
+                Spell sp = (Spell) clazz.newInstance();
+                if (refined) {
+                    im.setLore(sp.getBetterLore());
+                } else {
+                    im.setLore(sp.getLore());
+                }
+
+                sp.kill();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            im.setDisplayName(name);
+            is.setItemMeta(im);
+
+            is = NBTUtils.setNBT("Spell", "true", is);
+            is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
+            is = NBTUtils.setNBT("SpellKey", "" + SpellKeyUtils.getNextSpellKey(), is);
+            p.getInventory().addItem(is);
+            return true;
         }
 
         return false;
@@ -534,160 +516,102 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender player, Command cmd, String cmdname, String[] args) {
+        List<String> to = new ArrayList<>();
         if (args.length == 1) {
             if (cmdname.contains("game")) {
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
+                List<String> from = new ArrayList<>();
                 from.add("start");
                 from.add("stop");
-                from.add("info");
-                try {
-                    for (String s : from) {
-                        String eing = args[0];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                for (String s : from) {
+                    String eing = args[0];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             } else if (cmdname.contains("setjumppad")) {
-                List<String> to = new ArrayList<String>();
                 List<String> from = new ArrayList<String>();
                 for (String arena : main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)) {
                     if (main.plugin.getConfig().get("maps." + arena) != null) {
                         from.add(arena);
                     }
                 }
-                try {
-                    for (String s : from) {
-                        String eing = args[0];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                for (String s : from) {
+                    String eing = args[0];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             } else if (cmdname.contains("ping")) {
+                List<String> from = new ArrayList<>(Bukkit.getOnlinePlayers().stream().map(Player::getName).toList());
+                for (String s : from) {
+                    String eing = args[0];
+                    String eing2 = s.substring(0, eing.length());
 
-
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    from.add(p.getName());
-                }
-                try {
-                    for (String s : from) {
-                        String eing = args[0];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
-
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             } else if (cmdname.contains("setmode")) {
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
-                for (TypeEnum type : GameType.TypeEnum.values()) {
-                    from.add(type.toString());
-                }
-                try {
-                    for (String s : from) {
-                        String eing = args[0];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                List<String> from = new ArrayList<>(Arrays.stream(TypeEnum.values()).map(TypeEnum::toString).toList());
+                for (String s : from) {
+                    String eing = args[0];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
                 if (Gamestate.getGameState() == Gamestate.INGAME) {
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        GameType.getType().givePlayerLobbyItems(p);
-                    }
+                    Bukkit.getOnlinePlayers().forEach(p -> GameType.getType().givePlayerLobbyItems(p));
                 }
 
-
-                return to;
             } else if (cmdname.contains("setitem")) {
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
+                List<String> from = new ArrayList<>();
                 for (String arena : main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)) {
                     if (main.plugin.getConfig().get("maps." + arena) != null) {
                         from.add(arena);
                     }
                 }
-                try {
-                    for (String s : from) {
-                        String eing = args[0];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                for (String s : from) {
+                    String eing = args[0];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             }
         } else if (args.length == 2) {
             if (cmdname.contains("setitem")) {
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
-                for (Material mat : Material.values()) {
-                    from.add(mat.toString());
-                }
-                try {
-                    for (String s : from) {
-                        String eing = args[1];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                List<String> from = new ArrayList<>(Arrays.stream(Material.values()).map(Material::toString).toList());
+                for (String s : from) {
+                    String eing = args[1];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             }
         } else if (args.length == 3) {
             if (cmdname.contains("setjumppad")) {
-                List<String> to = new ArrayList<String>();
-                List<String> from = new ArrayList<String>();
-                from.add("dir");
-                from.add("up");
-                try {
-                    for (String s : from) {
-                        String eing = args[2];
-                        String a = s;
-                        String eing2 = a.substring(0, eing.length());
+                List<String> from = List.of("dir", "up");
+                for (String s : from) {
+                    String eing = args[2];
+                    String eing2 = s.substring(0, eing.length());
 
-                        if (eing.equalsIgnoreCase(eing2)) {
-                            to.add(a);
-                        }
+                    if (eing.equalsIgnoreCase(eing2)) {
+                        to.add(s);
                     }
-                } catch (Exception e) {
                 }
-                return to;
             }
         }
 
-        return null;
+        return to;
     }
 
     public static void saveFile(URL url, String file, Player p) throws IOException {

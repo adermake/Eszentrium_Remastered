@@ -78,34 +78,8 @@ public class TTTFusion implements Listener {
                                 if (inv.getItem(14) != null && inv.getItem(14).getType() == Material.ENCHANTED_BOOK) {
 
 
-                                    ItemStack random = null;
+                                    ItemStack random;
                                     while (true) {
-										
-										/*
-										ArrayList<String> spells = new ArrayList<String>();
-										
-										for(RegisteredListener rl : HandlerList.getRegisteredListeners(Bukkit.getPluginManager().getPlugin("Eszentrium"))){
-											try {
-												if(rl.getListener().getClass().getSuperclass().equals(Class.forName("core.spells.spells"))){
-													Field f = rl.getListener().getClass().getSuperclass().getDeclaredField("spellname");
-													f.setAccessible(true);
-													String s = (String) f.get(rl.getListener());
-
-													Field f1 = rl.getListener().getClass().getSuperclass().getDeclaredField("tpoints");
-													f1.setAccessible(true);
-													Integer s1 = (Integer) f1.get(rl.getListener());
-													
-													if(s1 == 0 || s1 == -1){
-														spells.add(s);
-													}
-													
-												}
-											} catch (ClassNotFoundException | IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-												e.printStackTrace();
-											}
-										}
-										*/
-
                                         String rand = SpellList.getRandomSpell().getName();
 
                                         while (rand.startsWith("§c") || rand.startsWith("§8")) {

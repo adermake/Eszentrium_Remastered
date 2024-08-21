@@ -420,12 +420,9 @@ public class TypeTTT extends Type {
 
     @Override
     public void endGame() {
-        // TODO Auto-generated method stub
         new BukkitRunnable() {
-
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 Discord.unMuteAll();
             }
         }.runTaskLater(main.plugin, 20);

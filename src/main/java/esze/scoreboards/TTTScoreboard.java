@@ -5,6 +5,8 @@ import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.main.main;
 import esze.types.TypeTTT;
+import esze.utils.CorpseUtils;
+import esze.utils.TTTCorpse;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -57,41 +59,37 @@ public class TTTScoreboard extends Scoreboard {
                             if (game.players.contains(p)) {
                                 innoBoard.add(p.getName());
                             } else if (game.spectator.contains(p)) {
-								/*for(Integer corpseID : CorpseUtils.getAllCorpseIDs()) {
-									if(CorpseUtils.getCorpseName(corpseID).equalsIgnoreCase(p.getName())) {
-										TTTCorpse corpse = null;
-										for(TTTCorpse _corpse : TTTCorpse.allCorpses) {
-											if(_corpse.corpseID == corpseID) {
-												corpse = _corpse;
-											}
-										}
-										
-										if(corpse != null) {
-											if(corpse.isExposed) {
-												innoBoard.add("§m"+p.getName());
-											}else {
-												innoBoard.add(p.getName());
-											}
-										} else {
-											innoBoard.add(p.getName());
-										}
-										
-									}
-								}*/
+                                for (Integer corpseID : CorpseUtils.getAllCorpseIDs()) {
+                                    if (CorpseUtils.getCorpseName(corpseID).equalsIgnoreCase(p.getName())) {
+                                        TTTCorpse corpse = null;
+                                        for (TTTCorpse _corpse : TTTCorpse.allCorpses) {
+                                            if (_corpse.corpseID == corpseID) {
+                                                corpse = _corpse;
+                                            }
+                                        }
+
+                                        if (corpse != null) {
+                                            if (corpse.isExposed) {
+                                                innoBoard.add("§m" + p.getName());
+                                            } else {
+                                                innoBoard.add(p.getName());
+                                            }
+                                        } else {
+                                            innoBoard.add(p.getName());
+                                        }
+
+                                    }
+                                }
                             }
                         }
 
+                        Bukkit.getOnlinePlayers().stream()
+                                .filter(p -> !game.players.contains(p) && !game.spectator.contains(p))
+                                .forEach(p -> ScoreboardUtil.unrankedSidebarDisplay(p, innoBoard.toArray(new String[0])));
 
-                        for (Player p : Bukkit.getOnlinePlayers()) {
-                            if (!game.innocent.contains(p) && !game.traitor.contains(p)) {
-                                ScoreboardUtil.unrankedSidebarDisplay(p, innoBoard.toArray(new String[innoBoard.size()]));
-                            }
-                        }
+                        ScoreboardUtil.unrankedSidebarDisplay(game.innocent, innoBoard.toArray(new String[0]));
 
-
-                        ScoreboardUtil.unrankedSidebarDisplay(game.innocent, innoBoard.toArray(new String[innoBoard.size()]));
-
-                        ScoreboardUtil.unrankedSidebarDisplay(game.traitor, traitorBoard.toArray(new String[traitorBoard.size()]));
+                        ScoreboardUtil.unrankedSidebarDisplay(game.traitor, traitorBoard.toArray(new String[0]));
 
                         if (hide) {
                             this.cancel();
@@ -99,7 +97,6 @@ public class TTTScoreboard extends Scoreboard {
                         }
                     }
                 }
-
 
             }
         }.runTaskTimer(main.plugin, 0, 10);

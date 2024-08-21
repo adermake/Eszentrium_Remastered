@@ -127,7 +127,7 @@ public class DropPickup implements Listener {
         TypeTEAMS t = (TypeTEAMS) GameType.getType();
         Item item = p.getWorld().dropItem(p.getEyeLocation(), is);
         item.setPickupDelay(100000);
-        ScoreboardTeamUtils.colorEntity(item, t.getTeamOfPlayer(p).color);
+        ScoreboardTeamUtils.colorEntity(item, t.getTeamOfPlayer(p).getChatColor());
         SoundUtils.playSound(Sound.ENTITY_SNOWBALL_THROW, p.getLocation(), 0.2F, 1);
         item.setGlowing(true);
 
@@ -210,7 +210,7 @@ public class DropPickup implements Listener {
                         item.remove();
                         this.cancel();
                     }
-                    ParUtils.createRedstoneParticle(item.getLocation().add(0, 0.3, 0), 0.05, 0.05, 0.05, 2, t.getTeamOfPlayer(p).parcolor, 1.3F);
+                    ParUtils.createRedstoneParticle(item.getLocation().add(0, 0.3, 0), 0.05, 0.05, 0.05, 2, t.getTeamOfPlayer(p).getParticleColor(), 1.3F);
                     item.setVelocity(dir.clone().multiply(speedMult));
                     if (target != null) {
                         Vector vec = target.getLocation().toVector().subtract(item.getLocation().toVector()).normalize();

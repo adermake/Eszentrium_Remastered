@@ -1,6 +1,7 @@
 package esze.main;
 
 import easyscoreboards.ScoreboardUtil;
+import esze.app.AppClientSocket;
 import esze.enums.GameType;
 import esze.listeners.Reconnect;
 import org.bukkit.Bukkit;
@@ -20,7 +21,7 @@ public class LobbyBackgroundRunnable {
             public void run() {
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    ArrayList<String> board = new ArrayList<String>();
+                    ArrayList<String> board = new ArrayList<>();
 
                     board.add("§2Spielinfos");
                     board.add(" ");
@@ -32,7 +33,6 @@ public class LobbyBackgroundRunnable {
                     board.add("   ");
                     board.add("§a§lApp:");
 					
-					/* Macht ERROR Fix pls
 					boolean usesApp = false;
 					for(AppClientSocket socket : main.plugin.appServer.clientSockets) {
 						if(socket.getIdentity() != null && socket.getIdentity().getUsername().equalsIgnoreCase(p.getName())) {
@@ -42,7 +42,7 @@ public class LobbyBackgroundRunnable {
 					}
 					
 					board.add(usesApp ? "VERBUNDEN" : "OFFLINE");
-					*/
+
 
                     String[] array = new String[board.size()];
                     int i = 0;

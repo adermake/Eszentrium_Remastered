@@ -24,7 +24,8 @@ public class TTTTrade implements Listener {
             if (e.getCause() == DamageCause.ENTITY_ATTACK) {
                 Player clicked = (Player) e.getEntity();
                 Player p = (Player) e.getDamager();
-                if (p.getInventory().getItemInMainHand() != null && p.getInventory().getItemInMainHand().getType() == Material.EMERALD) {
+                p.getInventory().getItemInMainHand();
+                if (p.getInventory().getItemInMainHand().getType() == Material.EMERALD) {
                     e.setCancelled(true);
                     if (herausfordern.containsValue(p)) {
                         Inventory inv = Bukkit.createInventory(null, 9 * 3, "Handel...");

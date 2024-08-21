@@ -31,13 +31,11 @@ public abstract class Type {
 
     public String name;
     public String currentmap;
-    public ArrayList<Player> startplayers = new ArrayList<Player>();
-    public ArrayList<Player> players = new ArrayList<Player>();
-    public ArrayList<Player> spectator = new ArrayList<Player>();
+    public ArrayList<Player> startplayers = new ArrayList<>();
+    public ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<Player> spectator = new ArrayList<>();
     public Scoreboard scoreboard;
     public int spawnloc = 1;
-    public static final String voiddamage = "void";
-    public static final String unknownDamage = "unknown";
 
     public abstract void runEverySecond();
 
@@ -61,7 +59,6 @@ public abstract class Type {
 
         // DEATH MESSAGE
         if (!spectator.contains(p)) {
-
             String out = DamageCauseContainer.toMessage(Spell.damageCause.get(p), p.getName());
             for (Player rec : Bukkit.getOnlinePlayers()) {
                 rec.sendMessage(out);
@@ -71,7 +68,6 @@ public abstract class Type {
 
         Spell.damageCause.put(p, null);
         p.setVelocity(new Vector(0, 0, 0));
-
 
     }
 
@@ -220,35 +216,6 @@ public abstract class Type {
         }.runTaskTimer(main.plugin, 2, 2);
     }
 	
-	/*
-	public static String toStringCause(Player p) {
-		String[] in = main.damageCause.get(p).split("-");
-		String color = "§7";
-		String out = color;
-		// Analysis
-		if (in.length == 0) {
-			out = "ERROR:::";
-		} else if (in.length == 1) {
-			if (in[0].equals("")) {
-				out += p.getName() + " ERRORED TO DEATH!"; // no Cause old
-			} else if (in[0].equals(unknownDamage)) {
-				out += p.getName() + " starb!"; // no Cause
-			} else if (in[0].equals(voiddamage)) {
-				out += p.getName() + " fiel ins Void!"; // Void
-			} else {
-
-				out += p.getName() + " ERRORED TO DEATH! (" + in[0] + ")";
-			}
-		} else if (in.length == 2) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " getötet!"; // Cause+Player
-		} else if (in.length == 3) {
-			out += p.getName() + " wurde durch " + in[1] + " mit " + in[0] + color + " ins Void geworfen!"; // Cause+Player+void
-		} else {
-			out = main.damageCause.get(p);
-		}
-		return out;
-	}*/
-
     public void setupGame() {
 
         for (int i = 0; i < 16; i++) {

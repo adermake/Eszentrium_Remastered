@@ -2,13 +2,11 @@ package spells.spells;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -16,8 +14,6 @@ import org.bukkit.util.Vector;
 
 
 import esze.objects.Vector2D;
-import esze.utils.FileWriter;
-import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import org.bukkit.Sound;

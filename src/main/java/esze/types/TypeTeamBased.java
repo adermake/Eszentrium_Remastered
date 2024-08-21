@@ -8,15 +8,12 @@ import java.util.ArrayList;
 
 public abstract class TypeTeamBased extends Type {
 
-
     public ArrayList<EszeTeam> allTeams = new ArrayList<EszeTeam>();
 
     public void removePlayerFromAllTeams(Player p) {
-        for (EszeTeam t : allTeams) {
-            if (t.players.contains(p)) {
-                t.removePlayer(p);
-            }
-        }
+        allTeams.stream()
+                .filter(t -> t.containsPlayer(p))
+                .forEach(t -> t.removePlayer(p));
     }
 
     public void autoFillPlayers() {
@@ -30,24 +27,16 @@ public abstract class TypeTeamBased extends Type {
     }
 
     public boolean playerHasTeam(Player p) {
-        boolean hasTeam = false;
-        for (EszeTeam t : allTeams) {
-            if (t.players.contains(p)) {
-                hasTeam = true;
-            }
-        }
-        return hasTeam;
-
+        return allTeams.stream()
+                .map(EszeTeam::getPlayers)
+                .anyMatch(players -> players.contains(p));
     }
 
     public ArrayList<Player> getTeammates(Player p) {
-
-        for (EszeTeam t : allTeams) {
-            if (t.players.contains(p)) {
-                return t.players;
-            }
-        }
-        return null;
-
+        return allTeams.stream()
+                .map(EszeTeam::getPlayers)
+                .filter(players -> players.contains(p))
+                .findFirst()
+                .orElse(null);
     }
 }

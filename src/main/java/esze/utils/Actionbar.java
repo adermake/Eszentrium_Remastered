@@ -24,22 +24,7 @@ public class Actionbar {
     public Actionbar send(Player p) {
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
 
-
         return this;
-    }
-
-    private Class<?> getNMSClass(String name) {
-        try {
-            return Class.forName("net.minecraft.server.v1_16_R3." + name);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
-    private String getVersion() {
-        return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
     }
 
 }

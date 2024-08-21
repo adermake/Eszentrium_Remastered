@@ -20,10 +20,10 @@ public class TeamMonumenteSelectionMenu extends ItemMenu {
         if (tt.allTeams.size() == 4) {
             int i = 2;
             for (EszeTeam t : tt.allTeams) {
-                if (t.players.contains(p)) {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName, null, true);
+                if (t.containsPlayer(p)) {
+                    addClickableItem(i, 1, t.getTeamIcon(), t.getTeamName(), null, true);
                 } else {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName);
+                    addClickableItem(i, 1, t.getTeamIcon(), t.getTeamName());
                 }
 
                 i += 2;
@@ -32,10 +32,10 @@ public class TeamMonumenteSelectionMenu extends ItemMenu {
         if (tt.allTeams.size() == 2) {
             int i = 3;
             for (EszeTeam t : tt.allTeams) {
-                if (t.players.contains(p)) {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName, null, true);
+                if (t.containsPlayer(p)) {
+                    addClickableItem(i, 1, t.getTeamIcon(), t.getTeamName(), null, true);
                 } else {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName);
+                    addClickableItem(i, 1, t.getTeamIcon(), t.getTeamName());
                 }
 
                 i += 4;
@@ -52,7 +52,7 @@ public class TeamMonumenteSelectionMenu extends ItemMenu {
         if (GameType.getType() instanceof TypeTeamBased) {
             TypeTeamBased tt = (TypeTeamBased) GameType.getType();
             for (EszeTeam t : tt.allTeams) {
-                if (t.teamName.equals(icon.getItemMeta().getDisplayName())) {
+                if (t.getTeamName().equals(icon.getItemMeta().getDisplayName())) {
                     tt.removePlayerFromAllTeams(p);
                     t.addPlayer(p);
                     ItemMeta im = icon.getItemMeta();

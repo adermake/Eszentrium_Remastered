@@ -63,13 +63,13 @@ public class PlayerInfo {
      */
     public DamageCall damageVoid() {
         DamageCall dc = new DamageCall();
-        dc.Void = true;
-        dc.millis = System.currentTimeMillis();
+        dc.setVoid(true);
+        dc.setMillis(System.currentTimeMillis());
 
         Player player = getPlayer();
         if (player != null) {
             if (isAlive) {
-                damageCalls.put(dc.millis, dc);
+                damageCalls.put(dc.getMillis(), dc);
                 player.damage(30);
             }
         }
@@ -86,17 +86,12 @@ public class PlayerInfo {
      * @return DamageCall object
      */
     public DamageCall damage(Entity damager, int damage, String spell) {
-        DamageCall dc = new DamageCall();
-        dc.damager = damager;
-        dc.damage = damage;
-        dc.spell = spell;
-        dc.Void = false;
-        dc.millis = System.currentTimeMillis();
+        DamageCall dc = new DamageCall(damager, damage, spell, false, System.currentTimeMillis());
 
         Player player = getPlayer();
         if (player != null) {
             if (isAlive) {
-                damageCalls.put(dc.millis, dc);
+                damageCalls.put(dc.getMillis(), dc);
                 player.damage(damage);
             }
         }

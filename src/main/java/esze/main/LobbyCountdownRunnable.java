@@ -31,58 +31,50 @@ public class LobbyCountdownRunnable {
         timeLeft = 15;
         final int timeDefault = timeLeft;
 
-        runnableID = Bukkit.getScheduler().scheduleSyncRepeatingTask(main.plugin, new Runnable() {
+        runnableID = Bukkit.getScheduler().scheduleSyncRepeatingTask(main.plugin, () -> {
 
-            @Override
-            public void run() {
+            String timeShow = calculatePercent(15, timeDefault, timeLeft);
+            new Actionbar(timeShow).sendAll();
 
-                String timeShow = calculatePercent(15, timeDefault, timeLeft);
-                new Actionbar(timeShow).sendAll();
-
-
-                if (timeLeft <= 0) {
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        PlayerAPI.addPlayer(p);
-                    }
-                    Gamestate.setGameState(Gamestate.INGAME);
-                    new Actionbar("").sendAll();
-                    WeaponAbilitys.lastLaunched.clear();
-
-                    if (ModifierMenu.modifier.size() > 0) {
-                        Bukkit.broadcastMessage("§e[Modifikatoren]:");
-                        for (GameModifier gm : ModifierMenu.modifier) {
-                            Bukkit.broadcastMessage("§7-> " + gm.toString());
-                        }
-                    }
-                    timeLeft = timeDefault;
-                    GameType.getType().players.clear();
-                    GameType.getType().startplayers.clear();
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.getGameMode() != GameMode.SPECTATOR) {
-                            GameType.getType().players.add(p);
-                            GameType.getType().startplayers.add(p);
-                        }
-                    }
-                    GameType.getType().currentmap = MapSelect.maxVotes();
-                    Gamestate.setGameState(Gamestate.INGAME);
-                    GameType.getType().gameStart();
-                    GameRunnable.start();
-                    LobbyBackgroundRunnable.stop();
-                    stop();
+            if (timeLeft <= 0) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    PlayerAPI.addPlayer(p);
                 }
+                Gamestate.setGameState(Gamestate.INGAME);
+                new Actionbar("").sendAll();
+                WeaponAbilitys.lastLaunched.clear();
 
-                timeLeft--;
-
+                if (!ModifierMenu.modifier.isEmpty()) {
+                    Bukkit.broadcastMessage("§e[Modifikatoren]:");
+                    for (GameModifier gm : ModifierMenu.modifier) {
+                        Bukkit.broadcastMessage("§7-> " + gm.toString());
+                    }
+                }
+                timeLeft = timeDefault;
+                GameType.getType().players.clear();
+                GameType.getType().startplayers.clear();
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (p.getGameMode() != GameMode.SPECTATOR) {
+                        GameType.getType().players.add(p);
+                        GameType.getType().startplayers.add(p);
+                    }
+                }
+                GameType.getType().currentmap = MapSelect.maxVotes();
+                Gamestate.setGameState(Gamestate.INGAME);
+                GameType.getType().gameStart();
+                GameRunnable.start();
+                LobbyBackgroundRunnable.stop();
+                stop();
             }
+
+            timeLeft--;
+
         }, 0, 20);
     }
 
     public static void stop() {
         Bukkit.getScheduler().cancelTask(runnableID);
-
         running = false;
-
-
     }
 
     public static String calculatePercent(int bars, int FULL, int LEFT) {

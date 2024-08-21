@@ -56,30 +56,30 @@ public class main extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(JumpPad.class);
         ConfigurationSerialization.registerClass(PlayerConfig.class);
-        this.getCommand("setmonumap").setExecutor(new CommandReciever());
-        this.getCommand("playrandomsound").setExecutor(new CommandReciever());
-        this.getCommand("showpads").setExecutor(new CommandReciever());
-        this.getCommand("loadpads").setExecutor(new CommandReciever());
-        this.getCommand("unload").setExecutor(new CommandReciever());
-        this.getCommand("spell").setExecutor(new CommandReciever());
-        this.getCommand("game").setExecutor(new CommandReciever());
-        this.getCommand("maps").setExecutor(new CommandReciever());
-        this.getCommand("setspawn").setExecutor(new CommandReciever());
-        this.getCommand("setpassword").setExecutor(new CommandReciever());
-        this.getCommand("setitem").setExecutor(new CommandReciever());
-        this.getCommand("setdiscordtoken").setExecutor(new CommandReciever());
-        this.getCommand("setlobby").setExecutor(new CommandReciever());
-        this.getCommand("downloadfile").setExecutor(new CommandReciever());
-        this.getCommand("ping").setExecutor(new CommandReciever());
-        this.getCommand("setmode").setExecutor(new CommandReciever());
-        this.getCommand("removemap").setExecutor(new CommandReciever());
-        this.getCommand("itemname").setExecutor(new CommandReciever());
-        this.getCommand("setjumppad").setExecutor(new CommandReciever());
-        this.getCommand("removepads").setExecutor(new CommandReciever());
-        this.getCommand("music").setExecutor(new CommandReciever());
+        this.getCommand("setmonumap").setExecutor(new CommandReceiver());
+        this.getCommand("playrandomsound").setExecutor(new CommandReceiver());
+        this.getCommand("showpads").setExecutor(new CommandReceiver());
+        this.getCommand("loadpads").setExecutor(new CommandReceiver());
+        this.getCommand("unload").setExecutor(new CommandReceiver());
+        this.getCommand("spell").setExecutor(new CommandReceiver());
+        this.getCommand("game").setExecutor(new CommandReceiver());
+        this.getCommand("maps").setExecutor(new CommandReceiver());
+        this.getCommand("setspawn").setExecutor(new CommandReceiver());
+        this.getCommand("setpassword").setExecutor(new CommandReceiver());
+        this.getCommand("setitem").setExecutor(new CommandReceiver());
+        this.getCommand("setdiscordtoken").setExecutor(new CommandReceiver());
+        this.getCommand("setlobby").setExecutor(new CommandReceiver());
+        this.getCommand("downloadfile").setExecutor(new CommandReceiver());
+        this.getCommand("ping").setExecutor(new CommandReceiver());
+        this.getCommand("setmode").setExecutor(new CommandReceiver());
+        this.getCommand("removemap").setExecutor(new CommandReceiver());
+        this.getCommand("itemname").setExecutor(new CommandReceiver());
+        this.getCommand("setjumppad").setExecutor(new CommandReceiver());
+        this.getCommand("removepads").setExecutor(new CommandReceiver());
+        this.getCommand("music").setExecutor(new CommandReceiver());
 
-        this.getCommand("nofboost").setExecutor(new CommandReciever());
-        this.getCommand("analytics").setExecutor(new CommandReciever());
+        this.getCommand("nofboost").setExecutor(new CommandReceiver());
+        this.getCommand("analytics").setExecutor(new CommandReceiver());
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Move(), this);
         getServer().getPluginManager().registerEvents(new Death(), this);
@@ -178,8 +178,8 @@ public class main extends JavaPlugin {
         AppUserPasswordUtils.createPasswordConfig();
 
         System.out.println("Esze | Fahre App-Server hoch.");
-        //appServer = new AppServer();
-        //appServer.startServer();
+        appServer = new AppServer();
+        appServer.startServer();
         System.out.println("Esze | App-Server hochgefahren.");
 
     }

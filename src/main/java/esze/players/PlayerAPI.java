@@ -1,11 +1,18 @@
 package esze.players;
 
+import lombok.Getter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
 public class PlayerAPI {
 
+    /**
+     * -- GETTER --
+     *
+     * @return list of player infos
+     */
+    @Getter
     private static ArrayList<PlayerInfo> playerInfos = new ArrayList<PlayerInfo>();
 
     /**
@@ -76,13 +83,6 @@ public class PlayerAPI {
             }
         }
         return false;
-    }
-
-    /**
-     * @return list of player infos
-     */
-    public static ArrayList<PlayerInfo> getPlayerInfos() {
-        return playerInfos;
     }
 
     /**

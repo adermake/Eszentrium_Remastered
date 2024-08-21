@@ -155,7 +155,7 @@ public class TypeTEAMS extends TypeTeamBased {
 
             p.teleport(nextLoc());
             TeamSpellMenu s;
-            if (lives.get(getTeamOfPlayer(p)) < getTeamOfPlayer(p).players.size() + 1) {
+            if (lives.get(getTeamOfPlayer(p)) < getTeamOfPlayer(p).getPlayers().size() + 1) {
                 s = new TeamSpellMenu(true);
             } else {
                 s = new TeamSpellMenu();
@@ -195,7 +195,7 @@ public class TypeTEAMS extends TypeTeamBased {
 
     public boolean teamSillHasPlayers(EszeTeam et) {
         boolean has = false;
-        for (Player p : et.players) {
+        for (Player p : et.getPlayers()) {
             if (players.contains(p)) {
                 has = true;
             }
@@ -210,7 +210,7 @@ public class TypeTEAMS extends TypeTeamBased {
 
             if (allTeamsAlive.size() <= 1 && !gameOver) {
 
-                SaveUtils.setPlayerPlace(allTeamsAlive.get(0).players.get(0).getName(), 1); //Analytics
+                SaveUtils.setPlayerPlace(allTeamsAlive.getFirst().getPlayers().getFirst().getName(), 1); //Analytics
 
                 scoreboard.hideScoreboard();
                 gameOver = true;
@@ -218,7 +218,7 @@ public class TypeTEAMS extends TypeTeamBased {
                 for (Player p : Bukkit.getOnlinePlayers()) {
 
                     for (EszeTeam team : allTeamsAlive) {
-                        Title t = new Title("§7" + team.teamName + " §7hat gewonnen!");
+                        Title t = new Title("§7" + team.getTeamName() + " §7hat gewonnen!");
                         won = true;
                         t.send(p);
 
@@ -286,7 +286,7 @@ public class TypeTEAMS extends TypeTeamBased {
         ArrayList<ArrayList<String>> teams = new ArrayList<ArrayList<String>>();
         for (EszeTeam team : allTeams) {
             ArrayList<String> names = new ArrayList<>();
-            for (Player p : team.players) {
+            for (Player p : team.getPlayers()) {
                 names.add(p.getName());
             }
             teams.add(names);
@@ -341,7 +341,7 @@ public class TypeTEAMS extends TypeTeamBased {
 
     public EszeTeam getTeamOfPlayer(Player p) {
         for (EszeTeam t : allTeams) {
-            if (t.players.contains(p)) {
+            if (t.containsPlayer(p)) {
                 return t;
             }
         }
@@ -350,22 +350,16 @@ public class TypeTEAMS extends TypeTeamBased {
 
 
     public void resendScorboardTeams(Player p) {
-
-
         for (EszeTeam team : allTeams) {
-            for (Player pl : team.players) {
-                ScoreboardTeamUtils.colorPlayer(pl, p, team.color);
+            for (Player pl : team.getPlayers()) {
+                ScoreboardTeamUtils.colorPlayer(pl, p, team.getChatColor());
             }
-
         }
     }
 
     public void resetMode() {
         for (EszeTeam t : allTeams) {
-            ArrayList<Player> pList = new ArrayList<Player>();
-            for (Player p : t.players) {
-                pList.add(p);
-            }
+            ArrayList<Player> pList = new ArrayList<Player>(t.getPlayers());
             for (Player p : pList) {
                 t.removePlayer(p);
             }

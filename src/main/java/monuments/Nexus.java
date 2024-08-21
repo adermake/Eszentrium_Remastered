@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import esze.enums.GameType;
-import esze.enums.Gamestate;
 import esze.types.TypeMONUMENTE;
 import esze.utils.EszeTeam;
 import esze.utils.ParUtils;
@@ -42,8 +41,7 @@ public class Nexus extends Monument {
         Material TeamMaterial2;
         Material TeamOrbitar;
         Material TeamCore;
-        Bukkit.broadcastMessage("NExus" + team + team.color);
-        if (team.color == ChatColor.RED) {
+        if (team.getChatColor() == ChatColor.RED) {
             TeamMaterial = Material.FIRE_CORAL_BLOCK;
             TeamMaterial2 = Material.CRIMSON_HYPHAE;
             TeamOrbitar = Material.RED_STAINED_GLASS;

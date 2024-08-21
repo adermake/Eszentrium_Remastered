@@ -94,8 +94,6 @@ public class TypeSOLO extends Type {
                 Spell.damageCause.put(p, new DamageCauseContainer(null, null));
             }
             SaveUtils.addPlayerDeath(p.getName(), Spell.damageCause.get(p).getKiller(), Spell.damageCause.get(p).void_d, Spell.damageCause.get(p).getSpell()); // Analytics
-        } else {
-            // p.sendMessage("STOP DIEING!");
         }
 
         Spell.damageCause.put(p, new DamageCauseContainer(null, null));
@@ -111,8 +109,6 @@ public class TypeSOLO extends Type {
             return;
 
         if (!lives.containsKey(p)) {
-            //Bukkit.broadcastMessage("�c[Error] Live List Bug detected!");
-            //Bukkit.broadcastMessage("�c[Error] Canceling Lifeloss!");
             p.teleport(nextLoc());
             return;
         }

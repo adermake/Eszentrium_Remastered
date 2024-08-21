@@ -6,7 +6,6 @@ import org.bukkit.*;
 import org.bukkit.Particle.DustOptions;
 import org.bukkit.Particle.DustTransition;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -65,17 +64,9 @@ public class ParUtils {
                                       int count, double speed) {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            /*
-             * PRE 1.17 EntityPlayer ep = ((CraftPlayer) p).getHandle(); nmsWorld.a(ep, new
-             * ParticleParamNormal(par), true, loc.getX(), loc.getY(), loc.getZ(), count,
-             * spreadX, spreadY, spreadZ, speed);
-             */
             p.spawnParticle(par, loc, count, spreadX, spreadY, spreadZ, speed);
         }
 
-        // a(EntityPlayer target, ParticleParam particle, boolean longDistance, double
-        // x, double y, double z, int count, double offsetX, double offsetY, double
-        // offsetZ, double speed)
     }
 
     public static void createParticleqareHorizontal(Particle par, Location loc, double size) {
@@ -105,9 +96,6 @@ public class ParUtils {
             createParticle(par, loctmp, v.getX(), v.getY(), v.getZ(), 0, speed);
         }
 
-        // a(EntityPlayer target, ParticleParam particle, boolean longDistance, double
-        // x, double y, double z, int count, double offsetX, double offsetY, double
-        // offsetZ, double speed)
     }
 
     public static void parLineRedstone(Location l1C, Location l2C, Color color, float size, double thickness) {
@@ -121,8 +109,6 @@ public class ParUtils {
         double counter = l1.distance(l2) / thickness;
         for (int i = 0; i < counter; i++) {
             l1.add(v);
-            // pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
-            // 0, 1);
             createRedstoneParticle(l1, 0, 0, 0, 1, color, size);
             if (l1.distance(l2) < 1) {
                 break;
@@ -167,8 +153,6 @@ public class ParUtils {
         double counter = l1.distance(l2) / thickness;
         for (int i = 0; i < counter; i++) {
             l1.add(v);
-            // pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
-            // 0, 1);
             createRedstoneParticle(l1, 0, 0, 0, 1, color, size);
             size = size - 0.05F;
             if (l1.distance(l2) < 1) {
@@ -192,8 +176,6 @@ public class ParUtils {
         double counter = l1.distance(l2) / thickness;
         for (int i = 0; i < counter; i++) {
             l1.add(v);
-            // pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
-            // 0, 1);
 
             if (ori.distance(l2) - l1.distance(ori) < 0) {
                 break;
@@ -211,8 +193,6 @@ public class ParUtils {
         double counter = l1.distance(l2) / thickness;
         for (int i = 0; i < counter; i++) {
             l1.add(v);
-            // pe.send(Bukkit.getOnlinePlayers(), l1.getX(), l1.getY(), l1.getZ(), 0, 0, 0,
-            // 0, 1);
             createParticle(p, l1, (float) dir.getX(), (float) dir.getY(), (float) dir.getZ(), 0, speed);
             if (l1.distance(l2) < 1) {
                 break;
@@ -242,37 +222,6 @@ public class ParUtils {
 
     }
 
-    public static void parCubeEdgeFly(Particle pt, Location l1, double size, double count, double speed) {
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(-size, 0, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, -size, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, 0, -size));
-
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(size, 0, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, size, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, 0, size));
-
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, -size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(-size, 0, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, -size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, 0, -size));
-
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(size, 0, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, -size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, 0, size));
-
-        ParUtils.createFlyingParticle(pt, l1.clone().add(size / 2, size / 2, -size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, -size, 0));
-        ParUtils.createFlyingParticle(pt, l1.clone().add(-size / 2, size / 2, size / 2), 0, 0, 0, 1, speed,
-                new Vector(0, -size, 0));
-
-    }
 
     public static void parVectorLine(Particle pt, Location l1, Vector vec, double split) {
         for (double i = 0; i < split; i++) {
@@ -433,8 +382,6 @@ public class ParUtils {
 
             Vector ve = j.subtract(loc).toVector();
 
-            // createParticle(pe, loc, (float)dir.getX(),(float)
-            // dir.getY(),(float)dir.getZ(), 0, (float)speed);
             createRedstoneParticle(loc, 0, 0, 0, 0, color, size);
             loc.subtract(v.getX(), v.getY(), v.getZ());
 

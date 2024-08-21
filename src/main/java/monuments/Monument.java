@@ -137,7 +137,7 @@ public abstract class Monument extends Spell {
             if (!(p.getEyeLocation().distance(loc) < 0.6 + hitboxSize
                     || p.getLocation().distance(loc) < 0.6 + hitboxSize)) {
                 onLeave(p);
-                if (team.players.contains(p)) {
+                if (team.containsPlayer(p)) {
                     onLeaveAlly(p);
                 } else {
                     onLeaveEnemy(p);
@@ -272,7 +272,7 @@ public abstract class Monument extends Spell {
         if (!inside.contains(p)) {
             inside.add(p);
             onEnter(p);
-            if (team.players.contains(p)) {
+            if (team.containsPlayer(p)) {
                 onEnterAlly(p);
             } else {
                 onEnterEnemy(p);
@@ -391,7 +391,7 @@ public abstract class Monument extends Spell {
         if (team == null) {
             return Color.BLACK;
         }
-        if (team.players.contains(p)) {
+        if (team.containsPlayer(p)) {
             return Color.LIME;
         } else {
             return Color.RED;

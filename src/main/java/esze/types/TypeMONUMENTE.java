@@ -122,8 +122,8 @@ public class TypeMONUMENTE extends TypeTeamBased {
             //openSpellSelection(p);
         }
         setupGame();
-        redNexus = new Nexus(teamRed.players.get(0), getLoc(1).clone().add(0, 2, 0), teamRed);
-        blueNexus = new Nexus(teamBlue.players.get(0), getLoc(3).clone().add(0, 2, 0), teamBlue);
+        redNexus = new Nexus(teamRed.getPlayers().getFirst(), getLoc(1).clone().add(0, 2, 0), teamRed);
+        blueNexus = new Nexus(teamBlue.getPlayers().getFirst(), getLoc(3).clone().add(0, 2, 0), teamBlue);
         scoreboard = new MonumenteScorboard();
         scoreboard.showScoreboard();
 
@@ -189,12 +189,12 @@ public class TypeMONUMENTE extends TypeTeamBased {
 
         } else {
 
-            if (teamRed.players.contains(p)) {
+            if (teamRed.containsPlayer(p)) {
                 Player rand = teamBlue.getRandomPlayer();
                 generateSoul(rand, p, 5);
                 takeSouls(rand, p);
             }
-            if (teamBlue.players.contains(p)) {
+            if (teamBlue.containsPlayer(p)) {
                 Player rand = teamRed.getRandomPlayer();
                 generateSoul(rand, p, 5);
                 takeSouls(rand, p);
@@ -272,8 +272,8 @@ public class TypeMONUMENTE extends TypeTeamBased {
     public void resendScorboardTeams(Player p) {
 
         for (EszeTeam team : allTeams) {
-            for (Player pl : team.players) {
-                ScoreboardTeamUtils.colorPlayer(pl, p, team.color);
+            for (Player pl : team.getPlayers()) {
+                ScoreboardTeamUtils.colorPlayer(pl, p, team.getChatColor());
             }
 
         }
@@ -302,12 +302,12 @@ public class TypeMONUMENTE extends TypeTeamBased {
 
     public void teleportToSpawn(Player p) {
         for (EszeTeam team : allTeams) {
-            if (team.players.contains(p)) {
-                if (team.parcolor == Color.RED) {
+            if (team.containsPlayer(p)) {
+                if (team.getParticleColor() == Color.RED) {
                     Location l = getLoc(2).clone().add(randInt(-5, 5), 0, randInt(-5, 5));
                     p.teleport(l);
                 }
-                if (team.parcolor == Color.BLUE) {
+                if (team.getParticleColor() == Color.BLUE) {
                     Location l = getLoc(4).clone().add(randInt(-5, 5), 0, randInt(-5, 5));
                     p.teleport(l);
                 }
@@ -382,7 +382,7 @@ public class TypeMONUMENTE extends TypeTeamBased {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!playerHasTeam(p)) {
                 for (EszeTeam team : allTeams) {
-                    if (team.players.size() <= 0) {
+                    if (team.getPlayers().isEmpty()) {
                         team.addPlayer(p);
                         break;
                     }
@@ -400,7 +400,5 @@ public class TypeMONUMENTE extends TypeTeamBased {
     enum State {
         BUILDPHASE, BATTLEPHASE, LASERPHASE
     }
-
-    ;
 
 }

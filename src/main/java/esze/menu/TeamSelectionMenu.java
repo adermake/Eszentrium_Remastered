@@ -7,15 +7,9 @@ import esze.utils.CharRepo;
 import esze.utils.EszeTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Optional;
 
@@ -27,8 +21,8 @@ public class TeamSelectionMenu{
 
         TypeTeamBased tt = (TypeTeamBased) GameType.getType();
         Optional<CharRepo> teamColor = tt.allTeams.stream()
-                .filter(t -> t.players.contains(p))
-                .map(t -> t.color)
+                .filter(t -> t.containsPlayer(p))
+                .map(EszeTeam::getChatColor)
                 .map(color -> switch (color) {
                     case RED -> CharRepo.MENU_CONTAINER_45_TEAM_RED;
                     case BLUE -> CharRepo.MENU_CONTAINER_45_TEAM_BLUE;
@@ -69,7 +63,7 @@ public class TeamSelectionMenu{
 
                 if(teamColorClicked != null) {
                     EszeTeam team = tt.allTeams.stream()
-                            .filter(t -> t.color == teamColorClicked)
+                            .filter(t -> t.getChatColor() == teamColorClicked)
                             .findFirst()
                             .orElse(null);
                     if(team != null) {
