@@ -73,8 +73,6 @@ public class main extends JavaPlugin {
         this.getCommand("ping").setExecutor(new CommandReciever());
         this.getCommand("setmode").setExecutor(new CommandReciever());
         this.getCommand("removemap").setExecutor(new CommandReciever());
-        this.getCommand("gamemode").setExecutor(new CommandReciever());
-        this.getCommand("gm").setExecutor(new CommandReciever());
         this.getCommand("itemname").setExecutor(new CommandReciever());
         this.getCommand("setjumppad").setExecutor(new CommandReciever());
         this.getCommand("removepads").setExecutor(new CommandReciever());

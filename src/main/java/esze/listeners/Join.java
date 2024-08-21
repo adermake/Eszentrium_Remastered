@@ -7,6 +7,8 @@ import esze.players.PlayerInfo;
 import esze.types.TypeTEAMS;
 import esze.utils.LobbyUtils;
 import esze.utils.ScoreboardTeamUtils;
+import esze.utils.TabList;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +30,11 @@ public class Join implements Listener {
         p.setHealth(20);
         p.setMaxHealth(20);
         p.setWalkSpeed(0.2F);
+
+        TextComponent component = new TextComponent();
+        component.setText(Character.toString('\uF110'));
+        component.setFont("minecraft:default");
+        new TabList(TextComponent.toLegacyText(component)+"\n\n\n\n", "").send(p);
 
         //Clears Inventory of Players
         GameType.getType().givePlayerLobbyItems(p);
