@@ -2,13 +2,16 @@ package esze.listeners;
 
 import esze.enums.GameType;
 import esze.enums.Gamestate;
+import esze.main.main;
 import esze.players.PlayerAPI;
 import esze.players.PlayerInfo;
 import esze.types.TypeTEAMS;
+import esze.utils.CharRepo;
 import esze.utils.LobbyUtils;
 import esze.utils.ScoreboardTeamUtils;
 import esze.utils.TabList;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,23 +35,33 @@ public class Join implements Listener {
         p.setWalkSpeed(0.2F);
 
         TextComponent component = new TextComponent();
-        component.setText(Character.toString('\uF110'));
+        component.setText(CharRepo.ESZE_LOGO + "  ");
         component.setFont("minecraft:default");
         new TabList(TextComponent.toLegacyText(component)+"\n\n\n\n", "").send(p);
 
         //Clears Inventory of Players
         GameType.getType().givePlayerLobbyItems(p);
+        e.setJoinMessage("");
         if (Gamestate.getGameState() == Gamestate.LOBBY) {
-            e.setJoinMessage("§8> §3" + p.getName() + " §7ist beigetreten.");
+            Bukkit.getOnlinePlayers().stream().filter(player -> player != p).forEach(player -> player.sendMessage("§8> §3" + p.getName() + " §7ist beigetreten."));
             LobbyUtils.recall(p);
         } else if (Gamestate.getGameState() == Gamestate.INGAME) {
-            e.setJoinMessage("");
+
             if (PlayerAPI.getPlayerInfo(p) == null) {
                 PlayerInfo pi = new PlayerInfo(p);
                 pi.isAlive = false;
                 pi.isInRound = false;
             }
         }
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(main.plugin, () -> {
+            p.sendMessage(TextComponent.toLegacyText(component));
+            p.sendMessage("");
+            p.sendMessage("");
+            p.sendMessage("");
+            p.sendMessage("");
+            p.sendMessage("§8| §7Willkommen auf §6Esze§7! §7Viel Spaß beim Spielen!");
+        }, 10);
     }
 
     @EventHandler

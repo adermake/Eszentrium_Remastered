@@ -34,7 +34,9 @@ public enum CharRepo {
     MENU_CONTAINER_45_TEAM_YELLOW("\uF017"),
     MENU_CONTAINER_45_TEAM_GREEN("\uF018"),
     MENU_CONTAINER_45_TEAM_BLUE("\uF019"),
-    MENU_BUTTON("\uF002");
+    MENU_BUTTON("\uF002"),
+
+    ESZE_LOGO("\uF110");
 
     public final String literal;
     CharRepo(String literal){

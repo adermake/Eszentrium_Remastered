@@ -23,10 +23,6 @@ public class Menu implements Listener {
             e.setCancelled(ItemMenuIcon.ditributeClicks(e.getCurrentItem().getItemMeta().getDisplayName(), e.getInventory(), p, e.getAction()));
         }
         TeamSelectionMenu.onClickEvent(e);
-
-
-
-
     }
 
     @EventHandler
