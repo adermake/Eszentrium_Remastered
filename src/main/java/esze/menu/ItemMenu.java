@@ -19,17 +19,11 @@ public abstract class ItemMenu {
 
 
     public ItemMenu(int size) {
-
         inventory = Bukkit.createInventory(null, size * 9);
-
-
     }
 
     public ItemMenu(int size, String name) {
-
         inventory = Bukkit.createInventory(null, size * 9, name);
-
-
     }
 
     public void addClickableItem(int gridX, int gridY, Material m, String iconname) {

@@ -42,20 +42,21 @@ public class ItemMenuIcon extends ItemStack {
 
     }
 
-    public static void ditributeClicks(String name, Inventory i, Player p, InventoryAction a) {
+    public static boolean ditributeClicks(String name, Inventory i, Player p, InventoryAction a) {
+        boolean foundIcon = false;
         try {
             for (ItemMenuIcon icon : allIcons) {
                 if (icon.getItemMeta().getDisplayName().equals(name)
                         && icon.getItemMenu().getInventory().equals(i)) {
                     icon.getItemMenu().clicked(icon, p);
                     icon.getItemMenu().clicked(icon, p, a);
+                    foundIcon = true;
                 }
             }
         } catch (ConcurrentModificationException e) {
 
         }
-
-
+        return foundIcon;
     }
 
     public int getGridX() {

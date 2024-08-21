@@ -1,77 +1,89 @@
 package esze.menu;
 
 import esze.enums.GameType;
+import esze.types.TypeTEAMS;
 import esze.types.TypeTeamBased;
+import esze.utils.CharRepo;
 import esze.utils.EszeTeam;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class TeamSelectionMenu extends ItemMenu {
+import java.util.Optional;
 
-    public TeamSelectionMenu(Player p) {
-        super(1, "§eWähle dein Team");
+public class TeamSelectionMenu{
 
+
+    private static String getMenuTitleForPlayer(Player p) {
+        CharRepo cr = CharRepo.MENU_CONTAINER_45_TEAM;
 
         TypeTeamBased tt = (TypeTeamBased) GameType.getType();
+        Optional<CharRepo> teamColor = tt.allTeams.stream()
+                .filter(t -> t.players.contains(p))
+                .map(t -> t.color)
+                .map(color -> switch (color) {
+                    case RED -> CharRepo.MENU_CONTAINER_45_TEAM_RED;
+                    case BLUE -> CharRepo.MENU_CONTAINER_45_TEAM_BLUE;
+                    case GREEN -> CharRepo.MENU_CONTAINER_45_TEAM_GREEN;
+                    case YELLOW -> CharRepo.MENU_CONTAINER_45_TEAM_YELLOW;
+                    default -> CharRepo.MENU_CONTAINER_45_TEAM;
+                })
+                .findFirst();
 
-        if (tt.allTeams.size() == 4) {
-            int i = 2;
-            for (EszeTeam t : tt.allTeams) {
-                if (t.players.contains(p)) {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName, null, true);
-                } else {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName);
-                }
-
-                i += 2;
-            }
-        }
-        if (tt.allTeams.size() == 2) {
-            int i = 3;
-            for (EszeTeam t : tt.allTeams) {
-                if (t.players.contains(p)) {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName, null, true);
-                } else {
-                    addClickableItem(i, 1, t.teamIcon, t.teamName);
-                }
-
-                i += 4;
-            }
+        if(teamColor.isPresent()) {
+            cr = teamColor.get();
         }
 
-
-        // TODO Auto-generated constructor stub
+        return CharRepo.getNeg(8) + "§f" + cr;
     }
 
-    @Override
-    public void clicked(ItemMenuIcon icon, Player p) {
-        // TODO Auto-generated method stub
-        if (GameType.getType() instanceof TypeTeamBased) {
-            TypeTeamBased tt = (TypeTeamBased) GameType.getType();
-            for (EszeTeam t : tt.allTeams) {
-                if (t.teamName.equals(icon.getItemMeta().getDisplayName())) {
-                    tt.removePlayerFromAllTeams(p);
-                    t.addPlayer(p);
-                    ItemMeta im = icon.getItemMeta();
-                    im.addEnchant(Enchantment.LOYALTY, 1, true);
-                    im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    icon.setItemMeta(im);
-                    p.closeInventory();
+    public TeamSelectionMenu(Player p) {
+        Inventory inv = Bukkit.createInventory(null, 5 * 9, getMenuTitleForPlayer(p));
+        p.openInventory(inv);
+    }
 
+    public static void onClickEvent(InventoryClickEvent e) {
+        if (GameType.getType() instanceof TypeTEAMS tt) {
+            String invTitle = e.getView().getTitle();
+            if(invTitle.contains(CharRepo.MENU_CONTAINER_45_TEAM_RED.literal) ||
+                    invTitle.contains(CharRepo.MENU_CONTAINER_45_TEAM_BLUE.literal) ||
+                    invTitle.contains(CharRepo.MENU_CONTAINER_45_TEAM_GREEN.literal) ||
+                    invTitle.contains(CharRepo.MENU_CONTAINER_45_TEAM_YELLOW.literal) ||
+                    invTitle.contains(CharRepo.MENU_CONTAINER_45_TEAM.literal)) {
+                e.setCancelled(true);
+                ChatColor teamColorClicked = switch(e.getSlot()) {
+                    case 2, 3, 11, 12 -> ChatColor.RED;
+                    case 5, 6, 14, 15 -> ChatColor.BLUE;
+                    case 29, 30, 38, 39 -> ChatColor.GREEN;
+                    case 32, 33, 41, 42 -> ChatColor.YELLOW;
+                    default -> null;
+                };
+
+                if(teamColorClicked != null) {
+                    EszeTeam team = tt.allTeams.stream()
+                            .filter(t -> t.color == teamColorClicked)
+                            .findFirst()
+                            .orElse(null);
+                    if(team != null) {
+                        Player p = (Player) e.getWhoClicked();
+                        tt.removePlayerFromAllTeams(p);
+                        team.addPlayer(p);
+                        new TeamSelectionMenu(p);
+                    }
                 }
             }
         }
 
-
-    }
-
-    @Override
-    public void clicked(ItemMenuIcon icon, Player p, InventoryAction a) {
-        // TODO Auto-generated method stub
 
     }
 
 }
+

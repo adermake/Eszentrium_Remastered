@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 public class CosmeticMenu extends ItemMenu {
 
-    boolean used = false;
-    private ArrayList<Spell> spells;
-
     public CosmeticMenu(Player p) {
         super(5, "Kosmetik");
 

@@ -20,12 +20,11 @@ public class Menu implements Listener {
         }
         Player p = (Player) e.getWhoClicked();
         if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta()) {
-
-
-            ItemMenuIcon.ditributeClicks(e.getCurrentItem().getItemMeta().getDisplayName(), e.getInventory(), p, e.getAction());
-
-            e.setCancelled(true);
+            e.setCancelled(ItemMenuIcon.ditributeClicks(e.getCurrentItem().getItemMeta().getDisplayName(), e.getInventory(), p, e.getAction()));
         }
+        TeamSelectionMenu.onClickEvent(e);
+
+
 
 
     }

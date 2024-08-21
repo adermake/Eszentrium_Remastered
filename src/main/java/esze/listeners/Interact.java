@@ -1,11 +1,10 @@
 package esze.listeners;
 
+import esze.enums.GameType;
 import esze.main.LobbyCountdownRunnable;
 import esze.main.main;
-import esze.menu.ColorTagSpellSelectionMenu;
-import esze.menu.CosmeticMenu;
-import esze.menu.ModifierMenu;
-import esze.menu.TeamSelectionMenu;
+import esze.menu.*;
+import esze.types.TypeTEAMS;
 import esze.utils.MathUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -164,7 +163,11 @@ public class Interact implements Listener {
                     new ColorTagSpellSelectionMenu().open(p);
                 }
                 if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§3Teamauswahl")) {
-                    new TeamSelectionMenu(p).open(p);
+                    if (GameType.getType() instanceof TypeTEAMS) {
+                        new TeamSelectionMenu(p);
+                    } else {
+                        new TeamMonumenteSelectionMenu(p).open(p);
+                    }
                 }
 
             }

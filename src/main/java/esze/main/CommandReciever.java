@@ -23,6 +23,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -224,6 +225,11 @@ public class CommandReciever implements CommandExecutor, TabCompleter {
             }
         }
         if (cmd.getName().startsWith("ping")) {
+
+            String title = CharRepo.getNeg(8) + "§f" + CharRepo.MENU_CONTAINER_45_TEAM;
+            Inventory inv = Bukkit.createInventory(null, 5*9, title);
+            p.openInventory(inv);
+
             if (args.length == 1) {
                 String name = args[0];
                 OfflinePlayer statss = Bukkit.getOfflinePlayer(name);
