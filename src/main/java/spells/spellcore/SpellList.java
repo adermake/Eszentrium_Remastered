@@ -151,7 +151,7 @@ public class SpellList {
         registerSpell(new Höllenhast());
         registerSpell(new Plasmablase());
         registerSpell(new Heldenstoß());
-        registerSpell(new Blutsiegel());
+        //registerSpell(new Blutsiegel());
         registerSpell(new DunklerWind());
         registerSpell(new Flammenwand());
         registerSpell(new Machtwort());

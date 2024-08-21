@@ -10,6 +10,7 @@ import io.netty.util.internal.ThreadLocalRandom;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -197,31 +198,11 @@ public abstract class Spell {
     }
 
     public void disableEntityHitbox(Entity ent) {
-        try {
-            Method getHandle = ent.getClass().getMethod("getHandle");
-            Object entityObject = getHandle.invoke(ent);
-            Field field = entityObject.getClass().getField("P");
-            field.setAccessible(true);
-            field.setBoolean(entityObject, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //THIS DOES NO LONGER WORK
+        //FIX SOMEHOW?
 
     }
 
-    public static void disableEntityHitboxStatic(Entity ent) {
-
-        try {
-            Method getHandle = ent.getClass().getMethod("getHandle");
-            Object entityObject = getHandle.invoke(ent);
-            Field field = entityObject.getClass().getField("P");
-            field.setAccessible(true);
-            field.setBoolean(entityObject, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public static void silence(Player p, SilenceSelection s) {
         silenced.put(p, s);
@@ -1930,8 +1911,6 @@ public abstract class Spell {
 
     public Spell() {
     }
-
-    ;
 
     public abstract void setUp();
 

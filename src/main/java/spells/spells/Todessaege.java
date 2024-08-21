@@ -15,18 +15,18 @@ import spells.stagespells.Sythe;
 
 public class Todessaege extends Spell {
 
-    public HashMap<Entity, Integer> hitCount = new HashMap<Entity, Integer>();
+    public HashMap<Entity, Integer> hitCount = new HashMap<>();
 
     public Todessaege() {
-        name = "�eTodess�ge";
+        name = "§eTodessäge";
         cooldown = 20 * 40;
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.PROJECTILE);
-        setLore("�7Wirft Kreiss�gen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zur�ckgeworfen. Nach kurzer Zeit kehren die S�gen zum Anwender zur�ck, Schaden getroffenen Gegnern und heilen den Anwender f�r jeden Treffer. �eShift: �7Zieht die S�gen sofort zur�ck.");
-        setBetterLore("�7Wirft Kreiss�gen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zur�ckgeworfen. Nach kurzer Zeit kehren die S�gen zum Anwender zur�ck, Schaden getroffenen Gegnern und heilen den Anwender f�r jeden Treffer. �eShift: �7Zieht die S�gen sofort zur�ck.");
+        setLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
+        setBetterLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
         autocancel = true;
     }
 
@@ -55,8 +55,6 @@ public class Todessaege extends Spell {
             l.setYaw(l.getYaw() + degStep);
         }
         playSound(Sound.ITEM_TRIDENT_THROW, loc, 1, 0.2F);
-
-
     }
 
     public void addHitCount(Entity ent) {

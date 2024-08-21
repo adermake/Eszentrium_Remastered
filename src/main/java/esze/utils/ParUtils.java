@@ -631,9 +631,11 @@ public class ParUtils {
         ArrayList<Item> items = new ArrayList<Item>();
         for (int i = 0; i < count; i++) {
             ItemStack im = new ItemStack(m);
-            ItemMeta imet = im.getItemMeta();
-            imet.setDisplayName("" + i);
-            im.setItemMeta(imet);
+            if (im.hasItemMeta()) {
+                ItemMeta imet = im.getItemMeta();
+                imet.setDisplayName("" + i);
+                im.setItemMeta(imet);
+            }
             Item it = loc.getWorld().dropItem(loc, im);
 
             it.setCustomName("" + i);

@@ -271,7 +271,7 @@ public class SaveUtils {
             //System.out.println("Exe proc: " + query);
             stmt.executeQuery(query);
             stmt.close();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             if (debug) e.printStackTrace();
         }
 
