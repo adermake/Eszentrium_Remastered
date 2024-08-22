@@ -3,6 +3,7 @@ package esze.menu;
 import esze.analytics.SaveUtils;
 import esze.main.main;
 import esze.types.TypeSOLO;
+import esze.utils.CharRepo;
 import esze.utils.NBTUtils;
 import esze.utils.PlayerUtils;
 import esze.utils.SpellKeyUtils;
@@ -23,8 +24,10 @@ public class SoloSpellMenu extends ItemMenu {
     private ArrayList<Spell> spells;
     boolean refined = false;
 
+    private static final String invName = CharRepo.getNeg(8) + "§f" + CharRepo.MENU_CONTAINER_9_SPELL_SELECT;
+
     public SoloSpellMenu() {
-        super(1, "spellmenu");
+        super(1, invName);
         refined = false;
         spells = SpellList.getDiffrentRandom(5);
         addClickableItem(1, 1, Material.ENCHANTED_BOOK, spells.get(0).getName(), spells.get(0).getLore());
@@ -35,7 +38,7 @@ public class SoloSpellMenu extends ItemMenu {
     }
 
     public SoloSpellMenu(boolean green) {
-        super(1, "spellmenu");
+        super(1, invName);
         refined = true;
         spells = SpellList.getDiffrentRandomGreen(5);
         addClickableItem(1, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(0).getName().substring(2, spells.get(0).getName().length()), spells.get(0).getBetterLore());

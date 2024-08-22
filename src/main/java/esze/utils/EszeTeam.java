@@ -40,7 +40,7 @@ public class EszeTeam {
         p.sendMessage("§8| §7Du bist Team §r" + getTeamTag() + " §7beigetreten!");
         ScoreboardTeamUtils.colorPlayer(p, chatColor);
 
-        String tagName = getTeamTag() + "§" + chatColor.getChar() + p.getName() + "§r";
+        String tagName = getTeamTag() + " §" + chatColor.getChar() + p.getName() + "§r";
         p.setDisplayName(tagName);
         p.setPlayerListName(tagName);
 

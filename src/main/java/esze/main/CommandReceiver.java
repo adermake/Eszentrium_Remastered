@@ -218,8 +218,7 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
         if (cmd.getName().startsWith("ping")) {
             if (args.length == 1) {
                 String name = args[0];
-                OfflinePlayer statss = Bukkit.getOfflinePlayer(name);
-                if (statss.isOnline()) {
+                if (Bukkit.getOfflinePlayer(name).isOnline()) {
                     Player stats = Bukkit.getPlayer(name);
                     p.sendMessage("§8| §7" + name + "'s Ping: §6" + getPing(stats));
                 } else {

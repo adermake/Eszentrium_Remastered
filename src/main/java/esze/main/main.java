@@ -103,6 +103,7 @@ public class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Chat(), this);
         getServer().getPluginManager().registerEvents(new Reconnect(), this);
         getServer().getPluginManager().registerEvents(new Launch(), this);
+        getServer().getPluginManager().registerEvents(new HandSlotChange(), this);
 
         TTTFusion.start();
 
@@ -181,7 +182,7 @@ public class main extends JavaPlugin {
         appServer = new AppServer();
         appServer.startServer();
         System.out.println("Esze | App-Server hochgefahren.");
-
+        BossbarSpellHUD.removeAllBossbars();
     }
 
     @Override

@@ -34,14 +34,16 @@ public enum CharRepo {
     MENU_CONTAINER_45_TEAM_YELLOW("\uF017"),
     MENU_CONTAINER_45_TEAM_GREEN("\uF018"),
     MENU_CONTAINER_45_TEAM_BLUE("\uF019"),
-    MENU_BUTTON("\uF002"),
+    MENU_CONTAINER_9_SPELL_SELECT("\uF020"),
 
     ESZE_LOGO("\uF110"),
 
     TAG_TEAM_RED("\uF111"),
     TAG_TEAM_BLUE("\uF112"),
     TAG_TEAM_YELLOW("\uF113"),
-    TAG_TEAM_GREEN("\uF114");
+    TAG_TEAM_GREEN("\uF114"),
+
+    HUD_SPELL("\uF021");
 
     public final String literal;
     CharRepo(String literal){
