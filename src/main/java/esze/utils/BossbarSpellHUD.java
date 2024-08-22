@@ -27,7 +27,6 @@ public class BossbarSpellHUD {
 
     public void show() {
         removeAllBossbars(p);
-        Bukkit.broadcastMessage("show");
         TextComponent component = new TextComponent();
         component.setText(CharRepo.HUD_SPELL.literal);
         component.setFont("minecraft:default");
