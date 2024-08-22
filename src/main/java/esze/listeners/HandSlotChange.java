@@ -26,7 +26,7 @@ public class HandSlotChange implements Listener {
             if (NBTUtils.getNBT("Spell", is).equals("true")) {
                 String originalIsName = ChatColor.stripColor(NBTUtils.getNBT("OriginalName", is));
                 Optional<Spell> spellOpt = SpellList.spells.keySet().stream()
-                        .filter(s -> originalIsName.startsWith(ChatColor.stripColor(s.getName())))
+                        .filter(s -> originalIsName.toLowerCase().replace(" ", "").startsWith(ChatColor.stripColor(s.getName()).toLowerCase().replace(" ", "")))
                         .findFirst();
 
                 if(spellOpt.isPresent()) {
