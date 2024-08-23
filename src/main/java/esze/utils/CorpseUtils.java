@@ -61,9 +61,12 @@ public class CorpseUtils {
 
     public static int spawnCorpseForPlayers(Player player, Location loc, List<Player> showTo) {
 
-        Property textures = (Property) ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray()[0];
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
-        gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
+        Object[] textureProperties = ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray();
+        if(textureProperties.length > 0) {
+            Property textures = (Property) ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray()[0];
+            gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
+        }
 
         MinecraftServer minecraftServer = ((CraftServer) Bukkit.getServer()).getServer();
         ServerLevel serverLevel = ((CraftWorld) loc.getWorld()).getHandle();
@@ -120,6 +123,11 @@ public class CorpseUtils {
     public static void resetAllCorpses() {
         Arrays.stream(getAllCorpseIDs()).forEach(CorpseUtils::removeCorpseForAll);
         corpses.clear();
+    }
+
+    public static Location getCorpseLocation(int corpseId) {
+        ServerPlayer serverPlayer = corpses.get(corpseId).a();
+        return new Location(serverPlayer.level().getWorld(), serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ());
     }
 
 }

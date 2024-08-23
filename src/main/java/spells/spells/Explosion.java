@@ -15,21 +15,30 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Explosion extends Spell {
 
     public Explosion() {
         name = "§cExplosion";
-        cooldown = 20 * 35;
         hitSpell = false;
-
         casttime = 20 * 5;
+
+        spellDescription = new SpellDescription(
+                "Lädt einen Angriff auf. Nach kurzer Zeit explodiert der Spieler und fügt allen Gegnern in der Nähe Schaden zu. Je früher die Explosion ausgelöst wird, desto geringer fallen Reichweite, Schaden und Höhe aus.",
+                "",
+                null,
+                null,
+                "Zündet den Zauber vorzeitig und katapultiert den Spieler hoch.",
+                null,
+                20*35
+        );
+        
         //addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Lädt einen Angriff auf. Nach kurzer #§7Zeit explodiert der Spieler und#§7fügt allen Gegnern in der Nähe#§7Schaden zu.# #§eShift:§7 Zündet den Zauber vorzeitig#§7und katapultiert den Spieler hoch.#§7Je früher die Explosion ausgelöst wird,#§7desto geringer fallen Reichweite, Schaden und Höhe aus.");
     }
 
     @Override

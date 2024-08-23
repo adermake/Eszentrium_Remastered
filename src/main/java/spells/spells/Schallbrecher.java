@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.RepulsionDirectional;
@@ -17,7 +18,6 @@ public class Schallbrecher extends Spell {
 
     public Schallbrecher() {
         name = "§bSchallbrecher";
-        cooldown = 20 * 18;
         hitEntity = false;
         hitPlayer = true;
         hitSpell = true;
@@ -25,12 +25,21 @@ public class Schallbrecher extends Spell {
         hitboxSize = 2;
         steprange = 15;
         multihit = true;
+
+        spellDescription = new SpellDescription(
+                "Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.",
+                "Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.",
+                null,
+                null,
+                "Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.",
+                "Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.",
+                20*18
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.# #§eShift:§7 Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.");
-        setBetterLore("§7Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.# #§eShift:§7 Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.");
     }
 
     @Override

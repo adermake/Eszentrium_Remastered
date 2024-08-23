@@ -12,12 +12,12 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Ghul extends Spell {
 
     public Ghul() {
-        cooldown = 20 * 40;
         name = "§6Ghul";
         speed = 3;
         steprange = 342;
@@ -25,13 +25,21 @@ public class Ghul extends Spell {
         hitSpell = true;
         multihit = true;
 
+        spellDescription = new SpellDescription(
+                "Beschwört eine Kreatur, die durch die Gegend springt und nahe Gegner verfolgt. Wird ein Gegner getroffen, wird dieser weggeschleudert.",
+                "Beschwört drei Kreaturen, die durch die Gegend springen und nahe Gegner verfolgen. Wird ein Gegner getroffen, wird dieser weggeschleudert.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Beschwört eine Kreatur, die durch die#§7Gegend springt und nahe Gegner verfolgt.#§7Wird ein Gegner getroffen, wird dieser#§7weggeschleudert.");
 
-        setBetterLore("§7Beschwört drei Kreaturen, die durch die#§7Gegend springen und nahe Gegner verfolgen.#§7Wird ein Gegner getroffen, wird dieser#§7weggeschleudert.");
     }
 
     public Ghul(Player p, Vector v) {
@@ -43,7 +51,7 @@ public class Ghul extends Spell {
         powerlevel = 60;
         speed = 3;
         caster = p;
-        cooldown = 20 * 18;
+        spellDescription.setCooldown(20*18);
         castSpell(caster, name);
         vel = v;
 

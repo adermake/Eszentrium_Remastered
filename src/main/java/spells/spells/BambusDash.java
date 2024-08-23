@@ -9,18 +9,28 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class BambusDash extends Spell {
 
     @Override
     public void setUp() {
         // TODO Auto-generated method stub
-        cooldown = 20 * 10;
         name = "§eBambusDash";
         speed = 3;
         steprange = 10;
         hitPlayer = false;
         hitSpell = false;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
 
     }
 

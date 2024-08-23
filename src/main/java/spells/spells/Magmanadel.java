@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Magmanadel extends Spell {
@@ -22,8 +23,17 @@ public class Magmanadel extends Spell {
         hitSpell = true;
         steprange = 300;
         speed = 100;
-        cooldown = 20 * 1;
         traitorSpell = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);

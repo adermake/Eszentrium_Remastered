@@ -24,6 +24,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Opfersuche extends Spell {
@@ -31,17 +32,24 @@ public class Opfersuche extends Spell {
     public Opfersuche() {
 
         name = "§6Opfersuche";
-        cooldown = 20 * 24;
         steprange = 200;
         hitboxSize = 2.5;
         hitSpell = true;
         speed = 2;
+
+        spellDescription = new SpellDescription(
+                "Schießt ein Phantom in Blickrichtung, das getroffene Gegner festhält. Je weiter das Phantom fliegt, desto länger hält es fest.",
+                "Schießt ein Phantom in Blickrichtung, das getroffene Gegner festhält. Je weiter das Phantom fliegt, desto länger hält es fest.",
+                null,
+                null,
+                null,
+                null,
+                20*24
+        );
+        
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-
-        setLore("§7Schießt ein Phantom in Blickrichtung,#§7das getroffene Gegner festhält. Je weiter#§7das Phantom fliegt, desto länger hält es#§7fest.");
-        setBetterLore("§7Schießt ein Phantom in Blickrichtung,#§7das getroffene Gegner festhält. Je weiter das#§7Phantom fliegt, desto länger hält es fest.");
     }
 
 

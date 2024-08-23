@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.HashMap;
@@ -38,7 +39,15 @@ public class PullRanke extends Spell {
 
         multihit = false;
         this.caster = caster;
-        cooldown = 0;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                0
+        );
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);

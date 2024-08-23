@@ -11,6 +11,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.SchockLaser;
 
@@ -18,16 +19,22 @@ public class Schock extends Spell {
 
 
     public Schock() {
-        cooldown = 20 * 40;
         name = "§cSchock";
         //casttime =  3;
         aim = null;
         steprange = 3;
+        spellDescription = new SpellDescription(
+                "Schießt Blitze in Blickrichtung, die an getroffenen Gegnern Schaden verursachen. Der Schaden der Blitze steigt, wenn der Zauber aus großer Höhe ausgeführt wird.",
+                "Schießt Blitze aus großer Höhe auf den anvisierten Block und verursacht Schaden an getroffenen Gegnern.",
+                null,
+                null,
+                "Solange diese Taste gedrückt bleibt, weiten sich die Blitze aus, um mehr Fläche zu treffen auf Kosten der Genauigkeit.",
+                "Solange diese Taste gedrückt bleibt, weiten sich die Blitze aus, um mehr Fläche zu treffen auf Kosten der Genauigkeit.",
+                20*40
+        );
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Schießt Blitze in Blickrichtung, die#§7an getroffenen Gegnern Schaden verursachen.#§7Der Schaden der Blitze steigt, wenn der#§7Zauber aus großer Höhe ausgeführt wird.##§7#§eShift:§7 Solange diese Taste gedrückt bleibt,#§7weiten sich die Blitze aus, um mehr Fläche#§7zu treffen auf Kosten der Genauigkeit.");
-        setBetterLore("§7Schießt Blitze aus großer Höhe auf den#§7anvisierten Block und verursacht Schaden an#§7getroffenen Gegnern. # #§eShift:§7 Solange#§7diese Taste gedrückt bleibt, weiten sich#§7die Blitze aus, um mehr Fläche zu treffen auf#§7Kosten der Genauigkeit.");
         casttime = 20 * 6;
 
     }

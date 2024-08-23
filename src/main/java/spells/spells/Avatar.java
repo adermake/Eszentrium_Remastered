@@ -19,6 +19,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Avatar extends Spell {
@@ -26,17 +27,25 @@ public class Avatar extends Spell {
     public Avatar() {
         name = "§cAvatar";
         steprange = 20 * 12;
-        cooldown = 20 * 55;
         hitEntity = false;
         hitPlayer = true;
         hitboxSize = 5;
         multihit = true;
         hitSpell = true;
 
+        spellDescription = new SpellDescription(
+                "Verwandelt den Spieler kurzzeitig in einen Riesen, den dieser aus seinem Inneren steuern kann. Bei Gegnerkontakt erhalten diese Schaden.",
+                "",
+                null,
+                null,
+                "Beendet den Zauber sofort.",
+                null,
+                20*55
+        );
+
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Verwandelt den Spieler kurzzeitig in einen Riesen,#§7den dieser aus seinem Inneren steuern kann.#§7Bei Gegnerkontakt erhalten diese Schaden.# #§eShift:§7 Beendet den Zauber sofort.");
 
     }
 

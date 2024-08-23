@@ -18,6 +18,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.GuardianLaser;
 import spells.stagespells.ThermolanzeLaser;
@@ -25,16 +26,25 @@ import spells.stagespells.ThermolanzeLaser;
 public class Wasserdüse extends Spell {
 
     public Wasserdüse() {
-        cooldown = 20 * 80;
         steprange = 20 * 20;
         speed = 1;
         name = "§cWasserdüse";
+
+        spellDescription = new SpellDescription(
+                "Beschwört 2 Wächter. Die Wächter können von Gegnern getötet werden.",
+                "",
+                null,
+                null,
+                "Die Wächter schießen Wasserstrahlen in Blickrichtung, die getroffene Gegner wegspülen. In der Luft erhält der Spieler Rückstoß, sodass er sich in der Luft halten kann. Einen Wasserstrahl zu schießen verbraucht Munition. Sobald die Munition verbraucht ist, endet der Zauber.",
+                null,
+                20*80
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Beschwört 2 Wächter. Die Wächter#§7können von Gegnern getötet werden.# #§eShift:§7#§7Die Wächter schießen Wasserstrahlen in#§7Blickrichtung, die getroffene Gegner wegspülen.#§7In der Luft erhält der Spieler#§7Rückstoß,sodass er sich in der Luft halten kann. Einen#§7Wasserstrahl zu schießen verbraucht#§7Munition. Sobald die Munition verbraucht ist,#§7endet der Zauber.");
     }
 
     @Override

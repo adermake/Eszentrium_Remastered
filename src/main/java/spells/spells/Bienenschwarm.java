@@ -17,6 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -24,23 +25,31 @@ import java.util.ArrayList;
 public class Bienenschwarm extends Spell {
 
     public Bienenschwarm() {
-        cooldown = 20 * 20;
         name = "§6Bienenschwarm";
         speed = 1.2;
         steprange = 82;
         hitboxSize = 2;
         hitPlayer = true;
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Schießt einen Honigklumpen in Blickrichtung, der bei Kontakt mit Gegnern Bienen anlockt. Diese halten den Gegner für kurze Zeit in der Luft und fügen ihm Schaden zu. Der Honigklumpen kann selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt einen Honigklumpen in Blickrichtung, der bei Kontakt mit Gegnern eine Menge Bienen anlockt. Diese halten den Gegner für kurze Zeit in der Luft und fügen ihm Schaden zu. Der Honigklumpen kann selbst nach der Ausführung noch gesteuert werden.",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
+        
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.LOCKDOWN);
-        setLore("§7Schießt einen Honigklumpen in Blickrichtung, der#§7bei Kontakt mit Gegnern Bienen anlockt. Diese halten#§7den Gegner für kurze Zeit in der Luftund fügen ihm#§7Schaden zu. Der Honigklumpen kann selbst nach der#§7Ausführung noch gesteuert werden.");
-        setBetterLore("§7Schießt einen Honigklumpen in Blickrichtung, der#§7bei Kontakt mit Gegnern eine Menge Bienen anlockt.#§7Diese halten den Gegner für kurze Zeit in der Luft und#§7fügen ihm Schaden zu. Der Honigklumpen kann selbst#§7nach der Ausführung noch gesteuert werden.");
     }
 
     public Bienenschwarm(Player c, String n) {
         super();
-        cooldown = 5;
+        spellDescription.setCooldown(5);
         caster = c;
         speed = 1.2;
         hitboxSize = 2;

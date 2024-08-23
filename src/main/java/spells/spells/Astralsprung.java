@@ -12,18 +12,27 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Astralsprung extends Spell {
 
     public Astralsprung() {
-        cooldown = 20 * 31;
         name = "§bAstralsprung";
         speed = 1;
         hitPlayer = false;
         hitEntity = false;
         hitSpell = false;
         steprange = 120;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*31
+        );
         addSpellType(SpellType.SELFCAST);
 
     }

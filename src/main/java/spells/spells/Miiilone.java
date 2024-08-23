@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -18,10 +19,19 @@ import spells.stagespells.Repulsion;
 public class Miiilone extends Spell {
 
     public Miiilone() {
-        cooldown = 5;
         steprange = 60;
         name = "§4Miiilone";
         traitorSpell = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                5
+        );
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);

@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.RepulsionDirectional;
@@ -20,7 +21,6 @@ import spells.stagespells.RepulsionDirectional;
 public class Feuerwerkshelix extends Spell {
 
     public Feuerwerkshelix() {
-        cooldown = 20 * 27;
         name = "§eFeuerwerkshelix";
         steprange = 15;
 
@@ -30,11 +30,19 @@ public class Feuerwerkshelix extends Spell {
         multihit = true;
         hitSpell = true;
 
+        spellDescription = new SpellDescription(
+                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern.Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern.Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
+                null,
+                null,
+                null,
+                "Der Spieler fliegt mit den Feuerwerksraketen mit.",
+                20*27
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt Feuerwerksraketen in#§7Blickrichtung, die getroffene Gegner mitziehen. Nach#§7kurzer Zeit explodieren die Raketen und#§7schaden nahen Gegnern.Die Raketen können#§7selbst nach der Ausführung noch gesteuert#§7werden.");
-        setBetterLore("§7Schießt Feuerwerksraketen in#§7Blickrichtung, die getroffene Gegner mitziehen. Nach#§7kurzer Zeit explodieren die Raketen und#§7schaden nahen Gegnern.Die Raketen können selbst#§7nach der Ausführung noch gesteuert#§7werden.# #§eShift:§7 Der Spieler fliegt mit den#§7Feuerwerksraketen mit.");
     }
 
     @Override

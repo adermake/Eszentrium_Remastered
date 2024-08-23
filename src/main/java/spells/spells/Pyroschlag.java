@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
 
@@ -23,13 +24,21 @@ public class Pyroschlag extends Spell {
 
 
     public Pyroschlag() {
-        cooldown = 20 * 40;
         hitEntity = false;
         hitPlayer = false;
         hitSpell = false;
         casttime = 100;
         speed = 30;
         name = "§cPyroschlag";
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
     }
 
     int c = 0;

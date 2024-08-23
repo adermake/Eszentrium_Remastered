@@ -7,13 +7,22 @@ import org.bukkit.util.Vector;
 
 import esze.utils.ParUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class NewOrbitar extends Spell {
 
     public NewOrbitar() {
 
         name = "NewOrbitar";
-        cooldown = 20 * 10;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
     }
 
 

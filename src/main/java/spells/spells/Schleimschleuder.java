@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Schleimschleuder extends Spell {
@@ -18,7 +19,6 @@ public class Schleimschleuder extends Spell {
     public Schleimschleuder() {
 
 
-        cooldown = 20 * 25;
         name = "§6Schleimschleuder";
         speed = 1;
         hitEntity = false;
@@ -26,12 +26,20 @@ public class Schleimschleuder extends Spell {
         hitBlock = false;
         hitSpell = true;
 
+        spellDescription = new SpellDescription(
+                "Beschwört einen Schleim vor dem Spieler, der Gegner in der Nähe verlangsamt. Je weiter der Spieler vom Schleim entfernt ist, desto größer wird dieser und der Verlangsamungsradius. Nach kurzer Zeit wird der Spieler zurück zum Schlim gezogen und schleudert diesen weg. Alle Gegner in der Nähe des Schleims werden mitgezogen.",
+                "Beschwört einen Schleim vor dem Spieler, der Gegner in der Nähe verlangsamt. Je weiter der Spieler vom Schleim entfernt ist, desto größer wird dieser und der Verlangsamungsradius. Nach kurzer Zeit wird der Spieler zurück zum Schlim gezogen und schleudert diesen weg. Alle Gegner in der Nähe des Schleims werden mitgezogen.",
+                "Der Spieler springt in Blickrichtung.",
+                "Der Spieler springt in Blickrichtung und zieht alle verlangsamten Gegner zum Schleim.",
+                null,
+                null,
+                20*25
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Beschwört einen Schleim vor dem#§7Spieler, der Gegner in der Nähe verlangsamt. Je#§7weiter der Spieler vom Schleim entfernt ist,#§7desto größer wird dieser und der#§7Verlangsamungsradius. Nach kurzer Zeit wird der#§7Spieler zurück zum Schlim gezogen und schleudert#§7diesen weg. Alle Gegner in der Nähe des#§7Schleims werden mitgezogen.# #§eF:§7 Der#§7Spieler springt in Blickrichtung.");
-        setBetterLore("§7Beschwört einen Schleim vor dem Spieler,#§7der Gegner in der Nähe verlangsamt. Je#§7weiter der Spieler vom Schleim entfernt ist,#§7desto größer wird dieser und der#§7Verlangsamungsradius. Nach kurzer Zeit wird der Spieler#§7zurück zum Schlim gezogen und schleudert#§7diesen weg. Alle Gegner in der Nähe des#§7Schleims werden mitgezogen.# #§eF:§7 Der Spieler#§7springt in Blickrichtung und zieht alle#§7verlangsamten Gegner zum Schleim.");
     }
 
     Slime g;

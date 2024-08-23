@@ -15,13 +15,13 @@ import esze.utils.ParUtils;
 import esze.utils.TTTCorpse;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Wurmloch extends Spell {
 
     public Wurmloch() {
         name = "§bWurmloch";
-        cooldown = 20 * 25;
         canHitSelf = true;
         hitboxSize = 6;
         hitPlayer = true;
@@ -29,11 +29,20 @@ public class Wurmloch extends Spell {
         hitSpell = false;
         steprange = 120;
         multihit = true;
+
+        spellDescription = new SpellDescription(
+                "Kreiert ein Wurmloch über dem Abgrund in Blickrichtung. Springt ein Spieler durch dieses Wurmloch, wird er wieder zu einem Spawnpunkt teleportiert.",
+                "Kreiert ein Wurmloch über dem Abgrund in Blickrichtung. Springt ein Spieler durch dieses Wurmloch, wird er wieder zu einem Spawnpunkt teleportiert und wird außerdem voll geheilt.",
+                null,
+                null,
+                null,
+                null,
+                20*25
+        );
+        
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
-        setLore("§7Kreiiert ein Wurmloch über dem Abgrund#§7in Blickrichtung. Springt ein Spieler#§7durch dieses Wurmloch, wird er wieder zu einem#§7Spawnpunktteleportiert.");
-        setBetterLore("§7Kreiiert ein Wurmloch über dem Abgrund#§7in Blickrichtung. Springt ein Spieler durch#§7dieses Wurmloch, wird er wieder zu einem#§7Spawnpunktteleportiert und wird außerdem voll#§7geheilt.");
     }
 
     Location wormToLoc;

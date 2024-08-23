@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Höllenhast extends Spell {
@@ -23,16 +24,23 @@ public class Höllenhast extends Spell {
         steprange = 70;
         speed = 9;
         charges = 10;
-        cooldown = 20 * 40;
         name = "§eHöllenhast";
         hitboxSize = 2;
+
+        spellDescription = new SpellDescription(
+                "Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.",
+                "Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.",
+                "Falls der Zauber getroffen hat, wird er#§7nochmal ausgeführt. Maximal zehnmal möglich.",
+                "Führt den Zauber nochmal aus. Maximal zehnmal#§7möglich.",
+                null,
+                null,
+                20*40
+        );
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.# #§eF:§7#§7Falls der Zauber getroffen hat, wird er#§7nochmal ausgeführt. Maximal zehnmal möglich.");
-        setBetterLore("§7Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.# #§eF:§7#§7Führt den Zauber nochmal aus. Maximal zehnmal#§7möglich.");
     }
 
     int charges = 0;

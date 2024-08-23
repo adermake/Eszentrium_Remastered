@@ -4,13 +4,23 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class CooldownResetTest extends Spell {
 
     public CooldownResetTest() {
         // TODO Auto-generated constructor stub
-        cooldown = 20 * 60;
         steprange = 20 * 4;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*60
+        );
     }
 
     @Override

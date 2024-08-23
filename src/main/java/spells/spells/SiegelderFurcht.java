@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class SiegelderFurcht extends Spell {
@@ -17,17 +18,23 @@ public class SiegelderFurcht extends Spell {
 
     public SiegelderFurcht() {
         name = "§3Siegel der Furcht";
-        cooldown = 20 * 30;
         hitboxSize = 8;
         hitEntity = true;
         hitSpell = true;
         steprange = 90;
 
+        spellDescription = new SpellDescription(
+                "Versetzt alle naheliegenden Gegner in Panik, wodurch sie für kurze Zeit automatisch vor dem Anwender fliehen. Für diese Zeit erhält der Anwender eine erhöhte Bewegungsgeschwindigkeit.",
+                "Versetzt alle naheliegenden Gegner in Panik, wodurch sie für kurze Zeit automatisch vor dem Anwender fliehen. Für diese Zeit erhält der Anwender eine erhöhte Bewegungsgeschwindigkeit.",
+                null,
+                "Solange diese Taste gedrückt bleibt bewegen sich in Panik versetzte Gegner auf den Anwender zu.",
+                null,
+                null,
+                20*30
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.AURA);
-
-        setLore("§7Versetzt alle naheliegenden Gegner in#§7Panik, wodurch sie für kurze Zeit#§7automatisch vor dem Anwender fliehen. Für diese Zeit#§7erhältder Anwender eine erhöhte#§7Bewegungsgeschwindigkeit.");
-        setBetterLore("§7Versetzt alle naheliegenden Gegner in#§7Panik, wodurch sie für kurze Zeit automatisch#§7vor dem Anwender fliehen. Für diese Zeit#§7erhältder Anwender eine erhöhte#§7Bewegungsgeschwindigkeit.# #§eF:§7 Solange diese Taste#§7gedrückt bleibt bewegen sich in Panik#§7versetzte Gegner auf den Anwender zu.");
     }
 
     @Override

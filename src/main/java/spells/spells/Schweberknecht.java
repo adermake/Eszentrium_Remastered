@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Spider;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.stagespells.WebTrail;
 
 import java.util.ArrayList;
@@ -20,9 +21,15 @@ public class Schweberknecht extends Spell {
     public Schweberknecht() {
         steprange = 20 * 6;
         name = "§6Schweberknecht";
-        cooldown = 20 * 35;
-        setLore("§7Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.");
-        setBetterLore("§7Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.");
+        spellDescription = new SpellDescription(
+                "Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.",
+                "Wirft eine Spinne, die bei Bodenkontakt losspringt und alle Spieler, die in Kontakt mit ihrem Netz kommen, mitnimmt. Von je höher sie fällt vor dem ersten Bodenkontakt, desto weiter springt sie.",
+                null,
+                null,
+                null,
+                null,
+                20*35
+        );
     }
 
     Spider s;

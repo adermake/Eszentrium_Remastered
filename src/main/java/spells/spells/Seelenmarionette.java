@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import javax.imageio.ImageIO;
@@ -38,14 +39,23 @@ public class Seelenmarionette extends Spell {
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SUPPORT);
-        cooldown = 20 * 50;
         autocancel = true;
         souls.add(this);
         hitSpell = false;
         hitBlock = false;
         hitPlayer = false;
         steprange = 20 * 10;
-        setLore("§7Die Seele des Spielers verlässt seinen Körper, was ihn fliegen lässt und unverwundbar macht. Der Körper bleibt hierbei zurück und kann weiterhin angegriffen werden, was dem Spieler auch schadet. §eF: §7Beendet den Zauber.");
+
+        spellDescription = new SpellDescription(
+                "Die Seele des Spielers verlässt seinen Körper, was ihn fliegen lässt und unverwundbar macht. Der Körper bleibt hierbei zurück und kann weiterhin angegriffen werden, was dem Spieler auch schadet.",
+                "",
+                "Beendet den Zauber.",
+                null,
+                null,
+                null,
+                20*50
+        );
+
     }
 
     double radius = 30;

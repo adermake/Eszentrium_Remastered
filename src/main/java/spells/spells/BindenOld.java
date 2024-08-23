@@ -17,6 +17,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class BindenOld extends Spell {
 
@@ -24,11 +25,19 @@ public class BindenOld extends Spell {
     public BindenOld() {
         name = "§eBinden";
         //hitEntity = true;
-        cooldown = 20 * 24;
         steprange = 200;
         speed = 1;
         //hitboxSize = 2;
         //
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*24
+        );
     }
 
     Entity ent1;

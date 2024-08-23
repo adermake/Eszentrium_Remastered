@@ -13,21 +13,30 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Aufwind extends Spell {
 
     public Aufwind() {
         name = "§bAufwind";
-        cooldown = 20 * 18;
         hitPlayer = false;
         hitEntity = false;
         hitboxSize = 5;
         steprange = 130;
+
+        spellDescription = new SpellDescription(
+                "Trägt den Spieler langsam aufwärts #§7und kann nahe Gegner mitziehen.",
+                "Trägt den Spieler langsam aufwärts.",
+                null,
+                null,
+                "Der Spieler springt in Blickrichtung#§7und wirft den Gegner doppelt so weit in die selbe Richtung.",
+                "Der Spieler springt in Blickrichtung.",
+                20*18
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.SELFCAST);
-        setBetterLore("§7Trägt den Spieler langsam aufwärts #§7und kann nahe Gegner mitziehen. # #§eShift:§7 Der Spieler springt in Blickrichtung#§7und wirft den Gegner doppelt so weit in die selbe Richtung.");
-        setLore("§7Trägt den Spieler langsam aufwärts. # #§eShift:§7 Der Spieler springt in Blickrichtung.");
     }
 
     @Override

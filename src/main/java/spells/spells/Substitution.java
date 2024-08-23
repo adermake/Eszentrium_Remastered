@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Tnt;
 
@@ -24,16 +25,24 @@ public class Substitution extends Spell {
     public Substitution() {
         steprange = 20 * 5;
         speed = 1;
-        cooldown = 20 * 22;
         name = "§3Substitution";
         hitSpell = false;
         hitPlayer = false;
         hitEntity = false;
+
+        spellDescription = new SpellDescription(
+                "Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar und bewegt sich schneller.",
+                "Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar, bewegt sich schneller und hinterlässt eine Bombe, die nach kurzer Zeit explodiert und Gegnern Schaden zufügt.",
+                null,
+                null,
+                null,
+                null,
+                20*22
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar und bewegt sich schneller.");
-        setBetterLore("§7Nach Aktivierung weicht der Spieler für kurze Zeit dem nächsten Angriff aus. Sollte das passieren, wird er kurz unsichtbar, bewegt sich schneller und hinterlässt eine Bombe, die nach kurzer Zeit explodiert und Gegnern Schaden zufügt.");
     }
 
     @Override

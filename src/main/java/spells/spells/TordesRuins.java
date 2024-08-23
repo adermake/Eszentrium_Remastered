@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 import esze.main.main;
 import esze.utils.ParUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.KompassEffect;
 
@@ -25,7 +26,15 @@ public class TordesRuins extends Spell {
         speed = 4;
         steprange = 100;
         name = "§eTor des Ruins";
-        cooldown = 20 * 38;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*38
+        );
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);

@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Spider;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Krabbelkäfig extends Spell {
 
@@ -20,10 +21,19 @@ public class Krabbelkäfig extends Spell {
     public Krabbelkäfig() {
 
         name = "§eKrabbelkäfig";
-        cooldown = 20 * 1;
         steprange = 80;
         canHitSelf = false;
         multihit = false;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
 
     }
 

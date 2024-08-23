@@ -16,6 +16,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Notenzauber extends Spell {
@@ -23,7 +24,6 @@ public class Notenzauber extends Spell {
 
     public Notenzauber() {
         name = "§eNotenzauber";
-        cooldown = 20 * 19;
         casttime = 64;
         hitEntity = false;
         hitPlayer = true;
@@ -32,11 +32,18 @@ public class Notenzauber extends Spell {
         steprange = 80;
         hitboxSize = 3;
 
+        spellDescription = new SpellDescription(
+                "Schießt nach kurzer Verzögerung ein Projektil in Blickrichtung, das getroffene Gegner festhält.",
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner festhält.",
+                null,
+                null,
+                null,
+                null,
+                20*19
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt nach kurzer Verzögerung ein#§7Projektil in Blickrichtung, das getroffene#§7Gegner festhält.");
-        setBetterLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner festhält.");
-
     }
 
 

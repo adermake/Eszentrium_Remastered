@@ -15,6 +15,7 @@ import esze.utils.ParUtils;
 import esze.utils.Title;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Teleport extends Spell {
@@ -22,16 +23,23 @@ public class Teleport extends Spell {
 
     public Teleport() {
         name = "§bTeleport";
-        cooldown = 20 * 30;
         speed = 2;
         hitSpell = true;
         steprange = 300;
         speed = 2;
 
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung, das den Spieler bei Kontakt mit einem Block oder Spieler dorthin teleportiert. Wird ein Spieler getroffen,tauschen diese Plätze.",
+                "Teleportiert den Spieler auf den anvisierten Block oder Spieler. Wird ein Spieler getroffen, tauschen diese Plätze.",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt ein Projektil in#§7Blickrichtung, das den Spieler bei Kontakt mit einem#§7Block oder Spieler dorthin teleportiert. Wird#§7ein Spieler getroffen,tauschen diese#§7Plätze.");
-        setBetterLore("§7Teleportiert den Spieler auf den#§7anvisierten Block oder Spieler. Wird ein Spieler#§7getroffen, tauschen diese Plätze.");
     }
 
     @Override

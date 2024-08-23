@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class KosmischeBindung extends Spell {
 
     public KosmischeBindung() {
         name = "§3Kosmische Bindung";
-        cooldown = 20 * 50;
         hitSpell = true;
         hitPlayer = true;
         hitEntity = true;
@@ -27,12 +27,20 @@ public class KosmischeBindung extends Spell {
         steprange = 20 * 5;
         silencable = true;
 
+        spellDescription = new SpellDescription(
+                "Hält nach kurzer Verzögerung alle Gegner in der Nähe fest und werden am Anwender fixiert. Dementsprechend folgen sie jeder Drehung und Bewegung des Spielers, solange der Zauber aktiv ist.",
+                "Hält nach kurzer Verzögerung alle Gegner in der Nähe fest und werden am Anwender fixiert. Dementsprechend folgen sie jeder Drehung und Bewegung des Spielers, solange der Zauber aktiv ist.",
+                "Bricht den Zauber sofort ab.",
+                "Bricht den Zauber sofort ab.",
+                null,
+                null,
+                20*50
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehung und Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
-        setBetterLore("§7Hält nach kurzer Verzögerung alle#§7Gegner in der Nähe fest und werden am Anwender#§7fixiert. Dementsprechend folgen sie jeder#§7Drehung und Bewegung des Spielers, solange#§7der Zauber aktiv ist.# #§eF:§7 Bricht den#§7Zauber sofort ab.");
     }
 
     @Override

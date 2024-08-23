@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Erlösung extends Spell {
@@ -23,12 +24,21 @@ public class Erlösung extends Spell {
         name = "§8Erlösung";
         steprange = 20 * 22;
         speed = 1;
-        cooldown = 20 * 60;
         hitPlayer = true;
         hitEntity = true;
         hitSpell = false;
         hitboxSize = 3;
         multihit = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*60
+        );
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);

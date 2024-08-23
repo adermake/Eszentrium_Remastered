@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Lichtstrudel extends Spell {
@@ -22,14 +23,23 @@ public class Lichtstrudel extends Spell {
     ArrayList<Entity> sounded = new ArrayList<Entity>();
 
     public Lichtstrudel() {
-        cooldown = 20 * 40;
         name = "§cLichtstrudel";
         steprange = 100;
         hitboxSize = 1;
+
+        spellDescription = new SpellDescription(
+                "Der Spieler fliegt für kurze Zeit in Blickrichtung und hinterlässt eine Lichtspur. Gegner, die von dieser Lichtspur erfasst werden,werden bis zum Startpunkt des Zaubers befördert.",
+                "",
+                null,
+                null,
+                "Beendet den Zauber sofort.",
+                null,
+                20*40
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
-        setLore("§7Der Spieler fliegt für kurze Zeit in#§7Blickrichtung und hinterlässt eine#§7Lichtspur. Gegner, die von dieser Lichtspur erfasst#§7werden,werden bis zum Startpunkt des#§7Zaubers befördert.# #§eShift:§7 Beendet den#§7Zauber sofort.");
     }
 
     Location lastdot;

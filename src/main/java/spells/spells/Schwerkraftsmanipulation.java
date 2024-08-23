@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,15 @@ public class Schwerkraftsmanipulation extends Spell {
 
     public Schwerkraftsmanipulation() {
         name = "§eSchwerkraftsmanipulation";
-        cooldown = 20 * 30;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
         steprange = 60;
     }
 

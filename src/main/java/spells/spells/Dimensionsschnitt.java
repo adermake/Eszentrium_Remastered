@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.DimensionCutSeg;
 
@@ -20,14 +21,20 @@ public class Dimensionsschnitt extends Spell {
         name = "§bDimensionsschnitt";
         steprange = 100;
         speed = 10;
-        cooldown = 45 * 20;
+        spellDescription = new SpellDescription(
+                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert.",
+                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert.",
+                null,
+                null,
+                "Bricht den Sprung ab.",
+                "Bricht den Sprung ab.",
+                20*45
+        );
         addSpellType(SpellType.SELFCAST);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
-        setLore("§7Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert. §eShift: §7Bricht den Sprung ab.");
-        setBetterLore("§7Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert. §eShift: §7Bricht den Sprung ab.");
     }
 
     @Override

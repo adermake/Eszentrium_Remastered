@@ -27,13 +27,21 @@ import esze.utils.Actionbar;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 
 public class PlatformRise extends Spell {
 
     public PlatformRise() {
-        cooldown = 10;
-
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                10
+        );
     }
 
 

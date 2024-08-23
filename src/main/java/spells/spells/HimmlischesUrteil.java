@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 import java.util.ArrayList;
 
@@ -19,12 +20,21 @@ public class HimmlischesUrteil extends Spell {
 
     public HimmlischesUrteil() {
         name = "§eHimmlisches Urteil";
-        cooldown = 20 * 40;
         casttime = 25;
         steprange = 40;
         hitboxSize = 5.5;
         hitPlayer = true;
         hitEntity = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
     }
 
     ArrayList<Location> circleDots = new ArrayList<Location>();

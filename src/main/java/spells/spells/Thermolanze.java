@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ThermolanzeLaser;
 
@@ -21,7 +22,6 @@ public class Thermolanze extends Spell {
 
 
     public Thermolanze() {
-        cooldown = 20 * 32;
         name = "§eThermolanze";
         steprange = 30;
 
@@ -29,12 +29,21 @@ public class Thermolanze extends Spell {
         speed = 2;
         casttime = 10;
         hitSpell = false;
+
+        spellDescription = new SpellDescription(
+                "Der Spieler springt in die Luft und schießt einen Feuerstrahl in Blickrichtung. Getroffene Gegner werden weggeschleudert.",
+                "Der Spieler springt in die Luft und schießt einen Feuerstrahl in Blickrichtung. Getroffene Gegner werden weggeschleudert.",
+                null,
+                null,
+                null,
+                null,
+                20*32
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.MULTIHIT);
-        setLore("§7Der Spieler springt in die Luft und#§7schießt einen Feuerstrahl in Blickrichtung.#§7Getroffene Gegner werden weggeschleudert.");
-        setBetterLore("§7Der Spieler springt in die Luft und#§7schießt einen Feuerstrahl in Blickrichtung.#§7Getroffene Gegner werden weggeschleudert.");
 
     }
 

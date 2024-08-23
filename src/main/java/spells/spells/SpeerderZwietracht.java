@@ -11,6 +11,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class SpeerderZwietracht extends Spell {
@@ -18,7 +19,6 @@ public class SpeerderZwietracht extends Spell {
 
     public SpeerderZwietracht() {
         name = "§eSpeer der Zwietracht";
-        cooldown = 20 * 45;
         speed = 10;
         hitEntity = true;
         hitPlayer = true;
@@ -26,12 +26,19 @@ public class SpeerderZwietracht extends Spell {
         hitBlock = true;
         hitboxSize = 2;
 
+        spellDescription = new SpellDescription(
+                "Schießt einen Speer in Blickrichtung, der getroffene Gegner am nächsten Block in der Flugbahn für kurze Zeit festhält.",
+                "Schießt einen Speer in Blickrichtung, der getroffene Gegner am nächsten Block in der Flugbahn für kurze Zeit festhält.",
+                null,
+                null,
+                "Zieht den Speer aus dem Gegner heraus und verursacht Schaden.",
+                "Zieht den Speer aus dem Gegner heraus und verursacht Schaden.",
+                20*45
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-
-        setLore("§7Schießt einen Speer in Blickrichtung,#§7der getroffene Gegner am nächsten Block in#§7der Flugbahn für kurze Zeit festhält.##§7#§eShift:§7 Zieht den Speer aus dem Gegner#§7heraus und verursacht Schaden.");
-        setBetterLore("§7Schießt einen Speer in Blickrichtung,#§7der getroffene Gegner am nächsten Block in#§7der Flugbahn für kurze Zeit festhält.##§7#§eShift:§7 Zieht den Speer aus dem Gegner#§7heraus und verursacht Schaden.");
     }
 
     @Override

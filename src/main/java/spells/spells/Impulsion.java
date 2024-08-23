@@ -18,6 +18,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -25,7 +26,6 @@ import spells.stagespells.Repulsion;
 public class Impulsion extends Spell {
 
     public Impulsion() {
-        cooldown = 20 * 20;
         name = "§eImpulsion";
         speed = 5;
         steprange = 200;
@@ -33,11 +33,19 @@ public class Impulsion extends Spell {
         hitSpell = true;
         hitEntity = false;
 
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung, das bei Blockkontakt ein Feld erzeugt, das Spieler anzieht und ihnen Schaden zufügt.",
+                "Schießt ein Projektil in Blickrichtung, das bei Blockkontakt ein Feld erzeugt, das Spieler anzieht und ihnen Schaden zufügt.",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt ein Projektil in#§7Blickrichtung, das bei Blockkontakt ein Feld erzeugt,#§7das Spieler anzieht und ihnen Schaden zufügt.");
-        setBetterLore("§7Schießt ein Projektil in#§7Blickrichtung, das bei Blockkontakt ein Feld erzeugt,#§7das Spieler anzieht und ihnen Schaden zufügt.");
     }
 
 

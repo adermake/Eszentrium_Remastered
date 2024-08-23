@@ -11,6 +11,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Schicksalsschnitt extends Spell {
@@ -20,11 +21,18 @@ public class Schicksalsschnitt extends Spell {
 
         name = "§cSchicksalsschnitt";
         steprange = 82;
-        cooldown = 20 * 40;
+        spellDescription = new SpellDescription(
+                "Teleportiert den Spieler zum anvisierten Gegner. Fügt nach kurzer Zeit Schaden an diesem Gegner an, der steigt, je weiter dieser vom Anwender entfernt ist.",
+                "",
+                "Der Spieler springt in Blickrichtung.",
+                null,
+                null,
+                null,
+                20*40
+        );
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Teleportiert den Spieler zum#§7anvisierten Gegner. Fügt nach kurzer Zeit Schaden an#§7diesem Gegner an, der steigt, je weiter#§7dieser vom Anwender entfernt ist.# #§eF:§7 Der#§7Spieler springt in Blickrichtung.");
     }
 
     Player target;

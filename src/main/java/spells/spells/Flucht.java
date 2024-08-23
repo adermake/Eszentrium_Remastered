@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Flucht extends Spell {
@@ -23,18 +24,24 @@ public class Flucht extends Spell {
 
 
         steprange = 20 * 3;
-        cooldown = 20 * 30;
         name = "§bFlucht";
         speed = 1;
 
         hitPlayer = false;
         hitBlock = false;
         hitSpell = false;
+        spellDescription = new SpellDescription(
+                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus.",
+                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen, die nahe Gegner wegschieben. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus.",
+                null,
+                null,
+                "Beendet den Zauber sofort.",
+                "Beendet den Zauber sofort.",
+                20*30
+        );
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen. Solange sich der#§7Spieler in dieser Form befindet, fliegt er in#§7Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
-        setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in eine Fledermaus und beschwört einen#§7Schwarm an Fledermäusen, die nahe Gegner wegschieben.#§7Solange sich der Spieler in dieser Form befindet,#§7fliegt er in Blickrichtung voraus.# #§eShift:§7 Beendet den#§7Zauber sofort.");
     }
 
 

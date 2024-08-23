@@ -13,20 +13,29 @@ import org.bukkit.util.Vector;
 
 import esze.main.main;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Erdsurfer extends Spell {
     public Erdsurfer() {
-        cooldown = 20 * 60;
         name = "§bErdsurfer";
         speed = 1;
         steprange = 0;
         hitPlayer = false;
+
+        spellDescription = new SpellDescription(
+                "Reitet auf der Erde, um sich in Blickrichtung fortzubewegen und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasstwerden und werden danach ebenfalls mitgezogen.",
+                "Reitet auf der Erde, um sich in Blickrichtung fortzubewegen und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasstwerden und werden danach ebenfalls mitgezogen.",
+                null,
+                null,
+                "Wirft allen aufgesammelten Ballast in Blickrichtung weg und wirft den Anwender nach hinten.",
+                "Wirft allen aufgesammelten Ballast in Blickrichtung weg und wirft den Anwender nach hinten.",
+                20 * 60
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Reitet auf der Erde, um sich in#§7Blickrichtung fortzubewegen und zieht Blöcke#§7hinter sich her. Gegner können von diesen#§7Blöcken erfasstwerden und werden danach#§7ebenfalls mitgezogen.# #§eShift:§7 Wirft allen#§7aufgesammelten Ballast in Blickrichtung weg und#§7wirft den Anwender nach hinten.");
-        setBetterLore("§7Reitet auf der Erde, um sich in#§7Blickrichtung fortzubewegen und zieht Blöcke hinter#§7sich her. Gegner können von diesen Blöcken#§7erfasstwerden und werden danach ebenfalls#§7mitgezogen.# #§eShift:§7 Wirft allen#§7aufgesammelten Ballast in Blickrichtung weg und#§7wirft den Anwender nach hinten.");
 
     }
 

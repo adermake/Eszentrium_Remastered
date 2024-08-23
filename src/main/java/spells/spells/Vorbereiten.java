@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import esze.main.main;
 import esze.utils.NBTUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellList;
 import spells.spellcore.SpellType;
 
@@ -21,7 +22,15 @@ public class Vorbereiten extends Spell {
 
     public Vorbereiten() {
         name = "§4Vorbereiten";
-        cooldown = 0;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                0
+        );
         addSpellType(SpellType.SUPPORT);
 
     }

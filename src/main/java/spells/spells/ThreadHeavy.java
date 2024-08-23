@@ -15,6 +15,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.stagespells.SchwertausLicht;
 
 public class ThreadHeavy extends Spell {
@@ -24,7 +25,15 @@ public class ThreadHeavy extends Spell {
     public ThreadHeavy() {
 
         name = "§cSThreadHeavy";
-        cooldown = 20 * 50;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*50
+        );
 
 
     }

@@ -15,6 +15,7 @@ import esze.utils.Matrix;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Heilen extends Spell {
@@ -22,7 +23,6 @@ public class Heilen extends Spell {
 
     public Heilen() {
         steprange = 70;
-        cooldown = 20 * 24;
         name = "§aHeilen";
         speed = 30;
 
@@ -31,10 +31,19 @@ public class Heilen extends Spell {
         hitPlayer = true;
         hitSpell = true;
         hitBlock = true;
+
+        spellDescription = new SpellDescription(
+                "Schießt einen Strahl, der einen getroffenen Verbündeten heilt.",
+                "Schießt einen Strahl, der einen getroffenen Verbündeten heilt. Wird ein Spieler getroffen, heilt sich der Anwender ebenfalls.",
+                null,
+                null,
+                null,
+                null,
+                20*24
+        );
+
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt einen Strahl, der einen getroffenen Verbündeten heilt.");
-        setBetterLore("§7Schießt einen Strahl, der einen getroffenen Verbündeten heilt. Wird ein Spieler getroffen, heilt sich der Anwender ebenfalls.");
     }
 
     public Heilen(int s, boolean ref) {
@@ -42,7 +51,7 @@ public class Heilen extends Spell {
         refined = ref;
         this.s = s;
         steprange = 70;
-        cooldown = 2;
+        spellDescription.setCooldown(2);
         name = "§eHeilen";
         speed = 30;
 

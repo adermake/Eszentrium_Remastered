@@ -20,6 +20,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Eisstachel extends Spell {
@@ -27,19 +28,25 @@ public class Eisstachel extends Spell {
     public static ArrayList<Eisstachel> eistacheln = new ArrayList<Eisstachel>();
 
     public Eisstachel() {
-        cooldown = 20 * 40;
         name = "§eEisstachel";
         speed = 10;
         steprange = 32;
         hitPlayer = true;
         hitSpell = true;
+        spellDescription = new SpellDescription(
+                "Schießt einen Eiszapfen in Blickrichtung. Bei Gegnerkontakt wird dieser vereist und an der Stelle für kurze Zeit festgehalten. Schaden, den der Gegner in dieser Zeit erleidet, wird erhöht und bricht das Eis.",
+                "Schießt einen Eiszapfen in Blickrichtung. Bei Gegnerkontakt wird dieser vereist und an der Stelle für kurze Zeit festegehalten.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
 
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("Schießt einen Eiszapfen in Blickrichtung. Bei Gegnerkontakt wird dieser vereist und an der Stelle für kurze Zeit festgehalten. Schaden, den der Gegner in dieser Zeit erleidet, wird erhöht und bricht das Eis.");
-        setBetterLore("§7Schießt einen Eiszapfen in#§7Blickrichtung. Bei Gegnerkontakt wird dieser vereist#§7und an der Stelle für kurze Zeit#§7festegehalten.");
         eistacheln.add(this);
 
 

@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Requiemspfeil extends Spell {
@@ -26,16 +27,23 @@ public class Requiemspfeil extends Spell {
 
         name = "§eRequiemspfeil";
         steprange = 100;
-        cooldown = 20 * 40;
         hitboxSize = 1.5;
         speed = 1;
         hitSpell = true;
 
+        spellDescription = new SpellDescription(
+                "Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.",
+                "Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.",
+                null,
+                null,
+                "Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.",
+                "Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.",
+                20*40
+        );
+
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
-        setBetterLore("§7Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.§eShift:§7 Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.");
 
     }
 

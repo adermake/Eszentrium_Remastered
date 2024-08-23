@@ -8,22 +8,30 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Schallwelle extends Spell {
 
     public Schallwelle() {
-        cooldown = 20 * 10;
         name = "§eSchallwelle";
         speed = 3;
         steprange = 42;
         hitPlayer = true;
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner zurückwirft.",
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner zurückwirft.",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner zurückwirft.");
-        setBetterLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner zurückwirft.");
 
     }
 

@@ -7,15 +7,24 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class SpikeArray extends Spell {
 
 
     public SpikeArray() {
         name = "§eSpikeArray";
-        cooldown = 20;
         speed = 1;
         steprange = 50;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
     }
 
     @Override

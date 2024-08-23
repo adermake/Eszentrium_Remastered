@@ -10,23 +10,32 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Meteor;
 
 public class Meteoritenhagel extends Spell {
 
     public Meteoritenhagel() {
-        cooldown = 20 * 40;
         casttime = 0;
         steprange = 65;
         name = "§cMeteoritenhagel";
         speed = 1;
         hitSpell = false;
+
+        spellDescription = new SpellDescription(
+                "Lässt nach kurzer Verzögerung Meteoriten vom Himmel fallen, die bei Bodenkontakt explodieren und nahe Gegner schaden.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+        
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
-
-        setLore("§7Lässt nach kurzer Verzögerung#§7Meteoriten vom Himmel fallen, die bei Bodenkontakt#§7explodieren und nahe Gegner schaden.");
 
     }
 

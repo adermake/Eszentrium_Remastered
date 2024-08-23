@@ -17,6 +17,7 @@ import esze.utils.ParUtils;
 
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.RepulsionDirectional;
 
@@ -26,7 +27,6 @@ public class DunklerWind extends Spell {
     public DunklerWind() {
         name = "§cDunkler Wind";
 
-        cooldown = 20 * 50;
         speed = 8F;
         steprange = 5 * 20 * 8 * 2;
         multihit = true;
@@ -34,13 +34,22 @@ public class DunklerWind extends Spell {
         hitboxSize = 8;
         hitPlayer = false;
         hitEntity = false;
+
+        spellDescription = new SpellDescription(
+                "Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner, die mit dem Projektil in Kontakt kommen, weggeschleudert.",
+                "",
+                "Der Spieler springt Richtung Projektil und zieht alle Gegner in der Nähe mit sich.",
+                null,
+                null,
+                null,
+                20*50
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner, die mit dem Projektil in Kontakt kommen, weggeschleudert." +
-                "F: Der Spieler springt Richtung Projektil und zieht alle Gegner in der Nähe mit sich.");
     }
 
     @Override

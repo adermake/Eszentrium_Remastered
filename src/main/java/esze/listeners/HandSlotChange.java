@@ -10,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellList;
 
@@ -24,14 +23,15 @@ public class HandSlotChange implements Listener {
         ItemStack is = p.getInventory().getItem(e.getNewSlot());
         if(is != null && (is.getType() == Material.ENCHANTED_BOOK || is.getType() == Material.BOOK) && is.hasItemMeta()) {
             if (NBTUtils.getNBT("Spell", is).equals("true")) {
-                String originalIsName = ChatColor.stripColor(NBTUtils.getNBT("OriginalName", is));
+                String originalIsName = NBTUtils.getNBT("OriginalName", is);
+                String isNameNoColor = ChatColor.stripColor(originalIsName);
                 Optional<Spell> spellOpt = SpellList.spells.keySet().stream()
-                        .filter(s -> originalIsName.toLowerCase().replace(" ", "").startsWith(ChatColor.stripColor(s.getName()).toLowerCase().replace(" ", "")))
+                        .filter(s -> isNameNoColor.toLowerCase().replace(" ", "").startsWith(ChatColor.stripColor(s.getName()).toLowerCase().replace(" ", "")))
                         .findFirst();
 
                 if(spellOpt.isPresent()) {
                     Spell spell = spellOpt.get();
-                    new BossbarSpellHUD(p, spell.getName(), "TEST", "TEST").show();
+                    new BossbarSpellHUD(p, spell, originalIsName.contains("§2")).show();
                     return;
                 }
             }

@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Blutsiegel extends Spell {
@@ -24,15 +25,25 @@ public class Blutsiegel extends Spell {
 
     public Blutsiegel() {
         name = "§cBlutsiegel";
-        cooldown = 20 * 40;
         steprange = 20 * 8;
         hitboxSize = rad;
         hitPlayer = true;
         blutsiegel.add(this);
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SUPPORT);
 
-        setLore("ï¿½7Beschwï¿½rt ein Pentagramm auf dem Boden#ï¿½7in Blickrichtung. Gegner, die sich auf dem#ï¿½7Pentagramm befinden, erhalten einmalig#ï¿½7Schaden.Auï¿½erdem wird der Anwender um den#ï¿½7Schaden geheilt, den ein Gegner in diesem Feld#ï¿½7erleidet.");
+        //setLore("ï¿½7Beschwï¿½rt ein Pentagramm auf dem Boden#ï¿½7in Blickrichtung. Gegner, die sich auf dem#ï¿½7Pentagramm befinden, erhalten einmalig#ï¿½7Schaden.Auï¿½erdem wird der Anwender um den#ï¿½7Schaden geheilt, den ein Gegner in diesem Feld#ï¿½7erleidet.");
     }
 
     @Override

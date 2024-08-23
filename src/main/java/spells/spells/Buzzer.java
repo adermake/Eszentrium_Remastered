@@ -14,14 +14,22 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Buzzer extends Spell {
 
 
     public Buzzer() {
-        cooldown = 20 * 3;
         steprange = 5;
-
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*3
+        );
     }
 
     @Override

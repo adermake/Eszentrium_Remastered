@@ -25,9 +25,9 @@ public class SpellTestMenu extends ItemMenu {
 
             if (better) {
 
-                addClickableItem(x, y, Material.BOOK, "§2" + s.getName().substring(2, s.getName().length()), s.getBetterLore());
+                addClickableItem(x, y, Material.BOOK, "§2" + s.getName().substring(2), s.getSpellDescription().getRefinedLore());
             } else {
-                addClickableItem(x, y, Material.BOOK, s.getName(), s.getLore());
+                addClickableItem(x, y, Material.BOOK, s.getName(), s.getSpellDescription().getNormalLore());
             }
 
             x++;

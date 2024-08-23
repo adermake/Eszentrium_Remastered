@@ -13,12 +13,22 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Sturm extends Spell {
 
     public Sturm() {
-        cooldown = 20 * 5;
         steprange = 5 * 20 * 22;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*5
+        );
     }
 
     Location bLoc;

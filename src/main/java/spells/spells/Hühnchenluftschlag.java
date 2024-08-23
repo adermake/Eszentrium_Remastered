@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Eggsplosive;
 import spells.stagespells.ExplosionDamage;
@@ -23,18 +24,21 @@ public class Hühnchenluftschlag extends Spell {
 
     public Hühnchenluftschlag() {
         name = "§6Hühnchenluftschlag";
-        cooldown = 20 * 42;
         steprange = 66;
+
+        spellDescription = new SpellDescription(
+                "Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt.",
+                "Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt.",
+                "Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.",
+                "Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.",
+                "Springt vorzeitig vom Hühnchen ab und springt in die Höhe.",
+                "Springt vorzeitig vom Hühnchen ab und springt in die Höhe. Das Hühnchen wird in Blickrichtung geschossen und explodiert, sobald es einen Block trifft.",
+                20*42
+        );
 
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.SELFCAST);
-        setLore("Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt." +
-                "Shift: Springt vorzeitig vom Hühnchen ab und springt in die Höhe." +
-                "F: Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.");
-        setBetterLore("Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt." +
-                "Shift: Springt vorzeitig vom Hühnchen ab und springt in die Höhe. Das Hühnchen wird in Blickrichtung geschossen und explodiert, sobald es einen Block trifft." +
-                "F: Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.");
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Blitzaufstieg extends Spell {
@@ -21,12 +22,22 @@ public class Blitzaufstieg extends Spell {
     public Blitzaufstieg() {
 
         name = "§rBlitzaufstieg";
-        cooldown = 20 * 20;
         hitPlayer = true;
         hitEntity = true;
         hitboxSize = 8;
         casttime = 20;
         steprange = 4;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
+
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.KNOCKBACK);

@@ -17,6 +17,7 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Repulsion;
 
@@ -29,12 +30,16 @@ public class Machtwort extends Spell {
         canHitSelf = true;
         hitboxSize = 4;
         steprange = 20 * 10;
-        cooldown = 20 * 70;
 
-        setLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.");
-        setBetterLore("Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird. Gegner werden außerdem aus dem Kreis geworfen.");
-
-
+        spellDescription = new SpellDescription(
+                "Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird.",
+                "Beschwört einen Zauberkreis, in dem der Cooldown aller Zauber stark reduziert wird. Gegner werden außerdem aus dem Kreis geworfen.",
+                null,
+                null,
+                null,
+                null,
+                20*70
+        );
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SUPPORT);
     }

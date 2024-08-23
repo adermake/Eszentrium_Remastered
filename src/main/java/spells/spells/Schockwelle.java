@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Repulsion;
 
@@ -24,12 +25,21 @@ public class Schockwelle extends Spell {
     public Schockwelle() {
 
         name = "§rSchockwelle";
-        cooldown = 20 * 30;
         hitPlayer = true;
         hitEntity = true;
         hitboxSize = 6;
         casttime = 20;
         steprange = 22;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.AURA);

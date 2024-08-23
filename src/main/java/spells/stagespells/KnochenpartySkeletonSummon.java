@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.spells.Knochenparty;
 
@@ -30,11 +31,20 @@ public class KnochenpartySkeletonSummon extends Spell {
         kno = k;
         caster = c;
         overrideLoc = l;
-        cooldown = 20 * 62;
         steprange = 10;
         name = "§6Knochenparty";
         hitSpell = true;
         castSpell(caster, name);
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*62
+        );
 
 
         addSpellType(SpellType.PROJECTILE);

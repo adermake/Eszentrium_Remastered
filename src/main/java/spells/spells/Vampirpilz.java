@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -19,10 +20,19 @@ import spells.stagespells.VampirpilzStage2;
 public class Vampirpilz extends Spell {
 
     public Vampirpilz() {
-        cooldown = 20 * 52;
         steprange = 60;
         name = "§6Vampirpilz";
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Wirft einen Pilz in Blickrichtung, der naheliegenden Gegnern über Zeit das Leben aussaugt und den Anwender um diesen Betrag heilt.",
+                "Wirft einen Pilz in Blickrichtung, der naheliegenden Gegnern über Zeit das Leben aussaugt und den Anwender um diesen Betrag heilt.",
+                null,
+                "Bewegt den Pilz auf den anvisierten Block.",
+                null,
+                null,
+                20*52
+        );
 
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.AURA);
@@ -30,8 +40,6 @@ public class Vampirpilz extends Spell {
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Wirft einen Pilz in Blickrichtung, der#§7naheliegenden Gegnern über Zeit das Leben#§7aussaugt und den Anwender um diesen Betrag#§7heilt.");
-        setBetterLore("§7Wirft einen Pilz in Blickrichtung, der#§7naheliegenden Gegnern über Zeit das Leben#§7aussaugt und den Anwender um diesen Betrag#§7heilt.# #§eF:§7 Bewegt den Pilz auf den#§7anvisierten Block.");
     }
 
     boolean holding = true;

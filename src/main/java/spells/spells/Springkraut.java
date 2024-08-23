@@ -19,6 +19,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.HealingAura;
 import spells.stagespells.Repulsion;
@@ -36,19 +37,23 @@ public class Springkraut extends Spell {
         flowerMat.add(Material.WHITE_TULIP);
         speed = 2;
         m = flowerMat.get(randInt(0, flowerMat.size() - 1));
-        cooldown = 20 * 25;
         name = "§aSpringkraut";
         steprange = 2 * 20 * 10;
+
+        spellDescription = new SpellDescription(
+                "Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner werden ebenfalls geheilt, werden aber zusätzlich zurückgeworfen.",
+                "Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner erleiden stattdessen Schaden und werden zurückgeworfen.",
+                "Stoppt das Projektil sofort.",
+                "Stoppt das Projektil sofort.",
+                null,
+                null,
+                20*25
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner werden ebenfalls geheilt, werden aber zusätzlich zurückgeworfen." +
-                "F: Stoppt das Projektil sofort.");
-
-        setBetterLore("Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner erleiden stattdessen Schaden und werden zurückgeworfen." +
-                "F: Stoppt das Projektil sofort.");
     }
 
     @Override

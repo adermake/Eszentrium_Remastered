@@ -6,11 +6,20 @@ import org.bukkit.entity.Player;
 
 import monuments.AirMonument;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class BuildMon extends Spell {
 
     public BuildMon() {
-        cooldown = 20;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
     }
 
     @Override

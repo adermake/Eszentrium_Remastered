@@ -12,12 +12,21 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Schatz extends Spell {
 
     public Schatz() {
         name = "§3Schatz";
-        cooldown = 20;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
     }
 
     public void setUp() {

@@ -15,6 +15,7 @@ import esze.menu.SoloAnalyticsMenu;
 import esze.menu.SoloSelectionTopMenu;
 import esze.menu.WeaponsAnalyticsMenu;
 import esze.utils.*;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -488,9 +489,9 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
                 Class clazz = Class.forName(spellname);
                 Spell sp = (Spell) clazz.newInstance();
                 if (refined) {
-                    im.setLore(sp.getBetterLore());
+                    im.setLore(sp.getSpellDescription().getRefinedLore());
                 } else {
-                    im.setLore(sp.getLore());
+                    im.setLore(sp.getSpellDescription().getNormalLore());
                 }
 
                 sp.kill();
@@ -518,98 +519,35 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
         List<String> to = new ArrayList<>();
         if (args.length == 1) {
             if (cmdname.contains("game")) {
-                List<String> from = new ArrayList<>();
-                from.add("start");
-                from.add("stop");
-                for (String s : from) {
-                    String eing = args[0];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
-                    }
-                }
+                to.addAll(List.of("start", "stop"));
             } else if (cmdname.contains("setjumppad")) {
-                List<String> from = new ArrayList<String>();
                 for (String arena : main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)) {
                     if (main.plugin.getConfig().get("maps." + arena) != null) {
-                        from.add(arena);
-                    }
-                }
-                for (String s : from) {
-                    String eing = args[0];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
+                        to.add(arena);
                     }
                 }
             } else if (cmdname.contains("ping")) {
-                List<String> from = new ArrayList<>(Bukkit.getOnlinePlayers().stream().map(Player::getName).toList());
-                for (String s : from) {
-                    String eing = args[0];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
-                    }
-                }
+                to.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).toList());
             } else if (cmdname.contains("setmode")) {
-                List<String> from = new ArrayList<>(Arrays.stream(TypeEnum.values()).map(TypeEnum::toString).toList());
-                for (String s : from) {
-                    String eing = args[0];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
-                    }
-                }
-                if (Gamestate.getGameState() == Gamestate.INGAME) {
-                    Bukkit.getOnlinePlayers().forEach(p -> GameType.getType().givePlayerLobbyItems(p));
-                }
-
+                to.addAll(Arrays.stream(TypeEnum.values()).map(TypeEnum::toString).toList());
+            } else if (cmdname.contains("spell")) {
+                to.addAll(SpellList.spells.keySet().stream().map(s -> ChatColor.stripColor(s.getName())).distinct().toList());
             } else if (cmdname.contains("setitem")) {
-                List<String> from = new ArrayList<>();
                 for (String arena : main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)) {
                     if (main.plugin.getConfig().get("maps." + arena) != null) {
-                        from.add(arena);
-                    }
-                }
-                for (String s : from) {
-                    String eing = args[0];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
+                        to.add(arena);
                     }
                 }
             }
         } else if (args.length == 2) {
             if (cmdname.contains("setitem")) {
-                List<String> from = new ArrayList<>(Arrays.stream(Material.values()).map(Material::toString).toList());
-                for (String s : from) {
-                    String eing = args[1];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
-                    }
-                }
+                to.addAll(Arrays.stream(Material.values()).map(Material::toString).toList());
             }
         } else if (args.length == 3) {
             if (cmdname.contains("setjumppad")) {
-                List<String> from = List.of("dir", "up");
-                for (String s : from) {
-                    String eing = args[2];
-                    String eing2 = s.substring(0, eing.length());
-
-                    if (eing.equalsIgnoreCase(eing2)) {
-                        to.add(s);
-                    }
-                }
+                to.addAll(List.of("dir", "up"));
             }
         }
-
         return to;
     }
 
@@ -619,17 +557,17 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
         long completeFileSize = httpConnection.getContentLength();
 
         InputStream in = url.openStream();
-        FileOutputStream fos = new FileOutputStream(new File(file));
+        FileOutputStream fos = new FileOutputStream(file);
 
         p.sendMessage("§8| §7Starte Download.");
-        int length = -1;
+        int length;
         long downloadedFileSize = 0;
         byte[] buffer = new byte[1024];// buffer for portion of data from
         // connection
         double lastprog = 0;
         while ((length = in.read(buffer)) > -1) {
             downloadedFileSize += length;
-            double currentProgress = (double) ((((double) downloadedFileSize) / ((double) completeFileSize)) * 100d);
+            double currentProgress = (((double) downloadedFileSize) / ((double) completeFileSize)) * 100d;
             currentProgress = round(currentProgress, 1);
             if (currentProgress != lastprog) {
                 p.sendMessage("§8| §7Lade Datei herunter... " + currentProgress + "% abgeschlossen");

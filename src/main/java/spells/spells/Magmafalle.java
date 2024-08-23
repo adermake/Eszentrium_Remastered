@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -22,15 +23,23 @@ public class Magmafalle extends Spell {
 
     public Magmafalle() {
         name = "§6Magmafalle";
-        cooldown = 20 * 20;
         steprange = 1400;
         hitboxSize = 4;
         hitPlayer = false;
         hitEntity = false;
+
+        spellDescription = new SpellDescription(
+                "Platziert eine Falle auf dem Boden in Blickrichtung. Nach kurzer Zeit wird die Falle aktiviert und explodiert, sobald sich ein Gegner nähert. Fallen können ebenfalls mit einem Schwertwurf ausgelöst werden.",
+                "Platziert eine Falle auf dem Boden in Blickrichtung. Nach kurzer Zeit wird die Falle aktiviert und explodiert, sobald sich ein Gegner nähert. Fallen können ebenfalls mit einem Schwertwurf ausgelöst werden.",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
+        
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
-        setLore("§7Platziert eine Falle auf dem Boden in#§7Blickrichtung. Nach kurzer Zeit wird die#§7Falle aktiviert und explodiert, sobald sich#§7ein Gegner nähert.Fallen können ebenfalls#§7mit einem Schwertwurf ausgelöst werden.");
-        setBetterLore("§7Platziert eine Falle auf dem Boden in#§7Blickrichtung. Nach kurzer Zeit wird die#§7Falle aktiviert und explodiert, sobald sich#§7ein Gegner nähert.Fallen können ebenfalls#§7mit einem Schwertwurf ausgelöst werden.");
 
 
     }

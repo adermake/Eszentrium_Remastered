@@ -17,21 +17,30 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Heldenstoß extends Spell {
 
     public Heldenstoß() {
-        cooldown = 20 * 45;
         name = "§cHeldenstoß";
         steprange = 50;
+
+        spellDescription = new SpellDescription(
+                "Der Spieler fliegt in Blickrichtung voran. Nach kurzer Zeit oder bei Bodenkontakt entsteht eine Explosion, die Gegnern schadet und sie wegschleudert. Je länger der Zauber angehalten hat, desto stärker ist dieser Effekt.",
+                "",
+                null,
+                null,
+                "Stoppt den Zauber sofort.",
+                null,
+                20*45
+        );
 
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Der Spieler fliegt in Blickrichtung#§7voran. Nach kurzer Zeit oder bei Bodenkontakt#§7entsteht eine Explosion, die Gegnern#§7schadet und sie wegschleudert. Je länger der#§7Zauber angehalten hat, desto stärker ist dieser#§7Effekt.# #Shift: Stoppt den Zauber sofort.");
     }
 
 

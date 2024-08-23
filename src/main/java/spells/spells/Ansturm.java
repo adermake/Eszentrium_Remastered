@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Ansturm extends Spell {
 
@@ -23,11 +24,18 @@ public class Ansturm extends Spell {
     public Ansturm() {
         name = "§6Ansturm";
         hitEntity = true;
-        cooldown = 20 * 24;
         steprange = 60;
         speed = 1;
         hitboxSize = 2;
-
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*24
+        );
     }
 
     @Override

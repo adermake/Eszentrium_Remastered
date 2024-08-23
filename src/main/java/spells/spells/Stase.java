@@ -11,6 +11,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.VelocityTimeStop;
 
@@ -21,14 +22,23 @@ public class Stase extends Spell {
 
     public Stase() {
         name = "§cStase";
-        cooldown = 20 * 50;
         speed = 2F;
         steprange = 40;
         hitboxSize = 1.4;
+
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil, das einen getroffenen Gegner in der Zeit festhält. Dieser kann während dieser Zeit weder mit Zaubern noch mit seiner Waffe angreifen, erhält aber selbst auch keinen Rückstoß oder Schaden. Nach kurzer Zeit wird der Gegner befreit und erhält den gesamten Rückstoß, den er während der Versteinerung abbekommen hat, auf einmal.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*50
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
-        setLore("Schießt ein Projektil, das einen getroffenen Gegner in der Zeit festhält. Dieser kann während dieser Zeit weder mit Zaubern noch mit seiner Waffe angreifen, erhält aber selbst auch keinen Rückstoß oder Schaden. Nach kurzer Zeit wird der Gegner befreit und erhält den gesamten Rückstoß, den er während der Versteinerung abbekommen hat, auf einmal.");
 
     }
 

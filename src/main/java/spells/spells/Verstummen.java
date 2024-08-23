@@ -14,10 +14,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.Title;
 import org.bukkit.Particle;
-import spells.spellcore.Cooldowns;
-import spells.spellcore.SilenceSelection;
-import spells.spellcore.Spell;
-import spells.spellcore.SpellType;
+import spells.spellcore.*;
 
 public class Verstummen extends Spell {
 
@@ -26,16 +23,23 @@ public class Verstummen extends Spell {
 
     public Verstummen() {
         name = "§eVerstummen";
-        cooldown = 20 * 20;
         speed = 50;
         hitSpell = true;
         steprange = 300;
         hitboxSize = 2;
 
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner für kurze Zeit verstummt. Verstummte Gegner können keine Zauber ausführen.",
+                "Schießt ein Projektil in Blickrichtung , das getroffene Gegner für kurze Zeit verstummt und den Spieler an diese Stelle teleportiert. Verstummte Gegner können keine Zauber ausführen.",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
+
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner für kurze Zeit#§7verstummt. Verstummte Gegner können keine#§7Zauber ausführen.");
-        setBetterLore("§7Schießt ein Projektil in Blickrichtung ,#§7das getroffene Gegner für kurze Zeit#§7verstummt und den Spieler an diese Stelle#§7teleportiert. Verstummte Gegner können keine#§7Zauber ausführen.");
     }
 
     @Override

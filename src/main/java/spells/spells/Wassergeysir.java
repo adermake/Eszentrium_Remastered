@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,6 @@ public class Wassergeysir extends Spell {
 
     public Wassergeysir() {
 
-        cooldown = 20 * 20;
         name = "§6Wassergeysir";
         speed = 4;
         steprange = (int) (speed * 20 * 5);
@@ -26,8 +26,16 @@ public class Wassergeysir extends Spell {
         hitboxSize = scale;
         canHitSelf = true;
         multihit = true;
-        setLore("§7Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler hochwirft und allen Gegnern Schaden zufügt.");
-        setBetterLore("§7Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler zum Anwender wirft und allen Gegnern Schaden zufügt.");
+
+        spellDescription = new SpellDescription(
+                "Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler hochwirft und allen Gegnern Schaden zufügt.",
+                "Beschwört einen Geysir um den anvisierten Block herum, der nach kurzer Verzögerung alle Spieler zum Anwender wirft und allen Gegnern Schaden zufügt.",
+                null,
+                null,
+                null,
+                null,
+                20*20
+        );
     }
 
     Location over;
@@ -35,7 +43,7 @@ public class Wassergeysir extends Spell {
     public Wassergeysir(Location l, Player caster, String name, double scale) {
         over = l;
         refined = true;
-        cooldown = 20 * 22;
+        spellDescription.setCooldown(20*22);
         this.name = name;
         speed = 4;
         steprange = (int) (speed * 20 * 5);

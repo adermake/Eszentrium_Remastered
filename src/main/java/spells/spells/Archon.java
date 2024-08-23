@@ -18,13 +18,13 @@ import esze.utils.PlayerUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Archon extends Spell {
 
     public Archon() {
 
-        cooldown = 33 * 40;
         name = "§8Archon";
 
 
@@ -32,7 +32,15 @@ public class Archon extends Spell {
         speed = 1;
         casttime = 1;
 
-
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                33*40
+        );
         addSpellType(SpellType.SUPPORT);
 
     }

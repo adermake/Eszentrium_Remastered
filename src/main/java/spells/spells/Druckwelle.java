@@ -14,6 +14,7 @@ import esze.utils.ParUtils;
 import esze.utils.SoundUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Druckwelle extends Spell {
@@ -22,10 +23,19 @@ public class Druckwelle extends Spell {
     public Druckwelle() {
 
         name = "§rDruckwelle";
-        cooldown = 20 * 25;
         hitPlayer = false;
         hitEntity = false;
         hitboxSize = 1;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*25
+        );
 
         addSpellType(SpellType.KNOCKBACK);
 

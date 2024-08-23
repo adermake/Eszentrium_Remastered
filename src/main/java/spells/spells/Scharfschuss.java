@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Scharfschuss extends Spell {
@@ -20,11 +21,20 @@ public class Scharfschuss extends Spell {
         steprange = 300;
         speed = 100;
         casttime = 40;
-        cooldown = 20 * 55;
+
+        spellDescription = new SpellDescription(
+                "Schießt nach kurzer Verzögerung ein Projektil in Blickrichtung, das getroffene Gegner sofort tötet.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*55
+        );
+
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Schießt nach kurzer Verzögerung#§7ein Projektil in Blickrichtung, das#§7getroffene Gegner sofort tötet.");
     }
 
     @Override

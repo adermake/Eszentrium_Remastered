@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.Repulsion;
@@ -22,15 +23,23 @@ public class Kätzchenkanone extends Spell {
     public Kätzchenkanone() {
 
         name = "§6Kätzchenkanone";
-        cooldown = 20 * 18;
         steprange = 70;
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet alle Gegner und schleudert sie weg.",
+                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet alle Gegner und schleudert sie weg.",
+                null,
+                null,
+                "Sprengt die Katze vorzeitig. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
+                "Sprengt die Katze vorzeitig. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
+                20*18
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Wirft eine Katze in Blickrichtung, die#§7auf dem Boden stehen bleibt. Nach kurzer#§7Zeit explodiert diese und schadet alle#§7Gegner und schleudert sie weg.# #§eShift:§7#§7Sprengt die Katze vorzeitig. Wenn der Anwender#§7getroffen wird, schleudert ihn die#§7Explosion ebenfalls weg, verursacht aber keinen#§7Schaden.");
-        setBetterLore("§7Wirft eine Katze in Blickrichtung, die#§7auf dem Boden stehen bleibt. Nach kurzer#§7Zeit explodiert diese und schadet alle Gegner#§7und schleudert sie weg.# #§eShift:§7#§7Sprengt die Katze vorzeitig. Wenn der Anwender#§7getroffen wird, schleudert ihn die Explosion#§7ebenfalls weg, verursacht aber keinen#§7Schaden.");
     }
 
     @Override

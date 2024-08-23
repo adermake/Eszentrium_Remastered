@@ -100,7 +100,7 @@ public class TTTCorpse implements Listener {
         if (!isExposed && e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             isExposed = true;
 
-            //TODO armor = Bukkit.getWorlds().get(0).spawn(CorpseUtils.allCorpses.get(corpseID).getTrueLocation().clone().add(0,-1.5,0), ArmorStand.class);
+            armor = Bukkit.getWorlds().getFirst().spawn(CorpseUtils.getCorpseLocation(corpseID).clone().add(0,-1.5,0), ArmorStand.class);
             TypeTTT type = (TypeTTT) GameType.getType();
             armor.setCustomName(type.startTraitor.contains(player) ? "§cTraitor" : "§aInnocent");
             armor.setCustomNameVisible(true);

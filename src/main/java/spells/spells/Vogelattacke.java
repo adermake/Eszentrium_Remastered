@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ParrotTrail;
 
@@ -25,16 +26,24 @@ public class Vogelattacke extends Spell {
 
     public Vogelattacke() {
         name = "§6Vogelattacke";
-        cooldown = 20 * 30;
         //steprange = 30 * 10;
         stepbound = 15;
+
+        spellDescription = new SpellDescription(
+                "Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg.",
+                "Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg.",
+                null,
+                null,
+                "Schießt die Vögel sofort und beendet den Flug vorzeitig.",
+                "Schießt die Vögel sofort und beendet den Flug vorzeitig.",
+                20*30
+        );
+
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SELFCAST);
-        setLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
-        setBetterLore("Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg. Shift: Schießt die Vögel sofort und beendet den Flug vorzeitig.");
     }
 
     ArrayList<Parrot> parrots = new ArrayList<Parrot>();

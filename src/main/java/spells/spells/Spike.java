@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -21,12 +22,21 @@ import java.util.ArrayList;
 public class Spike extends Spell {
 
     public Spike() {
-        cooldown = 20 * 10;
         this.name = name;
         speed = 3;
         steprange = 12;
         hitPlayer = true;
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
@@ -37,7 +47,7 @@ public class Spike extends Spell {
 
     public Spike(Player c, Vector v, String name, Location l, int length) {
         super();
-        cooldown = 20 * 10;
+        spellDescription.setCooldown(20*10);
         this.name = name;
         speed = 3;
         steprange = 42;
@@ -59,7 +69,7 @@ public class Spike extends Spell {
     public Spike(Player c, Vector v, String name, Location l, int length, int delay, Eisstachel eis) {
         super();
         this.eis = eis;
-        cooldown = 20 * 10;
+        spellDescription.setCooldown(20*10);
         this.name = name;
         speed = 3;
         steprange = 42;

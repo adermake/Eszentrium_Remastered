@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -23,14 +24,21 @@ public class AntlitzderGoettin extends Spell {
         hitBlock = false;
         hitEntity = false;
         steprange = 20 * 10;
-        cooldown = 20 * 35;
         speed = 1;
         hitboxSize = 4;
 
+        spellDescription = new SpellDescription(
+                "Reflektiert die n§chsten 3 gegnerischen#§7Zauber für kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.",
+                "Reflektiert alle gegnerischen Zauber für#§7kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.",
+                null,
+                null,
+                null,
+                null,
+                20*35
+        );
+
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Reflektiert die n§chsten 3 gegnerischen#§7Zauber für kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.");
-        setBetterLore("§7Reflektiert alle gegnerischen Zauber für#§7kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.");
     }
 
     @Override

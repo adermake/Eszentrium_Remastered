@@ -81,8 +81,8 @@ public class EventCollector implements Listener {
                                 if (!sp.traitorSpell) {
 
 
-                                    is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
-                                    is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
+                                    is = NBTUtils.setNBT("Cooldown", "" + sp.getSpellDescription().getCooldown() + "", is);
+                                    is = NBTUtils.setNBT("MaxCooldown", "" + sp.getSpellDescription().getCooldown(), is);
                                     is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
 
 
@@ -132,8 +132,8 @@ public class EventCollector implements Listener {
 
 
                                 sp.refined = refined;
-                                is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
-                                is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
+                                is = NBTUtils.setNBT("Cooldown", "" + sp.getSpellDescription().getCooldown() + "", is);
+                                is = NBTUtils.setNBT("MaxCooldown", "" + sp.getSpellDescription().getCooldown(), is);
                                 is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
                                 if (sp.castSpell(p, is.getItemMeta().getDisplayName())) {
                                     is = NBTUtils.setNBT("Cooldown", "" + "0" + "", is);
@@ -205,8 +205,8 @@ public class EventCollector implements Listener {
             if (refined) {
                 sp = SpellList.getDiffrentRandomGreen(1).get(0);
             }
-            is = NBTUtils.setNBT("Cooldown", "" + sp.cooldown + "", is);
-            is = NBTUtils.setNBT("MaxCooldown", "" + sp.cooldown, is);
+            is = NBTUtils.setNBT("Cooldown", "" + sp.getSpellDescription().getCooldown() + "", is);
+            is = NBTUtils.setNBT("MaxCooldown", "" + sp.getSpellDescription().getCooldown(), is);
             is = NBTUtils.setNBT("OriginalName", sp.getName(), is);
 
             p.getInventory().setItemInMainHand(is);

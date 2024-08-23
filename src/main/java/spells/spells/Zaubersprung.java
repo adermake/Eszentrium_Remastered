@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Zaubersprung extends Spell {
@@ -18,16 +19,24 @@ public class Zaubersprung extends Spell {
 
     public Zaubersprung() {
         name = "§bZaubersprung";
-        cooldown = 20 * 22;
         steprange = 100;
         speed = 1;
         hitPlayer = false;
         hitEntity = false;
         hitSpell = false;
+
+        spellDescription = new SpellDescription(
+                "Teleportiert den Spieler auf den anvisierten Block. Nach kurzer Zeit wird er wieder zum Ursprungsort zurückteleportiert.",
+                "Teleportiert den Spieler auf den anvisierten Block.",
+                "Teleportiert den Spieler sofort zum Ursprungsort zurück.",
+                "Teleportiert den Spieler zum Ursprungsort zurück.",
+                null,
+                null,
+                20*22
+        );
+        
         addSpellType(SpellType.SELFCAST);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Teleportiert den Spieler auf den#§7anvisierten Block. Nach kurzer Zeit wird er#§7wieder zum Ursprungsort zurückteleportiert.§7#§eF:§7 Teleportiert den Spieler sofort zum#§7Ursprungsort zurück.");
-        setBetterLore("§7Teleportiert den Spieler auf den#§7anvisierten Block.§eF:§7 Teleportiert den#§7Spieler zum Ursprungsort zurück.");
 
 
     }

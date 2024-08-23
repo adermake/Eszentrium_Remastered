@@ -16,21 +16,29 @@ import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Enterhaken extends Spell {
 
     public Enterhaken() {
-        cooldown = 20 * 25;
         name = "§bEnterhaken";
         speed = 1;
         steprange = 300;
         hitPlayer = false;
 
+        spellDescription = new SpellDescription(
+                "Zieht den Spieler an den nächsten Block in Blickrichtung. Dort bleibt er für kurze Zeit hängen.",
+                "Zieht den Spieler an den nächsten Block in Blickrichtung. Dort bleibt er für kurze Zeit hängen.",
+                null,
+                null,
+                "Der Spieler springt in Blickrichtung.",
+                "Der Spieler springt in Blickrichtung.",
+                20*25
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.SELFCAST);
-        setLore("Zieht den Spieler an den nächsten Block in Blickrichtung. Dort bleibt er für kurze Zeit hängen. Shift: Der Spieler springt in Blickrichtung.");
-        setBetterLore("§7Zieht den Spieler an den nächsten#§7Block in Blickrichtung. Dort bleibt#§7er für kurze Zeit hängen.");
     }
 
     Trident hook;

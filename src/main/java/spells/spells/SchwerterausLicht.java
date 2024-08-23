@@ -12,6 +12,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.SchwertausLicht;
 
@@ -27,12 +28,19 @@ public class SchwerterausLicht extends Spell {
     public SchwerterausLicht() {
 
         name = "§cSchwerter aus Licht";
-        cooldown = 20 * 50;
+        spellDescription = new SpellDescription(
+                "Feuert Schwerter in Blickrichtung, die#§7bei Kontakt mit Gegnern oder Blöcken#§7explodieren. Getroffene Gegner erhalten Schaden.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*50
+        );
         //steprange = 20*10;
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Feuert Schwerter in Blickrichtung, die#§7bei Kontakt mit Gegnern oder Blöcken#§7explodieren. Getroffene Gegner erhalten Schaden.");
         casttime = 40;
 
         setCanBeSilenced(true);

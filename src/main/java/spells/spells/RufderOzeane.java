@@ -6,6 +6,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.RufDerOzeaneFish;
 import spells.stagespells.RufDerOzeaneRefined;
@@ -14,15 +15,22 @@ public class RufderOzeane extends Spell {
 
     public RufderOzeane() {
         name = "§6Ruf der Ozeane";
-        cooldown = 20 * 53;
         steprange = 30;
         speed = 0.5;
+
+        spellDescription = new SpellDescription(
+                "Feuert Tintenfische in Blickrichtung ab, die getroffene Gegner zurückwerfen.",
+                "Feuert einen einzelnen Tintenfisch in Blickrichtung ab. Trifft er einen Gegner, wirft er diesen zurück und kehrt zum Anwender zurück.Sobald er bei diesem ankommt, fliegt er wieder in Blickrichtung los.",
+                null,
+                null,
+                null,
+                null,
+                20*53
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Feuert Tintenfische in Blickrichtung#§7ab, die getroffene Gegner zurückwerfen. ");
-        setBetterLore("§7Feuert einen einzelnen Tintenfisch in#§7Blickrichtung ab. Trifft er einen Gegner,#§7wirft er diesen zurück und kehrt zum Anwender#§7zurück.Sobald er bei diesem ankommt, fliegt#§7er wieder in Blickrichtung los.");
     }
 
     @Override

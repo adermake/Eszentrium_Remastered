@@ -6,21 +6,30 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class UntotePhalanx extends Spell {
     public UntotePhalanx() {
-        cooldown = 20 * 40;
         name = "§cUntote Phalanx";
         speed = 5;
         hitboxSize = 2;
         hitPlayer = true;
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner zurückwirft.",
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner zurückwirft.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+        
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
         steprange = 120;
-        setLore("Dieser spell ist in der datenbank");
-        setBetterLore("§7Schießt ein Projektil in Blickrichtung,#§7das getroffene Gegner zurückwirft.");
 
     }
 

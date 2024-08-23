@@ -11,25 +11,33 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class GriffdersiebenWinde extends Spell {
 
 
     public GriffdersiebenWinde() {
-        cooldown = 5;
         steprange = 45;
         speed = 1;
         name = "§4Griff der sieben Winde";
         traitorSpell = true;
 
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                5
+        );
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.LOCKDOWN);
 
     }
 
-    boolean swich = true;
     Player target;
 
     @Override

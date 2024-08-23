@@ -27,7 +27,12 @@ public class PlayerHeadUtils {
         if (skinCache.containsKey(uuid)) {
             return skinCache.get(uuid);
         }
-        BaseComponent[] head = toBaseComponent(getPixelColorsFromSkin(getPlayerSkinFromMojang(uuid), overlay));
+        String playerSkinURL = getPlayerSkinFromMojang(uuid);
+        if(playerSkinURL == null) {
+            // If user has no skin or offline mode -> use default skin
+            playerSkinURL = "https://static.planetminecraft.com/files/resource_media/skin/original-steve-15053860.png";
+        }
+        BaseComponent[] head = toBaseComponent(getPixelColorsFromSkin(playerSkinURL, overlay));
         skinCache.put(uuid, head);
         return head;
     }
@@ -73,9 +78,9 @@ public class PlayerHeadUtils {
                 }
             }
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+            System.out.println("Esze | No skin info for player with UUID: " + uuid);
         }
-        return "Unable to retrieve player skin URL."; //TODO Add error handling
+        return null;
     }
 
     private static BaseComponent[] toBaseComponent(String[] hexColors) {

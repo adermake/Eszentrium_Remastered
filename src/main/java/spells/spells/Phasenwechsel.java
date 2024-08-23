@@ -11,6 +11,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Phasenwechsel extends Spell {
@@ -20,10 +21,19 @@ public class Phasenwechsel extends Spell {
     public Phasenwechsel() {
 
         name = "§rPhasenwechsel";
-        cooldown = 20 * 30;
         hitPlayer = false;
         hitEntity = false;
         hitboxSize = 5;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
 
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.MOBILITY);

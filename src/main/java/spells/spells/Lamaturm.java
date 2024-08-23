@@ -16,6 +16,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.LamaturmProjectile;
 
@@ -26,16 +27,23 @@ public class Lamaturm extends Spell {
 
     public Lamaturm() {
         name = "§6Lamaturm";
-        cooldown = 20 * 75;
         steprange = 20 * 50;
         hitboxSize = 2;
         multihit = true;
 
+        spellDescription = new SpellDescription(
+                "Beschwört ein Lama Blickrichtung, auf das der Spieler sich setzen kann. Das Lama kann von Gegnern getötet werden.",
+                "Beschwört ein Lama Blickrichtung, auf das der Spieler sich setzen kann. Das Lama kann von Gegnern getötet werden.",
+                "Falls der Spieler auf dem Lama sitzt, wird ein Projektil in Blickrichtung geschossen, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
+                "Falls der Spieler auf dem Lama sitzt, wird ein Projektil in Blickrichtung geschossen, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
+                null,
+                null,
+                20*75
+        );
+
 
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.AURA);
-        setLore("§7Beschwört ein Lama Blickrichtung, auf#§7das der Spieler sich setzen kann. Das Lama#§7kann von Gegnern getötet werden.# #§eF:§7#§7Falls der Spieler auf dem Lama sitzt, wird#§7ein Projektil in Blickrichtung geschossen,#§7dass Gegnern Schaden zufügt und sie#§7wegschleudert.Die Anzahl der Schüsse ist begrenzt,#§7regeneriert sich aber über Zeit.");
-        setBetterLore("§7Beschwört ein Lama Blickrichtung, auf#§7das der Spieler sich setzen kann. Das Lama#§7kann von Gegnern getötet werden.# #§eF:§7#§7Falls der Spieler auf dem Lama sitzt, wird#§7ein Projektil in Blickrichtung geschossen,#§7dass Gegnern Schaden zufügt und sie#§7wegschleudert.Die Anzahl der Schüsse ist begrenzt,#§7regeneriert sich aber über Zeit.");
     }
 
 

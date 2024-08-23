@@ -19,6 +19,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Plasmablase extends Spell {
@@ -29,8 +30,6 @@ public class Plasmablase extends Spell {
     HashMap<Player, Integer> immunity = new HashMap<Player, Integer>();
 
     public Plasmablase() {
-        cooldown = 20 * 50;
-
         name = "§3Plasmablase";
         hitSpell = true;
         canHitCastersSpells = false;
@@ -39,18 +38,21 @@ public class Plasmablase extends Spell {
         multihit = true;
         steprange = 20 * 8;
 
+        spellDescription = new SpellDescription(
+                "Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.",
+                "Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.",
+                "Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.",
+                "Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.",
+                null,
+                null,
+                20*50
+        );
+
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.MULTIHIT);
-
-        setLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen." +
-                "Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert." +
-                "F: Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.");
-        setBetterLore("Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen." +
-                "Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert." +
-                "F: Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.");
     }
 
     @Override

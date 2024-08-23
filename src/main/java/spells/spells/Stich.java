@@ -10,6 +10,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Stich extends Spell {
@@ -21,18 +22,26 @@ public class Stich extends Spell {
         speed = 2;
 
         hitboxSize = 3;
-        cooldown = 20 * 35;
         hitSpell = true;
 
         steprange = 80;
         hitPlayer = true;
         hitEntity = true;
+
+        spellDescription = new SpellDescription(
+                "Springt eine kurze Distanz in Blickrichtung. Bei Gegnerkontakt springt der Anwender vom Gegner ab und verursacht Schaden.",
+                "Springt eine kurze Distanz in Blickrichtung. Bei Gegnerkontakt springt der Anwender vom Gegner ab und verursacht Schaden.",
+                "Wird ein Gegner getroffen, kann der Anwender noch einmal in Blickrichtung springen und den Effekt wiederholen. Maximal zweimal möglich.",
+                "Der Spieler spring in Blickrichtung und wiederholt den Effekt. Maximal zweimal möglich.",
+                null,
+                null,
+                20*35
+        );
+        
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Springt eine kurze Distanz in#§7Blickrichtung. Bei Gegnerkontakt springt der#§7Anwender vom Gegner ab und verursacht Schaden.§eF:§7 Wird ein Gegner getroffen, kann der#§7Anwender noch einmal in Blickrichtung#§7springen und den Effekt wiederholen. Maximal#§7zweimal möglich.");
-        setBetterLore("§7Springt eine kurze Distanz in#§7Blickrichtung. Bei Gegnerkontakt springt der Anwender#§7vom Gegner ab und verursacht Schaden.§eF:§7 Der Spieler spring in Blickrichtung#§7und wiederholt den Effekt. Maximal zweimal#§7möglich.");
     }
 
     int dashes = 2;
@@ -44,12 +53,14 @@ public class Stich extends Spell {
         speed = 2;
         this.dashes = dashes;
         hitboxSize = 3;
-        cooldown = 20 * 45;
         hitSpell = true;
 
         steprange = 80;
         hitPlayer = true;
         hitEntity = true;
+
+        spellDescription.setCooldown(20*45);
+
         addSpellType(SpellType.SELFCAST);
         castSpell(caster, name);
     }

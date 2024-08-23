@@ -84,7 +84,7 @@ public class TTTScoreboard extends Scoreboard {
                         }
 
                         Bukkit.getOnlinePlayers().stream()
-                                .filter(p -> !game.players.contains(p) && !game.spectator.contains(p))
+                                .filter(p -> game.spectator.contains(p))
                                 .forEach(p -> ScoreboardUtil.unrankedSidebarDisplay(p, innoBoard.toArray(new String[0])));
 
                         ScoreboardUtil.unrankedSidebarDisplay(game.innocent, innoBoard.toArray(new String[0]));

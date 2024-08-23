@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.OrbitarOrb;
 
@@ -17,18 +18,24 @@ public class Orbitar extends Spell {
 
     public Orbitar() {
         name = "§3Orbitar";
-        cooldown = 20 * 37;
         steprange = 20 * 6;
         hitPlayer = false;
         hitEntity = false;
+        spellDescription = new SpellDescription(
+                "Beschwört 3 Projektile, die um den Spieler kreisen. Getroffene Gegner werden in die Luft geworfen.",
+                "Beschwört 9 Projektile, die um den Spieler kreisen. Getroffene Gegner werden in die Luft geworfen.",
+                null,
+                null,
+                "Schießt die Projektile in Blickrichtung. Getroffene Gegner werden zurückgeworfen.",
+                "Schießt die Projektile in Blickrichtung. Getroffene Gegner werden zurückgeworfen.",
+                20*37
+        );
 
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.SELFCAST);
-        setLore("§7Beschwört 3 Projektile, die um den#§7Spieler kreisen. Getroffene Gegner werden in#§7die Luft geworfen.# #§eShift:§7 Schießt die#§7Projektile in Blickrichtung. Getroffene#§7Gegner werden zurückgeworfen.");
-        setBetterLore("§7Beschwört 9 Projektile, die um den#§7Spieler kreisen. Getroffene Gegner werden in die#§7Luft geworfen.# #§eShift:§7 Schießt die#§7Projektile in Blickrichtung. Getroffene#§7Gegner werden zurückgeworfen.");
     }
 
     @Override

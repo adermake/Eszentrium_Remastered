@@ -19,6 +19,7 @@ import esze.utils.SoundUtils;
 
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Mondkugel extends Spell {
@@ -26,7 +27,6 @@ public class Mondkugel extends Spell {
     ArrayList<Entity> hit = new ArrayList<Entity>();
 
     public Mondkugel() {
-        cooldown = 28 * 20;
         name = "§eMondkugel";
         steprange = 50;
 
@@ -35,11 +35,19 @@ public class Mondkugel extends Spell {
         multihit = true;
         hitSpell = true;
 
+        spellDescription = new SpellDescription(
+                "Wirft ein Projektil in Blickrichtung, das nach kurzer Distanz eine 180°-Wende macht. Getroffene Spieler werden mit der Mondkugel mitgezogen. Zerbricht bei Kontakt mit Blöcken.",
+                "Wirft ein Projektil in Blickrichtung, das nach kurzer Distanz eine 180°-Wende macht. Getroffene Spieler werden mit der Mondkugel mitgezogen.",
+                null,
+                null,
+                null,
+                null,
+                20*28
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Wirft ein Projektil in Blickrichtung,#§7das nach kurzer Distanz eine 180°-Wende#§7macht. Getroffene Spieler werden mit der#§7Mondkugel mitgezogen.Zerbricht bei Kontakt mit#§7Blöcken.");
-        setBetterLore("§7Wirft ein Projektil in Blickrichtung,#§7das nach kurzer Distanz eine 180°-Wende#§7macht. Getroffene Spieler werden mit der#§7Mondkugel mitgezogen.");
     }
 
     @Override

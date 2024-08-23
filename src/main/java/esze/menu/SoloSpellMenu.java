@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class SoloSpellMenu extends ItemMenu {
 
     boolean used = false;
-    private ArrayList<Spell> spells;
+    private final ArrayList<Spell> spells;
     boolean refined = false;
 
     private static final String invName = CharRepo.getNeg(8) + "§f" + CharRepo.MENU_CONTAINER_9_SPELL_SELECT;
@@ -30,22 +30,22 @@ public class SoloSpellMenu extends ItemMenu {
         super(1, invName);
         refined = false;
         spells = SpellList.getDiffrentRandom(5);
-        addClickableItem(1, 1, Material.ENCHANTED_BOOK, spells.get(0).getName(), spells.get(0).getLore());
-        addClickableItem(3, 1, Material.ENCHANTED_BOOK, spells.get(1).getName(), spells.get(1).getLore());
-        addClickableItem(5, 1, Material.ENCHANTED_BOOK, spells.get(2).getName(), spells.get(2).getLore());
-        addClickableItem(7, 1, Material.ENCHANTED_BOOK, spells.get(3).getName(), spells.get(3).getLore());
-        addClickableItem(9, 1, Material.ENCHANTED_BOOK, spells.get(4).getName(), spells.get(4).getLore());
+        addClickableItem(1, 1, Material.ENCHANTED_BOOK, spells.get(0).getName(), spells.get(0).getSpellDescription().getNormalLore());
+        addClickableItem(3, 1, Material.ENCHANTED_BOOK, spells.get(1).getName(), spells.get(1).getSpellDescription().getNormalLore());
+        addClickableItem(5, 1, Material.ENCHANTED_BOOK, spells.get(2).getName(), spells.get(2).getSpellDescription().getNormalLore());
+        addClickableItem(7, 1, Material.ENCHANTED_BOOK, spells.get(3).getName(), spells.get(3).getSpellDescription().getNormalLore());
+        addClickableItem(9, 1, Material.ENCHANTED_BOOK, spells.get(4).getName(), spells.get(4).getSpellDescription().getNormalLore());
     }
 
     public SoloSpellMenu(boolean green) {
         super(1, invName);
         refined = true;
         spells = SpellList.getDiffrentRandomGreen(5);
-        addClickableItem(1, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(0).getName().substring(2, spells.get(0).getName().length()), spells.get(0).getBetterLore());
-        addClickableItem(3, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(1).getName().substring(2, spells.get(1).getName().length()), spells.get(1).getBetterLore());
-        addClickableItem(5, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(2).getName().substring(2, spells.get(2).getName().length()), spells.get(2).getBetterLore());
-        addClickableItem(7, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(3).getName().substring(2, spells.get(3).getName().length()), spells.get(3).getBetterLore());
-        addClickableItem(9, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(4).getName().substring(2, spells.get(4).getName().length()), spells.get(4).getBetterLore());
+        addClickableItem(1, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(0).getName().substring(2), spells.get(0).getSpellDescription().getRefinedLore());
+        addClickableItem(3, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(1).getName().substring(2), spells.get(1).getSpellDescription().getRefinedLore());
+        addClickableItem(5, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(2).getName().substring(2), spells.get(2).getSpellDescription().getRefinedLore());
+        addClickableItem(7, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(3).getName().substring(2), spells.get(3).getSpellDescription().getRefinedLore());
+        addClickableItem(9, 1, Material.ENCHANTED_BOOK, "§2" + spells.get(4).getName().substring(2), spells.get(4).getSpellDescription().getRefinedLore());
     }
 
     @Override
@@ -57,6 +57,7 @@ public class SoloSpellMenu extends ItemMenu {
         p.closeInventory();
         ItemStack is = NBTUtils.setNBT("Spell", "true", icon);
         is = NBTUtils.setNBT("SpellKey", "" + SpellKeyUtils.getNextSpellKey(), is);
+        is = NBTUtils.setNBT("OriginalName", is.getItemMeta().getDisplayName(), is);
         p.getInventory().addItem(is);
         p.setGameMode(GameMode.SURVIVAL);
         p.setNoDamageTicks(10);

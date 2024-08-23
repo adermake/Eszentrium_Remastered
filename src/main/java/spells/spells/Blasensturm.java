@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Bubble;
 import spells.stagespells.BubbleOld;
@@ -23,11 +24,18 @@ public class Blasensturm extends Spell {
         speed = 2;
 
         hitboxSize = 1;
-        cooldown = 20 * 40;
         hitSpell = true;
 
-        setBetterLore("§7Schießt eine Menge Blasen, die nach kurzer Zeit#§7den naheliegendsten Gegner verfolgen. Getroffene#§7Gegner werden weggeschleudert.");
-        setLore("§7Schießt eine Menge Blasen, die nach kurzer Zeit#§7den naheliegendsten Gegner verfolgen. Getroffene#§7Gegner werden weggeschleudert.");
+        spellDescription = new SpellDescription(
+                "Schießt eine Menge Blasen, die nach kurzer Zeit den naheliegendsten Gegner verfolgen. Getroffene Gegner werden weggeschleudert.",
+                "Schießt eine Menge Blasen, die nach kurzer Zeit den naheliegendsten Gegner verfolgen. Getroffene Gegner werden weggeschleudert.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+
     }
 
 

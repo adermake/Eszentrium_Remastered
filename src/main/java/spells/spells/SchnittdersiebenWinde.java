@@ -8,24 +8,28 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-import spells.spellcore.SilenceFilterType;
-import spells.spellcore.SilenceSelection;
-import spells.spellcore.Spell;
-import spells.spellcore.SpellType;
+import spells.spellcore.*;
 
 public class SchnittdersiebenWinde extends Spell {
 
 
     public SchnittdersiebenWinde() {
         name = "§bSchnitt der sieben Winde";
-        cooldown = 20 * 40;
         steprange = 32;
+
+        spellDescription = new SpellDescription(
+                "Teleportiert den Spieler zum anvisierten Gegner. Fügt nach kurzer Zeit Schaden an diesem Gegner an, der steigt, je weiter dieser vom Anwender entfernt ist.",
+                "Teleportiert den Spieler zum anvisierten Gegner. Fügt nach kurzer Zeit Schaden an diesem Gegner an, der steigt, je weiter dieser vom Anwender entfernt ist.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Teleportiert den Spieler zum#§7anvisierten Gegner. Fügt nach kurzer Zeit Schaden an#§7diesem Gegner an, der steigt, je weiter#§7dieser vom Anwender entfernt ist.");
-        setBetterLore("§7Teleportiert den Spieler zum#§7anvisierten Gegner. Fügt nach kurzer Zeit Schaden an#§7diesem Gegner an, der steigt, je weiter#§7dieser vom Anwender entfernt ist.");
     }
 
     Player target;

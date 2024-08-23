@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class OrbitarShot extends Spell {
@@ -16,7 +17,15 @@ public class OrbitarShot extends Spell {
 
     public OrbitarShot(Player p, Location l, String name, boolean refined) {
         this.refined = refined;
-        cooldown = 20 * 5;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*5
+        );
 
         this.name = name;
 

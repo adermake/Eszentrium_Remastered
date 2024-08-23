@@ -236,7 +236,7 @@ public class WeaponAbilitys implements Listener {
                                 sp.spellkey = -1;
                                 new BukkitRunnable() {
                                     int sec = 0;
-                                    int cooldown = sp.getCooldown() * 2;
+                                    int cooldown = sp.getSpellDescription().getCooldown() * 2;
 
                                     @Override
                                     public void run() {

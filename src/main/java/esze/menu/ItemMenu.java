@@ -48,7 +48,7 @@ public abstract class ItemMenu {
 
     }
 
-    public void addClickableItem(int gridX, int gridY, Material m, String iconname, ArrayList<String> l) {
+    public void addClickableItem(int gridX, int gridY, Material m, String iconname, List<String> l) {
 
         ItemMenuIcon is = new ItemMenuIcon(gridX, gridY, m, iconname, this);
         ItemMeta im = is.getItemMeta();

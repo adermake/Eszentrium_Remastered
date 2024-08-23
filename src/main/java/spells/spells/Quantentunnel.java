@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -22,15 +23,21 @@ public class Quantentunnel extends Spell {
         steprange = 100;
         speed = 3;
         casttime = 20;
-        cooldown = 20 * 40;
+        spellDescription = new SpellDescription(
+                "Schießt nach kurzer Verzögerung ein Projektil, das getroffene Gegner markiert. Wenn der Zauber seine maximale Reichweite erreicht hat oder einen Block trifft, werden alle markierten Gegner an diesen Punkt teleportiert.",
+                "Schießt ein Projektil, das getroffene Gegner markiert. Wenn der Zauber seine maximale Reichweite erreicht hat oder einen Block trifft, werden alle markierten Gegner an diesen Punkt teleportiert.",
+                null,
+                null,
+                null,
+                "Teleportiert Anwender ebenfalls an den Endpunkt.",
+                20*40
+        );
         if (refined)
             casttime = 0;
 
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
 
-        setLore("§7Schießt nach kurzer Verzögerung ein#§7Projektil, das getroffene Gegner markiert.#§7Wenn der Zauber seine maximaleReichweite#§7erreicht hatoder einen Block trifft, werden#§7alle markierten Gegner an diesen Punkt#§7teleportiert.");
-        setBetterLore("§7Schie§t ein Projektil, das getroffene#§7Gegner markiert. Wenn der Zauber seine#§7maximaleReichweite erreicht hatoder einen Block#§7trifft, werden alle markierten Gegner an#§7diesen Punkt teleportiert.#Shift: Teleportiert Anwender ebenfalls an den Endpunkt.");
     }
 
 

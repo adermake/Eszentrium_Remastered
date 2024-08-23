@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Chaoswelle extends Spell {
@@ -25,13 +26,20 @@ public class Chaoswelle extends Spell {
         name = "§cChaoswelle";
         casttime = 10;
         speed = 1;
-        cooldown = 20 * 42;
+        spellDescription = new SpellDescription(
+                "Der Spieler fliegt hoch in die Luft und gleitet danach langsam herunter. Sobald der Spieler den Boden berührt, wird eine Schockwelle in alle Richtungen freigesetzt, die allen getroffenen Gegnern schadet und sie zurückwirft.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*42
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Der Spieler fliegt hoch in die Luft#§7und gleitet danach langsam herunter. Sobald#§7der Spieler den Boden berührt, wird eine#§7Schockwelle in alle Richtungen freigesetzt,#§7die allen getroffenen Gegnern schadet und sie#§7zurückwirft.");
     }
 
 

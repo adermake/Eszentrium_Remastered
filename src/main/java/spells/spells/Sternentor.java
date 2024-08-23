@@ -15,6 +15,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Sternentor extends Spell {
@@ -22,29 +23,26 @@ public class Sternentor extends Spell {
     public Sternentor() {
         name = "§bSternentor";
 
-        cooldown = 20 * 25;
         steprange = 20 * 8;
         speed = 1;
         canHitSelf = true;
         multihit = true;
         hitboxSize = 3;
 
-
+        spellDescription = new SpellDescription(
+                "Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert. Für Gegner wirkt dieser Effekt erst nach kurzer Verzögerung.",
+                "Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert.",
+                "Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.",
+                "Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.",
+                "Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt.",
+                "Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt.",
+                20*25
+        );
         addSpellType(SpellType.AURA);
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SUPPORT);
-
-        setLore("Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert. Für Gegner " +
-                "wirkt dieser Effekt erst nach kurzer Verzögerung." +
-                "Shift: Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt." +
-                "F: Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers."
-        );
-        setBetterLore("Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert." +
-                "Shift: Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt." +
-                "F: Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.");
-
     }
 
     int setuptime = 15;

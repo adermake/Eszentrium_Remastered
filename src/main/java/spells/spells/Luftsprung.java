@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Luftsprung extends Spell {
@@ -19,11 +20,18 @@ public class Luftsprung extends Spell {
         hitPlayer = false;
         hitEntity = false;
         hitSpell = false;
-        cooldown = 20 * 22;
+
+        spellDescription = new SpellDescription(
+                "Der Spieler katapultiert sich selbst in Blickrichtung.",
+                "Der Spieler katapultiert sich selbst in Blickrichtung.",
+                null,
+                null,
+                null,
+                "Der Spieler springt die selbe Distanz rückwärts.",
+                20*22
+        );
 
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Der Spieler katapultiert sich selbst#§7in Blickrichtung.");
-        setBetterLore("§7Der Spieler katapultiert sich selbst in#§7Blickrichtung.# #§eShift:§7 Der Spieler#§7springt die selbe Distanz rückwärts.");
 
     }
 

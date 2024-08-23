@@ -7,9 +7,12 @@ import esze.utils.CharRepo;
 import esze.utils.EszeTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Optional;
 
@@ -40,8 +43,48 @@ public class TeamSelectionMenu{
     }
 
     public TeamSelectionMenu(Player p) {
+        TypeTeamBased tt = (TypeTeamBased) GameType.getType();
+        ChatColor teamColor = tt.allTeams.stream()
+                .filter(t -> t.containsPlayer(p))
+                .map(EszeTeam::getChatColor).findFirst().orElse(null);
+
         Inventory inv = Bukkit.createInventory(null, 5 * 9, getMenuTitleForPlayer(p));
+        ItemStack selectItem = produceFillerItem("§7Wählen");
+        if(teamColor != ChatColor.RED) {
+            inv.setItem(2, selectItem);
+            inv.setItem(3, selectItem);
+            inv.setItem(11, selectItem);
+            inv.setItem(12, selectItem);
+        }
+        if(teamColor != ChatColor.BLUE) {
+            inv.setItem(5, selectItem);
+            inv.setItem(6, selectItem);
+            inv.setItem(14, selectItem);
+            inv.setItem(15, selectItem);
+        }
+        if(teamColor != ChatColor.GREEN) {
+            inv.setItem(29, selectItem);
+            inv.setItem(30, selectItem);
+            inv.setItem(38, selectItem);
+            inv.setItem(39, selectItem);
+        }
+        if(teamColor != ChatColor.YELLOW) {
+            inv.setItem(32, selectItem);
+            inv.setItem(33, selectItem);
+            inv.setItem(41, selectItem);
+            inv.setItem(42, selectItem);
+        }
+
         p.openInventory(inv);
+    }
+
+    private ItemStack produceFillerItem(String name) {
+        ItemStack filler = new ItemStack(Material.PAPER);
+        ItemMeta meta = filler.getItemMeta();
+        meta.setCustomModelData(1000303);
+        meta.setDisplayName(name);
+        filler.setItemMeta(meta);
+        return filler;
     }
 
     public static void onClickEvent(InventoryClickEvent e) {
@@ -71,6 +114,7 @@ public class TeamSelectionMenu{
                         tt.removePlayerFromAllTeams(p);
                         team.addPlayer(p);
                         new TeamSelectionMenu(p);
+                        tt.givePlayerLobbyItems(p);
                     }
                 }
             }

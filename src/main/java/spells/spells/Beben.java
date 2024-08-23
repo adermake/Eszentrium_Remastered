@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Beben extends Spell {
@@ -20,7 +21,6 @@ public class Beben extends Spell {
 
         name = "§eBeben";
         steprange = 22;
-        cooldown = 20 * 40;
         hitEntity = true;
         hitPlayer = true;
         hitSpell = true;
@@ -29,11 +29,19 @@ public class Beben extends Spell {
         casttime = 20;
         speed = 4;
 
+        spellDescription = new SpellDescription(
+                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schwockwelle wird bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker wird die Schockwelle.",
+                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schwockwelle wird bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker wird die Schockwelle.",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+
         addSpellType(SpellType.PROJECTILE);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
-        setLore("§7Schießt eine Schockwelle geradeaus in#§7Blickrichtung durch den Boden.#§7Gegner die damit in Kontakt kommen,#§7werden weggeschleudert und erhalten Schaden.#§7Wird der Zauber in der Luft ausgeführt,#§7wird der Spieler nach unten geschmettert#§7und die Schwockwelle wird bei der#§7Landung freigesetzt. Je tiefer der Spieler nach#§7Aktivierung fällt, desto stärker#§7wird die Schockwelle.");
-        setBetterLore("§7Schießt eine Schockwelle geradeaus in#§7Blickrichtung durch den Boden.#§7Gegner die damit in Kontakt kommen,#§7werden weggeschleudert und erhalten Schaden.#§7Wird der Zauber in der Luft ausgeführt,#§7wird der Spieler nach unten geschmettert#§7und die Schwockwelle wird bei der#§7Landung freigesetzt. Je tiefer der Spieler nach#§7Aktivierung fällt, desto stärker#§7wird die Schockwelle.");
     }
 
     @Override

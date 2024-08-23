@@ -7,6 +7,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Binden extends Spell {
 
@@ -14,7 +15,15 @@ public class Binden extends Spell {
         hitSpell = false;
         steprange = 20 * 5;
         name = "§bBinden";
-        cooldown = 20 * 10;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
     }
 
     Spell chase = null;

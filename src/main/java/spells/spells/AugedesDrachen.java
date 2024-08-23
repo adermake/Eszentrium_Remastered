@@ -13,6 +13,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class AugedesDrachen extends Spell {
@@ -24,16 +25,22 @@ public class AugedesDrachen extends Spell {
         hitEntity = false;
         hitSpell = true;
         speed = 1F;
-        cooldown = 20 * 60;
         steprange = 200;
         hitboxSize = 1;
         //multihit = true;
         multihit = false;
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück.",
+                "",
+                null,
+                null,
+                "Solange diese Taste gedrückt bleibt, kann die Richtung des Projektils gesteuert werden, bis die Drachen erscheinen.",
+                null,
+                20*60
+        );
         addSpellType(SpellType.DAMAGE);
         //addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.KNOCKBACK);
-
-        setLore("§7Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück. Shift: Solange diese Taste gedrückt bleibt, kann die Richtung des Projektils gesteuert werden, bis die Drachen erscheinen.");
 
     }
 

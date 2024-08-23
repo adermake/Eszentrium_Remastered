@@ -16,6 +16,7 @@ import org.bukkit.util.EulerAngle;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Magnetball extends Spell {
@@ -24,7 +25,6 @@ public class Magnetball extends Spell {
 
     public Magnetball() {
         name = "§eMagnetball";
-        cooldown = 20 * 22;
         hitEntity = true;
         hitSpell = true;
         hitPlayer = true;
@@ -33,12 +33,18 @@ public class Magnetball extends Spell {
         speed = 5;
         multihit = true;
 
+        spellDescription = new SpellDescription(
+                "Schießt ein Projektil in Blickrichtung. Gegner in der Nähe werden markiert, solange sie sich in der Reichweite befinden.",
+                "Schießt ein Projektil in Blickrichtung. Gegner in der Nähe werden markiert, solange sie sich in der Reichweite befinden.",
+                null,
+                null,
+                "Zieht markierte Gegner heran und schleudert sie weg.",
+                "Zieht markierte Gegner heran und schleudert sie weg.",
+                20*22
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.PROJECTILE);
-
-        setLore("§7Schießt ein Projektil in#§7Blickrichtung. Gegner in der Nähe werden markiert,#§7solange sie sich in der Reichweite befinden.§7#§eShift:§7 Zieht markierte Gegner heran und#§7schleudert sie weg.");
-        setBetterLore("§7Schießt ein Projektil in#§7Blickrichtung. Gegner in der Nähe werden markiert,#§7solange sie sich in der Reichweite befinden.§7#§eShift:§7 Zieht markierte Gegner heran und#§7schleudert sie weg.");
-
 
     }
 

@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Explosion;
 
@@ -20,18 +21,25 @@ public class Delfintorpedo extends Spell {
     public Delfintorpedo() {
 
         name = "§6Delfintorpedo";
-        cooldown = 20 * 32;
 
         hitboxSize = 1;
         hitSpell = true;
         hitPlayer = true;
         hitEntity = true;
         steprange = 80;
+
+        spellDescription = new SpellDescription(
+                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegner Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegner Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
+                null,
+                null,
+                null,
+                null,
+                20*32
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt einen Delfin in Blickrichtung, der bei#§7Blockkontakt explodiert und getroffenen Gegner Schaden#§7zufügt und sie wegschleudert.Der Delfin kann selbst#§7nach der Ausführung noch gesteuert werden.");
-        setBetterLore("§7Schießt einen Delfin in Blickrichtung, der bei#§7Blockkontakt explodiert und getroffenen Gegner Schaden#§7zufügt und sie wegschleudert.Der Delfin kann selbst#§7nach der Ausführung noch gesteuert werden.");
     }
 
 

@@ -11,18 +11,25 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Wunsch extends Spell {
 
     public Wunsch() {
         name = "§3Wunsch";
-        cooldown = 20 * 30;
+        spellDescription = new SpellDescription(
+                "Heilt den Spieler und invertiert seine Bewegungsrichtung. Je weniger Leben der Spieler hat, desto höher die Heilung.",
+                "Heilt den Spieler voll und invertiert seine Bewegungsrichtung.",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
 
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.AURA);
-        setLore("§7Heilt den Spieler und invertiert seine#§7Bewegungsrichtung. Je weniger Leben der#§7Spieler hat, desto höher die Heilung.");
-        setBetterLore("§7Heilt den Spieler voll und invertiert#§7seine Bewegungsrichtung.");
     }
 
     @Override

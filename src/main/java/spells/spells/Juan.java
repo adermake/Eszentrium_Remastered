@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Juan extends Spell {
@@ -17,7 +18,15 @@ public class Juan extends Spell {
     public Juan(Player p, String name, Vector offset) {
 
         this.offset = offset;
-        cooldown = 20 * 10;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*10
+        );
         name = "§bKeksspell";
         speed = 1;
         hitboxSize = 2;

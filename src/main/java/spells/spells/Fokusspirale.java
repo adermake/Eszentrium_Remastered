@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Fokusspirale extends Spell {
@@ -18,16 +19,23 @@ public class Fokusspirale extends Spell {
     public Fokusspirale() {
         // TODO Auto-generated constructor stub
         name = "§eFokusspirale";
-        cooldown = 20 * 40;
         steprange = 300;
         speed = 7;
         hitboxSize = 3;
 
+        spellDescription = new SpellDescription(
+                "Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.",
+                "Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.",
+                null,
+                null,
+                "Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.",
+                "Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.",
+                20*40
+        );
+
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.§eShift: §7Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.");
-        setBetterLore("§7Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.§eShift: §7Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.");
     }
 
     boolean isSneaking = false;

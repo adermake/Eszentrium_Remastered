@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -23,11 +24,19 @@ public class Himmelsläufer extends Spell {
 
         name = "§bHimmelsläufer";
         steprange = 20 * 8;
-        cooldown = 20 * 30;
+
+        spellDescription = new SpellDescription(
+                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann.",
+                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann und erhöht zusätzlich seine Geschwindigkeit und Sprungkraft.",
+                "Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
+                "Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
+                null,
+                null,
+                20*30
+        );
+
         addSpellType(SpellType.SELFCAST);
         addSpellType(SpellType.MOBILITY);
-        setLore("§7Der Spieler kreiiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann.§eF: §7Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.");
-        setBetterLore("§7Der Spieler kreiiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann und erhöht zusätzlich seine Geschwindigkeit und Sprungkraft.§eF: §7Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.");
         silencable = true;
     }
 

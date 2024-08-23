@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ChainConnection;
 import spells.stagespells.ChainSegment;
@@ -25,8 +26,18 @@ public class Kettenbrecher extends Spell {
     public Kettenbrecher() {
         name = "§cKettenbrecher";
         steprange = 20 * 10;
-        cooldown = 20 * 40;
         silencable = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
+
         addSpellType(SpellType.MOBILITY);
         addSpellType(SpellType.KNOCKBACK);
 

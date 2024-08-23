@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
@@ -21,9 +22,17 @@ public class ArchonReflect extends Spell {
         hitBlock = false;
         hitEntity = false;
 
-        cooldown = 20 * 40;
         speed = 1;
         hitboxSize = 4;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*40
+        );
         addSpellType(SpellType.AURA);
         castSpell(caster, name);
     }

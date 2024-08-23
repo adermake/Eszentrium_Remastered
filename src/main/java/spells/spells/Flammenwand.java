@@ -12,6 +12,7 @@ import org.bukkit.util.Vector;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.FirePiece;
 
@@ -20,18 +21,26 @@ public class Flammenwand extends Spell {
 
     public Flammenwand() {
         name = "§6Flammenwand";
-        cooldown = 20 * 40;
         casttime = 20 * 5;
         speed = 3;
         hitPlayer = false;
         hitEntity = false;
         steprange = 50;
         hitSpell = false;
+
+        spellDescription = new SpellDescription(
+                "Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt.",
+                "Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.",
+                "Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt.",
+                "Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.",
+                null,
+                null,
+                20*40
+        );
+        
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.MULTIHIT);
 
-        setLore("§7Setzt einen Startpunkt. Nach kurzer#§7Zeit entsteht an dieser Stelle eine#§7Flammensäule, die nahen Gegnern wiederholt Schaden#§7zufügt.# #§eF:§7 Setzt einen Endpunkt.#§7Zwischen dem Startpunkt und dem Endpunkt#§7entsteht eine Flammenwand, die nahen Gegnern#§7wiederholt Schaden zufügt.");
-        setBetterLore("Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.F: Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.");
     }
 
     Location l1;

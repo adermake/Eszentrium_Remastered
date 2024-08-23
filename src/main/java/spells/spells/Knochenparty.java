@@ -20,6 +20,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import org.bukkit.Particle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.ExplosionDamage;
 import spells.stagespells.KnochenpartySkeleton;
@@ -33,14 +34,23 @@ public class Knochenparty extends Spell {
     ArrayList<Entity> noChargeLoss = new ArrayList<Entity>();
 
     public Knochenparty() {
-        cooldown = 20 * 32;
         steprange = 60;
         name = "§cKnochenparty";
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Wirft einen Knochen in Blickrichtung. Um ihn herum erscheint nach kurzer Zeit ein Ring aus Skeletten, die Gegner bei Berührung Schaden zufügen und sie in die Mitte des Rings schleudern.",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*32
+        );
+        
         addSpellType(SpellType.LOCKDOWN);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Wirft einen Knochen in Blickrichtung.#§7Um ihn herum erscheint nach kurzer Zeit ein#§7Ring aus Skeletten, die Gegner bei#§7Berührung Schadenzufügen und sie in die Mitte des#§7Rings schleudern.");
     }
 
     boolean holding = true;

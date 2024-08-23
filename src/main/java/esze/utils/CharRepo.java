@@ -43,6 +43,9 @@ public enum CharRepo {
     TAG_TEAM_YELLOW("\uF113"),
     TAG_TEAM_GREEN("\uF114"),
 
+    TAG_KEYBIND_F("\uF115"),
+    TAG_KEYBIND_SHIFT("\uF116"),
+
     HUD_SPELL("\uF021");
 
     public final String literal;

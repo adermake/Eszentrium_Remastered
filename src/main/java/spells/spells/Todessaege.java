@@ -10,6 +10,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Sythe;
 
@@ -19,14 +20,20 @@ public class Todessaege extends Spell {
 
     public Todessaege() {
         name = "§eTodessäge";
-        cooldown = 20 * 40;
+        spellDescription = new SpellDescription(
+                "Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer.",
+                "Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer.",
+                null,
+                null,
+                "Zieht die Sägen sofort zurück.",
+                "Zieht die Sägen sofort zurück.",
+                20*40
+        );
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.MULTIHIT);
         addSpellType(SpellType.SUPPORT);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
-        setBetterLore("§7Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer. §eShift: §7Zieht die Sägen sofort zurück.");
         autocancel = true;
     }
 

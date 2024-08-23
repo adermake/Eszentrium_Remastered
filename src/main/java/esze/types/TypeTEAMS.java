@@ -13,6 +13,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.DamageCauseContainer;
@@ -23,6 +25,7 @@ import weapons.WeaponMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class TypeTEAMS extends TypeTeamBased {
 
@@ -332,10 +335,32 @@ public class TypeTEAMS extends TypeTeamBased {
             p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
             p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
             p.getInventory().setItem(5, ItemStackUtils.createItemStack(Material.NETHER_STAR, 1, 0, "§3Kosmetik", null, true));
-            p.getInventory().setItem(4, ItemStackUtils.createItemStack(Material.NAME_TAG, 1, 0, "§3Teamauswahl", null, true));
+            p.getInventory().setItem(4, produceTeamFlag(p));
 
             resendScorboardTeams(p);
         }
+    }
+
+    private ItemStack produceTeamFlag(Player p) {
+
+        int teamColor = allTeams.stream()
+                .filter(t -> t.containsPlayer(p))
+                .map(EszeTeam::getChatColor)
+                .map(color -> switch (color) {
+                    case RED -> 1000304;
+                    case BLUE -> 1000307;
+                    case GREEN -> 1000306;
+                    case YELLOW -> 1000305;
+                    default -> 1000308;
+                })
+                .findFirst().orElse(1000308);
+
+        ItemStack filler = new ItemStack(Material.PAPER);
+        ItemMeta meta = filler.getItemMeta();
+        meta.setCustomModelData(teamColor);
+        meta.setDisplayName("§3Teamauswahl");
+        filler.setItemMeta(meta);
+        return filler;
     }
 
 

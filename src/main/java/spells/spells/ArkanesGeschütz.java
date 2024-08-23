@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class ArkanesGeschütz extends Spell {
 
@@ -21,8 +22,16 @@ public class ArkanesGeschütz extends Spell {
 
     public ArkanesGeschütz() {
         name = "§6Arkanes Geschütz";
-        cooldown = 20 * 30;
         casttime = 40;
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*30
+        );
     }
 
     Location ori;

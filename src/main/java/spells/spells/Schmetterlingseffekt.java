@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 
 public class Schmetterlingseffekt extends Spell {
 
@@ -17,9 +18,18 @@ public class Schmetterlingseffekt extends Spell {
     public Schmetterlingseffekt() {
 
         name = "§eSchmetterlingseffekt";
-        cooldown = 20 * 3;
         steprange = 20 * 3;
         casttime = 80;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20*3
+        );
 
     }
 

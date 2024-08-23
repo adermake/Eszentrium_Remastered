@@ -7,6 +7,7 @@ import esze.main.main;
 import esze.types.TypeTEAMS;
 import esze.utils.*;
 import io.netty.util.internal.ThreadLocalRandom;
+import lombok.Getter;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -36,7 +37,6 @@ public abstract class Spell {
     //STATS
 
     protected String name;
-    protected int cooldown;
     public Player caster;
     public Location loc;
 
@@ -67,6 +67,7 @@ public abstract class Spell {
     protected boolean dieOnLowPower = true;
     protected boolean powerBattle = false;
     protected boolean traitorSpell = false;
+    @Getter
     protected boolean dead = false;
     protected boolean silencable = false;
     protected boolean tagPlayer = true; //hit Players will get a damage Cause
@@ -87,9 +88,10 @@ public abstract class Spell {
     protected Location startPos;
     protected Location lastAirPos;
     protected Player originalCaster;
+    @Getter
     protected ArrayList<SpellType> spellTypes = new ArrayList<SpellType>();
-    protected ArrayList<String> lore = new ArrayList<String>();
-    protected ArrayList<String> betterlore = new ArrayList<String>();
+    @Getter
+    protected SpellDescription spellDescription;
     protected ArrayList<Block> localPhantomBlock = new ArrayList<Block>();
 
     //FLAGS
@@ -102,11 +104,6 @@ public abstract class Spell {
     public static HashMap<Player, SilenceSelection> silenced = new HashMap<Player, SilenceSelection>();
     public static HashMap<Player, DamageCauseContainer> damageCause = new HashMap<Player, DamageCauseContainer>();
     //
-
-    public ArrayList<SpellType> getSpellTypes() {
-        return spellTypes;
-
-    }
 
     public static void clearSpells() {
         for (Spell spell : spell) {
@@ -247,10 +244,7 @@ public abstract class Spell {
 
 
         if (!spellLoopStarted) {
-
-
             //TickLoop
-
             new BukkitRunnable() {
                 public void run() {
 
@@ -1415,15 +1409,7 @@ public abstract class Spell {
         return false;
     }
 
-    public ArrayList<String> getLore() {
-        return lore;
-    }
-
-    public ArrayList<String> getBetterLore() {
-        return betterlore;
-    }
-
-    public void setLore(String ls) {
+    /*public void setLore(String ls) {
         lore.clear();
         ls = formatLore(ls);
         for (String s : ls.split("#")) {
@@ -1445,11 +1431,7 @@ public abstract class Spell {
 
         betterlore.add(" ");
         betterlore.add("§eCooldown: §7" + cooldown / 20 + "s");
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
+    }*/
 
     public String formatLore(String lore) {
 
@@ -1784,10 +1766,6 @@ public abstract class Spell {
         a.setHeadPose(ea);
     }
 
-    public int getCooldown() {
-        return cooldown;
-    }
-
     public void addNoTarget(Entity ent) {
         noTargetEntitys.add(ent);
     }
@@ -1815,8 +1793,8 @@ public abstract class Spell {
     }
 
     public void updateLore() {
-        setLore(SaveUtils.getAnalytics().getSpellLore(name));
-        setBetterLore(SaveUtils.getAnalytics().getSpellRefinedLore(name));
+        //setLore(SaveUtils.getAnalytics().getSpellLore(name));
+        //setBetterLore(SaveUtils.getAnalytics().getSpellRefinedLore(name));
     }
 
     public void sendKey(int k) {

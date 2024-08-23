@@ -25,6 +25,7 @@ import esze.main.main;
 import esze.utils.ParUtils;
 import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
 public class Verzaubern extends Spell {
@@ -38,8 +39,17 @@ public class Verzaubern extends Spell {
         speed = 1;
         steprange = 8 * 20;
 
-        cooldown = 20 * 1;
         traitorSpell = true;
+
+        spellDescription = new SpellDescription(
+                "",
+                "",
+                null,
+                null,
+                null,
+                null,
+                20
+        );
 
         addSpellType(SpellType.LOCKDOWN);
 

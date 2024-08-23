@@ -6,6 +6,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.KaminchenEntity;
 
@@ -13,12 +14,20 @@ public class Kaminchen extends Spell {
 
 
     public Kaminchen() {
-        cooldown = 20 * 25;
         name = "§6Kaminchen";
         hitSpell = true;
+
+        spellDescription = new SpellDescription(
+                "Wirft ein Kaninchen in Blickrichtung, das auf dem Boden stehen bleibt und bei Gegnerkontakt explodiert.",
+                "Wirft 3 Kaninchen in Blickrichtung, die auf dem Boden stehen bleiben und bei Gegnerkontakt explodieren.",
+                "Verärgert die Kaminchen, wodurch sie den naheliegendsten Gegner verfolgen.",
+                "Verärgert die Kaminchen, wodurch sie den naheliegendsten Gegner verfolgen.",
+                null,
+                null,
+                20*25
+        );
+        
         addSpellType(SpellType.DAMAGE);
-        setLore("§7Wirft ein Kaninchen in Blickrichtung,#§7das auf dem Boden stehen bleibt und bei#§7Gegnerkontakt explodiert.# #§eF:§7 Verärgert#§7die Kaminchen, wodurch sie den#§7naheliegendsten Gegner verfolgen.");
-        setBetterLore("§7Wirft 3 Kaninchen in Blickrichtung,#§7die auf dem Boden stehen bleiben und bei#§7Gegnerkontakt explodieren.# #§eF:§7 Verärgert#§7die Kaminchen, wodurch sie den#§7naheliegendsten Gegner verfolgen.");
     }
 
 

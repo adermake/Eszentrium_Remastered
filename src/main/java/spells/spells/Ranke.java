@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.PullRanke;
 
@@ -31,12 +32,18 @@ public class Ranke extends Spell {
         powerlevel = 60;
         speed = 3;
 
-        cooldown = 20 * 18;
+        spellDescription = new SpellDescription(
+                "Schießt eine Ranke in Blickrichtung. Ein getroffener Gegner wird zum Anwender gezogen und erhält Schaden abhängig von der Länge der Ranke. Die Ranke kann selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt eine Ranke in Blickrichtung. Ein getroffener Gegner wird bis auf die maximale Reichweite und danach zurück zum Anwender gezogen. Die Ranke kann selbst nach der Ausführung noch gesteuert werden.",
+                null,
+                null,
+                null,
+                null,
+                20*18
+        );
         addSpellType(SpellType.KNOCKBACK);
         addSpellType(SpellType.DAMAGE);
         addSpellType(SpellType.PROJECTILE);
-        setLore("§7Schießt eine Ranke in Blickrichtung.#§7Ein getroffener Gegner wird zum Anwender#§7gezogen und erhält Schaden abhängig von der#§7Länge der Ranke.Die Ranke kann selbst nach#§7der Ausführung noch gesteuert werden.");
-        setBetterLore("§7Schießt eine Ranke in Blickrichtung. Ein#§7getroffener Gegner wird bis auf die#§7maximale Reichweite und danach zurück zum#§7Anwender gezogen.Die Ranke kann selbst nach der#§7Ausführung noch gesteuert werden.");
     }
 
     public Ranke(Player p, int rec) {
@@ -48,7 +55,7 @@ public class Ranke extends Spell {
         powerlevel = 60;
         speed = 3;
         caster = p;
-        cooldown = 20 * 20;
+        spellDescription.setCooldown(20*20);
         castSpell(caster, name);
         if (rec > 0) {
             new BukkitRunnable() {
