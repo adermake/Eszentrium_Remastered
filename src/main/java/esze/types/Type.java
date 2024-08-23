@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 public abstract class Type {
 
-
     public String name;
     public String currentmap;
     public ArrayList<Player> startplayers = new ArrayList<>();
@@ -42,7 +41,6 @@ public abstract class Type {
     public abstract void runEveryTick();
 
     public void death(PlayerDeathEvent event) {
-
         Player p = event.getEntity();
 
         // CHECK IF DEATH WAS VALID IF NOT RESET HEALTH TO LAST DAMAGE TAKEN
@@ -74,33 +72,23 @@ public abstract class Type {
     public abstract void gameStart();
 
     public Location nextLoc() {
-        Location loc = null;
-
-
         if (main.plugin.getConfig().contains("maps." + currentmap + "." + spawnloc)) {
-
-            loc = (Location) main.plugin.getConfig().get("maps." + currentmap + "." + spawnloc);
+            Location loc = (Location) main.plugin.getConfig().get("maps." + currentmap + "." + spawnloc);
             spawnloc++;
+            return loc;
         } else {
             spawnloc = 1;
             return nextLoc();
         }
-
-
-        return loc;
     }
 
     public Location getLoc(int id) {
-        Location loc = null;
-
-
         if (main.plugin.getConfig().contains("maps." + currentmap + "." + id)) {
-
-            loc = (Location) main.plugin.getConfig().get("maps." + currentmap + "." + id);
-            loc = loc.clone();
+            Location loc = (Location) main.plugin.getConfig().get("maps." + currentmap + "." + id);
+            return loc.clone();
         }
 
-        return loc;
+        return null;
     }
 
     public void setupJumpPad(String map) {
@@ -121,8 +109,8 @@ public abstract class Type {
         return randomNum;
     }
 
-    public void out(Player p) {
-        p.getWorld().strikeLightningEffect(p.getLocation());
+    public void out(Player p, boolean showLightning) {
+        if(showLightning) p.getWorld().strikeLightningEffect(p.getLocation());
         p.getInventory().clear();
         p.setGameMode(GameMode.ADVENTURE);
         p.setAllowFlight(true);
@@ -135,14 +123,10 @@ public abstract class Type {
         p.setHealth(p.getMaxHealth());
         players.remove(p);
         spectator.add(p);
-
-
     }
 
 
     public boolean deathCheck(Player p) {
-
-
         if (p.getLocation().getY() <= 60) {
             return false;
         }
@@ -229,10 +213,6 @@ public abstract class Type {
     public abstract void endGame();
 
     public void givePlayerLobbyItems(Player p) {
-        if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-            p.getInventory().clear();
-        }
-
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
             if (p.isOp()) {
                 p.getInventory().setItem(0, ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));

@@ -101,7 +101,6 @@ public class TypeSOLO extends Type {
         p.setVelocity(new Vector(0, 0, 0));
 
         loseLife(p);
-        checkWinner();
     }
 
     public void loseLife(Player p) {
@@ -119,8 +118,7 @@ public class TypeSOLO extends Type {
 
         if (lives.get(p) < 1) {
             SaveUtils.setPlayerPlace(p.getName(), players.size());
-            out(p);
-            checkWinner();
+            out(p, true);
         } else {
             Spell.silenced.put(p, new SilenceSelection());
             new BukkitRunnable() {
@@ -168,6 +166,13 @@ public class TypeSOLO extends Type {
 
         }
 
+    }
+
+    @Override
+    public void out(Player p, boolean showLightning) {
+        super.out(p, showLightning);
+        lives.put(p, 0);
+        checkWinner();
     }
 
     boolean won = false;

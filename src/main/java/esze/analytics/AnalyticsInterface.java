@@ -76,6 +76,7 @@ public class AnalyticsInterface {
     private HashMap<String, HashMap<String, Integer>> spellApperancesPlayer = new HashMap<>();
     private HashMap<String, HashMap<String, Integer>> spellPicksPlayer = new HashMap<>();
     private HashMap<String, HashMap<String, Integer>> spellUsePlayer = new HashMap<>();
+    private static boolean debug = false;
 
     public AnalyticsInterface() {
 
@@ -318,8 +319,8 @@ public class AnalyticsInterface {
                 spell.updateLore();
             }
             stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -331,8 +332,8 @@ public class AnalyticsInterface {
                 playerWins.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -344,8 +345,8 @@ public class AnalyticsInterface {
                 playerLosses.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -357,8 +358,8 @@ public class AnalyticsInterface {
                 playerTeamWins.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -370,8 +371,8 @@ public class AnalyticsInterface {
                 playerTeamLosses.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -383,8 +384,8 @@ public class AnalyticsInterface {
                 playerKills.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -396,8 +397,8 @@ public class AnalyticsInterface {
                 playerDeaths.put(rs.getString(PLAYER), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -409,8 +410,8 @@ public class AnalyticsInterface {
                 spellKills.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -422,8 +423,8 @@ public class AnalyticsInterface {
                 spellKillsNormal.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -435,8 +436,8 @@ public class AnalyticsInterface {
                 spellKillsVoid.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -448,8 +449,8 @@ public class AnalyticsInterface {
                 spellApperances.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -461,8 +462,8 @@ public class AnalyticsInterface {
                 spellPicks.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -474,8 +475,8 @@ public class AnalyticsInterface {
                 spellUse.put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -490,8 +491,8 @@ public class AnalyticsInterface {
                 spellRefinedLore.put(rs.getString(SPELL), rs.getString(out2));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -503,8 +504,8 @@ public class AnalyticsInterface {
                 players.add(rs.getString(PLAYER));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -517,8 +518,8 @@ public class AnalyticsInterface {
                 spellKillsPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -531,8 +532,8 @@ public class AnalyticsInterface {
                 spellKillsNormalPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -545,8 +546,8 @@ public class AnalyticsInterface {
                 spellKillsVoidPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -559,8 +560,8 @@ public class AnalyticsInterface {
                 spellDeathsPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -573,8 +574,8 @@ public class AnalyticsInterface {
                 spellDeathsNormalPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -587,8 +588,8 @@ public class AnalyticsInterface {
                 spellDeathsVoidPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -601,8 +602,8 @@ public class AnalyticsInterface {
                 spellApperancesPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -615,8 +616,8 @@ public class AnalyticsInterface {
                 spellPicksPlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 
@@ -629,8 +630,8 @@ public class AnalyticsInterface {
                 spellUsePlayer.get(p).put(rs.getString(SPELL), rs.getInt(out));
             }
             rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            if(debug) e.printStackTrace();
         }
     }
 }

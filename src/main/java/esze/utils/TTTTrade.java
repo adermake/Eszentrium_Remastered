@@ -34,8 +34,8 @@ public class TTTTrade implements Listener {
                         herausfordern.remove(p);
                     } else {
                         herausfordern.put(p, clicked);
-                        clicked.sendMessage("§8| §6" + p.getName() + " §7hat dich zum Handeln eingeladen!");
-                        p.sendMessage("§8| Du hast §6" + clicked.getName() + " zum Handeln geladen!");
+                        clicked.sendMessage("§8| §e" + p.getName() + " §7hat dich zum Handeln eingeladen!");
+                        p.sendMessage("§8| §7Du hast §e" + clicked.getName() + " §7zum Handeln geladen!");
                     }
                 }
             }

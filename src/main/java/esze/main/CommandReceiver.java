@@ -274,7 +274,7 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
                     number++;
                 }
 
-                p.sendMessage("§8| " + (number - 1) + " revealed");
+                p.sendMessage("§8| §e" + (number - 1) + " §7revealed");
             }
         }
         if (cmd.getName().startsWith("setmode")) {

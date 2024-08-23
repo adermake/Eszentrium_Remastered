@@ -204,9 +204,7 @@ public class SaveUtils {
                 analytics = new AnalyticsInterface();
             }
             if (currentConnection == null || currentConnection.isClosed()) {
-                System.out.println("Init SQL connection");
                 currentConnection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Init SQL connection no error!");
             }
         } catch (SQLException e) {
             if (debug) e.printStackTrace();

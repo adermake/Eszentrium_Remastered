@@ -60,7 +60,6 @@ public class TypeTTT extends Type {
 
         for (Player p : players) {
 
-            //TabList.setPlayerlistHeader(p, ""+secondsLeft);
             if (p.getLocation().getY() < 60 && p.getGameMode() == GameMode.SURVIVAL) {
 
                 //p.damage(40);
@@ -104,8 +103,6 @@ public class TypeTTT extends Type {
     @Override
     public void gameStart() {
 
-        System.out.println("1");
-
         secondsLeft = gameLengthSeconds;
 
         innocent.clear();
@@ -127,7 +124,6 @@ public class TypeTTT extends Type {
 
         scoreboard = new TTTScoreboard();
         scoreboard.showScoreboard();
-        System.out.println("3");
         PlayerUtils.showAllPlayers();
 
         setupJumpPad(currentmap);
@@ -149,8 +145,8 @@ public class TypeTTT extends Type {
             spawnNewSpell();
         }
 
-        if (((int) playerCount / 3) - 1 > 0)
-            traitorCount += ((int) playerCount / 3) - 1;
+        if ((playerCount / 3) - 1 > 0)
+            traitorCount += (playerCount / 3) - 1;
 
         if (playerCount == 6)
             traitorCount = 1;
@@ -191,26 +187,6 @@ public class TypeTTT extends Type {
             new Title("§c§lVERRÄTER", "ist deine Rolle").send(p);
             p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.EMERALD, 1, 0, "§cSchwarzmarkt", null, true));
         }
-		
-		/*
-		scoreboard = new SoloScoreboard();
-		scoreboard.showScoreboard();
-		for (Player p : players) {
-				p.teleport(nextLoc());
-				p.setGameMode(GameMode.SURVIVAL);
-				p.getInventory().clear();
-			
-					p.getInventory().addItem(ItemStackUtils.createItemStack(Material.WOODEN_SWORD, 1, 0, "§eHolz-Schwert", null, true));
-				
-				PlayerUtils.hidePlayer(p,100);
-				p.setNoDamageTicks(100);
-				SoloSpellMenu s = new SoloSpellMenu();
-				s.open(p);
-				lives.put(p, 4);
-			}
-		setupJumpPad(currentmap);
-		new SoloScoreboard();
-		*/
 
     }
 
@@ -250,10 +226,8 @@ public class TypeTTT extends Type {
 
         PlayerUtils.hidePlayer(p);
 
-        if (innocent.contains(p))
-            innocent.remove(p);
-        if (traitor.contains(p))
-            traitor.remove(p);
+        innocent.remove(p);
+        traitor.remove(p);
 
         p.setNoDamageTicks(100);
 
@@ -261,6 +235,14 @@ public class TypeTTT extends Type {
         checkWinner();
 
         Discord.setMuted(p, true);
+    }
+
+    @Override
+    public void out(Player p, boolean showLightning) {
+        super.out(p, showLightning);
+        innocent.remove(p);
+        traitor.remove(p);
+        checkWinner();
     }
 
     public void spawnNewSpell() {
@@ -319,30 +301,6 @@ public class TypeTTT extends Type {
 
     public static double randomDouble(double min, double max) {
         return min + ThreadLocalRandom.current().nextDouble(Math.abs(max - min + 1));
-    }
-
-    public void spawnNewSpellOLD() {
-
-        Location loc = nextLoc();
-        loc.add(MathUtils.randInt(-30, 30), MathUtils.randInt(-10, 30), MathUtils.randInt(-30, 30));
-
-        while (!loc.getBlock().getType().isSolid()) {
-            loc.add(0, -1, 0);
-            if (loc.getY() < 60) {
-                spawnNewSpellOLD();
-                return;
-
-            }
-        }
-        while (loc.clone().add(0, 1, 0).getBlock().getType().isSolid()) {
-            loc.add(0, 1, 0);
-            if (loc.getY() > 200) {
-                spawnNewSpellOLD();
-                return;
-
-            }
-        }
-        new Spelldrop(loc);
     }
 
     public void setTraitor(Player p) {

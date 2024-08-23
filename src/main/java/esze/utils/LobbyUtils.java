@@ -65,6 +65,9 @@ public class LobbyUtils {
             p.setMaxHealth(20);
             p.setHealth(20);
             PlayerUtils.hidePlayer(p, 35);
+            if (p.getGameMode().equals(GameMode.SURVIVAL)) {
+                p.getInventory().clear();
+            }
             GameType.getType().givePlayerLobbyItems(p);
             p.setWalkSpeed(0.2F);
             p.setFlySpeed(0.1F);

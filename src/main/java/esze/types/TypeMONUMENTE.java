@@ -339,9 +339,6 @@ public class TypeMONUMENTE extends TypeTeamBased {
 
     @Override
     public void givePlayerLobbyItems(Player p) {
-        if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-            p.getInventory().clear();
-        }
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
             if (p.isOp()) {
                 p.getInventory().setItem(0,

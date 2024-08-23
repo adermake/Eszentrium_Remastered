@@ -6,12 +6,10 @@ import esze.main.main;
 import esze.players.PlayerAPI;
 import esze.players.PlayerInfo;
 import esze.types.TypeTEAMS;
-import esze.utils.CharRepo;
-import esze.utils.LobbyUtils;
-import esze.utils.ScoreboardTeamUtils;
-import esze.utils.TabList;
+import esze.utils.*;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -45,7 +43,22 @@ public class Join implements Listener {
         if (Gamestate.getGameState() == Gamestate.LOBBY) {
             Bukkit.getOnlinePlayers().stream().filter(player -> player != p).forEach(player -> player.sendMessage("§8> §3" + p.getName() + " §7ist beigetreten."));
             LobbyUtils.recall(p);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(main.plugin, () -> {
+                p.sendMessage(TextComponent.toLegacyText(component));
+                p.sendMessage("");
+                p.sendMessage("");
+                p.sendMessage("");
+                p.sendMessage("");
+                p.sendMessage("§8| §7Willkommen auf §6Esze§7! §7Viel Spaß beim Spielen!");
+            }, 10);
         } else if (Gamestate.getGameState() == Gamestate.INGAME) {
+            p.teleport(GameType.getType().nextLoc());
+            PlayerUtils.hidePlayer(p);
+            p.getInventory().clear();
+            p.setGameMode(GameMode.ADVENTURE);
+            p.setAllowFlight(true);
+            p.setFlying(true);
+            p.sendMessage("§8| §7Die Runde läuft. Du bist Zuschauer!");
 
             if (PlayerAPI.getPlayerInfo(p) == null) {
                 PlayerInfo pi = new PlayerInfo(p);
@@ -54,14 +67,7 @@ public class Join implements Listener {
             }
         }
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(main.plugin, () -> {
-            p.sendMessage(TextComponent.toLegacyText(component));
-            p.sendMessage("");
-            p.sendMessage("");
-            p.sendMessage("");
-            p.sendMessage("");
-            p.sendMessage("§8| §7Willkommen auf §6Esze§7! §7Viel Spaß beim Spielen!");
-        }, 10);
+
     }
 
     @EventHandler
@@ -70,6 +76,11 @@ public class Join implements Listener {
         e.setQuitMessage("§8< §6" + p.getName() + " §7hat das Spiel verlassen");
         ScoreboardTeamUtils.giveScoreboard(p);
 
+        if (PlayerAPI.getPlayerInfo(p) != null) {
+            PlayerAPI.removePlayer(p);
+        }
+
+        GameType.getType().out(p, false);
         if (GameType.getType() instanceof TypeTEAMS tt) {
             tt.removePlayerFromAllTeams(p);
         }

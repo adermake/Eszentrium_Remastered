@@ -30,9 +30,9 @@ import java.util.Optional;
 public class TypeTEAMS extends TypeTeamBased {
 
 
-    public ArrayList<EszeTeam> allTeamsAlive = new ArrayList<EszeTeam>();
-    public static HashMap<Player, Location> loc = new HashMap<Player, Location>();
-    public HashMap<EszeTeam, Integer> lives = new HashMap<EszeTeam, Integer>();
+    public ArrayList<EszeTeam> allTeamsAlive = new ArrayList<>();
+    public static HashMap<Player, Location> loc = new HashMap<>();
+    public HashMap<EszeTeam, Integer> lives = new HashMap<>();
     public boolean won = false;
     public boolean gameOver = false;
 
@@ -125,7 +125,6 @@ public class TypeTEAMS extends TypeTeamBased {
         p.setVelocity(new Vector(0, 0, 0));
 
         loseLife(p);
-        checkWinner();
     }
 
     public void loseLife(Player p) {
@@ -144,9 +143,7 @@ public class TypeTEAMS extends TypeTeamBased {
         p.setVelocity(new Vector(0, 0, 0));
 
         if (lives.get(getTeamOfPlayer(p)) < 1) {
-            out(p);
-            checkTeamOut(p);
-            checkWinner();
+            out(p, true);
         } else {
             Spell.silenced.put(p, new SilenceSelection());
             new BukkitRunnable() {
@@ -194,6 +191,14 @@ public class TypeTEAMS extends TypeTeamBased {
 
         }
 
+    }
+
+    @Override
+    public void out(Player p, boolean showLightning) {
+        super.out(p, showLightning);
+        allTeams.stream().filter(t -> t.containsPlayer(p)).findFirst().ifPresent(t -> t.removePlayer(p));
+        checkTeamOut(p);
+        checkWinner();
     }
 
     public boolean teamSillHasPlayers(EszeTeam et) {
@@ -323,9 +328,6 @@ public class TypeTEAMS extends TypeTeamBased {
 
     @Override
     public void givePlayerLobbyItems(Player p) {
-        if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-            p.getInventory().clear();
-        }
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
             if (p.isOp()) {
                 p.getInventory().setItem(0, ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));
