@@ -46,7 +46,9 @@ public enum CharRepo {
     TAG_KEYBIND_F("\uF115"),
     TAG_KEYBIND_SHIFT("\uF116"),
 
-    HUD_SPELL("\uF021");
+    HUD_SPELL("\uF021"),
+    HUD_SPELL_HALF("\uF022"),
+    HUD_SPELL_TINY("\uF023");
 
     public final String literal;
     CharRepo(String literal){

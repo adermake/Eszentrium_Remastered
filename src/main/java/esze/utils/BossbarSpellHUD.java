@@ -48,11 +48,18 @@ public class BossbarSpellHUD {
     public void show() {
         removeAllBossbars(p);
 
-        TextComponent component = new TextComponent();
-        component.setText(CharRepo.HUD_SPELL.literal);
-
         String _fDesc = spellIsRefined ? spell.getSpellDescription().getRefinedFDescription() : spell.getSpellDescription().getNormalFDescription();
         String _shiftDesc = spellIsRefined ? spell.getSpellDescription().getRefinedShiftDescription() : spell.getSpellDescription().getNormalShiftDescription();
+
+        CharRepo hudChar = CharRepo.HUD_SPELL;
+        if (_fDesc == null || _shiftDesc == null) {
+            hudChar = CharRepo.HUD_SPELL_HALF;
+        }
+        if (_fDesc == null && _shiftDesc == null) {
+            hudChar = CharRepo.HUD_SPELL_TINY;
+        }
+        TextComponent component = new TextComponent();
+        component.setText(hudChar.literal);
 
         if (_fDesc != null && _fDesc.length() > MAX_ROW_LENGTH) {
             _fDesc += DIVIDER;
@@ -94,7 +101,7 @@ public class BossbarSpellHUD {
                         fOutput += fDesc.substring(0, Math.min(MAX_ROW_LENGTH - fOutput.length(), fDesc.length()));
                     }
                     TextComponent componentF = new TextComponent();
-                    componentF.setText(CharRepo.TAG_KEYBIND_F.literal + " §0" + fOutput);
+                    componentF.setText(CharRepo.TAG_KEYBIND_F.literal + " §7" + fOutput);
                     bossbar1.setTitle(TextComponent.toLegacyText(componentF));
 
                     if (fDesc.length() > MAX_ROW_LENGTH) {
@@ -111,7 +118,7 @@ public class BossbarSpellHUD {
                         shiftOutput += shiftDesc.substring(0, Math.min(MAX_ROW_LENGTH - shiftOutput.length(), shiftDesc.length()));
                     }
                     TextComponent componentShift = new TextComponent();
-                    componentShift.setText(CharRepo.TAG_KEYBIND_SHIFT.literal + " §0" + shiftOutput);
+                    componentShift.setText(CharRepo.TAG_KEYBIND_SHIFT.literal + " §7" + shiftOutput);
                     bossbar2.setTitle(TextComponent.toLegacyText(componentShift));
 
                     if (shiftDesc.length() > MAX_ROW_LENGTH) {
