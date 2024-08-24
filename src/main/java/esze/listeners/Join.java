@@ -80,7 +80,9 @@ public class Join implements Listener {
             PlayerAPI.removePlayer(p);
         }
 
-        GameType.getType().out(p, false);
+        if(Gamestate.getGameState() == Gamestate.INGAME) {
+            GameType.getType().out(p, false);
+        }
         if (GameType.getType() instanceof TypeTEAMS tt) {
             tt.removePlayerFromAllTeams(p);
         }
