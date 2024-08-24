@@ -17,6 +17,7 @@ import spells.spellcore.SpellType;
 public class Phasenwechsel extends Spell {
 
     Player target;
+    boolean charging = true;
 
     public Phasenwechsel() {
 
@@ -43,15 +44,10 @@ public class Phasenwechsel extends Spell {
 
     @Override
     public void setUp() {
-
         target = Bukkit.getPlayer(NBTUtils.getNBT("Archon", caster.getInventory().getItemInMainHand()));
         if (target == null) {
             dead = true;
         }
-        // TODO Auto-generated method stub
-        //ParUtils.createParticle(Particle.FLASH,target.getLocation(), 0, 0, 0, 1, 1);
-        //ParUtils.createParticle(Particle.END_ROD,target.getLocation(), 0, 0, 0, 222, 10);
-        //ParUtils.createParticle(Particle.ENCHANT,target.getLocation(), 0, 0, 0, 102, 10);
         SoundUtils.playSound(Sound.ENTITY_WITHER_HURT, loc, 0.3F, 30F);
         noTargetEntitys.add(target);
         loc = target.getLocation();
@@ -59,17 +55,14 @@ public class Phasenwechsel extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
-    boolean charging = true;
 
     @Override
     public void move() {
@@ -82,9 +75,7 @@ public class Phasenwechsel extends Spell {
             loc.add(dir.multiply(2F));
         }
 
-
         if (loc.distance(caster.getLocation()) < 2 && charging) {
-            //ParUtils.createParticle(Particle.FLASH, loc, 0, 0, 0, 1, 1);
             ParUtils.createParticle(Particle.FLASH, target.getLocation(), 0, 0, 0, 1, 1);
             ParUtils.createParticle(Particle.FLASH, caster.getLocation(), 0, 0, 0, 1, 1);
             SoundUtils.playSound(Sound.ENTITY_SHULKER_TELEPORT, loc, 1.4F, 10);
@@ -95,7 +86,6 @@ public class Phasenwechsel extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -111,92 +101,17 @@ public class Phasenwechsel extends Spell {
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
-	
-	
-	/*
-	@Override
-	public void setUp() {
-		// TODO Auto-generated method stub
-		target = Bukkit.getPlayer(NBTUtils.getNBT("Archon", caster.getInventory().getItemInMainHand()));
-		if (target == null) {
-			dead = true;
-		}
-		SoundUtils.playSound(Sound.ENTITY_SHULKER_TELEPORT, loc, 0.3F, 10);
-		SoundUtils.playSound(Sound.BLOCK_CONDUIT_AMBIENT, loc, 2F, 10);
-	}
 
-	@Override
-	public void cast() {
-		// TODO Auto-generated method stub
-		
-		ParUtils.parLineRedstone(caster.getLocation(), target.getLocation(), Color.WHITE, 1, 2);
-	
-	}
-
-	@Override
-	public void launch() {
-		// TODO Auto-generated method stub
-		ParUtils.createParticle(Particle.FLASH, target.getLocation(), 0,0, 0, 1, 1);
-		ParUtils.createParticle(Particle.FLASH, caster.getLocation(), 0,0, 0, 1, 1);
-		SoundUtils.playSound(Sound.ENTITY_SHULKER_TELEPORT, loc, 1.4F, 10);
-		target.teleport(caster.getLocation());
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onPlayerHit(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onEntityHit(LivingEntity ent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onSpellHit(Spell spell) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onBlockHit(Block block) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onDeath() {
-		// TODO Auto-generated method stub
-		
-	}
-*/
 }

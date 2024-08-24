@@ -1,8 +1,10 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -10,9 +12,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 

@@ -1,27 +1,20 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.enums.Gamestate;
+import esze.main.main;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.enums.Gamestate;
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
+
+import java.util.ArrayList;
 
 public class Eisstachel extends Spell {
 
@@ -40,7 +33,7 @@ public class Eisstachel extends Spell {
                 null,
                 null,
                 null,
-                20*40
+                20 * 40
         );
 
         addSpellType(SpellType.LOCKDOWN);
@@ -70,30 +63,11 @@ public class Eisstachel extends Spell {
         l = steprange / 3;
     }
 
-    Vector last;
     int c = 0;
 
     @Override
     public void cast() {
         c++;
-		
-		/*
-		Location l = ParUtils.stepCalcCircle(caster.getEyeLocation(), 3, caster.getLocation().getDirection(), 3, c*4);
-		
-		
-		
-		if (last == null) {
-			last = l.toVector();
-		}
-		Vector d = l.toVector().subtract(last);
-		ParUtils.createFlyingParticle(Particle.CLOUD, l, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
-		
-		for (int i = 0;i<2;i++) {
-			Location l1 = ParUtils.stepCalcCircle(caster.getEyeLocation(), 3, caster.getLocation().getDirection(), 3, c*i);
-			ParUtils.createFlyingParticle(Particle.CLOUD, l1, 0, 0, 0, 1, 1, d.normalize().multiply(0.1F));
-		}
-		last = l.toVector();
-		*/
     }
 
     @Override
@@ -140,8 +114,6 @@ public class Eisstachel extends Spell {
 
     @Override
     public void onPlayerHit(Player p) {
-
-
         frozen.add(p);
         onHitEffect(p);
         dead = true;
@@ -149,22 +121,15 @@ public class Eisstachel extends Spell {
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
-
-
         onHitEffect(ent);
 
         dead = true;
     }
 
     public void onHitEffect(LivingEntity ent) {
-
         for (int i = 0; i < 20; i++) {
-            //randVector().multiply(1).add(loc.getDirection().multiply(-3).normalize())
-            Spike s = new Spike(caster, loc.getDirection().multiply(-1).add(randVector().multiply(3)), name, ent.getLocation(), randInt(1, 14), 90, this);
-
+            new Spike(caster, loc.getDirection().multiply(-1).add(randVector().multiply(3)), name, ent.getLocation(), randInt(1, 14), 90, this);
         }
-
 
         new BukkitRunnable() {
             Location l = ent.getLocation();
@@ -191,23 +156,17 @@ public class Eisstachel extends Spell {
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
 
-
-        //bounce();
-
     }
-
 
     @Override
     public void onDeath() {
         new BukkitRunnable() {
-
             @Override
             public void run() {
                 frozen.clear();
@@ -218,23 +177,17 @@ public class Eisstachel extends Spell {
 
                     fb.remove();
                 }
-
             }
         }.runTaskLater(main.plugin, 20 * 5);
-
-
     }
 
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
     public void playerTookDamage(Player p, double d) {
-
-
         if (frozen.contains(p)) {
             dead = true;
             p.setVelocity(p.getVelocity().add(p.getLocation().toVector().subtract(caster.getLocation().toVector()).normalize()));
@@ -265,8 +218,6 @@ public class Eisstachel extends Spell {
             }
 
             if (d < 20) {
-
-
                 new BukkitRunnable() {
                     double damage = d;
 
@@ -282,8 +233,6 @@ public class Eisstachel extends Spell {
                 }.runTaskLater(main.plugin, 2);
 
             }
-            //p.setNoDamageTicks(20);
-
         }
     }
 

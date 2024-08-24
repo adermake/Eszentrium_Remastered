@@ -27,12 +27,12 @@ public class Schallbrecher extends Spell {
         multihit = true;
 
         spellDescription = new SpellDescription(
-                "Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.",
-                "Gleitet in Blickrichtung voran und#§7zieht alle Gegner in der Nähe mit. Nach kurzer#§7Zeit werden alle Gegner in Blickrichtung#§7weggeschleudert.",
+                "Gleitet in Blickrichtung voran und zieht alle Gegner in der Nähe mit. Nach kurzer Zeit werden alle Gegner in Blickrichtung weggeschleudert. Am Ende des Zaubers springt der Anwender in die entgegengesetzte Richtung.",
+                "Gleitet in Blickrichtung voran und zieht alle Gegner in der Nähe mit. Nach kurzer Zeit werden alle Gegner in Blickrichtung weggeschleudert. Am Ende des Zaubers springt der Anwender in die entgegengesetzte Richtung.",
                 null,
                 null,
-                "Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.",
-                "Am Ende des#§7Zaubers springt der Anwender in die entgegen#§7der Blickrichtung.",
+                "Zauber sofort beenden.",
+                "Zauber sofort beenden.",
                 20*18
         );
 

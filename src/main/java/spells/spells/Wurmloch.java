@@ -1,19 +1,16 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
+import esze.enums.GameType;
+import esze.utils.ParUtils;
+import esze.utils.TTTCorpse;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.enums.GameType;
-import esze.types.Type;
-import esze.utils.ParUtils;
-import esze.utils.TTTCorpse;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;

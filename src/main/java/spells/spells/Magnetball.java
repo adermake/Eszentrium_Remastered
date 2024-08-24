@@ -1,9 +1,8 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
-import org.bukkit.Color;
+import esze.utils.ParUtils;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -11,13 +10,11 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.EulerAngle;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
+
+import java.util.ArrayList;
 
 public class Magnetball extends Spell {
 
@@ -38,8 +35,8 @@ public class Magnetball extends Spell {
                 "Schießt ein Projektil in Blickrichtung. Gegner in der Nähe werden markiert, solange sie sich in der Reichweite befinden.",
                 null,
                 null,
-                "Zieht markierte Gegner heran und schleudert sie weg.",
-                "Zieht markierte Gegner heran und schleudert sie weg.",
+                "Markierte Gegner heranziehen und wegschleudern.",
+                "Markierte Gegner heranziehen und wegschleudern.",
                 20*22
         );
 
@@ -126,7 +123,7 @@ public class Magnetball extends Spell {
     }
 
     public int clamp(int i, int min, int max) {
-        return (i < min) ? min : ((i > max) ? max : i);
+        return (i < min) ? min : (Math.min(i, max));
     }
 
     @Override

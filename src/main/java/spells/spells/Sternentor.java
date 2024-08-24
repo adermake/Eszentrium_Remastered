@@ -1,19 +1,13 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.main.main;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -32,10 +26,10 @@ public class Sternentor extends Spell {
         spellDescription = new SpellDescription(
                 "Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert. Für Gegner wirkt dieser Effekt erst nach kurzer Verzögerung.",
                 "Erzeugt für kurze Zeit ein Feld auf dem anvisierten Block. Spieler in diesem Feld werden in Blickrichtung katapultiert.",
-                "Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.",
-                "Fixiert die Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers.",
-                "Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt.",
-                "Solange diese Taste gedrückt bleibt, wird die Wurfrichtung umgekehrt.",
+                "Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers fixieren.",
+                "Wurfrichtung des Sternentors für die verbleibende Dauer des Zaubers fixieren.",
+                "Halten, um Wurfrichtung umzukehren.",
+                "Halten, um Wurfrichtung umzukehren.",
                 20*25
         );
         addSpellType(SpellType.AURA);

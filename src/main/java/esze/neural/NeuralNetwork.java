@@ -52,8 +52,4 @@ public class NeuralNetwork {
         }
     }
 
-    public void calculate() {
-
-    }
-
 }

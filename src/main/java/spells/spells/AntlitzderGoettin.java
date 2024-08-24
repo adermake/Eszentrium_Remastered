@@ -28,8 +28,8 @@ public class AntlitzderGoettin extends Spell {
         hitboxSize = 4;
 
         spellDescription = new SpellDescription(
-                "Reflektiert die n§chsten 3 gegnerischen#§7Zauber für kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.",
-                "Reflektiert alle gegnerischen Zauber für#§7kurze Zeit. Jede Schadensinstanz#§7eines Zaubers zählt einzeln.",
+                "Reflektiert die nächsten 3 gegnerischen Zauber für kurze Zeit. Jede Schadensinstanz eines Zaubers zählt einzeln.",
+                "Reflektiert alle gegnerischen Zauber für kurze Zeit. Jede Schadensinstanz eines Zaubers zählt einzeln.",
                 null,
                 null,
                 null,

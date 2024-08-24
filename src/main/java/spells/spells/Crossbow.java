@@ -1,27 +1,20 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
-import spells.stagespells.BowArrow;
 import spells.stagespells.CrossbowArrow;
+
+import java.util.ArrayList;
 
 public class Crossbow extends Spell {
     ArmorStand a = null;

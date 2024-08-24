@@ -1,19 +1,14 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Panda;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -28,10 +23,10 @@ public class Höllenhast extends Spell {
         hitboxSize = 2;
 
         spellDescription = new SpellDescription(
-                "Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.",
-                "Schießt einen Feuerball in#§7Blickrichtung, der bei Gegner- oder Blockkontakt#§7explodiert und an getroffenen Spieler Schaden#§7anrichtet.Der Schuss hat einen starken#§7Rückstoß, der den Spieler zurückwirft.",
-                "Falls der Zauber getroffen hat, wird er#§7nochmal ausgeführt. Maximal zehnmal möglich.",
-                "Führt den Zauber nochmal aus. Maximal zehnmal#§7möglich.",
+                "Schießt einen Feuerball in Blickrichtung, der bei Gegner- oder Blockkontakt explodiert und an getroffenen Spielern Schaden anrichtet. Der Schuss hat einen starken Rückstoß.",
+                "Schießt einen Feuerball in Blickrichtung, der bei Gegner- oder Blockkontakt explodiert und an getroffenen Spielern Schaden anrichtet. Der Schuss hat einen starken Rückstoß.",
+                "Zauber nochmal ausführen (falls er getroffen hat; max. 10x möglich)",
+                "Zauber nochmal ausführen (max. 10x möglich)",
                 null,
                 null,
                 20*40

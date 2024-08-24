@@ -1,18 +1,17 @@
 package spells.spells;
 
-import java.util.HashMap;
-
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.Sythe;
+
+import java.util.HashMap;
 
 public class Todessaege extends Spell {
 
@@ -25,8 +24,8 @@ public class Todessaege extends Spell {
                 "Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer.",
                 null,
                 null,
-                "Zieht die Sägen sofort zurück.",
-                "Zieht die Sägen sofort zurück.",
+                "Sägen sofort zurückziehen.",
+                "Sägen sofort zurückziehen.",
                 20*40
         );
         addSpellType(SpellType.DAMAGE);
@@ -40,9 +39,6 @@ public class Todessaege extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
-
-
         Location l = caster.getLocation();
 
         float degStep = 8;
@@ -52,7 +48,7 @@ public class Todessaege extends Spell {
             degStep = 10;
             count = 35;
         }
-        l.setYaw(l.getYaw() - (float) ((count / 2) * degStep));
+        l.setYaw(l.getYaw() - ((count / 2) * degStep));
         for (float i = 0; i < count; i++) {
 
 
@@ -83,55 +79,46 @@ public class Todessaege extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 

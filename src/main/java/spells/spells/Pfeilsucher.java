@@ -1,26 +1,25 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 
 public class Pfeilsucher extends Spell {
 
     Location a;
+    Arrow mave;
+    Vector velocity = new Vector(0, 4, 0);
 
-    public Pfeilsucher(Player p, String name, Location g) {
-
-        a = g;
+    public Pfeilsucher(Player p, String name, Location a) {
+        this.a = a;
         hitboxSize = 2;
         hitPlayer = true;
         hitSpell = true;
@@ -29,12 +28,9 @@ public class Pfeilsucher extends Spell {
         castSpell(p, name);
     }
 
-    Arrow mave;
-    Vector velocity = new Vector(0, 4, 0);
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         loc = a;
         mave = (Arrow) spawnEntity(EntityType.ARROW);
         mave.setGravity(false);
@@ -45,19 +41,16 @@ public class Pfeilsucher extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
         mave.setVelocity(velocity);
         LivingEntity target = getNearestEntity(caster, loc, 50);
         if (target != null) {
@@ -74,13 +67,11 @@ public class Pfeilsucher extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
         ParUtils.createParticle(Particle.WITCH, loc, 0, 0, 0, 1, 0);
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
         damage(p, 2, caster);
         playSound(Sound.ENTITY_ARROW_HIT, loc, 0.1f, 1f);
         dead = true;
@@ -88,7 +79,6 @@ public class Pfeilsucher extends Spell {
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
         playSound(Sound.ENTITY_ARROW_HIT, loc, 0.1f, 1f);
         damage(ent, 2, caster);
         dead = true;
@@ -96,19 +86,16 @@ public class Pfeilsucher extends Spell {
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
         mave.remove();
     }
 

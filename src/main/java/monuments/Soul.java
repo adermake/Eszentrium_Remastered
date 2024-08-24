@@ -1,22 +1,14 @@
 package monuments;
 
-import java.util.ArrayList;
-
-import org.bukkit.Color;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Vex;
+import org.bukkit.entity.*;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import esze.utils.SoundUtils;
 import spells.spellcore.Spell;
+
+import java.util.ArrayList;
 
 public class Soul {
 

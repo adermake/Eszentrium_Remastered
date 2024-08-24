@@ -1,25 +1,14 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
-import spells.stagespells.RepulsionDirectional;
 
 public class DunklerWind extends Spell {
 
@@ -36,9 +25,9 @@ public class DunklerWind extends Spell {
         hitEntity = false;
 
         spellDescription = new SpellDescription(
-                "Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner, die mit dem Projektil in Kontakt kommen, weggeschleudert.",
+                "Beschwört ein Projektil, das dem Mauszeiger folgt. Nach kurzer Verzögerung werden alle getroffenen Gegner weggeschleudert.",
                 "",
-                "Der Spieler springt Richtung Projektil und zieht alle Gegner in der Nähe mit sich.",
+                "In Projektilrichtung springen und nahe Gegner mitziehen.",
                 null,
                 null,
                 null,

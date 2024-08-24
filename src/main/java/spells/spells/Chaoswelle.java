@@ -1,5 +1,7 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -10,10 +12,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -27,7 +25,7 @@ public class Chaoswelle extends Spell {
         casttime = 10;
         speed = 1;
         spellDescription = new SpellDescription(
-                "Der Spieler fliegt hoch in die Luft und gleitet danach langsam herunter. Sobald der Spieler den Boden berührt, wird eine Schockwelle in alle Richtungen freigesetzt, die allen getroffenen Gegnern schadet und sie zurückwirft.",
+                "Der Spieler fliegt hoch in die Luft und gleitet danach langsam herunter. Sobald der Spieler den Boden berührt, wird eine Schockwelle in alle Richtungen freigesetzt, die getroffenen Gegnern schadet und sie zurückwirft.",
                 "",
                 null,
                 null,

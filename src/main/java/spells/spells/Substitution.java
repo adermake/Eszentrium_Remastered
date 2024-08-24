@@ -1,5 +1,7 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
+import esze.utils.PlayerUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -10,9 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;

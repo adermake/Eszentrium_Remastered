@@ -32,12 +32,12 @@ public class Requiemspfeil extends Spell {
         hitSpell = true;
 
         spellDescription = new SpellDescription(
-                "Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.",
-                "Verwandelt den Spieler für kurze Zeit#§7in einen Pfeil, der sich in Blickrichtung#§7fortbewegt. Wird ein Gegner von diesem Pfeil#§7getroffen,erleidet er Schaden und der#§7Zauber wird beendet.",
+                "Verwandelt den Spieler für kurze Zeit in einen Pfeil, der sich in Blickrichtung fortbewegt. Wird ein Gegner von diesem Pfeil getroffen, erleidet er Schaden und der Zauber wird beendet.",
+                "Verwandelt den Spieler für kurze Zeit in einen Pfeil, der sich in Blickrichtung fortbewegt. Wird ein Gegner von diesem Pfeil getroffen, erleidet er Schaden und der Zauber wird beendet.",
                 null,
                 null,
-                "Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.",
-                "Beschleunigt#§7den Pfeil und erhöht seinen Schaden, macht#§7ihn aber schwerer zu kontrollieren.",
+                "Pfeil beschleunigen und schaden erhöhen.",
+                "Pfeil beschleunigen und schaden erhöhen.",
                 20*40
         );
 

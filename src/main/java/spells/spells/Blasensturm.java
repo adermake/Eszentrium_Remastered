@@ -1,18 +1,11 @@
 package spells.spells;
 
-import org.bukkit.Color;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
-import spells.spellcore.SpellType;
 import spells.stagespells.Bubble;
-import spells.stagespells.BubbleOld;
 
 public class Blasensturm extends Spell {
 
@@ -53,10 +46,7 @@ public class Blasensturm extends Spell {
 
     @Override
     public void launch() {
-
         if (!refined) {
-
-
             for (int i = 0; i < 30; i++) {
                 new Bubble(caster.getEyeLocation(), caster, name);
             }
@@ -68,12 +58,10 @@ public class Blasensturm extends Spell {
         if (refined) {
             new Bubble(caster.getEyeLocation().add(0, -0.3, 0), caster, name);
         }
-
     }
 
     @Override
     public void display() {
-
 
     }
 
@@ -100,7 +88,6 @@ public class Blasensturm extends Spell {
 
     @Override
     public void onDeath() {
-
 
     }
 

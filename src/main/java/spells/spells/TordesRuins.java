@@ -1,18 +1,16 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -42,19 +40,16 @@ public class TordesRuins extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
         playSound(Sound.ITEM_TRIDENT_RETURN, caster.getLocation(), 1, 0.2F);
     }
 
@@ -62,17 +57,12 @@ public class TordesRuins extends Spell {
     public void move() {
         loc.setDirection(caster.getLocation().getDirection().multiply(0.5));
         loc.add(loc.getDirection().multiply(0.5));
-        // TODO Auto-generated method stub
-        //ParUtils.createParticle(Particle.END_ROD, loc, 0, 0, 0, 0, 1);
-
-
     }
 
     double gains = 0.01;
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
         gains += 0.0003;
         hitboxSize += gains;
         Location l1 = ParUtils.stepCalcCircle(loc.clone(), hitboxSize, loc.getDirection(), 0, (step * 3) / (1 + 4 * getLerp()));
@@ -89,7 +79,6 @@ public class TordesRuins extends Spell {
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
         new KompassEffect(p, caster, name);
         if (refined) {
             new BukkitRunnable() {
@@ -104,7 +93,6 @@ public class TordesRuins extends Spell {
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
         new KompassEffect(ent, caster, name);
         if (refined) {
             new BukkitRunnable() {
@@ -119,19 +107,16 @@ public class TordesRuins extends Spell {
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 

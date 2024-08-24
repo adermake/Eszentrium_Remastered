@@ -1,15 +1,13 @@
 package spells.spells;
 //shit
 
-import org.bukkit.Bukkit;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -28,8 +26,8 @@ public class Fokusspirale extends Spell {
                 "Schießt eine Feuerspirale in Blickrichtung, die getroffenen Gegnern Schaden zufügt. Nach einiger Zeit ändert das Projektil seine Richtung auf den anvisierten Block. Je länger es bis dahin fliegt, desto stärker ist die Explosion bei Blockkontakt.",
                 null,
                 null,
-                "Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.",
-                "Lenkt das Projektil sofort um. Wird die Taste gedrückt gehalten, bleibt das Projektil auf der Stelle.",
+                "Projektil umlenken. / Gedrückt halten für Projektilstillstand.",
+                "Projektil umlenken. / Gedrückt halten für Projektilstillstand.",
                 20*40
         );
 

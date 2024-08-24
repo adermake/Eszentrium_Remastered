@@ -30,8 +30,8 @@ public class Beben extends Spell {
         speed = 4;
 
         spellDescription = new SpellDescription(
-                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schwockwelle wird bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker wird die Schockwelle.",
-                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schwockwelle wird bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker wird die Schockwelle.",
+                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schockwelle bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker die Schockwelle.",
+                "Schießt eine Schockwelle geradeaus in Blickrichtung durch den Boden. Gegner die damit in Kontakt kommen, werden weggeschleudert und erhalten Schaden. Wird der Zauber in der Luft ausgeführt, wird der Spieler nach unten geschmettert und die Schockwelle bei der Landung freigesetzt. Je tiefer der Spieler nach Aktivierung fällt, desto stärker die Schockwelle.",
                 null,
                 null,
                 null,

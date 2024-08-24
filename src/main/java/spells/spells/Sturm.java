@@ -1,19 +1,18 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
+import esze.utils.ParUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
+
+import java.util.ArrayList;
 
 public class Sturm extends Spell {
 
@@ -35,7 +34,6 @@ public class Sturm extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         speed = 5;
         bLoc = block(caster);
         if (bLoc == null) {
@@ -49,13 +47,11 @@ public class Sturm extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -69,15 +65,12 @@ public class Sturm extends Spell {
         int b = (int) buildUp;
         if (b > 33)
             b = 33;
-        // TODO Auto-generated method stub
-        Vector vel = new Vector(0, 1, 0);
         for (float i = 0; i < b; i += (i / 10 + 0.5)) {
-            float s = ((float) i / 5);
-            Location last = ParUtils.stepCalcCircle(loc, ((float) (i * i) / 60) + 1, new Vector(0, 1, 0), i, (step - 1) * s);
-            Location p1 = ParUtils.stepCalcCircle(loc, ((float) (i * i) / 60) + 1, new Vector(0, 1, 0), i, step * s);
+            float s = (i / 5);
+            Location last = ParUtils.stepCalcCircle(loc, ((i * i) / 60) + 1, new Vector(0, 1, 0), i, (step - 1) * s);
+            Location p1 = ParUtils.stepCalcCircle(loc, ((i * i) / 60) + 1, new Vector(0, 1, 0), i, step * s);
             Vector dir = p1.toVector().subtract(last.toVector()).normalize().add(new Vector(0, 1, 0));
             ParUtils.createFlyingParticle(Particle.CLOUD, p1, 0.1F, 0.1F, 0.1F, 1, 0.5F, dir);
-            vel = dir.clone();
         }
         spawnFallingBlock--;
         if (spawnFallingBlock <= 0) {
@@ -118,44 +111,37 @@ public class Sturm extends Spell {
             }
             for (FallingBlock fb : removeLater) {
                 fBlocks.remove(fb);
-
             }
         }
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 

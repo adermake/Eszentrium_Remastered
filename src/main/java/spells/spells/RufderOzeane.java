@@ -4,7 +4,6 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -20,7 +19,7 @@ public class RufderOzeane extends Spell {
 
         spellDescription = new SpellDescription(
                 "Feuert Tintenfische in Blickrichtung ab, die getroffene Gegner zurückwerfen.",
-                "Feuert einen einzelnen Tintenfisch in Blickrichtung ab. Trifft er einen Gegner, wirft er diesen zurück und kehrt zum Anwender zurück.Sobald er bei diesem ankommt, fliegt er wieder in Blickrichtung los.",
+                "Feuert einen einzelnen Tintenfisch in Blickrichtung ab. Trifft er einen Gegner, wirft er diesen zurück und kehrt zum Anwender zurück. Sobald er bei diesem ankommt, fliegt er wieder in Blickrichtung los.",
                 null,
                 null,
                 null,

@@ -1,7 +1,9 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
+import esze.utils.SoundUtils;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -9,11 +11,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import esze.utils.SoundUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -30,7 +27,7 @@ public class Explosion extends Spell {
                 "",
                 null,
                 null,
-                "Zündet den Zauber vorzeitig und katapultiert den Spieler hoch.",
+                "Explosion vorzeitig herbeiführen und Anwender hochwerfen.",
                 null,
                 20*35
         );

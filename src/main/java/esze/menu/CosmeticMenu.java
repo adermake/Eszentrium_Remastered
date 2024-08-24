@@ -8,9 +8,6 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import spells.spellcore.Spell;
-
-import java.util.ArrayList;
 
 public class CosmeticMenu extends ItemMenu {
 

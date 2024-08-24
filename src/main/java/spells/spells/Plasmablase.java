@@ -1,31 +1,22 @@
 package spells.spells;
 
-import java.util.HashMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.main.main;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 
+import java.util.HashMap;
+
 public class Plasmablase extends Spell {
 
     double rad = 12;
-    Vector dir = new Vector(0, 1, 0);
     int animCooldown = 0;
     HashMap<Player, Integer> immunity = new HashMap<Player, Integer>();
 
@@ -41,8 +32,8 @@ public class Plasmablase extends Spell {
         spellDescription = new SpellDescription(
                 "Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.",
                 "Erzeugt für kurze Zeit eine Blase um den Spieler herum. Zauber und Spieler von außerhalb können nicht in das Innere eindringen. Der Anwender kann innerhalb dieser Blase fliegen und wird bei Kontakt mit der Blasenwand in Blickrichtung katapultiert.",
-                "Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.",
-                "Deaktiviert den Effekt, dich aus der Blase herauszukatapultieren.",
+                "Deaktiviert den Effekt, sich aus der Blase herauszukatapultieren.",
+                "Deaktiviert den Effekt, sich aus der Blase herauszukatapultieren.",
                 null,
                 null,
                 20*50

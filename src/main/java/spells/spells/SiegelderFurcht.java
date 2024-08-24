@@ -27,7 +27,7 @@ public class SiegelderFurcht extends Spell {
                 "Versetzt alle naheliegenden Gegner in Panik, wodurch sie für kurze Zeit automatisch vor dem Anwender fliehen. Für diese Zeit erhält der Anwender eine erhöhte Bewegungsgeschwindigkeit.",
                 "Versetzt alle naheliegenden Gegner in Panik, wodurch sie für kurze Zeit automatisch vor dem Anwender fliehen. Für diese Zeit erhält der Anwender eine erhöhte Bewegungsgeschwindigkeit.",
                 null,
-                "Solange diese Taste gedrückt bleibt bewegen sich in Panik versetzte Gegner auf den Anwender zu.",
+                "Halten, damit sich in Panik versetzte Gegner auf Anwender zubewegen.",
                 null,
                 null,
                 20*30

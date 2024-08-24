@@ -1,13 +1,9 @@
 package spells.spells;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.bukkit.Bukkit;
+import esze.main.main;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
@@ -15,18 +11,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
-import spells.stagespells.ExplosionDamage;
-import spells.stagespells.KnochenpartySkeleton;
 import spells.stagespells.KnochenpartySkeletonSummon;
-import spells.stagespells.Repulsion;
-import spells.stagespells.VampirpilzStage2;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Knochenparty extends Spell {
 
@@ -39,7 +30,7 @@ public class Knochenparty extends Spell {
         hitSpell = true;
 
         spellDescription = new SpellDescription(
-                "Wirft einen Knochen in Blickrichtung. Um ihn herum erscheint nach kurzer Zeit ein Ring aus Skeletten, die Gegner bei Berührung Schaden zufügen und sie in die Mitte des Rings schleudern.",
+                "Wirft einen Knochen in Blickrichtung. Um ihn herum erscheint ein Ring aus Skeletten, der Gegner bei Berührung Schaden zufügt und sie in die Mitte des Rings schleudert.",
                 "",
                 null,
                 null,

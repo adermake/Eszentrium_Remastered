@@ -1,9 +1,9 @@
 package spells.spells;
 
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.main.main;
+import esze.utils.ParUtils;
+import esze.utils.SoundUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Giant;
@@ -13,11 +13,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import esze.utils.SoundUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -38,7 +33,7 @@ public class Avatar extends Spell {
                 "",
                 null,
                 null,
-                "Beendet den Zauber sofort.",
+                "Zauber sofort beenden.",
                 null,
                 20*55
         );

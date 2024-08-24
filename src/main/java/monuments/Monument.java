@@ -1,31 +1,18 @@
 package monuments;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.IronGolem;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
-
 import esze.main.main;
 import esze.utils.EszeTeam;
 import esze.utils.ParUtils;
-import spells.spellcore.EszeParticle;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Monument extends Spell {
 
@@ -77,7 +64,6 @@ public abstract class Monument extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         hitSpell = false;
         canHitSelf = true;
         multihit = true;
@@ -112,17 +98,7 @@ public abstract class Monument extends Spell {
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
-        Location floor = getFloor(loc.clone()).add(0, -1, 0);
-		/*
-		for (Location l : ParUtils.preCalcCircle(floor, range, new Vector(0, 1, 0), 0)) {
-			if (l.getBlock().getType().isSolid()) {
 
-				spawnPhantomblock(l.getBlock(), Material.RED_CONCRETE);
-			}
-
-		}
-		*/
     }
 
     @Override

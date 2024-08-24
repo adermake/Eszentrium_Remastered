@@ -29,8 +29,8 @@ public class Delfintorpedo extends Spell {
         steprange = 80;
 
         spellDescription = new SpellDescription(
-                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegner Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
-                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegner Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegnern Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt einen Delfin in Blickrichtung, der bei Blockkontakt explodiert und getroffenen Gegnern Schaden zufügt und sie wegschleudert. Der Delfin kann selbst nach der Ausführung noch gesteuert werden.",
                 null,
                 null,
                 null,

@@ -1,22 +1,20 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
+
+import java.util.ArrayList;
 
 public class Lichtstrudel extends Spell {
 
@@ -28,11 +26,11 @@ public class Lichtstrudel extends Spell {
         hitboxSize = 1;
 
         spellDescription = new SpellDescription(
-                "Der Spieler fliegt für kurze Zeit in Blickrichtung und hinterlässt eine Lichtspur. Gegner, die von dieser Lichtspur erfasst werden,werden bis zum Startpunkt des Zaubers befördert.",
+                "Der Spieler fliegt für kurze Zeit in Blickrichtung und hinterlässt eine Lichtspur. Von Lichtspur erfasste Gegner werden bis zum Startpunkt des Zaubers befördert.",
                 "",
                 null,
                 null,
-                "Beendet den Zauber sofort.",
+                "Zauber sofort beenden.",
                 null,
                 20*40
         );

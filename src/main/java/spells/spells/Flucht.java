@@ -1,7 +1,10 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
@@ -10,10 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -31,12 +30,12 @@ public class Flucht extends Spell {
         hitBlock = false;
         hitSpell = false;
         spellDescription = new SpellDescription(
-                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus.",
-                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen, die nahe Gegner wegschieben. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus.",
+                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung.",
+                "Verwandelt den Spieler für kurze Zeit in eine Fledermaus und beschwört einen Schwarm an Fledermäusen, die nahe Gegner wegschieben. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung.",
                 null,
                 null,
-                "Beendet den Zauber sofort.",
-                "Beendet den Zauber sofort.",
+                "Zauber sofort beenden.",
+                "Zauber sofort beenden.",
                 20*30
         );
         addSpellType(SpellType.MOBILITY);

@@ -1,11 +1,8 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import esze.main.main;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
@@ -13,12 +10,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
+
+import java.util.ArrayList;
 
 public class Wildwuchs extends Spell {
 
@@ -36,7 +31,7 @@ public class Wildwuchs extends Spell {
                 "Beschwört eine Wurzel am anvisierten Block, die sich auf den Spieler zubewegt und Gegnern auf dem Weg Schaden zufügt. Sobald der Anwender in Kontakt mit der Wurzel kommt, reitet er auf dieser, was ihn in Blickrichtung fortbewegt und getroffene Gegner zurückwirft.",
                 "Beschwört eine Wurzel am anvisierten Block, die sich auf den Spieler zubewegt und Gegnern auf dem Weg Schaden zufügt. Sobald der Anwender in Kontakt mit der Wurzel kommt, reitet er auf dieser, was ihn in Blickrichtung fortbewegt und getroffene Gegner zurückwirft.",
                 null,
-                "Beschwört eine zweite Wurzel, sobald die erste endet.",
+                "Zweite Wurzel beschwören, sobald die erste endet.",
                 "Bricht den Zauber ab.",
                 "Bricht den Zauber ab.",
                 20*20

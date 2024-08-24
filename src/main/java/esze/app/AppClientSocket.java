@@ -1,13 +1,21 @@
 package esze.app;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.*;
 
 public class AppClientSocket {
 
+    @Getter
+    @Setter
     volatile java.net.Socket clientSocket;
+    @Getter
+    @Setter
     volatile AppServer server;
     volatile Thread listeningThread;
     volatile AppCommunicator communicator;
+    @Getter
     volatile AppClientIdentity identity;
 
     public AppClientSocket(java.net.Socket clientSocket, AppServer server) {
@@ -17,46 +25,26 @@ public class AppClientSocket {
         startListeningForMessages(); //Bug when Connection gets reset
     }
 
-    public java.net.Socket getClientSocket() {
-        return clientSocket;
-    }
-
-    public AppServer getServer() {
-        return server;
-    }
-
-    public void setClientSocket(java.net.Socket clientSocket) {
-        this.clientSocket = clientSocket;
-    }
-
-    public void setServer(AppServer server) {
-        this.server = server;
-    }
-
     public void startListeningForMessages() {
-        listeningThread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (true) {
-                    String nachricht = null;
-                    try {
-                        if (!server.isServerStarted || clientSocket == null || clientSocket.isClosed() || !clientSocket.isConnected()) {
-                            identity = null;
-                            break;
-                        }
-                        nachricht = readMessage(clientSocket);
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                        if (identity != null && identity.username != null)
-                            System.out.println("Esze | User " + identity.username + " hat die App-Verbindung abgebrochen.");
+        listeningThread = new Thread(() -> {
+            while (true) {
+                String nachricht;
+                try {
+                    if (!server.isServerStarted || clientSocket == null || clientSocket.isClosed() || !clientSocket.isConnected()) {
                         identity = null;
                         break;
                     }
-                    if (nachricht != null) {
-                        communicator.receivedMessage(nachricht);
-                        System.out.println(nachricht); //DEBUG MSG
-                    }
+                    nachricht = readMessage(clientSocket);
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                    if (identity != null && identity.getUsername() != null)
+                        System.out.println("Esze | User " + identity.getUsername() + " hat die App-Verbindung abgebrochen.");
+                    identity = null;
+                    break;
+                }
+                if (nachricht != null) {
+                    communicator.receivedMessage(nachricht);
+                    System.out.println(nachricht); //DEBUG MSG
                 }
             }
         });
@@ -81,10 +69,6 @@ public class AppClientSocket {
                                 socket.getOutputStream()));
         printWriter.print(nachricht);
         printWriter.flush();
-    }
-
-    public AppClientIdentity getIdentity() {
-        return identity;
     }
 
 }

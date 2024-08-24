@@ -1,32 +1,24 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
+import esze.utils.PlayerUtils;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Sheep;
+import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
+import spells.spellcore.SpellType;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.DyeColor;
-import org.bukkit.GameMode;
-import org.bukkit.Particle;
-import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import esze.utils.PlayerUtils;
-import spells.spellcore.Spell;
-import spells.spellcore.SpellDescription;
-import spells.spellcore.SpellType;
 
 public class Verzaubern extends Spell {
 
@@ -52,15 +44,12 @@ public class Verzaubern extends Spell {
         );
 
         addSpellType(SpellType.LOCKDOWN);
-
     }
 
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
         if (sheep != null) {
-
             if (!sheep.isDead()) {
                 PlayerUtils.showPlayer(target);
                 target.teleport(sheep.getLocation());
@@ -73,13 +62,10 @@ public class Verzaubern extends Spell {
             }
             sheep.remove();
         }
-
-
     }
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         target = pointEntity(caster, 10);
 
         if (target == null) {
@@ -100,7 +86,7 @@ public class Verzaubern extends Spell {
                 @Override
                 public void run() {
                     try {
-                        BufferedImage image = ImageIO.read(new URL("https://crafatar.com/skins/" + target.getUniqueId().toString()));
+                        BufferedImage image = ImageIO.read(new URL("https://crafatar.com/skins/" + target.getUniqueId()));
                         int height = image.getHeight();
                         int width = image.getWidth();
 
@@ -121,8 +107,6 @@ public class Verzaubern extends Spell {
                         }
                         int[] colours = getMostCommonColour(m);
                         Color c = Color.fromRGB(colours[0], colours[1], colours[2]);
-
-                        //Bukkit.broadcastMessage(c.asRGB()+"");
 
                         DyeColor lowest = null;
                         int lowestval = 10000000;
@@ -147,7 +131,6 @@ public class Verzaubern extends Spell {
                             if (sb < 0)
                                 sb = -sb;
                             int value = sr + sb + sg;
-                            //Bukkit.broadcastMessage(dyecolor+" "+ value);
 
                             if (lowestval >= value) {
                                 lowestval = value;
@@ -162,11 +145,6 @@ public class Verzaubern extends Spell {
                 }
             });
             s.setCustomName(target.getName());
-            //target.teleport(target.getLocation().add(0,-1000,0));
-            //new DamageCall(p, target,20, "§4Verzaubern");
-            //target.damage(40);
-            //ParticleEffect.EXPLOSION_HUGE.send(Bukkit.getOnlinePlayers(), s.getLocation().getX(), s.getLocation().getY(),
-            //		s.getLocation().getZ(), 0, 0, 0, 0.1, 10);
 
 
             target.setGameMode(GameMode.SPECTATOR);
@@ -174,7 +152,6 @@ public class Verzaubern extends Spell {
             target.setFlying(true);
 
             target.setSpectatorTarget(sheep);
-            //((CraftPlayer) target).getHandle().setSpectatorTarget(((CraftEntity) sheep).getHandle());
             ParUtils.createParticle(Particle.EXPLOSION_EMITTER, target.getLocation(), 0, 0, 0, 3, 1);
 
             ParUtils.chargeDot(target.getLocation(), Particle.WITCH, 0.1, 4, 10);
@@ -196,25 +173,21 @@ public class Verzaubern extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -225,11 +198,7 @@ public class Verzaubern extends Spell {
 
     @Override
     public void launch() {
-
         loc = caster.getEyeLocation();
-        // playSound(Sound.ENTITY_ZOMBIE_INFECT,loc, 10, 1);
-
     }
-
 
 }

@@ -1,16 +1,14 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -29,10 +27,10 @@ public class Flammenwand extends Spell {
         hitSpell = false;
 
         spellDescription = new SpellDescription(
-                "Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt.",
-                "Setzt einen Startpunkt. Nach kurzer Zeit entsteht an dieser Stelle eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.",
-                "Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt.",
-                "Setzt einen Endpunkt. Zwischen dem Startpunkt und dem Endpunkt entsteht eine Flammenwand, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.",
+                "Setzt einen Startpunkt. Nach setzen des Endpunktes mit F entsteht zwischen beiden Punkten eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt.",
+                "Setzt einen Startpunkt. Nach setzen des Endpunktes mit F entsteht zwischen beiden Punkten eine Flammensäule, die nahen Gegnern wiederholt Schaden zufügt und sie zurückdrängt.",
+                "Endpunkt setzen.",
+                "Endpunkt setzen.",
                 null,
                 null,
                 20*40

@@ -45,12 +45,9 @@ public class GriffdersiebenWinde extends Spell {
         if (EventCollector.quickSwap.contains(caster)) {
             EventCollector.quickSwap.remove(caster);
         }
-        // TODO Auto-generated method stub
         target = pointEntity(caster);
         if (target == null) {
-
             refund = true;
-            dead = true;
         } else {
             dis = caster.getLocation().distance(target.getEyeLocation()) + 5;
             new BukkitRunnable() {
@@ -62,7 +59,6 @@ public class GriffdersiebenWinde extends Spell {
                     if (t > 46) {
                         this.cancel();
                     }
-                    // TODO Auto-generated method stub
                     if (target == null)
                         return;
 
@@ -88,21 +84,19 @@ public class GriffdersiebenWinde extends Spell {
 
                 }
             }.runTaskTimer(main.plugin, 1, 1);
-            dead = true;
         }
+        dead = true;
 
 
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -110,43 +104,36 @@ public class GriffdersiebenWinde extends Spell {
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 

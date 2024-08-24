@@ -29,7 +29,7 @@ public class SchwerterausLicht extends Spell {
 
         name = "§cSchwerter aus Licht";
         spellDescription = new SpellDescription(
-                "Feuert Schwerter in Blickrichtung, die#§7bei Kontakt mit Gegnern oder Blöcken#§7explodieren. Getroffene Gegner erhalten Schaden.",
+                "Feuert Schwerter in Blickrichtung, die bei Kontakt mit Gegnern oder Blöcken explodieren. Getroffene Gegner erhalten Schaden.",
                 "",
                 null,
                 null,
@@ -93,16 +93,11 @@ public class SchwerterausLicht extends Spell {
 
     @Override
     public void launch() {
-        if (dead)
-            return;
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
-
         if (caster.isSneaking()) {
             speed = 2F;
             for (SchwertausLicht sw : lightsword) {

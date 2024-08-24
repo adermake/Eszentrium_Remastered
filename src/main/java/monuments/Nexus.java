@@ -1,21 +1,15 @@
 package monuments;
 
-import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
-
 import esze.enums.GameType;
 import esze.types.TypeMONUMENTE;
 import esze.utils.EszeTeam;
 import esze.utils.ParUtils;
+import org.bukkit.*;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
 
 public class Nexus extends Monument {
 

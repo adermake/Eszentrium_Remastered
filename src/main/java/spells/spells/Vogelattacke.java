@@ -1,7 +1,7 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
+import esze.utils.ParUtils;
+import esze.utils.PlayerUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -12,13 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import esze.utils.PlayerUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
-import spells.stagespells.ParrotTrail;
+
+import java.util.ArrayList;
 
 public class Vogelattacke extends Spell {
 
@@ -34,8 +32,8 @@ public class Vogelattacke extends Spell {
                 "Verwandelt den Spieler in einen Vogel und beschwört einen Vogelschwarm, der den Spieler verfolgt. Solange sich der Spieler in dieser Form befindet, fliegt er in Blickrichtung voraus. Nach kurzer Zeit werden alle Vögel in Blickrichtung geschossen und schleudern getroffene Spieler weg.",
                 null,
                 null,
-                "Schießt die Vögel sofort und beendet den Flug vorzeitig.",
-                "Schießt die Vögel sofort und beendet den Flug vorzeitig.",
+                "Vögel sofort schießen und Flug vorzeitig beenden.",
+                "Vögel sofort schießen und Flug vorzeitig beenden.",
                 20*30
         );
 

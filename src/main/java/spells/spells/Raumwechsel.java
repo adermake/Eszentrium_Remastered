@@ -1,13 +1,11 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
-import esze.utils.ParUtils;
-import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -20,12 +18,12 @@ public class Raumwechsel extends Spell {
         addSpellType(SpellType.MOBILITY);
 
         spellDescription = new SpellDescription(
-                "Zieht den anvisierten Gegner an den#§7Spieler heran und den Spieler an diesen#§7Gegner.",
-                "Zieht den Gegner auf der Mausposition an#§7den Spieler heran und den Spieler an#§7diesen Gegner.",
+                "Zieht den anvisierten Gegner an den Spieler heran und den Spieler an diesen Gegner.",
+                "Zieht den Gegner auf der Mausposition an den Spieler heran und den Spieler an diesen Gegner.",
                 null,
                 null,
-                "Verhindert den Effekt des#§7Zaubers auf den Anwender.",
-                "Verhindert den Effekt des#§7Zaubers auf den Anwender.",
+                "Verhindert den Effekt des Zaubers auf den Anwender.",
+                "Verhindert den Effekt des Zaubers auf den Anwender.",
                 20*20
         );
     }

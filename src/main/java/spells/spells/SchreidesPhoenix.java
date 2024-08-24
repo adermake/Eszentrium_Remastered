@@ -29,62 +29,51 @@ public class SchreidesPhoenix extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
-
         revive(caster);
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
         dead = true;
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -97,51 +86,26 @@ public class SchreidesPhoenix extends Spell {
             double y = direction.getY() * t + 1.5;
             double z = direction.getZ() * t;
             loc.add(x, y, z);
-            Location lo = loc.clone();
-
-            // Particel
-			
-			/*
-			if (loc.getBlock().getType() != Material.AIR) {
-				p.sendMessage("CANZEL");
-				break;
-			}
-			*/
-
 
             for (TTTCorpse c : TTTCorpse.allCorpses) {
-
                 if (loc.distance(c.cows.get(0).getLocation()) < 3) {
                     revive(p, c.corpseID, 1);
                     return;
                 }
-
-
             }
 
-            // SUBTRACTING LOCATION UM den prozess
-            // von vorne zu
-            // starten
             loc.subtract(x, y, z);
         }
-        return;
-
     }
 
     public void revive(final Player p, int id, final int time) {
         Location loc = p.getLocation();
         for (double t = 1; t <= 10; t = t + 0.5) {
-
-
             Vector direction = loc.getDirection().normalize();
             double x = direction.getX() * t;
             double y = direction.getY() * t + 1.5;
             double z = direction.getZ() * t;
             loc.add(x, y, z);
-            Location lo = loc.clone();
-
-            // Particel
-
 
             for (TTTCorpse c : TTTCorpse.allCorpses) {
 
@@ -150,45 +114,32 @@ public class SchreidesPhoenix extends Spell {
 
                         new BukkitRunnable() {
                             public void run() {
-                                int ti = time;
                                 Player play = c.player;
-                                //Vex v = (Vex) c.cows.get(0).getLocation().clone().getWorld().spawnEntity(c.cows.get(0).getLocation().add(0,(40-ti),0), EntityType.VEX);
-
 
                                 if (time == 40) {
-
-
                                     if (play.getGameMode() == GameMode.ADVENTURE) {
                                         play.getInventory().clear();
-
 
                                         play.teleport(c.cows.get(0).getLocation());
                                         play.setGameMode(GameMode.SURVIVAL);
                                         try {
-
-
                                             TTTRevive.revive(c.player.getName(), c);
-
-                                        } catch (Exception e) {
+                                        } catch (Exception ignored) {
                                         }
-
 
                                         for (Player all : Bukkit.getOnlinePlayers()) {
                                             all.showPlayer(play);
                                         }
                                         this.cancel();
                                     }
-
-
                                 } else {
-                                    revive(p, id, ti + 1);
-                                    ParUtils.parLineRedstone(c.cows.get(0).getLocation(), p.getLocation(), Color.BLACK, 2, 0.2F);
-                                    ParUtils.chargeDot(c.cows.get(0).getLocation(), Particle.TOTEM_OF_UNDYING, 0.3F, 4);
-                                    ParUtils.createRedstoneParticle(c.cows.get(0).getLocation(), 0, 0, 0, 1, Color.BLACK, 1F);
+                                    revive(p, id, time + 1);
+                                    ParUtils.parLineRedstone(c.cows.getFirst().getLocation(), p.getLocation(), Color.BLACK, 2, 0.2F);
+                                    ParUtils.chargeDot(c.cows.getFirst().getLocation(), Particle.TOTEM_OF_UNDYING, 0.3F, 4);
+                                    ParUtils.createRedstoneParticle(c.cows.getFirst().getLocation(), 0, 0, 0, 1, Color.BLACK, 1F);
                                     playSound(Sound.ENTITY_ILLUSIONER_MIRROR_MOVE, p.getLocation(), 1, 1);
                                 }
                                 this.cancel();
-
 
                             }
                         }.runTaskTimer(main.plugin, 2, 1);
@@ -199,12 +150,8 @@ public class SchreidesPhoenix extends Spell {
 
             }
 
-            // SUBTRACTING LOCATION UM den prozess
-            // von vorne zu
-            // starten
             loc.subtract(x, y, z);
         }
-        return;
 
     }
 

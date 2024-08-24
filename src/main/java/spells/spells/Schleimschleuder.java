@@ -29,8 +29,8 @@ public class Schleimschleuder extends Spell {
         spellDescription = new SpellDescription(
                 "Beschwört einen Schleim vor dem Spieler, der Gegner in der Nähe verlangsamt. Je weiter der Spieler vom Schleim entfernt ist, desto größer wird dieser und der Verlangsamungsradius. Nach kurzer Zeit wird der Spieler zurück zum Schlim gezogen und schleudert diesen weg. Alle Gegner in der Nähe des Schleims werden mitgezogen.",
                 "Beschwört einen Schleim vor dem Spieler, der Gegner in der Nähe verlangsamt. Je weiter der Spieler vom Schleim entfernt ist, desto größer wird dieser und der Verlangsamungsradius. Nach kurzer Zeit wird der Spieler zurück zum Schlim gezogen und schleudert diesen weg. Alle Gegner in der Nähe des Schleims werden mitgezogen.",
-                "Der Spieler springt in Blickrichtung.",
-                "Der Spieler springt in Blickrichtung und zieht alle verlangsamten Gegner zum Schleim.",
+                "In Blickrichtung springen.",
+                "In Blickrichtung springen und alle verlangsamten Gegner zum Schleim hinziehen.",
                 null,
                 null,
                 20*25

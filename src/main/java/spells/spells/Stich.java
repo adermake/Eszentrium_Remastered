@@ -31,8 +31,8 @@ public class Stich extends Spell {
         spellDescription = new SpellDescription(
                 "Springt eine kurze Distanz in Blickrichtung. Bei Gegnerkontakt springt der Anwender vom Gegner ab und verursacht Schaden.",
                 "Springt eine kurze Distanz in Blickrichtung. Bei Gegnerkontakt springt der Anwender vom Gegner ab und verursacht Schaden.",
-                "Wird ein Gegner getroffen, kann der Anwender noch einmal in Blickrichtung springen und den Effekt wiederholen. Maximal zweimal möglich.",
-                "Der Spieler spring in Blickrichtung und wiederholt den Effekt. Maximal zweimal möglich.",
+                "Noch einmal in Blickrichtung springen (wenn Gegner getroffen wurde; max. 2x möglich)",
+                "Noch einmal in Blickrichtung springen (max. 2x möglich)",
                 null,
                 null,
                 20*35

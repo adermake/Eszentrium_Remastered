@@ -41,32 +41,12 @@ public class PlayerConfig implements ConfigurationSerializable {
     }
 
     public static void load() {
-	/*
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					
-			
-					System.out.println("CONTAINS" +p.getName()+main.plugin.getConfig().contains(p.getName()));
-					PlayerConfig pc =  (PlayerConfig) main.plugin.getConfig().get("playerconfig."+p.getName());
-					
-					if (pc == null) {
-						pc = new PlayerConfig(p.getName());
-						pc.saveMe();
-					}
-					playerConfigs.put(p,pc);
-				}
-		
-		*/
-
 
     }
 
     public void save() {
-
-
         main.plugin.getConfig().set("playerconfig." + playerName, this);
         main.plugin.saveConfig();
-
-
     }
 
     public static PlayerConfig getConfig(Player p) {
@@ -84,7 +64,6 @@ public class PlayerConfig implements ConfigurationSerializable {
     }
 
     public void setWeapon(Material m) {
-
         weaponMaterial = m;
         save();
     }
@@ -95,7 +74,6 @@ public class PlayerConfig implements ConfigurationSerializable {
     }
 
     public Material getWeapon() {
-
         return weaponMaterial;
     }
 }

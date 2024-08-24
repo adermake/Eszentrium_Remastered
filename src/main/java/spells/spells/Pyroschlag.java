@@ -1,19 +1,12 @@
 package spells.spells;
 
-import org.bukkit.Color;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.stagespells.ExplosionDamage;
@@ -21,6 +14,8 @@ import spells.stagespells.Repulsion;
 
 public class Pyroschlag extends Spell {
     Location b;
+    int k = 0;
+    int t = 0;
 
 
     public Pyroschlag() {
@@ -41,28 +36,12 @@ public class Pyroschlag extends Spell {
         );
     }
 
-    int c = 0;
-
     @Override
     public void cast() {
         if (caster.getGameMode() == GameMode.ADVENTURE) {
             dead = true;
             return;
         }
-		/*
-		if (c== 0) {
-			
-			ParUtils.parKreisDot(Particle.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0));
-		}
-			
-		c++;
-		if (c>10) {
-			ParUtils.parKreisDir(Particle.FLAME, caster.getLocation(), 3, 0, 0.1, new Vector(0,1,0),new Vector(0,1,0));
-			c=1;
-		}
-		caster.setVelocity(caster.getVelocity().multiply(0));
-		caster.setVelocity(caster.getVelocity().setY(0.1));
-		*/
         ParUtils.createRedstoneParticle(b.clone().add(0, 0.5, 0), 0, 0, 0, 1, Color.RED, 2);
     }
 
@@ -76,18 +55,14 @@ public class Pyroschlag extends Spell {
             refund = true;
             dead = true;
         }
-
     }
 
-    int t = 0;
 
     @Override
     public void move() {
         t++;
 
         if (t < 100) {
-
-
             loc.add(new Vector(0, 0.5, 0));
         }
         if (t == 100) {
@@ -104,7 +79,6 @@ public class Pyroschlag extends Spell {
 
     }
 
-    int k = 0;
 
     @Override
     public void display() {
@@ -146,7 +120,6 @@ public class Pyroschlag extends Spell {
                     break;
                 }
 
-
                 t++;
             }
             while (t < 5) {
@@ -156,21 +129,17 @@ public class Pyroschlag extends Spell {
                     break;
                 }
 
-
                 t++;
             }
 
             if (!blockClone.getBlock().getType().isSolid()) {
                 FallingBlock fb = caster.getWorld().spawnFallingBlock(blockClone, block.getBlock().getType(), block.getBlock().getData());
 
-
                 fb.setHurtEntities(false);
                 fb.setDropItem(false);
                 doKnockback(fb, loc.clone().add(0, -6, 0), 2);
 
             }
-
-
         }
 
     }
@@ -178,35 +147,30 @@ public class Pyroschlag extends Spell {
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 

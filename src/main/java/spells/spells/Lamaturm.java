@@ -1,10 +1,10 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftLlama;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
@@ -12,8 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
 import spells.spellcore.EventCollector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
@@ -32,10 +30,10 @@ public class Lamaturm extends Spell {
         multihit = true;
 
         spellDescription = new SpellDescription(
-                "Beschwört ein Lama Blickrichtung, auf das der Spieler sich setzen kann. Das Lama kann von Gegnern getötet werden.",
-                "Beschwört ein Lama Blickrichtung, auf das der Spieler sich setzen kann. Das Lama kann von Gegnern getötet werden.",
-                "Falls der Spieler auf dem Lama sitzt, wird ein Projektil in Blickrichtung geschossen, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
-                "Falls der Spieler auf dem Lama sitzt, wird ein Projektil in Blickrichtung geschossen, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
+                "Beschwört ein Lama, auf das sich der Spieler setzen kann. Das Lama kann von Gegnern getötet werden. Falls der Spieler auf dem Lama sitzt, kann Spucke in Blickrichtung geschossen werden, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
+                "Beschwört ein Lama, auf das sich der Spieler setzen kann. Das Lama kann von Gegnern getötet werden. Falls der Spieler auf dem Lama sitzt, kann Spucke in Blickrichtung geschossen werden, dass Gegnern Schaden zufügt und sie wegschleudert. Die Anzahl der Schüsse ist begrenzt, regeneriert sich aber über Zeit.",
+                "Spucke schießen (auf Lama sitzend)",
+                "Spucke schießen (auf Lama sitzend)",
                 null,
                 null,
                 20*75
@@ -183,10 +181,6 @@ public class Lamaturm extends Spell {
 
     @Override
     public void display() {
-        if (turret == null)
-            return;
-        // TODO Auto-generated method stub
-
 
     }
 

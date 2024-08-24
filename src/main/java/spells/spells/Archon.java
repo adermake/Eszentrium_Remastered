@@ -1,22 +1,15 @@
 package spells.spells;
 
+import esze.utils.*;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-
-import esze.utils.ItemStackUtils;
-import esze.utils.NBTUtils;
-import esze.utils.ParUtils;
-import esze.utils.PlayerUtils;
-import esze.utils.SoundUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;

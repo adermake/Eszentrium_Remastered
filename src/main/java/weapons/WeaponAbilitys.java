@@ -168,15 +168,13 @@ public class WeaponAbilitys implements Listener {
                         loc.subtract(x, y, z);
 
                         if (t > 30) {
-                            if (!PlayerAPI.getPlayerInfo((Player) p).isAlive) {
+                            if (!PlayerAPI.getPlayerInfo(p).isAlive) {
 
                             } else {
                                 p.getInventory().setItem(slot, new ItemStack(as.getEquipment().getItemInMainHand()));
-                                //p.getInventory().addItem(new ItemStack(as.getEquipment().getItemInMainHand()));
                             }
                             as.remove();
                             this.cancel();
-                            return;
                         }
                     }
                 }.runTaskTimer(main.plugin, 0, 0);
@@ -188,24 +186,15 @@ public class WeaponAbilitys implements Listener {
     }
 
     public boolean isOnTeam(Player c, Player p) {
-
-
-        if (GameType.getType() instanceof TypeTEAMS) {
-            TypeTEAMS teams = (TypeTEAMS) GameType.getType();
-
+        if (GameType.getType() instanceof TypeTEAMS teams) {
             if (teams.getTeammates(p) == null || teams.getTeammates(p).size() <= 0) {
                 return false;
             }
             if (teams.getTeammates(p).contains(c)) {
                 return true;
             }
-
-
         }
-
-
         return false;
-
     }
 
     @EventHandler
@@ -283,7 +272,6 @@ public class WeaponAbilitys implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
-        //lastMovedDir.put(e.getPlayer(), e.getTo().toVector().subtract(e.getFrom().toVector()));
 
     }
 

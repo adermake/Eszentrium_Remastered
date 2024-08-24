@@ -26,7 +26,10 @@ import java.util.UUID;
 @Data
 public class BossbarSpellHUD {
 
-    private static final int MAX_ROW_LENGTH = 34;
+    private static final int MAX_ROW1_LENGTH = 34;
+    private static final int MAX_ROW1_PIXELS = DefaultFontInfo.A.getLength() * MAX_ROW1_LENGTH;
+    private static final int MAX_ROW2_LENGTH = 30;
+    private static final int MAX_ROW2_PIXELS = DefaultFontInfo.A.getLength() * MAX_ROW2_LENGTH;
     private static final String DIVIDER = " | ";
 
     @NonNull
@@ -46,29 +49,22 @@ public class BossbarSpellHUD {
 
 
     public void show() {
+        bossbarSpellHUDs.add(this);
         removeAllBossbars(p);
 
-        String _fDesc = spellIsRefined ? spell.getSpellDescription().getRefinedFDescription() : spell.getSpellDescription().getNormalFDescription();
-        String _shiftDesc = spellIsRefined ? spell.getSpellDescription().getRefinedShiftDescription() : spell.getSpellDescription().getNormalShiftDescription();
+        String fDesc = spellIsRefined ? spell.getSpellDescription().getRefinedFDescription() : spell.getSpellDescription().getNormalFDescription();
+        String shiftDesc = spellIsRefined ? spell.getSpellDescription().getRefinedShiftDescription() : spell.getSpellDescription().getNormalShiftDescription();
 
         CharRepo hudChar = CharRepo.HUD_SPELL;
-        if (_fDesc == null || _shiftDesc == null) {
+        if (fDesc == null || shiftDesc == null) {
             hudChar = CharRepo.HUD_SPELL_HALF;
         }
-        if (_fDesc == null && _shiftDesc == null) {
+        if (fDesc == null && shiftDesc == null) {
             hudChar = CharRepo.HUD_SPELL_TINY;
         }
         TextComponent component = new TextComponent();
         component.setText(hudChar.literal);
 
-        if (_fDesc != null && _fDesc.length() > MAX_ROW_LENGTH) {
-            _fDesc += DIVIDER;
-        }
-        if (_shiftDesc != null && _shiftDesc.length() > MAX_ROW_LENGTH) {
-            _shiftDesc += DIVIDER;
-        }
-        String fDesc = _fDesc;
-        String shiftDesc = _shiftDesc;
 
         NamespacedKey namespacedKeyA = new NamespacedKey(main.plugin, UUID.randomUUID().toString());
         NamespacedKey namespacedKeyB = new NamespacedKey(main.plugin, UUID.randomUUID().toString());
@@ -94,17 +90,32 @@ public class BossbarSpellHUD {
         bukkitScheduler = Bukkit.getScheduler().scheduleSyncRepeatingTask(main.plugin, new Runnable() {
             @Override
             public void run() {
-
-                if (fDesc != null) {
-                    String fOutput = fDesc.substring(row1Scroll, Math.min(row1Scroll + MAX_ROW_LENGTH, fDesc.length()));
-                    if (fOutput.length() < MAX_ROW_LENGTH && fDesc.length() > MAX_ROW_LENGTH) {
-                        fOutput += fDesc.substring(0, Math.min(MAX_ROW_LENGTH - fOutput.length(), fDesc.length()));
+                if(fDesc != null) {
+                    String input = fDesc + (fDesc.length() > MAX_ROW1_LENGTH ? DIVIDER : "");
+                    String output = "";
+                    int outputPixels = 0;
+                    int index = row1Scroll;
+                    while(outputPixels + DefaultFontInfo.getDefaultFontInfo(input.charAt(index)).getLength() <= MAX_ROW1_PIXELS) {
+                        output += input.charAt(index);
+                        outputPixels += DefaultFontInfo.getDefaultFontInfo(input.charAt(index)).getLength();
+                        index++;
+                        if (index >= input.length()) {
+                            if (fDesc.length() <= MAX_ROW1_LENGTH) {
+                                break;
+                            }
+                            index = 0;
+                        }
                     }
+
+                    for(int i = 0; i < (MAX_ROW1_PIXELS - outputPixels); i++){
+                        output += "\uF821";
+                    }
+
                     TextComponent componentF = new TextComponent();
-                    componentF.setText(CharRepo.TAG_KEYBIND_F.literal + " §7" + fOutput);
+                    componentF.setText(CharRepo.TAG_KEYBIND_F.literal + " §7" + output);
                     bossbar1.setTitle(TextComponent.toLegacyText(componentF));
 
-                    if (fDesc.length() > MAX_ROW_LENGTH) {
+                    if (fDesc.length() > MAX_ROW1_LENGTH) {
                         row1Scroll++;
                         if (row1Scroll >= fDesc.length()) {
                             row1Scroll = 0;
@@ -112,16 +123,33 @@ public class BossbarSpellHUD {
                     }
                 }
 
-                if (shiftDesc != null) {
-                    String shiftOutput = shiftDesc.substring(row2Scroll, Math.min(row2Scroll + MAX_ROW_LENGTH, shiftDesc.length()));
-                    if (shiftOutput.length() < MAX_ROW_LENGTH && shiftDesc.length() > MAX_ROW_LENGTH) {
-                        shiftOutput += shiftDesc.substring(0, Math.min(MAX_ROW_LENGTH - shiftOutput.length(), shiftDesc.length()));
+
+                if(shiftDesc != null) {
+                    String input = shiftDesc + (shiftDesc.length() > MAX_ROW2_LENGTH ? DIVIDER : "");
+                    String output = "";
+                    int outputPixels = 0;
+                    int index = row2Scroll;
+                    while(outputPixels + DefaultFontInfo.getDefaultFontInfo(input.charAt(index)).getLength() <= MAX_ROW2_PIXELS) {
+                        output += input.charAt(index);
+                        outputPixels += DefaultFontInfo.getDefaultFontInfo(input.charAt(index)).getLength();
+                        index++;
+                        if (index >= input.length()) {
+                            if (shiftDesc.length() <= MAX_ROW2_LENGTH) {
+                                break;
+                            }
+                            index = 0;
+                        }
                     }
+
+                    for(int i = 0; i < (MAX_ROW2_PIXELS - outputPixels); i++){
+                        output += "\uF821";
+                    }
+
                     TextComponent componentShift = new TextComponent();
-                    componentShift.setText(CharRepo.TAG_KEYBIND_SHIFT.literal + " §7" + shiftOutput);
+                    componentShift.setText(CharRepo.TAG_KEYBIND_SHIFT.literal + " §7" + output);
                     bossbar2.setTitle(TextComponent.toLegacyText(componentShift));
 
-                    if (shiftDesc.length() > MAX_ROW_LENGTH) {
+                    if (shiftDesc.length() > MAX_ROW2_LENGTH) {
                         row2Scroll++;
                         if (row2Scroll >= shiftDesc.length()) {
                             row2Scroll = 0;

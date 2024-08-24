@@ -22,9 +22,9 @@ public class Schicksalsschnitt extends Spell {
         name = "§cSchicksalsschnitt";
         steprange = 82;
         spellDescription = new SpellDescription(
-                "Teleportiert den Spieler zum anvisierten Gegner. Fügt nach kurzer Zeit Schaden an diesem Gegner an, der steigt, je weiter dieser vom Anwender entfernt ist.",
+                "Teleportiert den Spieler zum anvisierten Gegner. Fügt diesem Gegner nach kurzer Zeit Schaden zu, der steigt, je weiter dieser vom Anwender entfernt ist.",
                 "",
-                "Der Spieler springt in Blickrichtung.",
+                "In Blickrichtung springen.",
                 null,
                 null,
                 null,

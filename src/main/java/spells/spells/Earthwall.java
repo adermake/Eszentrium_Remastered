@@ -1,26 +1,19 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
+import esze.objects.EszeObject;
+import esze.objects.ObjectUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
-
-import esze.objects.EszeFace;
-import esze.objects.EszeObject;
-import esze.objects.ObjectUtils;
-import esze.utils.ParUtils;
-
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
+
+import java.util.ArrayList;
 
 public class Earthwall extends Spell {
 

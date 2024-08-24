@@ -1,17 +1,16 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -26,12 +25,12 @@ public class Aufwind extends Spell {
         steprange = 130;
 
         spellDescription = new SpellDescription(
-                "Trägt den Spieler langsam aufwärts #§7und kann nahe Gegner mitziehen.",
-                "Trägt den Spieler langsam aufwärts.",
+                "Trägt dich langsam aufwärts.",
+                "Trägt dich langsam aufwärts und kann nahe Gegner mitziehen.",
                 null,
                 null,
-                "Der Spieler springt in Blickrichtung#§7und wirft den Gegner doppelt so weit in die selbe Richtung.",
-                "Der Spieler springt in Blickrichtung.",
+                "In Blickrichtung springen.",
+                "In Blickrichtung springen und den Gegner doppelt so weit in die selbe Richtung schleudern.",
                 20*18
         );
 

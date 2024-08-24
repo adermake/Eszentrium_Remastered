@@ -1,27 +1,18 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
+import esze.utils.ParUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
-
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.util.Vector;
-
-import esze.utils.Matrix;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.GuardianLaser;
-import spells.stagespells.ThermolanzeLaser;
 
 public class Wasserdüse extends Spell {
 
@@ -31,11 +22,11 @@ public class Wasserdüse extends Spell {
         name = "§cWasserdüse";
 
         spellDescription = new SpellDescription(
-                "Beschwört 2 Wächter. Die Wächter können von Gegnern getötet werden.",
+                "Beschwört zwei Wächter, welche Wasserstrahlen in Blickrichtung schießen können. In der Luft erhält der Spieler Rückstoß, sodass er sich in der Luft halten kann. Einen Wasserstrahl zu schießen verbraucht Munition. Sobald die Munition verbraucht ist, endet der Zauber. Die Wächter können von Gegnern getötet werden.",
                 "",
                 null,
                 null,
-                "Die Wächter schießen Wasserstrahlen in Blickrichtung, die getroffene Gegner wegspülen. In der Luft erhält der Spieler Rückstoß, sodass er sich in der Luft halten kann. Einen Wasserstrahl zu schießen verbraucht Munition. Sobald die Munition verbraucht ist, endet der Zauber.",
+                "Wächter Wasserstrahlen schießen lassen",
                 null,
                 20*80
         );

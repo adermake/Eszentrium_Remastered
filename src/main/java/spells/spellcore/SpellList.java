@@ -190,9 +190,6 @@ public class SpellList {
         spells.put(spell, classes);
     }
 
-    public static void registerTraitorSpells() {
-
-    }
 
     public static void sortSpells() {
 

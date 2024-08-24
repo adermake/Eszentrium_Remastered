@@ -73,7 +73,6 @@ public class AirMonument extends Monument {
 
     @Override
     public void onLeave(Player p) {
-        // TODO Auto-generated method stub
         if (p == target) {
             target = null;
         }
@@ -81,44 +80,37 @@ public class AirMonument extends Monument {
 
     @Override
     public void onEnterEnemy(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onLeaveEnemy(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onActivate(Player p) {
-        // TODO Auto-generated method stub
         Bukkit.broadcastMessage("Activate");
     }
 
     @Override
     public void coreAnimation(ArmorStand ar, Vector dir) {
-        // TODO Auto-generated method stub
         //ParUtils.createFlyingParticle(Particle.END_ROD, ar.getEyeLocation(), 0, 0,0, 1, 5.5F, dir);
         ParUtils.createParticle(Particle.CLOUD, ar.getLocation().add(0, 1.5, 0), 0, 0, 0, 0, 0);
     }
 
     @Override
     public void onTick() {
-        // TODO Auto-generated method stub
         setMonumentOffset(0, Math.sin(step / 15), 0);
     }
 
     @Override
     public void onEnterAlly(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onLeaveAlly(Player p) {
-        // TODO Auto-generated method stub
 
     }
 

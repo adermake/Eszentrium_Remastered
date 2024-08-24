@@ -31,12 +31,12 @@ public class Feuerwerkshelix extends Spell {
         hitSpell = true;
 
         spellDescription = new SpellDescription(
-                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern.Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
-                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern.Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern. Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
+                "Schießt Feuerwerksraketen in Blickrichtung, die getroffene Gegner mitziehen. Nach kurzer Zeit explodieren die Raketen und schaden nahen Gegnern. Die Raketen können selbst nach der Ausführung noch gesteuert werden.",
                 null,
                 null,
                 null,
-                "Der Spieler fliegt mit den Feuerwerksraketen mit.",
+                "Mit Feuerwerksraketen mitfliegen",
                 20*27
         );
 

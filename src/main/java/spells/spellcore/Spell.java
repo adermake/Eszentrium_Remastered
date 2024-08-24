@@ -1,6 +1,5 @@
 package spells.spellcore;
 
-import esze.analytics.SaveUtils;
 import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.main.main;
@@ -11,7 +10,6 @@ import lombok.Getter;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -20,8 +18,6 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 import spells.spells.AntlitzderGoettin;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.*;
 
 
@@ -781,13 +777,7 @@ public abstract class Spell {
 
         double newhealth = ent.getHealth() + damage;
 
-        if (ent.getMaxHealth() < newhealth) {
-            ent.setHealth(ent.getMaxHealth());
-        } else {
-            ent.setHealth(newhealth);
-        }
-
-
+        ent.setHealth(Math.min(ent.getMaxHealth(), newhealth));
     }
 
     public void heal(LivingEntity ent, double damage, Player healer) {
@@ -805,11 +795,7 @@ public abstract class Spell {
         }
         double newhealth = ent.getHealth() + damage;
 
-        if (ent.getMaxHealth() < newhealth) {
-            ent.setHealth(ent.getMaxHealth());
-        } else {
-            ent.setHealth(newhealth);
-        }
+        ent.setHealth(Math.min(ent.getMaxHealth(), newhealth));
 
 
     }

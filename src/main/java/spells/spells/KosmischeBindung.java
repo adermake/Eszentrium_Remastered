@@ -30,8 +30,8 @@ public class KosmischeBindung extends Spell {
         spellDescription = new SpellDescription(
                 "Hält nach kurzer Verzögerung alle Gegner in der Nähe fest und werden am Anwender fixiert. Dementsprechend folgen sie jeder Drehung und Bewegung des Spielers, solange der Zauber aktiv ist.",
                 "Hält nach kurzer Verzögerung alle Gegner in der Nähe fest und werden am Anwender fixiert. Dementsprechend folgen sie jeder Drehung und Bewegung des Spielers, solange der Zauber aktiv ist.",
-                "Bricht den Zauber sofort ab.",
-                "Bricht den Zauber sofort ab.",
+                "Zauber sofort beenden.",
+                "Zauber sofort beenden.",
                 null,
                 null,
                 20*50

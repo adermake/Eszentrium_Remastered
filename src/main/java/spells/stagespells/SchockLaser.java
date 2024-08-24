@@ -148,7 +148,7 @@ public class SchockLaser extends Spell {
     }
 
     public int clamp(int i, int min, int max) {
-        return (i < min) ? min : ((i > max) ? max : i);
+        return (i < min) ? min : (Math.min(i, max));
     }
 
     @Override

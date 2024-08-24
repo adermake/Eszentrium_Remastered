@@ -1,7 +1,10 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
+import esze.main.main;
+import esze.utils.ParUtils;
+import esze.utils.Title;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -9,12 +12,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import esze.utils.Title;
-import org.bukkit.Particle;
-import spells.spellcore.*;
+import spells.spellcore.SilenceSelection;
+import spells.spellcore.Spell;
+import spells.spellcore.SpellDescription;
+import spells.spellcore.SpellType;
 
 public class Verstummen extends Spell {
 
@@ -30,7 +31,7 @@ public class Verstummen extends Spell {
 
         spellDescription = new SpellDescription(
                 "Schießt ein Projektil in Blickrichtung, das getroffene Gegner für kurze Zeit verstummt. Verstummte Gegner können keine Zauber ausführen.",
-                "Schießt ein Projektil in Blickrichtung , das getroffene Gegner für kurze Zeit verstummt und den Spieler an diese Stelle teleportiert. Verstummte Gegner können keine Zauber ausführen.",
+                "Schießt ein Projektil in Blickrichtung, das getroffene Gegner für kurze Zeit verstummt und den Spieler an diese Stelle teleportiert. Verstummte Gegner können keine Zauber ausführen.",
                 null,
                 null,
                 null,

@@ -1,15 +1,14 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -28,8 +27,8 @@ public class Schock extends Spell {
                 "Schießt Blitze aus großer Höhe auf den anvisierten Block und verursacht Schaden an getroffenen Gegnern.",
                 null,
                 null,
-                "Solange diese Taste gedrückt bleibt, weiten sich die Blitze aus, um mehr Fläche zu treffen auf Kosten der Genauigkeit.",
-                "Solange diese Taste gedrückt bleibt, weiten sich die Blitze aus, um mehr Fläche zu treffen auf Kosten der Genauigkeit.",
+                "Halten, um Blitze auszuweiten.",
+                "Halten, um Blitze auszuweiten.",
                 20*40
         );
         addSpellType(SpellType.DAMAGE);

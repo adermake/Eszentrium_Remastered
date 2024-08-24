@@ -1,21 +1,17 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Color;
-import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Ghast;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -27,11 +23,11 @@ public class Heldenstoß extends Spell {
         steprange = 50;
 
         spellDescription = new SpellDescription(
-                "Der Spieler fliegt in Blickrichtung voran. Nach kurzer Zeit oder bei Bodenkontakt entsteht eine Explosion, die Gegnern schadet und sie wegschleudert. Je länger der Zauber angehalten hat, desto stärker ist dieser Effekt.",
+                "Der Spieler fliegt in Blickrichtung. Nach kurzer Zeit oder bei Bodenkontakt entsteht eine Explosion, die Gegnern schadet und sie wegschleudert. Je länger der Zauber angehalten hat, desto stärker ist der Effekt.",
                 "",
                 null,
                 null,
-                "Stoppt den Zauber sofort.",
+                "Zauber sofort stoppen.",
                 null,
                 20*45
         );

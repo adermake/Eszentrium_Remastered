@@ -20,16 +20,15 @@ import java.util.ArrayList;
 
 public class Phasenverschiebung extends Spell {
 
-    ArrayList<Block> blocks = new ArrayList<Block>();
-    ArrayList<Block> oldblocks = new ArrayList<Block>();
-
+    ArrayList<Block> blocks = new ArrayList<>();
+    ArrayList<Block> oldblocks = new ArrayList<>();
+    Vex a;
 
     public Phasenverschiebung() {
         speed = 1;
         steprange = 100;
     }
 
-    Vex a;
 
     @Override
     public void setUp() {
@@ -43,22 +42,16 @@ public class Phasenverschiebung extends Spell {
         ItemStack is = a.getEquipment().getItemInMainHand();
         is.setAmount(0);
         a.getEquipment().setItemInMainHand(is);
-        //caster.setGameMode(GameMode.SPECTATOR);
-        //a.addPassenger(caster);
         dir = caster.getLocation().getDirection();
-
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
-
 
     }
 
@@ -66,49 +59,38 @@ public class Phasenverschiebung extends Spell {
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
-
-        //loc = a.getLocation()
-        ;
         a.setVelocity(caster.getLocation().getDirection());
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
-        //caster.teleport(loc);
         openTunnel();
         ParUtils.createParticle(Particle.INSTANT_EFFECT, loc, 0, 0, 0, 1, 0);
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
         caster.setGameMode(GameMode.CREATIVE);
-        // TODO Auto-generated method stub
         closeTunnel();
         a.remove();
         caster.leaveVehicle();
@@ -129,7 +111,7 @@ public class Phasenverschiebung extends Spell {
                 break;
 
 
-            ParUtils.createParticle(Particle.CLOUD/*SUSPENDED*/, loc, 5, 5, 5, 11, 1);
+            ParUtils.createParticle(Particle.CLOUD, loc, 5, 5, 5, 11, 1);
 
             for (int x = -size; x < size; x++) {
                 for (int y = -size; y < size; y++) {
@@ -148,7 +130,6 @@ public class Phasenverschiebung extends Spell {
 
         for (Block b : oldblocks) {
             if (!blocks.contains(b))
-
                 caster.sendBlockChange(b.getLocation(), b.getLocation().getBlock().getType(), b.getLocation().getBlock().getData());
         }
         oldblocks = (ArrayList<Block>) blocks.clone();
@@ -158,21 +139,13 @@ public class Phasenverschiebung extends Spell {
 
     public void closeTunnel() {
         for (Block b : oldblocks) {
-
-
             caster.sendBlockChange(b.getLocation(), b.getLocation().getBlock().getType(), b.getLocation().getBlock().getData());
         }
     }
 
     public void uncoverBlock(Block b) {
-
-
         if (b.getType().isSolid()) {
-
-
             caster.sendBlockChange(b.getLocation(), Material.AIR, ((byte) 0));
         }
-
-
     }
 }

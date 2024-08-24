@@ -1,10 +1,9 @@
 package spells.spells;
 
+import monuments.AirMonument;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
-import monuments.AirMonument;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 

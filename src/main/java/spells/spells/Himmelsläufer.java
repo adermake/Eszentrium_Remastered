@@ -26,10 +26,10 @@ public class Himmelsläufer extends Spell {
         steprange = 20 * 8;
 
         spellDescription = new SpellDescription(
-                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann.",
-                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann und erhöht zusätzlich seine Geschwindigkeit und Sprungkraft.",
-                "Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
-                "Bricht den Zauber ab. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
+                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
+                "Der Spieler kreiert für einige Zeit magische Blöcke unter sich, mit denen er auf der Luft laufen kann und erhöht zusätzlich seine Geschwindigkeit und Sprungkraft. Je früher er abgebrochen wird, desto mehr Cooldown wird zurückerstattet.",
+                "Zauber abbrechen.",
+                "Zauber abbrechen.",
                 null,
                 null,
                 20*30

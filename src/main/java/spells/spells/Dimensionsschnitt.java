@@ -22,8 +22,8 @@ public class Dimensionsschnitt extends Spell {
         steprange = 100;
         speed = 10;
         spellDescription = new SpellDescription(
-                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert.",
-                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt treten, werden auf die andere Seite der Spur teleportiert.",
+                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt kommen, werden auf die andere Seite der Spur teleportiert.",
+                "Der Spieler springt in Blickrichtung und hinterlässt eine raumverzerrende Spur, die beim Erscheinen getroffenen Gegnern Schaden zufügt. Gegner, die mit der Spur in Kontakt kommen, werden auf die andere Seite der Spur teleportiert.",
                 null,
                 null,
                 "Bricht den Sprung ab.",

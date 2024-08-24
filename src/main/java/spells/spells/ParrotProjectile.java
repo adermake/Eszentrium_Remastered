@@ -37,8 +37,6 @@ public class ParrotProjectile extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
-        //loc.add(caster.getLocation());
         Location addSide = loc.clone();
         addSide.setYaw(addSide.getYaw() + 90);
         Location l1 = ParUtils.stepCalcCircle(caster.getLocation(), rad, caster.getLocation().getDirection(), -1, 0).add(0, 1, 0);
@@ -56,7 +54,6 @@ public class ParrotProjectile extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -64,56 +61,46 @@ public class ParrotProjectile extends Spell {
     public void launch() {
         if (step > 10)
             par.setAdult();
-        // TODO Auto-generated method stub
 
         loc.setDirection(loc.getDirection().add(randVector().multiply(0.1F)));
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
         loc.add(loc.getDirection());
-
     }
 
     @Override
     public void display() {
         par.teleport(loc);
-
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
         damage(p, 1, caster);
         p.setVelocity(p.getVelocity().add(loc.getDirection().multiply(3)));
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
         damage(ent, 1, caster);
         ent.setVelocity(ent.getVelocity().add(loc.getDirection().multiply(3)));
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
         dead = true;
     }
 
     @Override
     public void onDeath() {
         playSound(Sound.ENTITY_PARROT_DEATH, loc, 5, 2);
-        //ParUtils.createParticle(Particle.EXPLOSION_HUGE, loc, 0, 0, 0, 3, 1);
         ParUtils.dropItemEffectRandomVector(loc, Material.FEATHER, 5, 20, 1);
-        // TODO Auto-generated method stub
         if (par != null)
             par.remove();
     }

@@ -1,13 +1,12 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import esze.utils.ParUtils;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 

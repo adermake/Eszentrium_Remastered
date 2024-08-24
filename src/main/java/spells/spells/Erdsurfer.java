@@ -1,5 +1,6 @@
 package spells.spells;
 
+import esze.main.main;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -10,8 +11,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -24,12 +23,12 @@ public class Erdsurfer extends Spell {
         hitPlayer = false;
 
         spellDescription = new SpellDescription(
-                "Reitet auf der Erde, um sich in Blickrichtung fortzubewegen und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasstwerden und werden danach ebenfalls mitgezogen.",
-                "Reitet auf der Erde, um sich in Blickrichtung fortzubewegen und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasstwerden und werden danach ebenfalls mitgezogen.",
+                "Spieler reitet auf der Erde und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasst und mitgezogen werden.",
+                "Spieler reitet auf der Erde und zieht Blöcke hinter sich her. Gegner können von diesen Blöcken erfasst und mitgezogen werden.",
                 null,
                 null,
-                "Wirft allen aufgesammelten Ballast in Blickrichtung weg und wirft den Anwender nach hinten.",
-                "Wirft allen aufgesammelten Ballast in Blickrichtung weg und wirft den Anwender nach hinten.",
+                "Gesammelten Ballast vorwärts schleudern. Anwender nach hinten schleudern.",
+                "Gesammelten Ballast vorwärts schleudern. Anwender nach hinten schleudern.",
                 20 * 60
         );
         

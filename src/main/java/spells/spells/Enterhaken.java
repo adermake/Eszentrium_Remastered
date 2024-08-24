@@ -1,20 +1,17 @@
 package spells.spells;
 
+import esze.main.main;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Trident;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
-import spells.spellcore.Cooldowns;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -32,8 +29,8 @@ public class Enterhaken extends Spell {
                 "Zieht den Spieler an den nächsten Block in Blickrichtung. Dort bleibt er für kurze Zeit hängen.",
                 null,
                 null,
-                "Der Spieler springt in Blickrichtung.",
-                "Der Spieler springt in Blickrichtung.",
+                "In Blickrichtung springen.",
+                "In Blickrichtung springen.",
                 20*25
         );
 

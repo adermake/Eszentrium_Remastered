@@ -24,7 +24,7 @@ public class Meteoritenhagel extends Spell {
         hitSpell = false;
 
         spellDescription = new SpellDescription(
-                "Lässt nach kurzer Verzögerung Meteoriten vom Himmel fallen, die bei Bodenkontakt explodieren und nahe Gegner schaden.",
+                "Lässt nach kurzer Verzögerung Meteoriten vom Himmel fallen, die bei Bodenkontakt explodieren und nahen Gegnern schaden.",
                 "",
                 null,
                 null,

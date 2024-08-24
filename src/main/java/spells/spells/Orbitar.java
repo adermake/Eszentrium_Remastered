@@ -1,16 +1,14 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
 import org.bukkit.block.Block;
-import org.bukkit.block.data.Orientable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.OrbitarOrb;
+
+import java.util.ArrayList;
 
 public class Orbitar extends Spell {
 
@@ -26,8 +24,8 @@ public class Orbitar extends Spell {
                 "Beschwört 9 Projektile, die um den Spieler kreisen. Getroffene Gegner werden in die Luft geworfen.",
                 null,
                 null,
-                "Schießt die Projektile in Blickrichtung. Getroffene Gegner werden zurückgeworfen.",
-                "Schießt die Projektile in Blickrichtung. Getroffene Gegner werden zurückgeworfen.",
+                "Projektile in Blickrichtung schießen.",
+                "Projektile in Blickrichtung schießen.",
                 20*37
         );
 

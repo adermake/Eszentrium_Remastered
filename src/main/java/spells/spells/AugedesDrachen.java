@@ -30,11 +30,11 @@ public class AugedesDrachen extends Spell {
         //multihit = true;
         multihit = false;
         spellDescription = new SpellDescription(
-                "Schießt ein Projektil in Blickrichtung,#§7das nach kurzer Zeit zwei Drachen beschwört.#§7Diese Drachen folgen der Fluglinie und schaden#§7getroffenen Gegnern und werfen sie zurück.",
+                "Schießt ein Projektil in Blickrichtung, das nach kurzer Zeit zwei Drachen beschwört. Diese Drachen folgen der Fluglinie und schaden getroffenen Gegnern und werfen sie zurück.",
                 "",
                 null,
                 null,
-                "Solange diese Taste gedrückt bleibt, kann die Richtung des Projektils gesteuert werden, bis die Drachen erscheinen.",
+                "Halten, um Projektilrichtung zu bestimmen.",
                 null,
                 20*60
         );

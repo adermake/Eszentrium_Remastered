@@ -1,29 +1,21 @@
 package spells.spells;
 
-import java.util.ArrayList;
-
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import esze.main.main;
+import esze.utils.ParUtils;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
 import spells.stagespells.HealingAura;
 import spells.stagespells.Repulsion;
-import spells.stagespells.RepulsionDirectional;
+
+import java.util.ArrayList;
 
 public class Springkraut extends Spell {
 
@@ -43,8 +35,8 @@ public class Springkraut extends Spell {
         spellDescription = new SpellDescription(
                 "Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner werden ebenfalls geheilt, werden aber zusätzlich zurückgeworfen.",
                 "Wirft einen Blumenstrauß, der bei Blockkontakt vom Block abspringt und ein Heilfeld erzeugt, das den Anwender heilt. Betroffene Gegner erleiden stattdessen Schaden und werden zurückgeworfen.",
-                "Stoppt das Projektil sofort.",
-                "Stoppt das Projektil sofort.",
+                "Projektil sofort stoppen.",
+                "Projektil sofort stoppen.",
                 null,
                 null,
                 20*25

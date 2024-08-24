@@ -27,12 +27,12 @@ public class Kätzchenkanone extends Spell {
         hitSpell = true;
 
         spellDescription = new SpellDescription(
-                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet alle Gegner und schleudert sie weg.",
-                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet alle Gegner und schleudert sie weg.",
+                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet allen Gegnern und schleudert sie weg. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
+                "Wirft eine Katze in Blickrichtung, die auf dem Boden stehen bleibt. Nach kurzer Zeit explodiert diese und schadet allen Gegnern und schleudert sie weg. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
                 null,
                 null,
-                "Sprengt die Katze vorzeitig. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
-                "Sprengt die Katze vorzeitig. Wenn der Anwender getroffen wird, schleudert ihn die Explosion ebenfalls weg, verursacht aber keinen Schaden.",
+                "Katze vorzeitig sprengen.",
+                "Katze vorzeitig sprengen.",
                 20*18
         );
         
@@ -44,7 +44,6 @@ public class Kätzchenkanone extends Spell {
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         cat = (Cat) caster.getWorld().spawnEntity(caster.getEyeLocation().add(caster.getLocation().getDirection()), EntityType.CAT);
         cat.setBaby();
         cat.setSitting(true);
@@ -55,22 +54,17 @@ public class Kätzchenkanone extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
         playSound(Sound.ENTITY_CAT_AMBIENT, caster.getLocation(), 3.0F, 1F);
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
-
         if (caster.isSneaking()) {
-
             onDeath();
 
             dead = true;
@@ -80,32 +74,27 @@ public class Kätzchenkanone extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
         if (spell.getName().contains("Antlitz der Göttin"))
             cat.setVelocity(spell.caster.getLocation().getDirection().multiply(2));
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 

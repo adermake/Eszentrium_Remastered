@@ -31,8 +31,8 @@ public class SpeerderZwietracht extends Spell {
                 "Schießt einen Speer in Blickrichtung, der getroffene Gegner am nächsten Block in der Flugbahn für kurze Zeit festhält.",
                 null,
                 null,
-                "Zieht den Speer aus dem Gegner heraus und verursacht Schaden.",
-                "Zieht den Speer aus dem Gegner heraus und verursacht Schaden.",
+                "Speer aus dem Gegner herausziehen und Schaden verursachen.",
+                "Speer aus dem Gegner herausziehen und Schaden verursachen.",
                 20*45
         );
 

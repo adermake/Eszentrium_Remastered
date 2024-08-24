@@ -1,14 +1,12 @@
 package monuments;
 
-import org.bukkit.Bukkit;
+import esze.utils.ParUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
-
-import esze.utils.ParUtils;
 
 public class Plating {
 

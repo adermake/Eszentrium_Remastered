@@ -27,12 +27,12 @@ public class Hühnchenluftschlag extends Spell {
         steprange = 66;
 
         spellDescription = new SpellDescription(
-                "Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt.",
-                "Beschwört ein Hühnchen und reitet darauf, wobei es sich in Blickrichtung aufwärts bewegt.",
-                "Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.",
-                "Schießt eine Salve aus Eiern, die bei Block- oder Gegnerkontakt explodieren und Schaden verursachen.",
-                "Springt vorzeitig vom Hühnchen ab und springt in die Höhe.",
-                "Springt vorzeitig vom Hühnchen ab und springt in die Höhe. Das Hühnchen wird in Blickrichtung geschossen und explodiert, sobald es einen Block trifft.",
+                "Beschwört ein Hühnchen und reitet darauf. Das Hühnchen bewegt sich in Blickrichtung aufwärts. Abgeworfene Eier verursachen Schaden bei Gegnern verursachen",
+                "Beschwört ein Hühnchen und reitet darauf. Das Hühnchen bewegt sich in Blickrichtung aufwärts.",
+                "Salve aus Eiern schießen",
+                "Salve aus Eiern schießen",
+                "Vom Hühnchen abspringen und in die Höhe werfen.",
+                "Vom Hühnchen abspringen und in die Höhe werfen. Hühnchen in Blickrichtung schießen.",
                 20*42
         );
 

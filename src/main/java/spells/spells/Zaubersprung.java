@@ -16,6 +16,8 @@ import spells.spellcore.SpellType;
 
 public class Zaubersprung extends Spell {
 
+    Location block;
+    Location back;
 
     public Zaubersprung() {
         name = "§bZaubersprung";
@@ -26,10 +28,10 @@ public class Zaubersprung extends Spell {
         hitSpell = false;
 
         spellDescription = new SpellDescription(
-                "Teleportiert den Spieler auf den anvisierten Block. Nach kurzer Zeit wird er wieder zum Ursprungsort zurückteleportiert.",
+                "Teleportiert den Spieler auf den anvisierten Block. Nach kurzer Zeit wird er wieder zum Ursprungsort zurück teleportiert.",
                 "Teleportiert den Spieler auf den anvisierten Block.",
-                "Teleportiert den Spieler sofort zum Ursprungsort zurück.",
-                "Teleportiert den Spieler zum Ursprungsort zurück.",
+                "Sofort zum Ursprungsort zurück teleportieren.",
+                "Sofort zum Ursprungsort zurück teleportieren.",
                 null,
                 null,
                 20*22
@@ -37,16 +39,10 @@ public class Zaubersprung extends Spell {
         
         addSpellType(SpellType.SELFCAST);
         addSpellType(SpellType.MOBILITY);
-
-
     }
-
-    Location block;
-    Location back;
 
     @Override
     public void setUp() {
-        // TODO Auto-generated method stub
         back = caster.getLocation();
         block = block(caster);
         if (block == null || block.getY() > 250) {
@@ -61,7 +57,6 @@ public class Zaubersprung extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
@@ -69,10 +64,8 @@ public class Zaubersprung extends Spell {
     public void launch() {
         if (dead)
             return;
-        // TODO Auto-generated method stub
         caster.teleport(block);
         playSound(Sound.BLOCK_PORTAL_TRIGGER, caster.getLocation(), 1, 2);
-        //playSound(Sound.BLOCK_PORTAL_AMBIENT, caster.getLocation(), 1, 2);
     }
 
     @Override
@@ -80,7 +73,6 @@ public class Zaubersprung extends Spell {
         if (checkSilence()) {
             dead = true;
         }
-        // TODO Auto-generated method stub
         if (swap()) {
             spiralyPortAniamtion(caster.getLocation(), back);
             caster.teleport(back);
@@ -90,49 +82,40 @@ public class Zaubersprung extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
         if (!refined && !refund) {
             spiralyPortAniamtion(caster.getLocation(), back);
             caster.teleport(back);
         }
-
-
     }
 
     public void spiralyPortAniamtion(Location fromC, Location toC) {
         Location l1 = fromC.clone();
         Location l2 = toC.clone();
-        double distance = l1.distance(l2);
         Vector dir = l2.toVector().subtract(l1.toVector()).normalize();
 
-
         new BukkitRunnable() {
-            double r = 1;
+            final double r = 1;
             int t = 0;
 
             public void run() {
@@ -150,14 +133,11 @@ public class Zaubersprung extends Spell {
 
             }
         }.runTaskTimer(main.plugin, 1, 1);
-
-
     }
 
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 

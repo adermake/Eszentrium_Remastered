@@ -1,19 +1,14 @@
 package spells.spells;
 
-import org.bukkit.Bukkit;
+import esze.utils.ParUtils;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import esze.main.main;
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -34,11 +29,11 @@ public class Feuerball extends Spell {
 
         spellDescription = new SpellDescription(
                 "Schießt einen Feuerball in Blickrichtung, der bei Kontakt mit einem Block explodiert und getroffenen Gegnern Schaden zufügt und sie wegschleudert.",
-                "Schießt nach kurzer Verzögerung einen riesigen Feuerball , der bei Kontakt mit einem Block explodiert und getroffenen Gegnern Schaden zufügt und sie wegschleudert.",
+                "Schießt nach kurzer Verzögerung einen riesigen Feuerball, der bei Kontakt mit einem Block explodiert und getroffenen Gegnern Schaden zufügt und sie wegschleudert.",
                 null,
                 null,
-                "Lässt den Feuerball nach unten fallen.",
-                "Lässt den Feuerball nach unten fallen.",
+                "Feuerball nach unten umleiten.",
+                "Feuerball nach unten umleiten.",
                 20*18
         );
 

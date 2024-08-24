@@ -49,7 +49,7 @@ public class Seelenmarionette extends Spell {
         spellDescription = new SpellDescription(
                 "Die Seele des Spielers verlässt seinen Körper, was ihn fliegen lässt und unverwundbar macht. Der Körper bleibt hierbei zurück und kann weiterhin angegriffen werden, was dem Spieler auch schadet.",
                 "",
-                "Beendet den Zauber.",
+                "Zauber sofort beenden.",
                 null,
                 null,
                 null,

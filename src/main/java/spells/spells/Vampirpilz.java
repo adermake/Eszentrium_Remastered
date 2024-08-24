@@ -1,20 +1,16 @@
 package spells.spells;
 
+import esze.utils.ParUtils;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import esze.utils.ParUtils;
-import org.bukkit.Particle;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
-import spells.stagespells.ExplosionDamage;
-import spells.stagespells.Repulsion;
 import spells.stagespells.VampirpilzStage2;
 
 public class Vampirpilz extends Spell {
@@ -28,7 +24,7 @@ public class Vampirpilz extends Spell {
                 "Wirft einen Pilz in Blickrichtung, der naheliegenden Gegnern über Zeit das Leben aussaugt und den Anwender um diesen Betrag heilt.",
                 "Wirft einen Pilz in Blickrichtung, der naheliegenden Gegnern über Zeit das Leben aussaugt und den Anwender um diesen Betrag heilt.",
                 null,
-                "Bewegt den Pilz auf den anvisierten Block.",
+                "Pilz auf den anvisierten Block bewegen.",
                 null,
                 null,
                 20*52

@@ -17,6 +17,13 @@ import java.util.ArrayList;
 
 public class Schweberknecht extends Spell {
 
+    Spider s;
+    boolean bounced = false;
+    boolean hitbounced = false;
+    double yLevel = 0;
+    Vector vel;
+
+    ArrayList<Spell> trails = new ArrayList<Spell>();
 
     public Schweberknecht() {
         steprange = 20 * 6;
@@ -31,10 +38,6 @@ public class Schweberknecht extends Spell {
                 20*35
         );
     }
-
-    Spider s;
-    boolean bounced = false;
-    boolean hitbounced = false;
 
     @Override
     public void setUp() {
@@ -60,20 +63,13 @@ public class Schweberknecht extends Spell {
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
-
-    double yLevel = 0;
-    Vector vel;
-
-    ArrayList<Spell> trails = new ArrayList<Spell>();
 
     @Override
     public void move() {
@@ -81,23 +77,12 @@ public class Schweberknecht extends Spell {
         doPin(s, loc, 3);
         vel.add(new Vector(0, -0.1, 0));
 
-        if (bounced) {
-            //playSound(Sound.ENTITY_LEASH_KNOT_PLACE,loc,1,0.1F);
-        }
-
         if (hitbounced && !bounced) {
             if (refined) {
-				/*
-				for (Spell s : trails) {
-					s.kill();
-				}
-				*/
-                if (s instanceof WebTrail) {
-                    WebTrail w = (WebTrail) s;
+                if (s instanceof WebTrail w) {
                     w.height = loc.clone().getY();
                     w.power = 0;
                 }
-
             }
             speed = 2;
             bounced = true;
@@ -110,22 +95,16 @@ public class Schweberknecht extends Spell {
             }
             step = 0;
             steprange = 20 * 4;
-            //vel = vel.normalize().multiply(y/1.2);
             vel = vel.setY(0);
             vel.normalize().multiply(y / 2);
             vel.setY(y);
             hitbounced = false;
             yLevel = loc.getY();
             Spell chase = this;
-            //new WebTrail(chase, caster, name);
             loc = s.getLocation();
             for (float i = 0; i < 15; i++) {
-                Spell s = new WebTrail(chase, caster, name, y, yLevel);
-                chase = s;
+                chase = new WebTrail(chase, caster, name, y, yLevel);
             }
-
-
-            //ParUtils.parKreisDirSolid(Particle.CLOUD, loc, 3, 0, yLevel/80, new Vector(0,1,0), vel.clone().multiply(-1));
         }
         if (loc.getY() < yLevel) {
             dead = true;
@@ -136,25 +115,21 @@ public class Schweberknecht extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
         ParUtils.createParticle(Particle.CLOUD, loc, 0, 0, 0, 1, 0);
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -170,7 +145,6 @@ public class Schweberknecht extends Spell {
     @Override
     public void onDeath() {
         playSound(Sound.ENTITY_SPIDER_DEATH, loc, 2, 0.5);
-        // TODO Auto-generated method stub
         s.remove();
     }
 

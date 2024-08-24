@@ -21,6 +21,9 @@ import java.util.ArrayList;
 
 public class Spike extends Spell {
 
+
+    Location saveLoc;
+
     public Spike() {
         this.name = name;
         speed = 3;
@@ -43,7 +46,6 @@ public class Spike extends Spell {
 
     }
 
-    Location saveLoc;
 
     public Spike(Player c, Vector v, String name, Location l, int length) {
         super();

@@ -4,7 +4,6 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
 import spells.spellcore.Spell;
 import spells.spellcore.SpellDescription;
 import spells.spellcore.SpellType;
@@ -18,10 +17,10 @@ public class Kaminchen extends Spell {
         hitSpell = true;
 
         spellDescription = new SpellDescription(
-                "Wirft ein Kaninchen in Blickrichtung, das auf dem Boden stehen bleibt und bei Gegnerkontakt explodiert.",
-                "Wirft 3 Kaninchen in Blickrichtung, die auf dem Boden stehen bleiben und bei Gegnerkontakt explodieren.",
-                "Verärgert die Kaminchen, wodurch sie den naheliegendsten Gegner verfolgen.",
-                "Verärgert die Kaminchen, wodurch sie den naheliegendsten Gegner verfolgen.",
+                "Wirft ein Kaninchen in Blickrichtung, das auf dem Boden stehen bleibt und bei Gegnerkontakt explodiert. Werden Kaninchen verärgert verfolgen sie den naheliegendsten Gegner.",
+                "Wirft 3 Kaninchen in Blickrichtung, die auf dem Boden stehen bleiben und bei Gegnerkontakt explodieren. Werden Kaninchen verärgert verfolgen sie den naheliegendsten Gegner.",
+                "Kaninchen verärgern",
+                "Kaninchen verärgern",
                 null,
                 null,
                 20*25
@@ -34,19 +33,15 @@ public class Kaminchen extends Spell {
     @Override
     public void setUp() {
 
-
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
-
         if (refined) {
             Location dirLoc = caster.getLocation();
             dirLoc.setYaw(dirLoc.getYaw() + 45);
@@ -62,43 +57,36 @@ public class Kaminchen extends Spell {
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
 
     }
 
