@@ -72,3 +72,5 @@ commands:
   playrandomsound:
     description: plays random sound
     usage: /playrandomsound
+  testinv:
+    description: Open a test inventory for debugging purposes

@@ -35,7 +35,7 @@ public class WebTrail extends Spell {
     public void setUp() {
         // TODO Auto-generated method stub
         loc = trail.getLocation();
-        web = trail.getLocation().getWorld().spawnFallingBlock(trail.getLocation(), Material.COBWEB, (byte) 0);
+        web = loc.getWorld().spawnFallingBlock(loc, Material.COBWEB.createBlockData());
         last = web.getLocation();
         web.setGravity(false);
 

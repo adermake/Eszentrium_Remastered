@@ -6,7 +6,9 @@ import esze.menu.GameModifier;
 import esze.menu.ModifierMenu;
 import esze.utils.NBTUtils;
 import esze.utils.SoundUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -256,9 +258,12 @@ public class EventCollector implements Listener {
 
     @EventHandler
     public void onSolidify(EntityChangeBlockEvent e) {
-
-        e.getEntity().remove();
-        e.setCancelled(true);
+        if (e.getEntity().getType() == EntityType.FALLING_BLOCK) {
+            if (!e.getTo().isAir() || !e.getBlock().getType().isAir()){
+                e.getEntity().remove();
+                e.setCancelled(true);
+            }
+        }
     }
 
     @EventHandler

@@ -59,7 +59,7 @@ public class OrbitarOrb extends Spell {
     public Entity spawnA() {
 
         if (!loc.getBlock().getType().isSolid()) {
-            FallingBlock fb = caster.getWorld().spawnFallingBlock(loc.clone(), Material.CACTUS, (byte) 0);
+            FallingBlock fb = loc.getWorld().spawnFallingBlock(loc.clone(), Material.CACTUS.createBlockData());
             fb.setGravity(false);
             return fb;
         } else {

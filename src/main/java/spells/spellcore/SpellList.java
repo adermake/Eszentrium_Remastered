@@ -86,7 +86,7 @@ public class SpellList {
         //registerSpell(new Astralsprung());
         //registerSpell(new HimmlischesUrteil());
         //registerSpell(new Binden());
-        registerSpell(new AntlitzderGoettin());
+        registerSpell(new AntlitzderGöttin());
         registerSpell(new Aufwind());
         registerSpell(new AugedesDrachen());
         registerSpell(new Schallwelle());
@@ -163,7 +163,7 @@ public class SpellList {
         registerSpell(new Wildwuchs());
         registerSpell(new Fokusspirale());
         registerSpell(new Wassergeysir());
-        registerSpell(new Todessaege());
+        registerSpell(new Todessäge());
         registerSpell(new Substitution());
         registerSpell(new Seelenmarionette());
         registerSpell(new UntotePhalanx());

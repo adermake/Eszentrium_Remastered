@@ -11,7 +11,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 import spells.spellcore.Spell;
 import spells.spellcore.SpellType;
-import spells.spells.Todessaege;
+import spells.spells.Todessäge;
 
 public class Sythe extends Spell {
 
@@ -21,9 +21,9 @@ public class Sythe extends Spell {
     ArmorStand sythe;
     ArmorStand sythe2;
     float offset;
-    Todessaege boss;
+    Todessäge boss;
 
-    public Sythe(String name, Player p, Location l, Vector v, float offset, Todessaege boss, boolean refined) {
+    public Sythe(String name, Player p, Location l, Vector v, float offset, Todessäge boss, boolean refined) {
         this.offset = offset;
         this.name = name;
         this.refined = refined;

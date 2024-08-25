@@ -13,11 +13,11 @@ import spells.stagespells.Sythe;
 
 import java.util.HashMap;
 
-public class Todessaege extends Spell {
+public class Todessäge extends Spell {
 
     public HashMap<Entity, Integer> hitCount = new HashMap<>();
 
-    public Todessaege() {
+    public Todessäge() {
         name = "§eTodessäge";
         spellDescription = new SpellDescription(
                 "Wirft Kreissägen in Blickrichtung, die auf kurzer Distanz nach unten fallen und dort liegen bleiben. Getroffene Gegner werden zurückgeworfen. Nach kurzer Zeit kehren die Sägen zum Anwender zurück, Schaden getroffenen Gegnern und heilen den Anwender für jeden Treffer.",

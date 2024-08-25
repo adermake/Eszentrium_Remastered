@@ -79,6 +79,7 @@ public class main extends JavaPlugin {
         this.getCommand("music").setExecutor(new CommandReceiver());
 
         this.getCommand("nofboost").setExecutor(new CommandReceiver());
+        this.getCommand("testinv").setExecutor(new CommandReceiver());
         this.getCommand("analytics").setExecutor(new CommandReceiver());
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Move(), this);

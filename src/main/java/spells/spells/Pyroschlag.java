@@ -133,7 +133,7 @@ public class Pyroschlag extends Spell {
             }
 
             if (!blockClone.getBlock().getType().isSolid()) {
-                FallingBlock fb = caster.getWorld().spawnFallingBlock(blockClone, block.getBlock().getType(), block.getBlock().getData());
+                FallingBlock fb = blockClone.getWorld().spawnFallingBlock(blockClone, block.getBlock().getType().createBlockData());
 
                 fb.setHurtEntities(false);
                 fb.setDropItem(false);

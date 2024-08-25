@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
-import spells.spells.AntlitzderGoettin;
+import spells.spells.AntlitzderGöttin;
 
 import java.util.*;
 
@@ -1368,7 +1368,7 @@ public abstract class Spell {
     }
 
     public boolean checkHit(LivingEntity le, Location loc, Entity p, double range) {
-        if (AntlitzderGoettin.deflect.contains(le)) {
+        if (AntlitzderGöttin.deflect.contains(le)) {
 
             return false;
         }
@@ -1660,7 +1660,7 @@ public abstract class Spell {
     }
 
     public FallingBlock spawnFallingBlock(Location l, Material m) {
-        return (FallingBlock) loc.getWorld().spawnFallingBlock(l, m, (byte) 0);
+        return l.getWorld().spawnFallingBlock(l, m.createBlockData());
     }
 
     public static ArrayList<Block> multiselect(Location l, Vector v, int height, int width) {

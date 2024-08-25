@@ -13,11 +13,11 @@ import spells.spellcore.SpellType;
 
 import java.util.ArrayList;
 
-public class AntlitzderGoettin extends Spell {
+public class AntlitzderGöttin extends Spell {
 
     public static ArrayList<Player> deflect = new ArrayList<Player>();
 
-    public AntlitzderGoettin() {
+    public AntlitzderGöttin() {
         name = "§3Antlitz der Göttin";
         hitSpell = true;
         hitPlayer = false;

@@ -16,6 +16,9 @@ import esze.menu.SoloSelectionTopMenu;
 import esze.menu.WeaponsAnalyticsMenu;
 import esze.utils.*;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -24,6 +27,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
@@ -340,13 +344,39 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
 
         if (cmd.getName().startsWith("playrandomsound")) {
             ArrayList<Sound> sound = new ArrayList<Sound>();
-            for (Sound s : Sound.values()) {
-                sound.add(s);
-            }
+            sound.addAll(Arrays.asList(Sound.values()));
             Sound s = sound.get(MathUtils.randInt(0, sound.size() - 1));
             SoundUtils.playSound(s, p.getLocation(), 1, 1);
-            p.sendMessage("" + s.name());
+            p.sendMessage(s.name());
         }
+
+        if(cmd.getName().startsWith("testinv")) {
+            if(p.isOp()) {
+                int invSize = 1;
+                if(args.length >= 1) {
+                    try {
+                        invSize = Integer.parseInt(args[0]);
+                    } catch(NumberFormatException e) {
+                        p.sendMessage("§8| §cDie Inventargröße ist ungültig!");
+                        return false;
+                    }
+                }
+                String invTitle = null;
+                if(args.length >= 2) {
+                    String invTitleJson = args[1];
+                    BaseComponent[] invTitleBC = ComponentSerializer.parse(invTitleJson);
+                    invTitle = TextComponent.toLegacyText(invTitleBC);
+                }
+                if(invTitle == null) {
+                    p.openInventory(Bukkit.createInventory(null, invSize * 9));
+                } else {
+                    p.openInventory(Bukkit.createInventory(null, invSize * 9, invTitle));
+                }
+            }
+        }
+
+
+
         if (cmd.getName().equalsIgnoreCase("analytics")) {
             if (args.length < 1) {
                 p.sendMessage("ERROR");

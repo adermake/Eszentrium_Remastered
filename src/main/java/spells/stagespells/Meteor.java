@@ -32,8 +32,8 @@ public class Meteor extends Spell {
     @Override
     public void setUp() {
         loc = overrideLoc;
-        fb = caster.getWorld().spawnFallingBlock(loc, Material.MAGMA_BLOCK, (byte) 0);
-        FallingBlock fb2 = caster.getWorld().spawnFallingBlock(loc.clone().add(0, 1, 0), Material.FIRE, (byte) 0);
+        fb = loc.getWorld().spawnFallingBlock(loc, Material.MAGMA_BLOCK.createBlockData());
+        FallingBlock fb2 = loc.getWorld().spawnFallingBlock(loc.clone().add(0, 1, 0), Material.FIRE.createBlockData());
         fb.addPassenger(fb2);
         fb.setVelocity(fb.getVelocity().setY(-4));
         loc.setDirection(new Vector(0, -1, 0));

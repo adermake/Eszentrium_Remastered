@@ -98,31 +98,31 @@ public class ThermolanzeLaser extends Spell {
 
         MaterialData md = new MaterialData(loc.getBlock().getRelative(BlockFace.DOWN).getType(), loc.getBlock().getRelative(BlockFace.DOWN).getData());
         if (loc.getBlock().getType() == Material.AIR) {
-            FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
+            FallingBlock f = loc.getWorld().spawnFallingBlock(loc, md.getItemType().createBlockData());
             f.setVelocity(f.getVelocity().setY(0.2));
 
 
         }
         if (loc.add(0, 0, 1).getBlock().getType() == Material.AIR) {
-            FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
+            FallingBlock f = loc.getWorld().spawnFallingBlock(loc, md.getItemType().createBlockData());
             f.setVelocity(f.getVelocity().setY(0.2));
             f.setDropItem(false);
 
         }
         if (loc.add(0, 0, -1).getBlock().getType() == Material.AIR) {
-            FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
+            FallingBlock f = loc.getWorld().spawnFallingBlock(loc, md.getItemType().createBlockData());
             f.setVelocity(f.getVelocity().setY(0.2));
             f.setDropItem(false);
 
         }
         if (loc.add(-1, 0, 0).getBlock().getType() == Material.AIR) {
-            FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
+            FallingBlock f = loc.getWorld().spawnFallingBlock(loc, md.getItemType().createBlockData());
             f.setVelocity(f.getVelocity().setY(0.2));
             f.setDropItem(false);
 
         }
         if (loc.add(1, 0, 0).getBlock().getType() == Material.AIR) {
-            FallingBlock f = (FallingBlock) loc.getWorld().spawnFallingBlock(loc, md);
+            FallingBlock f = loc.getWorld().spawnFallingBlock(loc, md.getItemType().createBlockData());
             f.setVelocity(f.getVelocity().setY(0.2));
             f.setDropItem(false);
 
@@ -144,7 +144,7 @@ public class ThermolanzeLaser extends Spell {
         ParUtils.createFlyingParticle(Particle.CAMPFIRE_COSY_SMOKE, loc.clone().add(loc.getDirection().multiply(-1)), 0, 0, 0, 1, 1, dir.getDirection());
 
 
-        FallingBlock fb = loc.clone().add(loc.getDirection().multiply(-1)).getWorld().spawnFallingBlock(loc.clone().add(loc.getDirection().multiply(-1)), Material.FIRE, (byte) 0);
+        FallingBlock fb = loc.getWorld().spawnFallingBlock(loc.clone().add(loc.getDirection().multiply(-1)), Material.FIRE.createBlockData());
         fb.setVelocity(dir.getDirection().multiply(0.7));
         dead = true;
 

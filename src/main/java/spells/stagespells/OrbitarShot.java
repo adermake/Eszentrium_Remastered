@@ -82,7 +82,7 @@ public class OrbitarShot extends Spell {
         if (a != null)
             a.remove();
         if (!loc.getBlock().getType().isSolid()) {
-            a = caster.getWorld().spawnFallingBlock(loc, Material.CACTUS, (byte) 0);
+            a = loc.getWorld().spawnFallingBlock(loc, Material.CACTUS.createBlockData());
         }
 
         //ParUtils.createParticle(Particle.FLAME, loc, 0, 0, 0, 1, 1);
