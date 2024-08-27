@@ -1,6 +1,7 @@
 package esze.utils;
 
 import esze.main.main;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
@@ -15,7 +16,12 @@ public class PlayerConfig implements ConfigurationSerializable {
     public static HashMap<Player, PlayerConfig> playerConfigs = new HashMap<Player, PlayerConfig>();
 
     String playerName;
+    @Getter
     Material weaponMaterial = Material.WOODEN_SWORD;
+    @Getter
+    Integer weaponCustomModelData = null;
+    @Getter
+    String weaponCustomName = null;
     boolean likesMusic = true;
 
 
@@ -23,6 +29,8 @@ public class PlayerConfig implements ConfigurationSerializable {
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("player", playerName);
+        map.put("weaponModelData", weaponCustomModelData);
+        map.put("weaponCustomName", weaponCustomName);
         map.put("weapon", weaponMaterial.toString());
         map.put("music", likesMusic);
         return map;
@@ -36,6 +44,8 @@ public class PlayerConfig implements ConfigurationSerializable {
         this.playerName = (String) map.get("player");
         //this.weaponMaterial = (String) map.get("weapon");
 
+        this.weaponCustomName = (String) map.get("weaponCustomName");
+        this.weaponCustomModelData = (Integer) map.get("weaponModelData");
         this.weaponMaterial = Material.getMaterial((String) map.get("weapon"), false);
         this.likesMusic = (boolean) map.get("music");
     }
@@ -63,8 +73,10 @@ public class PlayerConfig implements ConfigurationSerializable {
         }
     }
 
-    public void setWeapon(Material m) {
-        weaponMaterial = m;
+    public void setWeapon(Material material, Integer customModelData, String customName) {
+        weaponMaterial = material;
+        weaponCustomModelData = customModelData;
+        weaponCustomName = customName;
         save();
     }
 
@@ -73,7 +85,4 @@ public class PlayerConfig implements ConfigurationSerializable {
         save();
     }
 
-    public Material getWeapon() {
-        return weaponMaterial;
-    }
 }

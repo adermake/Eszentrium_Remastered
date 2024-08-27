@@ -118,7 +118,7 @@ public class Interact implements Listener {
                     }
                 }
                 if (handItem.getItemMeta().getDisplayName().equals("§3Kosmetik")) {
-                    new CosmeticMenu(p).open(p);
+                    new CosmeticMenu(p, 1);
                 }
                 if (handItem.getItemMeta().getDisplayName().equals("§3Modifikatoren")) {
                     ModifierMenu.getModifierWindow().open(p);

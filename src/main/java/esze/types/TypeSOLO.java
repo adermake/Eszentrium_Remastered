@@ -78,7 +78,6 @@ public class TypeSOLO extends Type {
 
         Player p = event.getEntity();
         if (deathCheck(p)) {
-
             p.setHealth(Damage.lastHealthTaken.get(p));
             return;
         }
@@ -185,22 +184,26 @@ public class TypeSOLO extends Type {
                 scoreboard.hideScoreboard();
                 gameOver = true;
 
-                Player winner = players.getFirst();
-                new Title(
-                        PlayerHeadUtils.getHeadAsString(winner.getUniqueId().toString(), true) + " §a" + winner.getName(),
-                        "§7hat gewonnen!"
-                ).sendAll();
+                if (!players.isEmpty()) {
+                    SaveUtils.setPlayerPlace(players.getFirst().getName(), 1);
+                }
                 won = true;
-
-                SaveUtils.setPlayerPlace(winner.getName(), 1);
                 endGame();
+                if(!players.isEmpty()) {
+                    Player winner = players.getFirst();
+                    new Title(
+                            PlayerHeadUtils.getHeadAsString(winner.getUniqueId().toString(), true) + " §a" + winner.getName(),
+                            "§7hat gewonnen!"
+                    ).sendAll();
+                }
             }
         }
     }
 
     public void endGame() {
-        Player winner = players.getFirst();
-        postResult(winner);
+        if(!players.isEmpty()) {
+            postResult(players.getFirst());
+        }
 
         for (Entity e : Bukkit.getWorld("world").getEntities()) {
             if (e.getType() != EntityType.PLAYER) {

@@ -108,7 +108,7 @@ public class BossbarSpellHUD {
                     }
 
                     for(int i = 0; i < (MAX_ROW1_PIXELS - outputPixels); i++){
-                        output += "\uF821";
+                        output += CharRepo.POS1.literal;
                     }
 
                     TextComponent componentF = new TextComponent();
@@ -142,7 +142,7 @@ public class BossbarSpellHUD {
                     }
 
                     for(int i = 0; i < (MAX_ROW2_PIXELS - outputPixels); i++){
-                        output += "\uF821";
+                        output += CharRepo.POS1.literal;
                     }
 
                     TextComponent componentShift = new TextComponent();

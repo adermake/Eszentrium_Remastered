@@ -46,6 +46,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommandReceiver implements CommandExecutor, TabCompleter {
 
@@ -363,7 +364,7 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
                 }
                 String invTitle = null;
                 if(args.length >= 2) {
-                    String invTitleJson = args[1];
+                    String invTitleJson = Arrays.stream(args).skip(1).collect(Collectors.joining(" "));
                     BaseComponent[] invTitleBC = ComponentSerializer.parse(invTitleJson);
                     invTitle = TextComponent.toLegacyText(invTitleBC);
                 }
@@ -560,7 +561,7 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
             } else if (cmdname.contains("setmode")) {
                 to.addAll(Arrays.stream(TypeEnum.values()).map(TypeEnum::toString).toList());
             } else if (cmdname.contains("spell")) {
-                to.addAll(SpellList.spells.keySet().stream().map(s -> ChatColor.stripColor(s.getName())).distinct().toList());
+                to.addAll(SpellList.spells.keySet().stream().map(s -> ChatColor.stripColor(s.getName())).filter(s -> s.toLowerCase().contains(args[0].toLowerCase())).distinct().toList());
             } else if (cmdname.contains("setitem")) {
                 for (String arena : main.plugin.getConfig().getConfigurationSection("maps").getKeys(false)) {
                     if (main.plugin.getConfig().get("maps." + arena) != null) {
