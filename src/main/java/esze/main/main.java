@@ -50,12 +50,10 @@ public class main extends JavaPlugin {
         NoCollision.setUpCollsionStopper();
         colorTags = Arrays.asList("§0", "§1", "§2", "§3", "§4", "§5", "§6", "§7", "§8", "§9", "§a", "§b", "§c", "§d", "§e", "§f");
 
-        PlayerConfig.load();
         this.getServer().getPluginManager().registerEvents(new EventCollector(), this);
         Cooldowns.startCooldownHandler();
 
         ConfigurationSerialization.registerClass(JumpPad.class);
-        ConfigurationSerialization.registerClass(PlayerConfig.class);
         this.getCommand("setmonumap").setExecutor(new CommandReceiver());
         this.getCommand("playrandomsound").setExecutor(new CommandReceiver());
         this.getCommand("showpads").setExecutor(new CommandReceiver());

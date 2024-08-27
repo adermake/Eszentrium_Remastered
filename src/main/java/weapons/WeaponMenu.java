@@ -1,13 +1,14 @@
 package weapons;
 
+import esze.configs.PlayerSettingsService;
+import esze.configs.entities.Cosmetic;
+import esze.configs.entities.CosmeticType;
 import esze.main.main;
-import esze.menu.CosmeticMenu;
 import esze.menu.ItemMenu;
 import esze.menu.ItemMenuIcon;
 import esze.utils.Actionbar;
 import esze.utils.ItemStackUtils;
 import esze.utils.NBTUtils;
-import esze.utils.PlayerConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -71,13 +72,32 @@ public class WeaponMenu extends ItemMenu {
             WeaponAbilitys.charge1.put(p, 0);
             WeaponAbilitys.charge2.put(p, 0);
 
-            ItemStack is = ItemStackUtils.createItemStack(PlayerConfig.getConfig(p).getWeaponMaterial(), 1, 0, PlayerConfig.getConfig(p).getWeaponCustomName(), null, true);
-            ItemMeta im = is.getItemMeta();
-            im.setCustomModelData(PlayerConfig.getConfig(p).getWeaponCustomModelData());
-            is.setItemMeta(im);
-            is = ItemStackUtils.attackSpeedify(is);
-            is = ItemStackUtils.attackDamage(is, 4);
-            is = NBTUtils.setNBT("Weapon", "true", is);
+            Cosmetic headCosmetic = PlayerSettingsService.getPlayerSettings(p).getCosmetic(CosmeticType.HEAD);
+            if(headCosmetic != null) {
+                ItemStack isHead = ItemStackUtils.removeArmorToughness(headCosmetic.createItem());
+                p.getInventory().setHelmet(isHead);
+            }
+            Cosmetic chestCosmetic = PlayerSettingsService.getPlayerSettings(p).getCosmetic(CosmeticType.CHEST);
+            if(chestCosmetic != null) {
+                ItemStack isChest = ItemStackUtils.removeArmorToughness(chestCosmetic.createItem());
+                p.getInventory().setChestplate(isChest);
+            }
+            Cosmetic pantsCosmetic = PlayerSettingsService.getPlayerSettings(p).getCosmetic(CosmeticType.PANTS);
+            if(pantsCosmetic != null) {
+                ItemStack isPants = ItemStackUtils.removeArmorToughness(pantsCosmetic.createItem());
+                p.getInventory().setLeggings(isPants);
+            }
+            Cosmetic bootsCosmetic = PlayerSettingsService.getPlayerSettings(p).getCosmetic(CosmeticType.BOOTS);
+            if(bootsCosmetic != null) {
+                ItemStack isBoots = ItemStackUtils.removeArmorToughness(bootsCosmetic.createItem());
+                p.getInventory().setBoots(isBoots);
+            }
+
+
+            ItemStack isWeapon = PlayerSettingsService.getPlayerSettings(p).getCosmetic(CosmeticType.WEAPON).createItem();
+            isWeapon = ItemStackUtils.attackSpeedify(isWeapon);
+            isWeapon = ItemStackUtils.attackDamage(isWeapon, 4);
+            isWeapon = NBTUtils.setNBT("Weapon", "true", isWeapon);
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -92,7 +112,7 @@ public class WeaponMenu extends ItemMenu {
 
                 }
             }.runTaskTimer(main.plugin, 5, 5);
-            p.getInventory().setItem(0, is);
+            p.getInventory().setItem(0, isWeapon);
         }
     }
 

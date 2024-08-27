@@ -6,6 +6,7 @@ import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer;
 import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder;
+import esze.configs.PlayerSettingsService;
 import esze.enums.Gamestate;
 import esze.main.main;
 import org.bukkit.Bukkit;
@@ -47,7 +48,7 @@ public class Music implements Listener {
             sp.setAutoDestroy(true);
             for (Player p : Bukkit.getOnlinePlayers()) {
 
-                if (PlayerConfig.getConfig(p).likesMusic) {
+                if (PlayerSettingsService.getPlayerSettings(p).isMusicEnabled()) {
                     //Bukkit.broadcastMessage(""+p.getName()+" music");
                     sp.addPlayer(p);
                 }
@@ -85,22 +86,20 @@ public class Music implements Listener {
 
     public static boolean toogleMusic(Player p) {
 
-        boolean music = !PlayerConfig.getConfig(p).likesMusic;
-        PlayerConfig.getConfig(p).setMusic(music);
-        ;
+        boolean music = !PlayerSettingsService.getPlayerSettings(p).isMusicEnabled();
+        PlayerSettingsService.getPlayerSettings(p).setMusicEnabled(music);
 
         if (!music) {
-            p.sendMessage("�aMusik ist aus");
+            p.sendMessage("§aMusik ist aus");
             for (Player f : Bukkit.getOnlinePlayers()) {
                 if (f.getName().equals("Fabiocean") && p != f) {
-                    f.sendMessage("�7" + p.getName() + " hat deine Musik ausgemacht!");
+                    f.sendMessage("§7" + p.getName() + " hat deine Musik ausgemacht!");
                 }
             }
         } else {
-            p.sendMessage("�aMusik ist an");
+            p.sendMessage("§aMusik ist an");
         }
 
-        PlayerConfig.getConfig(p).save();
         return music;
     }
 

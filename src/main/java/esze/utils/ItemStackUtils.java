@@ -27,6 +27,21 @@ public class ItemStackUtils {
         i.setItemMeta(meta);
         return i;
     }
+
+    public static ItemStack removeArmorToughness(ItemStack is) {
+        ItemMeta meta = is.getItemMeta();
+        meta.addAttributeModifier(
+                Attribute.GENERIC_ARMOR_TOUGHNESS,
+                new AttributeModifier(
+                        NamespacedKey.fromString("generic.armor_toughness"),
+                        0,
+                        AttributeModifier.Operation.ADD_NUMBER,
+                        EquipmentSlotGroup.HAND
+                )
+        );
+        is.setItemMeta(meta);
+        return is;
+    }
 	
 
     public static ItemStack attackSpeedify(ItemStack is) {
