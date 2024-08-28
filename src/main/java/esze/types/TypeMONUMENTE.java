@@ -349,8 +349,6 @@ public class TypeMONUMENTE extends TypeTeamBased {
             p.getInventory().setItem(7,
                     ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
             p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-            p.getInventory().setItem(5,
-                    ItemStackUtils.createItemStack(Material.NETHER_STAR, 1, 0, "§3Kosmetik", null, true));
             p.getInventory().setItem(4,
                     ItemStackUtils.createItemStack(Material.NAME_TAG, 1, 0, "§3Teamauswahl", null, true));
 

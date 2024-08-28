@@ -117,9 +117,6 @@ public class Interact implements Listener {
                         p.openInventory(new ColorTagSpellSelectionMenu(p.getName()).getInventory());
                     }
                 }
-                if (handItem.getItemMeta().getDisplayName().equals("§3Kosmetik")) {
-                    new CosmeticMenu(p, 1);
-                }
                 if (handItem.getItemMeta().getDisplayName().equals("§3Modifikatoren")) {
                     ModifierMenu.getModifierWindow().open(p);
                 }
