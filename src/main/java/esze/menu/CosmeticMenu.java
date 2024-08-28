@@ -123,6 +123,12 @@ public class CosmeticMenu {
             ItemStack i = cosmetic.createItem();
             i = NBTUtils.setNBT("CosmeticType", cosmeticType.name(), i);
             i = NBTUtils.setNBT("Cosmetic", cosmetic.name(), i);
+            if(cosmeticType == CosmeticType.WEAPON) {
+                i = ItemStackUtils.attackSpeedify(i);
+                i = ItemStackUtils.attackDamage(i, 4);
+            } else {
+                i = ItemStackUtils.removeArmorToughness(i);
+            }
             inv.setItem(slot, i);
             slot++;
         }

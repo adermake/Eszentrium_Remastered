@@ -7,11 +7,7 @@ import esze.configs.entities.Cosmetic;
 import esze.configs.entities.CosmeticType;
 import esze.main.main;
 import esze.menu.CosmeticMenu;
-import esze.utils.CharRepo;
-import esze.utils.ItemStackUtils;
 import esze.utils.Tuple;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.Packet;
@@ -29,14 +25,12 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
-import net.minecraft.world.scores.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_21_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftInventoryPlayer;
 import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TextDisplay;
@@ -47,20 +41,9 @@ import java.util.*;
 public class PlayerSettingsGuy {
 
     private static final HashMap<String, Tuple<ServerPlayer, ServerEntity>> settingsGuys = new HashMap<>();
-    private static TextDisplay textDisplay;
 
     public static void spawnPlayerSettingsGuy(Player player) {
         Location loc = new Location(player.getWorld(), -4, 103, -18);
-
-        if(textDisplay == null) {
-            TextComponent component = new TextComponent();
-            component.setText("§e★§6KOSMETIK§e★");
-            component.setFont("minecraft:small");
-            textDisplay = loc.getWorld().spawn(loc.clone().add(0, 2, 0), TextDisplay.class);
-            textDisplay.setText(TextComponent.toLegacyText(component));
-            textDisplay.setAlignment(TextDisplay.TextAlignment.CENTER);
-            textDisplay.setSeeThrough(false);
-        }
 
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
         Object[] textureProperties = ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray();
@@ -85,15 +68,13 @@ public class PlayerSettingsGuy {
         );
 
 
-        //
-
         PlayerTeam teamScore = new PlayerTeam(new Scoreboard(), player.getName());
-        teamScore.setNameTagVisibility(Team.Visibility.NEVER);
+        Style style = Style.EMPTY.withFont(ResourceLocation.withDefaultNamespace("small"));
+        Component component = Component.literal("§e★ ")
+                .append(Component.literal("§6KOSMETIK").withStyle(style))
+                .append(Component.literal(" §e★"));
+        teamScore.setPlayerPrefix(component);
         teamScore.getPlayers().add(serverPlayer.getScoreboardName());
-        //ClientboundSetPlayerTeamPacket.Parameters parameters = new ClientboundSetPlayerTeamPacket.Parameters(teamScore);
-        //sendPacket(player, ClientboundSetPlayerTeamPacket.createPlayerPacket(teamScore, true), player);
-
-        //
 
 
         sendPacket(new ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, serverPlayer), player);
@@ -105,7 +86,6 @@ public class PlayerSettingsGuy {
                 40
         );
         sendPacket(ClientboundSetPlayerTeamPacket.createAddOrModifyPacket(teamScore, true), player);
-        //int cId = serverPlayer.getId();
         settingsGuys.put(player.getUniqueId().toString(), new Tuple<>(serverPlayer, serverE));
         updatePlayerSettingsGuy(player);
     }
@@ -139,7 +119,7 @@ public class PlayerSettingsGuy {
     }
 
     public static void removePlayerSettingsGuy(Player player) {
-        if(settingsGuys.containsKey(player.getUniqueId().toString())) {
+        if (settingsGuys.containsKey(player.getUniqueId().toString())) {
             ServerPlayer serverPlayer = settingsGuys.get(player.getUniqueId().toString()).a();
             sendPacket(new ClientboundRemoveEntitiesPacket(serverPlayer.getId()), player);
         }
@@ -160,7 +140,7 @@ public class PlayerSettingsGuy {
     }
 
     public static void interact(Player player, int entityId) {
-        if(settingsGuys.containsKey(player.getUniqueId().toString())) {
+        if (settingsGuys.containsKey(player.getUniqueId().toString())) {
             ServerPlayer serverPlayer = settingsGuys.get(player.getUniqueId().toString()).a();
             if (serverPlayer.getId() == entityId) {
                 Bukkit.getScheduler().runTask(main.plugin, () -> new CosmeticMenu(player, 1));
