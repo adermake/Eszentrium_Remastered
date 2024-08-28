@@ -67,7 +67,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>net.md-5</groupId>
                 <artifactId>specialsource-maven-plugin</artifactId>
@@ -121,8 +120,37 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>2.0.2</version>
+                <executions>
+                    <execution>
+                        <id>upload-assembly</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>upload-single</goal>
+                        </goals>
+                        <configuration>
+                            <serverId>esze_hostunlimited</serverId>
+                            <url>ftp://193.135.10.95/plugins</url>
+                            <!-- WICHTIG: Eintrag in .m2 für User/Pass erforderlich-->
+                            <fromFile>${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar</fromFile>
+                            <toFile>${project.build.finalName}-jar-with-dependencies.jar</toFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>3.5.3</version>
+            </extension>
+        </extensions>
     </build>
 
 
