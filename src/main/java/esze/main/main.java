@@ -104,6 +104,7 @@ public class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Reconnect(), this);
         getServer().getPluginManager().registerEvents(new Launch(), this);
         getServer().getPluginManager().registerEvents(new HandSlotChange(), this);
+        getServer().getPluginManager().registerEvents(new ToggleSneak(), this);
 
         TTTFusion.start();
 

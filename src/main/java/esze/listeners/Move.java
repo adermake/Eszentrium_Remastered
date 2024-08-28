@@ -1,5 +1,6 @@
 package esze.listeners;
 
+import esze.configs.PlayerSettingsGuy;
 import esze.enums.Gamestate;
 import esze.main.main;
 import org.bukkit.GameMode;
@@ -19,6 +20,11 @@ public class Move implements Listener {
             if (e.getTo().getBlockY() <= 60) {
                 if (p.getGameMode() != GameMode.CREATIVE)
                     p.teleport((Location) main.plugin.getConfig().get("lobby.loc"));
+            }
+            if(PlayerSettingsGuy.getPlayerSettingsGuyLocation(p) != null) {
+                if(PlayerSettingsGuy.getPlayerSettingsGuyLocation(p).distance(p.getLocation()) < 30) {
+                    PlayerSettingsGuy.lookAtPlayer(p);
+                }
             }
         }
     }

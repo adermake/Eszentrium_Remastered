@@ -57,8 +57,10 @@ public enum Cosmetic {
     IRON_HELMET(CosmeticType.HEAD, Material.IRON_HELMET, null, null, null),
     DIAMOND_HELMET(CosmeticType.HEAD, Material.DIAMOND_HELMET, null, null, null),
     NETHERITE_HELMET(CosmeticType.HEAD, Material.NETHERITE_HELMET, null, null, null),
+    DRAGON_HEAD(CosmeticType.HEAD, Material.DRAGON_HEAD, "§r§fDrachenkopf", null, null),
     CYLINDER_HAT(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fZylinder", 1, null),
     GLASSES(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fBrille", 2, null),
+
 
     // ARMOR: Chestplates
     LEATHER_CHESTPLATE(CosmeticType.CHEST, Material.LEATHER_CHESTPLATE, null, null, null),

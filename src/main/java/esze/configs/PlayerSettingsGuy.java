@@ -8,6 +8,7 @@ import esze.configs.entities.CosmeticType;
 import esze.main.main;
 import esze.menu.CosmeticMenu;
 import esze.utils.Tuple;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.Packet;
@@ -23,6 +24,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import org.bukkit.Bukkit;
@@ -129,6 +131,25 @@ public class PlayerSettingsGuy {
 
 
         sendPacket(packet, player);
+    }
+
+    public static void lookAtPlayer(Player player) {
+        if (settingsGuys.containsKey(player.getUniqueId().toString())) {
+            ServerPlayer serverPlayer = settingsGuys.get(player.getUniqueId().toString()).a();
+
+            Location loc = new Location(player.getWorld(), serverPlayer.getBlockX(), serverPlayer.getBlockY(), serverPlayer.getBlockZ());
+            loc.setDirection(player.getLocation().toVector().subtract(loc.toVector()));
+
+            sendPacket(new ClientboundRotateHeadPacket(serverPlayer, (byte)((loc.getYaw() % 360.) * 256 / 360)), player);
+            sendPacket(new ClientboundMoveEntityPacket.Rot(serverPlayer.getId(), (byte)((loc.getYaw() % 360.) * 256 / 360), (byte)((loc.getPitch() % 360.) * 256 / 360), true), player);
+        }
+    }
+
+    public static void hitAnimation(Player player) {
+        if (settingsGuys.containsKey(player.getUniqueId().toString())) {
+            ServerPlayer serverPlayer = settingsGuys.get(player.getUniqueId().toString()).a();
+            sendPacket(new ClientboundAnimatePacket(serverPlayer, ClientboundAnimatePacket.SWING_MAIN_HAND), player);
+        }
     }
 
     public static void removePlayerSettingsGuy(Player player) {
