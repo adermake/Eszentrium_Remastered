@@ -131,7 +131,7 @@ public class Miiilone extends Spell {
         // TODO Auto-generated method stub
         loc = i.getLocation();
         ParUtils.dropItemEffectRandomVector(loc, Material.MELON_SLICE, 22, 50, 1);
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 5, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 5, 1);
         new ExplosionDamage(7, 11, caster, loc, name);
         new Repulsion(7, 3, caster, loc, name);
         i.remove();

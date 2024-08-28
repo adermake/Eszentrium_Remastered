@@ -54,28 +54,21 @@ public class ParrotTrail extends Spell {
 
     @Override
     public void setUp() {
-
-
         par = (Parrot) spawnEntity(EntityType.PARROT);
-
-
     }
 
     @Override
     public void cast() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void launch() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void move() {
-        // TODO Auto-generated method stub
         if (activate) {
             loc.add(loc.getDirection());
             doPin(par, loc, 5);
@@ -92,38 +85,32 @@ public class ParrotTrail extends Spell {
 
     @Override
     public void display() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onPlayerHit(Player p) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onEntityHit(LivingEntity ent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSpellHit(Spell spell) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onBlockHit(Block block) {
-        // TODO Auto-generated method stub
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 1, 1);
         dead = true;
     }
 
     @Override
     public void onDeath() {
-        // TODO Auto-generated method stub
         par.remove();
     }
 

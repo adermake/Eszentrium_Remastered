@@ -1,5 +1,6 @@
 package monuments;
 
+import lombok.Getter;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -10,6 +11,7 @@ import esze.utils.ParUtils;
 public class NexusBeam {
 
 
+    @Getter
     double percentage = 0; // percentage of red beam --- rest is blue
     double redadvantage = 0;
     double blueadvantage = 0;
@@ -43,12 +45,8 @@ public class NexusBeam {
         Location middlePoint = redLoc.clone().add(blueLoc.toVector().subtract(redLoc.toVector()).multiply(percentage));
         ParUtils.parLineRedstone(redLoc, middlePoint, Color.RED, 1.5F, 0.5F);
         ParUtils.parLineRedstone(blueLoc, middlePoint, Color.BLUE, 1.5F, 0.5F);
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, middlePoint, 0.5, 0.5, 0.5, 1, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, middlePoint, 0.5, 0.5, 0.5, 1, 1);
         step++;
-    }
-
-    public double getPercentage() {
-        return percentage;
     }
 
     public Location getCoreLoc(Nexus n) {

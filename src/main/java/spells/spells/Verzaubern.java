@@ -152,7 +152,7 @@ public class Verzaubern extends Spell {
             target.setFlying(true);
 
             target.setSpectatorTarget(sheep);
-            ParUtils.createParticle(Particle.EXPLOSION_EMITTER, target.getLocation(), 0, 0, 0, 3, 1);
+            ParUtils.createParticle(Particle.EXPLOSION, target.getLocation(), 0, 0, 0, 3, 1);
 
             ParUtils.chargeDot(target.getLocation(), Particle.WITCH, 0.1, 4, 10);
 

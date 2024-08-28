@@ -120,7 +120,7 @@ public class Kätzchenkanone extends Spell {
                 new SelfRepulsion(8, 4, caster, loc, name);
             }
             playSound(Sound.ENTITY_GENERIC_EXPLODE, caster.getLocation(), 3.0F, 1F);
-            ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 4, 1);
+            ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 4, 1);
             ParUtils.dropItemEffectRandomVector(loc, Material.TROPICAL_FISH, 1, 40, 0.3);
             ParUtils.dropItemEffectRandomVector(loc, Material.RABBIT_HIDE, 1, 40, 0.3);
         }

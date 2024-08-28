@@ -156,7 +156,7 @@ public class Chaoswelle extends Spell {
 
 
                     ParUtils.createParticle(Particle.LARGE_SMOKE, loc.clone().add(0, 1, 0), 0, 0, 0, 1, 0);
-                    ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc.clone().add(0, 1, 0), 0, 0, 0, 1, 0);
+                    ParUtils.createParticle(Particle.EXPLOSION, loc.clone().add(0, 1, 0), 0, 0, 0, 1, 0);
 
                     for (LivingEntity le : p.getWorld().getLivingEntities()) {
                         if (checkHit(le, loc, p, 2)) {

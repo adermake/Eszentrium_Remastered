@@ -97,13 +97,13 @@ public class Magmafalle extends Spell {
                             new ExplosionDamage(9, 8, caster, loc.clone(), name);
                             new Repulsion(9, 16, caster, loc.clone(), false, name);
                             ParUtils.parKreisDir(Particle.FLAME, loc.clone(), 9, 0, 6, new Vector(0, 1, 0), new Vector(0, 1, 0));
-                            ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc.clone(), 2, 2, 2, 16, 1);
+                            ParUtils.createParticle(Particle.EXPLOSION, loc.clone(), 2, 2, 2, 16, 1);
                             ParUtils.createParticle(Particle.LAVA, loc.clone(), 2, 2, 2, 40, 1);
                         } else {
                             new ExplosionDamage(6, 6, caster, loc.clone(), name);
                             new Repulsion(6, 5, caster, loc.clone(), false, name);
                             ParUtils.parKreisDir(Particle.FLAME, loc.clone(), 5, 0, 6, new Vector(0, 1, 0), new Vector(0, 1, 0));
-                            ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc.clone(), 1, 1, 1, 4, 1);
+                            ParUtils.createParticle(Particle.EXPLOSION, loc.clone(), 1, 1, 1, 4, 1);
                             ParUtils.createParticle(Particle.LAVA, loc.clone(), 2, 2, 2, 40, 1);
                         }
 
@@ -137,13 +137,13 @@ public class Magmafalle extends Spell {
                     new ExplosionDamage(9, 8, caster, loc.clone(), name);
                     new Repulsion(9, 10, caster, loc.clone(), false, name);
                     ParUtils.parKreisDir(Particle.FLAME, loc.clone(), 9, 0, 6, new Vector(0, 1, 0), new Vector(0, 1, 0));
-                    ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc.clone(), 2, 2, 2, 16, 1);
+                    ParUtils.createParticle(Particle.EXPLOSION, loc.clone(), 2, 2, 2, 16, 1);
                     ParUtils.createParticle(Particle.LAVA, loc.clone(), 2, 2, 2, 40, 1);
                 } else {
                     new ExplosionDamage(6, 6, caster, loc.clone(), name);
                     new Repulsion(6, 5, caster, loc.clone(), false, name);
                     ParUtils.parKreisDir(Particle.FLAME, loc.clone(), 5, 0, 6, new Vector(0, 1, 0), new Vector(0, 1, 0));
-                    ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc.clone(), 1, 1, 1, 4, 1);
+                    ParUtils.createParticle(Particle.EXPLOSION, loc.clone(), 1, 1, 1, 4, 1);
                     ParUtils.createParticle(Particle.LAVA, loc.clone(), 2, 2, 2, 40, 1);
                 }
                 playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc.clone(), 6, 0.1F);

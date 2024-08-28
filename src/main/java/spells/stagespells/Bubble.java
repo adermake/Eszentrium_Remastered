@@ -159,7 +159,7 @@ public class Bubble extends Spell {
 
     @Override
     public void onDeath() {
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 1, 1);
         SoundUtils.playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc, 2F, 0.1F);
     }
 

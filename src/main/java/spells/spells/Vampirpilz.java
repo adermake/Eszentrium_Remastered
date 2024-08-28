@@ -116,7 +116,7 @@ public class Vampirpilz extends Spell {
         new VampirpilzStage2(caster, name, loc, refined);
         loc = i.getLocation();
         ParUtils.dropItemEffectRandomVector(loc, i.getLocation().add(0, -1, 0).getBlock().getType(), 6, 50, 0.4);
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 5, 2);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 5, 2);
 
 
         i.remove();

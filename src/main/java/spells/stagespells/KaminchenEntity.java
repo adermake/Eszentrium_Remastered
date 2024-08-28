@@ -168,7 +168,7 @@ public class KaminchenEntity extends Spell {
         dead = true;
         loc = ent.getLocation();
         ent.remove();
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 0, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 0, 1);
         playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc, 1, 1);
     }
 

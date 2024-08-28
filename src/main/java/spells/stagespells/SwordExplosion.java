@@ -58,7 +58,7 @@ public class SwordExplosion extends Spell {
 
     @Override
     public void display() {
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0.5, 0.5, 0.5, 3, 1);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0.5, 0.5, 0.5, 3, 1);
         //ParUtils.createRedstoneParticle(loc, 2, 2, 2, 10, Color.YELLOW, 5);
 
         for (int i = 0; i <= 10; i++) {

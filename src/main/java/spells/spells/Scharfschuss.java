@@ -106,7 +106,7 @@ public class Scharfschuss extends Spell {
     public void onBlockHit(Block block) {
         // TODO Auto-generated method stub
         playSound(Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, loc, 10, 1);
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 1, 0);
         dead = true;
     }
 

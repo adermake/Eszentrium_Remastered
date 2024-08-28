@@ -138,7 +138,7 @@ public class Explosion extends Spell {
         }
 
         ParUtils.parKreisDir(Particle.FLAME, caster.getLocation(), (power / ct) * 15, 0, 2, new Vector(0, 1, 0), new Vector(0, 1, 0));
-        ParUtils.parKreisDir(Particle.EXPLOSION_EMITTER, caster.getLocation(), (power / ct) * 12, 0, 2, new Vector(0, 1, 0), new Vector(0, 1, 0));
+        ParUtils.parKreisDir(Particle.EXPLOSION, caster.getLocation(), (power / ct) * 12, 0, 2, new Vector(0, 1, 0), new Vector(0, 1, 0));
         dead = true;
     }
 

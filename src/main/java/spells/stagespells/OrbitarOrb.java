@@ -118,7 +118,7 @@ public class OrbitarOrb extends Spell {
     @Override
     public void onPlayerHit(Player p) {
         // TODO Auto-generated method stub
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 1, 0);
         playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc, 1, 1);
         //p.setVelocity(dir.multiply(speed/2));
         doKnockback(p, caster.getLocation(), 1);
@@ -129,7 +129,7 @@ public class OrbitarOrb extends Spell {
     @Override
     public void onEntityHit(LivingEntity ent) {
         // TODO Auto-generated method stub
-        ParUtils.createParticle(Particle.EXPLOSION_EMITTER, loc, 0, 0, 0, 1, 0);
+        ParUtils.createParticle(Particle.EXPLOSION, loc, 0, 0, 0, 1, 0);
         playSound(Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, loc, 1, 1);
         doKnockback(ent, caster.getLocation(), 1);
         ent.setVelocity(ent.getVelocity().add(new Vector(0, 1.5F, 0)));
