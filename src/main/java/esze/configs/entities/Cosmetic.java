@@ -44,6 +44,7 @@ public enum Cosmetic {
 
     // WEAPON: Other
     STICK(CosmeticType.WEAPON, Material.WOODEN_SWORD, "§r§fStock", 2, null),
+    SAUSAGE(CosmeticType.WEAPON, Material.WOODEN_SWORD, "§r§fWürstchen", 3, null),
     BLAZE_ROD(CosmeticType.WEAPON, Material.BLAZE_ROD, null, null, null),
     BONE(CosmeticType.WEAPON, Material.BONE, null, null, null),
     BAMBOO(CosmeticType.WEAPON, Material.BAMBOO, null, null, null),

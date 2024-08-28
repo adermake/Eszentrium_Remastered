@@ -11,11 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public enum CosmeticType {
+
+    WEAPON("Waffe", Material.NETHERITE_SWORD, null),
     HEAD("Hut", Material.CHAINMAIL_HELMET, null),
     CHEST("Shirt", Material.DIAMOND_CHESTPLATE, null),
     PANTS("Hose", Material.LEATHER_LEGGINGS, null),
-    BOOTS("Schuhe",Material.IRON_BOOTS, null),
-    WEAPON("Waffe", Material.NETHERITE_SWORD, null);
+    BOOTS("Schuhe",Material.IRON_BOOTS, null);
 
     private final String name;
     private final Material material;

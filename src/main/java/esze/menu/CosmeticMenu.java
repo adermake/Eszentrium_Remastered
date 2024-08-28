@@ -7,8 +7,7 @@ import esze.configs.entities.CosmeticType;
 import esze.utils.CharRepo;
 import esze.utils.ItemStackUtils;
 import esze.utils.NBTUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -155,6 +154,14 @@ public class CosmeticMenu {
                         PlayerSettingsService.getPlayerSettings(p).setCosmetic(cosmeticType, cosmetic);
                     }
                     PlayerSettingsGuy.updatePlayerSettingsGuy(p);
+                    p.playSound(p.getLocation(), Sound.ENTITY_WITCH_THROW, 1, 1);
+
+                    Location guyLocation = PlayerSettingsGuy.getPlayerSettingsGuyLocation(p);
+                    if(guyLocation != null) {
+                        guyLocation.add(0, 1, 0);
+                        p.spawnParticle(Particle.HEART, guyLocation, 6, 0.5, 0.5, 0.5, 0);
+                        p.spawnParticle(Particle.WHITE_SMOKE, guyLocation, 100, 0.5, 1, 0.5, 0);
+                    }
 
                     String invName = e.getView().getTitle();
                     new CosmeticMenu(p, menuNameToTab(invName));
