@@ -1,9 +1,11 @@
 package esze.menu;
 
+import esze.configs.PlayerSettingsGuy;
 import esze.configs.PlayerSettingsService;
 import esze.configs.entities.Cosmetic;
 import esze.configs.entities.CosmeticType;
 import esze.utils.CharRepo;
+import esze.utils.ItemStackUtils;
 import esze.utils.NBTUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,8 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CosmeticMenu {
@@ -89,21 +91,19 @@ public class CosmeticMenu {
         CosmeticType cosmeticType = tabToCosmeticType(tab);
         List<Cosmetic> categoryItems = Cosmetic.getCosmeticsByType(cosmeticType);
 
-        boolean highlightSlot = false;
-        int testRunSlot = 9;
         PlayerSettingsService.PlayerSettings playerConfig = PlayerSettingsService.getPlayerSettings(p);
-        for (Cosmetic cosmetic : categoryItems) {
-            if (playerConfig.getCosmetic(cosmeticType) == cosmetic) {
-                highlightSlot = true;
-                break;
+        int testRunSlot = 9;
+        if (playerConfig.getCosmetic(cosmeticType) != null) {
+            if(cosmeticType != CosmeticType.WEAPON) {
+                testRunSlot++;
             }
-            testRunSlot++;
+            testRunSlot += Arrays.stream(Cosmetic.values()).filter(c -> c.getType() == cosmeticType).toList().indexOf(playerConfig.getCosmetic(cosmeticType));
         }
 
         String invName = "§f" + CharRepo.NEG8.literal + CharRepo.MENU_CONTAINER_45_BLACK.literal + CharRepo.getNeg(172);
         invName += tabToMenuName(tab);
         invName += CharRepo.getNeg(164);
-        if (highlightSlot) invName += "§a" + getSlotHighlighter(testRunSlot) + CharRepo.getNeg(17);
+        invName += "§a" + getSlotHighlighter(testRunSlot) + CharRepo.getNeg(17);
         invName += "§8Kosmetik auswählen";
 
         Inventory inv = Bukkit.createInventory(null, 6 * 9, invName);
@@ -113,6 +113,12 @@ public class CosmeticMenu {
 
 
         int slot = 9;
+        if (cosmeticType != CosmeticType.WEAPON) {
+            ItemStack i = ItemStackUtils.createItemStack(Material.BARRIER, 1, 0, "§r§fKeine Auswahl", null, false);
+            i = NBTUtils.setNBT("CosmeticType", cosmeticType.name(), i);
+            inv.setItem(slot, i);
+            slot++;
+        }
         for (Cosmetic cosmetic : categoryItems) {
             ItemStack i = cosmetic.createItem();
             i = NBTUtils.setNBT("CosmeticType", cosmeticType.name(), i);
@@ -136,8 +142,13 @@ public class CosmeticMenu {
                 } else {
                     ItemStack item = e.getCurrentItem();
                     CosmeticType cosmeticType = CosmeticType.valueOf(NBTUtils.getNBT("CosmeticType", item));
-                    Cosmetic cosmetic = Cosmetic.valueOf(NBTUtils.getNBT("Cosmetic", item));
-                    PlayerSettingsService.getPlayerSettings(p).setCosmetic(cosmeticType, cosmetic);
+                    if (item.getType() == Material.BARRIER) {
+                        PlayerSettingsService.getPlayerSettings(p).setCosmetic(cosmeticType, null);
+                    } else {
+                        Cosmetic cosmetic = Cosmetic.valueOf(NBTUtils.getNBT("Cosmetic", item));
+                        PlayerSettingsService.getPlayerSettings(p).setCosmetic(cosmeticType, cosmetic);
+                    }
+                    PlayerSettingsGuy.updatePlayerSettingsGuy(p);
 
                     String invName = e.getView().getTitle();
                     new CosmeticMenu(p, menuNameToTab(invName));

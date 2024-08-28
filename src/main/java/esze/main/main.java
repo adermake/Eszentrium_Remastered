@@ -3,6 +3,7 @@ package esze.main;
 import esze.analytics.SaveUtils;
 import esze.app.AppServer;
 import esze.app.AppUserPasswordUtils;
+import esze.configs.PlayerSettingsGuy;
 import esze.enums.GameType;
 import esze.enums.GameType.TypeEnum;
 import esze.enums.Gamestate;
@@ -141,6 +142,8 @@ public class main extends JavaPlugin {
             }
 
             GameType.getType().givePlayerLobbyItems(p);
+            PacketReceiver.addPacketReceiver(p);
+            PlayerSettingsGuy.spawnPlayerSettingsGuy(p);
         }
 
         if (getConfig().contains("settings.dcToken")) {
@@ -188,22 +191,21 @@ public class main extends JavaPlugin {
     public void onDisable() {
         // SaveUtils.backup();
         //PlayerConfig.save();
+        PacketReceiver.removePacketReceivers();
 
-        for (Spell spell : Spell.spell) {
-            spell.instaKill();
-
-        }
+        Spell.spell.forEach(Spell::instaKill);
+        Bukkit.getOnlinePlayers().forEach(PlayerSettingsGuy::removePlayerSettingsGuy);
 
         try {
             CorpseUtils.resetAllCorpses();
         } catch (Error e) {
             System.out.println("Esze | Fehler beim Löschen der Leichen");
         }
-        for (Entity e : Bukkit.getWorld("world").getEntities()) {
-            if (e.getType() != EntityType.PLAYER) {
-                e.remove();
-            }
-        }
+
+        Bukkit.getWorld("world").getEntities()
+                .stream()
+                .filter(e -> e.getType() != EntityType.PLAYER)
+                .forEach(Entity::remove);
 
         System.out.println("Esze | Fahre App-Server herunter.");
         try {

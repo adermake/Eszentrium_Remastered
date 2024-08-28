@@ -91,7 +91,7 @@ public class CorpseUtils {
             sendPacket(new ClientboundSetEntityDataPacket(serverPlayer.getId(), synchedEntityData.getNonDefaultValues()), all);
             Bukkit.getScheduler().runTaskLaterAsynchronously(
                     main.plugin,
-                    () -> sendPacket(new ClientboundPlayerInfoRemovePacket(Collections.singletonList(serverPlayer.getUUID())), player),
+                    () -> sendPacket(new ClientboundPlayerInfoRemovePacket(Collections.singletonList(serverPlayer.getUUID())), all),
                     40
             );
         }

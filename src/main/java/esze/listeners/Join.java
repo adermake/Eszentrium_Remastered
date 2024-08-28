@@ -1,5 +1,6 @@
 package esze.listeners;
 
+import esze.configs.PlayerSettingsGuy;
 import esze.enums.GameType;
 import esze.enums.Gamestate;
 import esze.main.main;
@@ -67,6 +68,8 @@ public class Join implements Listener {
             }
         }
 
+        PlayerSettingsGuy.spawnPlayerSettingsGuy(p);
+        PacketReceiver.addPacketReceiver(p);
 
     }
 

@@ -19,10 +19,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class PlayerSettingsService {
 
@@ -83,14 +80,18 @@ public class PlayerSettingsService {
         private final String playerUuid;
         @Getter
         private boolean musicEnabled = true;
-        private HashMap<CosmeticType, Cosmetic> cosmetics = new HashMap<>();
+        private HashMap<CosmeticType, Cosmetic> cosmetics = new HashMap<>(Map.of(CosmeticType.WEAPON, Cosmetic.WOODEN_SWORD));
 
         public Cosmetic getCosmetic(CosmeticType cosmeticType) {
             return cosmetics.getOrDefault(cosmeticType, null);
         }
 
         public void setCosmetic(CosmeticType cosmeticType, Cosmetic cosmetic) {
-            cosmetics.put(cosmeticType, cosmetic);
+            if(cosmetic == null) {
+                cosmetics.remove(cosmeticType);
+            } else {
+                cosmetics.put(cosmeticType, cosmetic);
+            }
             save();
         }
 
