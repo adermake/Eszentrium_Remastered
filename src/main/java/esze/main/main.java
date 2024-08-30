@@ -125,7 +125,7 @@ public class main extends JavaPlugin {
 
         LobbyBackgroundRunnable.start();
 
-        Bukkit.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered").substring(2) + "\n§8"
+        Bukkit.getServer().setMotd(ChatUtils.centerMotD("§cEsze§3Remastered §7| §a1.21+").substring(2) + "\n§8"
                 + ChatUtils.centerMotD("Der Klassiker neu aufgelegt!").substring(3));
 
         for (Player p : Bukkit.getOnlinePlayers()) {

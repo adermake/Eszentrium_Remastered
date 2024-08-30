@@ -36,7 +36,7 @@ public class Join implements Listener {
         TextComponent component = new TextComponent();
         component.setText(CharRepo.ESZE_LOGO + "  ");
         component.setFont("minecraft:default");
-        new TabList(TextComponent.toLegacyText(component)+"\n\n\n\n", "").send(p);
+        new TabList(TextComponent.toLegacyText(component)+"\n\n\n\n", "\n§7a §3knet§bzwerk §7exclusive").send(p);
 
         //Clears Inventory of Players
         GameType.getType().givePlayerLobbyItems(p);

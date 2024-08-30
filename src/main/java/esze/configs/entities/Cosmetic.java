@@ -60,6 +60,7 @@ public enum Cosmetic {
     DRAGON_HEAD(CosmeticType.HEAD, Material.DRAGON_HEAD, "§r§fDrachenkopf", null, null),
     CYLINDER_HAT(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fZylinder", 1, null),
     GLASSES(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fBrille", 2, null),
+    TOILET_PLUNGER(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fPömpel", 3, null),
 
 
     // ARMOR: Chestplates
