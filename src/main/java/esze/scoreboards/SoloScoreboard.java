@@ -21,7 +21,6 @@ public class SoloScoreboard extends Scoreboard {
 
         new BukkitRunnable() {
             public void run() {
-
                 if (GameType.getType().name.equals("SOLO")) {
                     if (Gamestate.getGameState() == Gamestate.INGAME) {
                         HashMap<String, Integer> lives = new HashMap<String, Integer>();

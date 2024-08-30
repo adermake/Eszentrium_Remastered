@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -107,8 +108,11 @@ public class PlayerHeadUtils {
                 component.setText(unicodeChar + Character.toString('\uF102'));
             }
 
+            Color color = Color.decode(hexColors[i]);
+            ChatColor chatColor = ColorUtil.fromRGB(color.getRed(), color.getGreen(), color.getBlue());
+
             // Set the color of the TextComponent based on the corresponding hexadecimal color
-            component.setColor(ChatColor.of(hexColors[i]));
+            component.setColor(chatColor);
             components[row][col] = component;
         }
 
