@@ -15,19 +15,17 @@ import weapons.WeaponAbilitys;
 public class LobbyCountdownRunnable {
 
     private static int timeLeft = 15;
-    private static int runnableID;
-    private static boolean running = false;
+    private static Integer runnableID = null;
 
     public static void start() {
+        Bukkit.broadcastMessage("CCCC");
         if (Gamestate.getGameState() == Gamestate.INGAME)
             return;
-        if (running) {
-
+        if (runnableID != null) {
             timeLeft = 1;
 
             return;
         }
-        running = true;
         timeLeft = 15;
         final int timeDefault = timeLeft;
 
@@ -74,7 +72,7 @@ public class LobbyCountdownRunnable {
 
     public static void stop() {
         Bukkit.getScheduler().cancelTask(runnableID);
-        running = false;
+        runnableID = null;
     }
 
     public static String calculatePercent(int bars, int FULL, int LEFT) {

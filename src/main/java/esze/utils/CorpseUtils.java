@@ -4,7 +4,10 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import esze.main.main;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.Connection;
+import net.minecraft.network.PacketSendListener;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -14,6 +17,8 @@ import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_21_R1.CraftServer;
@@ -63,7 +68,7 @@ public class CorpseUtils {
 
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
         Object[] textureProperties = ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray();
-        if(textureProperties.length > 0) {
+        if (textureProperties.length > 0) {
             Property textures = (Property) ((CraftPlayer) player).getHandle().getGameProfile().getProperties().get("textures").toArray()[0];
             gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
         }
@@ -77,7 +82,16 @@ public class CorpseUtils {
         SynchedEntityData synchedEntityData = serverPlayer.getEntityData();
         synchedEntityData.set(new EntityDataAccessor<>(17, EntityDataSerializers.BYTE), (byte) 127);
 
-        setValue(serverPlayer, "c", ((CraftPlayer) player).getHandle().connection);
+        setValue(serverPlayer, "c", new ServerGamePacketListenerImpl(
+                ((CraftServer) Bukkit.getServer()).getServer(),
+                new Connection(PacketFlow.SERVERBOUND) {
+                    @Override
+                    public void send(Packet<?> packet, PacketSendListener listener) {
+                    }
+                },
+                serverPlayer,
+                CommonListenerCookie.createInitial(gameProfile, false))
+        );
 
         var serverE = new ServerEntity(((CraftWorld) loc.getWorld()).getHandle(),
                 serverPlayer, 0, false, packet -> {

@@ -50,11 +50,11 @@ import java.util.stream.Collectors;
 
 public class CommandReceiver implements CommandExecutor, TabCompleter {
 
+    @Override
     public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String cmdlabel, @NotNull String[] args) {
         final Player p = (Player) sender;
 
-
-        if (cmd.getName().equals("game")) {
+        if (cmd.getName().startsWith("game")) {
             if (p.isOp()) {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("start")) {
@@ -221,6 +221,7 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
         }
 
         if (cmd.getName().startsWith("ping")) {
+            Bukkit.broadcastMessage("ASDFG");
             if (args.length == 1) {
                 String name = args[0];
                 if (Bukkit.getOfflinePlayer(name).isOnline()) {

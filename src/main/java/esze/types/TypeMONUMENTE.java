@@ -340,6 +340,7 @@ public class TypeMONUMENTE extends TypeTeamBased {
     @Override
     public void givePlayerLobbyItems(Player p) {
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
+            p.getInventory().clear();
             if (p.isOp()) {
                 p.getInventory().setItem(0,
                         ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));

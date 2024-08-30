@@ -328,6 +328,7 @@ public class TypeTEAMS extends TypeTeamBased {
     @Override
     public void givePlayerLobbyItems(Player p) {
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
+            p.getInventory().clear();
             if (p.isOp()) {
                 p.getInventory().setItem(0, ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));
             }
@@ -335,7 +336,7 @@ public class TypeTEAMS extends TypeTeamBased {
             p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.MAP, 1, 0, "§3Map wählen", null, true));
             p.getInventory().setItem(7, ItemStackUtils.createItemStack(Material.ENDER_CHEST, 1, 0, "§3Spellsammlung", null, true));
             p.getInventory().setItem(6, ItemStackUtils.createItemStack(Material.DIAMOND, 1, 0, "§3Georg", null, true));
-            p.getInventory().setItem(4, produceTeamFlag(p));
+            p.getInventory().setItem(5, produceTeamFlag(p));
 
             resendScorboardTeams(p);
         }

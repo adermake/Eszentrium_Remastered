@@ -29,8 +29,9 @@ public class Discord {
         g = jda.getGuildById(429733093050679306L);
     }
 
-    public static void logout() {
+    public static void logout() throws InterruptedException {
         jda.shutdownNow();
+        jda.awaitShutdown();
     }
 
     public static void unMuteAll() {

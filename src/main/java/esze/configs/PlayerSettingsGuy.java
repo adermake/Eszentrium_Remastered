@@ -8,10 +8,12 @@ import esze.configs.entities.CosmeticType;
 import esze.main.main;
 import esze.menu.CosmeticMenu;
 import esze.utils.Tuple;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.network.Connection;
+import net.minecraft.network.PacketSendListener;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,9 +24,10 @@ import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import org.bukkit.Bukkit;
@@ -44,14 +47,14 @@ public class PlayerSettingsGuy {
     private static final HashMap<String, Tuple<ServerPlayer, ServerEntity>> settingsGuys = new HashMap<>();
 
     public static ServerPlayer getPlayerSettingsGuy(Player player) {
-        if(!settingsGuys.containsKey(player.getUniqueId().toString())) {
+        if (!settingsGuys.containsKey(player.getUniqueId().toString())) {
             return null;
         }
         return settingsGuys.get(player.getUniqueId().toString()).a();
     }
 
     public static Location getPlayerSettingsGuyLocation(Player player) {
-        if(getPlayerSettingsGuy(player) == null) {
+        if (getPlayerSettingsGuy(player) == null) {
             return null;
         }
         return getPlayerSettingsGuy(player).getBukkitEntity().getLocation();
@@ -75,7 +78,16 @@ public class PlayerSettingsGuy {
         SynchedEntityData synchedEntityData = serverPlayer.getEntityData();
         synchedEntityData.set(new EntityDataAccessor<>(17, EntityDataSerializers.BYTE), (byte) 127);
 
-        setValue(serverPlayer, "c", ((CraftPlayer) player).getHandle().connection);
+        setValue(serverPlayer, "c", new ServerGamePacketListenerImpl(
+                ((CraftServer) Bukkit.getServer()).getServer(),
+                new Connection(PacketFlow.SERVERBOUND) {
+                    @Override
+                    public void send(Packet<?> packet, PacketSendListener listener) {
+                    }
+                },
+                serverPlayer,
+                CommonListenerCookie.createInitial(gameProfile, false))
+        );
 
         var serverE = new ServerEntity(((CraftWorld) loc.getWorld()).getHandle(),
                 serverPlayer, 0, false, packet -> {
@@ -140,8 +152,8 @@ public class PlayerSettingsGuy {
             Location loc = new Location(player.getWorld(), serverPlayer.getBlockX(), serverPlayer.getBlockY(), serverPlayer.getBlockZ());
             loc.setDirection(player.getLocation().toVector().subtract(loc.toVector()));
 
-            sendPacket(new ClientboundRotateHeadPacket(serverPlayer, (byte)((loc.getYaw() % 360.) * 256 / 360)), player);
-            sendPacket(new ClientboundMoveEntityPacket.Rot(serverPlayer.getId(), (byte)((loc.getYaw() % 360.) * 256 / 360), (byte)((loc.getPitch() % 360.) * 256 / 360), true), player);
+            sendPacket(new ClientboundRotateHeadPacket(serverPlayer, (byte) ((loc.getYaw() % 360.) * 256 / 360)), player);
+            sendPacket(new ClientboundMoveEntityPacket.Rot(serverPlayer.getId(), (byte) ((loc.getYaw() % 360.) * 256 / 360), (byte) ((loc.getPitch() % 360.) * 256 / 360), true), player);
         }
     }
 
@@ -156,6 +168,8 @@ public class PlayerSettingsGuy {
         if (settingsGuys.containsKey(player.getUniqueId().toString())) {
             ServerPlayer serverPlayer = settingsGuys.get(player.getUniqueId().toString()).a();
             sendPacket(new ClientboundRemoveEntitiesPacket(serverPlayer.getId()), player);
+
+            settingsGuys.remove(player.getUniqueId().toString());
         }
     }
 

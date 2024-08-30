@@ -169,12 +169,11 @@ public abstract class Type {
         p.teleport(nextLoc());
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
-        p.getInventory().addItem(ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(Material.WOODEN_SWORD, 1, 0, "§cSchwert", null, true)));
+        //p.getInventory().addItem(ItemStackUtils.attackSpeedify(ItemStackUtils.createItemStack(Material.WOODEN_SWORD, 1, 0, "§cSchwert", null, true)));
 
         if (ModifierMenu.hasModifier(GameModifier.GESCHWINDIGKEIT)) {
             p.setWalkSpeed(0.6F);
             p.setFlySpeed(0.3F);
-            Bukkit.broadcastMessage("FL" + p.getFlySpeed());
         }
 
 
@@ -202,9 +201,9 @@ public abstract class Type {
 	
     public void setupGame() {
 
-        for (int i = 0; i < 16; i++) {
+        /*for (int i = 0; i < 16; i++) {
             Bukkit.getWorld("world").loadChunk(Bukkit.getWorld("world").getChunkAt(nextLoc()));
-        }
+        }*/
         setupJumpPad(currentmap);
         Music.startRandomMusic();
         spectator.clear();
@@ -214,6 +213,7 @@ public abstract class Type {
 
     public void givePlayerLobbyItems(Player p) {
         if (!p.getName().equals("adermake") || p.getGameMode() != GameMode.CREATIVE) {
+            p.getInventory().clear();
             if (p.isOp()) {
                 p.getInventory().setItem(0, ItemStackUtils.createItemStack(Material.COMMAND_BLOCK, 1, 0, "§3Modifikatoren", null, true));
             }

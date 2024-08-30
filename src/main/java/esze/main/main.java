@@ -30,9 +30,8 @@ import weapons.Damage;
 import weapons.WeaponAbilitys;
 import weapons.WeaponList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class main extends JavaPlugin {
 
@@ -55,31 +54,32 @@ public class main extends JavaPlugin {
         Cooldowns.startCooldownHandler();
 
         ConfigurationSerialization.registerClass(JumpPad.class);
-        this.getCommand("setmonumap").setExecutor(new CommandReceiver());
-        this.getCommand("playrandomsound").setExecutor(new CommandReceiver());
-        this.getCommand("showpads").setExecutor(new CommandReceiver());
-        this.getCommand("loadpads").setExecutor(new CommandReceiver());
-        this.getCommand("unload").setExecutor(new CommandReceiver());
-        this.getCommand("spell").setExecutor(new CommandReceiver());
-        this.getCommand("game").setExecutor(new CommandReceiver());
-        this.getCommand("maps").setExecutor(new CommandReceiver());
-        this.getCommand("setspawn").setExecutor(new CommandReceiver());
-        this.getCommand("setpassword").setExecutor(new CommandReceiver());
-        this.getCommand("setitem").setExecutor(new CommandReceiver());
-        this.getCommand("setdiscordtoken").setExecutor(new CommandReceiver());
-        this.getCommand("setlobby").setExecutor(new CommandReceiver());
-        this.getCommand("downloadfile").setExecutor(new CommandReceiver());
-        this.getCommand("ping").setExecutor(new CommandReceiver());
-        this.getCommand("setmode").setExecutor(new CommandReceiver());
-        this.getCommand("removemap").setExecutor(new CommandReceiver());
-        this.getCommand("itemname").setExecutor(new CommandReceiver());
-        this.getCommand("setjumppad").setExecutor(new CommandReceiver());
-        this.getCommand("removepads").setExecutor(new CommandReceiver());
-        this.getCommand("music").setExecutor(new CommandReceiver());
+        CommandReceiver commandReceiver = new CommandReceiver();
+        this.getCommand("setmonumap").setExecutor(commandReceiver);
+        this.getCommand("playrandomsound").setExecutor(commandReceiver);
+        this.getCommand("showpads").setExecutor(commandReceiver);
+        this.getCommand("loadpads").setExecutor(commandReceiver);
+        this.getCommand("unload").setExecutor(commandReceiver);
+        this.getCommand("spell").setExecutor(commandReceiver);
+        this.getCommand("game").setExecutor(commandReceiver);
+        this.getCommand("maps").setExecutor(commandReceiver);
+        this.getCommand("setspawn").setExecutor(commandReceiver);
+        this.getCommand("setpassword").setExecutor(commandReceiver);
+        this.getCommand("setitem").setExecutor(commandReceiver);
+        this.getCommand("setdiscordtoken").setExecutor(commandReceiver);
+        this.getCommand("setlobby").setExecutor(commandReceiver);
+        this.getCommand("downloadfile").setExecutor(commandReceiver);
+        this.getCommand("ping").setExecutor(commandReceiver);
+        this.getCommand("setmode").setExecutor(commandReceiver);
+        this.getCommand("removemap").setExecutor(commandReceiver);
+        this.getCommand("itemname").setExecutor(commandReceiver);
+        this.getCommand("setjumppad").setExecutor(commandReceiver);
+        this.getCommand("removepads").setExecutor(commandReceiver);
+        this.getCommand("music").setExecutor(commandReceiver);
 
-        this.getCommand("nofboost").setExecutor(new CommandReceiver());
-        this.getCommand("testinv").setExecutor(new CommandReceiver());
-        this.getCommand("analytics").setExecutor(new CommandReceiver());
+        this.getCommand("nofboost").setExecutor(commandReceiver);
+        this.getCommand("testinv").setExecutor(commandReceiver);
+        this.getCommand("analytics").setExecutor(commandReceiver);
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Move(), this);
         getServer().getPluginManager().registerEvents(new Death(), this);
@@ -220,7 +220,7 @@ public class main extends JavaPlugin {
             Discord.unMuteAll();
             Discord.logout();
             System.out.println("Esze | Discord heruntergefahren.");
-        } catch (Error e) {
+        } catch (Error | Exception e) {
             System.out.println("Esze | Discord herunterfahren fehlgeschlagen.");
         }
 
