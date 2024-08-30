@@ -71,6 +71,10 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
             }
         }
 
+        if(cmd.getName().startsWith("disablepack")) {
+            p.removeResourcePacks();
+        }
+
         if (cmd.getName().startsWith("music")) {
             Music.toogleMusic(p);
         }

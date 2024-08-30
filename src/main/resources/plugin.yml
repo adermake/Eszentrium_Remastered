@@ -74,3 +74,5 @@ commands:
     usage: /playrandomsound
   testinv:
     description: Open a test inventory for debugging purposes
+  disablepack:
+    description: Open a test inventory for debugging purposes

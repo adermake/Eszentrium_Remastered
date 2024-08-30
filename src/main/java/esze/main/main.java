@@ -80,6 +80,7 @@ public class main extends JavaPlugin {
         this.getCommand("nofboost").setExecutor(commandReceiver);
         this.getCommand("testinv").setExecutor(commandReceiver);
         this.getCommand("analytics").setExecutor(commandReceiver);
+        this.getCommand("disablepack").setExecutor(commandReceiver);
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Move(), this);
         getServer().getPluginManager().registerEvents(new Death(), this);

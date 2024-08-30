@@ -49,6 +49,7 @@ public enum Cosmetic {
     BONE(CosmeticType.WEAPON, Material.BONE, null, null, null),
     BAMBOO(CosmeticType.WEAPON, Material.BAMBOO, null, null, null),
     CARROT_ON_A_STICK(CosmeticType.WEAPON, Material.CARROT_ON_A_STICK, null, null, null),
+    TOILET_PLUNGER_WEAPON(CosmeticType.WEAPON, Material.WOODEN_SWORD, "§r§fPömpel", 4, null),
 
     // ARMOR: Helmets
     LEATHER_HELMET(CosmeticType.HEAD, Material.LEATHER_HELMET, null, null, null),
@@ -61,6 +62,8 @@ public enum Cosmetic {
     CYLINDER_HAT(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fZylinder", 1, null),
     GLASSES(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fBrille", 2, null),
     TOILET_PLUNGER(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fPömpel", 3, null),
+    HEADPHONES(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fKopfhörer", 4, null),
+    ASTRONAUT_HELMET(CosmeticType.HEAD, Material.FIRE_CHARGE, "§r§fAstronautenhelm", 5, null),
 
 
     // ARMOR: Chestplates

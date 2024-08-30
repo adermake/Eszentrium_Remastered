@@ -31,12 +31,9 @@ public class GameType {
     }
 
     public static boolean setTypeByName(String typeName) {
-
-
         try {
-
             type = (Type) Class.forName("esze.types.Type" + typeName.toUpperCase()).newInstance();
-
+            Bukkit.getOnlinePlayers().forEach(type::givePlayerLobbyItems);
 
             main.plugin.getConfig().set("settings.mode", typeName.toUpperCase());
             main.plugin.saveConfig();

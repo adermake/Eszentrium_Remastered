@@ -37,7 +37,11 @@ import org.bukkit.craftbukkit.v1_21_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftItemStack;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.EulerAngle;
+import org.bukkit.util.Vector;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -45,6 +49,7 @@ import java.util.*;
 public class PlayerSettingsGuy {
 
     private static final HashMap<String, Tuple<ServerPlayer, ServerEntity>> settingsGuys = new HashMap<>();
+    private static final HashMap<String, ArmorStand> cosmeticArmorStand = new HashMap<>();
 
     public static ServerPlayer getPlayerSettingsGuy(Player player) {
         if (!settingsGuys.containsKey(player.getUniqueId().toString())) {

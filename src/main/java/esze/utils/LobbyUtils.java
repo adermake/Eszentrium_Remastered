@@ -48,7 +48,7 @@ public class LobbyUtils {
     }
 
     public static void recallAll() {
-
+        BossbarSpellHUD.removeAllBossbars();
         WeaponAbilitys.clearLists();
         WeaponMenu.stopLoop();
         Location l = new Location(Bukkit.getWorld("world"), 0, 108, 3);

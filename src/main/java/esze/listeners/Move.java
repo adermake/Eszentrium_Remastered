@@ -23,7 +23,9 @@ public class Move implements Listener {
             }
             if(PlayerSettingsGuy.getPlayerSettingsGuyLocation(p) != null) {
                 if(PlayerSettingsGuy.getPlayerSettingsGuyLocation(p).distance(p.getLocation()) < 30) {
-                    PlayerSettingsGuy.lookAtPlayer(p);
+                    if(!p.isSneaking()) {
+                        PlayerSettingsGuy.lookAtPlayer(p);
+                    }
                 }
             }
         }

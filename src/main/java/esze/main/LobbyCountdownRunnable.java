@@ -18,7 +18,6 @@ public class LobbyCountdownRunnable {
     private static Integer runnableID = null;
 
     public static void start() {
-        Bukkit.broadcastMessage("CCCC");
         if (Gamestate.getGameState() == Gamestate.INGAME)
             return;
         if (runnableID != null) {

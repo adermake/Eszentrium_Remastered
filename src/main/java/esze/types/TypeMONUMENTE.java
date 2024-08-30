@@ -57,7 +57,6 @@ public class TypeMONUMENTE extends TypeTeamBased {
         if (gameEnding) {
             return;
         }
-        // TODO Auto-generated method stub
         if (blueNexus.isDead() || redNexus.isDead()) {
 
             new BukkitRunnable() {
@@ -84,7 +83,6 @@ public class TypeMONUMENTE extends TypeTeamBased {
 
     @Override
     public void runEveryTick() {
-        // TODO Auto-generated method stub
         ArrayList<Soul> removeLater = new ArrayList<Soul>();
         for (Soul s : Soul.allSouls) {
             if (s.update()) {
@@ -141,8 +139,6 @@ public class TypeMONUMENTE extends TypeTeamBased {
 
     @Override
     public void endGame() {
-        // TODO Auto-generated method stub
-
 
         if (blueNexus.isDead()) {
             Title title = new Title("§cRot", "§ehat gewonnen");
