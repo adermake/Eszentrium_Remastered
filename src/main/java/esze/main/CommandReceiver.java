@@ -26,10 +26,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -55,6 +52,24 @@ public class CommandReceiver implements CommandExecutor, TabCompleter {
         final Player p = (Player) sender;
 
         if (cmd.getName().startsWith("game")) {
+            /*Panda panda = p.getWorld().spawn(p.getLocation(), Panda.class);
+            //panda.setAI(false);
+            panda.setRolling(true);
+            panda.set
+            new BukkitRunnable() {
+                int i = 0;
+                @Override
+                public void run() {
+                    panda.setRolling(true);
+                    panda.addPassenger(p);
+
+                    i++;
+                    if(i>100) {
+                        panda.remove();
+                        cancel();
+                    }
+                }
+            }.runTaskTimer(main.plugin, 0, 1);*/
             if (p.isOp()) {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("start")) {

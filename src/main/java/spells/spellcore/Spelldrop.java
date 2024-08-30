@@ -90,23 +90,17 @@ public class Spelldrop implements Listener {
         Player p = e.getPlayer();
         if (p.getGameMode() != GameMode.SURVIVAL)
             return;
-        ArrayList<ArmorStand> delete = new ArrayList<ArmorStand>();
-        for (ArmorStand a : items.keySet()) {
-
+        for (ArmorStand a : items.keySet().toArray(new ArmorStand[0])) {
             if (a.getLocation().distance(p.getLocation()) < 1.5) {
-                p.getInventory().addItem(a.getItemInHand());
+                p.getInventory().addItem(a.getEquipment().getItemInMainHand());
 
                 SoundUtils.playSound(Sound.ENTITY_ITEM_PICKUP, a.getLocation());
-                delete.add(a);
+                a.remove();
+                items.get(a).remove();
+                items.remove(a);
 
             }
         }
-        for (ArmorStand a : delete) {
-            items.get(a).remove();
-            items.remove(a);
-            a.remove();
-        }
-        delete.clear();
     }
 
     @EventHandler

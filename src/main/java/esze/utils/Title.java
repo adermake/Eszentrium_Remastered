@@ -1,6 +1,7 @@
 package esze.utils;
 
 
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -9,15 +10,19 @@ import org.bukkit.entity.Player;
 public class Title {
 
 
+    @Setter
     private String title = "";
+    @Setter
     private ChatColor titleColor = ChatColor.WHITE;
 
+    @Setter
     private String subtitle = "";
+    @Setter
     private ChatColor subtitleColor = ChatColor.WHITE;
 
-    private int fadeInTime = -1;
-    private int stayTime = -1;
-    private int fadeOutTime = -1;
+    private int fadeInTime = 10;
+    private int stayTime = 70;
+    private int fadeOutTime = 20;
     private boolean ticks = false;
 
     public Title() {
@@ -58,28 +63,12 @@ public class Title {
         //   loadClasses();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTitle() {
         return this.title;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
     public String getSubtitle() {
         return this.subtitle;
-    }
-
-    public void setTitleColor(ChatColor color) {
-        this.titleColor = color;
-    }
-
-    public void setSubtitleColor(ChatColor color) {
-        this.subtitleColor = color;
     }
 
     public Title setFadeInTime(int time) {

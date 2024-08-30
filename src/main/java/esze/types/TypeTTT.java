@@ -51,21 +51,14 @@ public class TypeTTT extends Type {
 
         secondsLeft--;
         if (secondsLeft <= 0) {
-            //
             traitor.clear();
             checkWinner();
-            //
         }
 
-
         for (Player p : players) {
-
             if (p.getLocation().getY() < 60 && p.getGameMode() == GameMode.SURVIVAL) {
-
                 //p.damage(40);
             }
-
-
         }
         sec++;
         int i = 20 - players.size() * 2;
@@ -169,7 +162,6 @@ public class TypeTTT extends Type {
             p.getInventory().setItem(8, ItemStackUtils.createItemStack(Material.EMERALD, 1, 0, "§eWeltenkatalysator", null, true));
         }
         for (Player p : traitor) {
-
             p.setLevel(10);
 
             if (traitor.size() > 1) {
@@ -324,7 +316,7 @@ public class TypeTTT extends Type {
                 scoreboard.hideScoreboard();
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    Title t = new Title("§cVerräter");
+                    Title t = new Title("§c§lVerräter");
                     t.setSubtitle("§7haben gewonnen!");
                     won = true;
 
@@ -339,7 +331,7 @@ public class TypeTTT extends Type {
 
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    Title t = new Title("§7Die §aUnschuldigen");
+                    Title t = new Title("§7Die §a§lUnschuldigen");
                     t.setSubtitle("§7haben gewonnen!");
                     won = true;
                     t.send(p);
